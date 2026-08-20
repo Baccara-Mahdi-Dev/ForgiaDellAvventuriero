@@ -1,0 +1,54 @@
+[
+  {
+    "id": "acolyte",
+    "name": "Accolito",
+    "description": "Servizio in un tempio e conoscenza dei riti.",
+    "source": "PHB",
+    "skills": ["Intuizione", "Religione"],
+    "languageChoices": 2
+  },
+  {
+    "id": "criminal",
+    "name": "Criminale",
+    "description": "Competenze maturate ai margini della legge.",
+    "source": "PHB",
+    "skills": ["Furtività", "Inganno"],
+    "tools": ["Arnesi da scasso"],
+    "toolChoices": 1
+  },
+  {
+    "id": "folk-hero",
+    "name": "Eroe Popolare",
+    "description": "Una persona comune divenuta simbolo di speranza.",
+    "source": "PHB",
+    "skills": ["Addestrare Animali", "Sopravvivenza"],
+    "tools": ["Veicoli terrestri"],
+    "toolChoices": 1
+  },
+  {
+    "id": "noble",
+    "name": "Nobile",
+    "description": "Educazione privilegiata e posizione sociale.",
+    "source": "PHB",
+    "skills": ["Persuasione", "Storia"],
+    "languageChoices": 1,
+    "toolChoices": 1
+  },
+  {
+    "id": "sage",
+    "name": "Sapiente",
+    "description": "Anni dedicati allo studio e alla ricerca.",
+    "source": "PHB",
+    "skills": ["Arcano", "Storia"],
+    "languageChoices": 2
+  },
+  {
+    "id": "soldier",
+    "name": "Soldato",
+    "description": "Disciplina, gerarchia ed esperienza militare.",
+    "source": "PHB",
+    "skills": ["Atletica", "Intimidire"],
+    "tools": ["Veicoli terrestri"],
+    "toolChoices": 1
+  }
+]

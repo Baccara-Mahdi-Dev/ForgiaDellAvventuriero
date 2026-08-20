@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": "1.10.0",
+  "locale": "it",
+  "ruleset": "5e-2014",
+  "catalog": {
+    "ancestries": 27,
+    "classes": 13,
+    "backgrounds": 6,
+    "feats": 6,
+    "spells": 348,
+    "equipment": 166
+  },
+  "files": {
+    "ancestries": "ancestries.json",
+    "classes": "classes.json",
+    "backgrounds": "backgrounds.json",
+    "feats": "feats.json",
+    "spells": "spells.json",
+    "equipment": "equipment.json"
+  },
+  "sources": ["PHB", "XGE", "TCE", "WGE", "SRD"]
+}

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forgia · Editor cataloghi</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="brand">
+        <span>F</span>
+        <div>
+          <strong>Forgia Data Studio</strong><small>Editor locale dei cataloghi JSON</small>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="validateButton" class="outline">Verifica tutti i dati</button>
+        <button id="saveButton" class="primary" disabled>Salva catalogo</button>
+      </div>
+    </header>
+
+    <main>
+      <aside class="catalog-sidebar">
+        <div class="sidebar-title">
+          <div><small>DATA SOURCE</small><strong>/public/data/v1</strong></div>
+          <button id="newCatalogButton" title="Nuovo catalogo">+</button>
+        </div>
+        <div id="catalogList" class="catalog-list"></div>
+      </aside>
+
+      <section class="workspace">
+        <div id="emptyState" class="empty-state">
+          <span>&#123; &#125;</span>
+          <h1>Scegli un catalogo</h1>
+          <p>Seleziona un file JSON dalla colonna a sinistra per iniziare.</p>
+        </div>
+        <div id="editor" hidden>
+          <div class="operation-heading">
+            <div>
+              <span class="method">GET</span><code id="endpoint"></code>
+              <h1 id="catalogTitle"></h1>
+              <p id="catalogMeta"></p>
+            </div>
+            <div class="mode-tabs">
+              <button data-mode="records" class="active">Record</button
+              ><button data-mode="raw">JSON completo</button>
+            </div>
+          </div>
+
+          <div id="recordsMode" class="records-layout">
+            <aside class="record-browser">
+              <div class="record-tools">
+                <input id="recordSearch" type="search" placeholder="Cerca ID o nome…" /><button
+                  id="addRecordButton"
+                >
+                  + Record
+                </button>
+              </div>
+              <div id="recordList" class="record-list"></div>
+            </aside>
+            <section class="record-editor">
+              <div class="editor-toolbar">
+                <div>
+                  <span class="method put">PUT</span><strong id="recordTitle">Record</strong>
+                </div>
+                <div>
+                  <button id="duplicateButton" class="ghost">Duplica</button
+                  ><button id="deleteButton" class="danger">Elimina</button>
+                </div>
+              </div>
+              <textarea id="recordJson" spellcheck="false" aria-label="JSON del record"></textarea>
+              <div class="editor-footer">
+                <span id="recordStatus">Modifica liberamente proprietà e valori.</span
+                ><button id="applyRecordButton">Applica al catalogo</button>
+              </div>
+            </section>
+          </div>
+
+          <div id="rawMode" class="raw-editor" hidden>
+            <div class="editor-toolbar">
+              <div><span class="method put">PUT</span><strong>Struttura completa</strong></div>
+              <button id="formatRawButton" class="ghost">Formatta JSON</button>
+            </div>
+            <textarea
+              id="rawJson"
+              spellcheck="false"
+              aria-label="JSON completo del catalogo"
+            ></textarea>
+            <div class="editor-footer">
+              <span>Questa modalità consente di modificare anche la struttura principale.</span
+              ><button id="applyRawButton">Applica JSON completo</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

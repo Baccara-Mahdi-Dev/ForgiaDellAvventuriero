@@ -1,0 +1,97 @@
+[
+  {
+    "id": "alert",
+    "name": "Allerta",
+    "description": "Sempre pronto al pericolo: +5 all’iniziativa.",
+    "source": "PHB",
+    "effects": {
+      "initiativeBonus": 5,
+      "notes": [
+        "Non puoi essere sorpreso mentre sei cosciente.",
+        "Le creature non ottengono vantaggio contro di te solo perché non le vedi."
+      ]
+    }
+  },
+  {
+    "id": "observant",
+    "name": "Osservatore",
+    "description": "Attenzione eccezionale e lettura labiale.",
+    "source": "PHB",
+    "effects": {
+      "abilityIncrease": { "amount": 1, "options": ["int", "wis"] },
+      "passivePerceptionBonus": 5,
+      "passiveInvestigationBonus": 5,
+      "notes": ["Puoi leggere le labbra di una creatura che comprendi e riesci a vedere."]
+    }
+  },
+  {
+    "id": "tough",
+    "name": "Robusto",
+    "description": "Punti ferita aggiuntivi per ogni livello.",
+    "source": "PHB",
+    "effects": { "hitPointsPerLevel": 2 }
+  },
+  {
+    "id": "war-caster",
+    "name": "Incantatore da Guerra",
+    "description": "Concentrazione e magia efficaci in battaglia.",
+    "source": "PHB",
+    "prerequisite": "Capacità di lanciare almeno un incantesimo",
+    "requirements": { "spellcasting": true },
+    "effects": {
+      "notes": [
+        "Hai vantaggio ai tiri salvezza di Costituzione per mantenere la concentrazione.",
+        "Puoi eseguire componenti somatiche anche con armi o scudo in mano.",
+        "Puoi usare un incantesimo con tempo di lancio di 1 azione al posto di un attacco di opportunità."
+      ]
+    }
+  },
+  {
+    "id": "magic-initiate",
+    "name": "Iniziato alla Magia",
+    "description": "Apprende due trucchetti e un incantesimo di 1° livello dalla stessa tradizione magica.",
+    "source": "PHB",
+    "spellChoices": [
+      {
+        "id": "magic-initiate-cantrips",
+        "label": "Due trucchetti della tradizione scelta",
+        "count": 2,
+        "level": 0,
+        "traditionKey": "magic-initiate",
+        "traditionOptions": ["bard", "cleric", "druid", "sorcerer", "warlock", "wizard"]
+      },
+      {
+        "id": "magic-initiate-spell",
+        "label": "Un incantesimo di 1° livello della stessa tradizione",
+        "count": 1,
+        "level": 1,
+        "traditionKey": "magic-initiate"
+      }
+    ]
+  },
+  {
+    "id": "fey-touched",
+    "name": "Toccato dalle Fate",
+    "description": "Un dono fatato aumenta una caratteristica mentale e concede magie fatate.",
+    "source": "TCE",
+    "effects": {
+      "abilityIncrease": { "amount": 1, "options": ["int", "wis", "cha"] }
+    },
+    "spellGrants": [
+      {
+        "spellId": "misty-step",
+        "minLevel": 1,
+        "note": "Una volta per riposo lungo senza slot; può essere lanciato anche con slot"
+      }
+    ],
+    "spellChoices": [
+      {
+        "id": "fey-touched-spell",
+        "label": "Un incantesimo di 1° livello di Divinazione o Ammaliamento",
+        "count": 1,
+        "level": 1,
+        "schools": ["Divination", "Enchantment"]
+      }
+    ]
+  }
+]

@@ -1,0 +1,80 @@
+<header class="masthead no-print">
+  <a class="brand" href="/" aria-label="Forgia dell’avventuriero, pagina iniziale"
+    ><img class="sigil" src="/brand/logo-d20-hammer.png" alt="" width="42" height="42" /><span
+      >Forgia dell’avventuriero<small>Creazione personaggi · 5e 2014</small></span
+    ></a
+  >
+  <div class="masthead-actions">
+    <span class="offline">● Pronta offline</span><app-theme-toggle />
+  </div>
+</header>
+<main id="contenuto">
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="kicker">Il prossimo eroe nasce qui</p>
+      <h1>Dai forma alla tua<br /><em>leggenda.</em></h1>
+      <p>
+        Un percorso guidato per forgiare personaggi completi, coerenti e pronti per il tavolo. I
+        tuoi dati restano su questo dispositivo.
+      </p>
+      <div class="actions">
+        <button class="primary" (click)="create()">Crea un personaggio <span>→</span></button
+        ><label class="secondary"
+          >Importa JSON<input
+            class="sr-only"
+            type="file"
+            accept="application/json"
+            (change)="import($event)"
+        /></label>
+      </div>
+      <p class="trust">
+        ✓ Nessun account &nbsp; · &nbsp; ✓ Salvataggio automatico &nbsp; · &nbsp; ✓ Funziona senza
+        rete
+      </p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <img class="hero-logo" src="/brand/logo-d20-hammer.png" alt="" />
+      <div class="orbit one"></div>
+      <div class="orbit two"></div>
+      <span class="spark s1">✦</span><span class="spark s2">✧</span>
+    </div>
+  </section>
+  <section class="library" aria-labelledby="library-title">
+    <div>
+      <p class="kicker">Il tuo archivio</p>
+      <h2 id="library-title">Personaggi e bozze</h2>
+    </div>
+    @if (characters().length) {
+      <div class="cards">
+        @for (character of characters(); track character.id) {
+          <article
+            class="character"
+            tabindex="0"
+            (click)="open(character)"
+            (keydown.enter)="open(character)"
+          >
+            <div class="avatar">{{ (character.name || '?')[0].toUpperCase() }}</div>
+            <div>
+              <h3>{{ character.name || 'Senza nome' }}</h3>
+              <p>
+                Livello {{ character.level }} · {{ character.classId || 'Classe da scegliere' }}
+              </p>
+              <small>Aggiornato {{ character.updatedAt | date: 'dd MMM, HH:mm' }}</small>
+            </div>
+            <button class="icon" title="Elimina" (click)="remove(character, $event)">×</button>
+          </article>
+        }
+      </div>
+    } @else {
+      <div class="empty">
+        <span>◇</span>
+        <h3>La forgia attende</h3>
+        <p>Non ci sono ancora personaggi. Inizia una nuova storia.</p>
+      </div>
+    }
+  </section>
+</main>
+<footer>
+  <span>Forgia dell’avventuriero</span
+  ><span>Regole 5e 2014 · Dati locali · <a href="/legal.html">Note legali</a></span>
+</footer>

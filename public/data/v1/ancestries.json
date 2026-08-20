@@ -1,0 +1,990 @@
+[
+  {
+    "id": "human",
+    "name": "Umano",
+    "race": "Umano",
+    "description": "Versatile e ambizioso, adatto a ogni cammino.",
+    "source": "PHB",
+    "bonuses": {
+      "str": 1,
+      "dex": 1,
+      "con": 1,
+      "int": 1,
+      "wis": 1,
+      "cha": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "languages": ["Comune"],
+    "languageChoices": 1,
+    "traits": ["Versatilità umana"],
+    "traitDetails": [
+      {
+        "name": "Versatilità umana",
+        "effect": "Tutte le sei caratteristiche aumentano di 1."
+      }
+    ]
+  },
+  {
+    "id": "human-variant",
+    "name": "Umano · Variante",
+    "race": "Umano",
+    "description": "Un umano specializzato con un talento e una competenza fin dal 1° livello.",
+    "source": "PHB",
+    "bonuses": {},
+    "speed": 9,
+    "size": "Media",
+    "flexibleBonusCount": 2,
+    "flexibleBonusOptions": ["str", "dex", "con", "int", "wis", "cha"],
+    "skillChoices": 1,
+    "skillChoiceOptions": [
+      "acrobatics",
+      "animal-handling",
+      "arcana",
+      "athletics",
+      "stealth",
+      "investigation",
+      "deception",
+      "intimidation",
+      "insight",
+      "medicine",
+      "nature",
+      "perception",
+      "persuasion",
+      "sleight-of-hand",
+      "religion",
+      "survival",
+      "history",
+      "performance"
+    ],
+    "bonusFeat": true,
+    "languages": ["Comune"],
+    "languageChoices": 1,
+    "traits": ["Due caratteristiche +1", "Talento bonus", "Competenza versatile"],
+    "traitDetails": [
+      {
+        "name": "Caratteristiche versatili",
+        "effect": "Due caratteristiche diverse a scelta aumentano di 1."
+      },
+      {
+        "name": "Talento bonus",
+        "effect": "Ottieni un talento al 1° livello; non consuma una scelta ASI di classe."
+      },
+      {
+        "name": "Competenza versatile",
+        "effect": "Ottieni competenza in un'abilità a scelta."
+      }
+    ]
+  },
+  {
+    "id": "dwarf-hill",
+    "name": "Nano · Collina",
+    "race": "Nano",
+    "description": "Tenace e saggio, con una resistenza eccezionale.",
+    "source": "PHB",
+    "bonuses": {
+      "con": 2,
+      "wis": 1
+    },
+    "speed": 7.5,
+    "size": "Media",
+    "darkvisionMeters": 18,
+    "resistances": ["Veleno"],
+    "hitPointsPerLevel": 1,
+    "weaponProficiencies": ["battleaxe", "handaxe", "light-hammer", "warhammer"],
+    "toolChoices": 1,
+    "toolOptions": ["Strumenti da fabbro", "Scorte da birraio", "Strumenti da muratore"],
+    "languages": ["Comune", "Nanico"],
+    "traits": ["Resilienza nanica", "Tenacia nanica"],
+    "traitDetails": [
+      {
+        "name": "Scurovisione",
+        "effect": "Vedi nell'oscurità entro 18 m come in luce fioca; nell'oscurità distingui solo tonalità di grigio."
+      },
+      {
+        "name": "Velocità nanica",
+        "effect": "La velocità di 7,5 m non viene ridotta dall'armatura pesante."
+      },
+      {
+        "name": "Resilienza nanica",
+        "effect": "Hai vantaggio ai tiri salvezza contro il veleno e resistenza ai danni da veleno."
+      },
+      {
+        "name": "Addestramento da combattimento nanico",
+        "effect": "Hai competenza in ascia da battaglia, accetta, martello leggero e martello da guerra."
+      },
+      {
+        "name": "Competenza negli strumenti",
+        "effect": "Scegli una competenza tra strumenti da fabbro, scorte da birraio o strumenti da muratore."
+      },
+      {
+        "name": "Esperto minatore",
+        "effect": "Nelle prove di Intelligenza (Storia) legate alla pietra aggiungi due volte il bonus di competenza."
+      },
+      {
+        "name": "Tenacia nanica",
+        "effect": "I punti ferita massimi aumentano di 1 al 1° livello e di un ulteriore punto a ogni livello successivo."
+      }
+    ]
+  },
+  {
+    "id": "dwarf-mountain",
+    "name": "Nano · Montagna",
+    "race": "Nano",
+    "description": "Forte e abituato alla vita in armatura.",
+    "source": "PHB",
+    "bonuses": {
+      "con": 2,
+      "str": 2
+    },
+    "speed": 7.5,
+    "size": "Media",
+    "darkvisionMeters": 18,
+    "resistances": ["Veleno"],
+    "weaponProficiencies": ["battleaxe", "handaxe", "light-hammer", "warhammer"],
+    "armorProficiencies": ["light", "medium"],
+    "toolChoices": 1,
+    "toolOptions": ["Strumenti da fabbro", "Scorte da birraio", "Strumenti da muratore"],
+    "languages": ["Comune", "Nanico"],
+    "traits": ["Resilienza nanica", "Addestramento nelle armature"],
+    "traitDetails": [
+      {
+        "name": "Scurovisione",
+        "effect": "Vedi nell'oscurità entro 18 m come in luce fioca; nell'oscurità distingui solo tonalità di grigio."
+      },
+      {
+        "name": "Velocità nanica",
+        "effect": "La velocità di 7,5 m non viene ridotta dall'armatura pesante."
+      },
+      {
+        "name": "Resilienza nanica",
+        "effect": "Hai vantaggio ai tiri salvezza contro il veleno e resistenza ai danni da veleno."
+      },
+      {
+        "name": "Addestramento da combattimento nanico",
+        "effect": "Hai competenza in ascia da battaglia, accetta, martello leggero e martello da guerra."
+      },
+      {
+        "name": "Competenza negli strumenti",
+        "effect": "Scegli una competenza tra strumenti da fabbro, scorte da birraio o strumenti da muratore."
+      },
+      {
+        "name": "Esperto minatore",
+        "effect": "Nelle prove di Intelligenza (Storia) legate alla pietra aggiungi due volte il bonus di competenza."
+      },
+      {
+        "name": "Addestramento nelle armature naniche",
+        "effect": "Hai competenza nelle armature leggere e medie."
+      }
+    ]
+  },
+  {
+    "id": "elf-high",
+    "name": "Elfo · Alto",
+    "race": "Elfo",
+    "description": "Grazia elfica e tradizione arcana.",
+    "source": "PHB",
+    "bonuses": {
+      "dex": 2,
+      "int": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "darkvisionMeters": 18,
+    "skillProficiencies": ["perception"],
+    "weaponProficiencies": ["longsword", "shortsword", "shortbow", "longbow"],
+    "spellChoices": [
+      {
+        "id": "high-elf-cantrip",
+        "label": "Trucchetto da Mago",
+        "count": 1,
+        "level": 0,
+        "classes": ["wizard"]
+      }
+    ],
+    "languages": ["Comune", "Elfico"],
+    "languageChoices": 1,
+    "traits": ["Sensi acuti", "Retaggio fatato", "Trucchetto"],
+    "traitDetails": [
+      {
+        "name": "Scurovisione",
+        "effect": "Vedi nell'oscurità entro 18 m come in luce fioca; nell'oscurità distingui solo tonalità di grigio."
+      },
+      {
+        "name": "Sensi acuti",
+        "effect": "Ottieni competenza nell'abilità Percezione."
+      },
+      {
+        "name": "Retaggio fatato",
+        "effect": "Hai vantaggio ai tiri salvezza contro l'essere affascinato e la magia non può farti addormentare."
+      },
+      {
+        "name": "Trance",
+        "effect": "Mediti profondamente per 4 ore al giorno e ne ricavi gli stessi benefici di 8 ore di sonno."
+      },
+      {
+        "name": "Addestramento nelle armi elfiche",
+        "effect": "Hai competenza in spada lunga, spada corta, arco corto e arco lungo."
+      },
+      {
+        "name": "Trucchetto",
+        "effect": "Scegli un trucchetto da Mago. Intelligenza è la caratteristica da incantatore e il trucchetto non conta tra quelli di classe."
+      }
+    ]
+  },
+  {
+    "id": "elf-wood",
+    "name": "Elfo · Boschi",
+    "race": "Elfo",
+    "description": "Rapido, percettivo e capace di confondersi nella natura.",
+    "source": "PHB",
+    "bonuses": {
+      "dex": 2,
+      "wis": 1
+    },
+    "speed": 10.5,
+    "size": "Media",
+    "darkvisionMeters": 18,
+    "skillProficiencies": ["perception"],
+    "weaponProficiencies": ["longsword", "shortsword", "shortbow", "longbow"],
+    "languages": ["Comune", "Elfico"],
+    "traits": ["Sensi acuti", "Piede veloce", "Maschera della selva"],
+    "traitDetails": [
+      {
+        "name": "Scurovisione",
+        "effect": "Vedi nell'oscurità entro 18 m come in luce fioca; nell'oscurità distingui solo tonalità di grigio."
+      },
+      {
+        "name": "Sensi acuti",
+        "effect": "Ottieni competenza nell'abilità Percezione."
+      },
+      {
+        "name": "Retaggio fatato",
+        "effect": "Hai vantaggio ai tiri salvezza contro l'essere affascinato e la magia non può farti addormentare."
+      },
+      {
+        "name": "Trance",
+        "effect": "Mediti profondamente per 4 ore al giorno e ne ricavi gli stessi benefici di 8 ore di sonno."
+      },
+      {
+        "name": "Addestramento nelle armi elfiche",
+        "effect": "Hai competenza in spada lunga, spada corta, arco corto e arco lungo."
+      },
+      {
+        "name": "Piede veloce",
+        "effect": "La tua velocità base è 10,5 m."
+      },
+      {
+        "name": "Maschera della selva",
+        "effect": "Puoi tentare di nasconderti quando sei oscurato leggermente da fenomeni naturali."
+      }
+    ]
+  },
+  {
+    "id": "elf-drow",
+    "name": "Elfo · Drow",
+    "race": "Elfo",
+    "description": "Retaggio del Sottosuolo, sensi superiori e magia innata.",
+    "source": "PHB",
+    "bonuses": {
+      "dex": 2,
+      "cha": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "darkvisionMeters": 36,
+    "skillProficiencies": ["perception"],
+    "weaponProficiencies": ["rapier", "shortsword", "hand-crossbow"],
+    "spellGrants": [
+      {
+        "spellId": "dancing-lights",
+        "minLevel": 1
+      },
+      {
+        "spellId": "faerie-fire",
+        "minLevel": 3,
+        "note": "Una volta per riposo lungo"
+      },
+      {
+        "spellId": "darkness",
+        "minLevel": 5,
+        "note": "Una volta per riposo lungo"
+      }
+    ],
+    "languages": ["Comune", "Elfico"],
+    "traits": ["Scurovisione superiore", "Sensibilità alla luce", "Magia drow"],
+    "traitDetails": [
+      {
+        "name": "Scurovisione",
+        "effect": "Vedi nell'oscurità entro 36 m come in luce fioca; nell'oscurità distingui solo tonalità di grigio."
+      },
+      {
+        "name": "Sensi acuti",
+        "effect": "Ottieni competenza nell'abilità Percezione."
+      },
+      {
+        "name": "Retaggio fatato",
+        "effect": "Hai vantaggio ai tiri salvezza contro l'essere affascinato e la magia non può farti addormentare."
+      },
+      {
+        "name": "Trance",
+        "effect": "Mediti profondamente per 4 ore al giorno e ne ricavi gli stessi benefici di 8 ore di sonno."
+      },
+      {
+        "name": "Sensibilità alla luce solare",
+        "effect": "Alla luce solare diretta hai svantaggio ai tiri per colpire e alle prove di Percezione basate sulla vista."
+      },
+      {
+        "name": "Magia drow",
+        "effect": "Conosci Luci Danzanti. Dal 3° livello lanci Luminescenza e dal 5° Oscurità una volta per riposo lungo; Carisma è la caratteristica da incantatore."
+      },
+      {
+        "name": "Addestramento nelle armi drow",
+        "effect": "Hai competenza in stocco, spada corta e balestra a mano."
+      }
+    ]
+  },
+  {
+    "id": "halfling-lightfoot",
+    "name": "Halfling · Piedelesto",
+    "race": "Halfling",
+    "description": "Agile, socievole e naturalmente furtivo.",
+    "source": "PHB",
+    "bonuses": {
+      "dex": 2,
+      "cha": 1
+    },
+    "speed": 7.5,
+    "size": "Piccola",
+    "languages": ["Comune", "Halfling"],
+    "traits": ["Fortunato", "Coraggioso", "Furtività naturale"],
+    "traitDetails": [
+      {
+        "name": "Fortunato",
+        "effect": "Quando ottieni 1 naturale a un tiro per colpire, prova di caratteristica o tiro salvezza, puoi ritirare il dado e devi usare il nuovo risultato."
+      },
+      {
+        "name": "Coraggioso",
+        "effect": "Hai vantaggio ai tiri salvezza contro l'essere spaventato."
+      },
+      {
+        "name": "Agilità halfling",
+        "effect": "Puoi attraversare lo spazio di una creatura di taglia superiore alla tua."
+      },
+      {
+        "name": "Furtività naturale",
+        "effect": "Puoi tentare di nasconderti quando sei oscurato soltanto da una creatura di almeno una taglia più grande."
+      }
+    ]
+  },
+  {
+    "id": "halfling-stout",
+    "name": "Halfling · Tozzo",
+    "race": "Halfling",
+    "description": "Robusto e resistente alle tossine.",
+    "source": "PHB",
+    "bonuses": {
+      "dex": 2,
+      "con": 1
+    },
+    "speed": 7.5,
+    "size": "Piccola",
+    "resistances": ["Veleno"],
+    "languages": ["Comune", "Halfling"],
+    "traits": ["Fortunato", "Coraggioso", "Resilienza dei tozzi"],
+    "traitDetails": [
+      {
+        "name": "Fortunato",
+        "effect": "Quando ottieni 1 naturale a un tiro per colpire, prova di caratteristica o tiro salvezza, puoi ritirare il dado e devi usare il nuovo risultato."
+      },
+      {
+        "name": "Coraggioso",
+        "effect": "Hai vantaggio ai tiri salvezza contro l'essere spaventato."
+      },
+      {
+        "name": "Agilità halfling",
+        "effect": "Puoi attraversare lo spazio di una creatura di taglia superiore alla tua."
+      },
+      {
+        "name": "Resilienza dei tozzi",
+        "effect": "Hai vantaggio ai tiri salvezza contro il veleno e resistenza ai danni da veleno."
+      }
+    ]
+  },
+  {
+    "id": "dragonborn-black",
+    "name": "Dragonide · Nero",
+    "race": "Dragonide",
+    "description": "Discendenza draconica legata ai danni da acido.",
+    "source": "PHB",
+    "bonuses": {
+      "str": 2,
+      "cha": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "resistances": ["Acido"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Acido", "Soffio: Acido"],
+    "traitDetails": [
+      {
+        "name": "Resistenza draconica",
+        "effect": "Hai resistenza ai danni da acido."
+      },
+      {
+        "name": "Soffio di acido",
+        "effect": "Con un'azione emetti una linea di 9 m per 1,5 m. Le creature effettuano un TS Destrezza con CD 8 + bonus di competenza + modificatore di Costituzione; subiscono 2d6 danni da acido, dimezzati con successo. I danni diventano 3d6 al 6°, 4d6 all'11° e 5d6 al 16°. Recuperi il soffio dopo un riposo breve o lungo."
+      }
+    ]
+  },
+  {
+    "id": "dragonborn-blue",
+    "name": "Dragonide · Blu",
+    "race": "Dragonide",
+    "description": "Discendenza draconica legata ai danni da fulmine.",
+    "source": "PHB",
+    "bonuses": {
+      "str": 2,
+      "cha": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "resistances": ["Fulmine"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Fulmine", "Soffio: Fulmine"],
+    "traitDetails": [
+      {
+        "name": "Resistenza draconica",
+        "effect": "Hai resistenza ai danni da fulmine."
+      },
+      {
+        "name": "Soffio di fulmine",
+        "effect": "Con un'azione emetti una linea di 9 m per 1,5 m. Le creature effettuano un TS Destrezza con CD 8 + bonus di competenza + modificatore di Costituzione; subiscono 2d6 danni da fulmine, dimezzati con successo. I danni diventano 3d6 al 6°, 4d6 all'11° e 5d6 al 16°. Recuperi il soffio dopo un riposo breve o lungo."
+      }
+    ]
+  },
+  {
+    "id": "dragonborn-brass",
+    "name": "Dragonide · Ottone",
+    "race": "Dragonide",
+    "description": "Discendenza draconica legata ai danni da fuoco.",
+    "source": "PHB",
+    "bonuses": {
+      "str": 2,
+      "cha": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "resistances": ["Fuoco"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Fuoco", "Soffio: Fuoco"],
+    "traitDetails": [
+      {
+        "name": "Resistenza draconica",
+        "effect": "Hai resistenza ai danni da fuoco."
+      },
+      {
+        "name": "Soffio di fuoco",
+        "effect": "Con un'azione emetti una linea di 9 m per 1,5 m. Le creature effettuano un TS Destrezza con CD 8 + bonus di competenza + modificatore di Costituzione; subiscono 2d6 danni da fuoco, dimezzati con successo. I danni diventano 3d6 al 6°, 4d6 all'11° e 5d6 al 16°. Recuperi il soffio dopo un riposo breve o lungo."
+      }
+    ]
+  },
+  {
+    "id": "dragonborn-bronze",
+    "name": "Dragonide · Bronzo",
+    "race": "Dragonide",
+    "description": "Discendenza draconica legata ai danni da fulmine.",
+    "source": "PHB",
+    "bonuses": {
+      "str": 2,
+      "cha": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "resistances": ["Fulmine"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Fulmine", "Soffio: Fulmine"],
+    "traitDetails": [
+      {
+        "name": "Resistenza draconica",
+        "effect": "Hai resistenza ai danni da fulmine."
+      },
+      {
+        "name": "Soffio di fulmine",
+        "effect": "Con un'azione emetti una linea di 9 m per 1,5 m. Le creature effettuano un TS Destrezza con CD 8 + bonus di competenza + modificatore di Costituzione; subiscono 2d6 danni da fulmine, dimezzati con successo. I danni diventano 3d6 al 6°, 4d6 all'11° e 5d6 al 16°. Recuperi il soffio dopo un riposo breve o lungo."
+      }
+    ]
+  },
+  {
+    "id": "dragonborn-copper",
+    "name": "Dragonide · Rame",
+    "race": "Dragonide",
+    "description": "Discendenza draconica legata ai danni da acido.",
+    "source": "PHB",
+    "bonuses": {
+      "str": 2,
+      "cha": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "resistances": ["Acido"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Acido", "Soffio: Acido"],
+    "traitDetails": [
+      {
+        "name": "Resistenza draconica",
+        "effect": "Hai resistenza ai danni da acido."
+      },
+      {
+        "name": "Soffio di acido",
+        "effect": "Con un'azione emetti una linea di 9 m per 1,5 m. Le creature effettuano un TS Destrezza con CD 8 + bonus di competenza + modificatore di Costituzione; subiscono 2d6 danni da acido, dimezzati con successo. I danni diventano 3d6 al 6°, 4d6 all'11° e 5d6 al 16°. Recuperi il soffio dopo un riposo breve o lungo."
+      }
+    ]
+  },
+  {
+    "id": "dragonborn-gold",
+    "name": "Dragonide · Dorato",
+    "race": "Dragonide",
+    "description": "Discendenza draconica legata ai danni da fuoco.",
+    "source": "PHB",
+    "bonuses": {
+      "str": 2,
+      "cha": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "resistances": ["Fuoco"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Fuoco", "Soffio: Fuoco"],
+    "traitDetails": [
+      {
+        "name": "Resistenza draconica",
+        "effect": "Hai resistenza ai danni da fuoco."
+      },
+      {
+        "name": "Soffio di fuoco",
+        "effect": "Con un'azione emetti una cono di 4,5 m. Le creature effettuano un TS Destrezza con CD 8 + bonus di competenza + modificatore di Costituzione; subiscono 2d6 danni da fuoco, dimezzati con successo. I danni diventano 3d6 al 6°, 4d6 all'11° e 5d6 al 16°. Recuperi il soffio dopo un riposo breve o lungo."
+      }
+    ]
+  },
+  {
+    "id": "dragonborn-green",
+    "name": "Dragonide · Verde",
+    "race": "Dragonide",
+    "description": "Discendenza draconica legata ai danni da veleno.",
+    "source": "PHB",
+    "bonuses": {
+      "str": 2,
+      "cha": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "resistances": ["Veleno"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Veleno", "Soffio: Veleno"],
+    "traitDetails": [
+      {
+        "name": "Resistenza draconica",
+        "effect": "Hai resistenza ai danni da veleno."
+      },
+      {
+        "name": "Soffio di veleno",
+        "effect": "Con un'azione emetti una cono di 4,5 m. Le creature effettuano un TS Costituzione con CD 8 + bonus di competenza + modificatore di Costituzione; subiscono 2d6 danni da veleno, dimezzati con successo. I danni diventano 3d6 al 6°, 4d6 all'11° e 5d6 al 16°. Recuperi il soffio dopo un riposo breve o lungo."
+      }
+    ]
+  },
+  {
+    "id": "dragonborn-red",
+    "name": "Dragonide · Rosso",
+    "race": "Dragonide",
+    "description": "Discendenza draconica legata ai danni da fuoco.",
+    "source": "PHB",
+    "bonuses": {
+      "str": 2,
+      "cha": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "resistances": ["Fuoco"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Fuoco", "Soffio: Fuoco"],
+    "traitDetails": [
+      {
+        "name": "Resistenza draconica",
+        "effect": "Hai resistenza ai danni da fuoco."
+      },
+      {
+        "name": "Soffio di fuoco",
+        "effect": "Con un'azione emetti una cono di 4,5 m. Le creature effettuano un TS Destrezza con CD 8 + bonus di competenza + modificatore di Costituzione; subiscono 2d6 danni da fuoco, dimezzati con successo. I danni diventano 3d6 al 6°, 4d6 all'11° e 5d6 al 16°. Recuperi il soffio dopo un riposo breve o lungo."
+      }
+    ]
+  },
+  {
+    "id": "dragonborn-silver",
+    "name": "Dragonide · Argento",
+    "race": "Dragonide",
+    "description": "Discendenza draconica legata ai danni da freddo.",
+    "source": "PHB",
+    "bonuses": {
+      "str": 2,
+      "cha": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "resistances": ["Freddo"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Freddo", "Soffio: Freddo"],
+    "traitDetails": [
+      {
+        "name": "Resistenza draconica",
+        "effect": "Hai resistenza ai danni da freddo."
+      },
+      {
+        "name": "Soffio di freddo",
+        "effect": "Con un'azione emetti una cono di 4,5 m. Le creature effettuano un TS Costituzione con CD 8 + bonus di competenza + modificatore di Costituzione; subiscono 2d6 danni da freddo, dimezzati con successo. I danni diventano 3d6 al 6°, 4d6 all'11° e 5d6 al 16°. Recuperi il soffio dopo un riposo breve o lungo."
+      }
+    ]
+  },
+  {
+    "id": "dragonborn-white",
+    "name": "Dragonide · Bianco",
+    "race": "Dragonide",
+    "description": "Discendenza draconica legata ai danni da freddo.",
+    "source": "PHB",
+    "bonuses": {
+      "str": 2,
+      "cha": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "resistances": ["Freddo"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Freddo", "Soffio: Freddo"],
+    "traitDetails": [
+      {
+        "name": "Resistenza draconica",
+        "effect": "Hai resistenza ai danni da freddo."
+      },
+      {
+        "name": "Soffio di freddo",
+        "effect": "Con un'azione emetti una cono di 4,5 m. Le creature effettuano un TS Costituzione con CD 8 + bonus di competenza + modificatore di Costituzione; subiscono 2d6 danni da freddo, dimezzati con successo. I danni diventano 3d6 al 6°, 4d6 all'11° e 5d6 al 16°. Recuperi il soffio dopo un riposo breve o lungo."
+      }
+    ]
+  },
+  {
+    "id": "gnome-forest",
+    "name": "Gnomo · Foresta",
+    "race": "Gnomo",
+    "description": "Agile, illusorio e in sintonia con i piccoli animali.",
+    "source": "PHB",
+    "bonuses": {
+      "int": 2,
+      "dex": 1
+    },
+    "speed": 7.5,
+    "size": "Piccola",
+    "darkvisionMeters": 18,
+    "spellGrants": [
+      {
+        "spellId": "minor-illusion",
+        "minLevel": 1
+      }
+    ],
+    "languages": ["Comune", "Gnomesco"],
+    "traits": ["Astuzia gnomesca", "Illusionista naturale", "Parlare con piccole bestie"],
+    "traitDetails": [
+      {
+        "name": "Scurovisione",
+        "effect": "Vedi nell'oscurità entro 18 m come in luce fioca; nell'oscurità distingui solo tonalità di grigio."
+      },
+      {
+        "name": "Astuzia gnomesca",
+        "effect": "Hai vantaggio ai tiri salvezza di Intelligenza, Saggezza e Carisma contro la magia."
+      },
+      {
+        "name": "Illusionista naturale",
+        "effect": "Conosci Illusione Minore; Intelligenza è la caratteristica da incantatore."
+      },
+      {
+        "name": "Parlare con piccole bestie",
+        "effect": "Con suoni e gesti puoi comunicare idee semplici alle bestie di taglia Piccola o inferiore."
+      }
+    ]
+  },
+  {
+    "id": "gnome-rock",
+    "name": "Gnomo · Rocce",
+    "race": "Gnomo",
+    "description": "Inventivo, robusto e versato nei congegni.",
+    "source": "PHB",
+    "bonuses": {
+      "int": 2,
+      "con": 1
+    },
+    "speed": 7.5,
+    "size": "Piccola",
+    "darkvisionMeters": 18,
+    "tools": ["Strumenti da inventore"],
+    "languages": ["Comune", "Gnomesco"],
+    "traits": ["Astuzia gnomesca", "Sapienza artefice", "Inventore"],
+    "traitDetails": [
+      {
+        "name": "Scurovisione",
+        "effect": "Vedi nell'oscurità entro 18 m come in luce fioca; nell'oscurità distingui solo tonalità di grigio."
+      },
+      {
+        "name": "Astuzia gnomesca",
+        "effect": "Hai vantaggio ai tiri salvezza di Intelligenza, Saggezza e Carisma contro la magia."
+      },
+      {
+        "name": "Sapienza artefice",
+        "effect": "Nelle prove di Storia relative a oggetti magici, alchemici o tecnologici aggiungi due volte il bonus di competenza."
+      },
+      {
+        "name": "Inventore",
+        "effect": "Sei competente negli strumenti da inventore e puoi costruire un piccolo congegno a orologeria durante 1 ora di lavoro."
+      }
+    ]
+  },
+  {
+    "id": "half-elf",
+    "name": "Mezzelfo",
+    "race": "Mezzelfo",
+    "description": "Versatile, carismatico e dotato dei sensi del retaggio elfico.",
+    "source": "PHB",
+    "bonuses": {
+      "cha": 2
+    },
+    "speed": 9,
+    "size": "Media",
+    "flexibleBonusCount": 2,
+    "flexibleBonusOptions": ["str", "dex", "con", "int", "wis"],
+    "skillChoices": 2,
+    "skillChoiceOptions": [
+      "acrobatics",
+      "animal-handling",
+      "arcana",
+      "athletics",
+      "stealth",
+      "investigation",
+      "deception",
+      "intimidation",
+      "insight",
+      "medicine",
+      "nature",
+      "perception",
+      "persuasion",
+      "sleight-of-hand",
+      "religion",
+      "survival",
+      "history",
+      "performance"
+    ],
+    "languages": ["Comune", "Elfico"],
+    "languageChoices": 1,
+    "traits": ["Scurovisione", "Retaggio fatato", "Versatilità nelle abilità"],
+    "traitDetails": [
+      {
+        "name": "Scurovisione",
+        "effect": "Vedi nell'oscurità entro 18 m come in luce fioca; nell'oscurità distingui solo tonalità di grigio."
+      },
+      {
+        "name": "Retaggio fatato",
+        "effect": "Hai vantaggio ai tiri salvezza contro l'essere affascinato e la magia non può farti addormentare."
+      },
+      {
+        "name": "Versatilità nelle abilità",
+        "effect": "Ottieni competenza in due abilità a scelta."
+      },
+      {
+        "name": "Caratteristiche versatili",
+        "effect": "Due caratteristiche diverse da Carisma aumentano di 1."
+      }
+    ]
+  },
+  {
+    "id": "half-orc",
+    "name": "Mezzorco",
+    "race": "Mezzorco",
+    "description": "Forte, tenace e difficile da abbattere.",
+    "source": "PHB",
+    "bonuses": {
+      "str": 2,
+      "con": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "darkvisionMeters": 18,
+    "skillProficiencies": ["intimidation"],
+    "languages": ["Comune", "Orchesco"],
+    "traits": ["Minaccioso", "Tenacia implacabile", "Attacchi selvaggi"],
+    "traitDetails": [
+      {
+        "name": "Scurovisione",
+        "effect": "Vedi nell'oscurità entro 18 m come in luce fioca; nell'oscurità distingui solo tonalità di grigio."
+      },
+      {
+        "name": "Minaccioso",
+        "effect": "Ottieni competenza nell'abilità Intimidire."
+      },
+      {
+        "name": "Tenacia implacabile",
+        "effect": "Quando scendi a 0 PF senza morire sul colpo, puoi restare a 1 PF. Recuperi questo tratto dopo un riposo lungo."
+      },
+      {
+        "name": "Attacchi selvaggi",
+        "effect": "Quando realizzi un colpo critico con un attacco con arma da mischia, tiri una volta in più uno dei dadi di danno dell’arma."
+      }
+    ]
+  },
+  {
+    "id": "tiefling",
+    "name": "Tiefling",
+    "race": "Tiefling",
+    "description": "Retaggio infernale, ingegno e presenza magnetica.",
+    "source": "PHB",
+    "bonuses": {
+      "int": 1,
+      "cha": 2
+    },
+    "speed": 9,
+    "size": "Media",
+    "darkvisionMeters": 18,
+    "resistances": ["Fuoco"],
+    "spellGrants": [
+      {
+        "spellId": "thaumaturgy",
+        "minLevel": 1
+      },
+      {
+        "spellId": "hellish-rebuke",
+        "minLevel": 3,
+        "note": "Come incantesimo di 2° livello, una volta per riposo lungo"
+      },
+      {
+        "spellId": "darkness",
+        "minLevel": 5,
+        "note": "Una volta per riposo lungo"
+      }
+    ],
+    "languages": ["Comune", "Infernale"],
+    "traits": ["Scurovisione", "Resistenza infernale", "Eredità infernale"],
+    "traitDetails": [
+      {
+        "name": "Scurovisione",
+        "effect": "Vedi nell'oscurità entro 18 m come in luce fioca; nell'oscurità distingui solo tonalità di grigio."
+      },
+      {
+        "name": "Resistenza infernale",
+        "effect": "Hai resistenza ai danni da fuoco."
+      },
+      {
+        "name": "Eredità infernale",
+        "effect": "Conosci Taumaturgia. Dal 3° livello lanci Punizione Infernale come incantesimo di 2° livello e dal 5° Oscurità, una volta per riposo lungo; Carisma è la caratteristica da incantatore."
+      }
+    ]
+  },
+  {
+    "id": "warforged-envoy",
+    "name": "Forgiato · Emissario",
+    "race": "Forgiato",
+    "description": "Costrutto vivente specializzato e adattabile.",
+    "source": "WGE",
+    "bonuses": {
+      "con": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "resistances": ["Veleno"],
+    "traits": ["Resilienza forgiata", "Strumento integrato"],
+    "traitDetails": [
+      {
+        "name": "Resilienza forgiata",
+        "effect": "Hai vantaggio ai TS contro il veleno, resistenza ai danni da veleno, immunità alle malattie e non hai bisogno di mangiare, bere o respirare."
+      },
+      {
+        "name": "Riposo del costrutto",
+        "effect": "Non dormi e la magia non può addormentarti. Durante un riposo lungo rimani immobile ma cosciente per almeno 6 ore."
+      },
+      {
+        "name": "Strumento integrato",
+        "effect": "Scegli uno strumento in cui sei competente: viene incorporato nel corpo e il bonus di competenza raddoppia nelle prove effettuate con esso."
+      }
+    ],
+    "languages": ["Comune"],
+    "languageChoices": 1,
+    "tools": ["Uno strumento integrato a scelta"]
+  },
+  {
+    "id": "warforged-juggernaut",
+    "name": "Forgiato · Juggernaut",
+    "race": "Forgiato",
+    "description": "Struttura massiccia progettata per resistere.",
+    "source": "WGE",
+    "bonuses": {
+      "str": 2,
+      "con": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "resistances": ["Veleno"],
+    "powerfulBuild": true,
+    "traits": ["Resilienza forgiata", "Costruzione possente"],
+    "traitDetails": [
+      {
+        "name": "Resilienza forgiata",
+        "effect": "Hai vantaggio ai TS contro il veleno, resistenza ai danni da veleno, immunità alle malattie e non hai bisogno di mangiare, bere o respirare."
+      },
+      {
+        "name": "Riposo del costrutto",
+        "effect": "Non dormi e la magia non può addormentarti. Durante un riposo lungo rimani immobile ma cosciente per almeno 6 ore."
+      },
+      {
+        "name": "Costruzione possente",
+        "effect": "Conti come una taglia più grande nel determinare capacità di carico e peso che puoi spingere, trascinare o sollevare."
+      },
+      {
+        "name": "Pugni di ferro",
+        "effect": "I colpi senz'armi infliggono 1d4 + modificatore di Forza danni contundenti."
+      }
+    ],
+    "languages": ["Comune"],
+    "languageChoices": 1,
+    "tools": ["Strumenti da fabbro"]
+  },
+  {
+    "id": "warforged-skirmisher",
+    "name": "Forgiato · Schermagliatore",
+    "race": "Forgiato",
+    "description": "Telaio leggero, rapido e silenzioso.",
+    "source": "WGE",
+    "bonuses": {
+      "dex": 2,
+      "con": 1
+    },
+    "speed": 10.5,
+    "size": "Media",
+    "resistances": ["Veleno"],
+    "traits": ["Resilienza forgiata", "Passo rapido"],
+    "traitDetails": [
+      {
+        "name": "Resilienza forgiata",
+        "effect": "Hai vantaggio ai TS contro il veleno, resistenza ai danni da veleno, immunità alle malattie e non hai bisogno di mangiare, bere o respirare."
+      },
+      {
+        "name": "Riposo del costrutto",
+        "effect": "Non dormi e la magia non può addormentarti. Durante un riposo lungo rimani immobile ma cosciente per almeno 6 ore."
+      },
+      {
+        "name": "Passo rapido",
+        "effect": "La tua velocità base è 10,5 m."
+      },
+      {
+        "name": "Telaio leggero",
+        "effect": "Quando viaggi da solo per almeno un'ora puoi muoverti furtivamente a passo normale."
+      }
+    ],
+    "languages": ["Comune"],
+    "languageChoices": 1
+  }
+]

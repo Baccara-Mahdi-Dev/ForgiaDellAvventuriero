@@ -1,0 +1,456 @@
+[
+  {
+    "id": "barbarian",
+    "name": "Barbaro",
+    "description": "Combattente istintivo che incanala la furia.",
+    "source": "PHB",
+    "hitDie": 12,
+    "primary": "str",
+    "saves": ["str", "con"],
+    "subclassLevel": 3,
+    "subclasses": ["Berserker", "Guerriero Totemico"],
+    "skillChoices": 2,
+    "skillOptions": [
+      "animal-handling",
+      "athletics",
+      "intimidation",
+      "nature",
+      "perception",
+      "survival"
+    ],
+    "armorProficiencies": ["light", "medium", "shield"],
+    "weaponProficiencies": ["simple", "martial"]
+  },
+  {
+    "id": "bard",
+    "name": "Bardo",
+    "description": "Artista e incantatore dalla versatilità ineguagliata.",
+    "source": "PHB",
+    "hitDie": 8,
+    "primary": "cha",
+    "saves": ["dex", "cha"],
+    "subclassLevel": 3,
+    "subclasses": ["Collegio della Sapienza", "Collegio del Valore"],
+    "skillChoices": 3,
+    "skillOptions": [
+      "acrobatics",
+      "animal-handling",
+      "arcana",
+      "athletics",
+      "stealth",
+      "investigation",
+      "deception",
+      "intimidation",
+      "insight",
+      "medicine",
+      "nature",
+      "perception",
+      "persuasion",
+      "sleight-of-hand",
+      "religion",
+      "survival",
+      "history",
+      "performance"
+    ],
+    "armorProficiencies": ["light"],
+    "weaponProficiencies": ["simple", "hand-crossbow", "longsword", "rapier", "shortsword"],
+    "caster": "full"
+  },
+  {
+    "id": "cleric",
+    "name": "Chierico",
+    "description": "Campione divino, guaritore e difensore.",
+    "source": "PHB",
+    "hitDie": 8,
+    "primary": "wis",
+    "saves": ["wis", "cha"],
+    "subclassLevel": 1,
+    "subclasses": ["Dominio della Vita", "Dominio della Luce", "Dominio della Guerra"],
+    "skillChoices": 2,
+    "skillOptions": ["history", "insight", "medicine", "persuasion", "religion"],
+    "armorProficiencies": ["light", "medium", "shield"],
+    "weaponProficiencies": ["simple"],
+    "caster": "full"
+  },
+  {
+    "id": "druid",
+    "name": "Druido",
+    "description": "Custode della natura e maestro delle forme selvatiche.",
+    "source": "PHB",
+    "hitDie": 8,
+    "primary": "wis",
+    "saves": ["int", "wis"],
+    "subclassLevel": 2,
+    "subclasses": ["Circolo della Terra", "Circolo della Luna"],
+    "skillChoices": 2,
+    "skillOptions": [
+      "arcana",
+      "animal-handling",
+      "insight",
+      "medicine",
+      "nature",
+      "perception",
+      "religion",
+      "survival"
+    ],
+    "armorProficiencies": ["light", "medium", "shield"],
+    "weaponProficiencies": [
+      "club",
+      "dagger",
+      "dart",
+      "javelin",
+      "mace",
+      "quarterstaff",
+      "scimitar",
+      "sickle",
+      "sling",
+      "spear"
+    ],
+    "caster": "full"
+  },
+  {
+    "id": "fighter",
+    "name": "Guerriero",
+    "description": "Maestro d’armi, resistente e personalizzabile.",
+    "source": "PHB",
+    "hitDie": 10,
+    "primary": "str",
+    "saves": ["str", "con"],
+    "subclassLevel": 3,
+    "subclasses": ["Campione", "Maestro di Battaglia", "Cavaliere Mistico"],
+    "skillChoices": 2,
+    "skillOptions": [
+      "acrobatics",
+      "animal-handling",
+      "athletics",
+      "history",
+      "insight",
+      "intimidation",
+      "perception",
+      "survival"
+    ],
+    "armorProficiencies": ["light", "medium", "heavy", "shield"],
+    "weaponProficiencies": ["simple", "martial"],
+    "featureChoices": [
+      {
+        "id": "fighter-fighting-style",
+        "name": "Stile di combattimento",
+        "description": "La tua specializzazione marziale. Non puoi scegliere lo stesso stile più di una volta.",
+        "minLevel": 1,
+        "countByLevel": [{ "level": 1, "count": 1 }],
+        "options": [
+          {
+            "id": "archery",
+            "name": "Tiro",
+            "description": "+2 ai tiri per colpire effettuati con armi a distanza."
+          },
+          {
+            "id": "defense",
+            "name": "Difesa",
+            "description": "+1 alla CA mentre indossi un'armatura."
+          },
+          {
+            "id": "dueling",
+            "name": "Duellare",
+            "description": "+2 ai danni con un'arma da mischia impugnata in una mano, se non impugni altre armi."
+          },
+          {
+            "id": "great-weapon-fighting",
+            "name": "Combattere con Armi Possenti",
+            "description": "Ritira gli 1 e i 2 sui dadi di danno di un'arma da mischia impugnata a due mani."
+          },
+          {
+            "id": "protection",
+            "name": "Protezione",
+            "description": "Usa la reazione e uno scudo per imporre svantaggio a un attacco contro un alleato entro 1,5 m."
+          },
+          {
+            "id": "two-weapon-fighting",
+            "name": "Combattere con Due Armi",
+            "description": "Aggiungi il modificatore di caratteristica al danno dell'attacco con la seconda arma."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "monk",
+    "name": "Monaco",
+    "description": "Combattente disciplinato che domina il ki.",
+    "source": "PHB",
+    "hitDie": 8,
+    "primary": "dex",
+    "saves": ["str", "dex"],
+    "subclassLevel": 3,
+    "subclasses": ["Via della Mano Aperta", "Via dell’Ombra"],
+    "skillChoices": 2,
+    "skillOptions": ["acrobatics", "athletics", "history", "insight", "religion", "stealth"],
+    "armorProficiencies": [],
+    "weaponProficiencies": ["simple", "shortsword"]
+  },
+  {
+    "id": "paladin",
+    "name": "Paladino",
+    "description": "Guerriero sacro vincolato a un giuramento.",
+    "source": "PHB",
+    "hitDie": 10,
+    "primary": "cha",
+    "saves": ["wis", "cha"],
+    "subclassLevel": 3,
+    "subclasses": ["Giuramento di Devozione", "Giuramento degli Antichi"],
+    "skillChoices": 2,
+    "skillOptions": ["athletics", "insight", "intimidation", "medicine", "persuasion", "religion"],
+    "armorProficiencies": ["light", "medium", "heavy", "shield"],
+    "weaponProficiencies": ["simple", "martial"],
+    "caster": "half",
+    "featureChoices": [
+      {
+        "id": "paladin-fighting-style",
+        "name": "Stile di combattimento",
+        "description": "La specializzazione marziale ottenuta al 2° livello.",
+        "minLevel": 2,
+        "countByLevel": [{ "level": 2, "count": 1 }],
+        "options": [
+          {
+            "id": "defense",
+            "name": "Difesa",
+            "description": "+1 alla CA mentre indossi un'armatura."
+          },
+          {
+            "id": "dueling",
+            "name": "Duellare",
+            "description": "+2 ai danni con un'arma da mischia impugnata in una mano, se non impugni altre armi."
+          },
+          {
+            "id": "great-weapon-fighting",
+            "name": "Combattere con Armi Possenti",
+            "description": "Ritira gli 1 e i 2 sui dadi di danno di un'arma da mischia impugnata a due mani."
+          },
+          {
+            "id": "protection",
+            "name": "Protezione",
+            "description": "Usa la reazione e uno scudo per imporre svantaggio a un attacco contro un alleato entro 1,5 m."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ranger",
+    "name": "Ranger",
+    "description": "Esploratore e cacciatore delle terre selvagge.",
+    "source": "PHB",
+    "hitDie": 10,
+    "primary": "dex",
+    "saves": ["str", "dex"],
+    "subclassLevel": 3,
+    "subclasses": ["Cacciatore", "Signore delle Bestie"],
+    "skillChoices": 3,
+    "skillOptions": [
+      "animal-handling",
+      "athletics",
+      "insight",
+      "investigation",
+      "nature",
+      "perception",
+      "stealth",
+      "survival"
+    ],
+    "armorProficiencies": ["light", "medium", "shield"],
+    "weaponProficiencies": ["simple", "martial"],
+    "caster": "half",
+    "featureChoices": [
+      {
+        "id": "ranger-fighting-style",
+        "name": "Stile di combattimento",
+        "description": "La specializzazione marziale ottenuta al 2° livello.",
+        "minLevel": 2,
+        "countByLevel": [{ "level": 2, "count": 1 }],
+        "options": [
+          {
+            "id": "archery",
+            "name": "Tiro",
+            "description": "+2 ai tiri per colpire effettuati con armi a distanza."
+          },
+          {
+            "id": "defense",
+            "name": "Difesa",
+            "description": "+1 alla CA mentre indossi un'armatura."
+          },
+          {
+            "id": "dueling",
+            "name": "Duellare",
+            "description": "+2 ai danni con un'arma da mischia impugnata in una mano, se non impugni altre armi."
+          },
+          {
+            "id": "two-weapon-fighting",
+            "name": "Combattere con Due Armi",
+            "description": "Aggiungi il modificatore di caratteristica al danno dell'attacco con la seconda arma."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rogue",
+    "name": "Ladro",
+    "description": "Esperto, furtivo e opportunista.",
+    "source": "PHB",
+    "hitDie": 8,
+    "primary": "dex",
+    "saves": ["dex", "int"],
+    "subclassLevel": 3,
+    "subclasses": ["Furfante", "Assassino", "Mistificatore Arcano"],
+    "skillChoices": 4,
+    "skillOptions": [
+      "acrobatics",
+      "athletics",
+      "deception",
+      "insight",
+      "intimidation",
+      "investigation",
+      "perception",
+      "performance",
+      "persuasion",
+      "sleight-of-hand",
+      "stealth"
+    ],
+    "armorProficiencies": ["light"],
+    "weaponProficiencies": ["simple", "hand-crossbow", "longsword", "rapier", "shortsword"]
+  },
+  {
+    "id": "sorcerer",
+    "name": "Stregone",
+    "description": "La magia scorre naturalmente nel suo sangue.",
+    "source": "PHB",
+    "hitDie": 6,
+    "primary": "cha",
+    "saves": ["con", "cha"],
+    "subclassLevel": 1,
+    "subclasses": ["Discendenza Draconica", "Magia Selvaggia"],
+    "skillChoices": 2,
+    "skillOptions": ["arcana", "deception", "insight", "intimidation", "persuasion", "religion"],
+    "armorProficiencies": [],
+    "weaponProficiencies": ["dagger", "dart", "sling", "quarterstaff", "light-crossbow"],
+    "caster": "full",
+    "featureChoices": [
+      {
+        "id": "sorcerer-metamagic",
+        "name": "Metamagia",
+        "description": "Modifica il funzionamento dei tuoi incantesimi spendendo punti stregoneria. Salvo diversa indicazione, puoi applicare una sola opzione di Metamagia a un incantesimo.",
+        "minLevel": 3,
+        "countByLevel": [
+          { "level": 3, "count": 2 },
+          { "level": 10, "count": 3 },
+          { "level": 17, "count": 4 }
+        ],
+        "options": [
+          {
+            "id": "careful-spell",
+            "name": "Incantesimo Preciso",
+            "description": "Spendi 1 punto stregoneria: alcune creature scelte superano automaticamente il primo tiro salvezza contro l'incantesimo."
+          },
+          {
+            "id": "distant-spell",
+            "name": "Incantesimo Distante",
+            "description": "Spendi 1 punto stregoneria per raddoppiare la gittata, oppure dare gittata 9 m a un incantesimo a contatto."
+          },
+          {
+            "id": "empowered-spell",
+            "name": "Incantesimo Potenziato",
+            "description": "Spendi 1 punto stregoneria per ritirare un numero di dadi di danno fino al modificatore di Carisma."
+          },
+          {
+            "id": "extended-spell",
+            "name": "Incantesimo Esteso",
+            "description": "Spendi 1 punto stregoneria per raddoppiare la durata, fino a un massimo di 24 ore."
+          },
+          {
+            "id": "heightened-spell",
+            "name": "Incantesimo Intensificato",
+            "description": "Spendi 3 punti stregoneria per imporre svantaggio al primo tiro salvezza di un bersaglio."
+          },
+          {
+            "id": "quickened-spell",
+            "name": "Incantesimo Rapido",
+            "description": "Spendi 2 punti stregoneria per lanciare come azione bonus un incantesimo con tempo di lancio di 1 azione."
+          },
+          {
+            "id": "subtle-spell",
+            "name": "Incantesimo Celato",
+            "description": "Spendi 1 punto stregoneria per lanciare senza componenti somatiche o verbali."
+          },
+          {
+            "id": "twinned-spell",
+            "name": "Incantesimo Raddoppiato",
+            "description": "Spendi punti pari al livello dell'incantesimo (1 per un trucchetto) per scegliere un secondo bersaglio valido."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "warlock",
+    "name": "Warlock",
+    "description": "Potere arcano ottenuto da un patto ultraterreno.",
+    "source": "PHB",
+    "hitDie": 8,
+    "primary": "cha",
+    "saves": ["wis", "cha"],
+    "subclassLevel": 1,
+    "subclasses": ["Il Signore Fatato", "L’Immondo", "Il Grande Antico"],
+    "skillChoices": 2,
+    "skillOptions": [
+      "arcana",
+      "deception",
+      "history",
+      "intimidation",
+      "investigation",
+      "nature",
+      "religion"
+    ],
+    "armorProficiencies": ["light"],
+    "weaponProficiencies": ["simple"],
+    "caster": "full"
+  },
+  {
+    "id": "wizard",
+    "name": "Mago",
+    "description": "Studioso delle formule e delle tradizioni arcane.",
+    "source": "PHB",
+    "hitDie": 6,
+    "primary": "int",
+    "saves": ["int", "wis"],
+    "subclassLevel": 2,
+    "subclasses": ["Scuola di Abiurazione", "Scuola di Evocazione"],
+    "skillChoices": 2,
+    "skillOptions": ["arcana", "history", "insight", "investigation", "medicine", "religion"],
+    "armorProficiencies": [],
+    "weaponProficiencies": ["dagger", "dart", "sling", "quarterstaff", "light-crossbow"],
+    "caster": "full"
+  },
+  {
+    "id": "artificer",
+    "name": "Artificiere",
+    "description": "Inventore magico capace di infondere oggetti.",
+    "source": "TCE",
+    "hitDie": 8,
+    "primary": "int",
+    "saves": ["con", "int"],
+    "subclassLevel": 3,
+    "subclasses": ["Alchimista", "Armorer", "Artigliere", "Fabbro da Battaglia"],
+    "skillChoices": 2,
+    "skillOptions": [
+      "arcana",
+      "history",
+      "investigation",
+      "medicine",
+      "nature",
+      "perception",
+      "sleight-of-hand"
+    ],
+    "armorProficiencies": ["light", "medium", "shield"],
+    "weaponProficiencies": ["simple"],
+    "caster": "half"
+  }
+]
