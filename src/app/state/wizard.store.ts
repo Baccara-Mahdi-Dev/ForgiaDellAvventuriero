@@ -235,6 +235,7 @@ export class WizardStore {
       spellGrantTraditions: {},
       equippedArmorId: '',
       shieldEquipped: false,
+      equippedWeapons: [],
       inventory: [],
       coins: { cp: 0, sp: 0, ep: 0, gp: 0, pp: 0 },
       hitDiceSpent: 0,
@@ -268,6 +269,9 @@ export class WizardStore {
       spellGrantTraditions: value.spellGrantTraditions ?? {},
       equippedArmorId: value.equippedArmorId ?? '',
       shieldEquipped: value.shieldEquipped ?? false,
+      equippedWeapons: (value.equippedWeapons ?? []).filter(
+        (weapon) => weapon && (weapon.hands === 1 || weapon.hands === 2) && !!weapon.equipmentId,
+      ),
       inventory: value.inventory ?? [],
       coins: value.coins ?? { cp: 0, sp: 0, ep: 0, gp: 0, pp: 0 },
       hitDiceSpent: value.hitDiceSpent ?? 0,

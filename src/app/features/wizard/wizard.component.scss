@@ -1935,6 +1935,43 @@
 .weapon-result strong {
   color: var(--ember);
 }
+.weapon-loadout-hint {
+  margin: 0.85rem 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+.weapon-loadout,
+.weapon-slot,
+.shield-loadout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+.weapon-slot label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--muted);
+  font-size: 0.65rem;
+}
+.equip-weapon,
+.unequip-weapon {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--ember);
+  border-radius: 0.3rem;
+  background: transparent;
+  color: var(--ember);
+  font: inherit;
+  font-size: 0.65rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.unequip-weapon {
+  border-color: var(--line);
+  color: var(--muted);
+}
 .equipped-tag {
   background: color-mix(in srgb, var(--sage) 18%, var(--surface));
   color: var(--sage);

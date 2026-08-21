@@ -130,6 +130,10 @@ export interface InventoryEntry {
   equipmentId: string;
   quantity: number;
 }
+export interface EquippedWeapon {
+  equipmentId: string;
+  hands: 1 | 2;
+}
 export interface Coins {
   cp: number;
   sp: number;
@@ -261,6 +265,7 @@ export interface CharacterDraft {
   spellGrantTraditions?: Record<string, string>;
   equippedArmorId?: string;
   shieldEquipped?: boolean;
+  equippedWeapons?: EquippedWeapon[];
   inventory?: InventoryEntry[];
   coins?: Coins;
   currentHp?: number;

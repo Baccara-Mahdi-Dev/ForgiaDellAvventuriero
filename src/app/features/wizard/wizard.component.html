@@ -873,6 +873,11 @@
                 {{ store.derived().carryingCapacityKg }} kg</strong
               >
             </div>
+            <p class="weapon-loadout-hint">
+              Puoi impugnare fino a due armi. Uno scudo richiede una sola arma a una mano; un'arma
+              a due mani esclude scudo e seconda arma. La mano secondaria non aggiunge il
+              modificatore ai danni senza lo stile Combattere con Due Armi.
+            </p>
             @if (inventoryRows.length) {
               <div class="equipment-table-wrap">
                 <table class="equipment-table backpack-table">
@@ -903,17 +908,59 @@
                         <td>{{ (row.item.weightKg * row.entry.quantity).toFixed(1) }} kg</td>
                         <td>
                           @if (row.item.category === 'weapon') {
-                            <span class="weapon-result">
-                              Attacco <strong>{{ weaponAttack(row.item) }}</strong> · Danni
-                              <strong>{{ weaponDamage(row.item) }}</strong>
+                            <div class="weapon-loadout">
+                              @for (entry of equippedWeaponEntries; track entry.index) {
+                                @if (entry.item.id === row.item.id) {
+                                  <div class="weapon-slot">
+                                    <span class="equipped-tag"
+                                      >Impugnata · {{ weaponHandsLabel(entry.equipped) }}</span
+                                    >
+                                    @if (!entry.item.properties?.includes('a due mani')) {
+                                      <label>
+                                        <input
+                                          type="checkbox"
+                                          [checked]="entry.equipped.hands === 2"
+                                          [disabled]="entry.equipped.hands === 1 && !canUseTwoHands(entry.index)"
+                                          (change)="setWeaponHands(entry.index, $any($event.target).checked ? 2 : 1)"
+                                        />
+                                        Due mani
+                                      </label>
+                                    }
+                                    <button class="unequip-weapon" (click)="unequipWeapon(entry.index)">
+                                      Riponi
+                                    </button>
+                                    <span class="weapon-result">
+                                      Attacco <strong>{{ weaponAttack(entry.item) }}</strong> · Danni
+                                      <strong>{{ weaponDamageWithLoadout(entry.item, entry.equipped.hands, entry.index === 1) }}</strong>
+                                    </span>
+                                  </div>
+                                }
+                              }
+                              @if (canEquipWeapon(row.item)) {
+                                <button class="equip-weapon" (click)="equipWeapon(row.item)">
+                                  Impugna{{ equippedWeaponEntries.length ? ' come seconda arma' : '' }}
+                                </button>
+                              }
                               @if (!weaponProficient(row.item)) {
                                 <em>non competente</em>
                               }
-                            </span>
+                            </div>
+                          } @else if (row.item.id === 'shield') {
+                            <div class="shield-loadout">
+                              <span class="equipped-tag">
+                                {{ store.draft().shieldEquipped ? 'Impugnato' : 'Nello zaino' }}
+                              </span>
+                              <button
+                                class="equip-weapon"
+                                [class.unequip-weapon]="store.draft().shieldEquipped"
+                                [disabled]="!store.draft().shieldEquipped && !shieldAllowed"
+                                (click)="setShield(!store.draft().shieldEquipped)"
+                              >
+                                {{ store.draft().shieldEquipped ? 'Riponi' : 'Impugna' }}
+                              </button>
+                            </div>
                           } @else if (store.draft().equippedArmorId === row.item.id) {
                             <span class="equipped-tag">Indossata</span>
-                          } @else if (row.item.id === 'shield' && store.draft().shieldEquipped) {
-                            <span class="equipped-tag">Impugnato</span>
                           }
                         </td>
                       </tr>

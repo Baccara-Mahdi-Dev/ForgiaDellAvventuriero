@@ -28,6 +28,7 @@ import {
   Coins,
   EquipmentCategory,
   EquipmentItem,
+  EquippedWeapon,
   HOMEBREW_ABILITY_MAX,
   HOMEBREW_ABILITY_MIN,
   HpMethod,
@@ -46,6 +47,7 @@ import {
   racialFeatSlots,
   spellSlots,
 } from '../../domain/rules';
+import { damageForHands, hasTwoWeaponFighting, requiresTwoHands } from '../../domain/weapon-loadout';
 import { WizardStore } from '../../state/wizard.store';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
 import { CharacterSheetPdfService } from '../../core/character-sheet-pdf.service';
@@ -359,6 +361,15 @@ export class WizardComponent implements OnInit, OnDestroy {
       }))
       .filter((row): row is { entry: typeof row.entry; item: EquipmentItem } => !!row.item);
   }
+  get equippedWeaponEntries() {
+    return (this.store.draft().equippedWeapons ?? []).map((equipped, index) => ({
+      equipped,
+      index,
+      item: this.store.equipment.find((item) => item.id === equipped.equipmentId),
+    })).filter(
+      (entry): entry is { equipped: EquippedWeapon; index: number; item: EquipmentItem } => !!entry.item,
+    );
+  }
   get classSkillNames() {
     const selected = new Set(this.store.draft().classSkillProficiencies ?? []);
     return this.skills.filter((skill) => selected.has(skill.id)).map((skill) => skill.name);
@@ -374,7 +385,12 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   get shieldAllowed() {
     const shield = this.store.equipment.find((item) => item.id === 'shield');
-    return !!shield && this.armorAllowed(shield);
+    return (
+      !!shield &&
+      this.armorAllowed(shield) &&
+      this.equippedWeaponEntries.length <= 1 &&
+      !this.equippedWeaponEntries.some((entry) => entry.equipped.hands === 2)
+    );
   }
   go(step: StepId) {
     void this.router.navigate(['/crea', this.store.draft().id, step]);
@@ -741,7 +757,7 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   setShield(equipped: boolean) {
     const shield = this.store.equipment.find((item) => item.id === 'shield');
-    if (equipped && (!shield || !this.armorAllowed(shield))) return;
+    if (equipped && (!shield || !this.shieldAllowed)) return;
     this.store.patch({ shieldEquipped: equipped });
     if (equipped) this.ensureInBackpack('shield');
   }
@@ -762,6 +778,15 @@ export class WizardComponent implements OnInit, OnDestroy {
     if (!inventory.some((entry) => entry.equipmentId === this.store.draft().equippedArmorId))
       update.equippedArmorId = '';
     if (!inventory.some((entry) => entry.equipmentId === 'shield')) update.shieldEquipped = false;
+    const equippedWeapons = (this.store.draft().equippedWeapons ?? []).filter(
+      (weapon, index, weapons) =>
+        index < 2 &&
+        inventory.find((entry) => entry.equipmentId === weapon.equipmentId)?.quantity &&
+        weapons.slice(0, index + 1).filter((candidate) => candidate.equipmentId === weapon.equipmentId)
+          .length <= (inventory.find((entry) => entry.equipmentId === weapon.equipmentId)?.quantity ?? 0),
+    );
+    if (equippedWeapons.length !== (this.store.draft().equippedWeapons ?? []).length)
+      update.equippedWeapons = equippedWeapons;
     this.store.patch(update);
   }
   updateCoin(kind: keyof Coins, value: string | number) {
@@ -799,9 +824,59 @@ export class WizardComponent implements OnInit, OnDestroy {
     return this.mod(value);
   }
   weaponDamage(item: EquipmentItem) {
-    const value = this.weaponAbilityModifier(item);
-    if (!item.damage || item.damage === '—') return '—';
-    return value === 0 ? item.damage : `${item.damage}${value > 0 ? '+' : '−'}${Math.abs(value)}`;
+    return this.weaponDamageWithLoadout(item, 1, false);
+  }
+  weaponDamageWithLoadout(item: EquipmentItem, hands: 1 | 2, offHand: boolean) {
+    const damage = damageForHands(item, hands);
+    if (!damage || damage === '—') return '—';
+    const value = offHand && !hasTwoWeaponFighting(this.store.draft())
+      ? 0
+      : this.weaponAbilityModifier(item);
+    return value === 0 ? damage : `${damage}${value > 0 ? '+' : '−'}${Math.abs(value)}`;
+  }
+  weaponHandsLabel(equipped: EquippedWeapon) {
+    return equipped.hands === 2 ? 'Due mani' : 'Una mano';
+  }
+  canEquipWeapon(item: EquipmentItem) {
+    const equipped = this.equippedWeaponEntries;
+    const owned = this.store.draft().inventory?.find((entry) => entry.equipmentId === item.id)?.quantity ?? 0;
+    if (requiresTwoHands(item)) return owned > 0 && !this.store.draft().shieldEquipped && !equipped.length;
+    if (this.store.draft().shieldEquipped)
+      return owned > equipped.filter((entry) => entry.item.id === item.id).length && !equipped.length;
+    return (
+      owned > equipped.filter((entry) => entry.item.id === item.id).length &&
+      equipped.length < 2 &&
+      !equipped.some((entry) => entry.equipped.hands === 2) &&
+      !requiresTwoHands(item)
+    );
+  }
+  equipWeapon(item: EquipmentItem) {
+    if (!this.canEquipWeapon(item)) return;
+    this.store.patch({
+      equippedWeapons: [
+        ...(this.store.draft().equippedWeapons ?? []),
+        { equipmentId: item.id, hands: requiresTwoHands(item) ? 2 : 1 },
+      ],
+    });
+  }
+  canUseTwoHands(index: number) {
+    return (
+      this.equippedWeaponEntries.length === 1 &&
+      this.equippedWeaponEntries[0]?.index === index &&
+      !this.store.draft().shieldEquipped
+    );
+  }
+  setWeaponHands(index: number, hands: 1 | 2) {
+    if (hands === 2 && !this.canUseTwoHands(index)) return;
+    const equippedWeapons = [...(this.store.draft().equippedWeapons ?? [])];
+    if (!equippedWeapons[index]) return;
+    equippedWeapons[index] = { ...equippedWeapons[index], hands };
+    this.store.patch({ equippedWeapons });
+  }
+  unequipWeapon(index: number) {
+    this.store.patch({
+      equippedWeapons: (this.store.draft().equippedWeapons ?? []).filter((_, itemIndex) => itemIndex !== index),
+    });
   }
   private ensureInBackpack(id: string) {
     if (!(this.store.draft().inventory ?? []).some((entry) => entry.equipmentId === id))

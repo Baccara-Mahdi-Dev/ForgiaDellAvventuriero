@@ -8,6 +8,7 @@ import {
   Spell,
 } from '../domain/models';
 import { derive, spellSlots } from '../domain/rules';
+import { damageForHands, equippedWeaponItems, hasTwoWeaponFighting } from '../domain/weapon-loadout';
 
 const ABILITIES: AbilityKey[] = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 const ALIGNMENTS: Record<string, string> = {
@@ -506,12 +507,7 @@ function fillCombat(
   DEATH_FAILURES.forEach((field, index) =>
     setChecked(form, field, index < (draft.deathSaveFailures ?? 0)),
   );
-  const weapons = (draft.inventory ?? []).flatMap((entry) => {
-    const item = catalog.equipment.find(
-      (candidate) => candidate.id === entry.equipmentId && candidate.category === 'weapon',
-    );
-    return item ? [item] : [];
-  });
+  const weapons = equippedWeaponItems(draft, catalog);
   const fields = [
     ['Wpn Name', 'Wpn1 AtkBonus', 'Wpn1 Damage'],
     ['Wpn Name 2', 'Wpn2 AtkBonus ', 'Wpn2 Damage '],
@@ -519,15 +515,15 @@ function fillCombat(
     ['Wpn Name 4', 'Wpn4 AtkBonus', 'Wpn4 Damage'],
     ['Wpn Name 5', 'Wpn5 AtkBonus', 'Wpn5 Damage'],
   ];
-  weapons.slice(0, fields.length).forEach((weapon, index) => {
-    const ability = weaponModifier(weapon, derived);
-    const attack = ability + (weaponProficient(weapon, derived) ? derived.proficiency : 0);
-    setText(form, fields[index][0], weapon.name, { fontSize: 7 });
+  weapons.slice(0, fields.length).forEach(({ item: weapon, equipped }, index) => {
+    const ability = index === 1 && !hasTwoWeaponFighting(draft) ? 0 : weaponModifier(weapon, derived);
+    const attack = weaponModifier(weapon, derived) + (weaponProficient(weapon, derived) ? derived.proficiency : 0);
+    setText(form, fields[index][0], `${weapon.name}${equipped.hands === 2 ? ' (2 mani)' : ''}`, { fontSize: 7 });
     setText(form, fields[index][1], signed(attack), { fontSize: 7 });
     setText(
       form,
       fields[index][2],
-      `${weapon.damage ?? ''}${signed(ability)} ${weapon.damageType ?? ''}`,
+      `${damageForHands(weapon, equipped.hands)}${ability ? signed(ability) : ''} ${weapon.damageType ?? ''}`,
       { fontSize: 6.5 },
     );
   });
@@ -539,7 +535,7 @@ function fillCombat(
         ? ''
         : `Attacco incantesimi: ${signed(derived.spellAttack)}`,
       derived.spellDc === undefined ? '' : `CD incantesimi: ${derived.spellDc}`,
-      ...weapons.slice(fields.length).map((weapon) => weapon.name),
+      ...weapons.slice(fields.length).map(({ item: weapon }) => weapon.name),
     ]
       .filter(Boolean)
       .join('\n'),
