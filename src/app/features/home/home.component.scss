@@ -238,17 +238,6 @@
   color: var(--ink);
   font: 1.3rem Georgia;
 }
-footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem clamp(1rem, 8vw, 8rem);
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 0.75rem;
-}
-footer a {
-  color: var(--ember);
-}
 @media (max-width: 800px) {
   .hero {
     grid-template-columns: 1fr;
@@ -269,9 +258,5 @@ footer a {
   }
   .hero h1 {
     font-size: 3.7rem;
-  }
-  footer {
-    flex-direction: column;
-    gap: 0.5rem;
   }
 }

@@ -27,6 +27,7 @@
     "@angular/service-worker": "^21.2.0",
     "@ng-icons/core": "^33.0.0",
     "@ng-icons/game-icons": "^33.0.0",
+    "@ng-icons/simple-icons": "^35.0.1",
     "@taiga-ui/cdk": "^5.18.0",
     "@taiga-ui/core": "^5.18.0",
     "@taiga-ui/icons": "^5.18.0",
