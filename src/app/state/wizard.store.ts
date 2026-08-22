@@ -231,6 +231,7 @@ export class WizardStore {
       featIds: [],
       featAbilityChoices: {},
       spellIds: [],
+      homebrewSpells: [],
       grantedSpellChoices: {},
       spellGrantTraditions: {},
       equippedArmorId: '',
@@ -267,6 +268,9 @@ export class WizardStore {
       featAbilityChoices: value.featAbilityChoices ?? {},
       grantedSpellChoices: value.grantedSpellChoices ?? {},
       spellGrantTraditions: value.spellGrantTraditions ?? {},
+      homebrewSpells: (value.homebrewSpells ?? []).filter(
+        (spell) => spell && !!spell.id && !!spell.name && spell.level >= 0 && spell.level <= 9,
+      ),
       equippedArmorId: value.equippedArmorId ?? '',
       shieldEquipped: value.shieldEquipped ?? false,
       equippedWeapons: (value.equippedWeapons ?? []).filter(

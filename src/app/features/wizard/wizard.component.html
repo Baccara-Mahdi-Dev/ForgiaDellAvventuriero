@@ -874,9 +874,9 @@
               >
             </div>
             <p class="weapon-loadout-hint">
-              Puoi impugnare fino a due armi. Uno scudo richiede una sola arma a una mano; un'arma
-              a due mani esclude scudo e seconda arma. La mano secondaria non aggiunge il
-              modificatore ai danni senza lo stile Combattere con Due Armi.
+              Puoi impugnare fino a due armi. Uno scudo richiede una sola arma a una mano; un'arma a
+              due mani esclude scudo e seconda arma. La mano secondaria non aggiunge il modificatore
+              ai danni senza lo stile Combattere con Due Armi.
             </p>
             @if (inventoryRows.length) {
               <div class="equipment-table-wrap">
@@ -920,25 +920,45 @@
                                         <input
                                           type="checkbox"
                                           [checked]="entry.equipped.hands === 2"
-                                          [disabled]="entry.equipped.hands === 1 && !canUseTwoHands(entry.index)"
-                                          (change)="setWeaponHands(entry.index, $any($event.target).checked ? 2 : 1)"
+                                          [disabled]="
+                                            entry.equipped.hands === 1 &&
+                                            !canUseTwoHands(entry.index)
+                                          "
+                                          (change)="
+                                            setWeaponHands(
+                                              entry.index,
+                                              $any($event.target).checked ? 2 : 1
+                                            )
+                                          "
                                         />
                                         Due mani
                                       </label>
                                     }
-                                    <button class="unequip-weapon" (click)="unequipWeapon(entry.index)">
+                                    <button
+                                      class="unequip-weapon"
+                                      (click)="unequipWeapon(entry.index)"
+                                    >
                                       Riponi
                                     </button>
                                     <span class="weapon-result">
-                                      Attacco <strong>{{ weaponAttack(entry.item) }}</strong> · Danni
-                                      <strong>{{ weaponDamageWithLoadout(entry.item, entry.equipped.hands, entry.index === 1) }}</strong>
+                                      Attacco <strong>{{ weaponAttack(entry.item) }}</strong> ·
+                                      Danni
+                                      <strong>{{
+                                        weaponDamageWithLoadout(
+                                          entry.item,
+                                          entry.equipped.hands,
+                                          entry.index === 1
+                                        )
+                                      }}</strong>
                                     </span>
                                   </div>
                                 }
                               }
                               @if (canEquipWeapon(row.item)) {
                                 <button class="equip-weapon" (click)="equipWeapon(row.item)">
-                                  Impugna{{ equippedWeaponEntries.length ? ' come seconda arma' : '' }}
+                                  Impugna{{
+                                    equippedWeaponEntries.length ? ' come seconda arma' : ''
+                                  }}
                                 </button>
                               }
                               @if (!weaponProficient(row.item)) {
@@ -1032,6 +1052,50 @@
       }
       @case ('incantesimi') {
         <section>
+          <div class="homebrew-spell-heading">
+            <div>
+              <p class="kicker">Homebrew</p>
+              <h2>I tuoi incantesimi</h2>
+            </div>
+            <button class="homebrew-spell-add" (click)="openHomebrewSpellWizard()">
+              + Aggiungi incantesimo homebrew
+            </button>
+          </div>
+          @if (homebrewSpells.length) {
+            <div class="homebrew-spell-list">
+              @for (spell of homebrewSpells; track spell.id) {
+                <article>
+                  <div>
+                    <span
+                      >{{ spell.level === 0 ? 'Trucchetto' : 'Livello ' + spell.level }} ·
+                      {{ spell.school }}</span
+                    >
+                    <strong>{{ spell.name }}</strong>
+                    <small
+                      >{{
+                        spell.castingTime === 'reaction'
+                          ? 'Reazione'
+                          : spell.castingTime === 'bonus-action'
+                            ? 'Azione bonus'
+                            : 'Azione'
+                      }}
+                      · {{ spell.duration }} ·
+                      {{ spell.components.join(', ') || 'Nessuna componente' }}</small
+                    >
+                    @if (spell.damage) {
+                      <small>Danni: {{ spell.damage.formula }} {{ spell.damage.type }}</small>
+                    }
+                    @if (spell.materials?.length) {
+                      <small>Materiali: {{ spell.materials?.join(', ') }}</small>
+                    }
+                  </div>
+                  <button class="homebrew-spell-remove" (click)="removeHomebrewSpell(spell.id)">
+                    Rimuovi
+                  </button>
+                </article>
+              }
+            </div>
+          }
           @if (store.selectedClass()?.caster) {
             <p class="lead">
               Scegli la magia del personaggio. Ogni scheda indica immediatamente come si lancia,
@@ -1254,6 +1318,180 @@
                 >{{ store.selectedClass()?.name || 'Questa classe' }} non usa incantesimi</strong
               >
               <p>Non ci sono magie da selezionare per questa classe.</p>
+            </div>
+          }
+
+          @if (homebrewSpellOpen()) {
+            <div
+              class="homebrew-dialog-backdrop"
+              role="presentation"
+              (click)="closeHomebrewSpellWizard()"
+            >
+              <section
+                class="homebrew-dialog"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="homebrew-spell-title"
+                (click)="$event.stopPropagation()"
+              >
+                <div class="homebrew-dialog-heading">
+                  <div>
+                    <p class="kicker">Nuovo incantesimo</p>
+                    <h2 id="homebrew-spell-title">Incantesimo homebrew</h2>
+                  </div>
+                  <button
+                    class="homebrew-dialog-close"
+                    aria-label="Chiudi"
+                    (click)="closeHomebrewSpellWizard()"
+                  >
+                    ×
+                  </button>
+                </div>
+                <div class="homebrew-form">
+                  <label class="homebrew-form-wide">
+                    <span>Nome</span>
+                    <input
+                      [ngModel]="homebrewSpell().name"
+                      (ngModelChange)="patchHomebrewSpell({ name: $event })"
+                      placeholder="Es. Fiamma della forgia"
+                    />
+                  </label>
+                  <label>
+                    <span>Livello</span>
+                    <select
+                      [ngModel]="homebrewSpell().level"
+                      (ngModelChange)="patchHomebrewSpell({ level: +$event })"
+                    >
+                      <option value="0">Trucchetto</option>
+                      @for (level of [1, 2, 3, 4, 5, 6, 7, 8, 9]; track level) {
+                        <option [value]="level">Livello {{ level }}</option>
+                      }
+                    </select>
+                  </label>
+                  <label>
+                    <span>Scuola</span>
+                    <select
+                      [ngModel]="homebrewSpell().school"
+                      (ngModelChange)="patchHomebrewSpell({ school: $event })"
+                    >
+                      @for (
+                        school of [
+                          'Abiurazione',
+                          'Ammaliamento',
+                          'Divinazione',
+                          'Evocazione',
+                          'Illusione',
+                          'Invocazione',
+                          'Necromanzia',
+                          'Trasmutazione',
+                        ];
+                        track school
+                      ) {
+                        <option [value]="school">{{ school }}</option>
+                      }
+                    </select>
+                  </label>
+                  <label>
+                    <span>Tempo di lancio</span>
+                    <select
+                      [ngModel]="homebrewSpell().castingTime"
+                      (ngModelChange)="patchHomebrewSpell({ castingTime: $event })"
+                    >
+                      <option value="action">Azione</option>
+                      <option value="bonus-action">Azione bonus</option>
+                      <option value="reaction">Reazione</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Durata</span>
+                    <input
+                      [ngModel]="homebrewSpell().duration"
+                      (ngModelChange)="patchHomebrewSpell({ duration: $event })"
+                      placeholder="Es. Concentrazione, fino a 1 minuto"
+                    />
+                  </label>
+                  <fieldset class="homebrew-form-wide homebrew-components">
+                    <legend>Componenti</legend>
+                    @for (component of ['V', 'S', 'M']; track component) {
+                      <label>
+                        <input
+                          type="checkbox"
+                          [checked]="homebrewSpell().components.includes($any(component))"
+                          (change)="
+                            toggleHomebrewComponent($any(component), $any($event.target).checked)
+                          "
+                        />
+                        {{ component }}
+                      </label>
+                    }
+                  </fieldset>
+                  @if (homebrewSpell().components.includes('M')) {
+                    <label class="homebrew-form-wide">
+                      <span>Materiali (uno per riga)</span>
+                      <textarea
+                        rows="3"
+                        [ngModel]="homebrewMaterials()"
+                        (ngModelChange)="homebrewMaterials.set($event)"
+                        placeholder="Es. una scheggia d'ossidiana&#10;polvere d'argento"
+                      ></textarea>
+                    </label>
+                  }
+                  <label class="homebrew-form-wide homebrew-damage-toggle">
+                    <input
+                      type="checkbox"
+                      [checked]="homebrewHasDamage()"
+                      (change)="homebrewHasDamage.set($any($event.target).checked)"
+                    />
+                    Questo incantesimo infligge danni
+                  </label>
+                  @if (homebrewHasDamage()) {
+                    <label>
+                      <span>Danni</span>
+                      <input
+                        [ngModel]="homebrewSpell().damage?.formula ?? ''"
+                        (ngModelChange)="
+                          patchHomebrewSpell({
+                            damage: { formula: $event, type: homebrewSpell().damage?.type ?? '' },
+                          })
+                        "
+                        placeholder="Es. 2d6"
+                      />
+                    </label>
+                    <label>
+                      <span>Tipo di danno</span>
+                      <input
+                        [ngModel]="homebrewSpell().damage?.type ?? ''"
+                        (ngModelChange)="
+                          patchHomebrewSpell({
+                            damage: {
+                              formula: homebrewSpell().damage?.formula ?? '',
+                              type: $event,
+                            },
+                          })
+                        "
+                        placeholder="Es. fuoco"
+                      />
+                    </label>
+                  }
+                  <label class="homebrew-form-wide">
+                    <span>Descrizione</span>
+                    <textarea
+                      rows="6"
+                      [ngModel]="homebrewSpell().description"
+                      (ngModelChange)="patchHomebrewSpell({ description: $event })"
+                      placeholder="Descrivi gli effetti dell'incantesimo…"
+                    ></textarea>
+                  </label>
+                </div>
+                <div class="homebrew-dialog-actions">
+                  <button class="homebrew-cancel" (click)="closeHomebrewSpellWizard()">
+                    Annulla
+                  </button>
+                  <button class="homebrew-spell-add" (click)="saveHomebrewSpell()">
+                    Aggiungi incantesimo
+                  </button>
+                </div>
+              </section>
             </div>
           }
         </section>

@@ -29,6 +29,7 @@ import {
   EquipmentCategory,
   EquipmentItem,
   EquippedWeapon,
+  HomebrewSpell,
   HOMEBREW_ABILITY_MAX,
   HOMEBREW_ABILITY_MIN,
   HpMethod,
@@ -47,7 +48,11 @@ import {
   racialFeatSlots,
   spellSlots,
 } from '../../domain/rules';
-import { damageForHands, hasTwoWeaponFighting, requiresTwoHands } from '../../domain/weapon-loadout';
+import {
+  damageForHands,
+  hasTwoWeaponFighting,
+  requiresTwoHands,
+} from '../../domain/weapon-loadout';
 import { WizardStore } from '../../state/wizard.store';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
 import { CharacterSheetPdfService } from '../../core/character-sheet-pdf.service';
@@ -58,6 +63,16 @@ interface GrantedSpellSource {
   fixed: { spell: Spell; minLevel: number; note?: string; unlocked: boolean }[];
   choices: SpellGrantChoice[];
 }
+const newHomebrewSpell = (): HomebrewSpell => ({
+  id: `homebrew-${crypto.randomUUID()}`,
+  name: '',
+  level: 0,
+  school: 'Evocazione',
+  description: '',
+  castingTime: 'action',
+  duration: 'Istantanea',
+  components: ['V', 'S'],
+});
 @Component({
   selector: 'app-wizard',
   imports: [FormsModule, RouterLink, NgIcon, ThemeToggleComponent],
@@ -95,6 +110,10 @@ export class WizardComponent implements OnInit, OnDestroy {
   readonly equipmentCategory = signal<EquipmentCategory | 'all'>('all');
   readonly spellSearch = signal('');
   readonly spellLevelFilter = signal('all');
+  readonly homebrewSpellOpen = signal(false);
+  readonly homebrewSpell = signal<HomebrewSpell>(newHomebrewSpell());
+  readonly homebrewMaterials = signal('');
+  readonly homebrewHasDamage = signal(false);
   readonly pdfExporting = signal(false);
   private sub?: { unsubscribe(): void };
   constructor(
@@ -151,6 +170,9 @@ export class WizardComponent implements OnInit, OnDestroy {
       (spell) => this.store.draft().spellIds.includes(spell.id) && !granted.has(spell.id),
     );
   }
+  get homebrewSpells() {
+    return this.store.draft().homebrewSpells ?? [];
+  }
   classFeatureCount(choice: { countByLevel: { level: number; count: number }[] }) {
     return (
       [...choice.countByLevel]
@@ -192,7 +214,7 @@ export class WizardComponent implements OnInit, OnDestroy {
       );
   }
   get selectedSpellCount() {
-    return this.selectedSpells.length;
+    return this.selectedSpells.length + this.homebrewSpells.length;
   }
   get grantedSpellSources(): GrantedSpellSource[] {
     const draft = this.store.draft();
@@ -362,13 +384,16 @@ export class WizardComponent implements OnInit, OnDestroy {
       .filter((row): row is { entry: typeof row.entry; item: EquipmentItem } => !!row.item);
   }
   get equippedWeaponEntries() {
-    return (this.store.draft().equippedWeapons ?? []).map((equipped, index) => ({
-      equipped,
-      index,
-      item: this.store.equipment.find((item) => item.id === equipped.equipmentId),
-    })).filter(
-      (entry): entry is { equipped: EquippedWeapon; index: number; item: EquipmentItem } => !!entry.item,
-    );
+    return (this.store.draft().equippedWeapons ?? [])
+      .map((equipped, index) => ({
+        equipped,
+        index,
+        item: this.store.equipment.find((item) => item.id === equipped.equipmentId),
+      }))
+      .filter(
+        (entry): entry is { equipped: EquippedWeapon; index: number; item: EquipmentItem } =>
+          !!entry.item,
+      );
   }
   get classSkillNames() {
     const selected = new Set(this.store.draft().classSkillProficiencies ?? []);
@@ -674,6 +699,60 @@ export class WizardComponent implements OnInit, OnDestroy {
   spellLevel(spell: Spell) {
     return spell.level === 0 ? 'Trucchetto' : `Livello ${spell.level}`;
   }
+  openHomebrewSpellWizard() {
+    this.homebrewSpell.set(newHomebrewSpell());
+    this.homebrewMaterials.set('');
+    this.homebrewHasDamage.set(false);
+    this.homebrewSpellOpen.set(true);
+  }
+  closeHomebrewSpellWizard() {
+    this.homebrewSpellOpen.set(false);
+  }
+  patchHomebrewSpell(update: Partial<HomebrewSpell>) {
+    this.homebrewSpell.update((spell) => ({ ...spell, ...update }));
+  }
+  toggleHomebrewComponent(component: 'V' | 'S' | 'M', checked: boolean) {
+    const components = this.homebrewSpell().components;
+    this.patchHomebrewSpell({
+      components: checked
+        ? [...new Set([...components, component])]
+        : components.filter((item) => item !== component),
+    });
+  }
+  saveHomebrewSpell() {
+    const spell = this.homebrewSpell();
+    if (!spell.name.trim() || !spell.description.trim()) {
+      this.message.set('Inserisci almeno nome e descrizione dell’incantesimo homebrew.');
+      return;
+    }
+    const materials = spell.components.includes('M')
+      ? this.homebrewMaterials()
+          .split(/\r?\n/)
+          .map((material) => material.trim())
+          .filter(Boolean)
+      : [];
+    const damage =
+      this.homebrewHasDamage() && spell.damage?.formula?.trim() && spell.damage.type.trim()
+        ? { ...spell.damage, formula: spell.damage.formula.trim(), type: spell.damage.type.trim() }
+        : undefined;
+    this.store.patch({
+      homebrewSpells: [
+        ...this.homebrewSpells,
+        {
+          ...spell,
+          name: spell.name.trim(),
+          description: spell.description.trim(),
+          materials,
+          damage,
+        },
+      ],
+    });
+    this.message.set('Incantesimo homebrew aggiunto.');
+    this.closeHomebrewSpellWizard();
+  }
+  removeHomebrewSpell(id: string) {
+    this.store.patch({ homebrewSpells: this.homebrewSpells.filter((spell) => spell.id !== id) });
+  }
   castingTime(spell: Spell) {
     if (spell.castingTime.text) return spell.castingTime.text;
     const labels = {
@@ -782,8 +861,10 @@ export class WizardComponent implements OnInit, OnDestroy {
       (weapon, index, weapons) =>
         index < 2 &&
         inventory.find((entry) => entry.equipmentId === weapon.equipmentId)?.quantity &&
-        weapons.slice(0, index + 1).filter((candidate) => candidate.equipmentId === weapon.equipmentId)
-          .length <= (inventory.find((entry) => entry.equipmentId === weapon.equipmentId)?.quantity ?? 0),
+        weapons
+          .slice(0, index + 1)
+          .filter((candidate) => candidate.equipmentId === weapon.equipmentId).length <=
+          (inventory.find((entry) => entry.equipmentId === weapon.equipmentId)?.quantity ?? 0),
     );
     if (equippedWeapons.length !== (this.store.draft().equippedWeapons ?? []).length)
       update.equippedWeapons = equippedWeapons;
@@ -829,9 +910,8 @@ export class WizardComponent implements OnInit, OnDestroy {
   weaponDamageWithLoadout(item: EquipmentItem, hands: 1 | 2, offHand: boolean) {
     const damage = damageForHands(item, hands);
     if (!damage || damage === '—') return '—';
-    const value = offHand && !hasTwoWeaponFighting(this.store.draft())
-      ? 0
-      : this.weaponAbilityModifier(item);
+    const value =
+      offHand && !hasTwoWeaponFighting(this.store.draft()) ? 0 : this.weaponAbilityModifier(item);
     return value === 0 ? damage : `${damage}${value > 0 ? '+' : '−'}${Math.abs(value)}`;
   }
   weaponHandsLabel(equipped: EquippedWeapon) {
@@ -839,10 +919,14 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   canEquipWeapon(item: EquipmentItem) {
     const equipped = this.equippedWeaponEntries;
-    const owned = this.store.draft().inventory?.find((entry) => entry.equipmentId === item.id)?.quantity ?? 0;
-    if (requiresTwoHands(item)) return owned > 0 && !this.store.draft().shieldEquipped && !equipped.length;
+    const owned =
+      this.store.draft().inventory?.find((entry) => entry.equipmentId === item.id)?.quantity ?? 0;
+    if (requiresTwoHands(item))
+      return owned > 0 && !this.store.draft().shieldEquipped && !equipped.length;
     if (this.store.draft().shieldEquipped)
-      return owned > equipped.filter((entry) => entry.item.id === item.id).length && !equipped.length;
+      return (
+        owned > equipped.filter((entry) => entry.item.id === item.id).length && !equipped.length
+      );
     return (
       owned > equipped.filter((entry) => entry.item.id === item.id).length &&
       equipped.length < 2 &&
@@ -875,7 +959,9 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   unequipWeapon(index: number) {
     this.store.patch({
-      equippedWeapons: (this.store.draft().equippedWeapons ?? []).filter((_, itemIndex) => itemIndex !== index),
+      equippedWeapons: (this.store.draft().equippedWeapons ?? []).filter(
+        (_, itemIndex) => itemIndex !== index,
+      ),
     });
   }
   private ensureInBackpack(id: string) {

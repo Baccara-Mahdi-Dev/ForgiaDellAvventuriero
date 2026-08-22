@@ -210,6 +210,18 @@ export interface Spell extends OptionItem {
   subclassGrants?: SubclassSpellGrant[];
   higherLevels?: string;
 }
+export interface HomebrewSpell {
+  id: string;
+  name: string;
+  level: number;
+  school: string;
+  description: string;
+  castingTime: 'action' | 'bonus-action' | 'reaction';
+  duration: string;
+  components: ('V' | 'S' | 'M')[];
+  materials?: string[];
+  damage?: SpellDamage;
+}
 export interface SkillDefinition {
   id: string;
   name: string;
@@ -261,6 +273,7 @@ export interface CharacterDraft {
   featIds: string[];
   featAbilityChoices?: Record<string, AbilityKey>;
   spellIds: string[];
+  homebrewSpells?: HomebrewSpell[];
   grantedSpellChoices?: Record<string, string[]>;
   spellGrantTraditions?: Record<string, string>;
   equippedArmorId?: string;

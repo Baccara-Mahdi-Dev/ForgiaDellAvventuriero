@@ -8,6 +8,7 @@ import {
   Spell,
 } from '../domain/models';
 import { derive, spellSlots } from '../domain/rules';
+import { asSpell } from '../domain/homebrew-spell';
 import { damageForHands, equippedWeaponItems, hasTwoWeaponFighting } from '../domain/weapon-loadout';
 
 const ABILITIES: AbilityKey[] = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
@@ -388,9 +389,12 @@ function selectedSpells(draft: CharacterDraft, catalog: CatalogData): Spell[] {
       )
     )
       ids.add(spell.id);
-  return catalog.spells
+  return [
+    ...catalog.spells
     .filter((spell) => ids.has(spell.id))
-    .sort((a, b) => a.level - b.level || a.name.localeCompare(b.name, 'it'));
+    ,
+    ...(draft.homebrewSpells ?? []).map(asSpell),
+  ].sort((a, b) => a.level - b.level || a.name.localeCompare(b.name, 'it'));
 }
 function selectedClassFeatures(draft: CharacterDraft, catalog: CatalogData): string[] {
   const klass = catalog.classes.find((item) => item.id === draft.classId);

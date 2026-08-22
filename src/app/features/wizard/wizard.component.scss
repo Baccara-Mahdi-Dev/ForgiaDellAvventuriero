@@ -1269,6 +1269,147 @@
 .spell-grid.detailed {
   gap: 1rem;
 }
+.homebrew-spell-heading,
+.homebrew-dialog-heading,
+.homebrew-dialog-actions,
+.homebrew-spell-list article {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.homebrew-spell-heading {
+  margin-bottom: 0.8rem;
+}
+.homebrew-spell-heading h2,
+.homebrew-dialog-heading h2 {
+  margin: 0.15rem 0;
+  font: 1.35rem Georgia;
+}
+.homebrew-spell-add,
+.homebrew-cancel,
+.homebrew-spell-remove,
+.homebrew-dialog-close {
+  border: 0;
+  border-radius: 0.35rem;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.homebrew-spell-add {
+  padding: 0.65rem 0.8rem;
+  background: var(--magic);
+  color: #fff;
+}
+.homebrew-spell-list {
+  display: grid;
+  gap: 0.55rem;
+  margin-bottom: 1.2rem;
+}
+.homebrew-spell-list article {
+  padding: 0.75rem;
+  border: 1px solid var(--magic);
+  border-radius: 0.45rem;
+  background: var(--magic-soft);
+}
+.homebrew-spell-list span,
+.homebrew-spell-list strong,
+.homebrew-spell-list small {
+  display: block;
+}
+.homebrew-spell-list span,
+.homebrew-spell-list small {
+  color: var(--muted);
+  font-size: 0.68rem;
+}
+.homebrew-spell-list strong {
+  margin: 0.15rem 0;
+  font: 1rem Georgia;
+}
+.homebrew-spell-remove,
+.homebrew-cancel {
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+}
+.homebrew-dialog-backdrop {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgb(20 14 10 / 65%);
+}
+.homebrew-dialog {
+  width: min(720px, 100%);
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  padding: 1.25rem;
+  border: 1px solid var(--magic);
+  border-radius: 0.65rem;
+  background: var(--surface-raised);
+  box-shadow: var(--shadow);
+}
+.homebrew-dialog-close {
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.homebrew-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+.homebrew-form-wide {
+  grid-column: 1 / -1;
+}
+.homebrew-form label > span,
+.homebrew-components legend {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.homebrew-form input:not([type="checkbox"]),
+.homebrew-form select,
+.homebrew-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 0.35rem;
+  background: var(--surface-raised);
+  color: var(--ink);
+  font: inherit;
+}
+.homebrew-components {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  padding: 0;
+  border: 0;
+}
+.homebrew-components legend {
+  width: 100%;
+}
+.homebrew-components label,
+.homebrew-damage-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+}
+.homebrew-dialog-actions {
+  justify-content: flex-end;
+}
 .granted-magic {
   margin: 1.2rem 0;
   padding: 1rem;
@@ -1654,7 +1795,7 @@
 }
 .class-recommendation::before,
 .class-recommendation::after {
-  content: '✦';
+  content: "✦";
   position: absolute;
   color: var(--recommendation-ink);
   font-size: 0.62rem;
