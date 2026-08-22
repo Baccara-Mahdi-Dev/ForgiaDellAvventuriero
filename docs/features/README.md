@@ -92,7 +92,9 @@ Quando l'utente cambia razza vengono azzerate le scelte razziali e i talenti, pe
 
 Una nuova classe deve essere aggiunta anche a questa mappa per poter essere consigliata.
 
-Le competenze vengono scelte per ID tra `skillOptions`. La sottoclasse è richiesta soltanto quando `level >= subclassLevel`.
+Le competenze vengono scelte per ID tra `skillOptions`. La sottoclasse è richiesta soltanto quando `level >= subclassLevel`; sotto tale soglia la UI mostra il livello futuro senza un select obbligatorio. Se il livello viene ridotto, la normalizzazione elimina sottoclasse e scelte non più acquisite.
+
+Le opzioni progressive sono risolte da un unico motore data-driven. `featureChoices` descrive le scelte della classe; `subclassFeatures` usa la stessa struttura per quelle della sottoclasse selezionata. Il catalogo copre le scelte del Guerriero Totemico ai livelli 3, 6 e 14, le manovre del Maestro di Battaglia ai livelli 3, 7, 10 e 15, la Terra del Circolo, le quattro scelte progressive del Cacciatore e l'Antenato Draconico. Le opzioni selezionate confluiscono anche nel riepilogo e nel PDF.
 
 ## Punti ferita
 

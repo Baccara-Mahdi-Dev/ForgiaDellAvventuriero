@@ -1,0 +1,107 @@
+:host {
+  display: block;
+}
+
+.field {
+  display: block;
+  margin-top: 1.5rem;
+}
+
+.field > span {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.field select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.35rem;
+  background: var(--surface-raised);
+  color: inherit;
+}
+
+.field small,
+.subclass-locked small,
+.choice-panel > small {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--muted);
+}
+
+.subclass-locked,
+.choice-panel {
+  margin-top: 1.2rem;
+  padding: 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  background: var(--surface-raised);
+}
+
+.subclass-locked {
+  border-left: 3px solid var(--gold);
+}
+
+.choice-panel h2 {
+  margin: 0.3rem 0;
+  font: 1.25rem Georgia;
+}
+
+.choice-panel > div:first-child p:last-child {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.kicker {
+  margin: 0;
+  color: var(--gold-strong);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.feature-picks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.feature-picks button {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  background: var(--surface);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.feature-picks button.selected {
+  border-color: var(--gold);
+  background: var(--surface-highlight);
+}
+
+.feature-picks button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.feature-picks small {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 680px) {
+  .feature-picks {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,49 @@
+@if (subclassUnlocked()) {
+  <label class="field subclass-field">
+    <span>Sottoclasse</span>
+    <select [ngModel]="subclassId()" (ngModelChange)="subclassChange.emit($event)">
+      <option value="">Scegli una sottoclasse</option>
+      @for (subclass of klass().subclasses; track subclass) {
+        <option [value]="subclass">{{ subclass }}</option>
+      }
+    </select>
+    <small>Disponibile dal livello {{ klass().subclassLevel }}.</small>
+  </label>
+} @else {
+  <div class="subclass-locked" role="status">
+    <strong>Sottoclasse non ancora disponibile</strong>
+    <small>{{ klass().name }} la sceglie al livello {{ klass().subclassLevel }}.</small>
+  </div>
+}
+@if (wizardStep() === 'livello') {
+  @for (choice of activeChoices(); track choice.id) {
+    <div class="choice-panel class-feature-choice">
+      <div>
+        <p class="kicker">
+          {{ isSubclassChoice(choice.id) ? 'Opzione di sottoclasse' : 'Opzione di classe' }} ·
+          livello
+          {{ choice.minLevel }}
+        </p>
+        <h2>{{ choice.name }}</h2>
+        <p>{{ choice.description }}</p>
+      </div>
+      <small>{{ selected(choice.id).length }} / {{ choiceCount(choice) }} selezionate</small>
+      <div class="feature-picks">
+        @for (option of choice.options; track option.id) {
+          <button
+            type="button"
+            [class.selected]="selected(choice.id).includes(option.id)"
+            [disabled]="
+              !selected(choice.id).includes(option.id) &&
+              selected(choice.id).length >= choiceCount(choice)
+            "
+            (click)="toggle(choice, option.id)"
+          >
+            <strong>{{ option.name }}</strong>
+            <small>{{ option.description }}</small>
+          </button>
+        }
+      </div>
+    </div>
+  }
+}

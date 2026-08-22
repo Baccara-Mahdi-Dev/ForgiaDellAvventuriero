@@ -90,12 +90,14 @@ export interface CharacterClass extends OptionItem {
   weaponProficiencies?: string[];
   caster?: 'full' | 'half';
   featureChoices?: ClassFeatureChoice[];
+  subclassFeatures?: SubclassFeatureChoices[];
 }
 export interface ClassFeatureOption {
   id: string;
   name: string;
   description: string;
 }
+
 export interface ClassFeatureChoice {
   id: string;
   name: string;
@@ -103,6 +105,10 @@ export interface ClassFeatureChoice {
   minLevel: number;
   countByLevel: { level: number; count: number }[];
   options: ClassFeatureOption[];
+}
+export interface SubclassFeatureChoices {
+  subclassId: string;
+  choices: ClassFeatureChoice[];
 }
 export type ArmorType = 'clothing' | 'light' | 'medium' | 'heavy' | 'shield';
 export type EquipmentCategory = 'armor' | 'weapon' | 'adventuring-gear' | 'artisan-tool';

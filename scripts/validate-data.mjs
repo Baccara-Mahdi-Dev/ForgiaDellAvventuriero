@@ -93,6 +93,13 @@ for (const ancestry of catalogs.ancestries) {
 }
 for (const klass of catalogs.classes) {
   if (
+    !Number.isInteger(klass.subclassLevel) ||
+    klass.subclassLevel < 1 ||
+    klass.subclassLevel > 20 ||
+    !Array.isArray(klass.subclasses) ||
+    !klass.subclasses.length ||
+    klass.subclasses.some((subclass) => typeof subclass !== 'string' || !subclass.trim()) ||
+    new Set(klass.subclasses).size !== klass.subclasses.length ||
     !Number.isInteger(klass.skillChoices) ||
     klass.skillChoices < 0 ||
     !Array.isArray(klass.skillOptions)
@@ -101,7 +108,7 @@ for (const klass of catalogs.classes) {
   for (const skill of klass.skillOptions)
     if (!skillIds.has(skill)) throw new Error(`classes/${klass.id}: abilità sconosciuta ${skill}`);
   const choiceIds = new Set();
-  for (const choice of klass.featureChoices ?? []) {
+  const validateChoice = (choice, owner) => {
     if (
       !choice.id ||
       choiceIds.has(choice.id) ||
@@ -112,7 +119,7 @@ for (const klass of catalogs.classes) {
       !Array.isArray(choice.options) ||
       !choice.options.length
     )
-      throw new Error(`classes/${klass.id}: scelta di classe non valida`);
+      throw new Error(`classes/${klass.id}/${owner}: scelta non valida`);
     choiceIds.add(choice.id);
     const optionIds = choice.options.map((option) => option.id);
     if (
@@ -120,7 +127,7 @@ for (const klass of catalogs.classes) {
       new Set(optionIds).size !== optionIds.length ||
       choice.options.some((option) => !option.name || !option.description)
     )
-      throw new Error(`classes/${klass.id}/${choice.id}: opzioni non valide`);
+      throw new Error(`classes/${klass.id}/${owner}/${choice.id}: opzioni non valide`);
     let previousLevel = 0;
     let previousCount = 0;
     for (const threshold of choice.countByLevel ?? []) {
@@ -132,11 +139,32 @@ for (const klass of catalogs.classes) {
         threshold.count <= previousCount ||
         threshold.count > choice.options.length
       )
-        throw new Error(`classes/${klass.id}/${choice.id}: progressione non valida`);
+        throw new Error(`classes/${klass.id}/${owner}/${choice.id}: progressione non valida`);
       previousLevel = threshold.level;
       previousCount = threshold.count;
     }
-    if (!previousCount) throw new Error(`classes/${klass.id}/${choice.id}: progressione mancante`);
+
+    if (!previousCount)
+      throw new Error(`classes/${klass.id}/${owner}/${choice.id}: progressione mancante`);
+  };
+  for (const choice of klass.featureChoices ?? []) validateChoice(choice, 'classe');
+  const subclassFeatureIds = new Set();
+  for (const featureSet of klass.subclassFeatures ?? []) {
+    if (
+      !klass.subclasses.includes(featureSet.subclassId) ||
+      subclassFeatureIds.has(featureSet.subclassId) ||
+      !Array.isArray(featureSet.choices) ||
+      !featureSet.choices.length
+    )
+      throw new Error(`classes/${klass.id}: feature di sottoclasse non valide`);
+    subclassFeatureIds.add(featureSet.subclassId);
+    for (const choice of featureSet.choices) {
+      if (choice.minLevel < klass.subclassLevel)
+        throw new Error(
+          `classes/${klass.id}/${featureSet.subclassId}/${choice.id}: feature precedente alla sottoclasse`,
+        );
+      validateChoice(choice, featureSet.subclassId);
+    }
   }
 }
 const castingUnits = new Set(['action', 'bonus-action', 'reaction', 'minute', 'hour', 'special']);

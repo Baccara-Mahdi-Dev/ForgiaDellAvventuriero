@@ -7,11 +7,17 @@ import {
   EquipmentItem,
   Spell,
 } from '../domain/models';
+import { activeClassFeatureChoices } from '../domain/class-progression';
 import { derive, spellSlots } from '../domain/rules';
 import { asSpell } from '../domain/homebrew-spell';
-import { damageForHands, equippedWeaponItems, hasTwoWeaponFighting } from '../domain/weapon-loadout';
+import {
+  damageForHands,
+  equippedWeaponItems,
+  hasTwoWeaponFighting,
+} from '../domain/weapon-loadout';
 
 const ABILITIES: AbilityKey[] = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+
 const ALIGNMENTS: Record<string, string> = {
   'lawful-good': 'Legale Buono',
   'neutral-good': 'Neutrale Buono',
@@ -390,15 +396,13 @@ function selectedSpells(draft: CharacterDraft, catalog: CatalogData): Spell[] {
     )
       ids.add(spell.id);
   return [
-    ...catalog.spells
-    .filter((spell) => ids.has(spell.id))
-    ,
+    ...catalog.spells.filter((spell) => ids.has(spell.id)),
     ...(draft.homebrewSpells ?? []).map(asSpell),
   ].sort((a, b) => a.level - b.level || a.name.localeCompare(b.name, 'it'));
 }
 function selectedClassFeatures(draft: CharacterDraft, catalog: CatalogData): string[] {
   const klass = catalog.classes.find((item) => item.id === draft.classId);
-  return (klass?.featureChoices ?? []).flatMap((choice) => {
+  return activeClassFeatureChoices(klass, draft.level, draft.subclassId).flatMap((choice) => {
     const selected = new Set(draft.classFeatureChoices?.[choice.id] ?? []);
     return choice.options
       .filter((option) => selected.has(option.id))
@@ -520,9 +524,15 @@ function fillCombat(
     ['Wpn Name 5', 'Wpn5 AtkBonus', 'Wpn5 Damage'],
   ];
   weapons.slice(0, fields.length).forEach(({ item: weapon, equipped }, index) => {
-    const ability = index === 1 && !hasTwoWeaponFighting(draft) ? 0 : weaponModifier(weapon, derived);
-    const attack = weaponModifier(weapon, derived) + (weaponProficient(weapon, derived) ? derived.proficiency : 0);
-    setText(form, fields[index][0], `${weapon.name}${equipped.hands === 2 ? ' (2 mani)' : ''}`, { fontSize: 7 });
+    const ability =
+      index === 1 && !hasTwoWeaponFighting(draft) ? 0 : weaponModifier(weapon, derived);
+    const attack =
+      weaponModifier(weapon, derived) +
+      (weaponProficient(weapon, derived) ? derived.proficiency : 0);
+    setText(form, fields[index][0], `${weapon.name}${equipped.hands === 2 ? ' (2 mani)' : ''}`, {
+      fontSize: 7,
+    });
+
     setText(form, fields[index][1], signed(attack), { fontSize: 7 });
     setText(
       form,

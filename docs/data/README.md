@@ -146,6 +146,38 @@ Le scelte progressive di classe sono dichiarative e vivono in `featureChoices`:
 
 La stessa struttura gestisce gli stili di combattimento. `countByLevel` indica quante opzioni devono essere scelte al livello raggiunto; l'interfaccia impedisce di avanzare finché la scelta non è completa.
 
+Le feature che appartengono a una sottoclasse usano lo stesso formato, annidato in `subclassFeatures`. Il collegamento è dichiarato con `subclassId`, senza condizioni dedicate nella UI:
+
+```json
+{
+  "subclassFeatures": [
+    {
+      "subclassId": "Maestro di Battaglia",
+      "choices": [
+        {
+          "id": "battle-master-maneuvers",
+          "name": "Manovre",
+          "minLevel": 3,
+          "countByLevel": [
+            { "level": 3, "count": 3 },
+            { "level": 7, "count": 5 }
+          ],
+          "options": [
+            { "id": "maneuver-a", "name": "Manovra A", "description": "..." },
+            { "id": "maneuver-b", "name": "Manovra B", "description": "..." },
+            { "id": "maneuver-c", "name": "Manovra C", "description": "..." },
+            { "id": "maneuver-d", "name": "Manovra D", "description": "..." },
+            { "id": "maneuver-e", "name": "Manovra E", "description": "..." }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Le selezioni di classe e sottoclasse condividono `classFeatureChoices` nella bozza, indicizzato dall'ID univoco della feature. Cambio di classe, cambio di sottoclasse e riduzione del livello ripuliscono le selezioni non più valide.
+
 ```json
 {
   "id": "wizard",
@@ -178,6 +210,7 @@ La stessa struttura gestisce gli stili di combattimento. `countByLevel` indica q
 | `weaponProficiencies` | categorie `simple`/`martial` o ID specifici                                      |
 | `caster`              | `full` o `half`; abilita CD, attacco magico e preparazione                       |
 | `featureChoices`      | scelte di classe progressive, opzioni e numero richiesto per livello             |
+| `subclassFeatures`    | feature con scelte collegate a una sottoclasse e alla relativa progressione      |
 
 Le tabelle degli slot, la progressione ASI, le priorità per il consiglio di classe e le risorse di classe non sono ancora data-driven: vivono in `rules.ts`. Aggiungere una nuova classe richiede quindi sia il record JSON sia l'estensione di quelle funzioni.
 

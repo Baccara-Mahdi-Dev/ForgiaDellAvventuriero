@@ -19,7 +19,101 @@
       "survival"
     ],
     "armorProficiencies": ["light", "medium", "shield"],
-    "weaponProficiencies": ["simple", "martial"]
+    "weaponProficiencies": ["simple", "martial"],
+    "subclassFeatures": [
+      {
+        "subclassId": "Guerriero Totemico",
+        "choices": [
+          {
+            "id": "totem-spirit",
+            "name": "Spirito Totemico",
+            "description": "Al 3° livello scegli uno spirito animale; il beneficio si applica mentre sei in ira, salvo dove indicato.",
+            "minLevel": 3,
+            "countByLevel": [
+              {
+                "level": 3,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "bear",
+                "name": "Orso",
+                "description": "Durante l'ira ottieni resistenza a tutti i danni tranne quelli psichici."
+              },
+              {
+                "id": "eagle",
+                "name": "Aquila",
+                "description": "Durante l'ira gli attacchi di opportunità contro di te hanno svantaggio e puoi Scattare come azione bonus."
+              },
+              {
+                "id": "wolf",
+                "name": "Lupo",
+                "description": "Durante l'ira, gli alleati hanno vantaggio agli attacchi in mischia contro i nemici entro 1,5 m da te."
+              }
+            ]
+          },
+          {
+            "id": "aspect-of-the-beast",
+            "name": "Aspetto della Bestia",
+            "description": "Al 6° livello scegli un adattamento esplorativo; può essere diverso dallo Spirito Totemico.",
+            "minLevel": 6,
+            "countByLevel": [
+              {
+                "level": 6,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "bear",
+                "name": "Orso",
+                "description": "Raddoppi la capacità di carico e hai vantaggio nelle prove di Forza per spingere, tirare, sollevare o spezzare oggetti."
+              },
+              {
+                "id": "eagle",
+                "name": "Aquila",
+                "description": "Vedi dettagli lontani con grande precisione e la luce fioca non impone svantaggio alle prove di Percezione basate sulla vista."
+              },
+              {
+                "id": "wolf",
+                "name": "Lupo",
+                "description": "Puoi seguire tracce a passo veloce e muoverti furtivamente a passo normale."
+              }
+            ]
+          },
+          {
+            "id": "totemic-attunement",
+            "name": "Sintonia Totemica",
+            "description": "Al 14° livello scegli un ulteriore potere totemico; può appartenere a un animale diverso dalle scelte precedenti.",
+            "minLevel": 14,
+            "countByLevel": [
+              {
+                "level": 14,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "bear",
+                "name": "Orso",
+                "description": "Durante l'ira, i nemici entro 1,5 m hanno svantaggio quando attaccano bersagli diversi da te, se possono percepirti e non sono immuni alla paura."
+              },
+              {
+                "id": "eagle",
+                "name": "Aquila",
+                "description": "Durante l'ira ottieni volo fino alla tua velocità nel turno, ma cadi se termini il turno in aria senza altro sostegno."
+              },
+              {
+                "id": "wolf",
+                "name": "Lupo",
+                "description": "Durante l'ira, dopo aver colpito in mischia una creatura Grande o più piccola, puoi usare un'azione bonus per farla cadere prona."
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "bard",
@@ -106,7 +200,68 @@
       "sling",
       "spear"
     ],
-    "caster": "full"
+    "caster": "full",
+    "subclassFeatures": [
+      {
+        "subclassId": "Circolo della Terra",
+        "choices": [
+          {
+            "id": "circle-land-terrain",
+            "name": "Terra del Circolo",
+            "description": "Scegli il territorio con cui hai formato il tuo legame mistico; determina gli incantesimi del circolo ottenuti ai livelli successivi.",
+            "minLevel": 3,
+            "countByLevel": [
+              {
+                "level": 3,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "arctic",
+                "name": "Artico",
+                "description": "Concede gli incantesimi del circolo legati alle distese artiche."
+              },
+              {
+                "id": "coast",
+                "name": "Costa",
+                "description": "Concede gli incantesimi del circolo legati alle coste."
+              },
+              {
+                "id": "desert",
+                "name": "Deserto",
+                "description": "Concede gli incantesimi del circolo legati ai deserti."
+              },
+              {
+                "id": "forest",
+                "name": "Foresta",
+                "description": "Concede gli incantesimi del circolo legati alle foreste."
+              },
+              {
+                "id": "grassland",
+                "name": "Prateria",
+                "description": "Concede gli incantesimi del circolo legati alle praterie."
+              },
+              {
+                "id": "mountain",
+                "name": "Montagna",
+                "description": "Concede gli incantesimi del circolo legati alle montagne."
+              },
+              {
+                "id": "swamp",
+                "name": "Palude",
+                "description": "Concede gli incantesimi del circolo legati alle paludi."
+              },
+              {
+                "id": "underdark",
+                "name": "Underdark",
+                "description": "Concede gli incantesimi del circolo legati al Sottosuolo."
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "fighter",
@@ -137,7 +292,12 @@
         "name": "Stile di combattimento",
         "description": "La tua specializzazione marziale. Non puoi scegliere lo stesso stile più di una volta.",
         "minLevel": 1,
-        "countByLevel": [{ "level": 1, "count": 1 }],
+        "countByLevel": [
+          {
+            "level": 1,
+            "count": 1
+          }
+        ],
         "options": [
           {
             "id": "archery",
@@ -168,6 +328,119 @@
             "id": "two-weapon-fighting",
             "name": "Combattere con Due Armi",
             "description": "Aggiungi il modificatore di caratteristica al danno dell'attacco con la seconda arma."
+          }
+        ]
+      }
+    ],
+    "subclassFeatures": [
+      {
+        "subclassId": "Maestro di Battaglia",
+        "choices": [
+          {
+            "id": "battle-master-maneuvers",
+            "name": "Manovre",
+            "description": "Tecniche alimentate dai dadi di superiorità. Le manovre conosciute aumentano con la progressione del Maestro di Battaglia.",
+            "minLevel": 3,
+            "countByLevel": [
+              {
+                "level": 3,
+                "count": 3
+              },
+              {
+                "level": 7,
+                "count": 5
+              },
+              {
+                "level": 10,
+                "count": 7
+              },
+              {
+                "level": 15,
+                "count": 9
+              }
+            ],
+            "options": [
+              {
+                "id": "commanders-strike",
+                "name": "Colpo del Comandante",
+                "description": "Rinunci a un attacco e usi l'azione bonus per far attaccare un alleato con la sua reazione, aggiungendo il dado di superiorità ai danni."
+              },
+              {
+                "id": "disarming-attack",
+                "name": "Attacco Disarmante",
+                "description": "Aggiungi il dado ai danni; se il bersaglio fallisce il tiro salvezza di Forza lascia cadere un oggetto impugnato."
+              },
+              {
+                "id": "distracting-strike",
+                "name": "Attacco Distraente",
+                "description": "Aggiungi il dado ai danni e il prossimo attacco di un alleato contro il bersaglio ha vantaggio entro l'inizio del tuo prossimo turno."
+              },
+              {
+                "id": "evasive-footwork",
+                "name": "Passo Evasivo",
+                "description": "Quando ti muovi, aggiungi il dado di superiorità alla CA fino a quando termini il movimento."
+              },
+              {
+                "id": "feinting-attack",
+                "name": "Attacco con Finta",
+                "description": "Come azione bonus ottieni vantaggio al prossimo attacco contro una creatura vicina e aggiungi il dado ai danni se colpisci."
+              },
+              {
+                "id": "goading-attack",
+                "name": "Attacco Provocatorio",
+                "description": "Aggiungi il dado ai danni; con un tiro salvezza di Saggezza fallito il bersaglio ha svantaggio contro creature diverse da te."
+              },
+              {
+                "id": "lunging-attack",
+                "name": "Attacco con Affondo",
+                "description": "Quando attacchi in mischia, aumenti la portata di 1,5 m e aggiungi il dado ai danni se colpisci."
+              },
+              {
+                "id": "maneuvering-attack",
+                "name": "Attacco con Manovra",
+                "description": "Aggiungi il dado ai danni e permetti a un alleato di muoversi con la reazione senza subire attacchi di opportunità dal bersaglio."
+              },
+              {
+                "id": "menacing-attack",
+                "name": "Attacco Minaccioso",
+                "description": "Aggiungi il dado ai danni; con un tiro salvezza di Saggezza fallito il bersaglio è spaventato da te fino alla fine del tuo prossimo turno."
+              },
+              {
+                "id": "parry",
+                "name": "Parata",
+                "description": "Quando subisci danni da un attacco in mischia, usi la reazione per ridurli del dado più il modificatore di Destrezza."
+              },
+              {
+                "id": "precision-attack",
+                "name": "Attacco Preciso",
+                "description": "Aggiungi il dado di superiorità al tiro per colpire, prima o dopo il tiro ma prima di conoscere l'esito."
+              },
+              {
+                "id": "pushing-attack",
+                "name": "Attacco con Spinta",
+                "description": "Aggiungi il dado ai danni; una creatura Grande o più piccola che fallisce il tiro salvezza di Forza viene spinta fino a 4,5 m."
+              },
+              {
+                "id": "rally",
+                "name": "Radunare le Forze",
+                "description": "Come azione bonus, un alleato ottiene punti ferita temporanei pari al dado più il tuo modificatore di Carisma."
+              },
+              {
+                "id": "riposte",
+                "name": "Risposta",
+                "description": "Quando una creatura ti manca in mischia, usi la reazione per attaccarla e aggiungi il dado ai danni se colpisci."
+              },
+              {
+                "id": "sweeping-attack",
+                "name": "Attacco con Spazzata",
+                "description": "Dopo un colpo in mischia puoi danneggiare una seconda creatura adiacente al bersaglio per il risultato del dado di superiorità."
+              },
+              {
+                "id": "trip-attack",
+                "name": "Attacco Sbilanciante",
+                "description": "Aggiungi il dado ai danni; una creatura Grande o più piccola che fallisce il tiro salvezza di Forza cade prona."
+              }
+            ]
           }
         ]
       }
@@ -209,7 +482,12 @@
         "name": "Stile di combattimento",
         "description": "La specializzazione marziale ottenuta al 2° livello.",
         "minLevel": 2,
-        "countByLevel": [{ "level": 2, "count": 1 }],
+        "countByLevel": [
+          {
+            "level": 2,
+            "count": 1
+          }
+        ],
         "options": [
           {
             "id": "defense",
@@ -265,7 +543,12 @@
         "name": "Stile di combattimento",
         "description": "La specializzazione marziale ottenuta al 2° livello.",
         "minLevel": 2,
-        "countByLevel": [{ "level": 2, "count": 1 }],
+        "countByLevel": [
+          {
+            "level": 2,
+            "count": 1
+          }
+        ],
         "options": [
           {
             "id": "archery",
@@ -286,6 +569,124 @@
             "id": "two-weapon-fighting",
             "name": "Combattere con Due Armi",
             "description": "Aggiungi il modificatore di caratteristica al danno dell'attacco con la seconda arma."
+          }
+        ]
+      }
+    ],
+    "subclassFeatures": [
+      {
+        "subclassId": "Cacciatore",
+        "choices": [
+          {
+            "id": "hunter-prey",
+            "name": "Preda del Cacciatore",
+            "description": "Al 3° livello scegli una tecnica offensiva specializzata.",
+            "minLevel": 3,
+            "countByLevel": [
+              {
+                "level": 3,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "colossus-slayer",
+                "name": "Sterminatore di Colossi",
+                "description": "Una volta per turno infliggi 1d8 danni extra a una creatura già ferita quando la colpisci con un'arma."
+              },
+              {
+                "id": "giant-killer",
+                "name": "Uccisore di Giganti",
+                "description": "Quando una creatura Grande o più grande adiacente ti attacca, puoi usare la reazione per attaccarla dopo il suo colpo."
+              },
+              {
+                "id": "horde-breaker",
+                "name": "Devastatore dell'Orda",
+                "description": "Una volta per turno effettui un attacco aggiuntivo contro una seconda creatura vicina al bersaglio originale e nella portata dell'arma."
+              }
+            ]
+          },
+          {
+            "id": "hunter-defensive-tactics",
+            "name": "Tattiche Difensive",
+            "description": "Al 7° livello scegli una difesa contro le minacce più pericolose.",
+            "minLevel": 7,
+            "countByLevel": [
+              {
+                "level": 7,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "escape-the-horde",
+                "name": "Sfuggire all'Orda",
+                "description": "Gli attacchi di opportunità contro di te hanno svantaggio."
+              },
+              {
+                "id": "multiattack-defense",
+                "name": "Difesa dal Multiattacco",
+                "description": "Dopo che una creatura ti colpisce, ottieni +4 CA contro i suoi attacchi successivi nello stesso turno."
+              },
+              {
+                "id": "steel-will",
+                "name": "Volontà d'Acciaio",
+                "description": "Hai vantaggio ai tiri salvezza contro la condizione spaventato."
+              }
+            ]
+          },
+          {
+            "id": "hunter-multiattack",
+            "name": "Multiattacco",
+            "description": "All'11° livello scegli una tecnica per colpire più avversari.",
+            "minLevel": 11,
+            "countByLevel": [
+              {
+                "level": 11,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "volley",
+                "name": "Raffica",
+                "description": "Usi un'azione per effettuare un attacco a distanza contro ogni creatura scelta in un'area di 3 m entro la gittata dell'arma."
+              },
+              {
+                "id": "whirlwind-attack",
+                "name": "Attacco Turbinante",
+                "description": "Usi un'azione per effettuare un attacco in mischia contro ogni creatura entro 1,5 m da te."
+              }
+            ]
+          },
+          {
+            "id": "hunter-superior-defense",
+            "name": "Difesa Superiore del Cacciatore",
+            "description": "Al 15° livello scegli una tecnica difensiva superiore.",
+            "minLevel": 15,
+            "countByLevel": [
+              {
+                "level": 15,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "evasion",
+                "name": "Elusione",
+                "description": "Negli effetti che permettono un tiro salvezza di Destrezza per dimezzare i danni, non subisci danni se riesci e solo metà se fallisci."
+              },
+              {
+                "id": "stand-against-the-tide",
+                "name": "Opporsi alla Marea",
+                "description": "Quando un nemico ti manca in mischia, puoi usare la reazione per fargli ripetere l'attacco contro un'altra creatura valida."
+              },
+              {
+                "id": "uncanny-dodge",
+                "name": "Schivata Prodigiosa",
+                "description": "Quando un attaccante che vedi ti colpisce, puoi usare la reazione per dimezzare i danni dell'attacco."
+              }
+            ]
           }
         ]
       }
@@ -340,9 +741,18 @@
         "description": "Modifica il funzionamento dei tuoi incantesimi spendendo punti stregoneria. Salvo diversa indicazione, puoi applicare una sola opzione di Metamagia a un incantesimo.",
         "minLevel": 3,
         "countByLevel": [
-          { "level": 3, "count": 2 },
-          { "level": 10, "count": 3 },
-          { "level": 17, "count": 4 }
+          {
+            "level": 3,
+            "count": 2
+          },
+          {
+            "level": 10,
+            "count": 3
+          },
+          {
+            "level": 17,
+            "count": 4
+          }
         ],
         "options": [
           {
@@ -384,6 +794,77 @@
             "id": "twinned-spell",
             "name": "Incantesimo Raddoppiato",
             "description": "Spendi punti pari al livello dell'incantesimo (1 per un trucchetto) per scegliere un secondo bersaglio valido."
+          }
+        ]
+      }
+    ],
+    "subclassFeatures": [
+      {
+        "subclassId": "Discendenza Draconica",
+        "choices": [
+          {
+            "id": "draconic-ancestor",
+            "name": "Antenato Draconico",
+            "description": "Scegli il tipo di drago legato alla tua stirpe; il relativo tipo di danno viene usato dalle feature draconiche successive.",
+            "minLevel": 1,
+            "countByLevel": [
+              {
+                "level": 1,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "black",
+                "name": "Nero · Acido",
+                "description": "La tua affinità draconica è legata ai danni da acido."
+              },
+              {
+                "id": "blue",
+                "name": "Blu · Fulmine",
+                "description": "La tua affinità draconica è legata ai danni da fulmine."
+              },
+              {
+                "id": "brass",
+                "name": "Ottone · Fuoco",
+                "description": "La tua affinità draconica è legata ai danni da fuoco."
+              },
+              {
+                "id": "bronze",
+                "name": "Bronzo · Fulmine",
+                "description": "La tua affinità draconica è legata ai danni da fulmine."
+              },
+              {
+                "id": "copper",
+                "name": "Rame · Acido",
+                "description": "La tua affinità draconica è legata ai danni da acido."
+              },
+              {
+                "id": "gold",
+                "name": "Oro · Fuoco",
+                "description": "La tua affinità draconica è legata ai danni da fuoco."
+              },
+              {
+                "id": "green",
+                "name": "Verde · Veleno",
+                "description": "La tua affinità draconica è legata ai danni da veleno."
+              },
+              {
+                "id": "red",
+                "name": "Rosso · Fuoco",
+                "description": "La tua affinità draconica è legata ai danni da fuoco."
+              },
+              {
+                "id": "silver",
+                "name": "Argento · Freddo",
+                "description": "La tua affinità draconica è legata ai danni da freddo."
+              },
+              {
+                "id": "white",
+                "name": "Bianco · Freddo",
+                "description": "La tua affinità draconica è legata ai danni da freddo."
+              }
+            ]
           }
         ]
       }

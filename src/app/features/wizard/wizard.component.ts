@@ -39,6 +39,11 @@ import {
   StepId,
 } from '../../domain/models';
 import {
+  activeClassFeatureChoices,
+  classFeatureChoiceCount,
+  normalizeClassProgression,
+} from '../../domain/class-progression';
+import {
   asiPointTotal,
   asiSlots,
   classChoicesUsed,
@@ -56,6 +61,7 @@ import {
 import { WizardStore } from '../../state/wizard.store';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
 import { CharacterSheetPdfService } from '../../core/character-sheet-pdf.service';
+import { ClassProgressionComponent } from './class-progression.component';
 
 interface GrantedSpellSource {
   key: string;
@@ -75,7 +81,7 @@ const newHomebrewSpell = (): HomebrewSpell => ({
 });
 @Component({
   selector: 'app-wizard',
-  imports: [FormsModule, RouterLink, NgIcon, ThemeToggleComponent],
+  imports: [FormsModule, RouterLink, NgIcon, ThemeToggleComponent, ClassProgressionComponent],
   templateUrl: './wizard.component.html',
   styleUrl: './wizard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -173,45 +179,30 @@ export class WizardComponent implements OnInit, OnDestroy {
   get homebrewSpells() {
     return this.store.draft().homebrewSpells ?? [];
   }
-  classFeatureCount(choice: { countByLevel: { level: number; count: number }[] }) {
-    return (
-      [...choice.countByLevel]
-        .sort((a, b) => b.level - a.level)
-        .find((entry) => entry.level <= this.store.draft().level)?.count ?? 0
-    );
-  }
-  classFeatureSelections(choiceId: string) {
-    return this.store.draft().classFeatureChoices?.[choiceId] ?? [];
-  }
-  toggleClassFeature(choiceId: string, optionId: string, limit: number) {
-    const all = { ...(this.store.draft().classFeatureChoices ?? {}) };
-    const selected = [...(all[choiceId] ?? [])];
-    all[choiceId] = selected.includes(optionId)
-      ? selected.filter((id) => id !== optionId)
-      : selected.length < limit
-        ? [...selected, optionId]
-        : selected;
-    this.store.patch({ classFeatureChoices: all });
-  }
   get selectedClassFeatures() {
     const selectedClass = this.store.selectedClass();
     if (!selectedClass) return [];
-    return (selectedClass.featureChoices ?? [])
-      .filter((choice) => choice.minLevel <= this.store.draft().level)
-      .flatMap((choice) => {
-        const selected = new Set(this.classFeatureSelections(choice.id));
+    const draft = this.store.draft();
+    return activeClassFeatureChoices(selectedClass, draft.level, draft.subclassId).flatMap(
+      (choice) => {
+        const selected = new Set(draft.classFeatureChoices?.[choice.id] ?? []);
         return choice.options
           .filter((option) => selected.has(option.id))
           .map((option) => ({ group: choice.name, ...option }));
-      });
+      },
+    );
   }
   classFeaturesComplete() {
-    return (this.store.selectedClass()?.featureChoices ?? [])
-      .filter((choice) => choice.minLevel <= this.store.draft().level)
-      .every(
-        (choice) =>
-          this.classFeatureSelections(choice.id).length === this.classFeatureCount(choice),
-      );
+    const draft = this.store.draft();
+    return activeClassFeatureChoices(
+      this.store.selectedClass(),
+      draft.level,
+      draft.subclassId,
+    ).every(
+      (choice) =>
+        (draft.classFeatureChoices?.[choice.id]?.length ?? 0) ===
+        classFeatureChoiceCount(choice, draft.level),
+    );
   }
   get selectedSpellCount() {
     return this.selectedSpells.length + this.homebrewSpells.length;
@@ -544,7 +535,11 @@ export class WizardComponent implements OnInit, OnDestroy {
     });
   }
   setSubclass(value: string) {
-    this.store.patch({ subclassId: value });
+    const draft = { ...this.store.draft(), subclassId: value };
+    this.store.patch(normalizeClassProgression(draft, this.store.selectedClass()));
+  }
+  setClassFeatureChoices(classFeatureChoices: Record<string, string[]>) {
+    this.store.patch({ classFeatureChoices });
   }
   setLevel(value: string) {
     const level = Number(value),
@@ -553,7 +548,11 @@ export class WizardComponent implements OnInit, OnDestroy {
       rolls = (this.store.draft().hpRolls ?? []).slice(0, needed);
     if (this.store.draft().hpMethod === 'roll')
       while (rolls.length < needed) rolls.push(Math.floor(Math.random() * die) + 1);
-    this.store.patch({ level, hpRolls: rolls });
+    const progression = normalizeClassProgression(
+      { ...this.store.draft(), level },
+      this.store.selectedClass(),
+    );
+    this.store.patch({ level, hpRolls: rolls, ...progression });
   }
   toggleClassSkill(id: string) {
     const selected = this.store.draft().classSkillProficiencies ?? [],

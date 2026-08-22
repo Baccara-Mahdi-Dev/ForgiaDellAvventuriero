@@ -284,17 +284,15 @@
             }
           </div>
           @if (store.selectedClass()) {
-            <label class="field"
-              ><span>Sottoclasse</span
-              ><select [ngModel]="store.draft().subclassId" (ngModelChange)="setSubclass($event)">
-                <option value="">Scegli una sottoclasse</option>
-                @for (sub of store.selectedClass()!.subclasses; track sub) {
-                  <option [value]="sub">{{ sub }}</option>
-                }</select
-              ><small
-                >Si attiva dal livello {{ store.selectedClass()!.subclassLevel }}</small
-              ></label
-            >
+            <app-class-progression
+              [wizardStep]="'classe'"
+              [klass]="store.selectedClass()!"
+              [level]="store.draft().level"
+              [subclassId]="store.draft().subclassId"
+              [selections]="store.draft().classFeatureChoices ?? {}"
+              (subclassChange)="setSubclass($event)"
+              (selectionsChange)="setClassFeatureChoices($event)"
+            />
             <div class="choice-panel">
               <div>
                 <p class="kicker">Competenze di classe</p>
@@ -317,38 +315,6 @@
                 }
               </div>
             </div>
-            @for (choice of store.selectedClass()!.featureChoices ?? []; track choice.id) {
-              @if (store.draft().level >= choice.minLevel) {
-                <div class="choice-panel class-feature-choice">
-                  <div>
-                    <p class="kicker">Opzione di classe</p>
-                    <h2>{{ choice.name }}</h2>
-                    <p>{{ choice.description }}</p>
-                  </div>
-                  <small>
-                    {{ classFeatureSelections(choice.id).length }} /
-                    {{ classFeatureCount(choice) }} selezionate
-                  </small>
-                  <div class="feature-picks">
-                    @for (option of choice.options; track option.id) {
-                      <button
-                        [class.selected]="classFeatureSelections(choice.id).includes(option.id)"
-                        [disabled]="
-                          !classFeatureSelections(choice.id).includes(option.id) &&
-                          classFeatureSelections(choice.id).length >= classFeatureCount(choice)
-                        "
-                        (click)="
-                          toggleClassFeature(choice.id, option.id, classFeatureCount(choice))
-                        "
-                      >
-                        <strong>{{ option.name }}</strong>
-                        <small>{{ option.description }}</small>
-                      </button>
-                    }
-                  </div>
-                </div>
-              }
-            }
           }
         </section>
       }
@@ -478,6 +444,15 @@
             </div>
           </div>
           @if (store.selectedClass()) {
+            <app-class-progression
+              [wizardStep]="'livello'"
+              [klass]="store.selectedClass()!"
+              [level]="store.draft().level"
+              [subclassId]="store.draft().subclassId"
+              [selections]="store.draft().classFeatureChoices ?? {}"
+              (subclassChange)="setSubclass($event)"
+              (selectionsChange)="setClassFeatureChoices($event)"
+            />
             <div class="hp-builder">
               <div class="hp-heading">
                 <div>
@@ -547,38 +522,6 @@
                 >
               }
             </div>
-            @for (choice of store.selectedClass()!.featureChoices ?? []; track choice.id) {
-              @if (store.draft().level >= choice.minLevel) {
-                <div class="choice-panel class-feature-choice level-feature-choice">
-                  <div>
-                    <p class="kicker">Scelta sbloccata al livello {{ choice.minLevel }}</p>
-                    <h2>{{ choice.name }}</h2>
-                    <p>{{ choice.description }}</p>
-                  </div>
-                  <small>
-                    {{ classFeatureSelections(choice.id).length }} /
-                    {{ classFeatureCount(choice) }} selezionate
-                  </small>
-                  <div class="feature-picks">
-                    @for (option of choice.options; track option.id) {
-                      <button
-                        [class.selected]="classFeatureSelections(choice.id).includes(option.id)"
-                        [disabled]="
-                          !classFeatureSelections(choice.id).includes(option.id) &&
-                          classFeatureSelections(choice.id).length >= classFeatureCount(choice)
-                        "
-                        (click)="
-                          toggleClassFeature(choice.id, option.id, classFeatureCount(choice))
-                        "
-                      >
-                        <strong>{{ option.name }}</strong>
-                        <small>{{ option.description }}</small>
-                      </button>
-                    }
-                  </div>
-                </div>
-              }
-            }
           }
         </section>
       }

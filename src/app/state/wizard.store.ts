@@ -9,6 +9,7 @@ import {
   HOMEBREW_ABILITY_MIN,
 } from '../domain/models';
 import { derive, maximumSpellLevel, pointBuyCost } from '../domain/rules';
+import { normalizeClassProgression } from '../domain/class-progression';
 
 const base = () => ({ str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 }) as const;
 
@@ -247,7 +248,7 @@ export class WizardStore {
     };
   }
   private normalize(value: CharacterDraft): CharacterDraft {
-    return {
+    const normalized = {
       ...value,
       catalogVersion: this.catalog.requireData().manifest.dataVersion,
       alignment: value.alignment ?? '',
@@ -283,6 +284,8 @@ export class WizardStore {
       deathSaveSuccesses: value.deathSaveSuccesses ?? 0,
       deathSaveFailures: value.deathSaveFailures ?? 0,
     };
+    const klass = this.classes.find((item) => item.id === normalized.classId);
+    return { ...normalized, ...normalizeClassProgression(normalized, klass) };
   }
   private async persist(value: CharacterDraft): Promise<void> {
     try {
