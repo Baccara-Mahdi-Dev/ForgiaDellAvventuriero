@@ -15,35 +15,34 @@
     <small>{{ klass().name }} la sceglie al livello {{ klass().subclassLevel }}.</small>
   </div>
 }
-@if (wizardStep() === 'livello') {
-  @for (choice of activeChoices(); track choice.id) {
-    <div class="choice-panel class-feature-choice">
-      <div>
-        <p class="kicker">
-          {{ isSubclassChoice(choice.id) ? 'Opzione di sottoclasse' : 'Opzione di classe' }} ·
-          livello
-          {{ choice.minLevel }}
-        </p>
-        <h2>{{ choice.name }}</h2>
-        <p>{{ choice.description }}</p>
-      </div>
-      <small>{{ selected(choice.id).length }} / {{ choiceCount(choice) }} selezionate</small>
-      <div class="feature-picks">
-        @for (option of choice.options; track option.id) {
-          <button
-            type="button"
-            [class.selected]="selected(choice.id).includes(option.id)"
-            [disabled]="
-              !selected(choice.id).includes(option.id) &&
-              selected(choice.id).length >= choiceCount(choice)
-            "
-            (click)="toggle(choice, option.id)"
-          >
-            <strong>{{ option.name }}</strong>
-            <small>{{ option.description }}</small>
-          </button>
-        }
-      </div>
+<!-- @if (wizardStep() === 'livello') { -->
+@for (choice of activeChoices(); track choice.id) {
+  <div class="choice-panel class-feature-choice">
+    <div>
+      <p class="kicker">
+        {{ isSubclassChoice(choice.id) ? 'Opzione di sottoclasse' : 'Opzione di classe' }} · livello
+        {{ choice.minLevel }}
+      </p>
+      <h2>{{ choice.name }}</h2>
+      <p>{{ choice.description }}</p>
     </div>
-  }
+    <small>{{ selected(choice.id).length }} / {{ choiceCount(choice) }} selezionate</small>
+    <div class="feature-picks">
+      @for (option of choice.options; track option.id) {
+        <button
+          type="button"
+          [class.selected]="selected(choice.id).includes(option.id)"
+          [disabled]="
+            !selected(choice.id).includes(option.id) &&
+            selected(choice.id).length >= choiceCount(choice)
+          "
+          (click)="toggle(choice, option.id)"
+        >
+          <strong>{{ option.name }}</strong>
+          <small>{{ option.description }}</small>
+        </button>
+      }
+    </div>
+  </div>
 }
+<!-- } -->
