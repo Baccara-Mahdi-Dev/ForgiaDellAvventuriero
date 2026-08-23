@@ -10,6 +10,7 @@ import {
 } from '../domain/models';
 import { derive, maximumSpellLevel, pointBuyCost } from '../domain/rules';
 import { normalizeClassProgression } from '../domain/class-progression';
+import { normalizeHomebrewEquipment } from '../domain/homebrew-equipment';
 
 const base = () => ({ str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 }) as const;
 
@@ -106,10 +107,10 @@ export class WizardStore {
     return this.catalog.requireData().spells;
   }
   get equipment() {
-    return this.catalog.requireData().equipment;
+    return [...this.catalog.requireData().equipment, ...(this.draft().homebrewEquipment ?? [])];
   }
   get rulesCatalog(): RulesCatalog {
-    return this.catalog.requireData();
+    return { ...this.catalog.requireData(), equipment: this.equipment };
   }
 
   newDraft(): CharacterDraft {
@@ -233,11 +234,16 @@ export class WizardStore {
       featAbilityChoices: {},
       spellIds: [],
       homebrewSpells: [],
+      homebrewEquipment: [],
       grantedSpellChoices: {},
       spellGrantTraditions: {},
       equippedArmorId: '',
       shieldEquipped: false,
+      equippedShieldId: '',
       equippedWeapons: [],
+      equippedItemIds: [],
+      attunedEquipmentIds: [],
+      equipmentCharges: {},
       inventory: [],
       coins: { cp: 0, sp: 0, ep: 0, gp: 0, pp: 0 },
       hitDiceSpent: 0,
@@ -269,14 +275,23 @@ export class WizardStore {
       featAbilityChoices: value.featAbilityChoices ?? {},
       grantedSpellChoices: value.grantedSpellChoices ?? {},
       spellGrantTraditions: value.spellGrantTraditions ?? {},
-      homebrewSpells: (value.homebrewSpells ?? []).filter(
-        (spell) => spell && !!spell.id && !!spell.name && spell.level >= 0 && spell.level <= 9,
-      ),
+      homebrewSpells: (value.homebrewSpells ?? [])
+        .filter(
+          (spell) => spell && !!spell.id && !!spell.name && spell.level >= 0 && spell.level <= 9,
+        )
+        .map((spell) => ({ ...spell, concentration: spell.concentration ?? false })),
+      homebrewEquipment: (value.homebrewEquipment ?? [])
+        .filter((item) => item && !!item.id && !!item.name && !!item.kind)
+        .map(normalizeHomebrewEquipment),
       equippedArmorId: value.equippedArmorId ?? '',
       shieldEquipped: value.shieldEquipped ?? false,
+      equippedShieldId: value.equippedShieldId ?? (value.shieldEquipped ? 'shield' : ''),
       equippedWeapons: (value.equippedWeapons ?? []).filter(
         (weapon) => weapon && (weapon.hands === 1 || weapon.hands === 2) && !!weapon.equipmentId,
       ),
+      equippedItemIds: value.equippedItemIds ?? [],
+      attunedEquipmentIds: (value.attunedEquipmentIds ?? []).slice(0, 3),
+      equipmentCharges: value.equipmentCharges ?? {},
       inventory: value.inventory ?? [],
       coins: value.coins ?? { cp: 0, sp: 0, ep: 0, gp: 0, pp: 0 },
       hitDiceSpent: value.hitDiceSpent ?? 0,

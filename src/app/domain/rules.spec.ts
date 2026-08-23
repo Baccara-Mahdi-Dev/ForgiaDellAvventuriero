@@ -14,6 +14,7 @@ import {
   modifier,
   pointBuyCost,
   proficiency,
+  spellSelectionLimits,
   spellSlots,
 } from './rules';
 
@@ -389,5 +390,100 @@ describe('classi consigliate', () => {
     const scores: AbilityScores = { str: 16, dex: 10, con: 14, int: 8, wis: 14, cha: 9 };
     expect(isRecommendedClass('barbarian', scores)).toBe(true);
     expect(isRecommendedClass('paladin', scores)).toBe(false);
+  });
+});
+
+describe('limiti di selezione degli incantesimi', () => {
+  it('separa trucchetti e incantesimi conosciuti per le classi spontanee', () => {
+    expect(spellSelectionLimits('bard', 1, 3)).toEqual({ cantrips: 2, leveledSpells: 4 });
+    expect(spellSelectionLimits('sorcerer', 10, 4)).toEqual({
+      cantrips: 6,
+      leveledSpells: 11,
+    });
+    expect(spellSelectionLimits('ranger', 1, 3)).toEqual({ cantrips: 0, leveledSpells: 0 });
+  });
+
+  it('calcola gli incantesimi preparati usando il modificatore della classe', () => {
+    expect(spellSelectionLimits('cleric', 5, 3)).toEqual({ cantrips: 4, leveledSpells: 8 });
+    expect(spellSelectionLimits('paladin', 5, 2)).toEqual({ cantrips: 0, leveledSpells: 4 });
+    expect(spellSelectionLimits('artificer', 10, 4)).toEqual({
+      cantrips: 3,
+      leveledSpells: 9,
+    });
+  });
+
+  it('include libro degli incantesimi e Arcanum nei rispettivi limiti', () => {
+    expect(spellSelectionLimits('wizard', 5, 4)).toEqual({ cantrips: 4, leveledSpells: 14 });
+    expect(spellSelectionLimits('warlock', 11, 4)).toEqual({ cantrips: 4, leveledSpells: 12 });
+  });
+});
+
+describe('effetti dell’equipaggiamento', () => {
+  const ring = {
+    id: 'ring-of-testing',
+    name: 'Anello di prova',
+    description: 'Bonus applicati solo con equipaggiamento e sintonia.',
+    kind: 'gear' as const,
+    category: 'adventuring-gear' as const,
+    group: 'Oggetti magici',
+    cost: '—',
+    weightKg: 0,
+    source: 'HOMEBREW' as const,
+    magical: true,
+    requiresAttunement: true,
+    effects: [
+      {
+        id: 'con',
+        name: 'Tempra',
+        type: 'ability-modifier' as const,
+        activation: 'passive' as const,
+        ability: 'con' as const,
+        value: 2,
+      },
+      {
+        id: 'ac',
+        name: 'Difesa',
+        type: 'armor-class' as const,
+        activation: 'passive' as const,
+        value: 1,
+      },
+      {
+        id: 'init',
+        name: 'Prontezza',
+        type: 'initiative' as const,
+        activation: 'passive' as const,
+        value: 2,
+      },
+      {
+        id: 'fire',
+        name: 'Fuoco',
+        type: 'resistance' as const,
+        activation: 'passive' as const,
+        target: 'fuoco',
+      },
+    ],
+  };
+  const itemCatalog = { ...catalog, equipment: [...catalog.equipment, ring] };
+
+  it('non applica la magia prima della sintonia', () => {
+    const result = derive({ ...draft, equippedItemIds: [ring.id] }, itemCatalog);
+    expect(result.finalAbilities.con).toBe(14);
+    expect(result.armorClass).toBe(12);
+    expect(result.initiative).toBe(2);
+  });
+
+  it('applica e rimuove i modificatori senza duplicarli', () => {
+    const result = derive(
+      {
+        ...draft,
+        equippedItemIds: [ring.id, ring.id],
+        attunedEquipmentIds: [ring.id],
+      },
+      itemCatalog,
+    );
+    expect(result.finalAbilities.con).toBe(16);
+    expect(result.armorClass).toBe(13);
+    expect(result.initiative).toBe(4);
+    expect(result.resistances).toContain('fuoco');
   });
 });

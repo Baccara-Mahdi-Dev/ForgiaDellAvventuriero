@@ -11,6 +11,12 @@ import {
   SpellSlot,
 } from './models';
 import { RulesCatalog } from './catalog';
+import {
+  activeEquipmentEffects,
+  equipmentAbilityBonuses,
+  equipmentAbilityMinimum,
+  equipmentEffectTotal,
+} from './equipment-effects';
 export const pointBuyCost = (score: number): number =>
   (({ 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 }) as Record<number, number>)[score] ??
   99;
@@ -18,6 +24,82 @@ export const modifier = (score: number): number => Math.floor((score - 10) / 2);
 export const homebrewAbilityScore = (score: number | undefined, fallback = 8): number =>
   Math.max(HOMEBREW_ABILITY_MIN, Math.min(HOMEBREW_ABILITY_MAX, Math.floor(score ?? fallback)));
 export const proficiency = (level: number): number => Math.ceil(level / 4) + 1;
+
+export interface SpellSelectionLimits {
+  cantrips: number;
+  leveledSpells: number;
+}
+
+const byLevel = (values: readonly number[], level: number): number =>
+  values[Math.max(0, Math.min(19, level - 1))] ?? 0;
+
+const BARD_SPELLS = [
+  4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 15, 16, 18, 19, 19, 20, 22, 22, 22,
+] as const;
+const RANGER_SPELLS = [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11] as const;
+const SORCERER_SPELLS = [
+  2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15,
+] as const;
+const WARLOCK_SPELLS = [
+  2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 12, 12, 14, 14, 16, 16, 18, 18, 19, 19,
+] as const;
+
+/** Limiti di scelta della magia di classe secondo la progressione SRD 5.1. */
+export function spellSelectionLimits(
+  classId: string,
+  level: number,
+  spellcastingModifier = 0,
+): SpellSelectionLimits {
+  const safeLevel = Math.max(1, Math.min(20, level));
+  const cantrips =
+    classId === 'sorcerer'
+      ? safeLevel < 4
+        ? 4
+        : safeLevel < 10
+          ? 5
+          : 6
+      : ['bard', 'cleric', 'warlock', 'wizard'].includes(classId)
+        ? safeLevel < 4
+          ? classId === 'cleric' || classId === 'wizard'
+            ? 3
+            : 2
+          : safeLevel < 10
+            ? classId === 'cleric' || classId === 'wizard'
+              ? 4
+              : 3
+            : classId === 'cleric' || classId === 'wizard'
+              ? 5
+              : 4
+        : classId === 'druid'
+          ? safeLevel < 4
+            ? 2
+            : safeLevel < 10
+              ? 3
+              : 4
+          : classId === 'artificer'
+            ? safeLevel < 10
+              ? 2
+              : safeLevel < 14
+                ? 3
+                : 4
+            : 0;
+
+  let leveledSpells = 0;
+  if (classId === 'bard') leveledSpells = byLevel(BARD_SPELLS, safeLevel);
+  else if (classId === 'ranger') leveledSpells = byLevel(RANGER_SPELLS, safeLevel);
+  else if (classId === 'sorcerer') leveledSpells = byLevel(SORCERER_SPELLS, safeLevel);
+  else if (classId === 'warlock') leveledSpells = byLevel(WARLOCK_SPELLS, safeLevel);
+  else if (classId === 'wizard') leveledSpells = 6 + (safeLevel - 1) * 2;
+  else if (['cleric', 'druid'].includes(classId))
+    leveledSpells = Math.max(1, safeLevel + spellcastingModifier);
+  else if (
+    ['paladin', 'artificer'].includes(classId) &&
+    (classId === 'artificer' || safeLevel >= 2)
+  )
+    leveledSpells = Math.max(1, Math.floor(safeLevel / 2) + spellcastingModifier);
+
+  return { cantrips, leveledSpells };
+}
 export function maximumSpellLevel(classId: string, level: number): number {
   if (classId === 'warlock') {
     if (level >= 17) return 9;
@@ -432,18 +514,25 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
     klass = catalog.classes.find((x) => x.id === draft.classId),
     background = catalog.backgrounds.find((x) => x.id === draft.backgroundId),
     finalAbilities = {} as AbilityScores,
-    featEffects = featEffectTotals(draft, catalog);
+    featEffects = featEffectTotals(draft, catalog),
+    equipmentEffects = activeEquipmentEffects(draft, catalog.equipment),
+    equipmentAbilities = equipmentAbilityBonuses(equipmentEffects);
   for (const { key } of ABILITIES)
-    finalAbilities[key] = Math.min(
-      20,
-      draft.abilities[key] +
-        (ancestry?.bonuses[key] ?? 0) +
-        ((draft.ancestryBonusAbilities ?? []).includes(key) &&
-        (!ancestry?.flexibleBonusOptions || ancestry.flexibleBonusOptions.includes(key))
-          ? 1
-          : 0) +
-        (draft.asi[key] ?? 0) +
-        (featEffects.abilityBonuses[key] ?? 0),
+    finalAbilities[key] = equipmentAbilityMinimum(
+      key,
+      Math.min(
+        20,
+        draft.abilities[key] +
+          (ancestry?.bonuses[key] ?? 0) +
+          ((draft.ancestryBonusAbilities ?? []).includes(key) &&
+          (!ancestry?.flexibleBonusOptions || ancestry.flexibleBonusOptions.includes(key))
+            ? 1
+            : 0) +
+          (draft.asi[key] ?? 0) +
+          (featEffects.abilityBonuses[key] ?? 0) +
+          (equipmentAbilities[key] ?? 0),
+      ),
+      equipmentEffects,
     );
   const modifiers = Object.fromEntries(
       ABILITIES.map(({ key }) => [key, modifier(finalAbilities[key])]),
@@ -474,7 +563,13 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
         : equippedArmor?.dexterityBonus === 'max-2'
           ? Math.min(2, modifiers.dex)
           : modifiers.dex,
-    shieldBonus = draft.shieldEquipped ? 2 : 0,
+    equippedShield = catalog.equipment.find(
+      (item) => item.id === (draft.equippedShieldId ?? (draft.shieldEquipped ? 'shield' : '')),
+    ),
+    shieldBonus = equippedShield ? (equippedShield.armorClass ?? 2) : 0,
+    armorClassBonus = equipmentEffectTotal(equipmentEffects, 'armor-class'),
+    initiativeBonus = equipmentEffectTotal(equipmentEffects, 'initiative'),
+    savingThrowBonus = equipmentEffectTotal(equipmentEffects, 'saving-throw-bonus'),
     inventoryWeightKg = +(draft.inventory ?? [])
       .reduce((sum, entry) => {
         const item = catalog.equipment.find((candidate) => candidate.id === entry.equipmentId);
@@ -501,7 +596,8 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
       ability: ability.key,
       name: ability.label,
       proficient: klass?.saves.includes(ability.key) ?? false,
-      value: modifiers[ability.key] + (klass?.saves.includes(ability.key) ? pb : 0),
+      value:
+        modifiers[ability.key] + (klass?.saves.includes(ability.key) ? pb : 0) + savingThrowBonus,
     }));
   const languages = [
       ...(ancestry?.languages ?? []),
@@ -522,8 +618,8 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
       ? modifier(homebrewAbilityScore(draft.sanityScore))
       : undefined,
     proficiency: pb,
-    armorClass: armorBase + armorDex + shieldBonus,
-    initiative: modifiers.dex + featEffects.initiativeBonus,
+    armorClass: armorBase + armorDex + shieldBonus + armorClassBonus,
+    initiative: modifiers.dex + featEffects.initiativeBonus + initiativeBonus,
     maxHp: klass
       ? maximumHp(
           draft,
@@ -561,7 +657,12 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
     weaponProficiencies: [
       ...new Set([...(klass?.weaponProficiencies ?? []), ...(ancestry?.weaponProficiencies ?? [])]),
     ],
-    resistances: ancestry?.resistances ?? [],
+    resistances: [
+      ...(ancestry?.resistances ?? []),
+      ...equipmentEffects
+        .filter((effect) => effect.type === 'resistance' && effect.target)
+        .map((effect) => effect.target!),
+    ].filter((value, index, all) => all.indexOf(value) === index),
     senses: ancestry?.darkvisionMeters ? [`Scurovisione ${ancestry.darkvisionMeters} m`] : [],
     classResources: classResources(
       draft.classId,

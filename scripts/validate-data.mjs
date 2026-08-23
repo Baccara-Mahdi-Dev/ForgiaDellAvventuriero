@@ -43,6 +43,19 @@ for (const name of names) {
   }
   catalogs[name] = records;
 }
+if (manifest.additionalEquipment) {
+  const records = await readJson(manifest.additionalEquipment.file);
+  if (!Array.isArray(records) || records.length !== manifest.additionalEquipment.count)
+    throw new Error('Conteggio degli oggetti magici non valido');
+  const existingIds = new Set(catalogs.equipment.map((item) => item.id));
+  for (const item of records) {
+    if (!item.id || !item.name || !item.description || item.source !== 'SRD')
+      throw new Error(`Oggetto magico non valido: ${item.id ?? 'senza ID'}`);
+    if (existingIds.has(item.id)) throw new Error(`ID equipaggiamento duplicato: ${item.id}`);
+    existingIds.add(item.id);
+  }
+  catalogs.equipment.push(...records);
+}
 
 const classIds = new Set(catalogs.classes.map((item) => item.id));
 const abilityIds = new Set(['str', 'dex', 'con', 'int', 'wis', 'cha']);

@@ -8,6 +8,7 @@ export interface CatalogManifest {
   catalog: Record<keyof CatalogFiles, number>;
   files: CatalogFiles;
   sources: string[];
+  additionalEquipment?: { file: string; count: number };
 }
 
 export interface CatalogFiles {

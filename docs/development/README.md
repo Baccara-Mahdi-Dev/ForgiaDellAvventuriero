@@ -33,7 +33,7 @@ Usare `npm run verify` prima di consegnare o pubblicare una modifica.
 3. Verificare tutti gli ID referenziati: classi, abilità, incantesimi, equipaggiamento o razze.
 4. Aggiungere il record manualmente o tramite Forgia Data Studio.
 5. Incrementare `manifest.dataVersion`.
-6. Aggiornare il conteggio nel manifest; l'editor lo fa automaticamente.
+6. Aggiornare il conteggio nel manifest; l'editor lo fa automaticamente per i cataloghi in `catalog`, mentre `additionalEquipment.count` va verificato esplicitamente.
 7. Eseguire `npm run validate:data`.
 8. Aggiungere test quando il record introduce un comportamento numerico o una nuova combinazione.
 9. Eseguire `npm run verify`.
@@ -49,6 +49,8 @@ npm run catalog:editor
 Aprire `http://127.0.0.1:4310`. Il server ascolta soltanto sull'interfaccia locale e consente ricerca, modifica, duplicazione, eliminazione, validazione e backup.
 
 Prima di ogni salvataggio crea una copia in `tools/catalog-editor/backups`. Un file JSON completamente nuovo deve essere registrato manualmente nel manifest e nel codice TypeScript.
+
+`magic-equipment.json` è registrato separatamente in `manifest.additionalEquipment`: il servizio lo unisce al catalogo base e il validatore controlla il conteggio complessivo e gli ID duplicati.
 
 La guida specifica è in `tools/catalog-editor/README.md`.
 
@@ -127,6 +129,11 @@ Oltre al record in `classes.json`, controllare:
 I test principali sono:
 
 - `src/app/domain/rules.spec.ts`: calcoli puri e casi di regola;
+- `src/app/domain/homebrew-equipment.spec.ts`: normalizzazione e validazione dell'equipaggiamento personale;
+- `src/app/domain/homebrew-spell.spec.ts`: conversione degli incantesimi personali, inclusa la concentrazione;
+- `src/app/core/spell-cards-pdf.spec.ts`: raccolta, ordinamento e colori delle carte incantesimo;
+- `src/app/core/character-sheet-pdf.spec.ts`: compilazione della scheda ufficiale;
+- `src/app/domain/weapon-loadout.spec.ts`: vincoli e calcoli delle armi impugnate;
 - `src/app/app.spec.ts`: bootstrap e struttura base dell'app.
 
 Per le regole usare fixture minime e asserzioni sui livelli di confine. Per esempio, una risorsa che cambia al 6° livello deve essere verificata almeno al 5° e al 6°.
@@ -137,6 +144,7 @@ Categorie di test consigliate per ogni nuova funzionalità:
 - valore minimo e massimo;
 - campo opzionale assente;
 - combinazione con razza, classe o talento;
+- oggetto equipaggiato/non equipaggiato e con/senza sintonia quando modifica le regole;
 - importazione di una vecchia bozza, quando cambia `CharacterDraft`.
 
 ## Persistenza e migrazioni
@@ -186,6 +194,7 @@ Gli asset con hash possono essere memorizzati a lungo; `index.html`, service wor
 - [ ] Tema chiaro e scuro sono leggibili.
 - [ ] Il wizard funziona almeno su viewport desktop e mobile.
 - [ ] Importazione, autosalvataggio ed esportazione JSON restano operativi.
+- [ ] Scheda PDF e carte incantesimo includono anche contenuti Homebrew e concessioni da oggetti.
 - [ ] La build contiene `manifest.webmanifest`, dati e metadati pubblici.
 
 ## Decisioni e note legali

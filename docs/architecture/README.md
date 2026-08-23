@@ -6,7 +6,7 @@
 manifest.json
     │
     ▼
-CatalogService ── carica in parallelo i sei cataloghi JSON
+CatalogService ── carica i sei cataloghi base e l'estensione degli oggetti magici
     │
     ▼
 WizardStore ── conserva CharacterDraft e calcola DerivedCharacter
@@ -17,7 +17,8 @@ HomeComponent / WizardComponent
     │
     ├─ IndexedDB (principale)
     ├─ localStorage (fallback)
-    └─ export/import JSON
+    ├─ export/import JSON
+    └─ scheda e carte incantesimo PDF
 ```
 
 L'inizializzatore dell'app attende il caricamento del catalogo prima di creare le pagine. Di conseguenza i componenti possono usare `CatalogService.requireData()` senza gestire uno stato parzialmente caricato.
@@ -65,8 +66,8 @@ Responsabilità:
 
 1. caricare `data/v1/manifest.json`;
 2. verificare versione dello schema e campi essenziali;
-3. caricare in parallelo razze, classi, background, talenti, incantesimi ed equipaggiamento;
-4. controllare conteggi, ID mancanti e duplicati;
+3. caricare in parallelo razze, classi, background, talenti, incantesimi, equipaggiamento e l'eventuale `additionalEquipment`;
+4. unire equipaggiamento base e magico controllando conteggi, ID mancanti e duplicati;
 5. esporre il catalogo tramite un Signal di sola lettura.
 
 `data()` può essere nullo durante il bootstrap. `requireData()` restituisce il catalogo oppure segnala un errore: va usato soltanto dopo l'inizializzatore dell'app.
@@ -104,8 +105,8 @@ File: `src/app/domain/models.ts`.
 
 È il contratto TypeScript centrale. Contiene:
 
-- tipi condivisi come `AbilityKey`, `Alignment`, `ArmorType` e `EquipmentCategory`;
-- interfacce dei sei cataloghi;
+- tipi condivisi come `AbilityKey`, `Alignment`, `ArmorType`, `EquipmentCategory`, `EquipmentKind` ed `EquipmentRarity`;
+- interfacce dei cataloghi, degli effetti equipaggiamento, delle cariche e degli incantesimi concessi dagli oggetti;
 - `CharacterDraft`, cioè ciò che viene salvato;
 - `DerivedCharacter`, cioè ciò che viene calcolato;
 - definizioni statiche di caratteristiche, abilità, allineamenti e step.
@@ -142,6 +143,8 @@ Contiene funzioni pure: a parità di bozza e catalogo producono sempre lo stesso
 
 Le nuove regole numeriche devono stare qui, non nel template. Questo mantiene i calcoli testabili senza avviare Angular.
 
+`equipment-effects.ts` raccoglie la risoluzione degli oggetti equipaggiati, dei requisiti di sintonia e dei bonus strutturati. `homebrew-equipment.ts` crea, normalizza e valida gli oggetti personali assicurando che ciascuno abbia un solo tipo compatibile. `derive()` usa queste funzioni per integrare gli effetti nel normale calcolo del personaggio.
+
 ## Stato applicativo
 
 ### `WizardStore`
@@ -157,6 +160,7 @@ File: `src/app/state/wizard.store.ts`.
 - `availableSpells`: incantesimi della classe entro il livello consentito, esclusi quelli concessi gratuitamente;
 - `fixedGrantedSpellIds`: incantesimi fissi da razza, talento o sottoclasse;
 - `activeGrantedSpellChoiceIds`: incantesimi scelti tramite concessioni configurabili;
+- `equipment`: catalogo base e magico unito agli oggetti Homebrew della bozza;
 - `saveState`: stato visibile dell'autosalvataggio.
 
 Ogni `patch()` incrementa `revision`, aggiorna `updatedAt` e registra la versione corrente del catalogo. Un effect attende 350 ms dall'ultima modifica e poi salva la bozza.
@@ -192,12 +196,21 @@ Le responsabilità principali sono:
 - impedire l'avanzamento finché lo step non è completo;
 - resettare le scelte dipendenti quando cambia razza o classe;
 - gestire scelte razziali, competenze, ASI, talenti e PF;
-- filtrare incantesimi ed equipaggiamento;
+- filtrare, paginare e ordinare incantesimi ed equipaggiamento;
 - calcolare attacco e danno delle armi per la presentazione;
-- gestire zaino, quantità e monete;
-- importare, esportare e stampare la scheda.
+- gestire zaino, quantità, equipaggiamento, sintonia, cariche e monete;
+- coordinare gli editor Homebrew di incantesimi ed equipaggiamento;
+- importare, esportare e stampare la scheda o le carte incantesimo.
 
 `stepComplete()` è il controllo di navigazione. Se si introduce un nuovo requisito obbligatorio, va aggiunto lì e deve essere coerente con i dati iniziali creati dallo store.
+
+### Esportazioni PDF
+
+`CharacterSheetPdfService` compila il modello AcroForm ufficiale usando `character-sheet-pdf.ts`. `SpellCardsPdfService` genera invece un PDF autonomo tramite `spell-cards-pdf.ts`: raccoglie tutte le magie disponibili al personaggio, ordina per livello e nome e applica un colore stabile a ciascun livello.
+
+### Editor Homebrew
+
+`HomebrewEquipmentDialogComponent` è un dialogo dedicato con sezioni dinamiche per tipo, anteprima e validazione. Gli incantesimi Homebrew restano coordinati da `WizardComponent` e vengono normalizzati da `homebrew-spell.ts`. Entrambi salvano nella bozza del personaggio e non alterano i JSON distribuiti con l'app.
 
 ### `ThemeToggleComponent`
 

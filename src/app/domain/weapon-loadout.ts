@@ -2,7 +2,9 @@ import { CatalogData } from './catalog';
 import { CharacterDraft, EquipmentItem, EquippedWeapon } from './models';
 
 export function requiresTwoHands(item: EquipmentItem): boolean {
-  return item.properties?.some((property) => property.toLocaleLowerCase('it') === 'a due mani') ?? false;
+  return (
+    item.properties?.some((property) => property.toLocaleLowerCase('it') === 'a due mani') ?? false
+  );
 }
 
 export function damageForHands(item: EquipmentItem, hands: 1 | 2): string {
@@ -23,7 +25,7 @@ export function hasTwoWeaponFighting(draft: CharacterDraft): boolean {
 
 export function equippedWeaponItems(
   draft: CharacterDraft,
-  catalog: CatalogData,
+  catalog: Pick<CatalogData, 'equipment'>,
 ): { equipped: EquippedWeapon; item: EquipmentItem }[] {
   return (draft.equippedWeapons ?? []).flatMap((equipped) => {
     const item = catalog.equipment.find(

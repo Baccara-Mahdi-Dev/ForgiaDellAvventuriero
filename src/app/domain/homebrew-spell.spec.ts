@@ -12,7 +12,8 @@ describe('incantesimi homebrew', () => {
       description:
         'Una nube pesante si scagiona dal punto da te indicato entro 36m, la nube ha diametro 12m. Impone svantaggio a tutti i tiri a chi è dentro la nube, inoltre chi si trova dentro deve fare un ts CONST o subire 1d6 danno...',
       castingTime: 'bonus-action',
-      duration: 'Concentrazione, fino a 1 minuto',
+      duration: 'Fino a 1 minuto',
+      concentration: true,
       components: ['V', 'S', 'M'],
       materials: ['un pugno di cenere e un accaromp'],
       damage: { formula: '1d6', type: 'fuoco' },
@@ -20,7 +21,8 @@ describe('incantesimi homebrew', () => {
 
     const spell = asSpell(homebrew);
     expect(spell.castingTime.unit).toBe('bonus-action');
-    expect(spell.duration.text).toBe('Concentrazione, fino a 1 minuto');
+    expect(spell.duration.text).toBe('Fino a 1 minuto');
+    expect(spell.duration.concentration).toBe(true);
     expect(spell.components).toBe('V, S, M');
     expect(spell.damage).toEqual({ formula: '1d6', type: 'fuoco' });
   });

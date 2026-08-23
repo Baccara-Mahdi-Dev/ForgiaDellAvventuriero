@@ -627,10 +627,15 @@
       }
       @case ('equipaggiamento') {
         <section class="equipment-builder">
-          <p class="lead">
-            Scegli protezioni e oggetti. Tutto ciò che aggiungi viene conservato nello zaino e
-            contribuisce al peso trasportato.
-          </p>
+          <div class="equipment-intro">
+            <p class="lead">
+              Scegli protezioni, oggetti magici e strumenti. Tutto ciò che aggiungi viene conservato
+              nello zaino e usa le stesse regole di equipaggiamento.
+            </p>
+            <button class="homebrew-equipment-add" (click)="openHomebrewEquipmentWizard()">
+              + Aggiungi equipaggiamento Homebrew
+            </button>
+          </div>
 
           <div class="equipment-vitals">
             <div>
@@ -649,6 +654,35 @@
             <p class="load-warning">
               Il peso dello zaino supera il carico massimo del personaggio.
             </p>
+          }
+
+          @if (homebrewEquipment.length) {
+            <div class="homebrew-equipment-list">
+              <div class="panel-heading">
+                <div>
+                  <p class="kicker">Creazioni personali</p>
+                  <h2>Equipaggiamento Homebrew</h2>
+                </div>
+                <span>{{ homebrewEquipment.length }} oggetti</span>
+              </div>
+              @for (item of homebrewEquipment; track item.id) {
+                <article>
+                  <div>
+                    <strong>{{ item.name }}</strong
+                    ><small
+                      >{{ itemKind(item) }} · {{ itemRarity(item) || 'Senza rarità'
+                      }}<span>{{
+                        item.requiresAttunement ? ' · Richiede sintonia' : ''
+                      }}</span></small
+                    >
+                    <p>{{ item.description }}</p>
+                  </div>
+                  <button class="homebrew-spell-remove" (click)="removeHomebrewEquipment(item.id)">
+                    Rimuovi
+                  </button>
+                </article>
+              }
+            </div>
           }
 
           <div class="armor-panel">
@@ -735,13 +769,14 @@
                 type="search"
                 placeholder="Cerca un oggetto…"
                 [ngModel]="equipmentSearch()"
-                (ngModelChange)="equipmentSearch.set($event)"
+                (ngModelChange)="setEquipmentSearch($event)"
               />
               <select
                 [ngModel]="equipmentCategory()"
-                (ngModelChange)="equipmentCategory.set($event)"
+                (ngModelChange)="setEquipmentCategory($event)"
               >
                 <option value="all">Tutte le categorie</option>
+                <option value="magic">Oggetti magici</option>
                 <option value="weapon">Armi</option>
                 <option value="armor">Armature e abiti</option>
                 <option value="artisan-tool">Strumenti da artigiano</option>
@@ -752,50 +787,93 @@
               <table class="equipment-table">
                 <thead>
                   <tr>
-                    <th>Oggetto</th>
-                    <th>Tipo</th>
-                    <th>Costo</th>
-                    <th>Peso</th>
+                    <th>
+                      <button class="table-sort" (click)="sortEquipment('name')">
+                        Oggetto <span>{{ equipmentSortIndicator('name') }}</span>
+                      </button>
+                    </th>
+                    <th>
+                      <button class="table-sort" (click)="sortEquipment('type')">
+                        Tipo <span>{{ equipmentSortIndicator('type') }}</span>
+                      </button>
+                    </th>
+                    <th>
+                      <button class="table-sort" (click)="sortEquipment('cost')">
+                        Costo <span>{{ equipmentSortIndicator('cost') }}</span>
+                      </button>
+                    </th>
+                    <th>
+                      <button class="table-sort" (click)="sortEquipment('weight')">
+                        Peso <span>{{ equipmentSortIndicator('weight') }}</span>
+                      </button>
+                    </th>
+                    @if (equipmentCategory() === 'magic') {
+                      <th>
+                        <button class="table-sort" (click)="sortEquipment('rarity')">
+                          Rarità <span>{{ equipmentSortIndicator('rarity') }}</span>
+                        </button>
+                      </th>
+                      <th>
+                        <button class="table-sort" (click)="sortEquipment('attunement')">
+                          Richiede sintonia <span>{{ equipmentSortIndicator('attunement') }}</span>
+                        </button>
+                      </th>
+                    }
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  @for (group of equipmentGroups; track group.name) {
-                    <tr class="group-row">
-                      <th colspan="5">{{ group.name }}</th>
+                  @for (item of equipmentItems; track item.id) {
+                    <tr>
+                      <td>
+                        <strong>{{ item.name }}</strong>
+                        @if (item.category === 'weapon') {
+                          <small
+                            >{{ item.damage }} {{ item.damageType }} ·
+                            {{ item.properties?.join(', ') }}</small
+                          >
+                        }
+                        @if (item.magical) {
+                          <small class="magic-meta"
+                            >{{ itemRarity(item)
+                            }}<span>{{ item.requiresAttunement ? ' · Sintonia' : '' }}</span></small
+                          >
+                        }
+                        @if (item.description) {
+                          <small class="item-description">{{ item.description }}</small>
+                        }
+                      </td>
+                      <td>
+                        {{
+                          item.category === 'weapon'
+                            ? 'Arma'
+                            : item.category === 'armor'
+                              ? 'Armatura'
+                              : item.category === 'artisan-tool'
+                                ? 'Strumento'
+                                : 'Oggetto'
+                        }}
+                      </td>
+                      <td>{{ item.cost }}</td>
+                      <td>{{ item.weightKg }} kg</td>
+                      @if (equipmentCategory() === 'magic') {
+                        <td>{{ itemRarity(item) || 'Senza rarità' }}</td>
+                        <td>
+                          <span class="boolean-value" [class.is-true]="item.requiresAttunement">{{
+                            item.requiresAttunement ? 'Sì' : 'No'
+                          }}</span>
+                        </td>
+                      }
+                      <td>
+                        <button class="add-item" (click)="addItem(item.id)">+ Aggiungi</button>
+                      </td>
                     </tr>
-                    @for (item of group.items; track item.id) {
-                      <tr>
-                        <td>
-                          <strong>{{ item.name }}</strong>
-                          @if (item.category === 'weapon') {
-                            <small
-                              >{{ item.damage }} {{ item.damageType }} ·
-                              {{ item.properties?.join(', ') }}</small
-                            >
-                          }
-                        </td>
-                        <td>
-                          {{
-                            item.category === 'weapon'
-                              ? 'Arma'
-                              : item.category === 'armor'
-                                ? 'Armatura'
-                                : item.category === 'artisan-tool'
-                                  ? 'Strumento'
-                                  : 'Oggetto'
-                          }}
-                        </td>
-                        <td>{{ item.cost }}</td>
-                        <td>{{ item.weightKg }} kg</td>
-                        <td>
-                          <button class="add-item" (click)="addItem(item.id)">+ Aggiungi</button>
-                        </td>
-                      </tr>
-                    }
                   } @empty {
                     <tr>
-                      <td colspan="5" class="empty-row">
+                      <td
+                        [attr.colspan]="equipmentCategory() === 'magic' ? 7 : 5"
+                        class="empty-row"
+                      >
                         Nessun elemento corrisponde alla ricerca.
                       </td>
                     </tr>
@@ -803,6 +881,26 @@
                 </tbody>
               </table>
             </div>
+            @if (equipmentPageCount > 1) {
+              <nav class="spell-pagination" aria-label="Pagine del catalogo equipaggiamento">
+                <button
+                  [disabled]="currentEquipmentPage === 1"
+                  (click)="setEquipmentPage(currentEquipmentPage - 1)"
+                >
+                  ← Precedente
+                </button>
+                <span
+                  >Pagina {{ currentEquipmentPage }} di {{ equipmentPageCount }} ·
+                  {{ equipmentFilteredCount }} risultati</span
+                >
+                <button
+                  [disabled]="currentEquipmentPage === equipmentPageCount"
+                  (click)="setEquipmentPage(currentEquipmentPage + 1)"
+                >
+                  Successiva →
+                </button>
+              </nav>
+            }
           </div>
 
           <div class="backpack-panel">
@@ -826,11 +924,31 @@
                 <table class="equipment-table backpack-table">
                   <thead>
                     <tr>
-                      <th>Oggetto</th>
-                      <th>Quantità</th>
-                      <th>Peso singolo</th>
-                      <th>Peso totale</th>
-                      <th>Uso</th>
+                      <th>
+                        <button class="table-sort" (click)="sortInventory('name')">
+                          Oggetto <span>{{ inventorySortIndicator('name') }}</span>
+                        </button>
+                      </th>
+                      <th>
+                        <button class="table-sort" (click)="sortInventory('quantity')">
+                          Quantità <span>{{ inventorySortIndicator('quantity') }}</span>
+                        </button>
+                      </th>
+                      <th>
+                        <button class="table-sort" (click)="sortInventory('unitWeight')">
+                          Peso singolo <span>{{ inventorySortIndicator('unitWeight') }}</span>
+                        </button>
+                      </th>
+                      <th>
+                        <button class="table-sort" (click)="sortInventory('totalWeight')">
+                          Peso totale <span>{{ inventorySortIndicator('totalWeight') }}</span>
+                        </button>
+                      </th>
+                      <th>
+                        <button class="table-sort" (click)="sortInventory('usage')">
+                          Uso <span>{{ inventorySortIndicator('usage') }}</span>
+                        </button>
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -908,22 +1026,115 @@
                                 <em>non competente</em>
                               }
                             </div>
-                          } @else if (row.item.id === 'shield') {
+                          } @else if (itemKind(row.item) === 'shield') {
                             <div class="shield-loadout">
                               <span class="equipped-tag">
-                                {{ store.draft().shieldEquipped ? 'Impugnato' : 'Nello zaino' }}
+                                {{
+                                  store.draft().equippedShieldId === row.item.id
+                                    ? 'Impugnato'
+                                    : 'Nello zaino'
+                                }}
                               </span>
                               <button
                                 class="equip-weapon"
-                                [class.unequip-weapon]="store.draft().shieldEquipped"
-                                [disabled]="!store.draft().shieldEquipped && !shieldAllowed"
-                                (click)="setShield(!store.draft().shieldEquipped)"
+                                [class.unequip-weapon]="
+                                  store.draft().equippedShieldId === row.item.id
+                                "
+                                [disabled]="
+                                  store.draft().equippedShieldId !== row.item.id && !shieldAllowed
+                                "
+                                (click)="
+                                  store.draft().equippedShieldId === row.item.id
+                                    ? setShield(false)
+                                    : setShieldItem(row.item)
+                                "
                               >
-                                {{ store.draft().shieldEquipped ? 'Riponi' : 'Impugna' }}
+                                {{
+                                  store.draft().equippedShieldId === row.item.id
+                                    ? 'Riponi'
+                                    : 'Impugna'
+                                }}
                               </button>
                             </div>
                           } @else if (store.draft().equippedArmorId === row.item.id) {
                             <span class="equipped-tag">Indossata</span>
+                          } @else {
+                            <button
+                              class="equip-weapon"
+                              [class.unequip-weapon]="itemIsEquipped(row.item)"
+                              (click)="toggleGenericEquipment(row.item)"
+                            >
+                              {{ itemIsEquipped(row.item) ? 'Riponi' : 'Equipaggia' }}
+                            </button>
+                          }
+                          @if (row.item.requiresAttunement) {
+                            <button
+                              class="attunement-button"
+                              [class.active]="itemIsAttuned(row.item)"
+                              (click)="toggleAttunement(row.item)"
+                            >
+                              {{
+                                itemIsAttuned(row.item) ? 'Sintonia attiva' : 'Entra in sintonia'
+                              }}
+                            </button>
+                          }
+                          @if (row.item.charges) {
+                            <div class="charge-counter">
+                              <span
+                                >Cariche {{ itemCharges(row.item) }}/{{
+                                  row.item.charges!.maximum
+                                }}</span
+                              ><button
+                                [disabled]="itemCharges(row.item) <= 0"
+                                (click)="changeItemCharges(row.item, -1)"
+                              >
+                                −</button
+                              ><button
+                                [disabled]="itemCharges(row.item) >= row.item.charges!.maximum"
+                                (click)="changeItemCharges(row.item, 1)"
+                              >
+                                +
+                              </button>
+                            </div>
+                          }
+                          @for (effect of row.item.effects ?? []; track effect.id) {
+                            @if (effect.activation === 'active') {
+                              <button
+                                class="item-ability"
+                                [disabled]="(effect.chargesCost ?? 0) > itemCharges(row.item)"
+                                (click)="
+                                  useEquipmentAbility(
+                                    row.item,
+                                    effect.chargesCost ?? 0,
+                                    effect.name
+                                  )
+                                "
+                              >
+                                Usa {{ effect.name
+                                }}<span>{{
+                                  effect.chargesCost ? ' · ' + effect.chargesCost + ' cariche' : ''
+                                }}</span>
+                              </button>
+                            }
+                          }
+                          @for (grant of row.item.spellGrants ?? []; track grant.id) {
+                            @if (grant.usage === 'charges') {
+                              <button
+                                class="item-ability"
+                                [disabled]="(grant.chargesCost ?? 1) > itemCharges(row.item)"
+                                (click)="
+                                  useEquipmentAbility(
+                                    row.item,
+                                    grant.chargesCost ?? 1,
+                                    'Incantesimo'
+                                  )
+                                "
+                              >
+                                Lancia incantesimo<span>
+                                  · {{ grant.chargesCost ?? 1 }} cariche</span
+                                >
+                              </button>
+                            }
                           }
                         </td>
                       </tr>
@@ -937,6 +1148,14 @@
               </p>
             }
           </div>
+
+          @if (homebrewEquipmentOpen()) {
+            <app-homebrew-equipment-dialog
+              [spells]="store.spells"
+              (saved)="saveHomebrewEquipment($event)"
+              (cancelled)="closeHomebrewEquipmentWizard()"
+            />
+          }
 
           <div class="coins-panel">
             <div>
@@ -1000,9 +1219,18 @@
               <p class="kicker">Homebrew</p>
               <h2>I tuoi incantesimi</h2>
             </div>
-            <button class="homebrew-spell-add" (click)="openHomebrewSpellWizard()">
-              + Aggiungi incantesimo homebrew
-            </button>
+            <div class="spell-heading-actions">
+              <button
+                class="spell-cards-export"
+                [disabled]="spellCardsExporting()"
+                (click)="exportSpellCardsPdf()"
+              >
+                {{ spellCardsExporting() ? 'Creazione PDF…' : 'Esporta carte incantesimo' }}
+              </button>
+              <button class="homebrew-spell-add" (click)="openHomebrewSpellWizard()">
+                + Aggiungi incantesimo homebrew
+              </button>
+            </div>
           </div>
           @if (homebrewSpells.length) {
             <div class="homebrew-spell-list">
@@ -1022,7 +1250,11 @@
                             ? 'Azione bonus'
                             : 'Azione'
                       }}
-                      · {{ spell.duration }} ·
+                      ·
+                      @if (spell.concentration) {
+                        Concentrazione ·
+                      }
+                      {{ spell.duration }} ·
                       {{ spell.components.join(', ') || 'Nessuna componente' }}</small
                     >
                     @if (spell.damage) {
@@ -1045,9 +1277,10 @@
               quanto dura, quale tiro richiede e gli eventuali danni.
             </p>
             <div class="quota magic-quota">
-              <span>Incantesimi selezionati</span><strong>{{ selectedSpellCount }}</strong
-              ><span>Trucchetti disponibili</span><strong>{{ availableCantrips }}</strong
-              ><span>Incantesimi disponibili</span><strong>{{ availableLeveledSpells }}</strong>
+              <span>Trucchetti scelti</span
+              ><strong>{{ selectedCantripCount }} / {{ spellLimits.cantrips }}</strong
+              ><span>Incantesimi scelti</span
+              ><strong>{{ selectedLeveledSpellCount }} / {{ spellLimits.leveledSpells }}</strong>
             </div>
             @if (spellSlots.length) {
               <div class="spell-slots" aria-label="Slot incantesimo disponibili">
@@ -1157,14 +1390,14 @@
                   type="search"
                   placeholder="Nome, scuola o testo…"
                   [ngModel]="spellSearch()"
-                  (ngModelChange)="spellSearch.set($event)"
+                  (ngModelChange)="setSpellSearch($event)"
                 />
               </label>
               <label>
                 <span>Livello</span>
                 <select
                   [ngModel]="spellLevelFilter()"
-                  (ngModelChange)="spellLevelFilter.set($event)"
+                  (ngModelChange)="setSpellLevelFilter($event)"
                 >
                   <option value="all">Tutti i livelli disponibili</option>
                   <option value="0">Trucchetti</option>
@@ -1173,20 +1406,22 @@
                   }
                 </select>
               </label>
-              <strong>{{ visibleSpells.length }} disponibili</strong>
+              <strong>{{ filteredSpells.length }} disponibili</strong>
             </div>
             <div class="spell-grid detailed">
               @for (spell of visibleSpells; track spell.id) {
                 <button
                   class="spell-card"
+                  [class.limit-reached]="spellLimitReached(spell)"
                   [class.selected]="
                     store.draft().spellIds.includes(spell.id) || isGranted(spell.id)
                   "
-                  [disabled]="isGranted(spell.id)"
+                  [disabled]="isGranted(spell.id) || spellLimitReached(spell)"
                   [attr.aria-pressed]="
                     store.draft().spellIds.includes(spell.id) || isGranted(spell.id)
                   "
-                  (click)="store.toggleSpell(spell.id)"
+                  [attr.title]="spellLimitReached(spell) ? 'Limite di selezione raggiunto' : null"
+                  (click)="toggleSpell(spell)"
                 >
                   <span class="spell-source"
                     >{{ spellLevel(spell) }} · {{ spell.school }} · {{ spell.source }}</span
@@ -1255,6 +1490,25 @@
                 </div>
               }
             </div>
+            @if (filteredSpells.length > 4) {
+              <nav class="spell-pagination" aria-label="Pagine degli incantesimi">
+                <button
+                  type="button"
+                  [disabled]="currentSpellPage === 1"
+                  (click)="setSpellPage(currentSpellPage - 1)"
+                >
+                  ← Precedente
+                </button>
+                <span>Pagina {{ currentSpellPage }} di {{ spellPageCount }}</span>
+                <button
+                  type="button"
+                  [disabled]="currentSpellPage === spellPageCount"
+                  (click)="setSpellPage(currentSpellPage + 1)"
+                >
+                  Successiva →
+                </button>
+              </nav>
+            }
           } @else {
             <div class="empty-magic">
               <strong
@@ -1350,8 +1604,16 @@
                     <input
                       [ngModel]="homebrewSpell().duration"
                       (ngModelChange)="patchHomebrewSpell({ duration: $event })"
-                      placeholder="Es. Concentrazione, fino a 1 minuto"
+                      placeholder="Es. Fino a 1 minuto"
                     />
+                  </label>
+                  <label class="homebrew-form-wide homebrew-damage-toggle">
+                    <input
+                      type="checkbox"
+                      [checked]="homebrewSpell().concentration"
+                      (change)="patchHomebrewSpell({ concentration: $any($event.target).checked })"
+                    />
+                    Richiede concentrazione
                   </label>
                   <fieldset class="homebrew-form-wide homebrew-components">
                     <legend>Componenti</legend>
@@ -1859,6 +2121,12 @@
           <div class="export-actions">
             <button class="primary" [disabled]="pdfExporting()" (click)="exportPdf()">
               {{ pdfExporting() ? 'Compilazione PDF…' : 'Scarica scheda PDF compilata' }}</button
+            ><button
+              class="secondary"
+              [disabled]="spellCardsExporting()"
+              (click)="exportSpellCardsPdf()"
+            >
+              {{ spellCardsExporting() ? 'Creazione carte…' : 'Esporta carte incantesimo' }}</button
             ><button class="secondary" (click)="store.exportJson()">Esporta JSON</button
             ><label class="secondary"
               >Importa JSON<input

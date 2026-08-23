@@ -6,6 +6,12 @@ Parte dei dati di gioco deriva dal _System Reference Document 5.1_, Copyright 20
 
 Fonte: <https://media.wizards.com/2016/downloads/DND/SRD-OGL_V5.1.pdf>
 
+Il catalogo italiano degli oggetti magici in `public/data/v1/magic-equipment.json` deriva inoltre dal _System Reference Document 5.1_ di Wizards of the Coast LLC pubblicato secondo la licenza Creative Commons Attribuzione 4.0 Internazionale.
+
+- SRD 5.1 italiano: <https://media.dndbeyond.com/compendium-images/srd/5.1/SRD_CC_v5.1_IT.pdf>
+- licenza CC BY 4.0: <https://creativecommons.org/licenses/by/4.0/legalcode.it>
+- pagina ufficiale: <https://dnd.wizards.com/it/resources/systems-reference-document>
+
 ## Game Icons e ng-icons
 
 Le icone del pacchetto `@ng-icons/game-icons` derivano da Game-icons.net e sono disponibili secondo le attribuzioni e le licenze indicate dai rispettivi autori, prevalentemente Creative Commons Attribution 3.0.

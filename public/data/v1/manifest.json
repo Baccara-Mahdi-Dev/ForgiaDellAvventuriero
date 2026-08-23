@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "dataVersion": "1.11.0",
+  "dataVersion": "1.12.0",
   "locale": "it",
   "ruleset": "5e-2014",
   "catalog": {
@@ -18,6 +18,10 @@
     "feats": "feats.json",
     "spells": "spells.json",
     "equipment": "equipment.json"
+  },
+  "additionalEquipment": {
+    "file": "magic-equipment.json",
+    "count": 249
   },
   "sources": ["PHB", "XGE", "TCE", "WGE", "SRD"]
 }

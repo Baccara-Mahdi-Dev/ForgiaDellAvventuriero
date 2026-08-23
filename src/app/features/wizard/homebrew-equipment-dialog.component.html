@@ -1,0 +1,587 @@
+<div class="equipment-dialog-backdrop" (click)="cancelled.emit()">
+  <section
+    class="equipment-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="homebrew-equipment-title"
+    (click)="$event.stopPropagation()"
+  >
+    <header>
+      <div>
+        <p class="kicker">Forgia personale</p>
+        <h2 id="homebrew-equipment-title">Equipaggiamento Homebrew</h2>
+        <p>Crea un oggetto completo. I campi cambiano in base alla tipologia.</p>
+      </div>
+      <button class="icon-button" aria-label="Chiudi" (click)="cancelled.emit()">×</button>
+    </header>
+
+    <nav class="type-picker" aria-label="Tipologia dell’oggetto">
+      @for (kind of kinds; track kind) {
+        <button [class.selected]="item().kind === kind" (click)="setKind(kind)">
+          {{ kindLabels[kind] }}
+        </button>
+      }
+    </nav>
+
+    <div class="editor-grid">
+      <section class="editor-section wide">
+        <h3>1. Informazioni generali</h3>
+        <div class="fields">
+          <label class="wide"
+            ><span>Nome *</span
+            ><input [ngModel]="item().name" (ngModelChange)="update({ name: $event })"
+          /></label>
+          <label
+            ><span>Categoria</span
+            ><input [ngModel]="item().group" (ngModelChange)="update({ group: $event })"
+          /></label>
+          <label
+            ><span>Rarità</span
+            ><select [ngModel]="item().rarity" (ngModelChange)="update({ rarity: $event })">
+              @for (rarity of rarities; track rarity) {
+                <option [ngValue]="rarity">{{ rarityLabel(rarity) }}</option>
+              }
+            </select></label
+          >
+          <label
+            ><span>Peso (kg)</span
+            ><input
+              type="number"
+              min="0"
+              step="0.1"
+              [ngModel]="item().weightKg"
+              (ngModelChange)="update({ weightKg: +$event })"
+          /></label>
+          <label
+            ><span>Prezzo / valore</span
+            ><input
+              [ngModel]="item().cost"
+              (ngModelChange)="update({ cost: $event })"
+              placeholder="es. 250 mo"
+          /></label>
+          <label
+            ><span>Quantità iniziale</span
+            ><input
+              type="number"
+              min="1"
+              [ngModel]="item().quantity"
+              (ngModelChange)="update({ quantity: +$event })"
+          /></label>
+          <label
+            ><span>Tag (separati da virgola)</span
+            ><input
+              [ngModel]="(item().tags ?? []).join(', ')"
+              (ngModelChange)="update({ tags: $event.split(',') })"
+          /></label>
+          <label class="wide"
+            ><span>Descrizione *</span
+            ><textarea
+              rows="4"
+              [ngModel]="item().description"
+              (ngModelChange)="update({ description: $event })"
+            ></textarea>
+          </label>
+          <label class="wide"
+            ><span>Note</span
+            ><textarea
+              rows="2"
+              [ngModel]="item().notes"
+              (ngModelChange)="update({ notes: $event })"
+            ></textarea>
+          </label>
+          <label class="wide"
+            ><span>Requisiti</span
+            ><input
+              [ngModel]="item().requirements"
+              (ngModelChange)="update({ requirements: $event })"
+          /></label>
+        </div>
+      </section>
+
+      @if (item().kind === 'weapon') {
+        <section class="editor-section wide">
+          <h3>2. Proprietà dell’arma</h3>
+          <div class="fields">
+            <label
+              ><span>Danno base *</span
+              ><input
+                [ngModel]="item().damage"
+                (ngModelChange)="update({ damage: $event })"
+                placeholder="1d8"
+            /></label>
+            <label
+              ><span>Tipo di danno *</span
+              ><input
+                [ngModel]="item().damageType"
+                (ngModelChange)="update({ damageType: $event })"
+            /></label>
+            <label
+              ><span>Competenza</span
+              ><select
+                [ngModel]="item().proficiency"
+                (ngModelChange)="update({ proficiency: $event })"
+              >
+                <option value="simple">Semplice</option>
+                <option value="martial">Da guerra</option>
+              </select></label
+            >
+            <label
+              ><span>Proprietà</span
+              ><input
+                [ngModel]="(item().properties ?? []).join(', ')"
+                (ngModelChange)="update({ properties: splitList($event) })"
+                placeholder="leggera, versatile 1d10"
+            /></label>
+            <label
+              ><span>Gittata normale (m)</span
+              ><input
+                type="number"
+                min="0"
+                [ngModel]="item().range"
+                (ngModelChange)="update({ range: +$event, ranged: +$event > 0 })"
+            /></label>
+            <label
+              ><span>Gittata lunga (m)</span
+              ><input
+                type="number"
+                min="0"
+                [ngModel]="item().longRange"
+                (ngModelChange)="update({ longRange: +$event })"
+            /></label>
+            <label
+              ><span>Bonus al tiro per colpire</span
+              ><input
+                type="number"
+                [ngModel]="item().attackBonus"
+                (ngModelChange)="update({ attackBonus: +$event })"
+            /></label>
+            <label
+              ><span>Bonus ai danni</span
+              ><input
+                type="number"
+                [ngModel]="item().damageBonus"
+                (ngModelChange)="update({ damageBonus: +$event })"
+            /></label>
+            <label
+              ><span>Danno magico aggiuntivo</span
+              ><input
+                [ngModel]="item().additionalDamage"
+                (ngModelChange)="update({ additionalDamage: $event })"
+                placeholder="1d6"
+            /></label>
+            <label
+              ><span>Tipo aggiuntivo</span
+              ><input
+                [ngModel]="item().additionalDamageType"
+                (ngModelChange)="update({ additionalDamageType: $event })"
+            /></label>
+            <label class="check"
+              ><input
+                type="checkbox"
+                [checked]="item().finesse"
+                (change)="update({ finesse: $any($event.target).checked })"
+              />
+              Accurata</label
+            >
+            <label class="check"
+              ><input
+                type="checkbox"
+                [checked]="item().ranged"
+                (change)="update({ ranged: $any($event.target).checked })"
+              />
+              A distanza</label
+            >
+          </div>
+        </section>
+      }
+
+      @if (item().kind === 'armor') {
+        <section class="editor-section wide">
+          <h3>2. Proprietà dell’armatura</h3>
+          <div class="fields">
+            <label
+              ><span>Tipo *</span
+              ><select [ngModel]="item().armorType" (ngModelChange)="update({ armorType: $event })">
+                <option value="">Scegli</option>
+                @for (armor of armorTypes; track armor.id) {
+                  <option [value]="armor.id">{{ armor.label }}</option>
+                }
+              </select></label
+            >
+            <label
+              ><span>CA base *</span
+              ><input
+                type="number"
+                min="1"
+                [ngModel]="item().armorClass"
+                (ngModelChange)="update({ armorClass: +$event })"
+            /></label>
+            <label
+              ><span>Destrezza applicata</span
+              ><select
+                [ngModel]="item().dexterityBonus"
+                (ngModelChange)="update({ dexterityBonus: $event })"
+              >
+                <option value="full">Completa</option>
+                <option value="max-2">Massimo +2</option>
+                <option value="none">Nessuna</option>
+              </select></label
+            >
+            <label
+              ><span>Forza richiesta</span
+              ><input
+                type="number"
+                min="0"
+                [ngModel]="item().strengthRequirement"
+                (ngModelChange)="update({ strengthRequirement: +$event })"
+            /></label>
+            <label class="check"
+              ><input
+                type="checkbox"
+                [checked]="item().stealthDisadvantage"
+                (change)="update({ stealthDisadvantage: $any($event.target).checked })"
+              />
+              Svantaggio a Furtività</label
+            >
+          </div>
+        </section>
+      }
+
+      @if (item().kind === 'shield') {
+        <section class="editor-section wide">
+          <h3>2. Proprietà dello scudo</h3>
+          <div class="fields">
+            <label
+              ><span>Bonus base alla CA</span
+              ><input
+                type="number"
+                min="0"
+                [ngModel]="item().armorClass ?? 2"
+                (ngModelChange)="update({ armorClass: +$event })"
+            /></label>
+          </div>
+        </section>
+      }
+
+      <section class="editor-section wide">
+        <h3>3. Magia e sintonia</h3>
+        <div class="fields">
+          <label class="check"
+            ><input
+              type="checkbox"
+              [checked]="item().magical"
+              (change)="toggleMagical($any($event.target).checked)"
+            />
+            Oggetto magico</label
+          >
+          @if (item().magical) {
+            <label class="check"
+              ><input
+                type="checkbox"
+                [checked]="item().requiresAttunement"
+                (change)="update({ requiresAttunement: $any($event.target).checked })"
+              />
+              Richiede sintonia</label
+            >
+            @if (item().requiresAttunement) {
+              <label class="wide"
+                ><span>Requisiti di sintonia</span
+                ><input
+                  [ngModel]="item().attunementRequirements"
+                  (ngModelChange)="update({ attunementRequirements: $event })"
+              /></label>
+            }
+          }
+          <label class="wide"
+            ><span>Proprietà speciali</span
+            ><textarea
+              rows="3"
+              [ngModel]="item().specialProperties"
+              (ngModelChange)="update({ specialProperties: $event })"
+            ></textarea>
+          </label>
+        </div>
+      </section>
+
+      <section class="editor-section wide">
+        <div class="section-heading">
+          <h3>4. Effetti e capacità</h3>
+          <button (click)="addEffect()">+ Aggiungi effetto</button>
+        </div>
+        @for (effect of item().effects ?? []; track effect.id; let index = $index) {
+          <article class="effect-card">
+            <div class="fields">
+              <label
+                ><span>Nome</span
+                ><input
+                  [ngModel]="effect.name"
+                  (ngModelChange)="updateEffect(index, { name: $event })"
+              /></label>
+              <label
+                ><span>Tipo</span
+                ><select
+                  [ngModel]="effect.type"
+                  (ngModelChange)="updateEffect(index, { type: $event })"
+                >
+                  @for (type of effectTypes; track type.id) {
+                    <option [value]="type.id">{{ type.label }}</option>
+                  }
+                </select></label
+              >
+              <label
+                ><span>Attivazione</span
+                ><select
+                  [ngModel]="effect.activation"
+                  (ngModelChange)="updateEffect(index, { activation: $event })"
+                >
+                  <option value="passive">Passiva</option>
+                  <option value="active">Attiva</option>
+                </select></label
+              >
+              @if (effect.type === 'ability-modifier' || effect.type === 'ability-score') {
+                <label
+                  ><span>Caratteristica</span
+                  ><select
+                    [ngModel]="effect.ability"
+                    (ngModelChange)="updateEffect(index, { ability: $event })"
+                  >
+                    <option value="all">Tutte</option>
+                    @for (ability of abilities; track ability.key) {
+                      <option [value]="ability.key">{{ ability.label }}</option>
+                    }
+                  </select></label
+                >
+              }
+              @if (
+                [
+                  'ability-modifier',
+                  'ability-score',
+                  'armor-class',
+                  'initiative',
+                  'attack-bonus',
+                  'damage-bonus',
+                  'skill-bonus',
+                  'saving-throw-bonus',
+                  'speed',
+                ].includes(effect.type)
+              ) {
+                <label
+                  ><span>Valore</span
+                  ><input
+                    type="number"
+                    [ngModel]="effect.value"
+                    (ngModelChange)="updateEffect(index, { value: +$event })"
+                /></label>
+              }
+              @if (effect.type === 'extra-damage') {
+                <label
+                  ><span>Dadi</span
+                  ><input
+                    [ngModel]="effect.formula"
+                    (ngModelChange)="updateEffect(index, { formula: $event })"
+                    placeholder="1d6" /></label
+                ><label
+                  ><span>Tipo di danno</span
+                  ><input
+                    [ngModel]="effect.damageType"
+                    (ngModelChange)="updateEffect(index, { damageType: $event })"
+                /></label>
+              }
+              @if (
+                [
+                  'resistance',
+                  'immunity',
+                  'vulnerability',
+                  'condition',
+                  'skill-bonus',
+                  'saving-throw-bonus',
+                ].includes(effect.type)
+              ) {
+                <label
+                  ><span>Bersaglio</span
+                  ><input
+                    [ngModel]="effect.target"
+                    (ngModelChange)="updateEffect(index, { target: $event })"
+                    placeholder="fuoco, Furtività…"
+                /></label>
+              }
+              <label
+                ><span>Quando si applica</span
+                ><input
+                  [ngModel]="effect.trigger"
+                  (ngModelChange)="updateEffect(index, { trigger: $event })"
+              /></label>
+              <label
+                ><span>Condizione</span
+                ><input
+                  [ngModel]="effect.condition"
+                  (ngModelChange)="updateEffect(index, { condition: $event })"
+              /></label>
+              <label
+                ><span>Durata</span
+                ><input
+                  [ngModel]="effect.duration"
+                  (ngModelChange)="updateEffect(index, { duration: $event })"
+              /></label>
+              <label
+                ><span>Costo in cariche</span
+                ><input
+                  type="number"
+                  min="0"
+                  [ngModel]="effect.chargesCost"
+                  (ngModelChange)="updateEffect(index, { chargesCost: +$event })"
+              /></label>
+              <label class="wide"
+                ><span>Descrizione</span
+                ><textarea
+                  rows="2"
+                  [ngModel]="effect.description"
+                  (ngModelChange)="updateEffect(index, { description: $event })"
+                ></textarea>
+              </label>
+            </div>
+            <button class="danger" (click)="removeEffect(index)">Rimuovi effetto</button>
+          </article>
+        } @empty {
+          <p class="empty">Nessun effetto configurato.</p>
+        }
+      </section>
+
+      <section class="editor-section wide">
+        <div class="section-heading">
+          <h3>5. Incantesimi forniti</h3>
+          <button (click)="addSpell()">+ Aggiungi incantesimo</button>
+        </div>
+        @for (grant of item().spellGrants ?? []; track grant.id; let index = $index) {
+          <article class="spell-row">
+            <label
+              ><span>Incantesimo</span
+              ><select
+                [ngModel]="grant.spellId"
+                (ngModelChange)="updateSpell(index, { spellId: $event })"
+              >
+                @for (spell of spells; track spell.id) {
+                  <option [value]="spell.id">{{ spell.name }} (liv. {{ spell.level }})</option>
+                }
+              </select></label
+            >
+            <label
+              ><span>Uso</span
+              ><select
+                [ngModel]="grant.usage"
+                (ngModelChange)="updateSpell(index, { usage: $event })"
+              >
+                <option value="at-will">A volontà</option>
+                <option value="charges">Consuma cariche</option>
+                <option value="per-day">Usi al giorno</option>
+                <option value="per-short-rest">Per riposo breve</option>
+                <option value="per-long-rest">Per riposo lungo</option>
+              </select></label
+            >
+            @if (grant.usage === 'charges') {
+              <label
+                ><span>Costo</span
+                ><input
+                  type="number"
+                  min="1"
+                  [ngModel]="grant.chargesCost"
+                  (ngModelChange)="updateSpell(index, { chargesCost: +$event })"
+              /></label>
+            } @else if (grant.usage !== 'at-will') {
+              <label
+                ><span>Usi</span
+                ><input
+                  type="number"
+                  min="1"
+                  [ngModel]="grant.uses"
+                  (ngModelChange)="updateSpell(index, { uses: +$event })"
+              /></label>
+            }
+            <button class="danger" (click)="removeSpell(index)">Rimuovi</button>
+          </article>
+        } @empty {
+          <p class="empty">Nessun incantesimo fornito.</p>
+        }
+      </section>
+
+      <section class="editor-section wide">
+        <h3>6. Cariche</h3>
+        <label class="check"
+          ><input
+            type="checkbox"
+            [checked]="!!item().charges"
+            (change)="toggleCharges($any($event.target).checked)"
+          />
+          L’oggetto utilizza cariche</label
+        >
+        @if (item().charges; as charges) {
+          <div class="fields charge-fields">
+            <label
+              ><span>Massimo</span
+              ><input
+                type="number"
+                min="1"
+                [ngModel]="charges.maximum"
+                (ngModelChange)="update({ charges: { ...charges, maximum: +$event } })"
+            /></label>
+            <label
+              ><span>Recupero</span
+              ><input
+                [ngModel]="charges.recoveryFormula"
+                (ngModelChange)="update({ charges: { ...charges, recoveryFormula: $event } })"
+                placeholder="1d3"
+            /></label>
+            <label
+              ><span>Momento</span
+              ><select
+                [ngModel]="charges.recoveryMoment"
+                (ngModelChange)="update({ charges: { ...charges, recoveryMoment: $event } })"
+              >
+                <option value="dawn">Alba</option>
+                <option value="dusk">Tramonto</option>
+                <option value="short-rest">Riposo breve</option>
+                <option value="long-rest">Riposo lungo</option>
+                <option value="other">Altro</option>
+              </select></label
+            >
+            <label
+              ><span>Dettagli</span
+              ><input
+                [ngModel]="charges.recoveryNotes"
+                (ngModelChange)="update({ charges: { ...charges, recoveryNotes: $event } })"
+            /></label>
+          </div>
+        }
+      </section>
+
+      <section class="editor-section preview wide">
+        <h3>7. Anteprima</h3>
+        <strong>{{ item().name || 'Oggetto senza nome' }}</strong>
+        <span>{{ kindLabels[item().kind ?? 'gear'] }} · {{ rarityLabel(item().rarity) }}</span>
+        <p>{{ item().description || 'La descrizione comparirà qui.' }}</p>
+        <small
+          >{{ (item().effects ?? []).length }} effetti ·
+          {{ (item().spellGrants ?? []).length }} incantesimi<span>{{
+            item().charges ? ' · ' + item().charges!.maximum + ' cariche' : ''
+          }}</span></small
+        >
+      </section>
+    </div>
+
+    @if (errors().length) {
+      <div class="validation" role="alert">
+        <strong>Controlla questi campi:</strong>
+        <ul>
+          @for (error of errors(); track error) {
+            <li>{{ error }}</li>
+          }
+        </ul>
+      </div>
+    }
+
+    <footer>
+      <button class="secondary" (click)="cancelled.emit()">Annulla</button
+      ><button class="primary" (click)="save()">Salva e aggiungi allo zaino</button>
+    </footer>
+  </section>
+</div>

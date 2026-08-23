@@ -19,4 +19,4 @@ Aprire `http://127.0.0.1:4310` nel browser. Il server ascolta esclusivamente sul
 - validazione tramite lo script ufficiale del progetto;
 - backup automatici in `tools/catalog-editor/backups` prima di ogni salvataggio.
 
-I nuovi file JSON non vengono aggiunti automaticamente alla mappa `files` del manifest: questa scelta resta esplicita e può essere effettuata aprendo `manifest.json` nell'editor.
+I nuovi file JSON non vengono aggiunti automaticamente alla mappa `files` del manifest: questa scelta resta esplicita e può essere effettuata aprendo `manifest.json` nell'editor. Anche `additionalEquipment.count`, usato per `magic-equipment.json`, deve essere mantenuto manualmente; `npm run validate:data` ne controlla la corrispondenza.

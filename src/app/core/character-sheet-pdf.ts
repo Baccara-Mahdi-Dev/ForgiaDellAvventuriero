@@ -15,6 +15,7 @@ import {
   equippedWeaponItems,
   hasTwoWeaponFighting,
 } from '../domain/weapon-loadout';
+import { equippedEquipmentIds, weaponEffectTotal } from '../domain/equipment-effects';
 
 const ABILITIES: AbilityKey[] = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 
@@ -373,7 +374,7 @@ function weaponProficient(item: EquipmentItem, derived: DerivedCharacter): boole
     derived.weaponProficiencies.includes(item.proficiency ?? '')
   );
 }
-function selectedSpells(draft: CharacterDraft, catalog: CatalogData): Spell[] {
+export function characterSpells(draft: CharacterDraft, catalog: CatalogData): Spell[] {
   const ancestry = catalog.ancestries.find((item) => item.id === draft.ancestryId);
   const feats = catalog.feats.filter((item) => draft.featIds.includes(item.id));
   const ids = new Set(draft.spellIds);
@@ -382,8 +383,19 @@ function selectedSpells(draft: CharacterDraft, catalog: CatalogData): Spell[] {
     ...feats.flatMap((feat) => feat.spellGrants ?? []),
   ])
     if (grant.minLevel <= draft.level) ids.add(grant.spellId);
-  Object.values(draft.grantedSpellChoices ?? {})
-    .flat()
+  const activeChoiceIds = new Set([
+    ...(ancestry?.spellChoices ?? [])
+      .filter((choice) => (choice.minLevel ?? 1) <= draft.level)
+      .map((choice) => choice.id),
+    ...feats.flatMap((feat) =>
+      (feat.spellChoices ?? [])
+        .filter((choice) => (choice.minLevel ?? 1) <= draft.level)
+        .map((choice) => choice.id),
+    ),
+  ]);
+  Object.entries(draft.grantedSpellChoices ?? {})
+    .filter(([choiceId]) => activeChoiceIds.has(choiceId))
+    .flatMap(([, spellIds]) => spellIds)
     .forEach((id) => ids.add(id));
   for (const spell of catalog.spells)
     if (
@@ -395,6 +407,11 @@ function selectedSpells(draft: CharacterDraft, catalog: CatalogData): Spell[] {
       )
     )
       ids.add(spell.id);
+  const equipped = equippedEquipmentIds(draft);
+  const attuned = new Set(draft.attunedEquipmentIds ?? []);
+  for (const item of [...catalog.equipment, ...(draft.homebrewEquipment ?? [])])
+    if (equipped.has(item.id) && (!item.requiresAttunement || attuned.has(item.id)))
+      for (const grant of item.spellGrants ?? []) ids.add(grant.spellId);
   return [
     ...catalog.spells.filter((spell) => ids.has(spell.id)),
     ...(draft.homebrewSpells ?? []).map(asSpell),
@@ -410,8 +427,9 @@ function selectedClassFeatures(draft: CharacterDraft, catalog: CatalogData): str
   });
 }
 function inventoryLines(draft: CharacterDraft, catalog: CatalogData): string[] {
+  const equipment = [...catalog.equipment, ...(draft.homebrewEquipment ?? [])];
   return (draft.inventory ?? []).flatMap((entry) => {
-    const item = catalog.equipment.find((candidate) => candidate.id === entry.equipmentId);
+    const item = equipment.find((candidate) => candidate.id === entry.equipmentId);
     return item ? [`${item.name}${entry.quantity > 1 ? ` x${entry.quantity}` : ''}`] : [];
   });
 }
@@ -515,7 +533,9 @@ function fillCombat(
   DEATH_FAILURES.forEach((field, index) =>
     setChecked(form, field, index < (draft.deathSaveFailures ?? 0)),
   );
-  const weapons = equippedWeaponItems(draft, catalog);
+  const weapons = equippedWeaponItems(draft, {
+    equipment: [...catalog.equipment, ...(draft.homebrewEquipment ?? [])],
+  });
   const fields = [
     ['Wpn Name', 'Wpn1 AtkBonus', 'Wpn1 Damage'],
     ['Wpn Name 2', 'Wpn2 AtkBonus ', 'Wpn2 Damage '],
@@ -526,9 +546,12 @@ function fillCombat(
   weapons.slice(0, fields.length).forEach(({ item: weapon, equipped }, index) => {
     const ability =
       index === 1 && !hasTwoWeaponFighting(draft) ? 0 : weaponModifier(weapon, derived);
+    const magicActive =
+      !weapon.requiresAttunement || (draft.attunedEquipmentIds ?? []).includes(weapon.id);
     const attack =
       weaponModifier(weapon, derived) +
-      (weaponProficient(weapon, derived) ? derived.proficiency : 0);
+      (weaponProficient(weapon, derived) ? derived.proficiency : 0) +
+      (magicActive ? (weapon.attackBonus ?? weaponEffectTotal(weapon, 'attack-bonus')) : 0);
     setText(form, fields[index][0], `${weapon.name}${equipped.hands === 2 ? ' (2 mani)' : ''}`, {
       fontSize: 7,
     });
@@ -537,7 +560,20 @@ function fillCombat(
     setText(
       form,
       fields[index][2],
-      `${damageForHands(weapon, equipped.hands)}${ability ? signed(ability) : ''} ${weapon.damageType ?? ''}`,
+      `${damageForHands(weapon, equipped.hands)}${
+        ability + (magicActive ? (weapon.damageBonus ?? weaponEffectTotal(weapon, 'damage-bonus')) : 0)
+          ? signed(
+              ability +
+                (magicActive
+                  ? (weapon.damageBonus ?? weaponEffectTotal(weapon, 'damage-bonus'))
+                  : 0),
+            )
+          : ''
+      } ${weapon.damageType ?? ''}${
+        magicActive && weapon.additionalDamage
+          ? ` + ${weapon.additionalDamage} ${weapon.additionalDamageType ?? ''}`
+          : ''
+      }`,
       { fontSize: 6.5 },
     );
   });
@@ -671,7 +707,7 @@ function fillSpellPage(
     setText(form, SLOT_FIELDS[level][0], slot?.slots ?? '', { fontSize: 10 });
     setText(form, SLOT_FIELDS[level][1], slot?.slots ?? '', { fontSize: 10 });
   }
-  const spells = selectedSpells(draft, catalog);
+  const spells = characterSpells(draft, catalog);
   for (let level = 0; level <= 9; level += 1) {
     const atLevel = spells.filter((spell) => spell.level === level);
     SPELL_FIELDS[level].forEach((field, index) =>
@@ -695,7 +731,10 @@ export async function buildCharacterSheetPdf(
   if (!getTextField(form, 'CharacterName') || !getTextField(form, 'ClassLevel'))
     throw new Error('Il modello PDF non è la scheda compilabile attesa.');
   const font: PDFFont = await pdf.embedFont(StandardFonts.Helvetica);
-  const derived = derive(draft, catalog);
+  const derived = derive(draft, {
+    ...catalog,
+    equipment: [...catalog.equipment, ...(draft.homebrewEquipment ?? [])],
+  });
   fillIdentity(form, draft, derived, catalog);
   fillAbilities(form, draft, derived);
   fillCombat(form, draft, derived, catalog);

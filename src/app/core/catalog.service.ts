@@ -20,14 +20,26 @@ export class CatalogService {
     this.assertManifest(manifest);
     const path = <T>(key: keyof CatalogFiles) =>
       firstValueFrom(this.http.get<T[]>(`${DATA_ROOT}/${manifest.files[key]}`));
-    const [ancestries, classes, backgrounds, feats, spells, equipment] = await Promise.all([
-      path<Ancestry>('ancestries'),
-      path<CharacterClass>('classes'),
-      path<Background>('backgrounds'),
-      path<Feat>('feats'),
-      path<Spell>('spells'),
-      path<EquipmentItem>('equipment'),
-    ]);
+    const [ancestries, classes, backgrounds, feats, spells, equipment, additionalEquipment] =
+      await Promise.all([
+        path<Ancestry>('ancestries'),
+        path<CharacterClass>('classes'),
+        path<Background>('backgrounds'),
+        path<Feat>('feats'),
+        path<Spell>('spells'),
+        path<EquipmentItem>('equipment'),
+        manifest.additionalEquipment
+          ? firstValueFrom(
+              this.http.get<EquipmentItem[]>(`${DATA_ROOT}/${manifest.additionalEquipment.file}`),
+            )
+          : Promise.resolve([]),
+      ]);
+    if (
+      additionalEquipment.length !== (manifest.additionalEquipment?.count ?? 0) ||
+      new Set([...equipment, ...additionalEquipment].map((item) => item.id)).size !==
+        equipment.length + additionalEquipment.length
+    )
+      throw new Error('Catalogo degli oggetti magici non valido.');
     const data: CatalogData = {
       manifest,
       ancestries,
@@ -35,7 +47,7 @@ export class CatalogService {
       backgrounds,
       feats,
       spells,
-      equipment,
+      equipment: [...equipment, ...additionalEquipment],
     };
     this.assertCatalog(data);
     this.value.set(data);
@@ -63,7 +75,11 @@ export class CatalogService {
     const keys = Object.keys(data.manifest.files) as (keyof CatalogFiles)[];
     for (const key of keys) {
       const records = data[key];
-      if (!Array.isArray(records) || records.length !== data.manifest.catalog[key]) {
+      const expected =
+        key === 'equipment'
+          ? data.manifest.catalog[key] + (data.manifest.additionalEquipment?.count ?? 0)
+          : data.manifest.catalog[key];
+      if (!Array.isArray(records) || records.length !== expected) {
         throw new Error(`Conteggio non valido nel catalogo ${key}.`);
       }
       const ids = records.map((record) => record.id);

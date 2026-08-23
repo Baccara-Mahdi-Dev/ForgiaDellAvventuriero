@@ -1,0 +1,258 @@
+:host {
+  position: relative;
+  z-index: 100;
+}
+
+.equipment-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgb(9 14 22 / 78%);
+  backdrop-filter: blur(7px);
+}
+
+.equipment-dialog {
+  width: min(1080px, 100%);
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--surface-raised);
+  box-shadow: 0 24px 80px rgb(0 0 0 / 45%);
+}
+
+header,
+footer,
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface-raised) 94%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+header h2,
+header p,
+.editor-section h3 {
+  margin: 0;
+}
+
+header > div > p:last-child {
+  margin-top: 0.35rem;
+  color: var(--muted);
+}
+
+.kicker {
+  color: var(--gold);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.icon-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+}
+
+.type-picker {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.type-picker button,
+.section-heading button,
+footer button,
+.danger {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+  background: var(--surface-raised);
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.type-picker button.selected,
+.primary {
+  border-color: var(--gold) !important;
+  background: var(--gold) !important;
+  color: #111827 !important;
+}
+
+.editor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.editor-section {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-raised);
+}
+
+.editor-section.wide {
+  grid-column: 1 / -1;
+}
+
+.editor-section h3 {
+  margin-bottom: 0.9rem;
+  font-size: 1rem;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 0.83rem;
+  font-weight: 700;
+}
+
+label.wide {
+  grid-column: 1 / -1;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 0.7rem 0.75rem;
+  background: var(--surface-raised);
+  color: var(--text);
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  align-self: end;
+  gap: 0.55rem;
+  min-height: 2.5rem;
+  color: var(--text);
+}
+
+.check input {
+  width: auto;
+}
+
+.effect-card,
+.spell-row {
+  margin-top: 0.8rem;
+  padding: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-raised);
+}
+
+.effect-card .danger {
+  margin-top: 0.75rem;
+}
+
+.spell-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.65fr auto;
+  align-items: end;
+  gap: 0.7rem;
+}
+
+.danger {
+  color: #e36a6a;
+}
+
+.empty {
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+}
+
+.preview {
+  display: grid;
+  gap: 0.35rem;
+  border-left: 5px solid var(--gold);
+}
+
+.preview span,
+.preview small {
+  color: var(--muted);
+}
+
+.preview p {
+  white-space: pre-wrap;
+}
+
+.validation {
+  margin: 0 1.5rem 1rem;
+  padding: 1rem;
+  border: 1px solid #b94c4c;
+  border-radius: 12px;
+  background: rgb(185 76 76 / 10%);
+}
+
+.validation ul {
+  margin: 0.5rem 0 0;
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
+  justify-content: flex-end;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface-raised) 94%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+@media (max-width: 760px) {
+  .type-picker {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .editor-grid,
+  .fields,
+  .spell-row {
+    grid-template-columns: 1fr;
+  }
+
+  label.wide {
+    grid-column: auto;
+  }
+
+  header {
+    align-items: flex-start;
+  }
+}

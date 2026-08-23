@@ -1287,6 +1287,7 @@
   font: 1.35rem Georgia;
 }
 .homebrew-spell-add,
+.spell-cards-export,
 .homebrew-cancel,
 .homebrew-spell-remove,
 .homebrew-dialog-close {
@@ -1300,6 +1301,22 @@
   padding: 0.65rem 0.8rem;
   background: var(--magic);
   color: #fff;
+}
+.spell-heading-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+.spell-cards-export {
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--magic);
+  background: var(--surface-raised);
+  color: var(--magic);
+}
+.spell-cards-export:disabled {
+  opacity: 0.55;
+  cursor: default;
 }
 .homebrew-spell-list {
   display: grid;
@@ -1585,6 +1602,34 @@
   opacity: 1;
   cursor: default;
 }
+.spell-card.limit-reached {
+  opacity: 0.55;
+}
+.spell-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.spell-pagination button {
+  min-width: 8rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.35rem;
+  background: var(--surface-raised);
+  color: var(--ink);
+  font-weight: 800;
+}
+.spell-pagination button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.spell-pagination span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
 .spell-source {
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -1703,6 +1748,12 @@
 @media (max-width: 720px) {
   .feature-picks {
     grid-template-columns: 1fr;
+  }
+  .spell-pagination {
+    gap: 0.5rem;
+  }
+  .spell-pagination button {
+    min-width: 0;
   }
 }
 .empty-magic {
@@ -2036,6 +2087,42 @@
   color: var(--muted);
   text-transform: uppercase;
   font-size: 0.58rem;
+}
+.table-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  text-transform: inherit;
+  cursor: pointer;
+}
+.table-sort:hover,
+.table-sort:focus-visible {
+  color: var(--ember);
+}
+.table-sort span {
+  min-width: 0.65rem;
+  color: var(--ember);
+  font-size: 0.75rem;
+}
+.boolean-value {
+  display: inline-block;
+  min-width: 2.2rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 999px;
+  background: var(--surface-highlight);
+  color: var(--muted);
+  text-align: center;
+  font-weight: 800;
+}
+.boolean-value.is-true {
+  background: var(--magic-soft);
+  color: var(--magic);
 }
 .equipment-table td small {
   display: block;

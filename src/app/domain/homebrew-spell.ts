@@ -10,7 +10,11 @@ export function asSpell(homebrew: HomebrewSpell): Spell {
     school: homebrew.school,
     classes: [],
     castingTime: { amount: 1, unit: homebrew.castingTime },
-    duration: { unit: 'special', concentration: false, text: homebrew.duration },
+    duration: {
+      unit: 'special',
+      concentration: homebrew.concentration,
+      text: homebrew.duration,
+    },
     components: homebrew.components.join(', '),
     damage: homebrew.damage,
   };

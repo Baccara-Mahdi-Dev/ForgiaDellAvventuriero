@@ -112,6 +112,64 @@ export interface SubclassFeatureChoices {
 }
 export type ArmorType = 'clothing' | 'light' | 'medium' | 'heavy' | 'shield';
 export type EquipmentCategory = 'armor' | 'weapon' | 'adventuring-gear' | 'artisan-tool';
+export type EquipmentKind = 'weapon' | 'armor' | 'shield' | 'gear' | 'tool' | 'other';
+export type EquipmentRarity =
+  | 'common'
+  | 'uncommon'
+  | 'rare'
+  | 'very-rare'
+  | 'legendary'
+  | 'artifact'
+  | 'varies';
+export type EquipmentEffectActivation = 'passive' | 'active';
+export type EquipmentEffectType =
+  | 'ability-modifier'
+  | 'ability-score'
+  | 'armor-class'
+  | 'initiative'
+  | 'attack-bonus'
+  | 'damage-bonus'
+  | 'extra-damage'
+  | 'skill-bonus'
+  | 'saving-throw-bonus'
+  | 'resistance'
+  | 'immunity'
+  | 'vulnerability'
+  | 'condition'
+  | 'speed'
+  | 'custom';
+export interface EquipmentEffect {
+  id: string;
+  name: string;
+  type: EquipmentEffectType;
+  activation: EquipmentEffectActivation;
+  value?: number;
+  ability?: AbilityKey | 'all';
+  target?: string;
+  formula?: string;
+  damageType?: string;
+  trigger?: string;
+  condition?: string;
+  duration?: string;
+  chargesCost?: number;
+  requiresEquipped?: boolean;
+  requiresAttunement?: boolean;
+  description?: string;
+}
+export interface EquipmentSpellGrant {
+  id: string;
+  spellId: string;
+  usage: 'at-will' | 'charges' | 'per-short-rest' | 'per-long-rest' | 'per-day';
+  uses?: number;
+  chargesCost?: number;
+  notes?: string;
+}
+export interface EquipmentCharges {
+  maximum: number;
+  recoveryFormula: string;
+  recoveryMoment: 'dawn' | 'dusk' | 'short-rest' | 'long-rest' | 'other';
+  recoveryNotes?: string;
+}
 export interface EquipmentItem {
   id: string;
   name: string;
@@ -119,7 +177,31 @@ export interface EquipmentItem {
   group: string;
   cost: string;
   weightKg: number;
-  source: 'SRD';
+  source: 'SRD' | 'HOMEBREW';
+  description?: string;
+  kind?: EquipmentKind;
+  rarity?: EquipmentRarity;
+  magical?: boolean;
+  homebrew?: boolean;
+  quantity?: number;
+  notes?: string;
+  specialProperties?: string;
+  requirements?: string;
+  requiresAttunement?: boolean;
+  attunementRequirements?: string;
+  tags?: string[];
+  imageUrl?: string;
+  effects?: EquipmentEffect[];
+  spellGrants?: EquipmentSpellGrant[];
+  charges?: EquipmentCharges;
+  baseEquipmentId?: string;
+  armorBonus?: number;
+  attackBonus?: number;
+  damageBonus?: number;
+  additionalDamage?: string;
+  additionalDamageType?: string;
+  range?: number;
+  longRange?: number;
   armorType?: ArmorType;
   armorClass?: number;
   dexterityBonus?: 'full' | 'max-2' | 'none';
@@ -224,6 +306,7 @@ export interface HomebrewSpell {
   description: string;
   castingTime: 'action' | 'bonus-action' | 'reaction';
   duration: string;
+  concentration: boolean;
   components: ('V' | 'S' | 'M')[];
   materials?: string[];
   damage?: SpellDamage;
@@ -280,11 +363,16 @@ export interface CharacterDraft {
   featAbilityChoices?: Record<string, AbilityKey>;
   spellIds: string[];
   homebrewSpells?: HomebrewSpell[];
+  homebrewEquipment?: EquipmentItem[];
   grantedSpellChoices?: Record<string, string[]>;
   spellGrantTraditions?: Record<string, string>;
   equippedArmorId?: string;
   shieldEquipped?: boolean;
+  equippedShieldId?: string;
   equippedWeapons?: EquippedWeapon[];
+  equippedItemIds?: string[];
+  attunedEquipmentIds?: string[];
+  equipmentCharges?: Record<string, number>;
   inventory?: InventoryEntry[];
   coins?: Coins;
   currentHp?: number;

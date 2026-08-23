@@ -84,3 +84,107 @@ button:disabled {
     transition: none;
   }
 }
+/* Portale Equipaggiamento: elementi condivisi con il layer Homebrew. */
+.equipment-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.equipment-intro .lead {
+  margin: 0;
+}
+.homebrew-equipment-add {
+  flex: 0 0 auto;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--ember);
+  border-radius: 0.45rem;
+  background: var(--ember);
+  color: var(--surface);
+  font-weight: 900;
+  cursor: pointer;
+}
+.homebrew-equipment-list {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  background: var(--surface-raised);
+}
+.homebrew-equipment-list article {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-top: 1px solid var(--line);
+}
+.homebrew-equipment-list article:first-of-type {
+  margin-top: 0.75rem;
+}
+.homebrew-equipment-list article div {
+  display: grid;
+  gap: 0.25rem;
+}
+.homebrew-equipment-list small,
+.homebrew-equipment-list p {
+  margin: 0;
+  color: var(--muted);
+}
+.magic-meta {
+  color: var(--gold) !important;
+  font-weight: 800;
+}
+.item-description {
+  display: -webkit-box !important;
+  max-width: 52rem;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  line-height: 1.35;
+}
+.attunement-button {
+  margin-top: 0.45rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 0.35rem;
+  background: var(--surface-raised);
+  color: var(--text);
+  cursor: pointer;
+}
+.attunement-button.active {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.charge-counter {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.charge-counter button {
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.3rem;
+  background: var(--surface-raised);
+  color: var(--text);
+}
+.item-ability {
+  display: block;
+  margin-top: 0.45rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--gold);
+  border-radius: 0.35rem;
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+}
+@media (max-width: 760px) {
+  .equipment-intro {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

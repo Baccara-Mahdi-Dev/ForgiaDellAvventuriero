@@ -31,7 +31,7 @@ Il manifest è il punto di ingresso del catalogo.
 ```json
 {
   "schemaVersion": 1,
-  "dataVersion": "1.9.0",
+  "dataVersion": "1.12.0",
   "locale": "it",
   "ruleset": "5e-2014",
   "catalog": {
@@ -50,13 +50,17 @@ Il manifest è il punto di ingresso del catalogo.
     "spells": "spells.json",
     "equipment": "equipment.json"
   },
+  "additionalEquipment": {
+    "file": "magic-equipment.json",
+    "count": 249
+  },
   "sources": ["PHB", "XGE", "TCE", "WGE", "SRD"]
 }
 ```
 
 `schemaVersion` riguarda la forma tecnica dei file. `dataVersion` riguarda il loro contenuto. Un'aggiunta o correzione dati incrementa `dataVersion`; un cambiamento incompatibile alla struttura richiede anche una nuova strategia per `schemaVersion`.
 
-I conteggi devono corrispondere esattamente alle lunghezze degli array. L'editor locale li aggiorna automaticamente per i cataloghi registrati.
+I conteggi devono corrispondere esattamente alle lunghezze degli array. `additionalEquipment` registra un catalogo aggiuntivo che `CatalogService` unisce a `equipment.json`, verificando conteggio e ID duplicati sull'insieme completo. L'editor locale aggiorna automaticamente i conteggi nella sezione `catalog`; il conteggio aggiuntivo resta esplicito.
 
 ## `ancestries.json`
 
@@ -428,6 +432,51 @@ Campi delle armi:
 
 Il bonus di attacco è modificatore della caratteristica più competenza se l'arma è competente. Le armi a distanza usano Destrezza; quelle con `finesse` scelgono il migliore tra Forza e Destrezza; le altre usano Forza. Il danno mostrato aggiunge lo stesso modificatore alla formula del dado.
 
+## `magic-equipment.json`
+
+Contiene 249 oggetti magici e varianti SRD in italiano. Usa la stessa interfaccia `EquipmentItem` di `equipment.json`, con campi aggiuntivi opzionali per le meccaniche magiche:
+
+```json
+{
+  "id": "magic-example",
+  "name": "Oggetto magico di esempio",
+  "description": "Descrizione ed effetto.",
+  "kind": "gear",
+  "category": "adventuring-gear",
+  "group": "Oggetti magici SRD",
+  "cost": "—",
+  "weightKg": 0,
+  "source": "SRD",
+  "magical": true,
+  "rarity": "rare",
+  "requiresAttunement": true,
+  "effects": [],
+  "spellGrants": [],
+  "charges": {
+    "maximum": 7,
+    "recoveryFormula": "1d6+1",
+    "recoveryMoment": "dawn"
+  }
+}
+```
+
+Valori ammessi per `kind`: `weapon`, `armor`, `shield`, `gear`, `tool`, `other`. Le rarità sono `common`, `uncommon`, `rare`, `very-rare`, `legendary`, `artifact`, `varies`.
+
+Campi strutturati principali:
+
+- `requiresAttunement` e `attunementRequirements`: necessità e condizioni della sintonia;
+- `attackBonus`, `damageBonus`, `additionalDamage`, `additionalDamageType`: modificatori delle armi;
+- `armorBonus`: bonus alla CA della protezione;
+- `effects`: effetti passivi o attivi, con tipo, valore, bersaglio, condizioni e costo in cariche;
+- `spellGrants`: riferimenti a `spells.json` con frequenza d'uso o costo in cariche;
+- `charges`: massimo, formula e momento del recupero.
+
+Il modello e l'editor ammettono modifiche a caratteristiche, CA, iniziativa, attacco, danno, abilità, tiri salvezza, velocità, resistenze e condizioni. Il motore applica automaticamente punteggi/modificatori di caratteristica, CA, iniziativa, bonus ai tiri salvezza, resistenze e bonus di attacco o danno delle armi; gli altri tipi restano descrittivi o attivabili finché non viene aggiunta la relativa regola. Un testo in `description` o `specialProperties` non produce automaticamente un effetto numerico.
+
+## Equipaggiamento Homebrew persistito
+
+Gli oggetti creati nell'interfaccia non modificano i cataloghi statici. Vengono salvati in `CharacterDraft.homebrewEquipment` come normali `EquipmentItem` con `source: "HOMEBREW"` e un ID UUID. Lo store li unisce al catalogo in memoria, quindi inventario, equipaggiamento, sintonia, regole ed esportazioni lavorano sugli stessi tipi.
+
 ## Integrità e versionamento
 
 Dopo qualunque modifica:
@@ -436,6 +485,6 @@ Dopo qualunque modifica:
 npm run validate:data
 ```
 
-Il validatore controlla conteggi, ID, fonti, scelte razziali, riferimenti alle abilità, classi degli incantesimi, durate, tiri salvezza, danni, concessioni, prerequisiti ed equipaggiamento.
+Il validatore controlla conteggi, ID, fonti, scelte razziali, riferimenti alle abilità, classi degli incantesimi, durate, concentrazione, tiri salvezza, danni, concessioni, prerequisiti, equipaggiamento base e catalogo magico aggiuntivo.
 
 Per un catalogo nuovo non basta creare il file. Vanno aggiornati `CatalogFiles`, `CatalogData`, `manifest.json`, `CatalogService.load()`, il validatore, la configurazione dell'editor e ogni consumer.

@@ -17,14 +17,17 @@ npm run verify
 
 ## Funzioni
 
-- wizard in otto passi, responsive e utilizzabile da tastiera;
+- wizard in dieci passi, responsive e utilizzabile da tastiera;
 - point buy, array standard e punteggi personalizzati;
 - discendenze PHB e varianti Forgiato WGE;
 - tutte le classi PHB e Artefice TCE;
-- livelli 1–20, sottoclassi, talenti/ASI e catalogo magico essenziale;
+- livelli 1–20, sottoclassi, talenti/ASI e 249 oggetti magici SRD in italiano;
 - calcolo di modificatori, competenza, PF, CA, iniziativa e magia;
+- editor Homebrew per incantesimi ed equipaggiamento, con concentrazione, effetti, cariche e sintonia;
+- selezione di incantesimi con limiti per classe, ricerca, filtri e pagine da quattro risultati;
+- catalogo equipaggiamento paginato e ordinabile, con rarità e sintonia per gli oggetti magici;
 - autosalvataggio IndexedDB con fallback localStorage;
-- import/export JSON e stampa/salvataggio PDF;
+- import/export JSON, scheda PDF compilabile e carte incantesimo ordinate per livello e nome;
 - service worker e manifest installabile.
 
 ## Documentazione tecnica

@@ -5,8 +5,8 @@ Questa cartella documenta l'applicazione dal punto di vista di chi deve mantener
 ## Percorso di lettura consigliato
 
 1. [Architettura e componenti](architecture/README.md) — avvio dell'app, routing, servizi, store, motore delle regole, componenti UI, tema e PWA.
-2. [Cataloghi JSON](data/README.md) — manifest e struttura completa di razze, classi, background, talenti, incantesimi ed equipaggiamento.
-3. [Regole e funzionalità](features/README.md) — flusso del wizard, ASI/talenti, magia, PF, CA, abilità, risorse di classe e statistiche homebrew.
+2. [Cataloghi JSON](data/README.md) — manifest e struttura completa di razze, classi, background, talenti, incantesimi, equipaggiamento e oggetti magici.
+3. [Regole e funzionalità](features/README.md) — flusso del wizard, ASI/talenti, magia, PF, CA, Homebrew, sintonia, carte incantesimo e risorse di classe.
 4. [Sviluppo, test e pubblicazione](development/README.md) — procedure sicure per aggiungere dati o funzionalità, validazione, test, build, editor locale e Netlify.
 5. [Dizionario dati sintetico](data-dictionary.md) — promemoria rapido dei campi della bozza personaggio.
 
@@ -16,7 +16,7 @@ Questa cartella documenta l'applicazione dal punto di vista di chi deve mantener
 ForgiaAvventuriero/
 ├─ public/data/v1/       Cataloghi JSON caricati dalla PWA
 ├─ scripts/              Importazione, aggiornamento e validazione dati
-├─ src/app/core/         Catalogo, IndexedDB e tema
+├─ src/app/core/         Catalogo, IndexedDB, tema ed esportazioni PDF
 ├─ src/app/domain/       Tipi TypeScript e regole pure
 ├─ src/app/features/     Home e wizard di creazione
 ├─ src/app/shared/       Componenti riutilizzabili

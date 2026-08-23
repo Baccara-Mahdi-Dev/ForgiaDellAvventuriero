@@ -51,6 +51,7 @@ import {
   growthChoicesComplete,
   isRecommendedClass,
   racialFeatSlots,
+  spellSelectionLimits,
   spellSlots,
 } from '../../domain/rules';
 import {
@@ -61,7 +62,11 @@ import {
 import { WizardStore } from '../../state/wizard.store';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
 import { CharacterSheetPdfService } from '../../core/character-sheet-pdf.service';
+import { SpellCardsPdfService } from '../../core/spell-cards-pdf.service';
 import { ClassProgressionComponent } from './class-progression.component';
+import { HomebrewEquipmentDialogComponent } from './homebrew-equipment-dialog.component';
+import { EQUIPMENT_RARITY_LABELS, equipmentKind } from '../../domain/homebrew-equipment';
+import { equippedEquipmentIds, weaponEffectTotal } from '../../domain/equipment-effects';
 
 interface GrantedSpellSource {
   key: string;
@@ -69,6 +74,20 @@ interface GrantedSpellSource {
   fixed: { spell: Spell; minLevel: number; note?: string; unlocked: boolean }[];
   choices: SpellGrantChoice[];
 }
+type EquipmentSortKey = 'name' | 'type' | 'cost' | 'weight' | 'rarity' | 'attunement';
+type InventorySortKey = 'name' | 'quantity' | 'unitWeight' | 'totalWeight' | 'usage';
+type SortDirection = 'asc' | 'desc';
+
+const EQUIPMENT_RARITY_ORDER = {
+  common: 0,
+  uncommon: 1,
+  rare: 2,
+  'very-rare': 3,
+  legendary: 4,
+  artifact: 5,
+  varies: 6,
+} as const;
+
 const newHomebrewSpell = (): HomebrewSpell => ({
   id: `homebrew-${crypto.randomUUID()}`,
   name: '',
@@ -77,11 +96,21 @@ const newHomebrewSpell = (): HomebrewSpell => ({
   description: '',
   castingTime: 'action',
   duration: 'Istantanea',
+  concentration: false,
   components: ['V', 'S'],
 });
+const SPELLS_PER_PAGE = 4;
+const EQUIPMENT_PER_PAGE = 12;
 @Component({
   selector: 'app-wizard',
-  imports: [FormsModule, RouterLink, NgIcon, ThemeToggleComponent, ClassProgressionComponent],
+  imports: [
+    FormsModule,
+    RouterLink,
+    NgIcon,
+    ThemeToggleComponent,
+    ClassProgressionComponent,
+    HomebrewEquipmentDialogComponent,
+  ],
   templateUrl: './wizard.component.html',
   styleUrl: './wizard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -113,20 +142,29 @@ export class WizardComponent implements OnInit, OnDestroy {
   readonly message = signal('');
   readonly armorSearch = signal('');
   readonly equipmentSearch = signal('');
-  readonly equipmentCategory = signal<EquipmentCategory | 'all'>('all');
+  readonly equipmentCategory = signal<EquipmentCategory | 'magic' | 'all'>('all');
+  readonly equipmentPage = signal(1);
+  readonly equipmentSortKey = signal<EquipmentSortKey>('name');
+  readonly equipmentSortDirection = signal<SortDirection>('asc');
+  readonly inventorySortKey = signal<InventorySortKey>('name');
+  readonly inventorySortDirection = signal<SortDirection>('asc');
   readonly spellSearch = signal('');
   readonly spellLevelFilter = signal('all');
+  readonly spellPage = signal(1);
   readonly homebrewSpellOpen = signal(false);
+  readonly homebrewEquipmentOpen = signal(false);
   readonly homebrewSpell = signal<HomebrewSpell>(newHomebrewSpell());
   readonly homebrewMaterials = signal('');
   readonly homebrewHasDamage = signal(false);
   readonly pdfExporting = signal(false);
+  readonly spellCardsExporting = signal(false);
   private sub?: { unsubscribe(): void };
   constructor(
     readonly store: WizardStore,
     private route: ActivatedRoute,
     private router: Router,
     private characterSheetPdf: CharacterSheetPdfService,
+    private spellCardsPdf: SpellCardsPdfService,
   ) {}
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe((p) => {
@@ -179,6 +217,9 @@ export class WizardComponent implements OnInit, OnDestroy {
   get homebrewSpells() {
     return this.store.draft().homebrewSpells ?? [];
   }
+  get homebrewEquipment() {
+    return this.store.draft().homebrewEquipment ?? [];
+  }
   get selectedClassFeatures() {
     const selectedClass = this.store.selectedClass();
     if (!selectedClass) return [];
@@ -206,6 +247,21 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   get selectedSpellCount() {
     return this.selectedSpells.length + this.homebrewSpells.length;
+  }
+  get selectedCantripCount() {
+    return (
+      this.selectedSpells.filter((spell) => spell.level === 0).length +
+      this.homebrewSpells.filter((spell) => spell.level === 0).length
+    );
+  }
+  get selectedLeveledSpellCount() {
+    return this.selectedSpellCount - this.selectedCantripCount;
+  }
+  get spellLimits() {
+    const draft = this.store.draft();
+    const primary = this.store.selectedClass()?.primary;
+    const spellcastingModifier = primary ? this.store.derived().modifiers[primary] : 0;
+    return spellSelectionLimits(draft.classId, draft.level, spellcastingModifier);
   }
   get grantedSpellSources(): GrantedSpellSource[] {
     const draft = this.store.draft();
@@ -247,14 +303,42 @@ export class WizardComponent implements OnInit, OnDestroy {
         subclassGrants,
       );
     }
+    for (const item of this.activeSpellGrantItems)
+      add(
+        `equipment-${item.id}`,
+        `Oggetto: ${item.name}`,
+        (item.spellGrants ?? []).map((grant) => ({
+          spellId: grant.spellId,
+          minLevel: 1,
+          note:
+            grant.usage === 'at-will'
+              ? 'A volontà'
+              : grant.usage === 'charges'
+                ? `${grant.chargesCost ?? 1} cariche`
+                : (grant.notes ?? 'Uso limitato'),
+        })),
+      );
     return sources;
   }
   get grantedSpells() {
     const ids = new Set([
       ...this.store.fixedGrantedSpellIds(),
       ...this.store.activeGrantedSpellChoiceIds(),
+      ...this.activeSpellGrantItems.flatMap((item) =>
+        (item.spellGrants ?? []).map((grant) => grant.spellId),
+      ),
     ]);
     return this.store.spells.filter((spell) => ids.has(spell.id));
+  }
+  get activeSpellGrantItems() {
+    const equipped = equippedEquipmentIds(this.store.draft());
+    const attuned = new Set(this.store.draft().attunedEquipmentIds ?? []);
+    return this.store.equipment.filter(
+      (item) =>
+        equipped.has(item.id) &&
+        (!item.requiresAttunement || attuned.has(item.id)) &&
+        !!item.spellGrants?.length,
+    );
   }
   grantCandidates(choice: SpellGrantChoice) {
     const tradition = choice.traditionKey
@@ -310,10 +394,16 @@ export class WizardComponent implements OnInit, OnDestroy {
       )
       .join(', ');
   }
+  itemKind(item: EquipmentItem) {
+    return equipmentKind(item);
+  }
+  itemRarity(item: EquipmentItem) {
+    return item.rarity ? EQUIPMENT_RARITY_LABELS[item.rarity] : '';
+  }
   choiceIndexes(count: number) {
     return Array.from({ length: count }, (_, index) => index);
   }
-  get visibleSpells() {
+  get filteredSpells() {
     const query = this.spellSearch().trim().toLocaleLowerCase('en');
     const level = this.spellLevelFilter();
     return this.store
@@ -327,11 +417,26 @@ export class WizardComponent implements OnInit, OnDestroy {
             spell.description.toLocaleLowerCase('en').includes(query)),
       );
   }
-  get availableCantrips() {
-    return this.store.availableSpells().filter((spell) => spell.level === 0).length;
+  get visibleSpells() {
+    const start = (this.currentSpellPage - 1) * SPELLS_PER_PAGE;
+    return this.filteredSpells.slice(start, start + SPELLS_PER_PAGE);
   }
-  get availableLeveledSpells() {
-    return this.store.availableSpells().filter((spell) => spell.level > 0).length;
+  get spellPageCount() {
+    return Math.max(1, Math.ceil(this.filteredSpells.length / SPELLS_PER_PAGE));
+  }
+  get currentSpellPage() {
+    return Math.min(this.spellPage(), this.spellPageCount);
+  }
+  setSpellSearch(value: string) {
+    this.spellSearch.set(value);
+    this.spellPage.set(1);
+  }
+  setSpellLevelFilter(value: string) {
+    this.spellLevelFilter.set(value);
+    this.spellPage.set(1);
+  }
+  setSpellPage(page: number) {
+    this.spellPage.set(Math.max(1, Math.min(this.spellPageCount, page)));
   }
   get spellSlots() {
     const draft = this.store.draft();
@@ -350,29 +455,142 @@ export class WizardComponent implements OnInit, OnDestroy {
       items: items.filter((item) => item.group === name),
     }));
   }
-  get equipmentGroups() {
+  private get filteredEquipment() {
     const query = this.equipmentSearch().trim().toLocaleLowerCase('it');
     const category = this.equipmentCategory();
-    const items = this.store.equipment.filter(
+    return this.store.equipment.filter(
       (item) =>
         item.armorType !== 'shield' &&
-        (category === 'all' || item.category === category) &&
+        (category === 'all' ||
+          (category === 'magic' ? item.magical : item.category === category)) &&
         (!query ||
           item.name.toLocaleLowerCase('it').includes(query) ||
           item.group.toLocaleLowerCase('it').includes(query)),
     );
-    return [...new Set(items.map((item) => item.group))].map((name) => ({
-      name,
-      items: items.filter((item) => item.group === name),
-    }));
+  }
+  get equipmentItems() {
+    const direction = this.equipmentSortDirection() === 'asc' ? 1 : -1;
+    const key = this.equipmentSortKey();
+    const filtered = [...this.filteredEquipment].sort((a, b) => {
+      const left = this.equipmentSortValue(a, key);
+      const right = this.equipmentSortValue(b, key);
+      if (left === null && right === null) return a.name.localeCompare(b.name, 'it');
+      if (left === null) return 1;
+      if (right === null) return -1;
+      const comparison =
+        typeof left === 'number' && typeof right === 'number'
+          ? left - right
+          : String(left).localeCompare(String(right), 'it', { sensitivity: 'base' });
+      return (comparison || a.name.localeCompare(b.name, 'it')) * direction;
+    });
+    const start = (this.currentEquipmentPage - 1) * EQUIPMENT_PER_PAGE;
+    return filtered.slice(start, start + EQUIPMENT_PER_PAGE);
+  }
+  get equipmentFilteredCount() {
+    return this.filteredEquipment.length;
+  }
+  get equipmentPageCount() {
+    return Math.max(1, Math.ceil(this.equipmentFilteredCount / EQUIPMENT_PER_PAGE));
+  }
+  get currentEquipmentPage() {
+    return Math.min(this.equipmentPage(), this.equipmentPageCount);
+  }
+  setEquipmentSearch(value: string) {
+    this.equipmentSearch.set(value);
+    this.equipmentPage.set(1);
+  }
+  setEquipmentCategory(value: EquipmentCategory | 'magic' | 'all') {
+    this.equipmentCategory.set(value);
+    this.equipmentPage.set(1);
+  }
+  sortEquipment(key: EquipmentSortKey) {
+    if (this.equipmentSortKey() === key) {
+      this.equipmentSortDirection.update((direction) => (direction === 'asc' ? 'desc' : 'asc'));
+    } else {
+      this.equipmentSortKey.set(key);
+      this.equipmentSortDirection.set('asc');
+    }
+    this.equipmentPage.set(1);
+  }
+  equipmentSortIndicator(key: EquipmentSortKey) {
+    if (this.equipmentSortKey() !== key) return '';
+    return this.equipmentSortDirection() === 'asc' ? '↑' : '↓';
+  }
+  setEquipmentPage(page: number) {
+    this.equipmentPage.set(Math.max(1, Math.min(this.equipmentPageCount, page)));
   }
   get inventoryRows() {
+    const direction = this.inventorySortDirection() === 'asc' ? 1 : -1;
+    const key = this.inventorySortKey();
     return (this.store.draft().inventory ?? [])
       .map((entry) => ({
         entry,
         item: this.store.equipment.find((item) => item.id === entry.equipmentId),
       }))
-      .filter((row): row is { entry: typeof row.entry; item: EquipmentItem } => !!row.item);
+      .filter((row): row is { entry: typeof row.entry; item: EquipmentItem } => !!row.item)
+      .sort((a, b) => {
+        const left = this.inventorySortValue(a, key);
+        const right = this.inventorySortValue(b, key);
+        const comparison =
+          typeof left === 'number' && typeof right === 'number'
+            ? left - right
+            : String(left).localeCompare(String(right), 'it', { sensitivity: 'base' });
+        return (comparison || a.item.name.localeCompare(b.item.name, 'it')) * direction;
+      });
+  }
+  sortInventory(key: InventorySortKey) {
+    if (this.inventorySortKey() === key) {
+      this.inventorySortDirection.update((direction) => (direction === 'asc' ? 'desc' : 'asc'));
+    } else {
+      this.inventorySortKey.set(key);
+      this.inventorySortDirection.set('asc');
+    }
+  }
+  inventorySortIndicator(key: InventorySortKey) {
+    if (this.inventorySortKey() !== key) return '';
+    return this.inventorySortDirection() === 'asc' ? '↑' : '↓';
+  }
+  private equipmentSortValue(item: EquipmentItem, key: EquipmentSortKey): string | number | null {
+    switch (key) {
+      case 'name':
+        return item.name;
+      case 'type':
+        return this.itemKind(item);
+      case 'cost':
+        return this.costInGold(item.cost);
+      case 'weight':
+        return item.weightKg;
+      case 'rarity':
+        return item.rarity ? EQUIPMENT_RARITY_ORDER[item.rarity] : null;
+      case 'attunement':
+        return Number(!!item.requiresAttunement);
+    }
+  }
+  private inventorySortValue(
+    row: { entry: { quantity: number }; item: EquipmentItem },
+    key: InventorySortKey,
+  ): string | number {
+    switch (key) {
+      case 'name':
+        return row.item.name;
+      case 'quantity':
+        return row.entry.quantity;
+      case 'unitWeight':
+        return row.item.weightKg;
+      case 'totalWeight':
+        return row.item.weightKg * row.entry.quantity;
+      case 'usage':
+        return Number(this.itemIsEquipped(row.item));
+    }
+  }
+  private costInGold(cost: string): number | null {
+    const match = cost.toLocaleLowerCase('it').match(/([\d.,]+)\s*(mc|ma|me|mo|mp)/);
+    if (!match) return null;
+    const amount = Number(match[1].replace(',', '.'));
+    const multipliers: Record<string, number> = { mc: 0.01, ma: 0.1, me: 0.5, mo: 1, mp: 10 };
+    const multiplier = multipliers[match[2]];
+    if (multiplier === undefined) return null;
+    return Number.isFinite(amount) ? amount * multiplier : null;
   }
   get equippedWeaponEntries() {
     return (this.store.draft().equippedWeapons ?? [])
@@ -400,7 +618,9 @@ export class WizardComponent implements OnInit, OnDestroy {
     return this.classSkillNames.includes(skill);
   }
   get shieldAllowed() {
-    const shield = this.store.equipment.find((item) => item.id === 'shield');
+    const shield =
+      this.store.equipment.find((item) => item.id === this.store.draft().equippedShieldId) ??
+      this.store.equipment.find((item) => item.id === 'shield');
     return (
       !!shield &&
       this.armorAllowed(shield) &&
@@ -695,6 +915,24 @@ export class WizardComponent implements OnInit, OnDestroy {
   isGranted(id: string) {
     return this.grantedSpells.some((spell) => spell.id === id);
   }
+  spellLimitReached(spell: Spell) {
+    if (this.store.draft().spellIds.includes(spell.id)) return false;
+    return spell.level === 0
+      ? this.selectedCantripCount >= this.spellLimits.cantrips
+      : this.selectedLeveledSpellCount >= this.spellLimits.leveledSpells;
+  }
+  toggleSpell(spell: Spell) {
+    if (this.spellLimitReached(spell)) {
+      this.message.set(
+        spell.level === 0
+          ? `Hai già scelto tutti i ${this.spellLimits.cantrips} trucchetti consentiti.`
+          : `Hai già scelto tutti i ${this.spellLimits.leveledSpells} incantesimi consentiti.`,
+      );
+      return;
+    }
+    this.message.set('');
+    this.store.toggleSpell(spell.id);
+  }
   spellLevel(spell: Spell) {
     return spell.level === 0 ? 'Trucchetto' : `Livello ${spell.level}`;
   }
@@ -722,6 +960,16 @@ export class WizardComponent implements OnInit, OnDestroy {
     const spell = this.homebrewSpell();
     if (!spell.name.trim() || !spell.description.trim()) {
       this.message.set('Inserisci almeno nome e descrizione dell’incantesimo homebrew.');
+      return;
+    }
+    const limit = spell.level === 0 ? this.spellLimits.cantrips : this.spellLimits.leveledSpells;
+    const selected = spell.level === 0 ? this.selectedCantripCount : this.selectedLeveledSpellCount;
+    if (selected >= limit) {
+      this.message.set(
+        spell.level === 0
+          ? `Hai già scelto tutti i ${limit} trucchetti consentiti per questa classe.`
+          : `Hai già scelto tutti i ${limit} incantesimi consentiti per questa classe.`,
+      );
       return;
     }
     const materials = spell.components.includes('M')
@@ -834,10 +1082,17 @@ export class WizardComponent implements OnInit, OnDestroy {
     this.ensureInBackpack(item.id);
   }
   setShield(equipped: boolean) {
-    const shield = this.store.equipment.find((item) => item.id === 'shield');
+    const shield =
+      this.store.equipment.find((item) => item.id === this.store.draft().equippedShieldId) ??
+      this.store.equipment.find((item) => item.id === 'shield');
     if (equipped && (!shield || !this.shieldAllowed)) return;
-    this.store.patch({ shieldEquipped: equipped });
-    if (equipped) this.ensureInBackpack('shield');
+    this.store.patch({ shieldEquipped: equipped, equippedShieldId: equipped ? shield!.id : '' });
+    if (equipped) this.ensureInBackpack(shield!.id);
+  }
+  setShieldItem(item: EquipmentItem) {
+    if (equipmentKind(item) !== 'shield' || !this.armorAllowed(item)) return;
+    this.store.patch({ shieldEquipped: true, equippedShieldId: item.id });
+    this.ensureInBackpack(item.id);
   }
   addItem(id: string) {
     const inventory = [...(this.store.draft().inventory ?? [])],
@@ -855,7 +1110,10 @@ export class WizardComponent implements OnInit, OnDestroy {
     const update: Parameters<WizardStore['patch']>[0] = { inventory };
     if (!inventory.some((entry) => entry.equipmentId === this.store.draft().equippedArmorId))
       update.equippedArmorId = '';
-    if (!inventory.some((entry) => entry.equipmentId === 'shield')) update.shieldEquipped = false;
+    if (!inventory.some((entry) => entry.equipmentId === this.store.draft().equippedShieldId)) {
+      update.shieldEquipped = false;
+      update.equippedShieldId = '';
+    }
     const equippedWeapons = (this.store.draft().equippedWeapons ?? []).filter(
       (weapon, index, weapons) =>
         index < 2 &&
@@ -898,9 +1156,13 @@ export class WizardComponent implements OnInit, OnDestroy {
         : modifiers.str;
   }
   weaponAttack(item: EquipmentItem) {
+    const magicBonus = this.itemMagicActive(item)
+      ? (item.attackBonus ?? weaponEffectTotal(item, 'attack-bonus'))
+      : 0;
     const value =
       this.weaponAbilityModifier(item) +
-      (this.weaponProficient(item) ? this.store.derived().proficiency : 0);
+      (this.weaponProficient(item) ? this.store.derived().proficiency : 0) +
+      magicBonus;
     return this.mod(value);
   }
   weaponDamage(item: EquipmentItem) {
@@ -911,7 +1173,19 @@ export class WizardComponent implements OnInit, OnDestroy {
     if (!damage || damage === '—') return '—';
     const value =
       offHand && !hasTwoWeaponFighting(this.store.draft()) ? 0 : this.weaponAbilityModifier(item);
-    return value === 0 ? damage : `${damage}${value > 0 ? '+' : '−'}${Math.abs(value)}`;
+    const magicBonus = this.itemMagicActive(item)
+      ? (item.damageBonus ?? weaponEffectTotal(item, 'damage-bonus'))
+      : 0;
+    const total = value + magicBonus;
+    const base = total === 0 ? damage : `${damage}${total > 0 ? '+' : '−'}${Math.abs(total)}`;
+    const extra = this.itemMagicActive(item)
+      ? item.additionalDamage ||
+        item.effects?.find((effect) => effect.type === 'extra-damage')?.formula
+      : '';
+    const extraType =
+      item.additionalDamageType ||
+      item.effects?.find((effect) => effect.type === 'extra-damage')?.damageType;
+    return extra ? `${base} + ${extra} ${extraType ?? ''}`.trim() : base;
   }
   weaponHandsLabel(equipped: EquippedWeapon) {
     return equipped.hands === 2 ? 'Due mani' : 'Una mano';
@@ -967,6 +1241,94 @@ export class WizardComponent implements OnInit, OnDestroy {
     if (!(this.store.draft().inventory ?? []).some((entry) => entry.equipmentId === id))
       this.addItem(id);
   }
+  openHomebrewEquipmentWizard() {
+    this.homebrewEquipmentOpen.set(true);
+  }
+  closeHomebrewEquipmentWizard() {
+    this.homebrewEquipmentOpen.set(false);
+  }
+  saveHomebrewEquipment(item: EquipmentItem) {
+    this.store.patch({
+      homebrewEquipment: [...this.homebrewEquipment, item],
+      inventory: [
+        ...(this.store.draft().inventory ?? []),
+        { equipmentId: item.id, quantity: item.quantity ?? 1 },
+      ],
+      equipmentCharges: item.charges
+        ? { ...(this.store.draft().equipmentCharges ?? {}), [item.id]: item.charges.maximum }
+        : this.store.draft().equipmentCharges,
+    });
+    this.homebrewEquipmentOpen.set(false);
+    this.message.set(`${item.name} è stato creato e aggiunto allo zaino.`);
+  }
+  removeHomebrewEquipment(id: string) {
+    const draft = this.store.draft();
+    const equipmentCharges = { ...(draft.equipmentCharges ?? {}) };
+    delete equipmentCharges[id];
+    this.store.patch({
+      homebrewEquipment: this.homebrewEquipment.filter((item) => item.id !== id),
+      inventory: (draft.inventory ?? []).filter((entry) => entry.equipmentId !== id),
+      equippedArmorId: draft.equippedArmorId === id ? '' : draft.equippedArmorId,
+      equippedShieldId: draft.equippedShieldId === id ? '' : draft.equippedShieldId,
+      shieldEquipped: draft.equippedShieldId === id ? false : draft.shieldEquipped,
+      equippedWeapons: (draft.equippedWeapons ?? []).filter((weapon) => weapon.equipmentId !== id),
+      equippedItemIds: (draft.equippedItemIds ?? []).filter((itemId) => itemId !== id),
+      attunedEquipmentIds: (draft.attunedEquipmentIds ?? []).filter((itemId) => itemId !== id),
+      equipmentCharges,
+    });
+  }
+  itemIsEquipped(item: EquipmentItem) {
+    return equippedEquipmentIds(this.store.draft()).has(item.id);
+  }
+  toggleGenericEquipment(item: EquipmentItem) {
+    if (['weapon', 'armor', 'shield'].includes(equipmentKind(item))) return;
+    const selected = this.store.draft().equippedItemIds ?? [];
+    this.store.patch({
+      equippedItemIds: selected.includes(item.id)
+        ? selected.filter((id) => id !== item.id)
+        : [...selected, item.id],
+    });
+  }
+  itemIsAttuned(item: EquipmentItem) {
+    return (this.store.draft().attunedEquipmentIds ?? []).includes(item.id);
+  }
+  toggleAttunement(item: EquipmentItem) {
+    if (!item.requiresAttunement) return;
+    const selected = this.store.draft().attunedEquipmentIds ?? [];
+    if (!selected.includes(item.id) && selected.length >= 3) {
+      this.message.set('Puoi entrare in sintonia con un massimo di 3 oggetti.');
+      return;
+    }
+    this.store.patch({
+      attunedEquipmentIds: selected.includes(item.id)
+        ? selected.filter((id) => id !== item.id)
+        : [...selected, item.id],
+    });
+  }
+  itemCharges(item: EquipmentItem) {
+    return this.store.draft().equipmentCharges?.[item.id] ?? item.charges?.maximum ?? 0;
+  }
+  changeItemCharges(item: EquipmentItem, amount: number) {
+    if (!item.charges) return;
+    const current = this.itemCharges(item);
+    this.store.patch({
+      equipmentCharges: {
+        ...(this.store.draft().equipmentCharges ?? {}),
+        [item.id]: Math.max(0, Math.min(item.charges.maximum, current + amount)),
+      },
+    });
+  }
+  useEquipmentAbility(item: EquipmentItem, cost: number, label: string) {
+    if (cost > 0 && this.itemCharges(item) < cost) {
+      this.message.set(`Cariche insufficienti per ${label}.`);
+      return;
+    }
+    if (cost > 0) this.changeItemCharges(item, -cost);
+    this.message.set(`${label} attivata${cost ? `: consumate ${cost} cariche.` : '.'}`);
+  }
+  private itemMagicActive(item: EquipmentItem) {
+    return !item.requiresAttunement || this.itemIsAttuned(item);
+  }
   async exportPdf() {
     if (this.pdfExporting()) return;
     this.pdfExporting.set(true);
@@ -978,6 +1340,19 @@ export class WizardComponent implements OnInit, OnDestroy {
       this.message.set('Non è stato possibile generare la scheda PDF.');
     } finally {
       this.pdfExporting.set(false);
+    }
+  }
+  async exportSpellCardsPdf() {
+    if (this.spellCardsExporting()) return;
+    this.spellCardsExporting.set(true);
+    this.message.set('Creazione delle carte incantesimo in corso...');
+    try {
+      await this.spellCardsPdf.download(this.store.draft());
+      this.message.set('Carte incantesimo ordinate e scaricate.');
+    } catch {
+      this.message.set('Seleziona almeno un incantesimo prima di creare le carte PDF.');
+    } finally {
+      this.spellCardsExporting.set(false);
     }
   }
   diceIcon(hitDie: number): string {

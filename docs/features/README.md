@@ -25,18 +25,18 @@ Questo evita dati duplicati e incoerenti. Per esempio la CA non è salvata: deri
 
 ## Step del wizard
 
-| Step            | Input principali                        | Condizione di completamento                                     |
-| --------------- | --------------------------------------- | --------------------------------------------------------------- |
-| Caratteristiche | metodo e sei punteggi, Sanità opzionale | point buy esattamente 27 oppure altro metodo valido             |
-| Discendenza     | razza/variante e scelte razziali        | tutte le scelte dichiarate nel JSON sono effettuate             |
-| Classe          | classe, competenze e sottoclasse        | competenze complete; sottoclasse presente dal livello richiesto |
-| Background      | background e allineamento               | selezione presente e nessuna competenza duplicata con la classe |
-| Livello         | livello e metodo PF                     | valore manuale positivo quando richiesto                        |
-| Talenti e ASI   | una scelta per ogni sblocco             | numero corretto di scelte, prerequisiti e limite 20 rispettati  |
-| Equipaggiamento | armatura, scudo, zaino, monete          | sempre navigabile                                               |
-| Incantesimi     | magie della classe e concesse           | sempre navigabile; limiti mostrati nell'interfaccia             |
-| Riepilogo       | nome e dettagli della scheda            | nome non vuoto                                                  |
-| Esporta         | stampa e JSON                           | sempre navigabile                                               |
+| Step            | Input principali                                | Condizione di completamento                                     |
+| --------------- | ----------------------------------------------- | --------------------------------------------------------------- |
+| Caratteristiche | metodo e sei punteggi, Sanità opzionale         | point buy esattamente 27 oppure altro metodo valido             |
+| Discendenza     | razza/variante e scelte razziali                | tutte le scelte dichiarate nel JSON sono effettuate             |
+| Classe          | classe, competenze e sottoclasse                | competenze complete; sottoclasse presente dal livello richiesto |
+| Background      | background e allineamento                       | selezione presente e nessuna competenza duplicata con la classe |
+| Livello         | livello e metodo PF                             | valore manuale positivo quando richiesto                        |
+| Talenti e ASI   | una scelta per ogni sblocco                     | numero corretto di scelte, prerequisiti e limite 20 rispettati  |
+| Equipaggiamento | armatura, scudo, zaino, oggetti magici e monete | sempre navigabile                                               |
+| Incantesimi     | magie della classe, concesse e Homebrew         | limiti di trucchetti e incantesimi della classe rispettati      |
+| Riepilogo       | nome e dettagli della scheda                    | nome non vuoto                                                  |
+| Esporta         | scheda PDF, carte incantesimo, stampa e JSON    | sempre navigabile                                               |
 
 La navigazione all'indietro resta disponibile; quella in avanti controlla tutti gli step intermedi.
 
@@ -173,6 +173,8 @@ Indagare passivo   = 10 + Indagare + bonus da talenti
 
 Ogni oggetto aggiunto entra nello zaino come `InventoryEntry` con ID e quantità. Il peso totale è la somma di `weightKg × quantity`.
 
+Il catalogo mostra dodici risultati per pagina. Le intestazioni ordinano nome, tipo, costo e peso in entrambi i versi; il criterio viene applicato all'intero risultato prima della paginazione. Se è attivo il filtro **Oggetti magici**, compaiono anche le colonne ordinabili **Rarità** e **Richiede sintonia**, quest'ultima resa come valore booleano Sì/No. Anche le colonne dello zaino sono ordinabili.
+
 La capacità di carico è convertita in chilogrammi:
 
 ```text
@@ -189,6 +191,20 @@ CA = base armatura + Destrezza consentita + 2 se usa scudo
 ```
 
 `dexterityBonus` governa il contributo di Destrezza. La competenza deriva dalla classe, dalla razza e da alcune sottoclassi gestite esplicitamente in `derive()`.
+
+### Oggetti magici, Homebrew e sintonia
+
+Il catalogo base di `equipment.json` viene unito ai 249 record di `magic-equipment.json`; gli oggetti creati dall'utente in `homebrewEquipment` vengono poi aggiunti dallo store allo stesso insieme. Non esistono inventari o motori paralleli: catalogo SRD e Homebrew usano `EquipmentItem`, `InventoryEntry`, equipaggiamento, calcoli e persistenza comuni.
+
+L'editor Homebrew permette un solo tipo compatibile tra arma, armatura, scudo, oggetto, strumento o altro. In base al tipo mostra soltanto i campi pertinenti. Può inoltre configurare:
+
+- rarità, natura magica e requisiti di sintonia;
+- bonus di arma o armatura e danni aggiuntivi;
+- effetti passivi o attivi con condizioni e costi in cariche;
+- incantesimi concessi tramite gli ID del catalogo;
+- cariche massime e modalità di recupero.
+
+Gli effetti passivi entrano in `derive()` soltanto quando l'oggetto è equipaggiato e, se richiesto, in sintonia. La bozza conserva al massimo tre ID in `attunedEquipmentIds`. CA, caratteristiche, iniziativa, tiri salvezza, resistenze, attacchi e danni usano così lo stesso flusso di calcolo della scheda. Le cariche correnti sono salvate in `equipmentCharges` e i comandi attivi scalano il costo configurato.
 
 ## Armi
 
@@ -212,11 +228,13 @@ Il testo successivo a `At Higher Levels.` viene mostrato in un riquadro separato
 - non superano `maximumSpellLevel()`;
 - non sono già concessi gratuitamente da razza, talento o sottoclasse.
 
-Il componente divide trucchetti e incantesimi di livello, offre ricerca e filtro e mostra gli slot forniti da `spellSlots()`.
+Il componente divide trucchetti e incantesimi di livello, offre ricerca e filtro, mostra quattro risultati per pagina e visualizza gli slot forniti da `spellSlots()`. `spellSelectionLimits()` definisce separatamente il massimo di trucchetti e incantesimi per classe e livello; il selettore disabilita nuove scelte quando il relativo limite è raggiunto.
+
+Gli incantesimi Homebrew conservano esplicitamente `concentration`. Il valore viene normalizzato in `duration.concentration`, mostrato nelle card e mantenuto nelle esportazioni.
 
 ### Incantesimi concessi
 
-Le magie da razza, talento e sottoclasse sono separate dalla selezione normale. Le concessioni fisse rispettano `minLevel`; quelle configurabili sono memorizzate in `grantedSpellChoices`. Non consumano il numero normale di magie conosciute o preparate.
+Le magie da razza, talento, sottoclasse e oggetti equipaggiati sono separate dalla selezione normale. Le concessioni fisse rispettano `minLevel`; quelle configurabili sono memorizzate in `grantedSpellChoices`. Non consumano il numero normale di magie conosciute o preparate. Un incantesimo concesso da un oggetto che richiede sintonia diventa disponibile soltanto quando la sintonia è attiva.
 
 ### Calcoli magici
 
@@ -227,7 +245,7 @@ attacco magico = competenza + modificatore caratteristica primaria
 CD incantesimi = 8 + competenza + modificatore caratteristica primaria
 ```
 
-Il numero `preparedSpells` è una stima data-driven dalla categoria `full`/`half` e dalla caratteristica primaria. Le eccezioni di singola classe, i trucchetti conosciuti e le liste “spells known” complete richiederanno in futuro tabelle dedicate per classe.
+`preparedSpells` continua a rappresentare il valore derivato mostrato nella scheda; i limiti del selettore sono invece determinati dalle tabelle per classe e livello di `spellSelectionLimits()`.
 
 Warlock usa slot del Patto e Arcanum in `spellSlots()`. Artefice usa progressione da mezzo incantatore arrotondata per eccesso.
 
@@ -254,6 +272,25 @@ La mappatura è divisa tra le tre pagine:
 - caratteristica da incantatore, CD, attacco magico, slot e incantesimi selezionati o concessi.
 
 Il modello contiene 364 campi AcroForm distribuiti sulle tre pagine. `character-sheet-pdf.ts` associa i dati del personaggio ai nomi dei campi (comprese caselle di competenza, tiri contro morte e preparazione degli incantesimi), senza disegnare testo tramite coordinate. Il PDF esportato resta modificabile. Il servizio `CharacterSheetPdfService` gestisce caricamento e download; il service worker conserva il modello per l'uso offline.
+
+### Carte incantesimo PDF
+
+Il comando **Esporta carte incantesimo** è disponibile sia nello step Incantesimi sia nella pagina finale. `SpellCardsPdfService` raccoglie magie selezionate, concesse e Homebrew, elimina i duplicati e le ordina prima per livello e poi alfabeticamente. Anche gli incantesimi forniti da oggetti equipaggiati e correttamente in sintonia vengono inclusi.
+
+Ogni carta riporta livello, scuola, tempo di lancio, gittata, componenti, durata, rituale, concentrazione e descrizione. Il colore identifica il livello:
+
+| Livello | Colore          | HEX       |
+| ------: | --------------- | --------- |
+|       0 | Grigio argento  | `#A8B0BA` |
+|       1 | Azzurro         | `#5BA7D1` |
+|       2 | Verde smeraldo  | `#4FAF78` |
+|       3 | Turchese        | `#3CA6A6` |
+|       4 | Blu zaffiro     | `#4778C7` |
+|       5 | Viola           | `#7955B5` |
+|       6 | Magenta         | `#B6539A` |
+|       7 | Rosso cremisi   | `#C94A4A` |
+|       8 | Arancio ardente | `#E47735` |
+|       9 | Oro leggendario | `#E0B83F` |
 
 ## Completamento e compatibilità
 
