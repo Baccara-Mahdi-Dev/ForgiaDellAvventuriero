@@ -24,7 +24,7 @@
 - `inventory`: righe dello zaino, composte da ID del catalogo e quantità.
 - `coins`: monete di rame, argento, electrum, oro e platino.
 - `equipment.json`: 166 armature, armi, strumenti da artigiano e oggetti SRD; pesi in kg e distanze in m.
-- `magic-equipment.json`: 249 oggetti magici e varianti SRD in italiano, uniti al catalogo base tramite `manifest.additionalEquipment`.
+- `magic-equipment.json`: 244 oggetti magici e varianti SRD in italiano, uniti al catalogo base tramite `manifest.additionalEquipment`.
 - `EquipmentItem.magical`, `rarity`, `requiresAttunement`: natura magica, rarità e requisito di sintonia.
 - `EquipmentItem.effects`, `spellGrants`, `charges`: effetti attivi/passivi, incantesimi concessi e risorse consumabili.
 - `revision`, `updatedAt`: controllo e ordinamento dell'autosalvataggio.

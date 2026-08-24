@@ -194,7 +194,7 @@ CA = base armatura + Destrezza consentita + 2 se usa scudo
 
 ### Oggetti magici, Homebrew e sintonia
 
-Il catalogo base di `equipment.json` viene unito ai 249 record di `magic-equipment.json`; gli oggetti creati dall'utente in `homebrewEquipment` vengono poi aggiunti dallo store allo stesso insieme. Non esistono inventari o motori paralleli: catalogo SRD e Homebrew usano `EquipmentItem`, `InventoryEntry`, equipaggiamento, calcoli e persistenza comuni.
+Il catalogo base di `equipment.json` viene unito ai 244 record di `magic-equipment.json`; gli oggetti creati dall'utente in `homebrewEquipment` vengono poi aggiunti dallo store allo stesso insieme. Non esistono inventari o motori paralleli: catalogo SRD e Homebrew usano `EquipmentItem`, `InventoryEntry`, equipaggiamento, calcoli e persistenza comuni.
 
 L'editor Homebrew permette un solo tipo compatibile tra arma, armatura, scudo, oggetto, strumento o altro. In base al tipo mostra soltanto i campi pertinenti. Può inoltre configurare:
 

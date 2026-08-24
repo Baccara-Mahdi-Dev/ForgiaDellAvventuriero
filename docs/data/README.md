@@ -52,7 +52,7 @@ Il manifest è il punto di ingresso del catalogo.
   },
   "additionalEquipment": {
     "file": "magic-equipment.json",
-    "count": 249
+    "count": 244
   },
   "sources": ["PHB", "XGE", "TCE", "WGE", "SRD"]
 }
@@ -434,7 +434,7 @@ Il bonus di attacco è modificatore della caratteristica più competenza se l'ar
 
 ## `magic-equipment.json`
 
-Contiene 249 oggetti magici e varianti SRD in italiano. Usa la stessa interfaccia `EquipmentItem` di `equipment.json`, con campi aggiuntivi opzionali per le meccaniche magiche:
+Contiene 244 oggetti magici e varianti SRD in italiano. Usa la stessa interfaccia `EquipmentItem` di `equipment.json`, con campi aggiuntivi opzionali per le meccaniche magiche:
 
 ```json
 {

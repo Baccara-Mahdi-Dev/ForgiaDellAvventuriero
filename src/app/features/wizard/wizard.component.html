@@ -691,15 +691,19 @@
                 <p class="kicker">Protezione</p>
                 <h2>Armatura indossata</h2>
               </div>
-              <label class="shield-switch">
-                <input
-                  type="checkbox"
-                  [checked]="store.draft().shieldEquipped"
-                  [disabled]="!shieldAllowed"
-                  (change)="setShield($any($event.target).checked)"
-                />
-                <span>Scudo</span>
-              </label>
+            </div>
+            <div class="shield-add-row">
+              <div>
+                <strong>Scudo</strong>
+                <small>Aggiungilo allo zaino senza modificare le armi impugnate.</small>
+              </div>
+              <button
+                class="shield-add"
+                (click)="addShieldToBackpack()"
+                aria-label="Aggiungi uno scudo allo zaino"
+              >
+                <span aria-hidden="true">+</span> Aggiungi
+              </button>
             </div>
             @if (!store.selectedClass()?.armorProficiencies?.includes('shield')) {
               <small class="proficiency-note"
@@ -717,8 +721,10 @@
             </label>
             <div class="armor-groups">
               @for (group of armorGroups; track group.name) {
-                <div class="armor-group">
-                  <h3>{{ group.name }}</h3>
+                <details class="armor-group" open>
+                  <summary class="armor-group-summary">
+                    <h3>{{ group.name }}</h3>
+                  </summary>
                   <div class="armor-options">
                     @for (item of group.items; track item.id) {
                       <button
@@ -751,7 +757,7 @@
                       </button>
                     }
                   </div>
-                </div>
+                </details>
               }
             </div>
           </div>
@@ -823,51 +829,71 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @for (item of equipmentItems; track item.id) {
-                    <tr>
-                      <td>
-                        <strong>{{ item.name }}</strong>
-                        @if (item.category === 'weapon') {
-                          <small
-                            >{{ item.damage }} {{ item.damageType }} ·
-                            {{ item.properties?.join(', ') }}</small
-                          >
-                        }
-                        @if (item.magical) {
-                          <small class="magic-meta"
-                            >{{ itemRarity(item)
-                            }}<span>{{ item.requiresAttunement ? ' · Sintonia' : '' }}</span></small
-                          >
-                        }
-                        @if (item.description) {
-                          <small class="item-description">{{ item.description }}</small>
-                        }
-                      </td>
-                      <td>
-                        {{
-                          item.category === 'weapon'
-                            ? 'Arma'
-                            : item.category === 'armor'
-                              ? 'Armatura'
-                              : item.category === 'artisan-tool'
-                                ? 'Strumento'
-                                : 'Oggetto'
-                        }}
-                      </td>
-                      <td>{{ item.cost }}</td>
-                      <td>{{ item.weightKg }} kg</td>
-                      @if (equipmentCategory() === 'magic') {
-                        <td>{{ itemRarity(item) || 'Senza rarità' }}</td>
-                        <td>
-                          <span class="boolean-value" [class.is-true]="item.requiresAttunement">{{
-                            item.requiresAttunement ? 'Sì' : 'No'
-                          }}</span>
+                  @for (group of equipmentGroups; track group.name) {
+                    @if (group.name) {
+                      <tr class="equipment-group-row">
+                        <td [attr.colspan]="equipmentCategory() === 'magic' ? 7 : 5">
+                          {{ group.name }} <span>({{ group.items.length }})</span>
                         </td>
-                      }
-                      <td>
-                        <button class="add-item" (click)="addItem(item.id)">+ Aggiungi</button>
-                      </td>
-                    </tr>
+                      </tr>
+                    }
+                    @for (item of group.items; track item.id) {
+                      <tr>
+                        <td>
+                          <strong>{{ item.name }}</strong>
+                          @if (item.category === 'weapon') {
+                            @if (magicWeaponOptions(item).length) {
+                              <small class="magic-meta"
+                                >Scegli l’arma base durante l’aggiunta</small
+                              >
+                            } @else {
+                              <small
+                                >{{ effectiveWeapon(item).damage }}
+                                {{ effectiveWeapon(item).damageType }} ·
+                                {{ effectiveWeapon(item).properties?.join(', ') }}</small
+                              >
+                            }
+                          }
+                          @if (item.magical) {
+                            <small class="magic-meta"
+                              >{{ itemRarity(item)
+                              }}<span>{{
+                                item.requiresAttunement ? ' · Sintonia' : ''
+                              }}</span></small
+                            >
+                          }
+                          @if (item.description) {
+                            <small class="item-description">{{ item.description }}</small>
+                          }
+                        </td>
+                        <td>
+                          {{
+                            item.category === 'weapon'
+                              ? 'Arma'
+                              : item.category === 'armor'
+                                ? 'Armatura'
+                                : item.category === 'artisan-tool'
+                                  ? 'Strumento'
+                                  : 'Oggetto'
+                          }}
+                        </td>
+                        <td>{{ item.cost }}</td>
+                        <td>{{ item.weightKg }} kg</td>
+                        @if (equipmentCategory() === 'magic') {
+                          <td>{{ itemRarity(item) || 'Senza rarità' }}</td>
+                          <td>
+                            <span class="boolean-value" [class.is-true]="item.requiresAttunement">{{
+                              item.requiresAttunement ? 'Sì' : 'No'
+                            }}</span>
+                          </td>
+                        }
+                        <td>
+                          <button class="add-item" (click)="addCatalogItem(item)">
+                            + Aggiungi
+                          </button>
+                        </td>
+                      </tr>
+                    }
                   } @empty {
                     <tr>
                       <td
@@ -995,6 +1021,18 @@
                                         Due mani
                                       </label>
                                     }
+                                    <label class="bonus-level">
+                                      Livello
+                                      <select
+                                        [ngModel]="entry.equipped.bonus ?? 0"
+                                        (ngModelChange)="setWeaponBonus(entry.index, $event)"
+                                      >
+                                        <option value="0">+0</option>
+                                        <option value="1">+1</option>
+                                        <option value="2">+2</option>
+                                        <option value="3">+3</option>
+                                      </select>
+                                    </label>
                                     <button
                                       class="unequip-weapon"
                                       (click)="unequipWeapon(entry.index)"
@@ -1002,13 +1040,17 @@
                                       Riponi
                                     </button>
                                     <span class="weapon-result">
-                                      Attacco <strong>{{ weaponAttack(entry.item) }}</strong> ·
-                                      Danni
+                                      Attacco
+                                      <strong>{{
+                                        weaponAttack(entry.item, entry.equipped.bonus ?? 0)
+                                      }}</strong>
+                                      · Danni
                                       <strong>{{
                                         weaponDamageWithLoadout(
                                           entry.item,
                                           entry.equipped.hands,
-                                          entry.index === 1
+                                          entry.index === 1,
+                                          entry.equipped.bonus ?? 0
                                         )
                                       }}</strong>
                                     </span>
@@ -1035,13 +1077,28 @@
                                     : 'Nello zaino'
                                 }}
                               </span>
+                              @if (store.draft().equippedShieldId === row.item.id) {
+                                <label class="bonus-level">
+                                  Livello
+                                  <select
+                                    [ngModel]="shieldLevelFor(row.item)"
+                                    (ngModelChange)="setShieldLevel(row.item, $event)"
+                                  >
+                                    <option value="0">+0</option>
+                                    <option value="1">+1</option>
+                                    <option value="2">+2</option>
+                                    <option value="3">+3</option>
+                                  </select>
+                                </label>
+                              }
                               <button
                                 class="equip-weapon"
                                 [class.unequip-weapon]="
                                   store.draft().equippedShieldId === row.item.id
                                 "
                                 [disabled]="
-                                  store.draft().equippedShieldId !== row.item.id && !shieldAllowed
+                                  store.draft().equippedShieldId !== row.item.id &&
+                                  !canEquipShield(row.item)
                                 "
                                 (click)="
                                   store.draft().equippedShieldId === row.item.id
@@ -1057,7 +1114,23 @@
                               </button>
                             </div>
                           } @else if (store.draft().equippedArmorId === row.item.id) {
-                            <span class="equipped-tag">Indossata</span>
+                            <div class="shield-loadout">
+                              <span class="equipped-tag">Indossata</span>
+                              @if (!row.item.magical) {
+                                <label class="bonus-level">
+                                  Livello
+                                  <select
+                                    [ngModel]="armorLevelFor(row.item)"
+                                    (ngModelChange)="setArmorLevel(row.item, $event)"
+                                  >
+                                    <option value="0">+0</option>
+                                    <option value="1">+1</option>
+                                    <option value="2">+2</option>
+                                    <option value="3">+3</option>
+                                  </select>
+                                </label>
+                              }
+                            </div>
                           } @else {
                             <button
                               class="equip-weapon"
@@ -1154,6 +1227,16 @@
               [spells]="store.spells"
               (saved)="saveHomebrewEquipment($event)"
               (cancelled)="closeHomebrewEquipmentWizard()"
+            />
+          }
+
+          @if (magicWeaponChoice(); as magicWeapon) {
+            <app-magic-weapon-base-dialog
+              [item]="magicWeapon"
+              [options]="magicWeaponOptions(magicWeapon)"
+              [selectedId]="store.draft().magicWeaponBaseIds?.[magicWeapon.id] ?? ''"
+              (selected)="selectMagicWeaponBase($event)"
+              (cancelled)="closeMagicWeaponChoice()"
             />
           }
 
@@ -1976,7 +2059,10 @@
                     <li>
                       {{ row.item.name }} × {{ row.entry.quantity }}
                       @if (row.item.category === 'weapon') {
-                        <small>· {{ weaponAttack(row.item) }} · {{ weaponDamage(row.item) }}</small>
+                        <small
+                          >· {{ weaponAttack(row.item, equippedWeaponBonus(row.item)) }} ·
+                          {{ weaponDamage(row.item, equippedWeaponBonus(row.item)) }}</small
+                        >
                       }
                     </li>
                   }
@@ -2185,15 +2271,16 @@
         }
       </div>
       <div class="mini-stats">
-        <span
-          >CA <strong>{{ store.derived().armorClass }}</strong></span
-        ><span
-          >PF <strong>{{ store.derived().maxHp }}</strong></span
-        ><span
-          >COMP <strong>+{{ store.derived().proficiency }}</strong></span
-        ><span
-          >PERCEZIONE PASSIVA <strong>{{ store.derived().passivePerception }}</strong></span
-        >
+        <span>
+          CA <strong>{{ store.derived().armorClass }}</strong>
+        </span>
+        <span>
+          PF <strong>{{ store.derived().maxHp }}</strong>
+        </span>
+        <span>
+          COMP <strong>+{{ store.derived().proficiency }}</strong>
+        </span>
+        <span>PERCEZIONE PASSIVA <strong>{{ store.derived().passivePerception }}</strong></span>
       </div>
     </div>
     <small>La scheda si aggiorna mentre scegli.</small>

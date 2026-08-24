@@ -13,7 +13,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -30,7 +33,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi spada), rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -53,7 +59,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi ascia o spada), rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -76,7 +85,10 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -101,7 +113,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -118,7 +133,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -143,7 +161,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [
       {
         "id": "effect-punteggio-di-caratteristica",
@@ -170,7 +191,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -187,7 +211,10 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Anello, leggendario",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -212,7 +239,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Anello, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [
       {
         "id": "effect-resistenza-freddo",
@@ -239,7 +269,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Anello, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -256,7 +289,10 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Anello, leggendario (richiede sintonia)",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [
       {
         "id": "effect-resistenza-acido",
@@ -374,7 +410,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Anello, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -391,7 +430,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Anello, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -416,7 +458,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -438,7 +483,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -455,7 +503,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -472,7 +523,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -489,7 +543,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, molto raro (richiede sintonia in un luogo",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "attunementRequirements": "un luogo",
     "charges": {
@@ -526,7 +583,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -548,7 +608,10 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Anello, leggendario (richiede sintonia)",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": []
   },
   {
@@ -565,7 +628,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Anello, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -601,7 +667,10 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Anello, leggendario (richiede sintonia)",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": []
   },
   {
@@ -618,7 +687,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [
       {
         "id": "effect-protezione",
@@ -652,7 +724,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -669,7 +744,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, molto raro (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -686,7 +764,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Anello, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -703,7 +784,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, molto raro (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -728,7 +812,10 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Anello, leggendario (richiede sintonia)",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": []
   },
   {
@@ -745,7 +832,10 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": []
   },
   {
@@ -762,7 +852,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (arco lungo), molto rara (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "baseEquipmentId": "longbow",
     "damage": "1d8",
@@ -770,132 +863,6 @@
     "proficiency": "martial",
     "ranged": true,
     "properties": []
-  },
-  {
-    "id": "magic-arma-1",
-    "name": "Arma +1",
-    "description": "rara (+3) Il personaggio ottiene un bonus di ai tiri per colpire e ai tiri per i danni effettuati con quest'arma magica. Il bonus è determinato dalla rarità dell'arma.",
-    "kind": "weapon",
-    "category": "weapon",
-    "group": "Oggetti magici SRD",
-    "cost": "—",
-    "weightKg": 0,
-    "source": "SRD",
-    "magical": true,
-    "rarity": "rare",
-    "requiresAttunement": false,
-    "specialProperties": "Arma (qualsiasi), non comune (+1), rara (+2) o molto",
-    "tags": ["magico", "rare"],
-    "effects": [
-      {
-        "id": "effect-bonus-agli-attacchi",
-        "name": "Bonus agli attacchi",
-        "type": "attack-bonus",
-        "activation": "passive",
-        "value": 1,
-        "requiresEquipped": true
-      },
-      {
-        "id": "effect-bonus-ai-danni",
-        "name": "Bonus ai danni",
-        "type": "damage-bonus",
-        "activation": "passive",
-        "value": 1,
-        "requiresEquipped": true
-      }
-    ],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": [],
-    "attackBonus": 1,
-    "damageBonus": 1
-  },
-  {
-    "id": "magic-arma-2",
-    "name": "Arma +2",
-    "description": "rara (+3) Il personaggio ottiene un bonus di ai tiri per colpire e ai tiri per i danni effettuati con quest'arma magica. Il bonus è determinato dalla rarità dell'arma.",
-    "kind": "weapon",
-    "category": "weapon",
-    "group": "Oggetti magici SRD",
-    "cost": "—",
-    "weightKg": 0,
-    "source": "SRD",
-    "magical": true,
-    "rarity": "rare",
-    "requiresAttunement": false,
-    "specialProperties": "Arma (qualsiasi), non comune (+1), rara (+2) o molto",
-    "tags": ["magico", "rare"],
-    "effects": [
-      {
-        "id": "effect-bonus-agli-attacchi",
-        "name": "Bonus agli attacchi",
-        "type": "attack-bonus",
-        "activation": "passive",
-        "value": 2,
-        "requiresEquipped": true
-      },
-      {
-        "id": "effect-bonus-ai-danni",
-        "name": "Bonus ai danni",
-        "type": "damage-bonus",
-        "activation": "passive",
-        "value": 2,
-        "requiresEquipped": true
-      }
-    ],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": [],
-    "attackBonus": 2,
-    "damageBonus": 2
-  },
-  {
-    "id": "magic-arma-3",
-    "name": "Arma +3",
-    "description": "rara (+3) Il personaggio ottiene un bonus di ai tiri per colpire e ai tiri per i danni effettuati con quest'arma magica. Il bonus è determinato dalla rarità dell'arma.",
-    "kind": "weapon",
-    "category": "weapon",
-    "group": "Oggetti magici SRD",
-    "cost": "—",
-    "weightKg": 0,
-    "source": "SRD",
-    "magical": true,
-    "rarity": "rare",
-    "requiresAttunement": false,
-    "specialProperties": "Arma (qualsiasi), non comune (+1), rara (+2) o molto",
-    "tags": ["magico", "rare"],
-    "effects": [
-      {
-        "id": "effect-bonus-agli-attacchi",
-        "name": "Bonus agli attacchi",
-        "type": "attack-bonus",
-        "activation": "passive",
-        "value": 3,
-        "requiresEquipped": true
-      },
-      {
-        "id": "effect-bonus-ai-danni",
-        "name": "Bonus ai danni",
-        "type": "damage-bonus",
-        "activation": "passive",
-        "value": 3,
-        "requiresEquipped": true
-      }
-    ],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": [],
-    "attackBonus": 3,
-    "damageBonus": 3
   },
   {
     "id": "magic-arma-spietata",
@@ -911,7 +878,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi), rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -923,174 +893,49 @@
   {
     "id": "magic-armastura-demoniaca",
     "name": "Armastura demoniaca",
-    "description": "(richiede sintonia) Mentre il personaggio indossa questa armatura, ottiene un bonus di +1 alla CA ed è in grado di comprendere e parlare l'Abissale. Inoltre, i guanti d'arme artigliati dell'armatura trasformano i colpi senz'armi effettuati con le mani in armi magiche che infliggono 1d8 danni taglienti, con un bonus di +1 ai Maledizione. tiri per colpire e ai tiri per i danni. Una volta indossata quest'armatura rimuovi maledetta, il personaggio non può togliersela a meno maledizione che non sia bersagliato da un incantesimo o una magia analoga. Mentre l'indossa, il personaggio subisce svantaggio ai tiri per colpire contro i demoni e ai tiri salvezza contro i loro incantesimi e le loro abilità speciali.",
-    "kind": "weapon",
-    "category": "weapon",
+    "description": "Mentre il personaggio indossa questa armatura, ottiene un bonus di +1 alla CA ed è in grado di comprendere e parlare l'Abissale. Inoltre, i guanti d'arme artigliati dell'armatura trasformano i colpi senz'armi effettuati con le mani in armi magiche che infliggono 1d8 danni taglienti, con un bonus di +1 ai Maledizione. tiri per colpire e ai tiri per i danni. Una volta indossata quest'armatura rimuovi maledetta, il personaggio non può togliersela a meno maledizione che non sia bersagliato da un incantesimo o una magia analoga. Mentre l'indossa, il personaggio subisce svantaggio ai tiri per colpire contro i demoni e ai tiri salvezza contro i loro incantesimi e le loro abilità speciali.",
+    "kind": "armor",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
     "source": "SRD",
     "magical": true,
     "rarity": "very-rare",
-    "requiresAttunement": false,
+    "requiresAttunement": true,
     "specialProperties": "Armatura (armatura a piastre), molto rara",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": []
-  },
-  {
-    "id": "magic-armatura-1",
-    "name": "Armatura +1",
-    "description": "molto rara (+2) o leggendaria (+3) Il personaggio che indossa quest'armatura ottiene un bonus alla CA determinato dalla sua rarità.",
-    "kind": "weapon",
-    "category": "weapon",
-    "group": "Oggetti magici SRD",
-    "cost": "—",
-    "weightKg": 0,
-    "source": "SRD",
-    "magical": true,
-    "rarity": "rare",
-    "requiresAttunement": false,
-    "specialProperties": "Armatura (leggera, media o pesante), rara (+1),",
-    "tags": ["magico", "rare"],
-    "effects": [
-      {
-        "id": "effect-bonus-agli-attacchi",
-        "name": "Bonus agli attacchi",
-        "type": "attack-bonus",
-        "activation": "passive",
-        "value": 1,
-        "requiresEquipped": true
-      },
-      {
-        "id": "effect-bonus-ai-danni",
-        "name": "Bonus ai danni",
-        "type": "damage-bonus",
-        "activation": "passive",
-        "value": 1,
-        "requiresEquipped": true
-      }
-    ],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": [],
-    "attackBonus": 1,
-    "damageBonus": 1
-  },
-  {
-    "id": "magic-armatura-2",
-    "name": "Armatura +2",
-    "description": "molto rara (+2) o leggendaria (+3) Il personaggio che indossa quest'armatura ottiene un bonus alla CA determinato dalla sua rarità.",
-    "kind": "weapon",
-    "category": "weapon",
-    "group": "Oggetti magici SRD",
-    "cost": "—",
-    "weightKg": 0,
-    "source": "SRD",
-    "magical": true,
-    "rarity": "rare",
-    "requiresAttunement": false,
-    "specialProperties": "Armatura (leggera, media o pesante), rara (+1),",
-    "tags": ["magico", "rare"],
-    "effects": [
-      {
-        "id": "effect-bonus-agli-attacchi",
-        "name": "Bonus agli attacchi",
-        "type": "attack-bonus",
-        "activation": "passive",
-        "value": 2,
-        "requiresEquipped": true
-      },
-      {
-        "id": "effect-bonus-ai-danni",
-        "name": "Bonus ai danni",
-        "type": "damage-bonus",
-        "activation": "passive",
-        "value": 2,
-        "requiresEquipped": true
-      }
-    ],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": [],
-    "attackBonus": 2,
-    "damageBonus": 2
-  },
-  {
-    "id": "magic-armatura-3",
-    "name": "Armatura +3",
-    "description": "molto rara (+2) o leggendaria (+3) Il personaggio che indossa quest'armatura ottiene un bonus alla CA determinato dalla sua rarità.",
-    "kind": "weapon",
-    "category": "weapon",
-    "group": "Oggetti magici SRD",
-    "cost": "—",
-    "weightKg": 0,
-    "source": "SRD",
-    "magical": true,
-    "rarity": "rare",
-    "requiresAttunement": false,
-    "specialProperties": "Armatura (leggera, media o pesante), rara (+1),",
-    "tags": ["magico", "rare"],
-    "effects": [
-      {
-        "id": "effect-bonus-agli-attacchi",
-        "name": "Bonus agli attacchi",
-        "type": "attack-bonus",
-        "activation": "passive",
-        "value": 3,
-        "requiresEquipped": true
-      },
-      {
-        "id": "effect-bonus-ai-danni",
-        "name": "Bonus ai danni",
-        "type": "damage-bonus",
-        "activation": "passive",
-        "value": 3,
-        "requiresEquipped": true
-      }
-    ],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": [],
-    "attackBonus": 3,
-    "damageBonus": 3
+    "spellGrants": [],
+    "baseEquipmentId": "plate",
+    "armorType": "heavy",
+    "armorClass": 19,
+    "dexterityBonus": "none",
+    "strengthRequirement": 15,
+    "stealthDisadvantage": true
   },
   {
     "id": "magic-armatura-a-piastre-della-forma-eterea",
     "name": "Armatura a piastre della forma eterea",
-    "description": "(richiede sintonia) Finché il personaggio indossa questa armatura, può usare un'azione per pronunciarne la parola forma eterea d'ordine e ottenere gli effetti dell'incantesimo che dura per 10 minuti, finché non toglie l'armatura o finché non usa un'azione per pronunciare di nuovo la sua parola d'ordine. Questa proprietà dell'armatura non può essere riutilizzata fino all'alba successiva.",
-    "kind": "weapon",
-    "category": "weapon",
+    "description": "Finché il personaggio indossa questa armatura, può usare un'azione per pronunciarne la parola forma eterea d'ordine e ottenere gli effetti dell'incantesimo che dura per 10 minuti, finché non toglie l'armatura o finché non usa un'azione per pronunciare di nuovo la sua parola d'ordine. Questa proprietà dell'armatura non può essere riutilizzata fino all'alba successiva.",
+    "kind": "armor",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
     "source": "SRD",
     "magical": true,
     "rarity": "legendary",
-    "requiresAttunement": false,
+    "requiresAttunement": true,
     "specialProperties": "Armatura (armatura a piastre), leggendaria",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": [],
     "spellGrants": [
       {
         "id": "magic-armatura-a-piastre-della-forma-eterea-etherealness",
@@ -1098,14 +943,20 @@
         "usage": "per-day",
         "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "baseEquipmentId": "plate",
+    "armorType": "heavy",
+    "armorClass": 18,
+    "dexterityBonus": "none",
+    "strengthRequirement": 15,
+    "stealthDisadvantage": true
   },
   {
-    "id": "magic-armatura-adamantina",
-    "name": "Armatura adamantina",
+    "id": "magic-armatura-adamantina-media",
+    "name": "Armatura adamantina (media)",
     "description": "Quest'armatura include dei rinforzi di adamantio, uno dei materiali più duri in assoluto. Tutti i colpi critici che un personaggio subisce mentre indossa questa armatura diventano colpi normali.",
-    "kind": "weapon",
-    "category": "weapon",
+    "kind": "armor",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
@@ -1113,22 +964,52 @@
     "magical": true,
     "rarity": "uncommon",
     "requiresAttunement": false,
-    "specialProperties": "Armatura (media o pesante, ma non di pelle), non comune",
-    "tags": ["magico", "uncommon"],
+    "specialProperties": "Armatura (corazza di scaglie), non comune",
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": []
+    "spellGrants": [],
+    "baseEquipmentId": "scale-mail",
+    "armorType": "medium",
+    "armorClass": 14,
+    "dexterityBonus": "max-2",
+    "stealthDisadvantage": true
+  },
+  {
+    "id": "magic-armatura-adamantina-pesante",
+    "name": "Armatura adamantina (pesante)",
+    "description": "Quest'armatura include dei rinforzi di adamantio, uno dei materiali più duri in assoluto. Tutti i colpi critici che un personaggio subisce mentre indossa questa armatura diventano colpi normali.",
+    "kind": "armor",
+    "category": "armor",
+    "group": "Oggetti magici SRD",
+    "cost": "—",
+    "weightKg": 0,
+    "source": "SRD",
+    "magical": true,
+    "rarity": "uncommon",
+    "requiresAttunement": false,
+    "specialProperties": "Armatura (armatura completa), non comune",
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
+    "effects": [],
+    "spellGrants": [],
+    "baseEquipmentId": "plate",
+    "armorType": "heavy",
+    "armorClass": 18,
+    "dexterityBonus": "none",
+    "strengthRequirement": 15,
+    "stealthDisadvantage": true
   },
   {
     "id": "magic-armatura-completa-nanica",
     "name": "Armatura completa nanica",
     "description": "Mentre il personaggio indossa quest'armatura, ottiene un bonus di +2 alla CA. Inoltre, se un effetto lo fa muovere sul terreno contro la sua volontà, il personaggio può usare la sua reazione per ridurre la distanza di cui viene mosso di un massimo di 3 metri.",
-    "kind": "weapon",
-    "category": "weapon",
+    "kind": "armor",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
@@ -1137,83 +1018,144 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Armatura (armatura a piastre), molto rara",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": []
+    "spellGrants": [],
+    "baseEquipmentId": "plate",
+    "armorType": "heavy",
+    "armorClass": 20,
+    "dexterityBonus": "none",
+    "strengthRequirement": 15,
+    "stealthDisadvantage": true
   },
   {
     "id": "magic-armatura-dell-invulnerabilita",
     "name": "Armatura dell'invulnerabilità",
-    "description": "(richiede sintonia) Il personaggio che indossa questa armatura ottiene resistenza ai danni non magici. Inoltre, può usare un'azione per acquisire immunità ai danni non magici per 10 minuti o fino a quando smette di indossare l'armatura. Una volta usata, quest'azione speciale non può essere riutilizzata fino all'alba successiva.",
-    "kind": "weapon",
-    "category": "weapon",
+    "description": "Il personaggio che indossa questa armatura ottiene resistenza ai danni non magici. Inoltre, può usare un'azione per acquisire immunità ai danni non magici per 10 minuti o fino a quando smette di indossare l'armatura. Una volta usata, quest'azione speciale non può essere riutilizzata fino all'alba successiva.",
+    "kind": "armor",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
     "source": "SRD",
     "magical": true,
     "rarity": "legendary",
-    "requiresAttunement": false,
+    "requiresAttunement": true,
     "specialProperties": "Armatura (armatura a piastre), leggendaria",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": []
+    "spellGrants": [],
+    "baseEquipmentId": "plate",
+    "armorType": "heavy",
+    "armorClass": 18,
+    "dexterityBonus": "none",
+    "strengthRequirement": 15,
+    "stealthDisadvantage": true
   },
   {
-    "id": "magic-armatura-della-resistenza",
-    "name": "Armatura della resistenza",
-    "description": "(richiede sintonia) Il personaggio che indossa questa armatura ottiene resistenza a un tipo di danno che il GM sceglie d10 Tipo di danno d10 Tipo di danno o determina casualmente tra le opzioni sottostanti.",
-    "kind": "weapon",
-    "category": "weapon",
+    "id": "magic-armatura-della-resistenza-leggera",
+    "name": "Armatura della resistenza (leggera)",
+    "description": "Il personaggio che indossa questa armatura ottiene resistenza a un tipo di danno che il GM sceglie d10 Tipo di danno d10 Tipo di danno o determina casualmente tra le opzioni sottostanti.",
+    "kind": "armor",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
     "source": "SRD",
     "magical": true,
     "rarity": "rare",
-    "requiresAttunement": false,
-    "specialProperties": "Armatura (leggera, media o pesante), rara",
-    "tags": ["magico", "rare"],
+    "requiresAttunement": true,
+    "specialProperties": "Armatura (cuoio), rara",
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": []
+    "spellGrants": [],
+    "baseEquipmentId": "leather",
+    "armorType": "light",
+    "armorClass": 11,
+    "dexterityBonus": "full",
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "magic-armatura-della-resistenza-media",
+    "name": "Armatura della resistenza (media)",
+    "description": "Il personaggio che indossa questa armatura ottiene resistenza a un tipo di danno che il GM sceglie d10 Tipo di danno d10 Tipo di danno o determina casualmente tra le opzioni sottostanti.",
+    "kind": "armor",
+    "category": "armor",
+    "group": "Oggetti magici SRD",
+    "cost": "—",
+    "weightKg": 0,
+    "source": "SRD",
+    "magical": true,
+    "rarity": "rare",
+    "requiresAttunement": true,
+    "specialProperties": "Armatura (corazza di scaglie), rara",
+    "tags": [
+      "magico",
+      "rare"
+    ],
+    "effects": [],
+    "spellGrants": [],
+    "baseEquipmentId": "scale-mail",
+    "armorType": "medium",
+    "armorClass": 14,
+    "dexterityBonus": "max-2",
+    "stealthDisadvantage": true
+  },
+  {
+    "id": "magic-armatura-della-resistenza-pesante",
+    "name": "Armatura della resistenza (pesante)",
+    "description": "Il personaggio che indossa questa armatura ottiene resistenza a un tipo di danno che il GM sceglie d10 Tipo di danno d10 Tipo di danno o determina casualmente tra le opzioni sottostanti.",
+    "kind": "armor",
+    "category": "armor",
+    "group": "Oggetti magici SRD",
+    "cost": "—",
+    "weightKg": 0,
+    "source": "SRD",
+    "magical": true,
+    "rarity": "rare",
+    "requiresAttunement": true,
+    "specialProperties": "Armatura (armatura completa), rara",
+    "tags": [
+      "magico",
+      "rare"
+    ],
+    "effects": [],
+    "spellGrants": [],
+    "baseEquipmentId": "plate",
+    "armorType": "heavy",
+    "armorClass": 18,
+    "dexterityBonus": "none",
+    "strengthRequirement": 15,
+    "stealthDisadvantage": true
   },
   {
     "id": "magic-armatura-della-vulnerabilita",
     "name": "Armatura della vulnerabilità",
-    "description": "(richiede sintonia) Il personaggio che indossa quest'armatura ottiene resistenza a uno dei seguenti tipi di danno: contundente, perforante o tagliente. Il GM sceglie il tipo di danno o lo determina casualmente. Maledizione. Quest'armatura è maledetta, fatto identificare che viene rivelato solo quando su di essa viene lanciato l'incantesimo o quando il personaggio entra in sintonia con essa. Entrando in sintonia con l'armatura, il personaggio diventa rimuovi maledizione soggetto alla maledizione finché su di lui non viene lanciato l'incantesimo o un'altra magia simile; rimuovere l'armatura non pone termine alla maledizione. Finché è maledetto, il personaggio acquisisce vulnerabilità a due dei tre tipi di danno associati all'armatura (escludendo quello a cui conferisce resistenza).",
-    "kind": "weapon",
-    "category": "weapon",
+    "description": "Il personaggio che indossa quest'armatura ottiene resistenza a uno dei seguenti tipi di danno: contundente, perforante o tagliente. Il GM sceglie il tipo di danno o lo determina casualmente. Maledizione. Quest'armatura è maledetta, fatto identificare che viene rivelato solo quando su di essa viene lanciato l'incantesimo o quando il personaggio entra in sintonia con essa. Entrando in sintonia con l'armatura, il personaggio diventa rimuovi maledizione soggetto alla maledizione finché su di lui non viene lanciato l'incantesimo o un'altra magia simile; rimuovere l'armatura non pone termine alla maledizione. Finché è maledetto, il personaggio acquisisce vulnerabilità a due dei tre tipi di danno associati all'armatura (escludendo quello a cui conferisce resistenza).",
+    "kind": "armor",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
     "source": "SRD",
     "magical": true,
     "rarity": "rare",
-    "requiresAttunement": false,
+    "requiresAttunement": true,
     "specialProperties": "Armatura (armatura a piastre), rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": [],
     "spellGrants": [
       {
         "id": "magic-armatura-della-vulnerabilita-identify",
@@ -1227,14 +1169,20 @@
         "usage": "per-day",
         "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "baseEquipmentId": "plate",
+    "armorType": "heavy",
+    "armorClass": 18,
+    "dexterityBonus": "none",
+    "strengthRequirement": 15,
+    "stealthDisadvantage": true
   },
   {
     "id": "magic-armatura-di-cuoio-borchiato-incantata",
     "name": "Armatura di cuoio borchiato incantata",
     "description": "Mentre il personaggio indossa quest'armatura, ottiene un bonus di +1 alla CA. Può anche usare un'azione bonus per pronunciare la parola d'ordine dell'armatura e farle assumere l'aspetto di un normale capo di vestiario o di un altro tipo di armatura. Il personaggio può deciderne l'aspetto, inclusi il colore, lo stile e gli accessori, ma l'armatura mantiene il suo ingombro e il suo peso normali. L'aspetto illusorio permane finché la proprietà dell'armatura non viene utilizzata di nuovo o finché il personaggio non rimuove l'armatura.",
-    "kind": "weapon",
-    "category": "weapon",
+    "kind": "armor",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
@@ -1243,21 +1191,24 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Armatura (cuoio borchiato), rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": []
+    "spellGrants": [],
+    "baseEquipmentId": "studded-leather",
+    "armorType": "light",
+    "armorClass": 13,
+    "dexterityBonus": "full",
+    "stealthDisadvantage": false
   },
   {
-    "id": "magic-armatura-in-mithral",
-    "name": "Armatura in Mithral",
+    "id": "magic-armatura-in-mithral-media",
+    "name": "Armatura in Mithral (media)",
     "description": "Il mithral è un metallo flessibile e leggero. Un giaco di maglia o una corazza di piastre in mithral possono essere indossate sotto gli abiti normali. Se un'armatura normalmente impone svantaggio alle prove di Destrezza (Furtività) o prevede un requisito di Forza, la sua versione di mithral non fa né l'una né l'altra cosa.",
-    "kind": "weapon",
-    "category": "weapon",
+    "kind": "armor",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
@@ -1265,15 +1216,45 @@
     "magical": true,
     "rarity": "uncommon",
     "requiresAttunement": false,
-    "specialProperties": "Armatura (media o pesante, ma non di pelle), non comune",
-    "tags": ["magico", "uncommon"],
+    "specialProperties": "Armatura (giaco di maglia), non comune",
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": []
+    "spellGrants": [],
+    "baseEquipmentId": "chain-shirt",
+    "armorType": "medium",
+    "armorClass": 13,
+    "dexterityBonus": "max-2",
+    "stealthDisadvantage": false
+  },
+  {
+    "id": "magic-armatura-in-mithral-pesante",
+    "name": "Armatura in Mithral (pesante)",
+    "description": "Il mithral è un metallo flessibile e leggero. Un giaco di maglia o una corazza di piastre in mithral possono essere indossate sotto gli abiti normali. Se un'armatura normalmente impone svantaggio alle prove di Destrezza (Furtività) o prevede un requisito di Forza, la sua versione di mithral non fa né l'una né l'altra cosa.",
+    "kind": "armor",
+    "category": "armor",
+    "group": "Oggetti magici SRD",
+    "cost": "—",
+    "weightKg": 0,
+    "source": "SRD",
+    "magical": true,
+    "rarity": "uncommon",
+    "requiresAttunement": false,
+    "specialProperties": "Armatura (armatura completa), non comune",
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
+    "effects": [],
+    "spellGrants": [],
+    "baseEquipmentId": "plate",
+    "armorType": "heavy",
+    "armorClass": 18,
+    "dexterityBonus": "none",
+    "strengthRequirement": 15,
+    "stealthDisadvantage": true
   },
   {
     "id": "magic-ascia-del-berserker",
@@ -1289,7 +1270,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi ascia), rara (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -1312,7 +1296,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia con un incantatore)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "attunementRequirements": "un incantatore",
     "charges": {
@@ -1343,7 +1330,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Bacchetta, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -1365,7 +1355,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia con un incantatore)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "attunementRequirements": "un incantatore",
     "charges": {
@@ -1391,7 +1384,7 @@
   {
     "id": "magic-bacchetta-del-mago-da-guerra-1",
     "name": "Bacchetta del mago da guerra +1",
-    "description": "(+3) (richiede sintonia con un incantatore) Mentre il personaggio impugna questa bacchetta, riceve un bonus ai tiri per colpire con incantesimo determinato dalla rarità della bacchetta. Il personaggio può inoltre ignorare mezza copertura quando effettua un attacco con incantesimo.",
+    "description": "Mentre il personaggio impugna questa bacchetta, riceve un bonus di +1 ai tiri per colpire con incantesimo. Il personaggio può inoltre ignorare mezza copertura quando effettua un attacco con incantesimo.",
     "kind": "gear",
     "category": "adventuring-gear",
     "group": "Oggetti magici SRD",
@@ -1399,10 +1392,13 @@
     "weightKg": 0,
     "source": "SRD",
     "magical": true,
-    "rarity": "varies",
-    "requiresAttunement": false,
-    "specialProperties": "Bacchetta, non comune (+1), rara (+2) o molto rara",
-    "tags": ["magico", "varies"],
+    "rarity": "uncommon",
+    "requiresAttunement": true,
+    "specialProperties": "Bacchetta, non comune (+1)",
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [
       {
         "id": "effect-bonus-alla-classe-armatura",
@@ -1412,12 +1408,13 @@
         "value": 1,
         "requiresEquipped": true
       }
-    ]
+    ],
+    "attunementRequirements": "un incantatore"
   },
   {
     "id": "magic-bacchetta-del-mago-da-guerra-2",
     "name": "Bacchetta del mago da guerra +2",
-    "description": "(+3) (richiede sintonia con un incantatore) Mentre il personaggio impugna questa bacchetta, riceve un bonus ai tiri per colpire con incantesimo determinato dalla rarità della bacchetta. Il personaggio può inoltre ignorare mezza copertura quando effettua un attacco con incantesimo.",
+    "description": "Mentre il personaggio impugna questa bacchetta, riceve un bonus di +2 ai tiri per colpire con incantesimo. Il personaggio può inoltre ignorare mezza copertura quando effettua un attacco con incantesimo.",
     "kind": "gear",
     "category": "adventuring-gear",
     "group": "Oggetti magici SRD",
@@ -1425,10 +1422,13 @@
     "weightKg": 0,
     "source": "SRD",
     "magical": true,
-    "rarity": "varies",
-    "requiresAttunement": false,
-    "specialProperties": "Bacchetta, non comune (+1), rara (+2) o molto rara",
-    "tags": ["magico", "varies"],
+    "rarity": "rare",
+    "requiresAttunement": true,
+    "specialProperties": "Bacchetta, rara (+2)",
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [
       {
         "id": "effect-bonus-alla-classe-armatura",
@@ -1438,12 +1438,13 @@
         "value": 2,
         "requiresEquipped": true
       }
-    ]
+    ],
+    "attunementRequirements": "un incantatore"
   },
   {
     "id": "magic-bacchetta-del-mago-da-guerra-3",
     "name": "Bacchetta del mago da guerra +3",
-    "description": "(+3) (richiede sintonia con un incantatore) Mentre il personaggio impugna questa bacchetta, riceve un bonus ai tiri per colpire con incantesimo determinato dalla rarità della bacchetta. Il personaggio può inoltre ignorare mezza copertura quando effettua un attacco con incantesimo.",
+    "description": "Mentre il personaggio impugna questa bacchetta, riceve un bonus di +3 ai tiri per colpire con incantesimo. Il personaggio può inoltre ignorare mezza copertura quando effettua un attacco con incantesimo.",
     "kind": "gear",
     "category": "adventuring-gear",
     "group": "Oggetti magici SRD",
@@ -1451,10 +1452,13 @@
     "weightKg": 0,
     "source": "SRD",
     "magical": true,
-    "rarity": "varies",
-    "requiresAttunement": false,
-    "specialProperties": "Bacchetta, non comune (+1), rara (+2) o molto rara",
-    "tags": ["magico", "varies"],
+    "rarity": "very-rare",
+    "requiresAttunement": true,
+    "specialProperties": "Bacchetta, molto rara (+3)",
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [
       {
         "id": "effect-bonus-alla-classe-armatura",
@@ -1464,7 +1468,8 @@
         "value": 3,
         "requiresEquipped": true
       }
-    ]
+    ],
+    "attunementRequirements": "un incantatore"
   },
   {
     "id": "magic-bacchetta-della-metamorfosi",
@@ -1480,7 +1485,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, molto rara (richiede sintonia con un",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "attunementRequirements": "un",
     "charges": {
@@ -1511,7 +1519,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia con un incantatore)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "attunementRequirements": "un incantatore",
     "charges": {
@@ -1534,7 +1545,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "charges": {
       "maximum": 7,
@@ -1556,7 +1570,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, non comune (richiede sintonia con un",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "attunementRequirements": "un",
     "charges": {
@@ -1587,7 +1604,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia con un incantatore)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "attunementRequirements": "un incantatore",
     "charges": {
@@ -1610,7 +1630,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia con un incantatore)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "attunementRequirements": "un incantatore",
     "charges": {
@@ -1641,7 +1664,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "charges": {
       "maximum": 7,
@@ -1663,7 +1689,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Bacchetta, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -1693,7 +1722,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Bacchetta, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "charges": {
       "maximum": 7,
@@ -1723,7 +1755,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -1740,7 +1775,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, raro (richiede sintonia con un druido)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "attunementRequirements": "un druido",
     "baseEquipmentId": "",
@@ -1795,7 +1833,10 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Bastone, leggendario (richiede sintonia con un mago,",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "attunementRequirements": "un mago,",
     "baseEquipmentId": "",
@@ -1862,7 +1903,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, molto raro (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -1885,7 +1929,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, molto raro (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -1913,7 +1960,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, raro (richiede sintonia con un chierico,",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "attunementRequirements": "un chierico,",
     "baseEquipmentId": "",
@@ -1942,7 +1992,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, molto raro (richiede sintonia con un druido,",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [
       {
         "id": "effect-resistenza-fuoco",
@@ -2001,7 +2054,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, molto raro (richiede sintonia con un druido,",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [
       {
         "id": "effect-resistenza-freddo",
@@ -2066,7 +2122,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Bastone, non comune (richiede sintonia con un",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "attunementRequirements": "un",
     "baseEquipmentId": "",
@@ -2090,7 +2149,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, molto raro (richiede sintonia con un mago,",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "attunementRequirements": "un mago,",
     "baseEquipmentId": "",
@@ -2145,7 +2207,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, raro (richiede sintonia con un bardo,",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "attunementRequirements": "un bardo,",
     "baseEquipmentId": "",
@@ -2188,7 +2253,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, raro (richiede sintonia con un bardo,",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "attunementRequirements": "un bardo,",
     "baseEquipmentId": "",
@@ -2226,7 +2294,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, raro (richiede sintonia con un bardo,",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "attunementRequirements": "un bardo,",
     "baseEquipmentId": "",
@@ -2263,7 +2334,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -2280,7 +2354,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -2305,7 +2382,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -2322,7 +2402,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -2339,7 +2422,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -2356,7 +2442,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -2373,7 +2462,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -2390,7 +2482,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -2407,7 +2502,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -2424,7 +2522,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [
       {
         "id": "effect-difesa-senza-armatura",
@@ -2451,7 +2552,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -2468,7 +2572,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -2485,7 +2592,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -2502,7 +2612,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -2533,7 +2646,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -2550,7 +2666,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -2575,7 +2694,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -2592,7 +2714,10 @@
     "rarity": "varies",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, rarità variabile (richiede sintonia)",
-    "tags": ["magico", "varies"],
+    "tags": [
+      "magico",
+      "varies"
+    ],
     "effects": []
   },
   {
@@ -2609,7 +2734,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [
       {
         "id": "effect-resistenza-veleno",
@@ -2636,7 +2764,10 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -2667,7 +2798,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -2684,7 +2818,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -2709,32 +2846,38 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia con un",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "attunementRequirements": "un"
   },
   {
     "id": "magic-corazza-di-scaglie-di-drago",
     "name": "Corazza di scaglie di drago",
-    "description": "(richiede sintonia) La corazza di scaglie di drago è ricavata dalle scaglie di un tipo di drago. A volte i draghi raccolgono le loro scaglie cadute e ne fanno dono a un umanoide. Altre volte i cacciatori scuoiano accuratamente i draghi uccisi e ne conservano le pelli. In entrambi i casi, la corazza di scaglie di drago è un oggetto estremamente pregiato. Quando indossa quest'armatura, il personaggio ottiene un bonus di +1 alla CA, vantaggio ai tiri salvezza contro Presenza terrificante e il soffio dei draghi, e resistenza a un tipo di danno determinato dal tipo di scaglie da cui è composta l'armatura (vedi la tabella). Con un'azione, il personaggio può inoltre concentrare i suoi sensi e percepire magicamente la distanza e la direzione del drago più vicino dello stesso tipo dell'armatura, entro un raggio di 45 km. Una volta usata, non può essere riutilizzata fino Drago Resistenza Drago Resistenza all'alba successiva.",
-    "kind": "weapon",
-    "category": "weapon",
+    "description": "La corazza di scaglie di drago è ricavata dalle scaglie di un tipo di drago. A volte i draghi raccolgono le loro scaglie cadute e ne fanno dono a un umanoide. Altre volte i cacciatori scuoiano accuratamente i draghi uccisi e ne conservano le pelli. In entrambi i casi, la corazza di scaglie di drago è un oggetto estremamente pregiato. Quando indossa quest'armatura, il personaggio ottiene un bonus di +1 alla CA, vantaggio ai tiri salvezza contro Presenza terrificante e il soffio dei draghi, e resistenza a un tipo di danno determinato dal tipo di scaglie da cui è composta l'armatura (vedi la tabella). Con un'azione, il personaggio può inoltre concentrare i suoi sensi e percepire magicamente la distanza e la direzione del drago più vicino dello stesso tipo dell'armatura, entro un raggio di 45 km. Una volta usata, non può essere riutilizzata fino Drago Resistenza Drago Resistenza all'alba successiva.",
+    "kind": "armor",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
     "source": "SRD",
     "magical": true,
     "rarity": "very-rare",
-    "requiresAttunement": false,
+    "requiresAttunement": true,
     "specialProperties": "Armatura (corazza a scaglie), molto rara",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": []
+    "spellGrants": [],
+    "baseEquipmentId": "scale-mail",
+    "armorType": "medium",
+    "armorClass": 14,
+    "dexterityBonus": "max-2",
+    "stealthDisadvantage": true
   },
   {
     "id": "magic-corda-intralciante",
@@ -2750,7 +2893,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -2767,7 +2913,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -2784,7 +2933,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro (ottone o argento),",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -2801,7 +2953,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -2818,7 +2973,10 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -2849,7 +3007,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "charges": {
       "maximum": 36,
@@ -2871,13 +3032,16 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
     "id": "magic-difensiva",
     "name": "Difensiva",
-    "description": "(richiede sintonia) Il personaggio ottiene un bonus di +3 ai tiri per colpire e ai tiri per i danni effettuati con quest'arma magica. La prima volta in ogni suo turno in cui attacca con quest'arma, il personaggio può trasferire tutto il bonus dell'arma o parte di esso alla propria Classe Armatura, anziché usarlo negli attacchi effettuati in quel turno. Potrebbe, per esempio, ridurre il bonus ai tiri per colpire e a quelli per i danni a +1 e ottenere un bonus di +2 alla CA. I bonus modificati restano in vigore fino all'inizio del turno successivo del personaggio, che deve però impugnare l'arma per ottenere il bonus alla CA.",
+    "description": "Il personaggio ottiene un bonus di +3 ai tiri per colpire e ai tiri per i danni effettuati con quest'arma magica. La prima volta in ogni suo turno in cui attacca con quest'arma, il personaggio può trasferire tutto il bonus dell'arma o parte di esso alla propria Classe Armatura, anziché usarlo negli attacchi effettuati in quel turno. Potrebbe, per esempio, ridurre il bonus ai tiri per colpire e a quelli per i danni a +1 e ottenere un bonus di +2 alla CA. I bonus modificati restano in vigore fino all'inizio del turno successivo del personaggio, che deve però impugnare l'arma per ottenere il bonus alla CA.",
     "kind": "weapon",
     "category": "weapon",
     "group": "Oggetti magici SRD",
@@ -2886,9 +3050,12 @@
     "source": "SRD",
     "magical": true,
     "rarity": "legendary",
-    "requiresAttunement": false,
+    "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), leggendaria",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -2911,7 +3078,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -2941,7 +3111,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -2972,7 +3145,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [
       {
         "id": "effect-resistenza-fuoco",
@@ -3013,7 +3189,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -3056,7 +3235,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -3073,7 +3255,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -3090,7 +3275,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [
       {
         "id": "effect-punteggio-di-caratteristica",
@@ -3117,7 +3305,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -3142,7 +3333,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -3159,7 +3353,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -3176,7 +3373,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -3193,7 +3393,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -3215,7 +3418,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -3237,7 +3443,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -3262,7 +3471,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Arma (freccia), molto rara",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -3285,7 +3497,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "charges": {
       "maximum": 50,
@@ -3307,7 +3522,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -3329,7 +3547,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -3344,8 +3565,8 @@
     "id": "magic-giaco-di-maglia-elfico",
     "name": "Giaco di maglia elfico",
     "description": "Quando il personaggio indossa quest'armatura, ottiene un bonus di +1 alla CA ed è considerato competente nell'uso di quest'armatura anche se è privo di competenza nell'uso delle armature medie.",
-    "kind": "weapon",
-    "category": "weapon",
+    "kind": "armor",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
@@ -3354,14 +3575,17 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Armatura (giaco di maglia), rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": []
+    "spellGrants": [],
+    "baseEquipmentId": "chain-shirt",
+    "armorType": "medium",
+    "armorClass": 14,
+    "dexterityBonus": "max-2",
+    "stealthDisadvantage": false
   },
   {
     "id": "magic-giavellotto-del-fulmine",
@@ -3377,7 +3601,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Arma (giavellotto), non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "baseEquipmentId": "javelin",
     "damage": "1d6",
@@ -3400,7 +3627,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -3417,7 +3647,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -3434,7 +3667,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [
       {
         "id": "effect-punteggio-di-caratteristica",
@@ -3461,7 +3697,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -3478,7 +3717,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (spada lunga), rara (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "baseEquipmentId": "longsword",
     "damage": "1d8",
@@ -3501,7 +3743,10 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi spada), leggendaria (richiede",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -3524,7 +3769,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -3541,7 +3789,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -3558,7 +3809,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -3575,7 +3829,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -3592,11 +3849,16 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), rara (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
     "damageType": "contundenti",
+    "additionalDamage": "2d6",
+    "additionalDamageType": "fuoco",
     "proficiency": "martial",
     "ranged": false,
     "properties": []
@@ -3615,7 +3877,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -3632,7 +3897,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -3657,7 +3925,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [
       {
         "id": "effect-resistenza-veleno",
@@ -3684,7 +3955,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -3701,7 +3975,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [
       {
         "id": "effect-protezione",
@@ -3735,7 +4012,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -3752,7 +4032,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -3769,7 +4052,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -3786,7 +4072,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -3803,7 +4092,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -3820,7 +4112,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -3837,7 +4132,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -3854,7 +4152,10 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Arma (maglio), leggendaria",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -3871,7 +4172,7 @@
   {
     "id": "magic-martello-nanico-da-lancio",
     "name": "Martello nanico da lancio",
-    "description": "(richiede sintonia con un nano) Il personaggio ottiene un bonus di +3 ai tiri per colpire e ai tiri per i danni effettuati con quest'arma magica. L'arma possiede la proprietà da lancio con una gittata normale di 6 metri e una gittata lunga di 18 metri. Quando il personaggio colpisce un bersaglio con un attacco a distanza con quest'arma, infligge 1d8 danni extra o 2d8 danni, se il bersaglio è un gigante. Subito dopo l'attacco, quest'arma torna in volo in mano al personaggio.",
+    "description": "Il personaggio ottiene un bonus di +3 ai tiri per colpire e ai tiri per i danni effettuati con quest'arma magica. L'arma possiede la proprietà da lancio con una gittata normale di 6 metri e una gittata lunga di 18 metri. Quando il personaggio colpisce un bersaglio con un attacco a distanza con quest'arma, infligge 1d8 danni extra o 2d8 danni, se il bersaglio è un gigante. Subito dopo l'attacco, quest'arma torna in volo in mano al personaggio.",
     "kind": "weapon",
     "category": "weapon",
     "group": "Oggetti magici SRD",
@@ -3880,9 +4181,12 @@
     "source": "SRD",
     "magical": true,
     "rarity": "very-rare",
-    "requiresAttunement": false,
+    "requiresAttunement": true,
     "specialProperties": "Arma (martello da guerra), molto rara",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -3905,7 +4209,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (mazza), rara (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -3933,7 +4240,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (mazza), rara (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -3956,7 +4266,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Arma (mazza), rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -3979,7 +4292,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -3996,7 +4312,10 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -4027,7 +4346,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -4057,7 +4379,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi munizione), non comune (+1),",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [
       {
         "id": "effect-bonus-agli-attacchi",
@@ -4099,7 +4424,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi munizione), non comune (+1),",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [
       {
         "id": "effect-bonus-agli-attacchi",
@@ -4141,7 +4469,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi munizione), non comune (+1),",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [
       {
         "id": "effect-bonus-agli-attacchi",
@@ -4183,7 +4514,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -4200,7 +4534,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, molto rara",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -4217,7 +4554,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -4242,7 +4582,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -4267,7 +4610,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -4284,7 +4630,10 @@
     "rarity": "varies",
     "requiresAttunement": false,
     "specialProperties": "Pergamena, rarità variabile",
-    "tags": ["magico", "varies"],
+    "tags": [
+      "magico",
+      "varies"
+    ],
     "effects": []
   },
   {
@@ -4301,7 +4650,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -4318,7 +4670,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -4343,7 +4698,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [
       {
         "id": "effect-buona-fortuna",
@@ -4369,7 +4727,10 @@
     "rarity": "varies",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, rarità variabile (richiede sintonia)",
-    "tags": ["magico", "varies"],
+    "tags": [
+      "magico",
+      "varies"
+    ],
     "effects": []
   },
   {
@@ -4386,7 +4747,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -4403,7 +4767,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -4420,7 +4787,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -4437,7 +4807,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -4462,7 +4835,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -4479,7 +4855,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -4496,7 +4875,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, molto rara",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -4513,7 +4895,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -4538,7 +4923,10 @@
     "rarity": "varies",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rarità variabile",
-    "tags": ["magico", "varies"],
+    "tags": [
+      "magico",
+      "varies"
+    ],
     "effects": []
   },
   {
@@ -4555,7 +4943,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -4580,7 +4971,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -4605,7 +4999,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -4630,7 +5027,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -4655,7 +5055,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -4680,7 +5083,10 @@
     "rarity": "varies",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rarità variabile",
-    "tags": ["magico", "varies"],
+    "tags": [
+      "magico",
+      "varies"
+    ],
     "effects": []
   },
   {
@@ -4697,7 +5103,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -4722,7 +5131,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -4739,7 +5151,10 @@
     "rarity": "common",
     "requiresAttunement": false,
     "specialProperties": "Pozione, comune",
-    "tags": ["magico", "common"],
+    "tags": [
+      "magico",
+      "common"
+    ],
     "effects": []
   },
   {
@@ -4756,7 +5171,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, molto rara",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -4781,7 +5199,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, molto rara",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -4798,7 +5219,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -4815,7 +5239,10 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": []
   },
   {
@@ -4832,7 +5259,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Arma (pugnale), rara",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "baseEquipmentId": "dagger",
     "damage": "1d4",
@@ -4855,7 +5285,10 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi spada), leggendaria (richiede",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -4878,7 +5311,10 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, leggendario (richiede sintonia)",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "charges": {
       "maximum": 12,
@@ -4900,7 +5336,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (scimitarra), molto rara (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "baseEquipmentId": "scimitar",
     "damage": "1d6",
@@ -4923,141 +5362,18 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
-  },
-  {
-    "id": "magic-scudo-1",
-    "name": "Scudo +1",
-    "description": "o molto rara (+3) Mentre il personaggio impugna questo scudo, ottiene un bonus alla CA determinato dalla rarità dello scudo. Questo bonus è cumulativo al normale bonus alla CA dello scudo.",
-    "kind": "weapon",
-    "category": "weapon",
-    "group": "Oggetti magici SRD",
-    "cost": "—",
-    "weightKg": 0,
-    "source": "SRD",
-    "magical": true,
-    "rarity": "rare",
-    "requiresAttunement": false,
-    "specialProperties": "Armatura (scudo), non comune (+1), rara (+2)",
-    "tags": ["magico", "rare"],
-    "effects": [
-      {
-        "id": "effect-bonus-agli-attacchi",
-        "name": "Bonus agli attacchi",
-        "type": "attack-bonus",
-        "activation": "passive",
-        "value": 1,
-        "requiresEquipped": true
-      },
-      {
-        "id": "effect-bonus-ai-danni",
-        "name": "Bonus ai danni",
-        "type": "damage-bonus",
-        "activation": "passive",
-        "value": 1,
-        "requiresEquipped": true
-      }
-    ],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": [],
-    "attackBonus": 1,
-    "damageBonus": 1
-  },
-  {
-    "id": "magic-scudo-2",
-    "name": "Scudo +2",
-    "description": "o molto rara (+3) Mentre il personaggio impugna questo scudo, ottiene un bonus alla CA determinato dalla rarità dello scudo. Questo bonus è cumulativo al normale bonus alla CA dello scudo.",
-    "kind": "weapon",
-    "category": "weapon",
-    "group": "Oggetti magici SRD",
-    "cost": "—",
-    "weightKg": 0,
-    "source": "SRD",
-    "magical": true,
-    "rarity": "rare",
-    "requiresAttunement": false,
-    "specialProperties": "Armatura (scudo), non comune (+1), rara (+2)",
-    "tags": ["magico", "rare"],
-    "effects": [
-      {
-        "id": "effect-bonus-agli-attacchi",
-        "name": "Bonus agli attacchi",
-        "type": "attack-bonus",
-        "activation": "passive",
-        "value": 2,
-        "requiresEquipped": true
-      },
-      {
-        "id": "effect-bonus-ai-danni",
-        "name": "Bonus ai danni",
-        "type": "damage-bonus",
-        "activation": "passive",
-        "value": 2,
-        "requiresEquipped": true
-      }
-    ],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": [],
-    "attackBonus": 2,
-    "damageBonus": 2
-  },
-  {
-    "id": "magic-scudo-3",
-    "name": "Scudo +3",
-    "description": "o molto rara (+3) Mentre il personaggio impugna questo scudo, ottiene un bonus alla CA determinato dalla rarità dello scudo. Questo bonus è cumulativo al normale bonus alla CA dello scudo.",
-    "kind": "weapon",
-    "category": "weapon",
-    "group": "Oggetti magici SRD",
-    "cost": "—",
-    "weightKg": 0,
-    "source": "SRD",
-    "magical": true,
-    "rarity": "rare",
-    "requiresAttunement": false,
-    "specialProperties": "Armatura (scudo), non comune (+1), rara (+2)",
-    "tags": ["magico", "rare"],
-    "effects": [
-      {
-        "id": "effect-bonus-agli-attacchi",
-        "name": "Bonus agli attacchi",
-        "type": "attack-bonus",
-        "activation": "passive",
-        "value": 3,
-        "requiresEquipped": true
-      },
-      {
-        "id": "effect-bonus-ai-danni",
-        "name": "Bonus ai danni",
-        "type": "damage-bonus",
-        "activation": "passive",
-        "value": 3,
-        "requiresEquipped": true
-      }
-    ],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": [],
-    "attackBonus": 3,
-    "damageBonus": 3
   },
   {
     "id": "magic-scudo-animato",
     "name": "Scudo animato",
     "description": "Il personaggio che impugna questo scudo può pronunciare la sua parola d'ordine come azione bonus per animarlo. Lo scudo si solleva in aria e fluttua nello spazio del personaggio per proteggerlo come quando quest'ultimo lo impugna normalmente, ma lasciandogli le mani libere. Lo scudo resta animato per 1 minuto, finché il personaggio non usa un'azione bonus per terminare l'effetto o finché il personaggio non diventa incapacitato o muore. In questi casi, lo scudo cade a terra o torna in mano al personaggio, se questi ha almeno una mano libera.",
-    "kind": "weapon",
-    "category": "weapon",
+    "kind": "shield",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
@@ -5066,21 +5382,23 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (scudo), molto raro (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": []
+    "spellGrants": [],
+    "baseEquipmentId": "shield",
+    "armorType": "shield",
+    "armorClass": 2,
+    "dexterityBonus": "none"
   },
   {
     "id": "magic-scudo-anti-incantesimi",
     "name": "Scudo anti-incantesimi",
     "description": "Mentre il personaggio impugna questo scudo, dispone di vantaggio ai tiri salvezza contro gli incantesimi e altri effetti magici. Inoltre, gli attacchi con incantesimo contro di lui subiscono svantaggio.",
-    "kind": "weapon",
-    "category": "weapon",
+    "kind": "shield",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
@@ -5089,21 +5407,23 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (scudo), molto raro (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": []
+    "spellGrants": [],
+    "baseEquipmentId": "shield",
+    "armorType": "shield",
+    "armorClass": 2,
+    "dexterityBonus": "none"
   },
   {
     "id": "magic-scudo-attiraproiettili",
     "name": "Scudo attiraproiettili",
     "description": "Mentre il personaggio impugna questo scudo, ottiene resistenza ai danni inflitti dagli attacchi con Maledizione. armi a distanza. Questo scudo è maledetto. Entrando in sintonia con lo scudo, il personaggio diventa rimuovi maledizione soggetto alla maledizione finché su di lui non viene lanciato l'incantesimo o un'altra magia simile. Rimuovendo lo scudo, la maledizione non svanisce. Ogni volta che qualcuno effettua un attacco con arma a distanza il cui bersaglio si trova entro 3 metri dal personaggio, quest'ultimo diventa il bersaglio dell'attacco a causa della maledizione.",
-    "kind": "weapon",
-    "category": "weapon",
+    "kind": "shield",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
@@ -5112,14 +5432,11 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (scudo), rara (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": [],
     "spellGrants": [
       {
         "id": "magic-scudo-attiraproiettili-remove-curse",
@@ -5127,14 +5444,18 @@
         "usage": "per-day",
         "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "baseEquipmentId": "shield",
+    "armorType": "shield",
+    "armorClass": 2,
+    "dexterityBonus": "none"
   },
   {
     "id": "magic-scudo-catturafrecce",
     "name": "Scudo catturafrecce",
     "description": "Il personaggio che impugna questo scudo riceve un bonus di +2 alla CA contro gli attacchi a distanza. Questo bonus è cumulativo al normale bonus alla CA dello scudo. Inoltre, ogni volta che un avversario effettua un attacco a distanza contro un bersaglio entro 1,5 metri dal possessore dello scudo, quest'ultimo può usare la sua reazione per diventare il bersaglio dell'attacco al posto di quello inteso.",
-    "kind": "weapon",
-    "category": "weapon",
+    "kind": "shield",
+    "category": "armor",
     "group": "Oggetti magici SRD",
     "cost": "—",
     "weightKg": 0,
@@ -5143,14 +5464,16 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (scudo), rara (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
-    "baseEquipmentId": "",
-    "damage": "1d6",
-    "damageType": "contundenti",
-    "proficiency": "martial",
-    "ranged": false,
-    "properties": []
+    "spellGrants": [],
+    "baseEquipmentId": "shield",
+    "armorType": "shield",
+    "armorClass": 2,
+    "dexterityBonus": "none"
   },
   {
     "id": "magic-sfera-annientatrice",
@@ -5166,13 +5489,16 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": []
   },
   {
     "id": "magic-sfera-di-cristallo",
     "name": "Sfera di cristallo",
-    "description": "(richiede sintonia) sfera di cristallo Una tipica , un oggetto molto raro, scrutare ha un diametro di circa 15 cm. Mentre il personaggio tocca la sfera, può lanciare l'incantesimo sfera di cristallo (CD del tiro salvezza 17). Le seguenti varianti della sono Sfera di cristallo della lettura del pensiero. oggetti leggendari e hanno proprietà aggiuntive. sfera di cristallo Mentre il personaggio scruta con la , individuazione dei pensieri può usare un'azione per lanciare l'incantesimo (CD del tiro salvezza 17) su creature che è in grado di vedere situate individuazione entro 9 metri dal sensore dell'incantesimo. dei pensieri Non è obbligato a concentrarsi su scrutare per mantenerlo per la sua durata, ma se viene interrotto, anche l'incantesimo si interrompe. Sfera di cristallo della telepatia. sfera di cristallo Mentre il personaggio scruta con la , può comunicare telepaticamente con le creature che è in grado di vedere situate entro 9 metri dal sensore dell'incantesimo. Può anche usare un'azione per suggestione lanciare su una di quelle creature l'incantesimo (CD del tiro salvezza 17) attraverso suggestione il sensore. Non è obbligato a concentrarsi su scrutare per mantenerlo per la sua durata, ma se suggestione viene interrotto, anche l'incantesimo si sfera di cristallo interrompe. Una volta usato, il potere di della non può essere riutilizzato fino Sfera di cristallo della visione del vero. all'alba successiva. sfera di cristallo Mentre il personaggio scruta con la , ottiene vista pura entro un raggio di 36 metri centrato sul sensore dell'incantesimo.",
+    "description": "sfera di cristallo Una tipica , un oggetto molto raro, scrutare ha un diametro di circa 15 cm. Mentre il personaggio tocca la sfera, può lanciare l'incantesimo sfera di cristallo (CD del tiro salvezza 17). Le seguenti varianti della sono Sfera di cristallo della lettura del pensiero. oggetti leggendari e hanno proprietà aggiuntive. sfera di cristallo Mentre il personaggio scruta con la , individuazione dei pensieri può usare un'azione per lanciare l'incantesimo (CD del tiro salvezza 17) su creature che è in grado di vedere situate individuazione entro 9 metri dal sensore dell'incantesimo. dei pensieri Non è obbligato a concentrarsi su scrutare per mantenerlo per la sua durata, ma se viene interrotto, anche l'incantesimo si interrompe. Sfera di cristallo della telepatia. sfera di cristallo Mentre il personaggio scruta con la , può comunicare telepaticamente con le creature che è in grado di vedere situate entro 9 metri dal sensore dell'incantesimo. Può anche usare un'azione per suggestione lanciare su una di quelle creature l'incantesimo (CD del tiro salvezza 17) attraverso suggestione il sensore. Non è obbligato a concentrarsi su scrutare per mantenerlo per la sua durata, ma se suggestione viene interrotto, anche l'incantesimo si sfera di cristallo interrompe. Una volta usato, il potere di della non può essere riutilizzato fino Sfera di cristallo della visione del vero. all'alba successiva. sfera di cristallo Mentre il personaggio scruta con la , ottiene vista pura entro un raggio di 36 metri centrato sul sensore dell'incantesimo.",
     "kind": "gear",
     "category": "adventuring-gear",
     "group": "Oggetti magici SRD",
@@ -5181,9 +5507,12 @@
     "source": "SRD",
     "magical": true,
     "rarity": "legendary",
-    "requiresAttunement": false,
+    "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro o leggendario",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -5220,7 +5549,10 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": []
   },
   {
@@ -5237,7 +5569,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada che infligga danni taglienti), molto rara (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -5260,7 +5595,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), molto rara (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -5283,7 +5621,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), rara (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -5306,7 +5647,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), rara (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -5329,7 +5673,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), molto rara (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -5352,7 +5699,10 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada che infligga danni taglienti), leggendaria (richiede sintonia)",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -5375,7 +5725,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), molto rara (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [
       {
         "id": "effect-resistenza-fuoco",
@@ -5408,7 +5761,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "charges": {
       "maximum": 24,
@@ -5438,7 +5794,10 @@
     "rarity": "varies",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, rarità variabile",
-    "tags": ["magico", "varies"],
+    "tags": [
+      "magico",
+      "varies"
+    ],
     "effects": []
   },
   {
@@ -5455,7 +5814,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -5472,7 +5834,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [
       {
         "id": "effect-resistenza-freddo",
@@ -5499,7 +5864,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -5524,7 +5892,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -5541,7 +5912,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -5558,7 +5932,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -5575,7 +5952,10 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, leggendario (richiede sintonia",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "charges": {
       "maximum": 7,
@@ -5597,7 +5977,10 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, leggendario (richiede sintonia",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": [],
     "charges": {
       "maximum": 6,
@@ -5619,7 +6002,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -5636,7 +6022,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -5653,7 +6042,10 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, leggendario (richiede sintonia)",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": []
   },
   {
@@ -5670,7 +6062,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -5687,7 +6082,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -5704,7 +6102,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -5721,7 +6122,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -5738,7 +6142,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -5755,7 +6162,10 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Arma (tridente), non comune (richiede sintonia)",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "baseEquipmentId": "trident",
     "damage": "1d6",
@@ -5797,7 +6207,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -5822,7 +6235,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -5839,7 +6255,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -5861,7 +6280,10 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, leggendario (richiede sintonia",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": []
   },
   {
@@ -5878,7 +6300,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -5895,7 +6320,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -5912,7 +6340,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -5937,7 +6368,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Verga, molto rara (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": [],
     "spellGrants": [
       {
@@ -5974,7 +6408,10 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Verga, molto rara (richiede sintonia)",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -5991,7 +6428,10 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Verga, leggendaria (richiede sintonia)",
-    "tags": ["magico", "legendary"],
+    "tags": [
+      "magico",
+      "legendary"
+    ],
     "effects": []
   },
   {
@@ -6008,7 +6448,10 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Verga, molto rara",
-    "tags": ["magico", "very-rare"],
+    "tags": [
+      "magico",
+      "very-rare"
+    ],
     "effects": []
   },
   {
@@ -6025,7 +6468,10 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Verga, rara (richiede sintonia)",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   },
   {
@@ -6042,7 +6488,10 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Verga, non comune",
-    "tags": ["magico", "uncommon"],
+    "tags": [
+      "magico",
+      "uncommon"
+    ],
     "effects": []
   },
   {
@@ -6059,7 +6508,10 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": ["magico", "rare"],
+    "tags": [
+      "magico",
+      "rare"
+    ],
     "effects": []
   }
 ]

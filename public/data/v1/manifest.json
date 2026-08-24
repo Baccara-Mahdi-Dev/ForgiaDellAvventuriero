@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "dataVersion": "1.12.0",
+  "dataVersion": "1.13.0",
   "locale": "it",
   "ruleset": "5e-2014",
   "catalog": {
@@ -9,7 +9,7 @@
     "backgrounds": 6,
     "feats": 6,
     "spells": 348,
-    "equipment": 166
+    "equipment": 167
   },
   "files": {
     "ancestries": "ancestries.json",
@@ -21,7 +21,7 @@
   },
   "additionalEquipment": {
     "file": "magic-equipment.json",
-    "count": 249
+    "count": 244
   },
   "sources": ["PHB", "XGE", "TCE", "WGE", "SRD"]
 }

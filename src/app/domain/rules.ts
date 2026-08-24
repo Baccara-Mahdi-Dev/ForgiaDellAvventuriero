@@ -17,6 +17,7 @@ import {
   equipmentAbilityMinimum,
   equipmentEffectTotal,
 } from './equipment-effects';
+import { resolveWeaponBase } from './weapon-loadout';
 export const pointBuyCost = (score: number): number =>
   (({ 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 }) as Record<number, number>)[score] ??
   99;
@@ -567,12 +568,24 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
       (item) => item.id === (draft.equippedShieldId ?? (draft.shieldEquipped ? 'shield' : '')),
     ),
     shieldBonus = equippedShield ? (equippedShield.armorClass ?? 2) : 0,
+    armorMagicBonus =
+      equippedArmor && !equippedArmor.magical
+        ? Math.max(0, Math.min(3, Math.floor(draft.armorMagicBonus ?? 0)))
+        : 0,
+    shieldMagicBonus =
+      equippedShield && !equippedShield.magical
+        ? Math.max(0, Math.min(3, Math.floor(draft.shieldMagicBonus ?? 0)))
+        : 0,
     armorClassBonus = equipmentEffectTotal(equipmentEffects, 'armor-class'),
     initiativeBonus = equipmentEffectTotal(equipmentEffects, 'initiative'),
     savingThrowBonus = equipmentEffectTotal(equipmentEffects, 'saving-throw-bonus'),
     inventoryWeightKg = +(draft.inventory ?? [])
       .reduce((sum, entry) => {
-        const item = catalog.equipment.find((candidate) => candidate.id === entry.equipmentId);
+        const rawItem = catalog.equipment.find((candidate) => candidate.id === entry.equipmentId);
+        const item =
+          rawItem?.category === 'weapon'
+            ? resolveWeaponBase(rawItem, catalog.equipment, draft.magicWeaponBaseIds?.[rawItem.id])
+            : rawItem;
         return sum + (item?.weightKg ?? 0) * Math.max(0, entry.quantity);
       }, 0)
       .toFixed(1);
@@ -618,7 +631,8 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
       ? modifier(homebrewAbilityScore(draft.sanityScore))
       : undefined,
     proficiency: pb,
-    armorClass: armorBase + armorDex + shieldBonus + armorClassBonus,
+    armorClass:
+      armorBase + armorDex + shieldBonus + armorMagicBonus + shieldMagicBonus + armorClassBonus,
     initiative: modifiers.dex + featEffects.initiativeBonus + initiativeBonus,
     maxHp: klass
       ? maximumHp(
@@ -655,7 +669,15 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
     tools,
     armorProficiencies: [...new Set(klass?.armorProficiencies ?? [])],
     weaponProficiencies: [
-      ...new Set([...(klass?.weaponProficiencies ?? []), ...(ancestry?.weaponProficiencies ?? [])]),
+      ...new Set([
+        ...(klass?.weaponProficiencies ?? []),
+        ...(ancestry?.weaponProficiencies ?? []),
+        ...(draft.classId === 'artificer' &&
+        draft.subclassId === 'Fabbro da Battaglia' &&
+        draft.level >= 3
+          ? ['martial']
+          : []),
+      ]),
     ],
     resistances: [
       ...(ancestry?.resistances ?? []),

@@ -192,6 +192,21 @@
     "proficiency": "simple"
   },
   {
+    "id": "unarmed-strike",
+    "name": "Mani nude / Pugni",
+    "category": "weapon",
+    "group": "Armi semplici da mischia",
+    "cost": "—",
+    "weightKg": 0,
+    "source": "SRD",
+    "description": "Il Monaco usa il dado di Arti Marziali, Forza o Destrezza e la competenza. Le altre classi lo usano come attacco improvvisato: 1d4 + Forza, senza competenza.",
+    "damage": "1d4",
+    "damageType": "contundenti",
+    "properties": [],
+    "tags": ["unarmed"],
+    "proficiency": "improvised"
+  },
+  {
     "id": "dagger",
     "name": "Pugnale",
     "category": "weapon",

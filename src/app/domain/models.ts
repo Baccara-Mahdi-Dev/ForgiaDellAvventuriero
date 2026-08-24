@@ -114,13 +114,7 @@ export type ArmorType = 'clothing' | 'light' | 'medium' | 'heavy' | 'shield';
 export type EquipmentCategory = 'armor' | 'weapon' | 'adventuring-gear' | 'artisan-tool';
 export type EquipmentKind = 'weapon' | 'armor' | 'shield' | 'gear' | 'tool' | 'other';
 export type EquipmentRarity =
-  | 'common'
-  | 'uncommon'
-  | 'rare'
-  | 'very-rare'
-  | 'legendary'
-  | 'artifact'
-  | 'varies';
+  'common' | 'uncommon' | 'rare' | 'very-rare' | 'legendary' | 'artifact' | 'varies';
 export type EquipmentEffectActivation = 'passive' | 'active';
 export type EquipmentEffectType =
   | 'ability-modifier'
@@ -221,6 +215,7 @@ export interface InventoryEntry {
 export interface EquippedWeapon {
   equipmentId: string;
   hands: 1 | 2;
+  bonus?: number;
 }
 export interface Coins {
   cp: number;
@@ -370,6 +365,9 @@ export interface CharacterDraft {
   shieldEquipped?: boolean;
   equippedShieldId?: string;
   equippedWeapons?: EquippedWeapon[];
+  magicWeaponBaseIds?: Record<string, string>;
+  armorMagicBonus?: number;
+  shieldMagicBonus?: number;
   equippedItemIds?: string[];
   attunedEquipmentIds?: string[];
   equipmentCharges?: Record<string, number>;

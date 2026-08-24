@@ -1,5 +1,5 @@
-@use "./styles/tokens";
-@use "tailwindcss";
+@use './styles/tokens';
+@use 'tailwindcss';
 * {
   box-sizing: border-box;
 }
@@ -84,7 +84,65 @@ button:disabled {
     transition: none;
   }
 }
-/* Portale Equipaggiamento: elementi condivisi con il layer Homebrew. */
+
+.armor-group-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  cursor: pointer;
+}
+.armor-group-summary::-webkit-details-marker {
+  display: none;
+}
+.armor-group-summary::after {
+  content: '⌄';
+  flex: 0 0 auto;
+  color: var(--ember);
+  font-size: 1.1rem;
+  transition: transform 160ms ease;
+}
+.armor-group:not([open]) > .armor-group-summary::after {
+  transform: rotate(-90deg);
+}
+.armor-group-summary:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 0.35rem;
+}
+.shield-add-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  background: var(--surface-raised);
+}
+.shield-add-row strong,
+.shield-add-row small {
+  display: block;
+}
+.shield-add-row small {
+  margin-top: 0.2rem;
+  color: var(--muted);
+}
+.shield-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--ember);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ember);
+  font-weight: 800;
+  cursor: pointer;
+}
+.shield-add span {
+  font-size: 1rem;
+  line-height: 1;
+}
 .equipment-intro {
   display: flex;
   align-items: center;
@@ -187,4 +245,25 @@ button:disabled {
     align-items: stretch;
     flex-direction: column;
   }
+}
+ 
+.bonus-level {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--muted);
+  font-size: 0.65rem;
+}
+.bonus-level select {
+  padding: 0.15rem 0.25rem;
+  border: 1px solid var(--line);
+  border-radius: 0.3rem;
+  background: none;
+  color: inherit;
+  font: inherit;
+}
+.equipment-group-row td {
+  background: color-mix(in srgb, var(--ember) 12%, transparent);
+  color: var(--ember);
+  font-weight: 800;
 }

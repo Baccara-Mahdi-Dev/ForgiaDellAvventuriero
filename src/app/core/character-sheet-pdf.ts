@@ -11,9 +11,11 @@ import { activeClassFeatureChoices } from '../domain/class-progression';
 import { derive, spellSlots } from '../domain/rules';
 import { asSpell } from '../domain/homebrew-spell';
 import {
+  battleSmithUsesIntelligence,
   damageForHands,
   equippedWeaponItems,
   hasTwoWeaponFighting,
+  resolveWeaponBase,
 } from '../domain/weapon-loadout';
 import { equippedEquipmentIds, weaponEffectTotal } from '../domain/equipment-effects';
 
@@ -361,7 +363,12 @@ function setChecked(form: PDFForm, name: string, checked: boolean): void {
   const field = getCheckBox(form, name);
   if (field && checked) field.check();
 }
-function weaponModifier(item: EquipmentItem, derived: DerivedCharacter): number {
+function weaponModifier(
+  item: EquipmentItem,
+  derived: DerivedCharacter,
+  draft: CharacterDraft,
+): number {
+  if (battleSmithUsesIntelligence(draft, item)) return derived.modifiers.int;
   return item.ranged
     ? derived.modifiers.dex
     : item.finesse
@@ -429,7 +436,10 @@ function selectedClassFeatures(draft: CharacterDraft, catalog: CatalogData): str
 function inventoryLines(draft: CharacterDraft, catalog: CatalogData): string[] {
   const equipment = [...catalog.equipment, ...(draft.homebrewEquipment ?? [])];
   return (draft.inventory ?? []).flatMap((entry) => {
-    const item = equipment.find((candidate) => candidate.id === entry.equipmentId);
+    const rawItem = equipment.find((candidate) => candidate.id === entry.equipmentId);
+    const item = rawItem
+      ? resolveWeaponBase(rawItem, equipment, draft.magicWeaponBaseIds?.[rawItem.id])
+      : undefined;
     return item ? [`${item.name}${entry.quantity > 1 ? ` x${entry.quantity}` : ''}`] : [];
   });
 }
@@ -545,12 +555,13 @@ function fillCombat(
   ];
   weapons.slice(0, fields.length).forEach(({ item: weapon, equipped }, index) => {
     const ability =
-      index === 1 && !hasTwoWeaponFighting(draft) ? 0 : weaponModifier(weapon, derived);
+      index === 1 && !hasTwoWeaponFighting(draft) ? 0 : weaponModifier(weapon, derived, draft);
     const magicActive =
       !weapon.requiresAttunement || (draft.attunedEquipmentIds ?? []).includes(weapon.id);
     const attack =
-      weaponModifier(weapon, derived) +
+      weaponModifier(weapon, derived, draft) +
       (weaponProficient(weapon, derived) ? derived.proficiency : 0) +
+      (equipped.bonus ?? 0) +
       (magicActive ? (weapon.attackBonus ?? weaponEffectTotal(weapon, 'attack-bonus')) : 0);
     setText(form, fields[index][0], `${weapon.name}${equipped.hands === 2 ? ' (2 mani)' : ''}`, {
       fontSize: 7,
@@ -561,9 +572,12 @@ function fillCombat(
       form,
       fields[index][2],
       `${damageForHands(weapon, equipped.hands)}${
-        ability + (magicActive ? (weapon.damageBonus ?? weaponEffectTotal(weapon, 'damage-bonus')) : 0)
+        ability +
+        (equipped.bonus ?? 0) +
+        (magicActive ? (weapon.damageBonus ?? weaponEffectTotal(weapon, 'damage-bonus')) : 0)
           ? signed(
               ability +
+                (equipped.bonus ?? 0) +
                 (magicActive
                   ? (weapon.damageBonus ?? weaponEffectTotal(weapon, 'damage-bonus'))
                   : 0),

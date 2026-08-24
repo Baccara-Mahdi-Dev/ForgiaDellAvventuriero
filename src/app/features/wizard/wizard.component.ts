@@ -16,7 +16,6 @@ import {
   gameDiceTwentyFacesTwenty,
   gamePerspectiveDiceSixFacesFour,
   gameRollingDices,
-  gameTerror,
   gameBrainTentacle,
 } from '@ng-icons/game-icons';
 import {
@@ -55,9 +54,15 @@ import {
   spellSlots,
 } from '../../domain/rules';
 import {
+  battleSmithUsesIntelligence,
   damageForHands,
   hasTwoWeaponFighting,
+  isBattleSmith,
+  isUnarmedStrike,
+  magicWeaponBaseCandidates,
   requiresTwoHands,
+  resolveWeaponBase,
+  unarmedDamage,
 } from '../../domain/weapon-loadout';
 import { WizardStore } from '../../state/wizard.store';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
@@ -65,6 +70,7 @@ import { CharacterSheetPdfService } from '../../core/character-sheet-pdf.service
 import { SpellCardsPdfService } from '../../core/spell-cards-pdf.service';
 import { ClassProgressionComponent } from './class-progression.component';
 import { HomebrewEquipmentDialogComponent } from './homebrew-equipment-dialog.component';
+import { MagicWeaponBaseDialogComponent } from './magic-weapon-base-dialog.component';
 import { EQUIPMENT_RARITY_LABELS, equipmentKind } from '../../domain/homebrew-equipment';
 import { equippedEquipmentIds, weaponEffectTotal } from '../../domain/equipment-effects';
 
@@ -101,6 +107,20 @@ const newHomebrewSpell = (): HomebrewSpell => ({
 });
 const SPELLS_PER_PAGE = 4;
 const EQUIPMENT_PER_PAGE = 12;
+const WEAPON_GROUP_ORDER = [
+  'Armi semplici da mischia',
+  'Armi semplici a distanza',
+  'Armi marziali da mischia',
+  'Armi marziali a distanza',
+];
+const MAGIC_GROUP_LABELS: Record<string, string> = {
+  weapon: 'Armi',
+  armor: 'Armature',
+  shield: 'Scudi',
+  tool: 'Strumenti',
+  gear: 'Oggetti',
+  other: 'Oggetti',
+};
 @Component({
   selector: 'app-wizard',
   imports: [
@@ -110,6 +130,7 @@ const EQUIPMENT_PER_PAGE = 12;
     ThemeToggleComponent,
     ClassProgressionComponent,
     HomebrewEquipmentDialogComponent,
+    MagicWeaponBaseDialogComponent,
   ],
   templateUrl: './wizard.component.html',
   styleUrl: './wizard.component.scss',
@@ -153,6 +174,7 @@ export class WizardComponent implements OnInit, OnDestroy {
   readonly spellPage = signal(1);
   readonly homebrewSpellOpen = signal(false);
   readonly homebrewEquipmentOpen = signal(false);
+  readonly magicWeaponChoice = signal<EquipmentItem | null>(null);
   readonly homebrewSpell = signal<HomebrewSpell>(newHomebrewSpell());
   readonly homebrewMaterials = signal('');
   readonly homebrewHasDamage = signal(false);
@@ -458,11 +480,14 @@ export class WizardComponent implements OnInit, OnDestroy {
   private get filteredEquipment() {
     const query = this.equipmentSearch().trim().toLocaleLowerCase('it');
     const category = this.equipmentCategory();
+    const magicView = category === 'magic';
     return this.store.equipment.filter(
       (item) =>
-        item.armorType !== 'shield' &&
-        (category === 'all' ||
-          (category === 'magic' ? item.magical : item.category === category)) &&
+        (magicView
+          ? !!item.magical
+          : category === 'all'
+            ? true
+            : !item.magical && item.category === category) &&
         (!query ||
           item.name.toLocaleLowerCase('it').includes(query) ||
           item.group.toLocaleLowerCase('it').includes(query)),
@@ -485,6 +510,25 @@ export class WizardComponent implements OnInit, OnDestroy {
     });
     const start = (this.currentEquipmentPage - 1) * EQUIPMENT_PER_PAGE;
     return filtered.slice(start, start + EQUIPMENT_PER_PAGE);
+  }
+  get equipmentGroups() {
+    const category = this.equipmentCategory();
+    if (category !== 'weapon' && category !== 'magic')
+      return [{ name: '', items: this.equipmentItems }];
+    const groups = new Map<string, EquipmentItem[]>();
+    for (const item of this.equipmentItems) {
+      const name =
+        category === 'weapon' ? item.group : (MAGIC_GROUP_LABELS[equipmentKind(item)] ?? 'Oggetti');
+      if (!groups.has(name)) groups.set(name, []);
+      groups.get(name)!.push(item);
+    }
+    const order = category === 'weapon' ? WEAPON_GROUP_ORDER : Object.values(MAGIC_GROUP_LABELS);
+    return [...groups.entries()]
+      .sort(
+        ([left], [right]) =>
+          order.indexOf(left) - order.indexOf(right) || left.localeCompare(right, 'it'),
+      )
+      .map(([name, items]) => ({ name, items }));
   }
   get equipmentFilteredCount() {
     return this.filteredEquipment.length;
@@ -528,6 +572,10 @@ export class WizardComponent implements OnInit, OnDestroy {
         item: this.store.equipment.find((item) => item.id === entry.equipmentId),
       }))
       .filter((row): row is { entry: typeof row.entry; item: EquipmentItem } => !!row.item)
+      .map((row) => ({
+        ...row,
+        item: row.item.category === 'weapon' ? this.effectiveWeapon(row.item) : row.item,
+      }))
       .sort((a, b) => {
         const left = this.inventorySortValue(a, key);
         const right = this.inventorySortValue(b, key);
@@ -594,11 +642,12 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   get equippedWeaponEntries() {
     return (this.store.draft().equippedWeapons ?? [])
-      .map((equipped, index) => ({
-        equipped,
-        index,
-        item: this.store.equipment.find((item) => item.id === equipped.equipmentId),
-      }))
+      .map((equipped, index) => {
+        const item = this.store.equipment.find(
+          (candidate) => candidate.id === equipped.equipmentId,
+        );
+        return { equipped, index, item: item ? this.effectiveWeapon(item) : undefined };
+      })
       .filter(
         (entry): entry is { equipped: EquippedWeapon; index: number; item: EquipmentItem } =>
           !!entry.item,
@@ -617,12 +666,9 @@ export class WizardComponent implements OnInit, OnDestroy {
   backgroundSkillFromClass(skill: string) {
     return this.classSkillNames.includes(skill);
   }
-  get shieldAllowed() {
-    const shield =
-      this.store.equipment.find((item) => item.id === this.store.draft().equippedShieldId) ??
-      this.store.equipment.find((item) => item.id === 'shield');
+  canEquipShield(shield: EquipmentItem) {
     return (
-      !!shield &&
+      equipmentKind(shield) === 'shield' &&
       this.armorAllowed(shield) &&
       this.equippedWeaponEntries.length <= 1 &&
       !this.equippedWeaponEntries.some((entry) => entry.equipped.hands === 2)
@@ -1078,20 +1124,82 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   selectArmor(item: EquipmentItem) {
     if (!this.armorAllowed(item)) return;
-    this.store.patch({ equippedArmorId: item.id });
-    this.ensureInBackpack(item.id);
+    const previousArmorId = this.store.draft().equippedArmorId;
+    const changed = previousArmorId !== item.id;
+    const inventory = [...(this.store.draft().inventory ?? [])];
+    if (changed && previousArmorId) {
+      const previousIndex = inventory.findIndex((entry) => entry.equipmentId === previousArmorId);
+      if (previousIndex >= 0) {
+        const previous = inventory[previousIndex];
+        if (previous.quantity > 1)
+          inventory[previousIndex] = { ...previous, quantity: previous.quantity - 1 };
+        else inventory.splice(previousIndex, 1);
+      }
+    }
+    if (!inventory.some((entry) => entry.equipmentId === item.id))
+      inventory.push({ equipmentId: item.id, quantity: 1 });
+    this.store.patch({
+      equippedArmorId: item.id,
+      inventory,
+      ...(changed || item.magical ? { armorMagicBonus: 0 } : {}),
+    });
+  }
+  addShieldToBackpack() {
+    const shield = this.store.equipment.find((item) => item.id === 'shield');
+    if (!shield) return;
+    this.addItem(shield.id);
+    this.message.set('Scudo aggiunto allo zaino. Puoi impugnarlo dopo aver liberato una mano.');
+  }
+  magicWeaponOptions(item: EquipmentItem) {
+    return magicWeaponBaseCandidates(item, this.store.equipment);
+  }
+  addCatalogItem(item: EquipmentItem) {
+    if (this.magicWeaponOptions(item).length) {
+      this.magicWeaponChoice.set(item);
+      return;
+    }
+    this.addItem(item.id);
+  }
+  selectMagicWeaponBase(baseEquipmentId: string) {
+    const item = this.magicWeaponChoice();
+    if (!item || !this.magicWeaponOptions(item).some((option) => option.id === baseEquipmentId))
+      return;
+    this.store.patch({
+      magicWeaponBaseIds: {
+        ...(this.store.draft().magicWeaponBaseIds ?? {}),
+        [item.id]: baseEquipmentId,
+      },
+    });
+    this.addItem(item.id);
+    this.magicWeaponChoice.set(null);
+    this.message.set(
+      `${item.name} (${this.store.equipment.find((option) => option.id === baseEquipmentId)?.name}) aggiunta allo zaino.`,
+    );
+  }
+  closeMagicWeaponChoice() {
+    this.magicWeaponChoice.set(null);
   }
   setShield(equipped: boolean) {
+    if (!equipped) {
+      this.store.patch({
+        shieldEquipped: false,
+        equippedShieldId: '',
+        shieldMagicBonus: 0,
+      });
+      return;
+    }
     const shield =
       this.store.equipment.find((item) => item.id === this.store.draft().equippedShieldId) ??
       this.store.equipment.find((item) => item.id === 'shield');
-    if (equipped && (!shield || !this.shieldAllowed)) return;
-    this.store.patch({ shieldEquipped: equipped, equippedShieldId: equipped ? shield!.id : '' });
-    if (equipped) this.ensureInBackpack(shield!.id);
+    if (shield) this.setShieldItem(shield);
   }
   setShieldItem(item: EquipmentItem) {
-    if (equipmentKind(item) !== 'shield' || !this.armorAllowed(item)) return;
-    this.store.patch({ shieldEquipped: true, equippedShieldId: item.id });
+    if (!this.canEquipShield(item)) return;
+    this.store.patch({
+      shieldEquipped: true,
+      equippedShieldId: item.id,
+      shieldMagicBonus: item.magical ? 0 : (this.store.draft().shieldMagicBonus ?? 0),
+    });
     this.ensureInBackpack(item.id);
   }
   addItem(id: string) {
@@ -1108,11 +1216,19 @@ export class WizardComponent implements OnInit, OnDestroy {
       .map((entry) => (entry.equipmentId === id ? { ...entry, quantity } : entry))
       .filter((entry) => entry.quantity > 0);
     const update: Parameters<WizardStore['patch']>[0] = { inventory };
-    if (!inventory.some((entry) => entry.equipmentId === this.store.draft().equippedArmorId))
+    if (!inventory.some((entry) => entry.equipmentId === id)) {
+      const magicWeaponBaseIds = { ...(this.store.draft().magicWeaponBaseIds ?? {}) };
+      delete magicWeaponBaseIds[id];
+      update.magicWeaponBaseIds = magicWeaponBaseIds;
+    }
+    if (!inventory.some((entry) => entry.equipmentId === this.store.draft().equippedArmorId)) {
       update.equippedArmorId = '';
+      update.armorMagicBonus = 0;
+    }
     if (!inventory.some((entry) => entry.equipmentId === this.store.draft().equippedShieldId)) {
       update.shieldEquipped = false;
       update.equippedShieldId = '';
+      update.shieldMagicBonus = 0;
     }
     const equippedWeapons = (this.store.draft().equippedWeapons ?? []).filter(
       (weapon, index, weapons) =>
@@ -1131,7 +1247,17 @@ export class WizardComponent implements OnInit, OnDestroy {
     const coins = this.store.draft().coins ?? { cp: 0, sp: 0, ep: 0, gp: 0, pp: 0 };
     this.store.patch({ coins: { ...coins, [kind]: Math.max(0, Math.floor(Number(value) || 0)) } });
   }
+  effectiveWeapon(item: EquipmentItem) {
+    return resolveWeaponBase(
+      item,
+      this.store.equipment,
+      this.store.draft().magicWeaponBaseIds?.[item.id],
+    );
+  }
   weaponProficient(item: EquipmentItem) {
+    const weapon = this.effectiveWeapon(item);
+    if (isUnarmedStrike(weapon)) return this.store.draft().classId === 'monk';
+    if (isBattleSmith(this.store.draft()) && weapon.proficiency === 'martial') return true;
     const proficiencies = [
       ...(this.store.selectedClass()?.weaponProficiencies ?? []),
       ...(this.store.selectedAncestry()?.weaponProficiencies ?? []),
@@ -1142,55 +1268,65 @@ export class WizardComponent implements OnInit, OnDestroy {
       'elf-drow': ['rapier', 'shortsword', 'hand-crossbow'],
     };
     return (
-      proficiencies.includes(item.proficiency ?? '') ||
-      proficiencies.includes(item.id) ||
-      (racialWeapons[this.store.draft().ancestryId] ?? []).includes(item.id)
+      proficiencies.includes(weapon.proficiency ?? '') ||
+      proficiencies.includes(weapon.id) ||
+      (racialWeapons[this.store.draft().ancestryId] ?? []).includes(weapon.id)
     );
   }
   weaponAbilityModifier(item: EquipmentItem) {
+    const weapon = this.effectiveWeapon(item);
     const modifiers = this.store.derived().modifiers;
-    return item.ranged
+    if (battleSmithUsesIntelligence(this.store.draft(), weapon)) return modifiers.int;
+    if (isUnarmedStrike(weapon) && this.store.draft().classId === 'monk')
+      return Math.max(modifiers.str, modifiers.dex);
+    return weapon.ranged
       ? modifiers.dex
-      : item.finesse
+      : weapon.finesse
         ? Math.max(modifiers.str, modifiers.dex)
         : modifiers.str;
   }
-  weaponAttack(item: EquipmentItem) {
-    const magicBonus = this.itemMagicActive(item)
-      ? (item.attackBonus ?? weaponEffectTotal(item, 'attack-bonus'))
+  weaponAttack(item: EquipmentItem, bonus = 0) {
+    const weapon = this.effectiveWeapon(item);
+    const magicBonus = this.itemMagicActive(weapon)
+      ? (weapon.attackBonus ?? weaponEffectTotal(weapon, 'attack-bonus'))
       : 0;
     const value =
-      this.weaponAbilityModifier(item) +
-      (this.weaponProficient(item) ? this.store.derived().proficiency : 0) +
-      magicBonus;
+      this.weaponAbilityModifier(weapon) +
+      (this.weaponProficient(weapon) ? this.store.derived().proficiency : 0) +
+      magicBonus +
+      Math.max(0, Math.min(3, bonus));
     return this.mod(value);
   }
-  weaponDamage(item: EquipmentItem) {
-    return this.weaponDamageWithLoadout(item, 1, false);
+  weaponDamage(item: EquipmentItem, bonus = 0) {
+    return this.weaponDamageWithLoadout(item, 1, false, bonus);
   }
-  weaponDamageWithLoadout(item: EquipmentItem, hands: 1 | 2, offHand: boolean) {
-    const damage = damageForHands(item, hands);
+  weaponDamageWithLoadout(item: EquipmentItem, hands: 1 | 2, offHand: boolean, bonus = 0) {
+    const weapon = this.effectiveWeapon(item);
+    const damage = isUnarmedStrike(weapon)
+      ? unarmedDamage(this.store.draft().classId, this.store.draft().level)
+      : damageForHands(weapon, hands);
     if (!damage || damage === '—') return '—';
     const value =
-      offHand && !hasTwoWeaponFighting(this.store.draft()) ? 0 : this.weaponAbilityModifier(item);
-    const magicBonus = this.itemMagicActive(item)
-      ? (item.damageBonus ?? weaponEffectTotal(item, 'damage-bonus'))
+      offHand && !hasTwoWeaponFighting(this.store.draft()) ? 0 : this.weaponAbilityModifier(weapon);
+    const magicBonus = this.itemMagicActive(weapon)
+      ? (weapon.damageBonus ?? weaponEffectTotal(weapon, 'damage-bonus'))
       : 0;
-    const total = value + magicBonus;
+    const total = value + magicBonus + Math.max(0, Math.min(3, bonus));
     const base = total === 0 ? damage : `${damage}${total > 0 ? '+' : '−'}${Math.abs(total)}`;
-    const extra = this.itemMagicActive(item)
-      ? item.additionalDamage ||
-        item.effects?.find((effect) => effect.type === 'extra-damage')?.formula
+    const extra = this.itemMagicActive(weapon)
+      ? weapon.additionalDamage ||
+        weapon.effects?.find((effect) => effect.type === 'extra-damage')?.formula
       : '';
     const extraType =
-      item.additionalDamageType ||
-      item.effects?.find((effect) => effect.type === 'extra-damage')?.damageType;
+      weapon.additionalDamageType ||
+      weapon.effects?.find((effect) => effect.type === 'extra-damage')?.damageType;
     return extra ? `${base} + ${extra} ${extraType ?? ''}`.trim() : base;
   }
   weaponHandsLabel(equipped: EquippedWeapon) {
     return equipped.hands === 2 ? 'Due mani' : 'Una mano';
   }
   canEquipWeapon(item: EquipmentItem) {
+    item = this.effectiveWeapon(item);
     const equipped = this.equippedWeaponEntries;
     const owned =
       this.store.draft().inventory?.find((entry) => entry.equipmentId === item.id)?.quantity ?? 0;
@@ -1208,6 +1344,7 @@ export class WizardComponent implements OnInit, OnDestroy {
     );
   }
   equipWeapon(item: EquipmentItem) {
+    item = this.effectiveWeapon(item);
     if (!this.canEquipWeapon(item)) return;
     this.store.patch({
       equippedWeapons: [
@@ -1229,6 +1366,42 @@ export class WizardComponent implements OnInit, OnDestroy {
     if (!equippedWeapons[index]) return;
     equippedWeapons[index] = { ...equippedWeapons[index], hands };
     this.store.patch({ equippedWeapons });
+  }
+  setWeaponBonus(index: number, value: string | number) {
+    const equippedWeapons = [...(this.store.draft().equippedWeapons ?? [])];
+    if (!equippedWeapons[index]) return;
+    equippedWeapons[index] = {
+      ...equippedWeapons[index],
+      bonus: Math.max(0, Math.min(3, Math.floor(Number(value) || 0))),
+    };
+    this.store.patch({ equippedWeapons });
+  }
+  shieldLevelFor(item: EquipmentItem): number {
+    return this.store.draft().equippedShieldId === item.id
+      ? (this.store.draft().shieldMagicBonus ?? 0)
+      : 0;
+  }
+  equippedWeaponBonus(item: EquipmentItem): number {
+    return (
+      this.equippedWeaponEntries.find((entry) => entry.item.id === item.id)?.equipped.bonus ?? 0
+    );
+  }
+  setShieldLevel(item: EquipmentItem, value: string | number) {
+    if (this.store.draft().equippedShieldId !== item.id || item.magical) return;
+    this.store.patch({
+      shieldMagicBonus: Math.max(0, Math.min(3, Math.floor(Number(value) || 0))),
+    });
+  }
+  armorLevelFor(item: EquipmentItem): number {
+    return this.store.draft().equippedArmorId === item.id
+      ? (this.store.draft().armorMagicBonus ?? 0)
+      : 0;
+  }
+  setArmorLevel(item: EquipmentItem, value: string | number) {
+    if (this.store.draft().equippedArmorId !== item.id || item.magical) return;
+    this.store.patch({
+      armorMagicBonus: Math.max(0, Math.min(3, Math.floor(Number(value) || 0))),
+    });
   }
   unequipWeapon(index: number) {
     this.store.patch({
@@ -1271,6 +1444,8 @@ export class WizardComponent implements OnInit, OnDestroy {
       equippedArmorId: draft.equippedArmorId === id ? '' : draft.equippedArmorId,
       equippedShieldId: draft.equippedShieldId === id ? '' : draft.equippedShieldId,
       shieldEquipped: draft.equippedShieldId === id ? false : draft.shieldEquipped,
+      armorMagicBonus: draft.equippedArmorId === id ? 0 : (draft.armorMagicBonus ?? 0),
+      shieldMagicBonus: draft.equippedShieldId === id ? 0 : (draft.shieldMagicBonus ?? 0),
       equippedWeapons: (draft.equippedWeapons ?? []).filter((weapon) => weapon.equipmentId !== id),
       equippedItemIds: (draft.equippedItemIds ?? []).filter((itemId) => itemId !== id),
       attunedEquipmentIds: (draft.attunedEquipmentIds ?? []).filter((itemId) => itemId !== id),

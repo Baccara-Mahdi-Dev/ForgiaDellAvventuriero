@@ -196,6 +196,7 @@ describe('regole 5e 2014', () => {
     expect(result.spellAttack).toBe(7);
     expect(result.spellDc).toBe(15);
     expect(result.preparedSpells).toBe(6);
+    expect(result.weaponProficiencies).toContain('martial');
   });
   it('applica le scelte razziali del Mezzelfo e gli strumenti del Nano', () => {
     const halfElf = derive(

@@ -1395,7 +1395,7 @@
   font-weight: 800;
   text-transform: uppercase;
 }
-.homebrew-form input:not([type="checkbox"]),
+.homebrew-form input:not([type='checkbox']),
 .homebrew-form select,
 .homebrew-form textarea {
   box-sizing: border-box;
@@ -1846,7 +1846,7 @@
 }
 .class-recommendation::before,
 .class-recommendation::after {
-  content: "✦";
+  content: '✦';
   position: absolute;
   color: var(--recommendation-ink);
   font-size: 0.62rem;
@@ -1959,18 +1959,6 @@
 .coins-panel h2 {
   margin: 0.2rem 0 !important;
   font: 1.35rem Georgia !important;
-}
-.shield-switch {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.65rem 0.8rem;
-  border: 1px solid var(--line);
-  border-radius: 2rem;
-  font-weight: 800;
-}
-.shield-switch input {
-  accent-color: var(--ember);
 }
 .proficiency-note {
   display: block;
