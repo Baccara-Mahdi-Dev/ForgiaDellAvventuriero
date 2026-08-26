@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { AbilityMethod } from '../models/enum/ability-method';
 import { RulesCatalog } from './catalog';
 import { AbilityScores, CharacterDraft } from './models';
 import {
@@ -208,7 +209,7 @@ const draft: CharacterDraft = {
   revision: 0,
   updatedAt: '2026-01-01',
   name: 'Nyx',
-  abilityMethod: 'point-buy',
+  abilityMethod: AbilityMethod.POINT,
   abilities: { str: 8, dex: 14, con: 14, int: 15, wis: 10, cha: 10 },
   ancestryId: 'tiefling',
   classId: 'artificer',

@@ -2,6 +2,7 @@ import { PDFDocument } from 'pdf-lib';
 import { describe, expect, it } from 'vitest';
 import { CatalogData } from '../domain/catalog';
 import { CharacterDraft, Spell } from '../domain/models';
+import { AbilityMethod } from '../models/enum/ability-method';
 import { buildSpellCardsPdf, orderedCharacterSpells, SPELL_LEVEL_COLORS } from './spell-cards-pdf';
 
 const spell = (id: string, name: string, level: number): Spell => ({
@@ -55,7 +56,7 @@ const draft: CharacterDraft = {
   revision: 0,
   updatedAt: new Date(0).toISOString(),
   name: 'Aria della Forgia',
-  abilityMethod: 'custom',
+  abilityMethod: AbilityMethod.CUSTOM,
   abilities: { str: 10, dex: 14, con: 12, int: 16, wis: 11, cha: 8 },
   ancestryId: '',
   classId: 'wizard',

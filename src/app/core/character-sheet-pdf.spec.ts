@@ -2,6 +2,7 @@ import { PDFDocument } from 'pdf-lib';
 import { describe, expect, it } from 'vitest';
 import { CatalogData } from '../domain/catalog';
 import { CharacterDraft } from '../domain/models';
+import { AbilityMethod } from '../models/enum/ability-method';
 import { buildCharacterSheetPdf } from './character-sheet-pdf';
 
 describe('buildCharacterSheetPdf', () => {
@@ -23,7 +24,7 @@ describe('buildCharacterSheetPdf', () => {
       updatedAt: new Date(0).toISOString(),
       name: 'Aria della Forgia',
       alignment: 'neutral-good',
-      abilityMethod: 'custom',
+      abilityMethod: AbilityMethod.CUSTOM,
       abilities: { str: 10, dex: 14, con: 12, int: 16, wis: 11, cha: 8 },
       ancestryId: '',
       classId: '',

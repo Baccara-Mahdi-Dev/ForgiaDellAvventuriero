@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { AbilityMethod } from '../models/enum/ability-method';
 import { CharacterDraft, EquipmentItem } from './models';
 import {
   battleSmithUsesIntelligence,
@@ -31,7 +32,7 @@ const draft = {
   revision: 0,
   updatedAt: '2026-01-01',
   name: '',
-  abilityMethod: 'custom',
+  abilityMethod: AbilityMethod.CUSTOM,
   abilities: { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 },
   ancestryId: '',
   classId: '',
