@@ -215,7 +215,7 @@ async function newCatalog() {
     });
     await loadCatalogList();
     await openCatalog(result.name);
-    toast('Nuovo catalogo creato. Aggiungilo al manifest se deve essere caricato dall’app.');
+    toast("Nuovo catalogo creato. Aggiungilo al manifest se deve essere caricato dall'app.");
   } catch (error) {
     toast(error.message, true);
   }

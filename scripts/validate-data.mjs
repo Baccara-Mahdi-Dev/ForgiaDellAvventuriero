@@ -1,6 +1,8 @@
 import { readFile } from 'node:fs/promises';
 
-const root = new URL('../public/data/v1/', import.meta.url);
+const version = process.argv[2] ?? 'v1';
+if (!/^v\d+$/.test(version)) throw new Error(`Versione catalogo non valida: ${version}`);
+const root = new URL(`${version}/`, new URL('../public/data/', import.meta.url));
 const readJson = async (file) => JSON.parse(await readFile(new URL(file, root), 'utf8'));
 const manifest = await readJson('manifest.json');
 const names = ['ancestries', 'classes', 'backgrounds', 'feats', 'spells', 'equipment'];
@@ -180,6 +182,36 @@ for (const klass of catalogs.classes) {
     }
   }
 }
+
+const toolChoiceCategories = new Set(['artisan-tool', 'gaming-set', 'musical-instrument']);
+for (const background of catalogs.backgrounds) {
+  const choices = background.toolChoices ?? 0;
+  if (!Number.isInteger(choices) || choices < 0)
+    throw new Error(`backgrounds/${background.id}: toolChoices non valido`);
+  if (choices && !toolChoiceCategories.has(background.toolChoiceCategory))
+    throw new Error(`backgrounds/${background.id}: categoria strumenti mancante o non valida`);
+}
+
+const expectedSrdSubclasses = {
+  barbarian: ['Berserker'],
+  bard: ['Collegio della Sapienza'],
+  cleric: ['Dominio della Vita'],
+  druid: ['Circolo della Terra'],
+  fighter: ['Campione'],
+  monk: ['Via della Mano Aperta'],
+  paladin: ['Giuramento di Devozione'],
+  ranger: ['Cacciatore'],
+  rogue: ['Furfante'],
+  sorcerer: ['Discendenza Draconica'],
+  warlock: ["L'Immondo"],
+  wizard: ['Scuola di Invocazione'],
+};
+for (const [classId, expected] of Object.entries(expectedSrdSubclasses)) {
+  const klass = catalogs.classes.find((candidate) => candidate.id === classId);
+  const missing = expected.filter((subclass) => !klass?.subclasses.includes(subclass));
+  if (missing.length)
+    throw new Error(`classes/${classId}: sottoclassi SRD mancanti: ${missing.join(', ')}`);
+}
 const castingUnits = new Set(['action', 'bonus-action', 'reaction', 'minute', 'hour', 'special']);
 const durationUnits = new Set([
   'instantaneous',
@@ -245,6 +277,19 @@ for (const owner of [...catalogs.ancestries, ...catalogs.feats]) {
   }
 }
 for (const feat of catalogs.feats) {
+  const choiceIds = new Set();
+  for (const choice of feat.proficiencyChoices ?? []) {
+    if (
+      !choice.id ||
+      choiceIds.has(choice.id) ||
+      !choice.label ||
+      !Number.isInteger(choice.count) ||
+      choice.count < 1 ||
+      !['skill', 'tool', 'skill-or-tool', 'weapon', 'expertise', 'language'].includes(choice.kind)
+    )
+      throw new Error(`feats/${feat.id}: scelta di competenza non valida`);
+    choiceIds.add(choice.id);
+  }
   const effects = feat.effects;
   if (!effects) continue;
   if (effects.abilityIncrease) {
@@ -258,6 +303,20 @@ for (const feat of catalogs.feats) {
       if (!abilityIds.has(ability))
         throw new Error(`feats/${feat.id}: caratteristica sconosciuta ${ability}`);
   }
+  if (
+    effects.savingThrowProficiencyFromAbility !== undefined &&
+    typeof effects.savingThrowProficiencyFromAbility !== 'boolean'
+  )
+    throw new Error(`feats/${feat.id}: competenza nei tiri salvezza non valida`);
+  for (const armor of effects.armorProficiencies ?? [])
+    if (!['clothing', 'light', 'medium', 'heavy', 'shield'].includes(armor))
+      throw new Error(`feats/${feat.id}: competenza armatura sconosciuta ${armor}`);
+  for (const tool of effects.toolProficiencies ?? [])
+    if (typeof tool !== 'string' || !tool)
+      throw new Error(`feats/${feat.id}: competenza strumento non valida`);
+  for (const weapon of effects.weaponProficiencies ?? [])
+    if (typeof weapon !== 'string' || !weapon)
+      throw new Error(`feats/${feat.id}: competenza arma non valida`);
   for (const field of [
     'hitPointsPerLevel',
     'initiativeBonus',

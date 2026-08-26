@@ -3,6 +3,7 @@ import { RulesCatalog } from './catalog';
 import { AbilityScores, CharacterDraft } from './models';
 import {
   asiSlots,
+  classToolProficiencies,
   classResources,
   derive,
   experienceForLevel,
@@ -16,6 +17,7 @@ import {
   proficiency,
   spellSelectionLimits,
   spellSlots,
+  subclassSpellcastingProfile,
 } from './rules';
 
 const catalog: RulesCatalog = {
@@ -128,6 +130,21 @@ const catalog: RulesCatalog = {
       skillOptions: [],
       caster: 'full',
     },
+    {
+      id: 'rogue',
+      name: 'Ladro',
+      description: '',
+      source: 'PHB',
+      hitDie: 8,
+      primary: 'dex',
+      saves: ['dex', 'int'],
+      subclassLevel: 3,
+      subclasses: ['Assassino', 'Esploratore'],
+      skillChoices: 4,
+      skillOptions: ['acrobatics', 'investigation', 'perception', 'stealth'],
+      armorProficiencies: ['light'],
+      weaponProficiencies: ['simple'],
+    },
   ],
   backgrounds: [
     { id: 'sage', name: 'Sapiente', description: '', source: 'PHB', skills: ['Arcano', 'Storia'] },
@@ -157,6 +174,30 @@ const catalog: RulesCatalog = {
         passivePerceptionBonus: 5,
         passiveInvestigationBonus: 5,
       },
+    },
+    {
+      id: 'resilient',
+      name: 'Resiliente',
+      description: '',
+      source: 'PHB',
+      effects: {
+        abilityIncrease: { amount: 1, options: ['str', 'dex', 'con', 'int', 'wis', 'cha'] },
+        savingThrowProficiencyFromAbility: true,
+      },
+    },
+    {
+      id: 'skilled',
+      name: 'Abile',
+      description: '',
+      source: 'PHB',
+      proficiencyChoices: [
+        {
+          id: 'skilled-proficiencies',
+          label: 'Tre abilità o strumenti',
+          count: 3,
+          kind: 'skill-or-tool',
+        },
+      ],
     },
   ],
 };
@@ -270,10 +311,90 @@ describe('regole 5e 2014', () => {
     expect(result.passivePerception).toBe(15);
     expect(result.passiveInvestigation).toBe(18);
   });
+  it('Resiliente applica aumento e competenza senza sommare una competenza già posseduta', () => {
+    const result = derive(
+      {
+        ...draft,
+        asi: {},
+        featIds: ['resilient'],
+        featAbilityChoices: { resilient: 'con' },
+      },
+      catalog,
+    );
+    expect(result.finalAbilities.con).toBe(15);
+    expect(result.savingThrows.find((save) => save.ability === 'con')).toMatchObject({
+      proficient: true,
+      value: 5,
+    });
+  });
+  it('applica le competenze in abilità e strumenti scelte tramite talento', () => {
+    const result = derive(
+      {
+        ...draft,
+        featIds: ['skilled'],
+        featProficiencyChoices: {
+          'skilled-proficiencies': ['skill:athletics', 'tool:Set di dadi', 'tool:Liuto'],
+        },
+      },
+      catalog,
+    );
+    expect(result.skills.find((skill) => skill.id === 'athletics')?.proficient).toBe(true);
+    expect(result.tools).toEqual(expect.arrayContaining(['Set di dadi', 'Liuto']));
+  });
   it('scala le risorse distintive di classe', () => {
     expect(classResources('barbarian', 17)[0].value).toBe('6');
     expect(classResources('rogue', 9)[0].value).toBe('5d6');
     expect(classResources('monk', 11).find((item) => item.name === 'Punti ki')?.value).toBe('11');
+    expect(
+      classResources('artificer', 18, 0, 5, 'Fabbro da Battaglia').find(
+        (item) => item.name === 'Slot di sintonia',
+      )?.value,
+    ).toBe('6');
+  });
+  it('applica strumenti e protezioni delle specializzazioni dell’Artificiere', () => {
+    const battleSmith = derive(draft, catalog);
+    expect(battleSmith.tools).toEqual(
+      expect.arrayContaining(['Arnesi da scasso', 'Strumenti da inventore', 'Strumenti da fabbro']),
+    );
+    const armorer = derive(
+      {
+        ...draft,
+        subclassId: 'Armorer',
+        classFeatureChoices: { 'armorer-armor-model': ['infiltrator'] },
+      },
+      catalog,
+    );
+    expect(armorer.armorProficiencies).toContain('heavy');
+    expect(armorer.speedMeters).toBe(10.5);
+  });
+  it('espone separatamente gli strumenti di classe prima del background', () => {
+    expect(classToolProficiencies(draft)).toEqual(
+      expect.arrayContaining(['Arnesi da scasso', 'Strumenti da inventore', 'Strumenti da fabbro']),
+    );
+  });
+  it('raddoppia il bonus delle abilità scelte con Maestria', () => {
+    const rogue = derive(
+      {
+        ...draft,
+        classId: 'rogue',
+        subclassId: 'Assassino',
+        level: 6,
+        backgroundId: '',
+        classSkillProficiencies: ['stealth', 'perception', 'investigation', 'acrobatics'],
+        classFeatureChoices: {
+          'rogue-expertise': ['stealth', 'perception', 'thieves-tools', 'investigation'],
+        },
+      },
+      catalog,
+    );
+    expect(rogue.skills.find((skill) => skill.id === 'stealth')).toMatchObject({
+      proficient: true,
+      expertise: true,
+      value: 8,
+    });
+    expect(rogue.tools).toEqual(
+      expect.arrayContaining(['Arnesi da scasso', 'Kit da camuffamento', 'Scorte da avvelenatore']),
+    );
   });
   it('limita gli incantesimi in base alla progressione della classe', () => {
     expect(maximumSpellLevel('wizard', 5)).toBe(3);
@@ -284,12 +405,15 @@ describe('regole 5e 2014', () => {
     expect(maximumSpellLevel('artificer', 13)).toBe(4);
     expect(maximumSpellLevel('artificer', 17)).toBe(5);
     expect(maximumSpellLevel('fighter', 20)).toBe(0);
+    expect(maximumSpellLevel('fighter', 7, 'Cavaliere Mistico')).toBe(2);
+    expect(maximumSpellLevel('rogue', 19, 'Mistificatore Arcano')).toBe(4);
   });
   it('mostra gli slot corretti per livello e classe', () => {
     expect(spellSlots('wizard', 5).map(({ slots }) => slots)).toEqual([4, 3, 2]);
     expect(spellSlots('paladin', 5).map(({ slots }) => slots)).toEqual([4, 2]);
     expect(spellSlots('artificer', 1).map(({ slots }) => slots)).toEqual([2]);
     expect(spellSlots('ranger', 1)).toEqual([]);
+    expect(spellSlots('fighter', 7, 'Cavaliere Mistico').map(({ slots }) => slots)).toEqual([4, 2]);
     expect(spellSlots('warlock', 11)).toEqual([
       { level: 5, slots: 3, kind: 'pact' },
       { level: 6, slots: 1, kind: 'arcanum' },
@@ -416,6 +540,19 @@ describe('limiti di selezione degli incantesimi', () => {
   it('include libro degli incantesimi e Arcanum nei rispettivi limiti', () => {
     expect(spellSelectionLimits('wizard', 5, 4)).toEqual({ cantrips: 4, leveledSpells: 14 });
     expect(spellSelectionLimits('warlock', 11, 4)).toEqual({ cantrips: 4, leveledSpells: 12 });
+  });
+
+  it('applica progressione, scuole e scelte libere agli incantatori di un terzo', () => {
+    expect(spellSelectionLimits('fighter', 8, 0, 'Cavaliere Mistico')).toEqual({
+      cantrips: 2,
+      leveledSpells: 6,
+    });
+    expect(subclassSpellcastingProfile('rogue', 'Mistificatore Arcano', 14)).toMatchObject({
+      spellClassId: 'wizard',
+      ability: 'int',
+      schools: ['Ammaliamento', 'Illusione'],
+      unrestrictedLeveledSpells: 3,
+    });
   });
 });
 

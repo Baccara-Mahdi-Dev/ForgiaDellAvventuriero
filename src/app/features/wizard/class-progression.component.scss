@@ -2,35 +2,77 @@
   display: block;
 }
 
-.field {
-  display: block;
+.subclass-picker {
   margin-top: 1.5rem;
-}
-
-.field > span {
-  display: block;
-  margin-bottom: 0.45rem;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.field select {
-  width: 100%;
-  padding: 0.8rem;
+  padding: 1.2rem;
   border: 1px solid var(--line);
-  border-radius: 0.35rem;
+  border-radius: 0.6rem;
   background: var(--surface-raised);
-  color: inherit;
 }
 
-.field small,
+.subclass-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.subclass-heading h2 {
+  margin: 0.3rem 0 0;
+  font: 1.35rem Georgia;
+}
+
 .subclass-locked small,
 .choice-panel > small {
   display: block;
   margin-top: 0.4rem;
   color: var(--muted);
+}
+
+.subclass-heading > small {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.subclass-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.subclass-options button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  min-height: 64px;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  background: var(--surface);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.subclass-options button:hover {
+  border-color: var(--gold);
+}
+
+.subclass-options button.selected {
+  border-color: var(--gold);
+  background: var(--surface-highlight);
+  box-shadow: inset 3px 0 0 var(--gold);
+}
+
+.subclass-options span {
+  font-weight: 800;
+}
+
+.subclass-options small {
+  color: var(--muted);
+  font-size: 0.68rem;
 }
 
 .subclass-locked,
@@ -100,7 +142,24 @@
   line-height: 1.4;
 }
 
+.feature-picks .ability-short {
+  display: inline;
+  margin-left: 0.2rem;
+  color: var(--muted);
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
 @media (max-width: 680px) {
+  .subclass-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .subclass-options {
+    grid-template-columns: 1fr;
+  }
+
   .feature-picks {
     grid-template-columns: 1fr;
   }

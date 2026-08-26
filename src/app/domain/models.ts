@@ -1,3 +1,5 @@
+import { AbilityMethod } from "../models/enum/ability-method";
+
 export type AbilityKey = 'str' | 'dex' | 'con' | 'int' | 'wis' | 'cha';
 export type StepId =
   | 'caratteristiche'
@@ -57,6 +59,7 @@ export interface Ancestry extends OptionItem {
   bonusFeat?: boolean;
   armorProficiencies?: ArmorType[];
   weaponProficiencies?: string[];
+  isHidden?: boolean;
 }
 export interface TraitDetail {
   name: string;
@@ -91,11 +94,17 @@ export interface CharacterClass extends OptionItem {
   caster?: 'full' | 'half';
   featureChoices?: ClassFeatureChoice[];
   subclassFeatures?: SubclassFeatureChoices[];
+  isHidden?: boolean;
+}
+export interface Subclass extends OptionItem {
+  classId: string;
+  isHidden?: boolean;
 }
 export interface ClassFeatureOption {
   id: string;
   name: string;
   description: string;
+  kind?: 'skill' | 'tool';
 }
 
 export interface ClassFeatureChoice {
@@ -105,6 +114,8 @@ export interface ClassFeatureChoice {
   minLevel: number;
   countByLevel: { level: number; count: number }[];
   options: ClassFeatureOption[];
+  effect?: 'skill-proficiency' | 'skill-expertise' | 'tool-proficiency';
+  requiresProficiency?: boolean;
 }
 export interface SubclassFeatureChoices {
   subclassId: string;
@@ -216,6 +227,8 @@ export interface EquippedWeapon {
   equipmentId: string;
   hands: 1 | 2;
   bonus?: number;
+  /** Scelta facoltativa di Battle Ready per le armi magiche del Battle Smith. */
+  useIntelligence?: boolean;
 }
 export interface Coins {
   cp: number;
@@ -230,14 +243,26 @@ export interface Background extends OptionItem {
   languageChoices?: number;
   tools?: string[];
   toolChoices?: number;
+  toolChoiceCategory?: 'artisan-tool' | 'gaming-set' | 'musical-instrument';
+  isHidden?: boolean;
 }
 export interface Feat extends OptionItem {
   ability?: AbilityKey;
   prerequisite?: string;
   requirements?: FeatRequirements;
   effects?: FeatEffects;
+  proficiencyChoices?: FeatProficiencyChoice[];
   spellGrants?: SpellGrant[];
   spellChoices?: SpellGrantChoice[];
+  isHidden?: boolean;
+}
+export interface FeatProficiencyChoice {
+  id: string;
+  label: string;
+  count: number;
+  kind: 'skill' | 'tool' | 'skill-or-tool' | 'weapon' | 'expertise' | 'language';
+  toolCategory?: 'artisan-tool';
+  options?: string[];
 }
 export interface FeatRequirements {
   minimumLevel?: number;
@@ -247,6 +272,10 @@ export interface FeatRequirements {
 }
 export interface FeatEffects {
   abilityIncrease?: { amount: number; options: AbilityKey[] };
+  savingThrowProficiencyFromAbility?: boolean;
+  armorProficiencies?: ArmorType[];
+  toolProficiencies?: string[];
+  weaponProficiencies?: string[];
   hitPointsPerLevel?: number;
   initiativeBonus?: number;
   passivePerceptionBonus?: number;
@@ -292,6 +321,7 @@ export interface Spell extends OptionItem {
   ritual?: boolean;
   subclassGrants?: SubclassSpellGrant[];
   higherLevels?: string;
+  isHidden?: boolean;
 }
 export interface HomebrewSpell {
   id: string;
@@ -314,6 +344,7 @@ export interface SkillDefinition {
 export interface SkillValue extends SkillDefinition {
   value: number;
   proficient: boolean;
+  expertise?: boolean;
 }
 export interface SavingThrowValue {
   ability: AbilityKey;
@@ -334,7 +365,7 @@ export interface CharacterDraft {
   updatedAt: string;
   name: string;
   alignment?: Alignment | '';
-  abilityMethod: 'point-buy' | 'standard' | 'custom';
+  abilityMethod: AbilityMethod;
   abilities: AbilityScores;
   sanityEnabled?: boolean;
   sanityScore?: number;
@@ -356,6 +387,7 @@ export interface CharacterDraft {
   asi: Partial<AbilityScores>;
   featIds: string[];
   featAbilityChoices?: Record<string, AbilityKey>;
+  featProficiencyChoices?: Record<string, string[]>;
   spellIds: string[];
   homebrewSpells?: HomebrewSpell[];
   homebrewEquipment?: EquipmentItem[];

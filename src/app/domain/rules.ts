@@ -3,6 +3,7 @@ import {
   SKILLS,
   AbilityKey,
   AbilityScores,
+  CharacterClass,
   CharacterDraft,
   ClassResource,
   DerivedCharacter,
@@ -18,6 +19,8 @@ import {
   equipmentEffectTotal,
 } from './equipment-effects';
 import { resolveWeaponBase } from './weapon-loadout';
+import { attunementLimit, isArtificerSubclass } from './artificer-rules';
+import { activeClassFeatureChoices } from './class-progression';
 export const pointBuyCost = (score: number): number =>
   (({ 8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9 }) as Record<number, number>)[score] ??
   99;
@@ -26,9 +29,110 @@ export const homebrewAbilityScore = (score: number | undefined, fallback = 8): n
   Math.max(HOMEBREW_ABILITY_MIN, Math.min(HOMEBREW_ABILITY_MAX, Math.floor(score ?? fallback)));
 export const proficiency = (level: number): number => Math.ceil(level / 4) + 1;
 
+const ARTIFICER_TOOL_NAMES: Readonly<Record<string, string>> = {
+  alchemist: 'Scorte da alchimista',
+  brewer: 'Scorte da birraio',
+  calligrapher: 'Scorte da calligrafo',
+  carpenter: 'Strumenti da carpentiere',
+  cartographer: 'Strumenti da cartografo',
+  cobbler: 'Strumenti da calzolaio',
+  cook: 'Utensili da cuoco',
+  glassblower: 'Strumenti da soffiatore di vetro',
+  jeweler: 'Strumenti da gioielliere',
+  leatherworker: 'Strumenti da conciatore',
+  mason: 'Strumenti da muratore',
+  painter: 'Scorte da pittore',
+  potter: 'Strumenti da vasaio',
+  smith: 'Strumenti da fabbro',
+  tinkerer: 'Strumenti da inventore',
+  weaver: 'Strumenti da tessitore',
+  woodcarver: 'Strumenti da intagliatore',
+};
+
+/** Competenze negli strumenti ottenute dalla classe, prima di applicare il background. */
+export function classToolProficiencies(draft: CharacterDraft, klass?: CharacterClass): string[] {
+  const selectedTools = activeClassFeatureChoices(klass, draft.level, draft.subclassId).flatMap(
+    (choice) => {
+      if (choice.effect !== 'tool-proficiency') return [];
+      const selected = new Set(draft.classFeatureChoices?.[choice.id] ?? []);
+      return choice.options
+        .filter((option) => selected.has(option.id))
+        .map((option) => option.name);
+    },
+  );
+  return [
+    ...(draft.classId === 'rogue' ? ['Arnesi da scasso'] : []),
+    ...(draft.classId === 'artificer' ? ['Arnesi da scasso', 'Strumenti da inventore'] : []),
+    ...(draft.classFeatureChoices?.['artificer-artisan-tool'] ?? []).flatMap((id) =>
+      ARTIFICER_TOOL_NAMES[id] ? [ARTIFICER_TOOL_NAMES[id]] : [],
+    ),
+    ...(isArtificerSubclass(draft, 'alchemist') ? ['Scorte da alchimista'] : []),
+    ...(isArtificerSubclass(draft, 'artillerist') ? ['Strumenti da intagliatore'] : []),
+    ...(isArtificerSubclass(draft, 'armorer') || isArtificerSubclass(draft, 'battleSmith')
+      ? ['Strumenti da fabbro']
+      : []),
+    ...(draft.classId === 'rogue' && draft.level >= 3 && draft.subclassId === 'Assassino'
+      ? ['Kit da camuffamento', 'Scorte da avvelenatore']
+      : []),
+    ...(draft.classId === 'rogue' && draft.level >= 3 && draft.subclassId === 'Pianificatore'
+      ? ['Kit da camuffamento', 'Strumenti da falsario']
+      : []),
+    ...(draft.classId === 'monk' &&
+    draft.level >= 3 &&
+    draft.subclassId === 'Via del Maestro Ubriaco'
+      ? ['Scorte da birraio']
+      : []),
+    ...(draft.classId === 'monk' &&
+    draft.level >= 3 &&
+    draft.subclassId === 'Via della Misericordia'
+      ? ['Borsa da erborista']
+      : []),
+    ...(draft.classId === 'fighter' &&
+    draft.level >= 3 &&
+    draft.subclassId === 'Cavaliere delle Rune'
+      ? ['Strumenti da fabbro']
+      : []),
+    ...selectedTools,
+  ].filter((value, index, all) => all.indexOf(value) === index);
+}
+
 export interface SpellSelectionLimits {
   cantrips: number;
   leveledSpells: number;
+}
+
+export interface SubclassSpellcastingProfile extends SpellSelectionLimits {
+  spellClassId: string;
+  ability: AbilityKey;
+  schools: string[];
+  unrestrictedLeveledSpells: number;
+}
+
+const THIRD_CASTER_SPELLS = [
+  0, 0, 3, 4, 4, 4, 5, 6, 6, 7, 8, 8, 9, 10, 10, 11, 11, 11, 12, 13,
+] as const;
+
+export function subclassSpellcastingProfile(
+  classId: string,
+  subclassId: string,
+  level: number,
+): SubclassSpellcastingProfile | undefined {
+  const safeLevel = Math.max(1, Math.min(20, level));
+  const schools =
+    classId === 'fighter' && subclassId === 'Cavaliere Mistico'
+      ? ['Abiurazione', 'Invocazione']
+      : classId === 'rogue' && subclassId === 'Mistificatore Arcano'
+        ? ['Ammaliamento', 'Illusione']
+        : undefined;
+  if (!schools || safeLevel < 3) return undefined;
+  return {
+    spellClassId: 'wizard',
+    ability: 'int',
+    schools,
+    cantrips: safeLevel >= 10 ? 3 : classId === 'rogue' ? 3 : 2,
+    leveledSpells: byLevel(THIRD_CASTER_SPELLS, safeLevel),
+    unrestrictedLeveledSpells: 1 + [8, 14, 20].filter((threshold) => safeLevel >= threshold).length,
+  };
 }
 
 const byLevel = (values: readonly number[], level: number): number =>
@@ -50,8 +154,12 @@ export function spellSelectionLimits(
   classId: string,
   level: number,
   spellcastingModifier = 0,
+  subclassId = '',
 ): SpellSelectionLimits {
   const safeLevel = Math.max(1, Math.min(20, level));
+  const subclassProfile = subclassSpellcastingProfile(classId, subclassId, safeLevel);
+  if (subclassProfile)
+    return { cantrips: subclassProfile.cantrips, leveledSpells: subclassProfile.leveledSpells };
   const cantrips =
     classId === 'sorcerer'
       ? safeLevel < 4
@@ -101,7 +209,9 @@ export function spellSelectionLimits(
 
   return { cantrips, leveledSpells };
 }
-export function maximumSpellLevel(classId: string, level: number): number {
+export function maximumSpellLevel(classId: string, level: number, subclassId = ''): number {
+  if (subclassSpellcastingProfile(classId, subclassId, level))
+    return Math.min(4, Math.ceil(Math.max(3, level) / 6));
   if (classId === 'warlock') {
     if (level >= 17) return 9;
     if (level >= 15) return 8;
@@ -141,7 +251,7 @@ const FULL_CASTER_SLOTS: readonly (readonly number[])[] = [
   [4, 3, 3, 3, 3, 2, 2, 1, 1],
 ] as const;
 
-export function spellSlots(classId: string, level: number): SpellSlot[] {
+export function spellSlots(classId: string, level: number, subclassId = ''): SpellSlot[] {
   const safeLevel = Math.max(1, Math.min(20, level));
   if (classId === 'warlock') {
     const pactLevel = safeLevel >= 9 ? 5 : Math.ceil(safeLevel / 2);
@@ -158,6 +268,8 @@ export function spellSlots(classId: string, level: number): SpellSlot[] {
   if (['paladin', 'ranger'].includes(classId))
     casterLevel = safeLevel < 2 ? 0 : Math.ceil(safeLevel / 2);
   if (classId === 'artificer') casterLevel = Math.ceil(safeLevel / 2);
+  if (subclassSpellcastingProfile(classId, subclassId, safeLevel))
+    casterLevel = Math.ceil(safeLevel / 3);
   return (FULL_CASTER_SLOTS[casterLevel] ?? []).map((slots, index) => ({
     level: index + 1,
     slots,
@@ -183,12 +295,36 @@ export function featEffectTotals(draft: CharacterDraft, catalog: RulesCatalog) {
     initiativeBonus = 0,
     passivePerceptionBonus = 0,
     passiveInvestigationBonus = 0;
+  const armorProficiencies = new Set<string>(),
+    toolProficiencies = new Set<string>(),
+    skillProficiencyIds = new Set<string>(),
+    expertiseIds = new Set<string>(),
+    weaponProficiencyIds = new Set<string>(),
+    languageProficiencies = new Set<string>(),
+    savingThrowProficiencies = new Set<AbilityKey>();
   for (const feat of selected) {
-    const effects = feat.effects;
-    if (!effects) continue;
+    const effects = feat.effects ?? {};
     const ability = draft.featAbilityChoices?.[feat.id];
     if (ability && effects.abilityIncrease?.options.includes(ability))
       abilityBonuses[ability] = (abilityBonuses[ability] ?? 0) + effects.abilityIncrease.amount;
+    if (ability && effects.savingThrowProficiencyFromAbility)
+      savingThrowProficiencies.add(ability);
+    for (const armor of effects.armorProficiencies ?? []) armorProficiencies.add(armor);
+    for (const tool of effects.toolProficiencies ?? []) toolProficiencies.add(tool);
+    for (const weapon of effects.weaponProficiencies ?? []) weaponProficiencyIds.add(weapon);
+    for (const choice of feat.proficiencyChoices ?? []) {
+      for (const selectedId of draft.featProficiencyChoices?.[choice.id] ?? []) {
+        if (choice.kind === 'skill') skillProficiencyIds.add(selectedId);
+        else if (choice.kind === 'expertise') expertiseIds.add(selectedId);
+        else if (choice.kind === 'tool') toolProficiencies.add(selectedId);
+        else if (choice.kind === 'weapon') weaponProficiencyIds.add(selectedId);
+        else if (choice.kind === 'language') languageProficiencies.add(selectedId);
+        else if (choice.kind === 'skill-or-tool') {
+          if (selectedId.startsWith('skill:')) skillProficiencyIds.add(selectedId.slice(6));
+          if (selectedId.startsWith('tool:')) toolProficiencies.add(selectedId.slice(5));
+        }
+      }
+    }
     hitPointsPerLevel += effects.hitPointsPerLevel ?? 0;
     initiativeBonus += effects.initiativeBonus ?? 0;
     passivePerceptionBonus += effects.passivePerceptionBonus ?? 0;
@@ -200,6 +336,13 @@ export function featEffectTotals(draft: CharacterDraft, catalog: RulesCatalog) {
     initiativeBonus,
     passivePerceptionBonus,
     passiveInvestigationBonus,
+    armorProficiencies,
+    toolProficiencies,
+    skillProficiencyIds,
+    expertiseIds,
+    weaponProficiencyIds,
+    languageProficiencies,
+    savingThrowProficiencies,
   };
 }
 export const asiPointTotal = (draft: CharacterDraft): number =>
@@ -246,11 +389,15 @@ export function growthChoicesComplete(draft: CharacterDraft, catalog: RulesCatal
     racialFeats = racialFeatSlots(draft.ancestryId),
     ancestry = catalog.ancestries.find((x) => x.id === draft.ancestryId),
     featEffects = featEffectTotals(draft, catalog),
-    featChoicesComplete = catalog.feats
-      .filter((feat) => draft.featIds.includes(feat.id) && feat.effects?.abilityIncrease)
-      .every((feat) => {
+    selectedFeats = catalog.feats.filter((feat) => draft.featIds.includes(feat.id)),
+    featChoicesComplete = selectedFeats.every((feat) => {
         const choice = draft.featAbilityChoices?.[feat.id];
-        return !!choice && feat.effects!.abilityIncrease!.options.includes(choice);
+        const abilityComplete = !feat.effects?.abilityIncrease ||
+          (!!choice && feat.effects.abilityIncrease.options.includes(choice));
+        const proficienciesComplete = (feat.proficiencyChoices ?? []).every((pick) =>
+          (draft.featProficiencyChoices?.[pick.id] ?? []).length === pick.count,
+        );
+        return abilityComplete && proficienciesComplete;
       });
   const scoresValid = ABILITIES.every(
     ({ key }) =>
@@ -504,6 +651,53 @@ export function classResources(
             [18, '6'],
           ]),
         });
+      if (level >= 7)
+        resources.push({
+          name: 'Lampo di genio',
+          value: `${Math.max(1, intModifier)} usi`,
+          detail: `Bonus +${Math.max(0, intModifier)} · recupero con riposo lungo`,
+        });
+      if (level >= 10)
+        resources.push({
+          name: 'Slot di sintonia',
+          value: String(attunementLimit({ classId, level })),
+          detail:
+            level >= 18
+              ? 'Maestro degli oggetti magici'
+              : level >= 14
+                ? 'Sapiente degli oggetti magici'
+                : 'Adepto degli oggetti magici',
+        });
+      if (isArtificerSubclass({ classId, subclassId, level }, 'battleSmith')) {
+        resources.push({
+          name: 'Difensore d’acciaio',
+          value: `${2 + intModifier + level * 5} PF · CA ${level >= 15 ? 17 : 15}`,
+          detail: `Squarcio 1d8+${proficiency(level)} forza · Riparazione 3/giorno`,
+        });
+        if (level >= 9)
+          resources.push({
+            name: 'Scossa arcana',
+            value: `${Math.max(1, intModifier)} usi · ${level >= 15 ? '4d6' : '2d6'}`,
+            detail: 'Danni da forza o guarigione · recupero con riposo lungo',
+          });
+      }
+      if (isArtificerSubclass({ classId, subclassId, level }, 'armorer'))
+        resources.push({
+          name: 'Armatura arcana',
+          value: level >= 9 ? '4 parti · +2 infusioni dedicate' : 'Attiva',
+          detail: 'Modello Guardiano o Infiltratore · armi dell’armatura basate su INT',
+        });
+      if (isArtificerSubclass({ classId, subclassId, level }, 'artillerist'))
+        resources.push({
+          name: 'Cannone mistico',
+          value: `${level >= 15 ? '2 cannoni' : '1 cannone'} · ${level >= 9 ? '3d8' : '2d8'}`,
+          detail: `CA 18 · ${level * 5} PF${level >= 5 ? ' · Arma da fuoco arcana +1d8' : ''}`,
+        });
+      if (isArtificerSubclass({ classId, subclassId, level }, 'alchemist'))
+        resources.push({
+          name: 'Elisir sperimentale',
+          value: `${level >= 15 ? '3' : level >= 6 ? '2' : '1'} per riposo lungo`,
+        });
       return resources;
     }
     default:
@@ -539,24 +733,48 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
       ABILITIES.map(({ key }) => [key, modifier(finalAbilities[key])]),
     ) as AbilityScores,
     pb = proficiency(draft.level),
-    caster = klass?.caster ? modifiers[klass.primary] : undefined,
+    subclassCaster = subclassSpellcastingProfile(draft.classId, draft.subclassId, draft.level),
+    caster = klass?.caster
+      ? modifiers[klass.primary]
+      : subclassCaster
+        ? modifiers[subclassCaster.ability]
+        : undefined,
     equippedArmor = catalog.equipment.find((item) => item.id === draft.equippedArmorId),
+    subclassArmorProficiencies =
+      draft.level < (klass?.subclassLevel ?? 21)
+        ? []
+        : draft.classId === 'cleric' &&
+            [
+              'Dominio della Guerra',
+              'Dominio della Natura',
+              'Dominio della Tempesta',
+              'Dominio della Vita',
+            ].includes(draft.subclassId)
+          ? (['heavy'] as const)
+          : draft.classId === 'bard' && draft.subclassId === 'Collegio del Valore'
+            ? (['medium', 'shield'] as const)
+            : isArtificerSubclass(draft, 'armorer')
+              ? (['heavy'] as const)
+              : [],
+    subclassWeaponProficiencies =
+      draft.level < (klass?.subclassLevel ?? 21)
+        ? []
+        : (draft.classId === 'cleric' &&
+              ['Dominio della Guerra', 'Dominio della Tempesta'].includes(draft.subclassId)) ||
+            (draft.classId === 'bard' && draft.subclassId === 'Collegio del Valore') ||
+            isArtificerSubclass(draft, 'battleSmith')
+          ? ['martial']
+          : [],
     armorTypes = new Set([
       ...(klass?.armorProficiencies ?? []),
       ...(ancestry?.armorProficiencies ?? []),
+      ...subclassArmorProficiencies,
+      ...featEffects.armorProficiencies,
     ]),
     armorProficient =
       !equippedArmor ||
       equippedArmor.armorType === 'clothing' ||
-      (!!equippedArmor.armorType && armorTypes.has(equippedArmor.armorType)) ||
-      (equippedArmor.armorType === 'heavy' &&
-        ((draft.classId === 'cleric' &&
-          ['Dominio della Vita', 'Dominio della Guerra'].includes(draft.subclassId)) ||
-          (draft.classId === 'artificer' && draft.subclassId === 'Armorer' && draft.level >= 3))) ||
-      ((equippedArmor.armorType === 'medium' || equippedArmor.armorType === 'shield') &&
-        draft.classId === 'bard' &&
-        draft.subclassId === 'Collegio del Valore' &&
-        draft.level >= 3),
+      (!!equippedArmor.armorType && armorTypes.has(equippedArmor.armorType)),
     armorBase = equippedArmor?.armorClass ?? 10,
     armorDex =
       equippedArmor?.dexterityBonus === 'none'
@@ -589,11 +807,45 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
         return sum + (item?.weightKg ?? 0) * Math.max(0, entry.quantity);
       }, 0)
       .toFixed(1);
-  const pickedSkillIds = [
+  const featureChoices = activeClassFeatureChoices(klass, draft.level, draft.subclassId),
+    selectedFeatureSkillIds = featureChoices.flatMap((choice) => {
+      if (choice.effect !== 'skill-proficiency') return [];
+      const selected = new Set(draft.classFeatureChoices?.[choice.id] ?? []);
+      return choice.options
+        .filter((option) => option.kind !== 'tool' && selected.has(option.id))
+        .map((option) => option.id);
+    }),
+    fixedSubclassSkillIds =
+      draft.level < (klass?.subclassLevel ?? 21)
+        ? []
+        : draft.classId === 'rogue' && draft.subclassId === 'Esploratore'
+          ? ['nature', 'survival']
+          : draft.classId === 'monk' && draft.subclassId === 'Via del Maestro Ubriaco'
+            ? ['performance']
+            : draft.classId === 'monk' && draft.subclassId === 'Via della Misericordia'
+              ? ['insight', 'medicine']
+              : [],
+    pickedSkillIds = [
       ...(draft.classSkillProficiencies ?? []),
       ...(draft.ancestrySkillProficiencies ?? []),
       ...(ancestry?.skillProficiencies ?? []),
+      ...selectedFeatureSkillIds,
+      ...featEffects.skillProficiencyIds,
+      ...fixedSubclassSkillIds,
     ],
+    expertiseIds = new Set([
+      ...featureChoices.flatMap((choice) => {
+        if (choice.effect !== 'skill-expertise') return [];
+        const selected = new Set(draft.classFeatureChoices?.[choice.id] ?? []);
+        return choice.options
+          .filter((option) => option.kind !== 'tool' && selected.has(option.id))
+          .map((option) => option.id);
+      }),
+      ...(draft.classId === 'rogue' && draft.level >= 3 && draft.subclassId === 'Esploratore'
+        ? ['nature', 'survival']
+        : []),
+      ...featEffects.expertiseIds,
+    ]),
     proficientNames = new Set([
       ...(background?.skills ?? []),
       ...SKILLS.filter((skill) => pickedSkillIds.includes(skill.id)).map((skill) => skill.name),
@@ -601,26 +853,40 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
     skills = SKILLS.map((skill) => ({
       ...skill,
       proficient: proficientNames.has(skill.name),
-      value: modifiers[skill.ability] + (proficientNames.has(skill.name) ? pb : 0),
+      expertise: expertiseIds.has(skill.id),
+      value:
+        modifiers[skill.ability] +
+        (proficientNames.has(skill.name) ? pb * (expertiseIds.has(skill.id) ? 2 : 1) : 0),
     })),
     perception = skills.find((skill) => skill.id === 'perception')!,
     investigation = skills.find((skill) => skill.id === 'investigation')!,
     savingThrows = ABILITIES.map((ability) => ({
       ability: ability.key,
       name: ability.label,
-      proficient: klass?.saves.includes(ability.key) ?? false,
+      proficient:
+        (klass?.saves.includes(ability.key) ?? false) ||
+        featEffects.savingThrowProficiencies.has(ability.key),
       value:
-        modifiers[ability.key] + (klass?.saves.includes(ability.key) ? pb : 0) + savingThrowBonus,
+        modifiers[ability.key] +
+        ((klass?.saves.includes(ability.key) ?? false) ||
+        featEffects.savingThrowProficiencies.has(ability.key)
+          ? pb
+          : 0) +
+        savingThrowBonus,
     }));
   const languages = [
       ...(ancestry?.languages ?? []),
       ...(background?.languages ?? []),
       ...(draft.customLanguages ?? []),
+      ...featEffects.languageProficiencies,
     ].filter((value, index, all) => value && all.indexOf(value) === index),
+    classTools = classToolProficiencies(draft, klass),
     tools = [
       ...(ancestry?.tools ?? []),
       ...(draft.ancestryToolProficiencies ?? []),
       ...(background?.tools ?? []),
+      ...classTools,
+      ...featEffects.toolProficiencies,
       ...(draft.customTools ?? []),
     ].filter((value, index, all) => value && all.indexOf(value) === index);
   return {
@@ -646,7 +912,12 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
     passivePerception: 10 + perception.value + featEffects.passivePerceptionBonus,
     passiveInvestigation: 10 + investigation.value + featEffects.passiveInvestigationBonus,
     savingThrows,
-    speedMeters: ancestry?.speed ?? 0,
+    speedMeters:
+      (ancestry?.speed ?? 0) +
+      (isArtificerSubclass(draft, 'armorer') &&
+      (draft.classFeatureChoices?.['armorer-armor-model'] ?? []).includes('infiltrator')
+        ? 1.5
+        : 0),
     size: ancestry?.size ?? 'Media',
     hitDie: klass?.hitDie ?? 0,
     hitDiceRemaining: Math.max(0, draft.level - (draft.hitDiceSpent ?? 0)),
@@ -667,16 +938,19 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
     skills,
     languages,
     tools,
-    armorProficiencies: [...new Set(klass?.armorProficiencies ?? [])],
+    armorProficiencies: [
+      ...new Set([
+        ...(klass?.armorProficiencies ?? []),
+        ...subclassArmorProficiencies,
+        ...featEffects.armorProficiencies,
+      ]),
+    ],
     weaponProficiencies: [
       ...new Set([
         ...(klass?.weaponProficiencies ?? []),
         ...(ancestry?.weaponProficiencies ?? []),
-        ...(draft.classId === 'artificer' &&
-        draft.subclassId === 'Fabbro da Battaglia' &&
-        draft.level >= 3
-          ? ['martial']
-          : []),
+        ...subclassWeaponProficiencies,
+        ...featEffects.weaponProficiencyIds,
       ]),
     ],
     resistances: [
@@ -701,7 +975,7 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
           modifiers[klass.primary] +
             (klass.caster === 'half' ? Math.floor(draft.level / 2) : draft.level),
         )
-      : 0,
+      : (subclassCaster?.leveledSpells ?? 0),
     completed: [
       true,
       !!draft.ancestryId,

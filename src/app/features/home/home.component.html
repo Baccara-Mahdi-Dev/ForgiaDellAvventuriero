@@ -1,7 +1,7 @@
 <header class="masthead no-print">
-  <a class="brand" href="/" aria-label="Forgia dell’avventuriero, pagina iniziale"
+  <a class="brand" href="/" aria-label="Forgia dell'avventuriero, pagina iniziale"
     ><img class="sigil" src="/brand/logo-d20-hammer.png" alt="" width="42" height="42" /><span
-      >Forgia dell’avventuriero<small>Creazione personaggi · 5e 2014</small></span
+      >Forgia dell'avventuriero<small>Creazione personaggi · 5e 2014</small></span
     ></a
   >
   <div class="masthead-actions">
@@ -45,6 +45,13 @@
       <h2 id="library-title">Personaggi e bozze</h2>
     </div>
     @if (characters().length) {
+      <button
+        type="button"
+        class="delete-all"
+        (click)="removeAll($event)"
+      > 
+        Cancella tutto
+      </button>
       <div class="cards">
         @for (character of characters(); track character.id) {
           <article
@@ -54,14 +61,22 @@
             (keydown.enter)="open(character)"
           >
             <div class="avatar">{{ (character.name || '?')[0].toUpperCase() }}</div>
-            <div>
+            <div class="character-copy">
               <h3>{{ character.name || 'Senza nome' }}</h3>
               <p>
                 Livello {{ character.level }} · {{ character.classId || 'Classe da scegliere' }}
               </p>
               <small>Aggiornato {{ character.updatedAt | date: 'dd MMM, HH:mm' }}</small>
             </div>
-            <button class="icon" title="Elimina" (click)="remove(character, $event)">×</button>
+            <button
+              type="button"
+              class="delete-character"
+              title="Elimina"
+              [attr.aria-label]="'Elimina ' + (character.name || 'Senza nome')"
+              (click)="remove(character, $event)"
+            >
+              <ng-icon name="monoDelete" size="20px" />
+            </button>
           </article>
         }
       </div>

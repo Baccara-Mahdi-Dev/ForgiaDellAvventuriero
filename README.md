@@ -21,7 +21,7 @@ npm run verify
 - point buy, array standard e punteggi personalizzati;
 - discendenze PHB e varianti Forgiato WGE;
 - tutte le classi PHB e Artefice TCE;
-- livelli 1–20, sottoclassi, talenti/ASI e 244 oggetti magici SRD in italiano;
+- livelli 1–20, tutte le sottoclassi PHB, specializzazioni dell'Artefice, talenti/ASI e 244 oggetti magici SRD in italiano;
 - calcolo di modificatori, competenza, PF, CA, iniziativa e magia;
 - editor Homebrew per incantesimi ed equipaggiamento, con concentrazione, effetti, cariche e sintonia;
 - selezione di incantesimi con limiti per classe, ricerca, filtri e pagine da quattro risultati;

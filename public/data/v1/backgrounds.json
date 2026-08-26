@@ -3,52 +3,265 @@
     "id": "acolyte",
     "name": "Accolito",
     "description": "Servizio in un tempio e conoscenza dei riti.",
-    "source": "PHB",
-    "skills": ["Intuizione", "Religione"],
-    "languageChoices": 2
+    "source": "SRD",
+    "skills": [
+      "Intuizione",
+      "Religione"
+    ],
+    "languageChoices": 2,
+    "isHidden": false
   },
   {
     "id": "criminal",
     "name": "Criminale",
     "description": "Competenze maturate ai margini della legge.",
     "source": "PHB",
-    "skills": ["Furtività", "Inganno"],
-    "tools": ["Arnesi da scasso"],
-    "toolChoices": 1
+    "skills": [
+      "Furtività",
+      "Inganno"
+    ],
+    "tools": [
+      "Arnesi da scasso"
+    ],
+    "toolChoices": 1,
+    "toolChoiceCategory": "gaming-set",
+    "isHidden": true
   },
   {
     "id": "folk-hero",
     "name": "Eroe Popolare",
-    "description": "Una persona comune divenuta simbolo di speranza.",
+    "description": "Una persona comune divenuta simbolo per la propria comunità.",
     "source": "PHB",
-    "skills": ["Addestrare Animali", "Sopravvivenza"],
-    "tools": ["Veicoli terrestri"],
-    "toolChoices": 1
+    "skills": [
+      "Addestrare Animali",
+      "Sopravvivenza"
+    ],
+    "tools": [
+      "Veicoli terrestri"
+    ],
+    "toolChoices": 1,
+    "toolChoiceCategory": "artisan-tool",
+    "isHidden": true
   },
   {
     "id": "noble",
     "name": "Nobile",
-    "description": "Educazione privilegiata e posizione sociale.",
+    "description": "Educazione privilegiata, titolo e posizione sociale.",
     "source": "PHB",
-    "skills": ["Persuasione", "Storia"],
+    "skills": [
+      "Persuasione",
+      "Storia"
+    ],
     "languageChoices": 1,
-    "toolChoices": 1
+    "toolChoices": 1,
+    "toolChoiceCategory": "gaming-set",
+    "isHidden": true
   },
   {
     "id": "sage",
     "name": "Sapiente",
-    "description": "Anni dedicati allo studio e alla ricerca.",
+    "description": "Anni dedicati allo studio, alla ricerca e agli archivi.",
     "source": "PHB",
-    "skills": ["Arcano", "Storia"],
-    "languageChoices": 2
+    "skills": [
+      "Arcano",
+      "Storia"
+    ],
+    "languageChoices": 2,
+    "isHidden": true
   },
   {
     "id": "soldier",
     "name": "Soldato",
     "description": "Disciplina, gerarchia ed esperienza militare.",
     "source": "PHB",
-    "skills": ["Atletica", "Intimidire"],
-    "tools": ["Veicoli terrestri"],
-    "toolChoices": 1
+    "skills": [
+      "Atletica",
+      "Intimidire"
+    ],
+    "tools": [
+      "Veicoli terrestri"
+    ],
+    "toolChoices": 1,
+    "toolChoiceCategory": "gaming-set",
+    "isHidden": true
+  },
+  {
+    "id": "charlatan",
+    "name": "Ciarlatano",
+    "description": "Identità false, raggiri e documenti contraffatti.",
+    "source": "PHB",
+    "skills": [
+      "Inganno",
+      "Rapidità di Mano"
+    ],
+    "tools": [
+      "Trucchi per il camuffamento",
+      "Strumenti da falsario"
+    ],
+    "isHidden": true
+  },
+  {
+    "id": "entertainer",
+    "name": "Intrattenitore",
+    "description": "Esperienza sul palco e capacità di catturare il pubblico.",
+    "source": "PHB",
+    "skills": [
+      "Acrobazia",
+      "Intrattenere"
+    ],
+    "tools": [
+      "Trucchi per il camuffamento"
+    ],
+    "toolChoices": 1,
+    "toolChoiceCategory": "musical-instrument",
+    "isHidden": true
+  },
+  {
+    "id": "guild-artisan",
+    "name": "Artigiano di Gilda",
+    "description": "Formazione professionale e legami con una corporazione.",
+    "source": "PHB",
+    "skills": [
+      "Intuizione",
+      "Persuasione"
+    ],
+    "languageChoices": 1,
+    "toolChoices": 1,
+    "toolChoiceCategory": "artisan-tool",
+    "isHidden": true
+  },
+  {
+    "id": "hermit",
+    "name": "Eremita",
+    "description": "Anni di isolamento dedicati a contemplazione e scoperta.",
+    "source": "PHB",
+    "skills": [
+      "Medicina",
+      "Religione"
+    ],
+    "tools": [
+      "Borsa da erborista"
+    ],
+    "languageChoices": 1,
+    "isHidden": true
+  },
+  {
+    "id": "outlander",
+    "name": "Forestiero",
+    "description": "Vita nelle terre selvagge lontano dai centri abitati.",
+    "source": "PHB",
+    "skills": [
+      "Atletica",
+      "Sopravvivenza"
+    ],
+    "languageChoices": 1,
+    "toolChoices": 1,
+    "toolChoiceCategory": "musical-instrument",
+    "isHidden": true
+  },
+  {
+    "id": "sailor",
+    "name": "Marinaio",
+    "description": "Esperienza a bordo di navi e conoscenza del mare.",
+    "source": "PHB",
+    "skills": [
+      "Atletica",
+      "Percezione"
+    ],
+    "tools": [
+      "Strumenti da navigatore",
+      "Veicoli acquatici"
+    ],
+    "isHidden": true
+  },
+  {
+    "id": "urchin",
+    "name": "Monello",
+    "description": "Sopravvivenza urbana imparata vivendo per strada.",
+    "source": "PHB",
+    "skills": [
+      "Furtività",
+      "Rapidità di Mano"
+    ],
+    "tools": [
+      "Trucchi per il camuffamento",
+      "Arnesi da scasso"
+    ],
+    "isHidden": true
+  },
+  {
+    "id": "criminal-spy",
+    "name": "Criminale · Spia",
+    "description": "Variante del Criminale basata su informatori, coperture e raccolta clandestina di informazioni.",
+    "source": "PHB",
+    "skills": [
+      "Furtività",
+      "Inganno"
+    ],
+    "tools": [
+      "Arnesi da scasso"
+    ],
+    "toolChoices": 1,
+    "toolChoiceCategory": "gaming-set",
+    "isHidden": true
+  },
+  {
+    "id": "entertainer-gladiator",
+    "name": "Intrattenitore · Gladiatore",
+    "description": "Variante dell'Intrattenitore formata nelle arene e negli spettacoli di combattimento.",
+    "source": "PHB",
+    "skills": [
+      "Acrobazia",
+      "Intrattenere"
+    ],
+    "tools": [
+      "Trucchi per il camuffamento"
+    ],
+    "toolChoices": 1,
+    "toolChoiceCategory": "musical-instrument",
+    "isHidden": true
+  },
+  {
+    "id": "guild-artisan-merchant",
+    "name": "Artigiano di Gilda · Mercante",
+    "description": "Variante dell'Artigiano di Gilda dedicata a commercio, carovane e rotte mercantili.",
+    "source": "PHB",
+    "skills": [
+      "Intuizione",
+      "Persuasione"
+    ],
+    "languageChoices": 1,
+    "toolChoices": 1,
+    "toolChoiceCategory": "artisan-tool",
+    "isHidden": true
+  },
+  {
+    "id": "noble-knight",
+    "name": "Nobile · Cavaliere",
+    "description": "Variante del Nobile legata a un ordine cavalleresco e al proprio seguito.",
+    "source": "PHB",
+    "skills": [
+      "Persuasione",
+      "Storia"
+    ],
+    "languageChoices": 1,
+    "toolChoices": 1,
+    "toolChoiceCategory": "gaming-set",
+    "isHidden": true
+  },
+  {
+    "id": "sailor-pirate",
+    "name": "Marinaio · Pirata",
+    "description": "Variante del Marinaio con reputazione e contatti maturati nella pirateria.",
+    "source": "PHB",
+    "skills": [
+      "Atletica",
+      "Percezione"
+    ],
+    "tools": [
+      "Strumenti da navigatore",
+      "Veicoli acquatici"
+    ],
+    "isHidden": true
   }
 ]

@@ -17,7 +17,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-ammazzadraghi",
@@ -43,7 +44,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-ammazzagiganti",
@@ -69,7 +71,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-ampolla-di-ferro",
@@ -95,9 +98,10 @@
         "id": "magic-ampolla-di-ferro-identify",
         "spellId": "identify",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-amuleto-anti-individuazione-e-localizzazione",
@@ -117,7 +121,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-amuleto-dei-piani",
@@ -143,9 +148,10 @@
         "id": "magic-amuleto-dei-piani-plane-shift",
         "spellId": "plane-shift",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-amuleto-della-salute",
@@ -175,7 +181,8 @@
         "requiresEquipped": true,
         "ability": "con"
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-anello-accumula-incantesimi",
@@ -195,7 +202,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-anello-dei-tre-desideri",
@@ -221,9 +229,10 @@
         "id": "magic-anello-dei-tre-desideri-wish",
         "spellId": "wish",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-anello-del-calore",
@@ -253,7 +262,8 @@
         "requiresEquipped": true,
         "target": "freddo"
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-anello-del-camminare-sull-acqua",
@@ -273,7 +283,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-anello-del-comando-degli-elementali",
@@ -332,69 +343,70 @@
         "id": "magic-anello-del-comando-degli-elementali-chain-lightning",
         "spellId": "chain-lightning",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-anello-del-comando-degli-elementali-command",
         "spellId": "command",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-anello-del-comando-degli-elementali-control-water",
         "spellId": "control-water",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-anello-del-comando-degli-elementali-dominate-monster",
         "spellId": "dominate-monster",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-anello-del-comando-degli-elementali-fly",
         "spellId": "fly",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-anello-del-comando-degli-elementali-gust-of-wind",
         "spellId": "gust-of-wind",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-anello-del-comando-degli-elementali-haste",
         "spellId": "haste",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-anello-del-comando-degli-elementali-resistance",
         "spellId": "resistance",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-anello-del-comando-degli-elementali-stoneskin",
         "spellId": "stoneskin",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-anello-del-comando-degli-elementali-wall-of-fire",
         "spellId": "wall-of-fire",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-anello-del-comando-degli-elementali-wall-of-stone",
         "spellId": "wall-of-stone",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-anello-del-nuotare",
@@ -414,7 +426,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-anello-del-saltare",
@@ -440,9 +453,10 @@
         "id": "magic-anello-del-saltare-jump",
         "spellId": "jump",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-anello-dell-ariete",
@@ -467,7 +481,8 @@
       "maximum": 3,
       "recoveryFormula": "1d3",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-anello-della-caduta-morbida",
@@ -487,7 +502,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-anello-della-liberta-di-azione",
@@ -507,7 +523,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-anello-della-vista-a-raggi-x",
@@ -527,7 +544,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-anello-delle-stelle-cadenti",
@@ -559,15 +577,16 @@
         "id": "magic-anello-delle-stelle-cadenti-dancing-lights",
         "spellId": "dancing-lights",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-anello-delle-stelle-cadenti-darkness",
         "spellId": "darkness",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-anello-di-eludere",
@@ -592,7 +611,8 @@
       "maximum": 3,
       "recoveryFormula": "1d3",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-anello-di-evocazione-del-djinni",
@@ -612,7 +632,8 @@
       "magico",
       "legendary"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-anello-di-influenza-sugli-animali",
@@ -643,15 +664,16 @@
         "id": "magic-anello-di-influenza-sugli-animali-animal-friendship",
         "spellId": "animal-friendship",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-anello-di-influenza-sugli-animali-speak-with-animals",
         "spellId": "speak-with-animals",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-anello-di-invisibilita",
@@ -671,7 +693,8 @@
       "magico",
       "legendary"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-anello-di-protezione",
@@ -708,7 +731,8 @@
         "value": 1,
         "requiresEquipped": true
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-anello-di-resistenza",
@@ -728,7 +752,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-anello-di-rigenerazione",
@@ -748,7 +773,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-anello-di-scudo-mentale",
@@ -768,7 +794,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-anello-di-telecinesi",
@@ -794,9 +821,10 @@
         "id": "magic-anello-di-telecinesi-telekinesis",
         "spellId": "telekinesis",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-anello-rifletti-incantesimo",
@@ -816,7 +844,8 @@
       "magico",
       "legendary"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-apparatus-del-granchio",
@@ -836,7 +865,8 @@
       "magico",
       "legendary"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-arco-del-giuramento",
@@ -862,7 +892,8 @@
     "damageType": "perforanti",
     "proficiency": "martial",
     "ranged": true,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-arma-spietata",
@@ -888,7 +919,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-armastura-demoniaca",
@@ -915,7 +947,8 @@
     "armorClass": 19,
     "dexterityBonus": "none",
     "strengthRequirement": 15,
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "magic-armatura-a-piastre-della-forma-eterea",
@@ -941,7 +974,7 @@
         "id": "magic-armatura-a-piastre-della-forma-eterea-etherealness",
         "spellId": "etherealness",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
     ],
     "baseEquipmentId": "plate",
@@ -949,7 +982,8 @@
     "armorClass": 18,
     "dexterityBonus": "none",
     "strengthRequirement": 15,
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "magic-armatura-adamantina-media",
@@ -975,7 +1009,8 @@
     "armorType": "medium",
     "armorClass": 14,
     "dexterityBonus": "max-2",
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "magic-armatura-adamantina-pesante",
@@ -1002,7 +1037,8 @@
     "armorClass": 18,
     "dexterityBonus": "none",
     "strengthRequirement": 15,
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "magic-armatura-completa-nanica",
@@ -1029,7 +1065,8 @@
     "armorClass": 20,
     "dexterityBonus": "none",
     "strengthRequirement": 15,
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "magic-armatura-dell-invulnerabilita",
@@ -1056,7 +1093,8 @@
     "armorClass": 18,
     "dexterityBonus": "none",
     "strengthRequirement": 15,
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "magic-armatura-della-resistenza-leggera",
@@ -1082,7 +1120,8 @@
     "armorType": "light",
     "armorClass": 11,
     "dexterityBonus": "full",
-    "stealthDisadvantage": false
+    "stealthDisadvantage": false,
+    "isHidden": false
   },
   {
     "id": "magic-armatura-della-resistenza-media",
@@ -1108,7 +1147,8 @@
     "armorType": "medium",
     "armorClass": 14,
     "dexterityBonus": "max-2",
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "magic-armatura-della-resistenza-pesante",
@@ -1135,7 +1175,8 @@
     "armorClass": 18,
     "dexterityBonus": "none",
     "strengthRequirement": 15,
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "magic-armatura-della-vulnerabilita",
@@ -1161,13 +1202,13 @@
         "id": "magic-armatura-della-vulnerabilita-identify",
         "spellId": "identify",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-armatura-della-vulnerabilita-remove-curse",
         "spellId": "remove-curse",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
     ],
     "baseEquipmentId": "plate",
@@ -1175,7 +1216,8 @@
     "armorClass": 18,
     "dexterityBonus": "none",
     "strengthRequirement": 15,
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "magic-armatura-di-cuoio-borchiato-incantata",
@@ -1201,7 +1243,8 @@
     "armorType": "light",
     "armorClass": 13,
     "dexterityBonus": "full",
-    "stealthDisadvantage": false
+    "stealthDisadvantage": false,
+    "isHidden": false
   },
   {
     "id": "magic-armatura-in-mithral-media",
@@ -1227,7 +1270,8 @@
     "armorType": "medium",
     "armorClass": 13,
     "dexterityBonus": "max-2",
-    "stealthDisadvantage": false
+    "stealthDisadvantage": false,
+    "isHidden": false
   },
   {
     "id": "magic-armatura-in-mithral-pesante",
@@ -1254,7 +1298,8 @@
     "armorClass": 18,
     "dexterityBonus": "none",
     "strengthRequirement": 15,
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "magic-ascia-del-berserker",
@@ -1280,7 +1325,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-dei-fulmini",
@@ -1312,9 +1358,10 @@
         "id": "magic-bacchetta-dei-fulmini-lightning-bolt",
         "spellId": "lightning-bolt",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-dei-segreti",
@@ -1339,7 +1386,8 @@
       "maximum": 3,
       "recoveryFormula": "1d3",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-del-legame",
@@ -1371,15 +1419,16 @@
         "id": "magic-bacchetta-del-legame-hold-monster",
         "spellId": "hold-monster",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bacchetta-del-legame-hold-person",
         "spellId": "hold-person",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-del-mago-da-guerra-1",
@@ -1409,7 +1458,8 @@
         "requiresEquipped": true
       }
     ],
-    "attunementRequirements": "un incantatore"
+    "attunementRequirements": "un incantatore",
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-del-mago-da-guerra-2",
@@ -1439,7 +1489,8 @@
         "requiresEquipped": true
       }
     ],
-    "attunementRequirements": "un incantatore"
+    "attunementRequirements": "un incantatore",
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-del-mago-da-guerra-3",
@@ -1469,7 +1520,8 @@
         "requiresEquipped": true
       }
     ],
-    "attunementRequirements": "un incantatore"
+    "attunementRequirements": "un incantatore",
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-della-metamorfosi",
@@ -1501,9 +1553,10 @@
         "id": "magic-bacchetta-della-metamorfosi-polymorph",
         "spellId": "polymorph",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-della-paralisi",
@@ -1529,7 +1582,8 @@
       "maximum": 7,
       "recoveryFormula": "1d6 + 1",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-della-paura",
@@ -1554,7 +1608,8 @@
       "maximum": 7,
       "recoveryFormula": "1d6 + 1",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-della-ragnatela",
@@ -1586,9 +1641,10 @@
         "id": "magic-bacchetta-della-ragnatela-web",
         "spellId": "web",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-delle-meraviglie",
@@ -1614,7 +1670,8 @@
       "maximum": 7,
       "recoveryFormula": "1d6 + 1",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-delle-palle-di-fuoco",
@@ -1646,9 +1703,10 @@
         "id": "magic-bacchetta-delle-palle-di-fuoco-fireball",
         "spellId": "fireball",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-di-individuazione-dei-nemici",
@@ -1673,7 +1731,8 @@
       "maximum": 7,
       "recoveryFormula": "1d6 + 1",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-di-individuazione-del-magico",
@@ -1704,9 +1763,10 @@
         "id": "magic-bacchetta-di-individuazione-del-magico-detect-magic",
         "spellId": "detect-magic",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-bacchetta-di-missili-magici",
@@ -1737,9 +1797,10 @@
         "id": "magic-bacchetta-di-missili-magici-magic-missile",
         "spellId": "magic-missile",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-barca-pieghevole",
@@ -1759,7 +1820,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-bastone-dei-boschi",
@@ -1797,27 +1859,28 @@
         "id": "magic-bastone-dei-boschi-detect-magic",
         "spellId": "detect-magic",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-dei-boschi-locate-animals-or-plants",
         "spellId": "locate-animals-or-plants",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-dei-boschi-speak-with-plants",
         "spellId": "speak-with-plants",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-dei-boschi-wall-of-thorns",
         "spellId": "wall-of-thorns",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-bastone-dei-magi",
@@ -1855,39 +1918,40 @@
         "id": "magic-bastone-dei-magi-conjure-elemental",
         "spellId": "conjure-elemental",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-dei-magi-detect-magic",
         "spellId": "detect-magic",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-dei-magi-dispel-magic",
         "spellId": "dispel-magic",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-dei-magi-enlarge-reduce",
         "spellId": "enlarge-reduce",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-dei-magi-invisibility",
         "spellId": "invisibility",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-dei-magi-lightning-bolt",
         "spellId": "lightning-bolt",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-bastone-dei-tuoni-e-fulmini",
@@ -1913,7 +1977,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-bastone-del-colpo-possente",
@@ -1944,7 +2009,8 @@
       "maximum": 10,
       "recoveryFormula": "1d6 + 4",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-bastone-del-deperimento",
@@ -1976,7 +2042,8 @@
       "maximum": 3,
       "recoveryFormula": "1d3",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-bastone-del-fuoco",
@@ -2024,21 +2091,22 @@
         "id": "magic-bastone-del-fuoco-burning-hands",
         "spellId": "burning-hands",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-del-fuoco-fireball",
         "spellId": "fireball",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-del-fuoco-wall-of-fire",
         "spellId": "wall-of-fire",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-bastone-del-gelo",
@@ -2086,27 +2154,28 @@
         "id": "magic-bastone-del-gelo-cone-of-cold",
         "spellId": "cone-of-cold",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-del-gelo-fog-cloud",
         "spellId": "fog-cloud",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-del-gelo-ice-storm",
         "spellId": "ice-storm",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-del-gelo-wall-of-ice",
         "spellId": "wall-of-ice",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-bastone-del-pitone",
@@ -2133,7 +2202,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-bastone-del-potere",
@@ -2171,27 +2241,28 @@
         "id": "magic-bastone-del-potere-cone-of-cold",
         "spellId": "cone-of-cold",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-del-potere-globe-of-invulnerability",
         "spellId": "globe-of-invulnerability",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-del-potere-hold-monster",
         "spellId": "hold-monster",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-del-potere-lightning-bolt",
         "spellId": "lightning-bolt",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-bastone-della-guarigione",
@@ -2229,15 +2300,16 @@
         "id": "magic-bastone-della-guarigione-cure-wounds",
         "spellId": "cure-wounds",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-della-guarigione-lesser-restoration",
         "spellId": "lesser-restoration",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-bastone-dello-charme",
@@ -2270,15 +2342,16 @@
         "id": "magic-bastone-dello-charme-comprehend-languages",
         "spellId": "comprehend-languages",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-bastone-dello-charme-tongues",
         "spellId": "tongues",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-bastone-dello-sciame-di-insetti",
@@ -2316,9 +2389,10 @@
         "id": "magic-bastone-dello-sciame-di-insetti-giant-insect",
         "spellId": "giant-insect",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-biglia-di-forza",
@@ -2338,7 +2412,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-boccia-comando-elementali-acqua",
@@ -2364,9 +2439,10 @@
         "id": "magic-boccia-comando-elementali-acqua-conjure-elemental",
         "spellId": "conjure-elemental",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-borsa-conservante",
@@ -2386,7 +2462,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-borsa-dei-fagioli-magici",
@@ -2406,7 +2483,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-borsa-dei-trucchi",
@@ -2426,7 +2504,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-borsa-divorante",
@@ -2446,7 +2525,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-bottiglia-del-fumo-perenne",
@@ -2466,7 +2546,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-bottiglia-dell-efreeti",
@@ -2486,7 +2567,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-bracciali-dell-arciere",
@@ -2506,7 +2588,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-bracciali-della-difesa",
@@ -2536,7 +2619,8 @@
         "requiresEquipped": true,
         "condition": "Senza armatura e senza scudo"
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-braciere-comando-elementali-fuoco",
@@ -2556,7 +2640,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-buco-portatile",
@@ -2576,7 +2661,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-campana-dell-apertura",
@@ -2596,7 +2682,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-candela-dell-invocazione",
@@ -2622,15 +2709,16 @@
         "id": "magic-candela-dell-invocazione-detect-evil-and-good",
         "spellId": "detect-evil-and-good",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-candela-dell-invocazione-gate",
         "spellId": "gate",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-cappa-del-saltimbanco",
@@ -2650,7 +2738,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-cappello-del-camuffamento",
@@ -2676,9 +2765,10 @@
         "id": "magic-cappello-del-camuffamento-disguise-self",
         "spellId": "disguise-self",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-caraffa-dell-acqua-eterna",
@@ -2698,7 +2788,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-cintura-della-forza-dei-giganti",
@@ -2718,7 +2809,8 @@
       "magico",
       "varies"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-cintura-nanica",
@@ -2748,7 +2840,8 @@
         "requiresEquipped": true,
         "target": "veleno"
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-colla-meravigliosa",
@@ -2774,15 +2867,16 @@
         "id": "magic-colla-meravigliosa-etherealness",
         "spellId": "etherealness",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-colla-meravigliosa-wish",
         "spellId": "wish",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-collana-dell-adattamento",
@@ -2802,7 +2896,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-collana-delle-palle-di-fuoco",
@@ -2828,9 +2923,10 @@
         "id": "magic-collana-delle-palle-di-fuoco-fireball",
         "spellId": "fireball",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-collana-di-grani-di-preghiera",
@@ -2851,7 +2947,8 @@
       "rare"
     ],
     "effects": [],
-    "attunementRequirements": "un"
+    "attunementRequirements": "un",
+    "isHidden": false
   },
   {
     "id": "magic-corazza-di-scaglie-di-drago",
@@ -2877,7 +2974,8 @@
     "armorType": "medium",
     "armorClass": 14,
     "dexterityBonus": "max-2",
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "magic-corda-intralciante",
@@ -2897,7 +2995,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-corda-per-scalare",
@@ -2917,7 +3016,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-corno-del-valhalla",
@@ -2937,7 +3037,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-corno-della-distruzione",
@@ -2957,7 +3058,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-cubo-dei-portali",
@@ -2983,15 +3085,16 @@
         "id": "magic-cubo-dei-portali-gate",
         "spellId": "gate",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-cubo-dei-portali-plane-shift",
         "spellId": "plane-shift",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-cubo-di-forza",
@@ -3016,7 +3119,8 @@
       "maximum": 36,
       "recoveryFormula": "1d20",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-diadema-incandescente",
@@ -3036,7 +3140,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-difensiva",
@@ -3062,7 +3167,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-elmo-del-teletrasporto",
@@ -3093,9 +3199,10 @@
         "id": "magic-elmo-del-teletrasporto-teleport",
         "spellId": "teleport",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-elmo-della-comprensione-dei-linguaggi",
@@ -3121,15 +3228,16 @@
         "id": "magic-elmo-della-comprensione-dei-linguaggi-comprehend-languages",
         "spellId": "comprehend-languages",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-elmo-della-comprensione-dei-linguaggi-tongues",
         "spellId": "tongues",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-elmo-della-luminosita",
@@ -3165,15 +3273,16 @@
         "id": "magic-elmo-della-luminosita-daylight",
         "spellId": "daylight",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-elmo-della-luminosita-wall-of-fire",
         "spellId": "wall-of-fire",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-elmo-della-telepatia",
@@ -3199,27 +3308,28 @@
         "id": "magic-elmo-della-telepatia-detect-thoughts",
         "spellId": "detect-thoughts",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-elmo-della-telepatia-message",
         "spellId": "message",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-elmo-della-telepatia-sending",
         "spellId": "sending",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-elmo-della-telepatia-suggestion",
         "spellId": "suggestion",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-faretra-efficiente",
@@ -3239,7 +3349,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-fasce-metalliche-del-legame",
@@ -3259,7 +3370,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-fascia-dell-intelletto",
@@ -3289,7 +3401,8 @@
         "requiresEquipped": true,
         "ability": "int"
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-fermaglio-dello-scudo",
@@ -3315,9 +3428,10 @@
         "id": "magic-fermaglio-dello-scudo-resistance",
         "spellId": "resistance",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-ferri-della-velocita",
@@ -3337,7 +3451,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-ferri-dello-zefiro",
@@ -3357,7 +3472,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-filtro-d-amore",
@@ -3377,7 +3493,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-flauto-dei-topi",
@@ -3402,7 +3519,8 @@
       "maximum": 3,
       "recoveryFormula": "1d3",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-flauto-incantatore",
@@ -3427,7 +3545,8 @@
       "maximum": 3,
       "recoveryFormula": "1d3",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-fortezza-istantanea",
@@ -3453,9 +3572,10 @@
         "id": "magic-fortezza-istantanea-wish",
         "spellId": "wish",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-freccia-assassina",
@@ -3481,7 +3601,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-gemma-della-luminosita",
@@ -3506,7 +3627,8 @@
       "maximum": 50,
       "recoveryFormula": "0",
       "recoveryMoment": "other"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-gemma-della-visione",
@@ -3531,7 +3653,8 @@
       "maximum": 3,
       "recoveryFormula": "1d3",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-gemma-elementale",
@@ -3557,9 +3680,10 @@
         "id": "magic-gemma-elementale-conjure-elemental",
         "spellId": "conjure-elemental",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-giaco-di-maglia-elfico",
@@ -3585,7 +3709,8 @@
     "armorType": "medium",
     "armorClass": 14,
     "dexterityBonus": "max-2",
-    "stealthDisadvantage": false
+    "stealthDisadvantage": false,
+    "isHidden": false
   },
   {
     "id": "magic-giavellotto-del-fulmine",
@@ -3611,7 +3736,8 @@
     "damageType": "perforanti",
     "proficiency": "simple",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-guanti-catturaproiettili",
@@ -3631,7 +3757,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-guanti-del-nuotare-e-scalare",
@@ -3651,7 +3778,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-guanti-del-potere-orchesco",
@@ -3681,7 +3809,8 @@
         "requiresEquipped": true,
         "ability": "str"
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-incensiere-del-controllo-degli-elementali-dell-aria",
@@ -3701,7 +3830,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-lama-del-sole",
@@ -3727,7 +3857,8 @@
     "damageType": "radiosi",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-lama-della-fortuna",
@@ -3753,7 +3884,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-lanterna-della-rivelazione",
@@ -3773,7 +3905,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-lenti-dell-aquila",
@@ -3793,7 +3926,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-lenti-della-visione-dettagliata",
@@ -3813,7 +3947,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-lenti-dello-charme",
@@ -3833,7 +3968,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-lingua-di-fiamme",
@@ -3861,7 +3997,8 @@
     "additionalDamageType": "fuoco",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-manette-dimensionali",
@@ -3881,7 +4018,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-mantello-del-pipistrello",
@@ -3907,9 +4045,10 @@
         "id": "magic-mantello-del-pipistrello-polymorph",
         "spellId": "polymorph",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-mantello-dell-aracnide",
@@ -3939,7 +4078,8 @@
         "requiresEquipped": true,
         "target": "veleno"
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-mantello-della-manta",
@@ -3959,7 +4099,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-mantello-della-protezione",
@@ -3996,7 +4137,8 @@
         "value": 1,
         "requiresEquipped": true
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-mantello-della-resistenza-agli-incantesimi",
@@ -4016,7 +4158,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-mantello-distorcente",
@@ -4036,7 +4179,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-mantello-elfico",
@@ -4056,7 +4200,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-manuale-dei-golem",
@@ -4076,7 +4221,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-manuale-dell-esercizio-fisico",
@@ -4096,7 +4242,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-manuale-della-salute",
@@ -4116,7 +4263,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-manuale-della-velocita-di-azione",
@@ -4136,7 +4284,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-martello-dei-fulmini",
@@ -4167,7 +4316,8 @@
       "maximum": 5,
       "recoveryFormula": "1d4 + 1",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-martello-nanico-da-lancio",
@@ -4193,7 +4343,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-mazza-del-terrore",
@@ -4224,7 +4375,8 @@
       "maximum": 3,
       "recoveryFormula": "1d3",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-mazza-della-distruzione",
@@ -4250,7 +4402,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-mazza-della-punizione",
@@ -4276,7 +4429,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-mazzo-delle-illusioni",
@@ -4296,7 +4450,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-mazzo-delle-meraviglie",
@@ -4322,15 +4477,16 @@
         "id": "magic-mazzo-delle-meraviglie-divination",
         "spellId": "divination",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-mazzo-delle-meraviglie-wish",
         "spellId": "wish",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-medaglione-dei-pensieri",
@@ -4361,9 +4517,10 @@
         "id": "magic-medaglione-dei-pensieri-detect-thoughts",
         "spellId": "detect-thoughts",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-munizione-1",
@@ -4408,7 +4565,8 @@
     "ranged": false,
     "properties": [],
     "attackBonus": 1,
-    "damageBonus": 1
+    "damageBonus": 1,
+    "isHidden": false
   },
   {
     "id": "magic-munizione-2",
@@ -4453,7 +4611,8 @@
     "ranged": false,
     "properties": [],
     "attackBonus": 2,
-    "damageBonus": 2
+    "damageBonus": 2,
+    "isHidden": false
   },
   {
     "id": "magic-munizione-3",
@@ -4498,7 +4657,8 @@
     "ranged": false,
     "properties": [],
     "attackBonus": 3,
-    "damageBonus": 3
+    "damageBonus": 3,
+    "isHidden": false
   },
   {
     "id": "magic-occhiali-della-notte",
@@ -4518,7 +4678,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-olio-dell-affilatura",
@@ -4538,7 +4699,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-olio-della-forma-eterea",
@@ -4564,9 +4726,10 @@
         "id": "magic-olio-della-forma-eterea-etherealness",
         "spellId": "etherealness",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-olio-della-scivolosita",
@@ -4592,9 +4755,10 @@
         "id": "magic-olio-della-scivolosita-freedom-of-movement",
         "spellId": "freedom-of-movement",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-pantofole-del-ragno",
@@ -4614,7 +4778,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-pergamena-magica",
@@ -4634,7 +4799,8 @@
       "magico",
       "varies"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-perla-del-potere",
@@ -4654,7 +4820,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-pietra-del-controllo-degli-elementali-della-terra",
@@ -4680,9 +4847,10 @@
         "id": "magic-pietra-del-controllo-degli-elementali-della-terra-conjure-elemental",
         "spellId": "conjure-elemental",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-pietra-della-buona-fortuna-pietrafortuna",
@@ -4711,7 +4879,8 @@
         "value": 1,
         "requiresEquipped": true
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-pietra-di-ioun",
@@ -4731,7 +4900,8 @@
       "magico",
       "varies"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-pigmenti-meravigliosi",
@@ -4751,7 +4921,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-piuma-magica",
@@ -4771,7 +4942,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-polvere-dell-invisibilita",
@@ -4791,7 +4963,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-polvere-dello-starnuto-e-del-soffocamento",
@@ -4817,9 +4990,10 @@
         "id": "magic-polvere-dello-starnuto-e-del-soffocamento-identify",
         "spellId": "identify",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-polvere-prosciugante",
@@ -4839,7 +5013,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-del-respirare-sott-acqua",
@@ -4859,7 +5034,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-dell-invisibilita",
@@ -4879,7 +5055,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-della-forma-gassosa",
@@ -4905,9 +5082,10 @@
         "id": "magic-pozione-della-forma-gassosa-gaseous-form",
         "spellId": "gaseous-form",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-della-forza-dei-giganti",
@@ -4927,7 +5105,8 @@
       "magico",
       "varies"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-di-amicizia-con-gli-animali",
@@ -4953,9 +5132,10 @@
         "id": "magic-pozione-di-amicizia-con-gli-animali-animal-friendship",
         "spellId": "animal-friendship",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-di-chiaroveggenza",
@@ -4981,9 +5161,10 @@
         "id": "magic-pozione-di-chiaroveggenza-clairvoyance",
         "spellId": "clairvoyance",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-di-crescita",
@@ -5009,9 +5190,10 @@
         "id": "magic-pozione-di-crescita-enlarge-reduce",
         "spellId": "enlarge-reduce",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-di-diminuzione",
@@ -5037,9 +5219,10 @@
         "id": "magic-pozione-di-diminuzione-enlarge-reduce",
         "spellId": "enlarge-reduce",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-di-eroismo",
@@ -5065,9 +5248,10 @@
         "id": "magic-pozione-di-eroismo-bless",
         "spellId": "bless",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-di-guarigione",
@@ -5087,7 +5271,8 @@
       "magico",
       "varies"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-di-lettura-della-mente",
@@ -5113,9 +5298,10 @@
         "id": "magic-pozione-di-lettura-della-mente-detect-thoughts",
         "spellId": "detect-thoughts",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-di-resistenza",
@@ -5135,7 +5321,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-di-scalare",
@@ -5155,7 +5342,8 @@
       "magico",
       "common"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-di-velocita",
@@ -5181,9 +5369,10 @@
         "id": "magic-pozione-di-velocita-haste",
         "spellId": "haste",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-di-volare",
@@ -5203,7 +5392,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-pozione-velenosa",
@@ -5223,7 +5413,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-pozzo-dei-mondi",
@@ -5243,7 +5434,8 @@
       "magico",
       "legendary"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-pugnale-avvelenato",
@@ -5269,7 +5461,8 @@
     "damageType": "perforanti",
     "proficiency": "simple",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-sacro-vendicatore",
@@ -5295,7 +5488,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-scarabeo-di-protezione",
@@ -5320,7 +5514,8 @@
       "maximum": 12,
       "recoveryFormula": "0",
       "recoveryMoment": "other"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-scimitarra-della-velocita",
@@ -5346,7 +5541,8 @@
     "damageType": "taglienti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-scopa-volante",
@@ -5366,7 +5562,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-scudo-animato",
@@ -5391,7 +5588,8 @@
     "baseEquipmentId": "shield",
     "armorType": "shield",
     "armorClass": 2,
-    "dexterityBonus": "none"
+    "dexterityBonus": "none",
+    "isHidden": false
   },
   {
     "id": "magic-scudo-anti-incantesimi",
@@ -5416,7 +5614,8 @@
     "baseEquipmentId": "shield",
     "armorType": "shield",
     "armorClass": 2,
-    "dexterityBonus": "none"
+    "dexterityBonus": "none",
+    "isHidden": false
   },
   {
     "id": "magic-scudo-attiraproiettili",
@@ -5442,13 +5641,14 @@
         "id": "magic-scudo-attiraproiettili-remove-curse",
         "spellId": "remove-curse",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
     ],
     "baseEquipmentId": "shield",
     "armorType": "shield",
     "armorClass": 2,
-    "dexterityBonus": "none"
+    "dexterityBonus": "none",
+    "isHidden": false
   },
   {
     "id": "magic-scudo-catturafrecce",
@@ -5473,7 +5673,8 @@
     "baseEquipmentId": "shield",
     "armorType": "shield",
     "armorClass": 2,
-    "dexterityBonus": "none"
+    "dexterityBonus": "none",
+    "isHidden": false
   },
   {
     "id": "magic-sfera-annientatrice",
@@ -5493,7 +5694,8 @@
       "magico",
       "legendary"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-sfera-di-cristallo",
@@ -5519,21 +5721,22 @@
         "id": "magic-sfera-di-cristallo-detect-thoughts",
         "spellId": "detect-thoughts",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-sfera-di-cristallo-scrying",
         "spellId": "scrying",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-sfera-di-cristallo-suggestion",
         "spellId": "suggestion",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-solvente-universale",
@@ -5553,7 +5756,8 @@
       "magico",
       "legendary"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-spada-affilata",
@@ -5579,7 +5783,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-spada-danzante",
@@ -5605,7 +5810,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-spada-del-ferimento",
@@ -5631,7 +5837,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-spada-del-furto-vitale",
@@ -5657,7 +5864,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-spada-ruba-nove-vite",
@@ -5683,7 +5891,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-spada-vorpal",
@@ -5709,7 +5918,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-spadone-del-gelo",
@@ -5745,7 +5955,8 @@
     "damageType": "contundenti",
     "proficiency": "martial",
     "ranged": false,
-    "properties": []
+    "properties": [],
+    "isHidden": false
   },
   {
     "id": "magic-specchio-imprigionante",
@@ -5776,9 +5987,10 @@
         "id": "magic-specchio-imprigionante-animal-messenger",
         "spellId": "animal-messenger",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-statuina-del-potere-meraviglioso",
@@ -5798,7 +6010,8 @@
       "magico",
       "varies"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-stivali-alati",
@@ -5818,7 +6031,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-stivali-dell-inverno",
@@ -5848,7 +6062,8 @@
         "requiresEquipped": true,
         "target": "freddo"
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-stivali-della-levitazione",
@@ -5874,9 +6089,10 @@
         "id": "magic-stivali-della-levitazione-levitate",
         "spellId": "levitate",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-stivali-della-velocita",
@@ -5896,7 +6112,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-stivali-elfici",
@@ -5916,7 +6133,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-stivali-molleggiati",
@@ -5936,7 +6154,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-talismano-del-bene-puro",
@@ -5961,7 +6180,8 @@
       "maximum": 7,
       "recoveryFormula": "0",
       "recoveryMoment": "other"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-talismano-del-male-estremo",
@@ -5986,7 +6206,8 @@
       "maximum": 6,
       "recoveryFormula": "0",
       "recoveryMoment": "other"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-talismano-della-rimarginazione",
@@ -6006,7 +6227,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-talismano-della-salute",
@@ -6026,7 +6248,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-talismano-della-sfera",
@@ -6046,7 +6269,8 @@
       "magico",
       "legendary"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-talismano-di-prova-contro-il-veleno",
@@ -6066,7 +6290,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-tappeto-volante",
@@ -6086,7 +6311,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-tomo-del-comando-e-dell-influenza",
@@ -6106,7 +6332,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-tomo-del-nitido-pensiero",
@@ -6126,7 +6353,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-tomo-della-comprensione",
@@ -6146,7 +6374,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-tridente-del-comando-dei-pesci",
@@ -6183,15 +6412,16 @@
         "id": "magic-tridente-del-comando-dei-pesci-dominate-beast",
         "spellId": "dominate-beast",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-tridente-del-comando-dei-pesci-haste",
         "spellId": "haste",
         "usage": "charges",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-tunica-degli-occhi",
@@ -6217,9 +6447,10 @@
         "id": "magic-tunica-degli-occhi-daylight",
         "spellId": "daylight",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-tunica-degli-oggetti-utili",
@@ -6239,7 +6470,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-tunica-dei-colori-scintillanti",
@@ -6264,7 +6496,8 @@
       "maximum": 3,
       "recoveryFormula": "1d3",
       "recoveryMoment": "dawn"
-    }
+    },
+    "isHidden": false
   },
   {
     "id": "magic-tunica-dell-arcimago",
@@ -6284,7 +6517,8 @@
       "magico",
       "legendary"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-tunica-delle-stelle",
@@ -6304,7 +6538,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-unguento-rigenerativo",
@@ -6324,7 +6559,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-ventaglio",
@@ -6350,9 +6586,10 @@
         "id": "magic-ventaglio-gust-of-wind",
         "spellId": "gust-of-wind",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-verga-dell-allerta",
@@ -6378,21 +6615,22 @@
         "id": "magic-verga-dell-allerta-detect-magic",
         "spellId": "detect-magic",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-verga-dell-allerta-invisibility",
         "spellId": "invisibility",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       },
       {
         "id": "magic-verga-dell-allerta-see-invisibility",
         "spellId": "see-invisibility",
         "usage": "per-day",
-        "notes": "Modalità d’uso e costo indicati nella descrizione SRD."
+        "notes": "Modalità d'uso e costo indicati nella descrizione SRD."
       }
-    ]
+    ],
+    "isHidden": false
   },
   {
     "id": "magic-verga-dell-assorbimento",
@@ -6412,7 +6650,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-verga-della-potenza-divina",
@@ -6432,7 +6671,8 @@
       "magico",
       "legendary"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-verga-della-sicurezza",
@@ -6452,7 +6692,8 @@
       "magico",
       "very-rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-verga-della-sovranita",
@@ -6472,7 +6713,8 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-verga-inamovibile",
@@ -6492,7 +6734,8 @@
       "magico",
       "uncommon"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   },
   {
     "id": "magic-zainetto-pratico",
@@ -6512,6 +6755,7 @@
       "magico",
       "rare"
     ],
-    "effects": []
+    "effects": [],
+    "isHidden": false
   }
 ]

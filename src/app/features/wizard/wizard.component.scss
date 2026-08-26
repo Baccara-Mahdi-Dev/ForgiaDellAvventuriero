@@ -176,7 +176,7 @@
 .lead {
   font: 1.03rem/1.7 Georgia;
   color: var(--muted);
-  max-width: 720px;
+  max-width: fit-content;
   margin-bottom: 2rem;
 }
 .segmented {
@@ -196,13 +196,13 @@
   cursor: pointer;
 }
 .segmented button.active {
-  background: var(--surface);
+  background: var(--surface-soft);
   color: var(--ink);
-  box-shadow: 0 2px 7px rgb(50 30 10/0.1);
+  box-shadow: 0 2px 7px rgb(50 30 10 / 0.1);
 }
 .budget {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
   gap: 1rem;
   border: 1px solid var(--line);
@@ -223,16 +223,35 @@
   color: var(--muted);
   font-style: normal;
 }
-.budget progress {
-  width: 100%;
-  accent-color: var(--ember);
+.budget {
+  > progress {
+    padding:1px 0;
+    border: 1px solid var(--ink);
+    width: 100%;
+    accent-color: var(--ember);
+
+    &::-webkit-progress-bar {
+      background: var(--paper);
+    }
+
+    &.danger::-webkit-progress-value {
+      background: var(--mephisto);
+    }
+
+    &.warning::-webkit-progress-value {
+      background: var(--gold);
+    }
+
+    &.success::-webkit-progress-value {
+      background: var(--caliban);
+    }
+  }
 }
-.budget button {
-  border: 0;
-  background: none;
+
+.budget > button { 
+  cursor: pointer; 
+  background: var(--paper-deep);
   color: var(--ember);
-  font-weight: 700;
-  cursor: pointer;
 }
 .abilities {
   display: grid;
@@ -411,8 +430,8 @@
   color: var(--muted);
 }
 .option-icon {
-  width: 34px;
-  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -464,6 +483,9 @@
   color: var(--muted);
   margin-top: 0.4rem;
 }
+.level-section > * {
+  width: 100%;
+}
 .level-panel {
   position: relative;
   max-width: 680px;
@@ -472,6 +494,8 @@
   border-radius: 0.7rem;
   background: linear-gradient(135deg, var(--surface-raised), var(--paper-deep));
   overflow: hidden;
+  width: fit-content;
+  max-width: 100%;
 }
 .level-panel > label {
   display: block;
@@ -536,6 +560,22 @@
 }
 .feats .option {
   min-height: 140px;
+}
+.feat-proficiency-choice {
+  border: 1px solid var(--line);
+}
+.feat-choice-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.35rem;
+}
+.feat-choice-options button {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 0.5rem;
+}
+.feat-choice-options button.selected {
+  border-color: var(--ember);
 }
 .feat-effect-choices {
   display: grid;
@@ -857,12 +897,6 @@
 .export-card small {
   color: #cdbda8;
 }
-.notice {
-  padding: 0.8rem;
-  background: var(--surface-warm);
-  color: var(--ember-dark);
-  border-left: 3px solid var(--ember);
-}
 .wizard-nav {
   display: flex;
   justify-content: space-between;
@@ -1093,7 +1127,8 @@
   box-shadow: none;
 }
 .hp-builder {
-  max-width: 680px;
+  width: fit-content;
+  max-width: 100%;
   margin-top: 1rem;
   padding: 1.4rem;
   border: 1px solid var(--line);
@@ -1101,7 +1136,8 @@
   background: var(--surface-raised);
 }
 .hp-heading {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -1222,7 +1258,7 @@
 }
 .bonus-picks {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   gap: 0.4rem;
 }
 .bonus-picks button {
@@ -1261,9 +1297,6 @@
 @media (max-width: 760px) {
   .flexible-bonuses {
     grid-template-columns: 1fr;
-  }
-  .bonus-picks {
-    grid-template-columns: repeat(3, 1fr);
   }
 }
 .spell-grid.detailed {
@@ -1930,12 +1963,6 @@
   color: var(--ember);
   font: 1.5rem Georgia;
 }
-.load-warning {
-  padding: 0.8rem 1rem;
-  border-left: 3px solid var(--danger);
-  background: var(--danger-soft);
-  color: var(--danger-ink);
-}
 .armor-panel,
 .catalog-panel,
 .backpack-panel,
@@ -2173,7 +2200,8 @@
   font-size: 0.65rem;
 }
 .equip-weapon,
-.unequip-weapon {
+.unequip-weapon,
+.ability-weapon {
   padding: 0.35rem 0.5rem;
   border: 1px solid var(--ember);
   border-radius: 0.3rem;
@@ -2372,13 +2400,28 @@
   color: var(--disabled-ink);
   cursor: not-allowed;
 }
-.background-details {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0 1rem;
+.background-choice + .background-choice {
+  margin-top: 0.8rem;
 }
-.background-details .field:first-child {
-  grid-column: 1/-1;
+.background-choice-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+.background-choice > small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.62rem;
+}
+.background-choice .skill-picks button:disabled:not(.selected) {
+  border-color: var(--disabled-border);
+  background: var(--disabled-bg);
+  color: var(--disabled-ink);
+  cursor: not-allowed;
 }
 .skill-summary,
 .saving-summary {
@@ -2422,7 +2465,6 @@
     align-items: flex-start;
     flex-direction: column;
   }
-  .background-details,
   .skill-list,
   .saving-list,
   .feat-effect-choices,
@@ -2438,8 +2480,5 @@
   .summary-abilities,
   .summary-abilities:has(.homebrew-ability) {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .background-details .field:first-child {
-    grid-column: auto;
   }
 }

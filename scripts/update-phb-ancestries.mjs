@@ -474,7 +474,7 @@ const other = [
       ),
       detail(
         'Attacchi selvaggi',
-        'Quando realizzi un colpo critico con un attacco con arma da mischia, tiri una volta in più uno dei dadi di danno dell’arma.',
+        'Quando realizzi un colpo critico con un attacco con arma da mischia, tiri una volta in più uno dei dadi di danno dell'arma.',
       ),
     ],
     {

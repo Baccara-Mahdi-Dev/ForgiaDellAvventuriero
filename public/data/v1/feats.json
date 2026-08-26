@@ -2,7 +2,7 @@
   {
     "id": "alert",
     "name": "Allerta",
-    "description": "Sempre pronto al pericolo: +5 all’iniziativa.",
+    "description": "Sempre pronto al pericolo: +5 all'iniziativa.",
     "source": "PHB",
     "effects": {
       "initiativeBonus": 5,
@@ -10,7 +10,8 @@
         "Non puoi essere sorpreso mentre sei cosciente.",
         "Le creature non ottengono vantaggio contro di te solo perché non le vedi."
       ]
-    }
+    },
+    "isHidden": true
   },
   {
     "id": "observant",
@@ -18,18 +19,30 @@
     "description": "Attenzione eccezionale e lettura labiale.",
     "source": "PHB",
     "effects": {
-      "abilityIncrease": { "amount": 1, "options": ["int", "wis"] },
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "int",
+          "wis"
+        ]
+      },
       "passivePerceptionBonus": 5,
       "passiveInvestigationBonus": 5,
-      "notes": ["Puoi leggere le labbra di una creatura che comprendi e riesci a vedere."]
-    }
+      "notes": [
+        "Puoi leggere le labbra di una creatura che comprendi e riesci a vedere."
+      ]
+    },
+    "isHidden": true
   },
   {
     "id": "tough",
     "name": "Robusto",
     "description": "Punti ferita aggiuntivi per ogni livello.",
     "source": "PHB",
-    "effects": { "hitPointsPerLevel": 2 }
+    "effects": {
+      "hitPointsPerLevel": 2
+    },
+    "isHidden": true
   },
   {
     "id": "war-caster",
@@ -37,14 +50,17 @@
     "description": "Concentrazione e magia efficaci in battaglia.",
     "source": "PHB",
     "prerequisite": "Capacità di lanciare almeno un incantesimo",
-    "requirements": { "spellcasting": true },
+    "requirements": {
+      "spellcasting": true
+    },
     "effects": {
       "notes": [
         "Hai vantaggio ai tiri salvezza di Costituzione per mantenere la concentrazione.",
         "Puoi eseguire componenti somatiche anche con armi o scudo in mano.",
         "Puoi usare un incantesimo con tempo di lancio di 1 azione al posto di un attacco di opportunità."
       ]
-    }
+    },
+    "isHidden": true
   },
   {
     "id": "magic-initiate",
@@ -58,7 +74,14 @@
         "count": 2,
         "level": 0,
         "traditionKey": "magic-initiate",
-        "traditionOptions": ["bard", "cleric", "druid", "sorcerer", "warlock", "wizard"]
+        "traditionOptions": [
+          "bard",
+          "cleric",
+          "druid",
+          "sorcerer",
+          "warlock",
+          "wizard"
+        ]
       },
       {
         "id": "magic-initiate-spell",
@@ -67,7 +90,8 @@
         "level": 1,
         "traditionKey": "magic-initiate"
       }
-    ]
+    ],
+    "isHidden": true
   },
   {
     "id": "fey-touched",
@@ -75,7 +99,14 @@
     "description": "Un dono fatato aumenta una caratteristica mentale e concede magie fatate.",
     "source": "TCE",
     "effects": {
-      "abilityIncrease": { "amount": 1, "options": ["int", "wis", "cha"] }
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "int",
+          "wis",
+          "cha"
+        ]
+      }
     },
     "spellGrants": [
       {
@@ -90,8 +121,980 @@
         "label": "Un incantesimo di 1° livello di Divinazione o Ammaliamento",
         "count": 1,
         "level": 1,
-        "schools": ["Divination", "Enchantment"]
+        "schools": [
+          "Divination",
+          "Enchantment"
+        ]
       }
-    ]
+    ],
+    "isHidden": true
+  },
+  {
+    "id": "athlete",
+    "name": "Atleta",
+    "description": "Aumenta Forza o Destrezza di 1. Rialzarsi da prono costa solo 1,5 m; arrampicarsi non dimezza la velocità e per i salti con rincorsa bastano 1,5 m.",
+    "source": "PHB",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "dex"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "actor",
+    "name": "Attore",
+    "description": "Aumenta Carisma di 1. Concede vantaggio a Inganno e Intrattenere quando ci si spaccia per qualcun altro e permette di imitare voci e suoni già ascoltati.",
+    "source": "PHB",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "cha"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "charger",
+    "name": "Carica",
+    "description": "Consente un attacco o una spinta efficace dopo uno Scatto.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "crossbow-expert",
+    "name": "Esperto di Balestre",
+    "description": "Riduce i limiti delle balestre e del combattimento a distanza ravvicinato.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "defensive-duelist",
+    "name": "Duellante Difensivo",
+    "description": "Usa una reazione e un'arma accurata per aumentare temporaneamente la CA.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "dual-wielder",
+    "name": "Combattente a Due Armi",
+    "description": "Migliora difesa e gestione del combattimento con due armi.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "dungeon-delver",
+    "name": "Esploratore di Dungeon",
+    "description": "Aiuta a individuare e resistere a trappole e passaggi nascosti.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "durable",
+    "name": "Durevole",
+    "description": "Aumenta Costituzione di 1. Quando spendi un Dado Vita, recuperi almeno il doppio del tuo modificatore di Costituzione in punti ferita (minimo 2).",
+    "source": "PHB",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "con"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "elemental-adept",
+    "name": "Adepto Elementale",
+    "description": "Specializza gli incantesimi in un tipo di danno elementale.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "grappler",
+    "name": "Lottatore",
+    "description": "Migliora gli attacchi e le opzioni contro creature afferrate.",
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "great-weapon-master",
+    "name": "Maestro d'Armi Possenti",
+    "description": "Potenzia gli attacchi con armi pesanti e premia i colpi decisivi.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "healer",
+    "name": "Guaritore",
+    "description": "Permette di usare una borsa da guaritore per cure più efficaci.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "heavily-armored",
+    "name": "Pesantemente Corazzato",
+    "description": "Aumenta Forza di 1 e concede competenza nelle armature pesanti.",
+    "source": "PHB",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str"
+        ]
+      },
+      "armorProficiencies": [
+        "heavy"
+      ]
+    },
+    "isHidden": true
+  },
+  {
+    "id": "heavy-armor-master",
+    "name": "Maestro delle Armature Pesanti",
+    "description": "Aumenta Forza di 1. In armatura pesante riduce di 3 i danni contundenti, perforanti e taglienti subiti da armi non magiche.",
+    "source": "PHB",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "inspiring-leader",
+    "name": "Condottiero Ispiratore",
+    "description": "Un discorso concede punti ferita temporanei al gruppo.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "keen-mind",
+    "name": "Mente Acuta",
+    "description": "Aumenta Intelligenza di 1; indica sempre il nord, le ore fino ad alba o tramonto e permette di ricordare accuratamente ciò che si è visto o udito nell’ultimo mese.",
+    "source": "PHB",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "int"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "lightly-armored",
+    "name": "Corazzato Leggero",
+    "description": "Aumenta Forza o Destrezza di 1 e concede competenza nelle armature leggere.",
+    "source": "PHB",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "dex"
+        ]
+      },
+      "armorProficiencies": [
+        "light"
+      ]
+    },
+    "isHidden": true
+  },
+  {
+    "id": "linguist",
+    "name": "Linguista",
+    "description": "Aumenta Intelligenza di 1, fa apprendere tre lingue a scelta e permette di creare cifrari scritti difficili da decifrare.",
+    "source": "PHB",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "int"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "lucky",
+    "name": "Fortunato",
+    "description": "Concede punti fortuna per influenzare tiri importanti.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "mage-slayer",
+    "name": "Sterminatore di Maghi",
+    "description": "Offre reazioni e difese utili contro incantatori vicini.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "martial-adept",
+    "name": "Adepto Marziale",
+    "description": "Concede manovre e un dado di superiorità.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "medium-armor-master",
+    "name": "Maestro delle Armature Medie",
+    "description": "Migliora furtività e CA quando si usa un'armatura media.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "mobile",
+    "name": "Mobile",
+    "description": "Aumenta velocità e libertà di movimento in combattimento.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "moderately-armored",
+    "name": "Corazzato Medio",
+    "description": "Aumenta Forza o Destrezza di 1 e concede competenza nelle armature medie e negli scudi.",
+    "source": "PHB",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "dex"
+        ]
+      },
+      "armorProficiencies": [
+        "medium",
+        "shield"
+      ]
+    },
+    "isHidden": true
+  },
+  {
+    "id": "mounted-combatant",
+    "name": "Combattente in Sella",
+    "description": "Migliora attacchi e protezione della cavalcatura.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "polearm-master",
+    "name": "Maestro d'Armi ad Asta",
+    "description": "Concede attacchi aggiuntivi e reazioni con armi ad asta.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "resilient",
+    "name": "Resiliente",
+    "description": "Scegli una caratteristica: aumenta di 1 e ottieni competenza nei tiri salvezza basati su quella caratteristica.",
+    "source": "PHB",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "dex",
+          "con",
+          "int",
+          "wis",
+          "cha"
+        ]
+      },
+      "savingThrowProficiencyFromAbility": true
+    },
+    "isHidden": true
+  },
+  {
+    "id": "ritual-caster",
+    "name": "Incantatore Rituale",
+    "description": "Concede un libro rituale e la capacità di ampliare i rituali conosciuti.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "savage-attacker",
+    "name": "Attaccante Selvaggio",
+    "description": "Permette di ritirare una volta i dadi di danno di un attacco in mischia.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "sentinel",
+    "name": "Sentinella",
+    "description": "Migliora il controllo dei nemici tramite attacchi di opportunità.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "sharpshooter",
+    "name": "Tiratore Scelto",
+    "description": "Riduce penalità di gittata e copertura e consente colpi più potenti.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "shield-master",
+    "name": "Maestro degli Scudi",
+    "description": "Integra lo scudo nelle spinte e nella difesa contro effetti ad area.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "skilled",
+    "name": "Abile",
+    "description": "Ottieni competenza in una combinazione a scelta di tre abilità o strumenti.",
+    "source": "PHB",
+    "proficiencyChoices": [
+      {
+        "id": "skilled-proficiencies",
+        "label": "Tre abilità o strumenti",
+        "count": 3,
+        "kind": "skill-or-tool"
+      }
+    ],
+    "isHidden": true
+  },
+  {
+    "id": "skulker",
+    "name": "Furtivo",
+    "description": "Migliora la capacità di nascondersi e combattere con visibilità ridotta.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "spell-sniper",
+    "name": "Cecchino Magico",
+    "description": "Estende la gittata e migliora gli attacchi con incantesimi.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "tavern-brawler",
+    "name": "Combattente da Taverna",
+    "description": "Aumenta Forza o Costituzione di 1; concede competenza con armi improvvisate e colpi senz’armi, porta il danno senz’armi a 1d4 e consente una presa come azione bonus dopo un colpo.",
+    "source": "PHB",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "con"
+        ]
+      },
+      "weaponProficiencies": [
+        "unarmed-strike",
+        "improvised"
+      ]
+    },
+    "isHidden": true
+  },
+  {
+    "id": "weapon-master",
+    "name": "Maestro d'Armi",
+    "description": "Aumenta Forza o Destrezza di 1 e concede competenza in quattro armi a scelta.",
+    "source": "PHB",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "dex"
+        ]
+      }
+    },
+    "proficiencyChoices": [
+      {
+        "id": "weapon-master-weapons",
+        "label": "Quattro armi",
+        "count": 4,
+        "kind": "weapon"
+      }
+    ],
+    "isHidden": true
+  },
+  {
+    "id": "bountiful-luck",
+    "name": "Fortuna Abbondante",
+    "description": "Permette di condividere la fortuna halfling con un alleato vicino.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "halfling-lightfoot",
+        "halfling-stout"
+      ]
+    },
+    "isHidden": true
+  },
+  {
+    "id": "dragon-fear",
+    "name": "Paura Draconica",
+    "description": "Trasforma il soffio del dragonide in una manifestazione terrificante.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "dragonborn-black",
+        "dragonborn-blue",
+        "dragonborn-brass",
+        "dragonborn-bronze",
+        "dragonborn-copper",
+        "dragonborn-gold",
+        "dragonborn-green",
+        "dragonborn-red",
+        "dragonborn-silver",
+        "dragonborn-white"
+      ]
+    },
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "con",
+          "cha"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "dragon-hide",
+    "name": "Pelle Draconica",
+    "description": "Rafforza la pelle e concede artigli naturali.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "dragonborn-black",
+        "dragonborn-blue",
+        "dragonborn-brass",
+        "dragonborn-bronze",
+        "dragonborn-copper",
+        "dragonborn-gold",
+        "dragonborn-green",
+        "dragonborn-red",
+        "dragonborn-silver",
+        "dragonborn-white"
+      ]
+    },
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "con",
+          "cha"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "drow-high-magic",
+    "name": "Alta Magia Drow",
+    "description": "Concede ulteriori incantesimi innati drow.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "elf-drow"
+      ]
+    },
+    "isHidden": true
+  },
+  {
+    "id": "dwarven-fortitude",
+    "name": "Tempra Nanica",
+    "description": "Permette di spendere un Dado Vita durante l'azione Schivare.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "dwarf-hill",
+        "dwarf-mountain"
+      ]
+    },
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "con"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "elven-accuracy",
+    "name": "Precisione Elfica",
+    "description": "Rende più affidabili gli attacchi effettuati con vantaggio.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "elf-high",
+        "elf-wood",
+        "elf-drow",
+        "half-elf"
+      ]
+    },
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "dex",
+          "int",
+          "wis",
+          "cha"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "fade-away",
+    "name": "Svanire",
+    "description": "Permette a uno gnomo di diventare invisibile dopo essere stato colpito.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "gnome-forest",
+        "gnome-rock"
+      ]
+    },
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "dex",
+          "int"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "fey-teleportation",
+    "name": "Teletrasporto Fatato",
+    "description": "Concede un breve teletrasporto legato all'eredità degli elfi alti.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "elf-high"
+      ]
+    },
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "int",
+          "cha"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "flames-of-phlegethos",
+    "name": "Fiamme di Flegetonte",
+    "description": "Potenzia le fiamme magiche di un tiefling e lo avvolge nel fuoco.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "tiefling"
+      ]
+    },
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "int",
+          "cha"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "infernal-constitution",
+    "name": "Costituzione Infernale",
+    "description": "Aumenta la resistenza fisica e concede difese infernali.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "tiefling"
+      ]
+    },
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "con"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "orcish-fury",
+    "name": "Furia Orchesca",
+    "description": "Potenzia un attacco e permette una reazione quando si resiste alla caduta.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "half-orc"
+      ]
+    },
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "con"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "prodigy",
+    "name": "Prodigio",
+    "description": "Ottieni una competenza in un’abilità, una competenza in uno strumento e una lingua; scegli inoltre un’abilità in cui sei competente per raddoppiare il bonus di competenza.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "human",
+        "human-variant",
+        "half-elf",
+        "half-orc"
+      ]
+    },
+    "proficiencyChoices": [
+      {
+        "id": "prodigy-skill",
+        "label": "Un’abilità",
+        "count": 1,
+        "kind": "skill"
+      },
+      {
+        "id": "prodigy-tool",
+        "label": "Uno strumento",
+        "count": 1,
+        "kind": "tool"
+      },
+      {
+        "id": "prodigy-language",
+        "label": "Una lingua",
+        "count": 1,
+        "kind": "language"
+      },
+      {
+        "id": "prodigy-expertise",
+        "label": "Maestria in un’abilità competente",
+        "count": 1,
+        "kind": "expertise"
+      }
+    ],
+    "isHidden": true
+  },
+  {
+    "id": "second-chance",
+    "name": "Seconda Possibilità",
+    "description": "Permette di costringere un aggressore a ripetere un attacco.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "halfling-lightfoot",
+        "halfling-stout"
+      ]
+    },
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "dex",
+          "con",
+          "cha"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "squat-nimbleness",
+    "name": "Agilità dei Piccoli",
+    "description": "Migliora velocità, agilità e capacità di sfuggire alle prese.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "dwarf-hill",
+        "dwarf-mountain",
+        "gnome-forest",
+        "gnome-rock",
+        "halfling-lightfoot",
+        "halfling-stout"
+      ]
+    },
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "dex"
+        ]
+      }
+    },
+    "proficiencyChoices": [
+      {
+        "id": "squat-nimbleness-skill",
+        "label": "Acrobazia o Atletica",
+        "count": 1,
+        "kind": "skill",
+        "options": [
+          "acrobatics",
+          "athletics"
+        ]
+      }
+    ],
+    "isHidden": true
+  },
+  {
+    "id": "wood-elf-magic",
+    "name": "Magia degli Elfi dei Boschi",
+    "description": "Concede magie collegate alla natura e alla furtività.",
+    "source": "XGE",
+    "requirements": {
+      "ancestryIds": [
+        "elf-wood"
+      ]
+    },
+    "isHidden": true
+  },
+  {
+    "id": "artificer-initiate",
+    "name": "Iniziato Artefice",
+    "description": "Apprendi un trucchetto e un incantesimo di 1° livello da artefice, lanciabile gratuitamente una volta per riposo lungo e anche con slot; ottieni inoltre competenza in uno strumento da artigiano.",
+    "source": "TCE",
+    "proficiencyChoices": [
+      {
+        "id": "artificer-initiate-tool",
+        "label": "Uno strumento da artigiano",
+        "count": 1,
+        "kind": "tool",
+        "toolCategory": "artisan-tool"
+      }
+    ],
+    "isHidden": true
+  },
+  {
+    "id": "chef",
+    "name": "Cuoco",
+    "description": "Aumenta Costituzione o Saggezza di 1 e concede competenza negli utensili da cuoco; durante i riposi prepara cibo che migliora le cure e bocconcini che concedono punti ferita temporanei.",
+    "source": "TCE",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "con",
+          "wis"
+        ]
+      },
+      "toolProficiencies": [
+        "Utensili da cuoco"
+      ]
+    },
+    "isHidden": true
+  },
+  {
+    "id": "crusher",
+    "name": "Frantumatore",
+    "description": "Migliora i colpi contundenti e consente di riposizionare il bersaglio.",
+    "source": "TCE",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "con"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "eldritch-adept",
+    "name": "Adepto Occulto",
+    "description": "Concede un'invocazione occulta compatibile con i suoi prerequisiti.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "fighting-initiate",
+    "name": "Iniziato al Combattimento",
+    "description": "Concede uno stile di combattimento.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "gunner",
+    "name": "Pistolero",
+    "description": "Migliora Destrezza e l'uso delle armi da fuoco.",
+    "source": "TCE",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "dex"
+        ]
+      },
+      "weaponProficiencies": [
+        "firearm"
+      ]
+    },
+    "isHidden": true
+  },
+  {
+    "id": "metamagic-adept",
+    "name": "Adepto della Metamagia",
+    "description": "Concede opzioni di metamagia e punti stregoneria dedicati.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "piercer",
+    "name": "Perforatore",
+    "description": "Migliora una caratteristica fisica e i danni perforanti.",
+    "source": "TCE",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "dex"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "poisoner",
+    "name": "Avvelenatore",
+    "description": "Migliora la preparazione e l'impiego dei veleni.",
+    "source": "TCE",
+    "effects": {
+      "toolProficiencies": [
+        "Kit da avvelenatore"
+      ]
+    },
+    "isHidden": true
+  },
+  {
+    "id": "shadow-touched",
+    "name": "Toccato dalle Ombre",
+    "description": "Aumenta una caratteristica mentale e concede magie d'ombra.",
+    "source": "TCE",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "int",
+          "wis",
+          "cha"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "skill-expert",
+    "name": "Esperto in un'Abilità",
+    "description": "Aumenta una caratteristica di 1, concede competenza in un’abilità e raddoppia il bonus di competenza per un’abilità in cui sei competente.",
+    "source": "TCE",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "dex",
+          "con",
+          "int",
+          "wis",
+          "cha"
+        ]
+      }
+    },
+    "proficiencyChoices": [
+      {
+        "id": "skill-expert-skill",
+        "label": "Una nuova competenza in un’abilità",
+        "count": 1,
+        "kind": "skill"
+      },
+      {
+        "id": "skill-expert-expertise",
+        "label": "Maestria in un’abilità competente",
+        "count": 1,
+        "kind": "expertise"
+      }
+    ],
+    "isHidden": true
+  },
+  {
+    "id": "slasher",
+    "name": "Tagliatore",
+    "description": "Migliora una caratteristica fisica e gli effetti dei danni taglienti.",
+    "source": "TCE",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "str",
+          "dex"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "telekinetic",
+    "name": "Telecinetico",
+    "description": "Concede manipolazione a distanza e una spinta telecinetica.",
+    "source": "TCE",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "int",
+          "wis",
+          "cha"
+        ]
+      }
+    },
+    "isHidden": true
+  },
+  {
+    "id": "telepathic",
+    "name": "Telepatico",
+    "description": "Concede comunicazione mentale e capacità divinatorie.",
+    "source": "TCE",
+    "effects": {
+      "abilityIncrease": {
+        "amount": 1,
+        "options": [
+          "int",
+          "wis",
+          "cha"
+        ]
+      }
+    },
+    "isHidden": true
   }
 ]

@@ -1,5 +1,8 @@
 import { CatalogData } from './catalog';
 import { CharacterDraft, EquipmentItem, EquippedWeapon } from './models';
+import { isArtificerSubclass } from './artificer-rules';
+
+export { battleSmithUsesIntelligence } from './artificer-rules';
 
 const SWORD_IDS = new Set(['greatsword', 'longsword', 'rapier', 'scimitar', 'shortsword']);
 const AXE_IDS = new Set(['battleaxe', 'greataxe', 'handaxe']);
@@ -14,16 +17,7 @@ function inferredFixedBaseId(item: EquipmentItem): string | undefined {
 }
 
 export function isBattleSmith(draft: Pick<CharacterDraft, 'classId' | 'subclassId' | 'level'>) {
-  return (
-    draft.classId === 'artificer' && draft.subclassId === 'Fabbro da Battaglia' && draft.level >= 3
-  );
-}
-
-export function battleSmithUsesIntelligence(
-  draft: Pick<CharacterDraft, 'classId' | 'subclassId' | 'level'>,
-  item: EquipmentItem,
-): boolean {
-  return isBattleSmith(draft) && !!item.magical && item.category === 'weapon';
+  return isArtificerSubclass(draft, 'battleSmith');
 }
 
 export function magicWeaponBaseCandidates(

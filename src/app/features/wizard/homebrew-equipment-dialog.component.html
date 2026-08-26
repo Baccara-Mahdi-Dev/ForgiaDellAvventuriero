@@ -15,7 +15,7 @@
       <button class="icon-button" aria-label="Chiudi" (click)="cancelled.emit()">×</button>
     </header>
 
-    <nav class="type-picker" aria-label="Tipologia dell’oggetto">
+    <nav class="type-picker" aria-label="Tipologia dell'oggetto">
       @for (kind of kinds; track kind) {
         <button [class.selected]="item().kind === kind" (click)="setKind(kind)">
           {{ kindLabels[kind] }}
@@ -100,7 +100,7 @@
 
       @if (item().kind === 'weapon') {
         <section class="editor-section wide">
-          <h3>2. Proprietà dell’arma</h3>
+          <h3>2. Proprietà dell'arma</h3>
           <div class="fields">
             <label
               ><span>Danno base *</span
@@ -197,7 +197,7 @@
 
       @if (item().kind === 'armor') {
         <section class="editor-section wide">
-          <h3>2. Proprietà dell’armatura</h3>
+          <h3>2. Proprietà dell'armatura</h3>
           <div class="fields">
             <label
               ><span>Tipo *</span
@@ -512,7 +512,7 @@
             [checked]="!!item().charges"
             (change)="toggleCharges($any($event.target).checked)"
           />
-          L’oggetto utilizza cariche</label
+          L'oggetto utilizza cariche</label
         >
         @if (item().charges; as charges) {
           <div class="fields charge-fields">
@@ -569,7 +569,7 @@
     </div>
 
     @if (errors().length) {
-      <div class="validation" role="alert">
+      <div tuiNotification appearance="negative" class="mx-6 mb-4 z-1" role="alert">
         <strong>Controlla questi campi:</strong>
         <ul>
           @for (error of errors(); track error) {

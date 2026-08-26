@@ -1,10 +1,12 @@
 {
   "name": "ForgiaAvventuriero",
-  "version": "1.3.0",
+  "version": "1.4.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve ",
+    "start:P": "ng serve  --configuration personal",
     "build": "ng build",
+    "build:P": "ng build --configuration production,personal",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --watch=false",
@@ -27,6 +29,9 @@
     "@angular/service-worker": "^21.2.0",
     "@ng-icons/core": "^33.0.0",
     "@ng-icons/game-icons": "^33.0.0",
+    "@ng-icons/iconoir": "^35.0.1",
+    "@ng-icons/lets-icons": "^35.0.1",
+    "@ng-icons/mono-icons": "^35.0.1",
     "@ng-icons/simple-icons": "^35.0.1",
     "@taiga-ui/cdk": "^5.18.0",
     "@taiga-ui/core": "^5.18.0",
@@ -51,6 +56,7 @@
     "fake-indexeddb": "^6.2.5",
     "fast-check": "^4.9.0",
     "jsdom": "^28.0.0",
+    "less": "^4.9.0",
     "prettier": "^3.8.1",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"

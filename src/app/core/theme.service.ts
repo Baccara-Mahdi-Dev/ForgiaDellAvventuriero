@@ -1,11 +1,13 @@
 import { DOCUMENT } from '@angular/common';
 import { Injectable, computed, inject, signal } from '@angular/core';
+import { TUI_DARK_MODE } from '@taiga-ui/core';
 
 export type ColorTheme = 'light' | 'dark';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
   private readonly document = inject(DOCUMENT);
+  private readonly tuiDarkMode = inject(TUI_DARK_MODE);
   private readonly storageKey = 'forgia-color-theme';
   private readonly preference = signal<ColorTheme | null>(this.savedPreference());
   private readonly systemDark = signal(this.systemPrefersDark());
@@ -47,6 +49,8 @@ export class ThemeService {
 
   private apply(theme: ColorTheme): void {
     this.document.documentElement.dataset['theme'] = theme;
+    this.document.documentElement.setAttribute('tuiTheme', theme);
+    this.tuiDarkMode.set(theme === 'dark');
     this.document.documentElement.style.colorScheme = theme;
     const themeColor = this.document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
     themeColor?.setAttribute('content', theme === 'dark' ? '#1f1814' : '#fffaf2');

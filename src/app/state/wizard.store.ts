@@ -8,9 +8,17 @@ import {
   HOMEBREW_ABILITY_MAX,
   HOMEBREW_ABILITY_MIN,
 } from '../domain/models';
-import { derive, maximumSpellLevel, pointBuyCost } from '../domain/rules';
+import {
+  derive,
+  maximumSpellLevel,
+  pointBuyCost,
+  subclassSpellcastingProfile,
+} from '../domain/rules';
 import { normalizeClassProgression } from '../domain/class-progression';
+import { attunementLimit } from '../domain/artificer-rules';
 import { normalizeHomebrewEquipment } from '../domain/homebrew-equipment';
+import { AbilityMethod } from '../models/enum/ability-method';
+
 
 const base = () => ({ str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 }) as const;
 
@@ -45,14 +53,20 @@ export class WizardStore {
   });
   readonly availableSpells = computed(() => {
     const draft = this.draft();
-    const maxLevel = maximumSpellLevel(draft.classId, draft.level);
+    const maxLevel = maximumSpellLevel(draft.classId, draft.level, draft.subclassId);
+    const subclassCaster = subclassSpellcastingProfile(
+      draft.classId,
+      draft.subclassId,
+      draft.level,
+    );
+    const spellClassId = subclassCaster?.spellClassId ?? draft.classId;
     const granted = new Set([
       ...this.fixedGrantedSpellIds(),
       ...this.activeGrantedSpellChoiceIds(),
     ]);
     return this.spells.filter(
       (spell) =>
-        spell.classes.includes(draft.classId) && spell.level <= maxLevel && !granted.has(spell.id),
+        spell.classes.includes(spellClassId) && spell.level <= maxLevel && !granted.has(spell.id),
     );
   });
   readonly fixedGrantedSpellIds = computed(() => {
@@ -153,7 +167,29 @@ export class WizardStore {
       spellIds: selected.includes(id) ? selected.filter((item) => item !== id) : [...selected, id],
     });
   }
-  randomPointBuy(): void {
+  randomPoint(abilityMethod:AbilityMethod){
+    switch (abilityMethod) {
+      case AbilityMethod.POINT:        
+        this.randomPointBuy();
+      break;
+      default:
+        this.scramblePoints();
+      break;    
+    }
+  }
+  private scramblePoints(): void {
+    const scores = { ...base() } as Record<AbilityKey, number>,
+    keys = Object.keys(scores) as AbilityKey[];
+    for (const key of keys) {
+      const rolls = Array.from({ length: 4 }, () =>
+        Math.floor(Math.random() * 6) + 1
+      );
+      rolls.sort((a, b) => a - b);
+      scores[key] = rolls.slice(1).reduce((sum, roll) => sum + roll, 0);
+    }
+    this.patch({ abilities: scores });
+  }
+  private randomPointBuy(): void {
     const scores = { ...base() } as Record<AbilityKey, number>,
       keys = Object.keys(scores) as AbilityKey[];
     let budget = 27;
@@ -167,6 +203,12 @@ export class WizardStore {
       }
     }
     this.patch({ abilities: scores });
+  }
+  resetAll():void{
+    const
+      scores:Record<AbilityKey, number> = { ...base() } as Record<AbilityKey, number>,
+      keys:AbilityKey[] = Object.keys(scores) as AbilityKey[];
+    keys.forEach( (k) => this.setAbility(k, 8) );
   }
   exportJson(): void {
     const blob = new Blob([JSON.stringify(this.draft(), null, 2)], { type: 'application/json' }),
@@ -211,7 +253,7 @@ export class WizardStore {
       updatedAt: new Date().toISOString(),
       name: '',
       alignment: '',
-      abilityMethod: 'point-buy',
+      abilityMethod: AbilityMethod.POINT,
       abilities: { ...base() },
       sanityEnabled: false,
       sanityScore: 8,
@@ -232,6 +274,7 @@ export class WizardStore {
       asi: {},
       featIds: [],
       featAbilityChoices: {},
+      featProficiencyChoices: {},
       spellIds: [],
       homebrewSpells: [],
       homebrewEquipment: [],
@@ -273,6 +316,7 @@ export class WizardStore {
       hpMethod: value.hpMethod ?? 'average',
       hpRolls: value.hpRolls ?? [],
       featAbilityChoices: value.featAbilityChoices ?? {},
+      featProficiencyChoices: value.featProficiencyChoices ?? {},
       grantedSpellChoices: value.grantedSpellChoices ?? {},
       spellGrantTraditions: value.spellGrantTraditions ?? {},
       homebrewSpells: (value.homebrewSpells ?? [])
@@ -290,7 +334,7 @@ export class WizardStore {
         (weapon) => weapon && (weapon.hands === 1 || weapon.hands === 2) && !!weapon.equipmentId,
       ),
       equippedItemIds: value.equippedItemIds ?? [],
-      attunedEquipmentIds: (value.attunedEquipmentIds ?? []).slice(0, 3),
+      attunedEquipmentIds: (value.attunedEquipmentIds ?? []).slice(0, attunementLimit(value)),
       equipmentCharges: value.equipmentCharges ?? {},
       inventory: value.inventory ?? [],
       coins: value.coins ?? { cp: 0, sp: 0, ep: 0, gp: 0, pp: 0 },

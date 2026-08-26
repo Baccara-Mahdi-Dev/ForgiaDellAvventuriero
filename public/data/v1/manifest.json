@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "dataVersion": "1.13.0",
+  "dataVersion": "3.0.0",
   "locale": "it",
   "ruleset": "5e-2014",
   "catalog": {
-    "ancestries": 27,
+    "ancestries": 26,
     "classes": 13,
-    "backgrounds": 6,
-    "feats": 6,
-    "spells": 348,
+    "backgrounds": 18,
+    "feats": 72,
+    "spells": 477,
     "equipment": 167
   },
   "files": {
@@ -23,5 +23,56 @@
     "file": "magic-equipment.json",
     "count": 244
   },
-  "sources": ["PHB", "XGE", "TCE", "WGE", "SRD"]
+  "additionalCatalogs": {
+    "subclasses": {
+      "file": "subclasses.json",
+      "count": 101
+    }
+  },
+  "sources": [
+    "SRD",
+    "PHB",
+    "XGE",
+    "TCE",
+    "ERLW"
+  ],
+  "scope": {
+    "kind": "private-personal-catalog",
+    "restrictedContentHiddenByDefault": true,
+    "books": [
+      "Player's Handbook (2014)",
+      "Xanathar's Guide to Everything",
+      "Tasha's Cauldron of Everything",
+      "Eberron Rising from the Last War"
+    ]
+  },
+  "coverage": {
+    "ancestries": {
+      "status": "complete",
+      "records": 26
+    },
+    "subclasses": {
+      "status": "complete",
+      "records": 101
+    },
+    "backgrounds": {
+      "status": "complete",
+      "records": 18,
+      "includesVariants": true
+    },
+    "feats": {
+      "status": "complete",
+      "records": 72
+    },
+    "spells": {
+      "status": "complete",
+      "records": 477,
+      "completeSources": [
+        "PHB",
+        "XGE",
+        "TCE",
+        "SRD"
+      ]
+    }
+  }
 }

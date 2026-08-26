@@ -3,12 +3,23 @@
     "id": "barbarian",
     "name": "Barbaro",
     "description": "Combattente istintivo che incanala la furia.",
-    "source": "PHB",
+    "source": "SRD",
     "hitDie": 12,
     "primary": "str",
-    "saves": ["str", "con"],
+    "saves": [
+      "str",
+      "con"
+    ],
     "subclassLevel": 3,
-    "subclasses": ["Berserker", "Guerriero Totemico"],
+    "subclasses": [
+      "Berserker",
+      "Guerriero Totemico",
+      "Cammino del Guardiano Ancestrale",
+      "Cammino dell'Araldo della Tempesta",
+      "Cammino dello Zelota",
+      "Cammino della Bestia",
+      "Cammino della Magia Selvaggia"
+    ],
     "skillChoices": 2,
     "skillOptions": [
       "animal-handling",
@@ -18,8 +29,15 @@
       "perception",
       "survival"
     ],
-    "armorProficiencies": ["light", "medium", "shield"],
-    "weaponProficiencies": ["simple", "martial"],
+    "armorProficiencies": [
+      "light",
+      "medium",
+      "shield"
+    ],
+    "weaponProficiencies": [
+      "simple",
+      "martial"
+    ],
     "subclassFeatures": [
       {
         "subclassId": "Guerriero Totemico",
@@ -113,18 +131,83 @@
           }
         ]
       }
-    ]
+    ],
+    "subclassSources": {
+      "Berserker": "SRD",
+      "Guerriero Totemico": "PHB",
+      "Cammino del Guardiano Ancestrale": "XGE",
+      "Cammino dell'Araldo della Tempesta": "XGE",
+      "Cammino dello Zelota": "XGE",
+      "Cammino della Bestia": "TCE",
+      "Cammino della Magia Selvaggia": "TCE"
+    },
+    "subclassOptions": [
+      {
+        "id": "barbarian-berserker",
+        "name": "Berserker",
+        "source": "SRD",
+        "isHidden": false
+      },
+      {
+        "id": "barbarian-guerriero-totemico",
+        "name": "Guerriero Totemico",
+        "source": "PHB",
+        "isHidden": true
+      },
+      {
+        "id": "barbarian-cammino-del-guardiano-ancestrale",
+        "name": "Cammino del Guardiano Ancestrale",
+        "source": "XGE",
+        "isHidden": true
+      },
+      {
+        "id": "barbarian-cammino-dellaraldo-della-tempesta",
+        "name": "Cammino dell'Araldo della Tempesta",
+        "source": "XGE",
+        "isHidden": true
+      },
+      {
+        "id": "barbarian-cammino-dello-zelota",
+        "name": "Cammino dello Zelota",
+        "source": "XGE",
+        "isHidden": true
+      },
+      {
+        "id": "barbarian-cammino-della-bestia",
+        "name": "Cammino della Bestia",
+        "source": "TCE",
+        "isHidden": true
+      },
+      {
+        "id": "barbarian-cammino-della-magia-selvaggia",
+        "name": "Cammino della Magia Selvaggia",
+        "source": "TCE",
+        "isHidden": true
+      }
+    ],
+    "isHidden": false
   },
   {
     "id": "bard",
     "name": "Bardo",
     "description": "Artista e incantatore dalla versatilità ineguagliata.",
-    "source": "PHB",
+    "source": "SRD",
     "hitDie": 8,
     "primary": "cha",
-    "saves": ["dex", "cha"],
+    "saves": [
+      "dex",
+      "cha"
+    ],
     "subclassLevel": 3,
-    "subclasses": ["Collegio della Sapienza", "Collegio del Valore"],
+    "subclasses": [
+      "Collegio della Sapienza",
+      "Collegio del Valore",
+      "Collegio del Fascino",
+      "Collegio delle Lame",
+      "Collegio dei Sussurri",
+      "Collegio della Creazione",
+      "Collegio dell'Eloquenza"
+    ],
     "skillChoices": 3,
     "skillOptions": [
       "acrobatics",
@@ -146,36 +229,226 @@
       "history",
       "performance"
     ],
-    "armorProficiencies": ["light"],
-    "weaponProficiencies": ["simple", "hand-crossbow", "longsword", "rapier", "shortsword"],
-    "caster": "full"
+    "armorProficiencies": [
+      "light"
+    ],
+    "weaponProficiencies": [
+      "simple",
+      "hand-crossbow",
+      "longsword",
+      "rapier",
+      "shortsword"
+    ],
+    "caster": "full",
+    "subclassSources": {
+      "Collegio della Sapienza": "SRD",
+      "Collegio del Valore": "PHB",
+      "Collegio del Fascino": "XGE",
+      "Collegio delle Lame": "XGE",
+      "Collegio dei Sussurri": "XGE",
+      "Collegio della Creazione": "TCE",
+      "Collegio dell'Eloquenza": "TCE"
+    },
+    "subclassOptions": [
+      {
+        "id": "bard-collegio-della-sapienza",
+        "name": "Collegio della Sapienza",
+        "source": "SRD",
+        "isHidden": false
+      },
+      {
+        "id": "bard-collegio-del-valore",
+        "name": "Collegio del Valore",
+        "source": "PHB",
+        "isHidden": true
+      },
+      {
+        "id": "bard-collegio-del-fascino",
+        "name": "Collegio del Fascino",
+        "source": "XGE",
+        "isHidden": true
+      },
+      {
+        "id": "bard-collegio-delle-lame",
+        "name": "Collegio delle Lame",
+        "source": "XGE",
+        "isHidden": true
+      },
+      {
+        "id": "bard-collegio-dei-sussurri",
+        "name": "Collegio dei Sussurri",
+        "source": "XGE",
+        "isHidden": true
+      },
+      {
+        "id": "bard-collegio-della-creazione",
+        "name": "Collegio della Creazione",
+        "source": "TCE",
+        "isHidden": true
+      },
+      {
+        "id": "bard-collegio-delleloquenza",
+        "name": "Collegio dell'Eloquenza",
+        "source": "TCE",
+        "isHidden": true
+      }
+    ],
+    "isHidden": false
   },
   {
     "id": "cleric",
     "name": "Chierico",
     "description": "Campione divino, guaritore e difensore.",
-    "source": "PHB",
+    "source": "SRD",
     "hitDie": 8,
     "primary": "wis",
-    "saves": ["wis", "cha"],
+    "saves": [
+      "wis",
+      "cha"
+    ],
     "subclassLevel": 1,
-    "subclasses": ["Dominio della Vita", "Dominio della Luce", "Dominio della Guerra"],
+    "subclasses": [
+      "Dominio della Conoscenza",
+      "Dominio della Guerra",
+      "Dominio della Luce",
+      "Dominio della Natura",
+      "Dominio della Tempesta",
+      "Dominio della Vita",
+      "Dominio dell'Inganno",
+      "Dominio della Forgia",
+      "Dominio della Sepoltura",
+      "Dominio dell'Ordine",
+      "Dominio della Pace",
+      "Dominio del Crepuscolo"
+    ],
     "skillChoices": 2,
-    "skillOptions": ["history", "insight", "medicine", "persuasion", "religion"],
-    "armorProficiencies": ["light", "medium", "shield"],
-    "weaponProficiencies": ["simple"],
-    "caster": "full"
+    "skillOptions": [
+      "history",
+      "insight",
+      "medicine",
+      "persuasion",
+      "religion"
+    ],
+    "armorProficiencies": [
+      "light",
+      "medium",
+      "shield"
+    ],
+    "weaponProficiencies": [
+      "simple"
+    ],
+    "caster": "full",
+    "subclassSources": {
+      "Dominio della Conoscenza": "PHB",
+      "Dominio della Guerra": "PHB",
+      "Dominio della Luce": "PHB",
+      "Dominio della Natura": "PHB",
+      "Dominio della Tempesta": "PHB",
+      "Dominio della Vita": "SRD",
+      "Dominio dell'Inganno": "PHB",
+      "Dominio della Forgia": "XGE",
+      "Dominio della Sepoltura": "XGE",
+      "Dominio dell'Ordine": "TCE",
+      "Dominio della Pace": "TCE",
+      "Dominio del Crepuscolo": "TCE"
+    },
+    "subclassOptions": [
+      {
+        "id": "cleric-dominio-della-conoscenza",
+        "name": "Dominio della Conoscenza",
+        "source": "PHB",
+        "isHidden": true
+      },
+      {
+        "id": "cleric-dominio-della-guerra",
+        "name": "Dominio della Guerra",
+        "source": "PHB",
+        "isHidden": true
+      },
+      {
+        "id": "cleric-dominio-della-luce",
+        "name": "Dominio della Luce",
+        "source": "PHB",
+        "isHidden": true
+      },
+      {
+        "id": "cleric-dominio-della-natura",
+        "name": "Dominio della Natura",
+        "source": "PHB",
+        "isHidden": true
+      },
+      {
+        "id": "cleric-dominio-della-tempesta",
+        "name": "Dominio della Tempesta",
+        "source": "PHB",
+        "isHidden": true
+      },
+      {
+        "id": "cleric-dominio-della-vita",
+        "name": "Dominio della Vita",
+        "source": "SRD",
+        "isHidden": false
+      },
+      {
+        "id": "cleric-dominio-dellinganno",
+        "name": "Dominio dell'Inganno",
+        "source": "PHB",
+        "isHidden": true
+      },
+      {
+        "id": "cleric-dominio-della-forgia",
+        "name": "Dominio della Forgia",
+        "source": "XGE",
+        "isHidden": true
+      },
+      {
+        "id": "cleric-dominio-della-sepoltura",
+        "name": "Dominio della Sepoltura",
+        "source": "XGE",
+        "isHidden": true
+      },
+      {
+        "id": "cleric-dominio-dellordine",
+        "name": "Dominio dell'Ordine",
+        "source": "TCE",
+        "isHidden": true
+      },
+      {
+        "id": "cleric-dominio-della-pace",
+        "name": "Dominio della Pace",
+        "source": "TCE",
+        "isHidden": true
+      },
+      {
+        "id": "cleric-dominio-del-crepuscolo",
+        "name": "Dominio del Crepuscolo",
+        "source": "TCE",
+        "isHidden": true
+      }
+    ],
+    "isHidden": false
   },
   {
     "id": "druid",
     "name": "Druido",
     "description": "Custode della natura e maestro delle forme selvatiche.",
-    "source": "PHB",
+    "source": "SRD",
     "hitDie": 8,
     "primary": "wis",
-    "saves": ["int", "wis"],
+    "saves": [
+      "int",
+      "wis"
+    ],
     "subclassLevel": 2,
-    "subclasses": ["Circolo della Terra", "Circolo della Luna"],
+    "subclasses": [
+      "Circolo della Terra",
+      "Circolo della Luna",
+      "Circolo dei Sogni",
+      "Circolo del Pastore",
+      "Circolo delle Spore",
+      "Circolo delle Stelle",
+      "Circolo del Fuoco Selvaggio"
+    ],
     "skillChoices": 2,
     "skillOptions": [
       "arcana",
@@ -187,7 +460,11 @@
       "religion",
       "survival"
     ],
-    "armorProficiencies": ["light", "medium", "shield"],
+    "armorProficiencies": [
+      "light",
+      "medium",
+      "shield"
+    ],
     "weaponProficiencies": [
       "club",
       "dagger",
@@ -261,18 +538,84 @@
           }
         ]
       }
-    ]
+    ],
+    "subclassSources": {
+      "Circolo della Terra": "SRD",
+      "Circolo della Luna": "PHB",
+      "Circolo dei Sogni": "XGE",
+      "Circolo del Pastore": "XGE",
+      "Circolo delle Spore": "TCE",
+      "Circolo delle Stelle": "TCE",
+      "Circolo del Fuoco Selvaggio": "TCE"
+    },
+    "subclassOptions": [
+      {
+        "id": "druid-circolo-della-terra",
+        "name": "Circolo della Terra",
+        "source": "SRD",
+        "isHidden": false
+      },
+      {
+        "id": "druid-circolo-della-luna",
+        "name": "Circolo della Luna",
+        "source": "PHB",
+        "isHidden": true
+      },
+      {
+        "id": "druid-circolo-dei-sogni",
+        "name": "Circolo dei Sogni",
+        "source": "XGE",
+        "isHidden": true
+      },
+      {
+        "id": "druid-circolo-del-pastore",
+        "name": "Circolo del Pastore",
+        "source": "XGE",
+        "isHidden": true
+      },
+      {
+        "id": "druid-circolo-delle-spore",
+        "name": "Circolo delle Spore",
+        "source": "TCE",
+        "isHidden": true
+      },
+      {
+        "id": "druid-circolo-delle-stelle",
+        "name": "Circolo delle Stelle",
+        "source": "TCE",
+        "isHidden": true
+      },
+      {
+        "id": "druid-circolo-del-fuoco-selvaggio",
+        "name": "Circolo del Fuoco Selvaggio",
+        "source": "TCE",
+        "isHidden": true
+      }
+    ],
+    "isHidden": false
   },
   {
     "id": "fighter",
     "name": "Guerriero",
-    "description": "Maestro d’armi, resistente e personalizzabile.",
-    "source": "PHB",
+    "description": "Maestro d'armi, resistente e personalizzabile.",
+    "source": "SRD",
     "hitDie": 10,
     "primary": "str",
-    "saves": ["str", "con"],
+    "saves": [
+      "str",
+      "con"
+    ],
     "subclassLevel": 3,
-    "subclasses": ["Campione", "Maestro di Battaglia", "Cavaliere Mistico"],
+    "subclasses": [
+      "Campione",
+      "Maestro di Battaglia",
+      "Cavaliere Mistico",
+      "Arciere Arcano",
+      "Cavaliere",
+      "Samurai",
+      "Guerriero Psionico",
+      "Cavaliere delle Rune"
+    ],
     "skillChoices": 2,
     "skillOptions": [
       "acrobatics",
@@ -284,8 +627,16 @@
       "perception",
       "survival"
     ],
-    "armorProficiencies": ["light", "medium", "heavy", "shield"],
-    "weaponProficiencies": ["simple", "martial"],
+    "armorProficiencies": [
+      "light",
+      "medium",
+      "heavy",
+      "shield"
+    ],
+    "weaponProficiencies": [
+      "simple",
+      "martial"
+    ],
     "featureChoices": [
       {
         "id": "fighter-fighting-style",
@@ -444,37 +795,207 @@
           }
         ]
       }
-    ]
+    ],
+    "subclassSources": {
+      "Campione": "SRD",
+      "Maestro di Battaglia": "PHB",
+      "Cavaliere Mistico": "PHB",
+      "Arciere Arcano": "XGE",
+      "Cavaliere": "XGE",
+      "Samurai": "XGE",
+      "Guerriero Psionico": "TCE",
+      "Cavaliere delle Rune": "TCE"
+    },
+    "subclassOptions": [
+      {
+        "id": "fighter-campione",
+        "name": "Campione",
+        "source": "SRD",
+        "isHidden": false
+      },
+      {
+        "id": "fighter-maestro-di-battaglia",
+        "name": "Maestro di Battaglia",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "fighter-cavaliere-mistico",
+        "name": "Cavaliere Mistico",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "fighter-arciere-arcano",
+        "name": "Arciere Arcano",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "fighter-cavaliere",
+        "name": "Cavaliere",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "fighter-samurai",
+        "name": "Samurai",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "fighter-guerriero-psionico",
+        "name": "Guerriero Psionico",
+        "source": "TCE",
+        "isHidden": false
+      },
+      {
+        "id": "fighter-cavaliere-delle-rune",
+        "name": "Cavaliere delle Rune",
+        "source": "TCE",
+        "isHidden": false
+      }
+    ],
+    "isHidden": false
   },
   {
     "id": "monk",
     "name": "Monaco",
     "description": "Combattente disciplinato che domina il ki.",
-    "source": "PHB",
+    "source": "SRD",
     "hitDie": 8,
     "primary": "dex",
-    "saves": ["str", "dex"],
+    "saves": [
+      "str",
+      "dex"
+    ],
     "subclassLevel": 3,
-    "subclasses": ["Via della Mano Aperta", "Via dell’Ombra"],
+    "subclasses": [
+      "Via della Mano Aperta",
+      "Via dell'Ombra",
+      "Via dei Quattro Elementi",
+      "Via del Maestro Ubriaco",
+      "Via del Kensei",
+      "Via dell'Anima Solare",
+      "Via della Misericordia",
+      "Via del Sé Astrale"
+    ],
     "skillChoices": 2,
-    "skillOptions": ["acrobatics", "athletics", "history", "insight", "religion", "stealth"],
+    "skillOptions": [
+      "acrobatics",
+      "athletics",
+      "history",
+      "insight",
+      "religion",
+      "stealth"
+    ],
     "armorProficiencies": [],
-    "weaponProficiencies": ["simple", "shortsword"]
+    "weaponProficiencies": [
+      "simple",
+      "shortsword"
+    ],
+    "subclassSources": {
+      "Via della Mano Aperta": "SRD",
+      "Via dell'Ombra": "PHB",
+      "Via dei Quattro Elementi": "PHB",
+      "Via del Maestro Ubriaco": "XGE",
+      "Via del Kensei": "XGE",
+      "Via dell'Anima Solare": "XGE",
+      "Via della Misericordia": "TCE",
+      "Via del Sé Astrale": "TCE"
+    },
+    "subclassOptions": [
+      {
+        "id": "monk-via-della-mano-aperta",
+        "name": "Via della Mano Aperta",
+        "source": "SRD",
+        "isHidden": false
+      },
+      {
+        "id": "monk-via-dellombra",
+        "name": "Via dell'Ombra",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "monk-via-dei-quattro-elementi",
+        "name": "Via dei Quattro Elementi",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "monk-via-del-maestro-ubriaco",
+        "name": "Via del Maestro Ubriaco",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "monk-via-del-kensei",
+        "name": "Via del Kensei",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "monk-via-dellanima-solare",
+        "name": "Via dell'Anima Solare",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "monk-via-della-misericordia",
+        "name": "Via della Misericordia",
+        "source": "TCE",
+        "isHidden": false
+      },
+      {
+        "id": "monk-via-del-se-astrale",
+        "name": "Via del Sé Astrale",
+        "source": "TCE",
+        "isHidden": false
+      }
+    ],
+    "isHidden": false
   },
   {
     "id": "paladin",
     "name": "Paladino",
     "description": "Guerriero sacro vincolato a un giuramento.",
-    "source": "PHB",
+    "source": "SRD",
     "hitDie": 10,
     "primary": "cha",
-    "saves": ["wis", "cha"],
+    "saves": [
+      "wis",
+      "cha"
+    ],
     "subclassLevel": 3,
-    "subclasses": ["Giuramento di Devozione", "Giuramento degli Antichi"],
+    "subclasses": [
+      "Giuramento di Devozione",
+      "Giuramento degli Antichi",
+      "Giuramento di Vendetta",
+      "Giuramento di Conquista",
+      "Giuramento di Redenzione",
+      "Giuramento di Gloria",
+      "Giuramento dei Guardiani"
+    ],
     "skillChoices": 2,
-    "skillOptions": ["athletics", "insight", "intimidation", "medicine", "persuasion", "religion"],
-    "armorProficiencies": ["light", "medium", "heavy", "shield"],
-    "weaponProficiencies": ["simple", "martial"],
+    "skillOptions": [
+      "athletics",
+      "insight",
+      "intimidation",
+      "medicine",
+      "persuasion",
+      "religion"
+    ],
+    "armorProficiencies": [
+      "light",
+      "medium",
+      "heavy",
+      "shield"
+    ],
+    "weaponProficiencies": [
+      "simple",
+      "martial"
+    ],
     "caster": "half",
     "featureChoices": [
       {
@@ -511,18 +1032,83 @@
           }
         ]
       }
-    ]
+    ],
+    "subclassSources": {
+      "Giuramento di Devozione": "SRD",
+      "Giuramento degli Antichi": "PHB",
+      "Giuramento di Vendetta": "PHB",
+      "Giuramento di Conquista": "XGE",
+      "Giuramento di Redenzione": "XGE",
+      "Giuramento di Gloria": "TCE",
+      "Giuramento dei Guardiani": "TCE"
+    },
+    "subclassOptions": [
+      {
+        "id": "paladin-giuramento-di-devozione",
+        "name": "Giuramento di Devozione",
+        "source": "SRD",
+        "isHidden": false
+      },
+      {
+        "id": "paladin-giuramento-degli-antichi",
+        "name": "Giuramento degli Antichi",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "paladin-giuramento-di-vendetta",
+        "name": "Giuramento di Vendetta",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "paladin-giuramento-di-conquista",
+        "name": "Giuramento di Conquista",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "paladin-giuramento-di-redenzione",
+        "name": "Giuramento di Redenzione",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "paladin-giuramento-di-gloria",
+        "name": "Giuramento di Gloria",
+        "source": "TCE",
+        "isHidden": false
+      },
+      {
+        "id": "paladin-giuramento-dei-guardiani",
+        "name": "Giuramento dei Guardiani",
+        "source": "TCE",
+        "isHidden": false
+      }
+    ],
+    "isHidden": false
   },
   {
     "id": "ranger",
     "name": "Ranger",
     "description": "Esploratore e cacciatore delle terre selvagge.",
-    "source": "PHB",
+    "source": "SRD",
     "hitDie": 10,
     "primary": "dex",
-    "saves": ["str", "dex"],
+    "saves": [
+      "str",
+      "dex"
+    ],
     "subclassLevel": 3,
-    "subclasses": ["Cacciatore", "Signore delle Bestie"],
+    "subclasses": [
+      "Cacciatore",
+      "Signore delle Bestie",
+      "Cacciatore delle Tenebre",
+      "Viandante dell'Orizzonte",
+      "Uccisore di Mostri",
+      "Viandante Fatato",
+      "Custode degli Sciami"
+    ],
     "skillChoices": 3,
     "skillOptions": [
       "animal-handling",
@@ -534,8 +1120,15 @@
       "stealth",
       "survival"
     ],
-    "armorProficiencies": ["light", "medium", "shield"],
-    "weaponProficiencies": ["simple", "martial"],
+    "armorProficiencies": [
+      "light",
+      "medium",
+      "shield"
+    ],
+    "weaponProficiencies": [
+      "simple",
+      "martial"
+    ],
     "caster": "half",
     "featureChoices": [
       {
@@ -690,18 +1283,85 @@
           }
         ]
       }
-    ]
+    ],
+    "subclassSources": {
+      "Cacciatore": "SRD",
+      "Signore delle Bestie": "PHB",
+      "Cacciatore delle Tenebre": "XGE",
+      "Viandante dell'Orizzonte": "XGE",
+      "Uccisore di Mostri": "XGE",
+      "Viandante Fatato": "TCE",
+      "Custode degli Sciami": "TCE"
+    },
+    "subclassOptions": [
+      {
+        "id": "ranger-cacciatore",
+        "name": "Cacciatore",
+        "source": "SRD",
+        "isHidden": false
+      },
+      {
+        "id": "ranger-signore-delle-bestie",
+        "name": "Signore delle Bestie",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "ranger-cacciatore-delle-tenebre",
+        "name": "Cacciatore delle Tenebre",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "ranger-viandante-dellorizzonte",
+        "name": "Viandante dell'Orizzonte",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "ranger-uccisore-di-mostri",
+        "name": "Uccisore di Mostri",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "ranger-viandante-fatato",
+        "name": "Viandante Fatato",
+        "source": "TCE",
+        "isHidden": false
+      },
+      {
+        "id": "ranger-custode-degli-sciami",
+        "name": "Custode degli Sciami",
+        "source": "TCE",
+        "isHidden": false
+      }
+    ],
+    "isHidden": false
   },
   {
     "id": "rogue",
     "name": "Ladro",
     "description": "Esperto, furtivo e opportunista.",
-    "source": "PHB",
+    "source": "SRD",
     "hitDie": 8,
     "primary": "dex",
-    "saves": ["dex", "int"],
+    "saves": [
+      "dex",
+      "int"
+    ],
     "subclassLevel": 3,
-    "subclasses": ["Furfante", "Assassino", "Mistificatore Arcano"],
+    "subclasses": [
+      "Furfante",
+      "Assassino",
+      "Mistificatore Arcano",
+      "Inquisitivo",
+      "Pianificatore",
+      "Esploratore",
+      "Spadaccino",
+      "Fantasma",
+      "Lama Psichica"
+    ],
     "skillChoices": 4,
     "skillOptions": [
       "acrobatics",
@@ -716,23 +1376,123 @@
       "sleight-of-hand",
       "stealth"
     ],
-    "armorProficiencies": ["light"],
-    "weaponProficiencies": ["simple", "hand-crossbow", "longsword", "rapier", "shortsword"]
+    "armorProficiencies": [
+      "light"
+    ],
+    "weaponProficiencies": [
+      "simple",
+      "hand-crossbow",
+      "longsword",
+      "rapier",
+      "shortsword"
+    ],
+    "subclassSources": {
+      "Furfante": "SRD",
+      "Assassino": "PHB",
+      "Mistificatore Arcano": "PHB",
+      "Inquisitivo": "XGE",
+      "Pianificatore": "XGE",
+      "Esploratore": "XGE",
+      "Spadaccino": "XGE",
+      "Fantasma": "TCE",
+      "Lama Psichica": "TCE"
+    },
+    "subclassOptions": [
+      {
+        "id": "rogue-furfante",
+        "name": "Furfante",
+        "source": "SRD",
+        "isHidden": false
+      },
+      {
+        "id": "rogue-assassino",
+        "name": "Assassino",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "rogue-mistificatore-arcano",
+        "name": "Mistificatore Arcano",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "rogue-inquisitivo",
+        "name": "Inquisitivo",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "rogue-pianificatore",
+        "name": "Pianificatore",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "rogue-esploratore",
+        "name": "Esploratore",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "rogue-spadaccino",
+        "name": "Spadaccino",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "rogue-fantasma",
+        "name": "Fantasma",
+        "source": "TCE",
+        "isHidden": false
+      },
+      {
+        "id": "rogue-lama-psichica",
+        "name": "Lama Psichica",
+        "source": "TCE",
+        "isHidden": false
+      }
+    ],
+    "isHidden": false
   },
   {
     "id": "sorcerer",
     "name": "Stregone",
     "description": "La magia scorre naturalmente nel suo sangue.",
-    "source": "PHB",
+    "source": "SRD",
     "hitDie": 6,
     "primary": "cha",
-    "saves": ["con", "cha"],
+    "saves": [
+      "con",
+      "cha"
+    ],
     "subclassLevel": 1,
-    "subclasses": ["Discendenza Draconica", "Magia Selvaggia"],
+    "subclasses": [
+      "Discendenza Draconica",
+      "Magia Selvaggia",
+      "Anima Divina",
+      "Magia delle Ombre",
+      "Stregoneria della Tempesta",
+      "Mente Aberrante",
+      "Anima Meccanica"
+    ],
     "skillChoices": 2,
-    "skillOptions": ["arcana", "deception", "insight", "intimidation", "persuasion", "religion"],
+    "skillOptions": [
+      "arcana",
+      "deception",
+      "insight",
+      "intimidation",
+      "persuasion",
+      "religion"
+    ],
     "armorProficiencies": [],
-    "weaponProficiencies": ["dagger", "dart", "sling", "quarterstaff", "light-crossbow"],
+    "weaponProficiencies": [
+      "dagger",
+      "dart",
+      "sling",
+      "quarterstaff",
+      "light-crossbow"
+    ],
     "caster": "full",
     "featureChoices": [
       {
@@ -868,18 +1628,83 @@
           }
         ]
       }
-    ]
+    ],
+    "subclassSources": {
+      "Discendenza Draconica": "SRD",
+      "Magia Selvaggia": "PHB",
+      "Anima Divina": "XGE",
+      "Magia delle Ombre": "XGE",
+      "Stregoneria della Tempesta": "XGE",
+      "Mente Aberrante": "TCE",
+      "Anima Meccanica": "TCE"
+    },
+    "subclassOptions": [
+      {
+        "id": "sorcerer-discendenza-draconica",
+        "name": "Discendenza Draconica",
+        "source": "SRD",
+        "isHidden": false
+      },
+      {
+        "id": "sorcerer-magia-selvaggia",
+        "name": "Magia Selvaggia",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "sorcerer-anima-divina",
+        "name": "Anima Divina",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "sorcerer-magia-delle-ombre",
+        "name": "Magia delle Ombre",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "sorcerer-stregoneria-della-tempesta",
+        "name": "Stregoneria della Tempesta",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "sorcerer-mente-aberrante",
+        "name": "Mente Aberrante",
+        "source": "TCE",
+        "isHidden": false
+      },
+      {
+        "id": "sorcerer-anima-meccanica",
+        "name": "Anima Meccanica",
+        "source": "TCE",
+        "isHidden": false
+      }
+    ],
+    "isHidden": false
   },
   {
     "id": "warlock",
     "name": "Warlock",
     "description": "Potere arcano ottenuto da un patto ultraterreno.",
-    "source": "PHB",
+    "source": "SRD",
     "hitDie": 8,
     "primary": "cha",
-    "saves": ["wis", "cha"],
+    "saves": [
+      "wis",
+      "cha"
+    ],
     "subclassLevel": 1,
-    "subclasses": ["Il Signore Fatato", "L’Immondo", "Il Grande Antico"],
+    "subclasses": [
+      "Il Signore Fatato",
+      "L'Immondo",
+      "Il Grande Antico",
+      "Il Celestiale",
+      "La Lama del Sortilegio",
+      "L'Insondabile",
+      "Il Genio"
+    ],
     "skillChoices": 2,
     "skillOptions": [
       "arcana",
@@ -890,25 +1715,193 @@
       "nature",
       "religion"
     ],
-    "armorProficiencies": ["light"],
-    "weaponProficiencies": ["simple"],
-    "caster": "full"
+    "armorProficiencies": [
+      "light"
+    ],
+    "weaponProficiencies": [
+      "simple"
+    ],
+    "caster": "full",
+    "subclassSources": {
+      "Il Signore Fatato": "PHB",
+      "L'Immondo": "SRD",
+      "Il Grande Antico": "PHB",
+      "Il Celestiale": "XGE",
+      "La Lama del Sortilegio": "XGE",
+      "L'Insondabile": "TCE",
+      "Il Genio": "TCE"
+    },
+    "subclassOptions": [
+      {
+        "id": "warlock-il-signore-fatato",
+        "name": "Il Signore Fatato",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "warlock-limmondo",
+        "name": "L'Immondo",
+        "source": "SRD",
+        "isHidden": false
+      },
+      {
+        "id": "warlock-il-grande-antico",
+        "name": "Il Grande Antico",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "warlock-il-celestiale",
+        "name": "Il Celestiale",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "warlock-la-lama-del-sortilegio",
+        "name": "La Lama del Sortilegio",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "warlock-linsondabile",
+        "name": "L'Insondabile",
+        "source": "TCE",
+        "isHidden": false
+      },
+      {
+        "id": "warlock-il-genio",
+        "name": "Il Genio",
+        "source": "TCE",
+        "isHidden": false
+      }
+    ],
+    "isHidden": false
   },
   {
     "id": "wizard",
     "name": "Mago",
     "description": "Studioso delle formule e delle tradizioni arcane.",
-    "source": "PHB",
+    "source": "SRD",
     "hitDie": 6,
     "primary": "int",
-    "saves": ["int", "wis"],
+    "saves": [
+      "int",
+      "wis"
+    ],
     "subclassLevel": 2,
-    "subclasses": ["Scuola di Abiurazione", "Scuola di Evocazione"],
+    "subclasses": [
+      "Scuola di Abiurazione",
+      "Scuola di Ammaliamento",
+      "Scuola di Divinazione",
+      "Scuola di Evocazione",
+      "Scuola di Illusione",
+      "Scuola di Invocazione",
+      "Scuola di Necromanzia",
+      "Scuola di Trasmutazione",
+      "Magia da Guerra",
+      "Canto della Lama",
+      "Ordine degli Scribi"
+    ],
     "skillChoices": 2,
-    "skillOptions": ["arcana", "history", "insight", "investigation", "medicine", "religion"],
+    "skillOptions": [
+      "arcana",
+      "history",
+      "insight",
+      "investigation",
+      "medicine",
+      "religion"
+    ],
     "armorProficiencies": [],
-    "weaponProficiencies": ["dagger", "dart", "sling", "quarterstaff", "light-crossbow"],
-    "caster": "full"
+    "weaponProficiencies": [
+      "dagger",
+      "dart",
+      "sling",
+      "quarterstaff",
+      "light-crossbow"
+    ],
+    "caster": "full",
+    "subclassSources": {
+      "Scuola di Abiurazione": "PHB",
+      "Scuola di Ammaliamento": "PHB",
+      "Scuola di Divinazione": "PHB",
+      "Scuola di Evocazione": "PHB",
+      "Scuola di Illusione": "PHB",
+      "Scuola di Invocazione": "SRD",
+      "Scuola di Necromanzia": "PHB",
+      "Scuola di Trasmutazione": "PHB",
+      "Magia da Guerra": "XGE",
+      "Canto della Lama": "TCE",
+      "Ordine degli Scribi": "TCE"
+    },
+    "subclassOptions": [
+      {
+        "id": "wizard-scuola-di-abiurazione",
+        "name": "Scuola di Abiurazione",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "wizard-scuola-di-ammaliamento",
+        "name": "Scuola di Ammaliamento",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "wizard-scuola-di-divinazione",
+        "name": "Scuola di Divinazione",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "wizard-scuola-di-evocazione",
+        "name": "Scuola di Evocazione",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "wizard-scuola-di-illusione",
+        "name": "Scuola di Illusione",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "wizard-scuola-di-invocazione",
+        "name": "Scuola di Invocazione",
+        "source": "SRD",
+        "isHidden": false
+      },
+      {
+        "id": "wizard-scuola-di-necromanzia",
+        "name": "Scuola di Necromanzia",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "wizard-scuola-di-trasmutazione",
+        "name": "Scuola di Trasmutazione",
+        "source": "PHB",
+        "isHidden": false
+      },
+      {
+        "id": "wizard-magia-da-guerra",
+        "name": "Magia da Guerra",
+        "source": "XGE",
+        "isHidden": false
+      },
+      {
+        "id": "wizard-canto-della-lama",
+        "name": "Canto della Lama",
+        "source": "TCE",
+        "isHidden": false
+      },
+      {
+        "id": "wizard-ordine-degli-scribi",
+        "name": "Ordine degli Scribi",
+        "source": "TCE",
+        "isHidden": false
+      }
+    ],
+    "isHidden": false
   },
   {
     "id": "artificer",
@@ -917,9 +1910,17 @@
     "source": "TCE",
     "hitDie": 8,
     "primary": "int",
-    "saves": ["con", "int"],
+    "saves": [
+      "con",
+      "int"
+    ],
     "subclassLevel": 3,
-    "subclasses": ["Alchimista", "Armorer", "Artigliere", "Fabbro da Battaglia"],
+    "subclasses": [
+      "Alchimista",
+      "Armorer",
+      "Artigliere",
+      "Fabbro da Battaglia"
+    ],
     "skillChoices": 2,
     "skillOptions": [
       "arcana",
@@ -930,8 +1931,173 @@
       "perception",
       "sleight-of-hand"
     ],
-    "armorProficiencies": ["light", "medium", "shield"],
-    "weaponProficiencies": ["simple"],
-    "caster": "half"
+    "armorProficiencies": [
+      "light",
+      "medium",
+      "shield"
+    ],
+    "weaponProficiencies": [
+      "simple"
+    ],
+    "caster": "half",
+    "featureChoices": [
+      {
+        "id": "artificer-artisan-tool",
+        "name": "Strumenti da artigiano",
+        "description": "Scegli la competenza in un tipo di strumenti da artigiano concessa al 1° livello.",
+        "minLevel": 1,
+        "countByLevel": [
+          {
+            "level": 1,
+            "count": 1
+          }
+        ],
+        "options": [
+          {
+            "id": "alchemist",
+            "name": "Scorte da alchimista",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "brewer",
+            "name": "Scorte da birraio",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "calligrapher",
+            "name": "Scorte da calligrafo",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "carpenter",
+            "name": "Strumenti da carpentiere",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "cartographer",
+            "name": "Strumenti da cartografo",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "cobbler",
+            "name": "Strumenti da calzolaio",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "cook",
+            "name": "Utensili da cuoco",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "glassblower",
+            "name": "Strumenti da soffiatore di vetro",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "jeweler",
+            "name": "Strumenti da gioielliere",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "leatherworker",
+            "name": "Strumenti da conciatore",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "mason",
+            "name": "Strumenti da muratore",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "painter",
+            "name": "Scorte da pittore",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "potter",
+            "name": "Strumenti da vasaio",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "smith",
+            "name": "Strumenti da fabbro",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "tinkerer",
+            "name": "Strumenti da inventore",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "weaver",
+            "name": "Strumenti da tessitore",
+            "description": "Competenza negli strumenti."
+          },
+          {
+            "id": "woodcarver",
+            "name": "Strumenti da intagliatore",
+            "description": "Competenza negli strumenti."
+          }
+        ]
+      }
+    ],
+    "subclassFeatures": [
+      {
+        "subclassId": "Armorer",
+        "choices": [
+          {
+            "id": "armorer-armor-model",
+            "name": "Modello dell'armatura",
+            "description": "Scegli il modello attivo della tua armatura arcana. Puoi cambiarlo al termine di un riposo breve o lungo.",
+            "minLevel": 3,
+            "countByLevel": [
+              {
+                "level": 3,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "guardian",
+                "name": "Guardiano",
+                "description": "Guanti tonanti basati su INT e campo difensivo con punti ferita temporanei."
+              },
+              {
+                "id": "infiltrator",
+                "name": "Infiltratore",
+                "description": "Lanciatore fulminante basato su INT, velocità aumentata e vantaggio in Furtività."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "subclassOptions": [
+      {
+        "id": "artificer-alchimista",
+        "name": "Alchimista",
+        "source": "TCE",
+        "isHidden": false
+      },
+      {
+        "id": "artificer-armorer",
+        "name": "Armorer",
+        "source": "TCE",
+        "isHidden": false
+      },
+      {
+        "id": "artificer-artigliere",
+        "name": "Artigliere",
+        "source": "TCE",
+        "isHidden": false
+      },
+      {
+        "id": "artificer-fabbro-da-battaglia",
+        "name": "Fabbro da Battaglia",
+        "source": "TCE",
+        "isHidden": false
+      }
+    ],
+    "isHidden": true
   }
 ]

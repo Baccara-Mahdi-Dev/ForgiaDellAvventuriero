@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TuiNotification } from '@taiga-ui/core';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
-import { NgIcon } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   gameBiceps,
   gameBrain,
@@ -17,7 +18,8 @@ import {
   gamePerspectiveDiceSixFacesFour,
   gameRollingDices,
   gameBrainTentacle,
-} from '@ng-icons/game-icons';
+} from '@ng-icons/game-icons'; 
+import { iconoirUndoAction, iconoirShuffle } from '@ng-icons/iconoir/regular';
 import {
   ABILITIES,
   ALIGNMENTS,
@@ -28,6 +30,7 @@ import {
   EquipmentCategory,
   EquipmentItem,
   EquippedWeapon,
+  FeatProficiencyChoice,
   HomebrewSpell,
   HOMEBREW_ABILITY_MAX,
   HOMEBREW_ABILITY_MIN,
@@ -45,6 +48,7 @@ import {
 import {
   asiPointTotal,
   asiSlots,
+  classToolProficiencies,
   classChoicesUsed,
   featEligible,
   growthChoicesComplete,
@@ -52,12 +56,12 @@ import {
   racialFeatSlots,
   spellSelectionLimits,
   spellSlots,
+  subclassSpellcastingProfile,
 } from '../../domain/rules';
 import {
   battleSmithUsesIntelligence,
   damageForHands,
   hasTwoWeaponFighting,
-  isBattleSmith,
   isUnarmedStrike,
   magicWeaponBaseCandidates,
   requiresTwoHands,
@@ -67,12 +71,20 @@ import {
 import { WizardStore } from '../../state/wizard.store';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
 import { CharacterSheetPdfService } from '../../core/character-sheet-pdf.service';
+import { UiFeedbackService } from '../../core/ui-feedback.service';
 import { SpellCardsPdfService } from '../../core/spell-cards-pdf.service';
 import { ClassProgressionComponent } from './class-progression.component';
 import { HomebrewEquipmentDialogComponent } from './homebrew-equipment-dialog.component';
 import { MagicWeaponBaseDialogComponent } from './magic-weapon-base-dialog.component';
 import { EQUIPMENT_RARITY_LABELS, equipmentKind } from '../../domain/homebrew-equipment';
 import { equippedEquipmentIds, weaponEffectTotal } from '../../domain/equipment-effects';
+import {
+  attunementLimit,
+  battleSmithCanUseIntelligence,
+  isArtificerSubclass,
+} from '../../domain/artificer-rules';
+import { AbilityMethod } from '../../models/enum/ability-method';
+import {TuiAvatar, TuiSkeleton } from '@taiga-ui/kit';
 
 interface GrantedSpellSource {
   key: string;
@@ -106,7 +118,79 @@ const newHomebrewSpell = (): HomebrewSpell => ({
   components: ['V', 'S'],
 });
 const SPELLS_PER_PAGE = 4;
+const FEATS_PER_PAGE = 4;
 const EQUIPMENT_PER_PAGE = 12;
+const LANGUAGE_OPTIONS = [
+  'Abissale',
+  'Celestiale',
+  'Comune',
+  'Draconico',
+  'Elfico',
+  'Gigante',
+  'Gnomesco',
+  'Goblin',
+  'Halfling',
+  'Infernale',
+  'Nanico',
+  'Orchesco',
+  'Primordiale',
+  'Gergo delle Profondità',
+  'Silvano',
+  'Sottocomune',
+] as const;
+const GENERAL_TOOL_OPTIONS = [
+  'Arnesi da scasso',
+  'Borsa da erborista',
+  'Kit da avvelenatore',
+  'Strumenti da falsario',
+  'Strumenti da navigatore',
+  'Trucchi per il camuffamento',
+  'Veicoli acquatici',
+  'Veicoli terrestri',
+] as const;
+const GAMING_SET_OPTIONS = [
+  'Set di dadi',
+  'Mazzo di carte',
+  'Scacchi dei Draghi',
+  'Tre Draghi al Buio',
+] as const;
+const MUSICAL_INSTRUMENT_OPTIONS = [
+  'Cornamusa',
+  'Flauto',
+  'Flauto di Pan',
+  'Liuto',
+  'Lira',
+  'Oboe',
+  'Tamburo',
+  'Salterio',
+  'Viola',
+  'Zufolo',
+] as const;
+const ARTISAN_TOOL_OPTIONS = [
+  'Scorte da alchimista',
+  'Scorte da birraio',
+  'Scorte da calligrafo',
+  'Scorte da pittore',
+  'Strumenti da calzolaio',
+  'Strumenti da carpentiere',
+  'Strumenti da cartografo',
+  'Strumenti da conciatore',
+  'Strumenti da fabbro',
+  'Strumenti da gioielliere',
+  'Strumenti da intagliatore',
+  'Strumenti da inventore',
+  'Strumenti da muratore',
+  'Strumenti da soffiatore di vetro',
+  'Strumenti da tessitore',
+  'Strumenti da vasaio',
+  'Utensili da cuoco',
+] as const;
+const TOOL_OPTIONS = [
+  ...GENERAL_TOOL_OPTIONS,
+  ...GAMING_SET_OPTIONS,
+  ...MUSICAL_INSTRUMENT_OPTIONS,
+  ...ARTISAN_TOOL_OPTIONS,
+] as const;
 const WEAPON_GROUP_ORDER = [
   'Armi semplici da mischia',
   'Armi semplici a distanza',
@@ -131,14 +215,26 @@ const MAGIC_GROUP_LABELS: Record<string, string> = {
     ClassProgressionComponent,
     HomebrewEquipmentDialogComponent,
     MagicWeaponBaseDialogComponent,
+    TuiNotification,
+    TuiAvatar,
+    TuiSkeleton 
+  ],
+  providers: [
+    provideIcons(
+      {
+        iconoirShuffle , iconoirUndoAction
+      }
+    )
   ],
   templateUrl: './wizard.component.html',
   styleUrl: './wizard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WizardComponent implements OnInit, OnDestroy {
+  readonly AbilityMethod = AbilityMethod;
   readonly abilities = ABILITIES;
   readonly alignments = ALIGNMENTS;
+  readonly languageOptions = LANGUAGE_OPTIONS;
   readonly skills = SKILLS;
   readonly steps = STEPS;
   readonly recommendationIcon = gameDiceTwentyFacesTwenty;
@@ -160,8 +256,9 @@ export class WizardComponent implements OnInit, OnDestroy {
     12: gameD12,
   };
   readonly step = signal<StepId>('caratteristiche');
-  readonly message = signal('');
   readonly armorSearch = signal('');
+  readonly featSearch = signal('');
+  readonly featPage = signal(1);
   readonly equipmentSearch = signal('');
   readonly equipmentCategory = signal<EquipmentCategory | 'magic' | 'all'>('all');
   readonly equipmentPage = signal(1);
@@ -180,13 +277,19 @@ export class WizardComponent implements OnInit, OnDestroy {
   readonly homebrewHasDamage = signal(false);
   readonly pdfExporting = signal(false);
   readonly spellCardsExporting = signal(false);
-  private sub?: { unsubscribe(): void };
+  private sub?: { unsubscribe(): void };  
+  private holdTimeout?: ReturnType<typeof setTimeout>;
+  private holdInterval?: ReturnType<typeof setInterval>;
+  private isHolding = false;
+  readonly loadedAncestryImages = signal(new Set<string>());
+
   constructor(
     readonly store: WizardStore,
     private route: ActivatedRoute,
     private router: Router,
     private characterSheetPdf: CharacterSheetPdfService,
     private spellCardsPdf: SpellCardsPdfService,
+    private feedback: UiFeedbackService,
   ) {}
   ngOnInit() {
     this.sub = this.route.paramMap.subscribe((p) => {
@@ -229,6 +332,23 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   get selectedFeats() {
     return this.store.feats.filter((f) => this.store.draft().featIds.includes(f.id));
+  }
+  get filteredFeats() {
+    const query = this.featSearch().trim().toLocaleLowerCase('it');
+    return this.store.feats.filter(
+      (feat) =>
+        !query ||
+          feat.name.toLocaleLowerCase('it').includes(query) ||
+          feat.description.toLocaleLowerCase('it').includes(query) ||
+          feat.source.toLocaleLowerCase('it').includes(query),
+    );
+  }
+  get featPageCount() {
+    return Math.max(1, Math.ceil(this.filteredFeats.length / FEATS_PER_PAGE));
+  }
+  get pagedFeats() {
+    const page = Math.min(this.featPage(), this.featPageCount);
+    return this.filteredFeats.slice((page - 1) * FEATS_PER_PAGE, page * FEATS_PER_PAGE);
   }
   get selectedSpells() {
     const granted = new Set(this.grantedSpells.map((spell) => spell.id));
@@ -283,7 +403,7 @@ export class WizardComponent implements OnInit, OnDestroy {
     const draft = this.store.draft();
     const primary = this.store.selectedClass()?.primary;
     const spellcastingModifier = primary ? this.store.derived().modifiers[primary] : 0;
-    return spellSelectionLimits(draft.classId, draft.level, spellcastingModifier);
+    return spellSelectionLimits(draft.classId, draft.level, spellcastingModifier, draft.subclassId);
   }
   get grantedSpellSources(): GrantedSpellSource[] {
     const draft = this.store.draft();
@@ -462,7 +582,7 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   get spellSlots() {
     const draft = this.store.draft();
-    return spellSlots(draft.classId, draft.level);
+    return spellSlots(draft.classId, draft.level, draft.subclassId);
   }
   get armorGroups() {
     const query = this.armorSearch().trim().toLocaleLowerCase('it');
@@ -666,6 +786,79 @@ export class WizardComponent implements OnInit, OnDestroy {
   backgroundSkillFromClass(skill: string) {
     return this.classSkillNames.includes(skill);
   }
+  backgroundToolChoiceSummary(background: Background) {
+    switch (background.toolChoiceCategory) {
+      case 'gaming-set':
+        return 'strumento da gioco a scelta';
+      case 'artisan-tool':
+        return 'strumento da artigiano a scelta';
+      case 'musical-instrument':
+        return 'strumento musicale a scelta';
+      default:
+        return 'strumento a scelta';
+    }
+  }
+  get languageChoiceLimit() {
+    return (
+      (this.store.selectedAncestry()?.languageChoices ?? 0) +
+      (this.store.selectedBackground()?.languageChoices ?? 0)
+    );
+  }
+  get toolChoiceLimit() {
+    return (
+      (this.store.selectedBackground()?.toolChoices ?? 0) + this.backgroundToolConflicts.length
+    );
+  }
+  get fixedLanguages() {
+    return [
+      ...(this.store.selectedAncestry()?.languages ?? []),
+      ...(this.store.selectedBackground()?.languages ?? []),
+    ];
+  }
+  get fixedTools() {
+    return [
+      ...(this.store.selectedAncestry()?.tools ?? []),
+      ...(this.store.draft().ancestryToolProficiencies ?? []),
+      ...classToolProficiencies(this.store.draft(), this.store.selectedClass()),
+      ...(this.store.selectedBackground()?.tools ?? []),
+    ].filter((value, index, all) => all.indexOf(value) === index);
+  }
+  get knownToolsBeforeBackground() {
+    return [
+      ...(this.store.selectedAncestry()?.tools ?? []),
+      ...(this.store.draft().ancestryToolProficiencies ?? []),
+      ...classToolProficiencies(this.store.draft(), this.store.selectedClass()),
+    ].filter((value, index, all) => all.indexOf(value) === index);
+  }
+  get backgroundToolConflicts() {
+    const known = new Set(this.knownToolsBeforeBackground);
+    return (this.store.selectedBackground()?.tools ?? []).filter((tool) => known.has(tool));
+  }
+  get toolOptions(): readonly string[] {
+    const category = this.store.selectedBackground()?.toolChoiceCategory;
+    const prescribed =
+      category === 'gaming-set'
+        ? GAMING_SET_OPTIONS
+        : category === 'artisan-tool'
+          ? ARTISAN_TOOL_OPTIONS
+          : category === 'musical-instrument'
+            ? MUSICAL_INSTRUMENT_OPTIONS
+            : TOOL_OPTIONS;
+    if (!this.backgroundToolConflicts.length) return prescribed;
+    return [...new Set([...prescribed, ...TOOL_OPTIONS])];
+  }
+  get toolChoiceLabel() {
+    const category = this.store.selectedBackground()?.toolChoiceCategory;
+    const base =
+      category === 'gaming-set'
+        ? 'Strumenti da gioco a scelta'
+        : category === 'artisan-tool'
+          ? 'Strumenti da artigiano a scelta'
+          : category === 'musical-instrument'
+            ? 'Strumenti musicali a scelta'
+            : 'Strumenti a scelta';
+    return this.backgroundToolConflicts.length ? `${base} e sostituzioni` : base;
+  }
   canEquipShield(shield: EquipmentItem) {
     return (
       equipmentKind(shield) === 'shield' &&
@@ -688,7 +881,7 @@ export class WizardComponent implements OnInit, OnDestroy {
     const d = this.store.draft();
     switch (step) {
       case 'caratteristiche':
-        return d.abilityMethod !== 'point-buy' || this.store.pointsSpent() === 27;
+        return d.abilityMethod !== AbilityMethod.POINT || this.store.pointsSpent() === 27;
       case 'razza':
         const ancestry = this.store.selectedAncestry();
         return (
@@ -701,18 +894,22 @@ export class WizardComponent implements OnInit, OnDestroy {
         return (
           !!d.classId &&
           (d.classSkillProficiencies?.length ?? 0) ===
-            (this.store.selectedClass()?.skillChoices ?? 0) &&
-          (d.level < this.store.selectedClass()!.subclassLevel || !!d.subclassId) &&
-          this.classFeaturesComplete()
+            (this.store.selectedClass()?.skillChoices ?? 0)
         );
       case 'background':
         return (
           !!d.backgroundId &&
           !!d.alignment &&
+          (d.customLanguages?.length ?? 0) === this.languageChoiceLimit &&
+          (d.customTools?.length ?? 0) === this.toolChoiceLimit &&
           !this.backgroundHasClassSkill(this.store.selectedBackground())
         );
       case 'livello':
-        return (d.hpMethod !== 'manual' || (d.manualHp ?? 0) > 0) && this.classFeaturesComplete();
+        return (
+          (d.hpMethod !== 'manual' || (d.manualHp ?? 0) > 0) &&
+          (d.level < (this.store.selectedClass()?.subclassLevel ?? 21) || !!d.subclassId) &&
+          this.classFeaturesComplete()
+        );
       case 'talenti':
         return growthChoicesComplete(d, this.store.rulesCatalog);
       case 'riepilogo':
@@ -723,10 +920,9 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   next() {
     if (!this.canContinue()) {
-      this.message.set('Completa le scelte richieste prima di continuare.');
+      this.feedback.warning('Completa le scelte richieste prima di continuare.');
       return;
     }
-    this.message.set('');
     this.go(STEPS[Math.min(STEPS.length - 1, this.index + 1)].id);
   }
   previous() {
@@ -735,8 +931,8 @@ export class WizardComponent implements OnInit, OnDestroy {
   score(k: AbilityKey, delta: number) {
     const d = this.store.draft(),
       next = d.abilities[k] + delta;
-    if (d.abilityMethod === 'point-buy' && (next < 8 || next > 15)) return;
-    if (d.abilityMethod === 'custom' && (next < 1 || next > 20)) return;
+    if (d.abilityMethod === AbilityMethod.POINT && (next < 8 || next > 15)) return;
+    if (d.abilityMethod === AbilityMethod.STANDARD && (next < 1 || next > 20)) return;
     this.store.setAbility(k, next);
   }
   toggleSanity() {
@@ -752,11 +948,59 @@ export class WizardComponent implements OnInit, OnDestroy {
       next = current + delta;
     if (next < HOMEBREW_ABILITY_MIN || next > HOMEBREW_ABILITY_MAX) return;
     this.store.patch({ sanityScore: next });
-  }
-  setMethod(method: 'point-buy' | 'standard' | 'custom') {
+  } 
+  setMethod(method: AbilityMethod) {
     this.store.patch({ abilityMethod: method });
-    if (method === 'standard')
+    if (method === AbilityMethod.STANDARD)
       this.store.patch({ abilities: { str: 15, dex: 14, con: 13, int: 12, wis: 10, cha: 8 } });
+  }
+  startHold(key: AbilityKey, val: number) {
+    this.isHolding = false;
+    this.holdTimeout = setTimeout(() => {
+      this.isHolding = true;
+      this.score(key, val);
+      this.holdInterval = setInterval(() => {
+        this.score(key, val);
+      }, 100);
+    }, 350);
+  }
+  endHold() {
+    if (this.holdTimeout) {
+      clearTimeout(this.holdTimeout);
+      this.holdTimeout = undefined;
+    }
+
+    if (this.holdInterval) {
+      clearInterval(this.holdInterval);
+      this.holdInterval = undefined;
+    }
+  }
+  handleClick(key: AbilityKey, val: number) {
+    if (!this.isHolding) {
+      this.score(key, val);
+    }
+    this.isHolding = false;
+  }
+  startSanityHold(val: number) {
+    this.isHolding = false;
+
+    this.holdTimeout = setTimeout(() => {
+      this.isHolding = true;
+
+      this.scoreSanity(val);
+
+      this.holdInterval = setInterval(() => {
+        this.scoreSanity(val);
+      }, 100);
+    }, 350);
+  }
+
+  handleSanityClick(val: number) {
+    if (!this.isHolding) {
+      this.scoreSanity(val);
+    }
+
+    this.isHolding = false;
   }
   selectAncestry(id: string) {
     const changed = this.store.draft().ancestryId !== id;
@@ -767,7 +1011,13 @@ export class WizardComponent implements OnInit, OnDestroy {
       ancestryToolProficiencies: changed ? [] : this.store.draft().ancestryToolProficiencies,
       featIds: changed ? [] : this.store.draft().featIds,
       featAbilityChoices: changed ? {} : this.store.draft().featAbilityChoices,
+      customLanguages: changed ? [] : this.store.draft().customLanguages,
+      customTools: changed ? [] : this.store.draft().customTools,
     });
+  }
+  selectBackground(id: string) {
+    if (this.store.draft().backgroundId === id) return;
+    this.store.patch({ backgroundId: id, customLanguages: [], customTools: [] });
   }
   toggleAncestryBonus(k: AbilityKey) {
     const selected = this.store.draft().ancestryBonusAbilities ?? [],
@@ -781,7 +1031,56 @@ export class WizardComponent implements OnInit, OnDestroy {
       this.store.patch({ ancestryBonusAbilities: [...selected, k] });
   }
   isClassRecommended(id: string) {
-    return isRecommendedClass(id, this.store.derived().finalAbilities);
+    return isRecommendedClass(id, this.classRecommendationAbilities);
+  }
+
+  get classRecommendationAbilities() {
+    const draft = this.store.draft();
+    const ancestry = this.store.selectedAncestry();
+    return Object.fromEntries(
+      this.abilities.map(({ key }) => [
+        key,
+        draft.abilities[key] +
+          (ancestry?.bonuses[key] ?? 0) +
+          ((draft.ancestryBonusAbilities ?? []).includes(key) &&
+          (!ancestry?.flexibleBonusOptions || ancestry.flexibleBonusOptions.includes(key))
+            ? 1
+            : 0),
+      ]),
+    ) as Record<AbilityKey, number>;
+  }
+
+  skillAbilityShort(skillId: string): string {
+    const ability = this.skills.find((skill) => skill.id === skillId)?.ability;
+    return this.abilities.find((item) => item.key === ability)?.short ?? '';
+  }
+
+  backgroundSkillShort(skillName: string): string {
+    const ability = this.skills.find((skill) => skill.name === skillName)?.ability;
+    return this.abilities.find((item) => item.key === ability)?.short ?? '';
+  }
+
+  get progressionProficiencyIds(): string[] {
+    const draft = this.store.draft();
+    const selected = new Set([
+      ...(draft.classSkillProficiencies ?? []),
+      ...(draft.ancestrySkillProficiencies ?? []),
+      ...(this.store.selectedAncestry()?.skillProficiencies ?? []),
+      ...(this.store.selectedBackground()?.skills ?? []).flatMap((name) => {
+        const skill = this.skills.find((candidate) => candidate.name === name);
+        return skill ? [skill.id] : [];
+      }),
+      ...(draft.classId === 'rogue' ? ['thieves-tools'] : []),
+    ]);
+    for (const choice of activeClassFeatureChoices(
+      this.store.selectedClass(),
+      draft.level,
+      draft.subclassId,
+    )) {
+      if (choice.effect !== 'skill-proficiency') continue;
+      for (const optionId of draft.classFeatureChoices?.[choice.id] ?? []) selected.add(optionId);
+    }
+    return [...selected];
   }
   selectClass(id: string) {
     const old = this.store.draft().classId;
@@ -796,8 +1095,13 @@ export class WizardComponent implements OnInit, OnDestroy {
       featIds: old === id ? this.store.draft().featIds : [],
       featAbilityChoices: old === id ? this.store.draft().featAbilityChoices : {},
       spellIds: [],
+      customTools: old === id ? this.store.draft().customTools : [],
       equippedArmorId: old === id ? this.store.draft().equippedArmorId : '',
       shieldEquipped: old === id ? this.store.draft().shieldEquipped : false,
+      attunedEquipmentIds: (this.store.draft().attunedEquipmentIds ?? []).slice(
+        0,
+        attunementLimit({ classId: id, level: this.store.draft().level }),
+      ),
     });
   }
   setSubclass(value: string) {
@@ -818,7 +1122,15 @@ export class WizardComponent implements OnInit, OnDestroy {
       { ...this.store.draft(), level },
       this.store.selectedClass(),
     );
-    this.store.patch({ level, hpRolls: rolls, ...progression });
+    this.store.patch({
+      level,
+      hpRolls: rolls,
+      attunedEquipmentIds: (this.store.draft().attunedEquipmentIds ?? []).slice(
+        0,
+        attunementLimit({ classId: this.store.draft().classId, level }),
+      ),
+      ...progression,
+    });
   }
   toggleClassSkill(id: string) {
     const selected = this.store.draft().classSkillProficiencies ?? [],
@@ -849,13 +1161,12 @@ export class WizardComponent implements OnInit, OnDestroy {
     else if (selected.length < limit)
       this.store.patch({ ancestryToolProficiencies: [...selected, tool] });
   }
-  setList(field: 'customLanguages' | 'customTools', value: string) {
-    this.store.patch({
-      [field]: value
-        .split(',')
-        .map((item) => item.trim())
-        .filter(Boolean),
-    });
+  toggleBackgroundChoice(field: 'customLanguages' | 'customTools', value: string) {
+    const selected = this.store.draft()[field] ?? [];
+    const limit = field === 'customLanguages' ? this.languageChoiceLimit : this.toolChoiceLimit;
+    if (selected.includes(value))
+      this.store.patch({ [field]: selected.filter((item) => item !== value) });
+    else if (selected.length < limit) this.store.patch({ [field]: [...selected, value] });
   }
   alignmentLabel() {
     return (
@@ -911,16 +1222,21 @@ export class WizardComponent implements OnInit, OnDestroy {
         this.store.draft().featIds.length + 1 - this.racialFeatSlots,
       );
       if (nextClassFeats + Math.ceil(this.asiPoints / 2) > this.slots) {
-        this.message.set('Ogni sblocco consente un talento oppure un ASI, non entrambi.');
+        this.feedback.warning('Ogni sblocco consente un talento oppure un ASI, non entrambi.');
         return;
       }
     }
-    this.message.set('');
     this.store.toggleFeat(id);
     if (selected) {
       const choices = { ...(this.store.draft().featAbilityChoices ?? {}) };
       delete choices[id];
-      this.store.patch({ featAbilityChoices: choices });
+      const proficiencyChoices = { ...(this.store.draft().featProficiencyChoices ?? {}) };
+      for (const choice of this.store.feats.find((feat) => feat.id === id)?.proficiencyChoices ?? [])
+        delete proficiencyChoices[choice.id];
+      this.store.patch({
+        featAbilityChoices: choices,
+        featProficiencyChoices: proficiencyChoices,
+      });
     }
   }
   setFeatAbility(featId: string, ability: AbilityKey | '') {
@@ -933,13 +1249,63 @@ export class WizardComponent implements OnInit, OnDestroy {
       const scoreWithoutThisFeat =
         this.store.derived().finalAbilities[ability] - (previous === ability ? increase.amount : 0);
       if (scoreWithoutThisFeat + increase.amount > 20) {
-        this.message.set('L’aumento concesso dal talento porterebbe la caratteristica oltre 20.');
+        this.feedback.warning(
+          'L’aumento concesso dal talento porterebbe la caratteristica oltre 20.',
+        );
         return;
       }
       choices[featId] = ability;
     } else delete choices[featId];
-    this.message.set('');
     this.store.patch({ featAbilityChoices: choices });
+    if (
+      ability &&
+      feat?.effects?.savingThrowProficiencyFromAbility &&
+      this.store.selectedClass()?.saves.includes(ability)
+    )
+      this.feedback.info(
+        `Hai già competenza nei tiri salvezza di ${this.abilities.find((item) => item.key === ability)?.label}. La scelta resta consentita, ma il bonus di competenza non si somma.`,
+      );
+  }
+  setFeatSearch(value: string) {
+    this.featSearch.set(value);
+    this.featPage.set(1);
+  }
+  setFeatPage(page: number) {
+    this.featPage.set(Math.max(1, Math.min(this.featPageCount, page)));
+  }
+  featChoiceOptions(choice: FeatProficiencyChoice) {
+    const skills = this.skills.map((skill) => ({ id: skill.id, name: skill.name }));
+    if (choice.kind === 'skill')
+      return choice.options?.length ? skills.filter((skill) => choice.options!.includes(skill.id)) : skills;
+    if (choice.kind === 'expertise')
+      return this.store.derived().skills
+        .filter((skill) => skill.proficient)
+        .map((skill) => ({ id: skill.id, name: skill.name }));
+    const tools = (choice.toolCategory === 'artisan-tool' ? ARTISAN_TOOL_OPTIONS : TOOL_OPTIONS).map(
+      (name) => ({ id: name, name }),
+    );
+    if (choice.kind === 'tool') return tools;
+    if (choice.kind === 'language')
+      return LANGUAGE_OPTIONS.map((name) => ({ id: name, name }));
+    if (choice.kind === 'skill-or-tool')
+      return [
+        ...skills.map((item) => ({ id: `skill:${item.id}`, name: `Abilità · ${item.name}` })),
+        ...tools.map((item) => ({ id: `tool:${item.id}`, name: `Strumento · ${item.name}` })),
+      ];
+    return this.store.equipment
+      .filter((item) => item.category === 'weapon' && !item.magical)
+      .map((item) => ({ id: item.id, name: item.name }));
+  }
+  toggleFeatProficiency(choice: FeatProficiencyChoice, optionId: string) {
+    const all = { ...(this.store.draft().featProficiencyChoices ?? {}) },
+      current = all[choice.id] ?? [];
+    if (current.includes(optionId)) all[choice.id] = current.filter((id) => id !== optionId);
+    else if (current.length < choice.count) all[choice.id] = [...current, optionId];
+    else {
+      this.feedback.warning(`Puoi effettuare ${choice.count} scelte per questa competenza.`);
+      return;
+    }
+    this.store.patch({ featProficiencyChoices: all });
   }
   asi(k: AbilityKey, delta: number) {
     const current = this.store.draft().asi[k] || 0;
@@ -947,7 +1313,7 @@ export class WizardComponent implements OnInit, OnDestroy {
       delta > 0 &&
       (this.asiPoints >= this.asiPointLimit || this.store.derived().finalAbilities[k] >= 20)
     ) {
-      this.message.set(
+      this.feedback.warning(
         this.store.derived().finalAbilities[k] >= 20
           ? 'Questa caratteristica ha già raggiunto il limite naturale di 20.'
           : 'Gli sblocchi rimanenti sono già stati assegnati.',
@@ -955,7 +1321,6 @@ export class WizardComponent implements OnInit, OnDestroy {
       return;
     }
     if (delta < 0 && current <= 0) return;
-    this.message.set('');
     this.store.setAsi(k, current + delta);
   }
   isGranted(id: string) {
@@ -963,20 +1328,46 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   spellLimitReached(spell: Spell) {
     if (this.store.draft().spellIds.includes(spell.id)) return false;
+    const draft = this.store.draft();
+    const subclassCaster = subclassSpellcastingProfile(
+      draft.classId,
+      draft.subclassId,
+      draft.level,
+    );
+    if (
+      spell.level > 0 &&
+      subclassCaster &&
+      !subclassCaster.schools.includes(spell.school) &&
+      this.selectedSpells.filter(
+        (selected) => selected.level > 0 && !subclassCaster.schools.includes(selected.school),
+      ).length >= subclassCaster.unrestrictedLeveledSpells
+    )
+      return true;
     return spell.level === 0
       ? this.selectedCantripCount >= this.spellLimits.cantrips
       : this.selectedLeveledSpellCount >= this.spellLimits.leveledSpells;
   }
   toggleSpell(spell: Spell) {
     if (this.spellLimitReached(spell)) {
-      this.message.set(
+      const draft = this.store.draft();
+      const subclassCaster = subclassSpellcastingProfile(
+        draft.classId,
+        draft.subclassId,
+        draft.level,
+      );
+      if (spell.level > 0 && subclassCaster && !subclassCaster.schools.includes(spell.school)) {
+        this.feedback.warning(
+          `Hai già scelto tutti gli incantesimi senza vincolo di scuola consentiti a questo livello.`,
+        );
+        return;
+      }
+      this.feedback.warning(
         spell.level === 0
           ? `Hai già scelto tutti i ${this.spellLimits.cantrips} trucchetti consentiti.`
           : `Hai già scelto tutti i ${this.spellLimits.leveledSpells} incantesimi consentiti.`,
       );
       return;
     }
-    this.message.set('');
     this.store.toggleSpell(spell.id);
   }
   spellLevel(spell: Spell) {
@@ -1005,13 +1396,13 @@ export class WizardComponent implements OnInit, OnDestroy {
   saveHomebrewSpell() {
     const spell = this.homebrewSpell();
     if (!spell.name.trim() || !spell.description.trim()) {
-      this.message.set('Inserisci almeno nome e descrizione dell’incantesimo homebrew.');
+      this.feedback.warning('Inserisci almeno nome e descrizione dell’incantesimo homebrew.');
       return;
     }
     const limit = spell.level === 0 ? this.spellLimits.cantrips : this.spellLimits.leveledSpells;
     const selected = spell.level === 0 ? this.selectedCantripCount : this.selectedLeveledSpellCount;
     if (selected >= limit) {
-      this.message.set(
+      this.feedback.warning(
         spell.level === 0
           ? `Hai già scelto tutti i ${limit} trucchetti consentiti per questa classe.`
           : `Hai già scelto tutti i ${limit} incantesimi consentiti per questa classe.`,
@@ -1040,7 +1431,7 @@ export class WizardComponent implements OnInit, OnDestroy {
         },
       ],
     });
-    this.message.set('Incantesimo homebrew aggiunto.');
+    this.feedback.success('Incantesimo homebrew aggiunto.');
     this.closeHomebrewSpellWizard();
   }
   removeHomebrewSpell(id: string) {
@@ -1110,7 +1501,7 @@ export class WizardComponent implements OnInit, OnDestroy {
       item.armorType === 'heavy' &&
       ((draft.classId === 'cleric' &&
         ['Dominio della Vita', 'Dominio della Guerra'].includes(draft.subclassId)) ||
-        (draft.classId === 'artificer' && draft.subclassId === 'Armorer' && draft.level >= 3))
+        isArtificerSubclass(draft, 'armorer'))
     )
       return true;
     if (
@@ -1148,7 +1539,7 @@ export class WizardComponent implements OnInit, OnDestroy {
     const shield = this.store.equipment.find((item) => item.id === 'shield');
     if (!shield) return;
     this.addItem(shield.id);
-    this.message.set('Scudo aggiunto allo zaino. Puoi impugnarlo dopo aver liberato una mano.');
+    this.feedback.info('Scudo aggiunto allo zaino. Puoi impugnarlo dopo aver liberato una mano.');
   }
   magicWeaponOptions(item: EquipmentItem) {
     return magicWeaponBaseCandidates(item, this.store.equipment);
@@ -1172,7 +1563,7 @@ export class WizardComponent implements OnInit, OnDestroy {
     });
     this.addItem(item.id);
     this.magicWeaponChoice.set(null);
-    this.message.set(
+    this.feedback.success(
       `${item.name} (${this.store.equipment.find((option) => option.id === baseEquipmentId)?.name}) aggiunta allo zaino.`,
     );
   }
@@ -1256,12 +1647,9 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   weaponProficient(item: EquipmentItem) {
     const weapon = this.effectiveWeapon(item);
-    if (isUnarmedStrike(weapon)) return this.store.draft().classId === 'monk';
-    if (isBattleSmith(this.store.draft()) && weapon.proficiency === 'martial') return true;
-    const proficiencies = [
-      ...(this.store.selectedClass()?.weaponProficiencies ?? []),
-      ...(this.store.selectedAncestry()?.weaponProficiencies ?? []),
-    ];
+    const proficiencies = [...this.store.derived().weaponProficiencies];
+    if (isUnarmedStrike(weapon))
+      return this.store.draft().classId === 'monk' || proficiencies.includes(weapon.id);
     const racialWeapons: Record<string, readonly string[]> = {
       'dwarf-hill': ['battleaxe', 'handaxe', 'light-hammer', 'warhammer'],
       'elf-high': ['longsword', 'shortsword', 'shortbow', 'longbow'],
@@ -1273,10 +1661,10 @@ export class WizardComponent implements OnInit, OnDestroy {
       (racialWeapons[this.store.draft().ancestryId] ?? []).includes(weapon.id)
     );
   }
-  weaponAbilityModifier(item: EquipmentItem) {
+  weaponAbilityModifier(item: EquipmentItem, equipped?: EquippedWeapon) {
     const weapon = this.effectiveWeapon(item);
     const modifiers = this.store.derived().modifiers;
-    if (battleSmithUsesIntelligence(this.store.draft(), weapon)) return modifiers.int;
+    if (battleSmithUsesIntelligence(this.store.draft(), weapon, equipped)) return modifiers.int;
     if (isUnarmedStrike(weapon) && this.store.draft().classId === 'monk')
       return Math.max(modifiers.str, modifiers.dex);
     return weapon.ranged
@@ -1285,13 +1673,13 @@ export class WizardComponent implements OnInit, OnDestroy {
         ? Math.max(modifiers.str, modifiers.dex)
         : modifiers.str;
   }
-  weaponAttack(item: EquipmentItem, bonus = 0) {
+  weaponAttack(item: EquipmentItem, bonus = 0, equipped?: EquippedWeapon) {
     const weapon = this.effectiveWeapon(item);
     const magicBonus = this.itemMagicActive(weapon)
       ? (weapon.attackBonus ?? weaponEffectTotal(weapon, 'attack-bonus'))
       : 0;
     const value =
-      this.weaponAbilityModifier(weapon) +
+      this.weaponAbilityModifier(weapon, equipped) +
       (this.weaponProficient(weapon) ? this.store.derived().proficiency : 0) +
       magicBonus +
       Math.max(0, Math.min(3, bonus));
@@ -1300,14 +1688,22 @@ export class WizardComponent implements OnInit, OnDestroy {
   weaponDamage(item: EquipmentItem, bonus = 0) {
     return this.weaponDamageWithLoadout(item, 1, false, bonus);
   }
-  weaponDamageWithLoadout(item: EquipmentItem, hands: 1 | 2, offHand: boolean, bonus = 0) {
+  weaponDamageWithLoadout(
+    item: EquipmentItem,
+    hands: 1 | 2,
+    offHand: boolean,
+    bonus = 0,
+    equipped?: EquippedWeapon,
+  ) {
     const weapon = this.effectiveWeapon(item);
     const damage = isUnarmedStrike(weapon)
       ? unarmedDamage(this.store.draft().classId, this.store.draft().level)
       : damageForHands(weapon, hands);
     if (!damage || damage === '—') return '—';
     const value =
-      offHand && !hasTwoWeaponFighting(this.store.draft()) ? 0 : this.weaponAbilityModifier(weapon);
+      offHand && !hasTwoWeaponFighting(this.store.draft())
+        ? 0
+        : this.weaponAbilityModifier(weapon, equipped);
     const magicBonus = this.itemMagicActive(weapon)
       ? (weapon.damageBonus ?? weaponEffectTotal(weapon, 'damage-bonus'))
       : 0;
@@ -1349,7 +1745,13 @@ export class WizardComponent implements OnInit, OnDestroy {
     this.store.patch({
       equippedWeapons: [
         ...(this.store.draft().equippedWeapons ?? []),
-        { equipmentId: item.id, hands: requiresTwoHands(item) ? 2 : 1 },
+        {
+          equipmentId: item.id,
+          hands: requiresTwoHands(item) ? 2 : 1,
+          ...(battleSmithCanUseIntelligence(this.store.draft(), item)
+            ? { useIntelligence: true }
+            : {}),
+        },
       ],
     });
   }
@@ -1373,6 +1775,20 @@ export class WizardComponent implements OnInit, OnDestroy {
     equippedWeapons[index] = {
       ...equippedWeapons[index],
       bonus: Math.max(0, Math.min(3, Math.floor(Number(value) || 0))),
+    };
+    this.store.patch({ equippedWeapons });
+  }
+  canChooseWeaponIntelligence(item: EquipmentItem) {
+    return battleSmithCanUseIntelligence(this.store.draft(), this.effectiveWeapon(item));
+  }
+  toggleWeaponIntelligence(index: number) {
+    const equippedWeapons = [...(this.store.draft().equippedWeapons ?? [])];
+    const equipped = equippedWeapons[index];
+    const item = this.equippedWeaponEntries.find((entry) => entry.index === index)?.item;
+    if (!equipped || !item || !this.canChooseWeaponIntelligence(item)) return;
+    equippedWeapons[index] = {
+      ...equipped,
+      useIntelligence: equipped.useIntelligence === false,
     };
     this.store.patch({ equippedWeapons });
   }
@@ -1432,7 +1848,7 @@ export class WizardComponent implements OnInit, OnDestroy {
         : this.store.draft().equipmentCharges,
     });
     this.homebrewEquipmentOpen.set(false);
-    this.message.set(`${item.name} è stato creato e aggiunto allo zaino.`);
+    this.feedback.success(`${item.name} è stato creato e aggiunto allo zaino.`);
   }
   removeHomebrewEquipment(id: string) {
     const draft = this.store.draft();
@@ -1467,11 +1883,16 @@ export class WizardComponent implements OnInit, OnDestroy {
   itemIsAttuned(item: EquipmentItem) {
     return (this.store.draft().attunedEquipmentIds ?? []).includes(item.id);
   }
+  get maximumAttunedItems() {
+    return attunementLimit(this.store.draft());
+  }
   toggleAttunement(item: EquipmentItem) {
     if (!item.requiresAttunement) return;
     const selected = this.store.draft().attunedEquipmentIds ?? [];
-    if (!selected.includes(item.id) && selected.length >= 3) {
-      this.message.set('Puoi entrare in sintonia con un massimo di 3 oggetti.');
+    if (!selected.includes(item.id) && selected.length >= this.maximumAttunedItems) {
+      this.feedback.warning(
+        `Puoi entrare in sintonia con un massimo di ${this.maximumAttunedItems} oggetti.`,
+      );
       return;
     }
     this.store.patch({
@@ -1495,11 +1916,11 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   useEquipmentAbility(item: EquipmentItem, cost: number, label: string) {
     if (cost > 0 && this.itemCharges(item) < cost) {
-      this.message.set(`Cariche insufficienti per ${label}.`);
+      this.feedback.warning(`Cariche insufficienti per ${label}.`);
       return;
     }
     if (cost > 0) this.changeItemCharges(item, -cost);
-    this.message.set(`${label} attivata${cost ? `: consumate ${cost} cariche.` : '.'}`);
+    this.feedback.success(`${label} attivata${cost ? `: consumate ${cost} cariche.` : '.'}`);
   }
   private itemMagicActive(item: EquipmentItem) {
     return !item.requiresAttunement || this.itemIsAttuned(item);
@@ -1507,12 +1928,12 @@ export class WizardComponent implements OnInit, OnDestroy {
   async exportPdf() {
     if (this.pdfExporting()) return;
     this.pdfExporting.set(true);
-    this.message.set('Compilazione della scheda PDF in corso...');
+    this.feedback.info('Compilazione della scheda PDF in corso...', 'Esportazione PDF');
     try {
       await this.characterSheetPdf.download(this.store.draft());
-      this.message.set('Scheda PDF compilata e scaricata.');
+      this.feedback.success('Scheda PDF compilata e scaricata.');
     } catch {
-      this.message.set('Non è stato possibile generare la scheda PDF.');
+      this.feedback.error('Non è stato possibile generare la scheda PDF.');
     } finally {
       this.pdfExporting.set(false);
     }
@@ -1520,12 +1941,12 @@ export class WizardComponent implements OnInit, OnDestroy {
   async exportSpellCardsPdf() {
     if (this.spellCardsExporting()) return;
     this.spellCardsExporting.set(true);
-    this.message.set('Creazione delle carte incantesimo in corso...');
+    this.feedback.info('Creazione delle carte incantesimo in corso...', 'Esportazione PDF');
     try {
       await this.spellCardsPdf.download(this.store.draft());
-      this.message.set('Carte incantesimo ordinate e scaricate.');
+      this.feedback.success('Carte incantesimo ordinate e scaricate.');
     } catch {
-      this.message.set('Seleziona almeno un incantesimo prima di creare le carte PDF.');
+      this.feedback.warning('Seleziona almeno un incantesimo prima di creare le carte PDF.');
     } finally {
       this.spellCardsExporting.set(false);
     }
@@ -1541,10 +1962,13 @@ export class WizardComponent implements OnInit, OnDestroy {
     if (!file) return;
     try {
       await this.store.importJson(file);
-      this.message.set('Personaggio importato correttamente.');
+      this.feedback.success('Personaggio importato correttamente.');
       this.go('riepilogo');
     } catch {
-      this.message.set('File non valido o incompatibile.');
+      this.feedback.error('File non valido o incompatibile.');
     }
+  }
+  markAncestryImageLoaded(id: string): void {
+    this.loadedAncestryImages.update(ids => new Set(ids).add(id));
   }
 }

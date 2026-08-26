@@ -5,6 +5,7 @@ import {
   CharacterDraft,
   DerivedCharacter,
   EquipmentItem,
+  EquippedWeapon,
   Spell,
 } from '../domain/models';
 import { activeClassFeatureChoices } from '../domain/class-progression';
@@ -367,8 +368,9 @@ function weaponModifier(
   item: EquipmentItem,
   derived: DerivedCharacter,
   draft: CharacterDraft,
+  equipped?: EquippedWeapon,
 ): number {
-  if (battleSmithUsesIntelligence(draft, item)) return derived.modifiers.int;
+  if (battleSmithUsesIntelligence(draft, item, equipped)) return derived.modifiers.int;
   return item.ranged
     ? derived.modifiers.dex
     : item.finesse
@@ -555,11 +557,13 @@ function fillCombat(
   ];
   weapons.slice(0, fields.length).forEach(({ item: weapon, equipped }, index) => {
     const ability =
-      index === 1 && !hasTwoWeaponFighting(draft) ? 0 : weaponModifier(weapon, derived, draft);
+      index === 1 && !hasTwoWeaponFighting(draft)
+        ? 0
+        : weaponModifier(weapon, derived, draft, equipped);
     const magicActive =
       !weapon.requiresAttunement || (draft.attunedEquipmentIds ?? []).includes(weapon.id);
     const attack =
-      weaponModifier(weapon, derived, draft) +
+      weaponModifier(weapon, derived, draft, equipped) +
       (weaponProficient(weapon, derived) ? derived.proficiency : 0) +
       (equipped.bonus ?? 0) +
       (magicActive ? (weapon.attackBonus ?? weaponEffectTotal(weapon, 'attack-bonus')) : 0);
@@ -684,10 +688,15 @@ function fillSecondPage(
     { multiline: true, fontSize: 7 },
   );
 }
-function castingAbility(classId: string): AbilityKey | undefined {
+function castingAbility(classId: string, subclassId = ''): AbilityKey | undefined {
   if (['bard', 'paladin', 'sorcerer', 'warlock'].includes(classId)) return 'cha';
   if (['cleric', 'druid', 'ranger'].includes(classId)) return 'wis';
   if (['wizard', 'artificer'].includes(classId)) return 'int';
+  if (
+    (classId === 'fighter' && subclassId === 'Cavaliere Mistico') ||
+    (classId === 'rogue' && subclassId === 'Mistificatore Arcano')
+  )
+    return 'int';
   return undefined;
 }
 function fillSpellPage(
@@ -697,7 +706,7 @@ function fillSpellPage(
   catalog: CatalogData,
 ): void {
   const klass = catalog.classes.find((item) => item.id === draft.classId);
-  const ability = castingAbility(draft.classId);
+  const ability = castingAbility(draft.classId, draft.subclassId);
   const labels: Record<AbilityKey, string> = {
     str: 'FOR',
     dex: 'DES',
@@ -715,7 +724,7 @@ function fillSpellPage(
     derived.spellAttack === undefined ? '' : signed(derived.spellAttack),
     { fontSize: 13 },
   );
-  const slots = spellSlots(draft.classId, draft.level);
+  const slots = spellSlots(draft.classId, draft.level, draft.subclassId);
   for (let level = 1; level <= 9; level += 1) {
     const slot = slots.find((entry) => entry.level === level);
     setText(form, SLOT_FIELDS[level][0], slot?.slots ?? '', { fontSize: 10 });

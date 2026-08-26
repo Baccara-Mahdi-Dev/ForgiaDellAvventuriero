@@ -88,6 +88,13 @@ describe('loadout delle armi', () => {
     expect(isBattleSmith({ ...battleSmith, level: 2 })).toBe(false);
     expect(isBattleSmith(battleSmith)).toBe(true);
     expect(battleSmithUsesIntelligence(battleSmith, { ...weapon, magical: true })).toBe(true);
+    expect(
+      battleSmithUsesIntelligence(
+        battleSmith,
+        { ...weapon, magical: true },
+        { useIntelligence: false },
+      ),
+    ).toBe(false);
     expect(battleSmithUsesIntelligence(battleSmith, weapon)).toBe(false);
   });
 

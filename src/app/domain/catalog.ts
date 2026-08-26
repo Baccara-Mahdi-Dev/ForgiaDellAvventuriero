@@ -9,6 +9,9 @@ export interface CatalogManifest {
   files: CatalogFiles;
   sources: string[];
   additionalEquipment?: { file: string; count: number };
+  additionalCatalogs?: {
+    subclasses?: { file: string; count: number };
+  };
 }
 
 export interface CatalogFiles {

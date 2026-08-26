@@ -409,7 +409,7 @@ const additions = [
     school: 'Transmutation',
     classes: ['artificer', 'bard', 'druid', 'wizard'],
     description:
-      'Clouds form up to ten words that remain visible in the sky for the spell’s duration.',
+      'Clouds form up to ten words that remain visible in the sky for the spell's duration.',
     castingTime: action,
     range: 'Sight',
     components: 'V, S',
@@ -485,7 +485,7 @@ const additions = [
     damage: {
       formula: '2d4',
       type: 'acid',
-      note: 'Repeats at the start of each affected creature’s turn.',
+      note: 'Repeats at the start of each affected creature's turn.',
     },
   },
   {

@@ -1,0 +1,810 @@
+[
+  {
+    "id": "barbarian-berserker",
+    "classId": "barbarian",
+    "name": "Berserker",
+    "description": "Berserker è una sottoclasse del Barbaro presentata in SRD.",
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "barbarian-guerriero-totemico",
+    "classId": "barbarian",
+    "name": "Guerriero Totemico",
+    "description": "Guerriero Totemico è una sottoclasse del Barbaro presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "barbarian-cammino-del-guardiano-ancestrale",
+    "classId": "barbarian",
+    "name": "Cammino del Guardiano Ancestrale",
+    "description": "Cammino del Guardiano Ancestrale è una sottoclasse del Barbaro presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "barbarian-cammino-dellaraldo-della-tempesta",
+    "classId": "barbarian",
+    "name": "Cammino dell'Araldo della Tempesta",
+    "description": "Cammino dell'Araldo della Tempesta è una sottoclasse del Barbaro presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "barbarian-cammino-dello-zelota",
+    "classId": "barbarian",
+    "name": "Cammino dello Zelota",
+    "description": "Cammino dello Zelota è una sottoclasse del Barbaro presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "barbarian-cammino-della-bestia",
+    "classId": "barbarian",
+    "name": "Cammino della Bestia",
+    "description": "Cammino della Bestia è una sottoclasse del Barbaro presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "barbarian-cammino-della-magia-selvaggia",
+    "classId": "barbarian",
+    "name": "Cammino della Magia Selvaggia",
+    "description": "Cammino della Magia Selvaggia è una sottoclasse del Barbaro presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "bard-collegio-della-sapienza",
+    "classId": "bard",
+    "name": "Collegio della Sapienza",
+    "description": "Collegio della Sapienza è una sottoclasse del Bardo presentata in SRD.",
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "bard-collegio-del-valore",
+    "classId": "bard",
+    "name": "Collegio del Valore",
+    "description": "Collegio del Valore è una sottoclasse del Bardo presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "bard-collegio-del-fascino",
+    "classId": "bard",
+    "name": "Collegio del Fascino",
+    "description": "Collegio del Fascino è una sottoclasse del Bardo presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "bard-collegio-delle-lame",
+    "classId": "bard",
+    "name": "Collegio delle Lame",
+    "description": "Collegio delle Lame è una sottoclasse del Bardo presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "bard-collegio-dei-sussurri",
+    "classId": "bard",
+    "name": "Collegio dei Sussurri",
+    "description": "Collegio dei Sussurri è una sottoclasse del Bardo presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "bard-collegio-della-creazione",
+    "classId": "bard",
+    "name": "Collegio della Creazione",
+    "description": "Collegio della Creazione è una sottoclasse del Bardo presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "bard-collegio-delleloquenza",
+    "classId": "bard",
+    "name": "Collegio dell'Eloquenza",
+    "description": "Collegio dell'Eloquenza è una sottoclasse del Bardo presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-della-conoscenza",
+    "classId": "cleric",
+    "name": "Dominio della Conoscenza",
+    "description": "Dominio della Conoscenza è una sottoclasse del Chierico presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-della-guerra",
+    "classId": "cleric",
+    "name": "Dominio della Guerra",
+    "description": "Dominio della Guerra è una sottoclasse del Chierico presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-della-luce",
+    "classId": "cleric",
+    "name": "Dominio della Luce",
+    "description": "Dominio della Luce è una sottoclasse del Chierico presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-della-natura",
+    "classId": "cleric",
+    "name": "Dominio della Natura",
+    "description": "Dominio della Natura è una sottoclasse del Chierico presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-della-tempesta",
+    "classId": "cleric",
+    "name": "Dominio della Tempesta",
+    "description": "Dominio della Tempesta è una sottoclasse del Chierico presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-della-vita",
+    "classId": "cleric",
+    "name": "Dominio della Vita",
+    "description": "Dominio della Vita è una sottoclasse del Chierico presentata in SRD.",
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "cleric-dominio-dellinganno",
+    "classId": "cleric",
+    "name": "Dominio dell'Inganno",
+    "description": "Dominio dell'Inganno è una sottoclasse del Chierico presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-della-forgia",
+    "classId": "cleric",
+    "name": "Dominio della Forgia",
+    "description": "Dominio della Forgia è una sottoclasse del Chierico presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-della-sepoltura",
+    "classId": "cleric",
+    "name": "Dominio della Sepoltura",
+    "description": "Dominio della Sepoltura è una sottoclasse del Chierico presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-dellordine",
+    "classId": "cleric",
+    "name": "Dominio dell'Ordine",
+    "description": "Dominio dell'Ordine è una sottoclasse del Chierico presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-della-pace",
+    "classId": "cleric",
+    "name": "Dominio della Pace",
+    "description": "Dominio della Pace è una sottoclasse del Chierico presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-del-crepuscolo",
+    "classId": "cleric",
+    "name": "Dominio del Crepuscolo",
+    "description": "Dominio del Crepuscolo è una sottoclasse del Chierico presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "druid-circolo-della-terra",
+    "classId": "druid",
+    "name": "Circolo della Terra",
+    "description": "Circolo della Terra è una sottoclasse del Druido presentata in SRD.",
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "druid-circolo-della-luna",
+    "classId": "druid",
+    "name": "Circolo della Luna",
+    "description": "Circolo della Luna è una sottoclasse del Druido presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "druid-circolo-dei-sogni",
+    "classId": "druid",
+    "name": "Circolo dei Sogni",
+    "description": "Circolo dei Sogni è una sottoclasse del Druido presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "druid-circolo-del-pastore",
+    "classId": "druid",
+    "name": "Circolo del Pastore",
+    "description": "Circolo del Pastore è una sottoclasse del Druido presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "druid-circolo-delle-spore",
+    "classId": "druid",
+    "name": "Circolo delle Spore",
+    "description": "Circolo delle Spore è una sottoclasse del Druido presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "druid-circolo-delle-stelle",
+    "classId": "druid",
+    "name": "Circolo delle Stelle",
+    "description": "Circolo delle Stelle è una sottoclasse del Druido presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "druid-circolo-del-fuoco-selvaggio",
+    "classId": "druid",
+    "name": "Circolo del Fuoco Selvaggio",
+    "description": "Circolo del Fuoco Selvaggio è una sottoclasse del Druido presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "fighter-campione",
+    "classId": "fighter",
+    "name": "Campione",
+    "description": "Campione è una sottoclasse del Guerriero presentata in SRD.",
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "fighter-maestro-di-battaglia",
+    "classId": "fighter",
+    "name": "Maestro di Battaglia",
+    "description": "Maestro di Battaglia è una sottoclasse del Guerriero presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "fighter-cavaliere-mistico",
+    "classId": "fighter",
+    "name": "Cavaliere Mistico",
+    "description": "Cavaliere Mistico è una sottoclasse del Guerriero presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "fighter-arciere-arcano",
+    "classId": "fighter",
+    "name": "Arciere Arcano",
+    "description": "Arciere Arcano è una sottoclasse del Guerriero presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "fighter-cavaliere",
+    "classId": "fighter",
+    "name": "Cavaliere",
+    "description": "Cavaliere è una sottoclasse del Guerriero presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "fighter-samurai",
+    "classId": "fighter",
+    "name": "Samurai",
+    "description": "Samurai è una sottoclasse del Guerriero presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "fighter-guerriero-psionico",
+    "classId": "fighter",
+    "name": "Guerriero Psionico",
+    "description": "Guerriero Psionico è una sottoclasse del Guerriero presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "fighter-cavaliere-delle-rune",
+    "classId": "fighter",
+    "name": "Cavaliere delle Rune",
+    "description": "Cavaliere delle Rune è una sottoclasse del Guerriero presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "monk-via-della-mano-aperta",
+    "classId": "monk",
+    "name": "Via della Mano Aperta",
+    "description": "Via della Mano Aperta è una sottoclasse del Monaco presentata in SRD.",
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "monk-via-dellombra",
+    "classId": "monk",
+    "name": "Via dell'Ombra",
+    "description": "Via dell'Ombra è una sottoclasse del Monaco presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "monk-via-dei-quattro-elementi",
+    "classId": "monk",
+    "name": "Via dei Quattro Elementi",
+    "description": "Via dei Quattro Elementi è una sottoclasse del Monaco presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "monk-via-del-maestro-ubriaco",
+    "classId": "monk",
+    "name": "Via del Maestro Ubriaco",
+    "description": "Via del Maestro Ubriaco è una sottoclasse del Monaco presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "monk-via-del-kensei",
+    "classId": "monk",
+    "name": "Via del Kensei",
+    "description": "Via del Kensei è una sottoclasse del Monaco presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "monk-via-dellanima-solare",
+    "classId": "monk",
+    "name": "Via dell'Anima Solare",
+    "description": "Via dell'Anima Solare è una sottoclasse del Monaco presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "monk-via-della-misericordia",
+    "classId": "monk",
+    "name": "Via della Misericordia",
+    "description": "Via della Misericordia è una sottoclasse del Monaco presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "monk-via-del-se-astrale",
+    "classId": "monk",
+    "name": "Via del Sé Astrale",
+    "description": "Via del Sé Astrale è una sottoclasse del Monaco presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "paladin-giuramento-di-devozione",
+    "classId": "paladin",
+    "name": "Giuramento di Devozione",
+    "description": "Giuramento di Devozione è una sottoclasse del Paladino presentata in SRD.",
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "paladin-giuramento-degli-antichi",
+    "classId": "paladin",
+    "name": "Giuramento degli Antichi",
+    "description": "Giuramento degli Antichi è una sottoclasse del Paladino presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "paladin-giuramento-di-vendetta",
+    "classId": "paladin",
+    "name": "Giuramento di Vendetta",
+    "description": "Giuramento di Vendetta è una sottoclasse del Paladino presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "paladin-giuramento-di-conquista",
+    "classId": "paladin",
+    "name": "Giuramento di Conquista",
+    "description": "Giuramento di Conquista è una sottoclasse del Paladino presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "paladin-giuramento-di-redenzione",
+    "classId": "paladin",
+    "name": "Giuramento di Redenzione",
+    "description": "Giuramento di Redenzione è una sottoclasse del Paladino presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "paladin-giuramento-di-gloria",
+    "classId": "paladin",
+    "name": "Giuramento di Gloria",
+    "description": "Giuramento di Gloria è una sottoclasse del Paladino presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "paladin-giuramento-dei-guardiani",
+    "classId": "paladin",
+    "name": "Giuramento dei Guardiani",
+    "description": "Giuramento dei Guardiani è una sottoclasse del Paladino presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "ranger-cacciatore",
+    "classId": "ranger",
+    "name": "Cacciatore",
+    "description": "Cacciatore è una sottoclasse del Ranger presentata in SRD.",
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "ranger-signore-delle-bestie",
+    "classId": "ranger",
+    "name": "Signore delle Bestie",
+    "description": "Signore delle Bestie è una sottoclasse del Ranger presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "ranger-cacciatore-delle-tenebre",
+    "classId": "ranger",
+    "name": "Cacciatore delle Tenebre",
+    "description": "Cacciatore delle Tenebre è una sottoclasse del Ranger presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "ranger-viandante-dellorizzonte",
+    "classId": "ranger",
+    "name": "Viandante dell'Orizzonte",
+    "description": "Viandante dell'Orizzonte è una sottoclasse del Ranger presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "ranger-uccisore-di-mostri",
+    "classId": "ranger",
+    "name": "Uccisore di Mostri",
+    "description": "Uccisore di Mostri è una sottoclasse del Ranger presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "ranger-viandante-fatato",
+    "classId": "ranger",
+    "name": "Viandante Fatato",
+    "description": "Viandante Fatato è una sottoclasse del Ranger presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "ranger-custode-degli-sciami",
+    "classId": "ranger",
+    "name": "Custode degli Sciami",
+    "description": "Custode degli Sciami è una sottoclasse del Ranger presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "rogue-furfante",
+    "classId": "rogue",
+    "name": "Furfante",
+    "description": "Furfante è una sottoclasse del Ladro presentata in SRD.",
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "rogue-assassino",
+    "classId": "rogue",
+    "name": "Assassino",
+    "description": "Assassino è una sottoclasse del Ladro presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "rogue-mistificatore-arcano",
+    "classId": "rogue",
+    "name": "Mistificatore Arcano",
+    "description": "Mistificatore Arcano è una sottoclasse del Ladro presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "rogue-inquisitivo",
+    "classId": "rogue",
+    "name": "Inquisitivo",
+    "description": "Inquisitivo è una sottoclasse del Ladro presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "rogue-pianificatore",
+    "classId": "rogue",
+    "name": "Pianificatore",
+    "description": "Pianificatore è una sottoclasse del Ladro presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "rogue-esploratore",
+    "classId": "rogue",
+    "name": "Esploratore",
+    "description": "Esploratore è una sottoclasse del Ladro presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "rogue-spadaccino",
+    "classId": "rogue",
+    "name": "Spadaccino",
+    "description": "Spadaccino è una sottoclasse del Ladro presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "rogue-fantasma",
+    "classId": "rogue",
+    "name": "Fantasma",
+    "description": "Fantasma è una sottoclasse del Ladro presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "rogue-lama-psichica",
+    "classId": "rogue",
+    "name": "Lama Psichica",
+    "description": "Lama Psichica è una sottoclasse del Ladro presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "sorcerer-discendenza-draconica",
+    "classId": "sorcerer",
+    "name": "Discendenza Draconica",
+    "description": "Discendenza Draconica è una sottoclasse del Stregone presentata in SRD.",
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "sorcerer-magia-selvaggia",
+    "classId": "sorcerer",
+    "name": "Magia Selvaggia",
+    "description": "Magia Selvaggia è una sottoclasse del Stregone presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "sorcerer-anima-divina",
+    "classId": "sorcerer",
+    "name": "Anima Divina",
+    "description": "Anima Divina è una sottoclasse del Stregone presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "sorcerer-magia-delle-ombre",
+    "classId": "sorcerer",
+    "name": "Magia delle Ombre",
+    "description": "Magia delle Ombre è una sottoclasse del Stregone presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "sorcerer-stregoneria-della-tempesta",
+    "classId": "sorcerer",
+    "name": "Stregoneria della Tempesta",
+    "description": "Stregoneria della Tempesta è una sottoclasse del Stregone presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "sorcerer-mente-aberrante",
+    "classId": "sorcerer",
+    "name": "Mente Aberrante",
+    "description": "Mente Aberrante è una sottoclasse del Stregone presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "sorcerer-anima-meccanica",
+    "classId": "sorcerer",
+    "name": "Anima Meccanica",
+    "description": "Anima Meccanica è una sottoclasse del Stregone presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "warlock-il-signore-fatato",
+    "classId": "warlock",
+    "name": "Il Signore Fatato",
+    "description": "Il Signore Fatato è una sottoclasse del Warlock presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "warlock-limmondo",
+    "classId": "warlock",
+    "name": "L'Immondo",
+    "description": "L'Immondo è una sottoclasse del Warlock presentata in SRD.",
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "warlock-il-grande-antico",
+    "classId": "warlock",
+    "name": "Il Grande Antico",
+    "description": "Il Grande Antico è una sottoclasse del Warlock presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "warlock-il-celestiale",
+    "classId": "warlock",
+    "name": "Il Celestiale",
+    "description": "Il Celestiale è una sottoclasse del Warlock presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "warlock-la-lama-del-sortilegio",
+    "classId": "warlock",
+    "name": "La Lama del Sortilegio",
+    "description": "La Lama del Sortilegio è una sottoclasse del Warlock presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "warlock-linsondabile",
+    "classId": "warlock",
+    "name": "L'Insondabile",
+    "description": "L'Insondabile è una sottoclasse del Warlock presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "warlock-il-genio",
+    "classId": "warlock",
+    "name": "Il Genio",
+    "description": "Il Genio è una sottoclasse del Warlock presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "wizard-scuola-di-abiurazione",
+    "classId": "wizard",
+    "name": "Scuola di Abiurazione",
+    "description": "Scuola di Abiurazione è una sottoclasse del Mago presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "wizard-scuola-di-ammaliamento",
+    "classId": "wizard",
+    "name": "Scuola di Ammaliamento",
+    "description": "Scuola di Ammaliamento è una sottoclasse del Mago presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "wizard-scuola-di-divinazione",
+    "classId": "wizard",
+    "name": "Scuola di Divinazione",
+    "description": "Scuola di Divinazione è una sottoclasse del Mago presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "wizard-scuola-di-evocazione",
+    "classId": "wizard",
+    "name": "Scuola di Evocazione",
+    "description": "Scuola di Evocazione è una sottoclasse del Mago presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "wizard-scuola-di-illusione",
+    "classId": "wizard",
+    "name": "Scuola di Illusione",
+    "description": "Scuola di Illusione è una sottoclasse del Mago presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "wizard-scuola-di-invocazione",
+    "classId": "wizard",
+    "name": "Scuola di Invocazione",
+    "description": "Scuola di Invocazione è una sottoclasse del Mago presentata in SRD.",
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "wizard-scuola-di-necromanzia",
+    "classId": "wizard",
+    "name": "Scuola di Necromanzia",
+    "description": "Scuola di Necromanzia è una sottoclasse del Mago presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "wizard-scuola-di-trasmutazione",
+    "classId": "wizard",
+    "name": "Scuola di Trasmutazione",
+    "description": "Scuola di Trasmutazione è una sottoclasse del Mago presentata in PHB.",
+    "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "wizard-magia-da-guerra",
+    "classId": "wizard",
+    "name": "Magia da Guerra",
+    "description": "Magia da Guerra è una sottoclasse del Mago presentata in XGE.",
+    "source": "XGE",
+    "isHidden": true
+  },
+  {
+    "id": "wizard-canto-della-lama",
+    "classId": "wizard",
+    "name": "Canto della Lama",
+    "description": "Canto della Lama è una sottoclasse del Mago presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "wizard-ordine-degli-scribi",
+    "classId": "wizard",
+    "name": "Ordine degli Scribi",
+    "description": "Ordine degli Scribi è una sottoclasse del Mago presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "artificer-alchimista",
+    "classId": "artificer",
+    "name": "Alchimista",
+    "description": "Alchimista è una sottoclasse del Artificiere presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "artificer-armorer",
+    "classId": "artificer",
+    "name": "Armorer",
+    "description": "Armorer è una sottoclasse del Artificiere presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "artificer-artigliere",
+    "classId": "artificer",
+    "name": "Artigliere",
+    "description": "Artigliere è una sottoclasse del Artificiere presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  },
+  {
+    "id": "artificer-fabbro-da-battaglia",
+    "classId": "artificer",
+    "name": "Fabbro da Battaglia",
+    "description": "Fabbro da Battaglia è una sottoclasse del Artificiere presentata in TCE.",
+    "source": "TCE",
+    "isHidden": true
+  }
+]

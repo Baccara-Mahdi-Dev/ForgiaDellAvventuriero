@@ -9,7 +9,8 @@
     "source": "SRD",
     "armorType": "clothing",
     "armorClass": 10,
-    "dexterityBonus": "full"
+    "dexterityBonus": "full",
+    "isHidden": false
   },
   {
     "id": "padded",
@@ -22,7 +23,8 @@
     "armorType": "light",
     "armorClass": 11,
     "dexterityBonus": "full",
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "leather",
@@ -34,7 +36,8 @@
     "source": "SRD",
     "armorType": "light",
     "armorClass": 11,
-    "dexterityBonus": "full"
+    "dexterityBonus": "full",
+    "isHidden": false
   },
   {
     "id": "studded-leather",
@@ -46,7 +49,8 @@
     "source": "SRD",
     "armorType": "light",
     "armorClass": 12,
-    "dexterityBonus": "full"
+    "dexterityBonus": "full",
+    "isHidden": false
   },
   {
     "id": "hide",
@@ -58,7 +62,8 @@
     "source": "SRD",
     "armorType": "medium",
     "armorClass": 12,
-    "dexterityBonus": "max-2"
+    "dexterityBonus": "max-2",
+    "isHidden": false
   },
   {
     "id": "chain-shirt",
@@ -70,7 +75,8 @@
     "source": "SRD",
     "armorType": "medium",
     "armorClass": 13,
-    "dexterityBonus": "max-2"
+    "dexterityBonus": "max-2",
+    "isHidden": false
   },
   {
     "id": "scale-mail",
@@ -83,7 +89,8 @@
     "armorType": "medium",
     "armorClass": 14,
     "dexterityBonus": "max-2",
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "breastplate",
@@ -95,7 +102,8 @@
     "source": "SRD",
     "armorType": "medium",
     "armorClass": 14,
-    "dexterityBonus": "max-2"
+    "dexterityBonus": "max-2",
+    "isHidden": false
   },
   {
     "id": "half-plate",
@@ -108,7 +116,8 @@
     "armorType": "medium",
     "armorClass": 15,
     "dexterityBonus": "max-2",
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "ring-mail",
@@ -121,7 +130,8 @@
     "armorType": "heavy",
     "armorClass": 14,
     "dexterityBonus": "none",
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "chain-mail",
@@ -135,7 +145,8 @@
     "armorClass": 16,
     "dexterityBonus": "none",
     "strengthRequirement": 13,
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "splint",
@@ -149,7 +160,8 @@
     "armorClass": 17,
     "dexterityBonus": "none",
     "strengthRequirement": 15,
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "plate",
@@ -163,7 +175,8 @@
     "armorClass": 18,
     "dexterityBonus": "none",
     "strengthRequirement": 15,
-    "stealthDisadvantage": true
+    "stealthDisadvantage": true,
+    "isHidden": false
   },
   {
     "id": "shield",
@@ -175,9 +188,9 @@
     "source": "SRD",
     "armorType": "shield",
     "armorClass": 2,
-    "dexterityBonus": "none"
+    "dexterityBonus": "none",
+    "isHidden": false
   },
-
   {
     "id": "club",
     "name": "Randello",
@@ -188,8 +201,11 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "contundenti",
-    "properties": ["leggera"],
-    "proficiency": "simple"
+    "properties": [
+      "leggera"
+    ],
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "unarmed-strike",
@@ -203,8 +219,11 @@
     "damage": "1d4",
     "damageType": "contundenti",
     "properties": [],
-    "tags": ["unarmed"],
-    "proficiency": "improvised"
+    "tags": [
+      "unarmed"
+    ],
+    "proficiency": "improvised",
+    "isHidden": false
   },
   {
     "id": "dagger",
@@ -216,9 +235,14 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "perforanti",
-    "properties": ["accurata", "leggera", "lancio 6/18 m"],
+    "properties": [
+      "accurata",
+      "leggera",
+      "lancio 6/18 m"
+    ],
     "finesse": true,
-    "proficiency": "simple"
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "greatclub",
@@ -230,8 +254,11 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "contundenti",
-    "properties": ["a due mani"],
-    "proficiency": "simple"
+    "properties": [
+      "a due mani"
+    ],
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "handaxe",
@@ -243,8 +270,12 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "taglienti",
-    "properties": ["leggera", "lancio 6/18 m"],
-    "proficiency": "simple"
+    "properties": [
+      "leggera",
+      "lancio 6/18 m"
+    ],
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "javelin",
@@ -256,8 +287,11 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "perforanti",
-    "properties": ["lancio 9/36 m"],
-    "proficiency": "simple"
+    "properties": [
+      "lancio 9/36 m"
+    ],
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "light-hammer",
@@ -269,8 +303,12 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "contundenti",
-    "properties": ["leggera", "lancio 6/18 m"],
-    "proficiency": "simple"
+    "properties": [
+      "leggera",
+      "lancio 6/18 m"
+    ],
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "mace",
@@ -283,7 +321,8 @@
     "damage": "1d6",
     "damageType": "contundenti",
     "properties": [],
-    "proficiency": "simple"
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "quarterstaff",
@@ -295,8 +334,11 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "contundenti",
-    "properties": ["versatile 1d8"],
-    "proficiency": "simple"
+    "properties": [
+      "versatile 1d8"
+    ],
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "sickle",
@@ -308,8 +350,11 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "taglienti",
-    "properties": ["leggera"],
-    "proficiency": "simple"
+    "properties": [
+      "leggera"
+    ],
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "spear",
@@ -321,8 +366,12 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "perforanti",
-    "properties": ["lancio 6/18 m", "versatile 1d8"],
-    "proficiency": "simple"
+    "properties": [
+      "lancio 6/18 m",
+      "versatile 1d8"
+    ],
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "light-crossbow",
@@ -334,9 +383,14 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "perforanti",
-    "properties": ["munizioni 24/96 m", "ricarica", "a due mani"],
+    "properties": [
+      "munizioni 24/96 m",
+      "ricarica",
+      "a due mani"
+    ],
     "ranged": true,
-    "proficiency": "simple"
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "dart",
@@ -348,10 +402,14 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "perforanti",
-    "properties": ["accurata", "lancio 6/18 m"],
+    "properties": [
+      "accurata",
+      "lancio 6/18 m"
+    ],
     "ranged": true,
     "finesse": true,
-    "proficiency": "simple"
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "shortbow",
@@ -363,9 +421,13 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "perforanti",
-    "properties": ["munizioni 24/96 m", "a due mani"],
+    "properties": [
+      "munizioni 24/96 m",
+      "a due mani"
+    ],
     "ranged": true,
-    "proficiency": "simple"
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "sling",
@@ -377,9 +439,12 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "contundenti",
-    "properties": ["munizioni 9/36 m"],
+    "properties": [
+      "munizioni 9/36 m"
+    ],
     "ranged": true,
-    "proficiency": "simple"
+    "proficiency": "simple",
+    "isHidden": false
   },
   {
     "id": "battleaxe",
@@ -391,8 +456,11 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "taglienti",
-    "properties": ["versatile 1d10"],
-    "proficiency": "martial"
+    "properties": [
+      "versatile 1d10"
+    ],
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "flail",
@@ -405,7 +473,8 @@
     "damage": "1d8",
     "damageType": "contundenti",
     "properties": [],
-    "proficiency": "martial"
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "glaive",
@@ -417,8 +486,13 @@
     "source": "SRD",
     "damage": "1d10",
     "damageType": "taglienti",
-    "properties": ["pesante", "portata", "a due mani"],
-    "proficiency": "martial"
+    "properties": [
+      "pesante",
+      "portata",
+      "a due mani"
+    ],
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "greataxe",
@@ -430,8 +504,12 @@
     "source": "SRD",
     "damage": "1d12",
     "damageType": "taglienti",
-    "properties": ["pesante", "a due mani"],
-    "proficiency": "martial"
+    "properties": [
+      "pesante",
+      "a due mani"
+    ],
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "greatsword",
@@ -443,8 +521,12 @@
     "source": "SRD",
     "damage": "2d6",
     "damageType": "taglienti",
-    "properties": ["pesante", "a due mani"],
-    "proficiency": "martial"
+    "properties": [
+      "pesante",
+      "a due mani"
+    ],
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "halberd",
@@ -456,8 +538,13 @@
     "source": "SRD",
     "damage": "1d10",
     "damageType": "taglienti",
-    "properties": ["pesante", "portata", "a due mani"],
-    "proficiency": "martial"
+    "properties": [
+      "pesante",
+      "portata",
+      "a due mani"
+    ],
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "lance",
@@ -469,8 +556,12 @@
     "source": "SRD",
     "damage": "1d12",
     "damageType": "perforanti",
-    "properties": ["portata", "speciale"],
-    "proficiency": "martial"
+    "properties": [
+      "portata",
+      "speciale"
+    ],
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "longsword",
@@ -482,8 +573,11 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "taglienti",
-    "properties": ["versatile 1d10"],
-    "proficiency": "martial"
+    "properties": [
+      "versatile 1d10"
+    ],
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "maul",
@@ -495,8 +589,12 @@
     "source": "SRD",
     "damage": "2d6",
     "damageType": "contundenti",
-    "properties": ["pesante", "a due mani"],
-    "proficiency": "martial"
+    "properties": [
+      "pesante",
+      "a due mani"
+    ],
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "morningstar",
@@ -509,7 +607,8 @@
     "damage": "1d8",
     "damageType": "perforanti",
     "properties": [],
-    "proficiency": "martial"
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "pike",
@@ -521,8 +620,13 @@
     "source": "SRD",
     "damage": "1d10",
     "damageType": "perforanti",
-    "properties": ["pesante", "portata", "a due mani"],
-    "proficiency": "martial"
+    "properties": [
+      "pesante",
+      "portata",
+      "a due mani"
+    ],
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "rapier",
@@ -534,9 +638,12 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "perforanti",
-    "properties": ["accurata"],
+    "properties": [
+      "accurata"
+    ],
     "finesse": true,
-    "proficiency": "martial"
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "scimitar",
@@ -548,9 +655,13 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "taglienti",
-    "properties": ["accurata", "leggera"],
+    "properties": [
+      "accurata",
+      "leggera"
+    ],
     "finesse": true,
-    "proficiency": "martial"
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "shortsword",
@@ -562,9 +673,13 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "perforanti",
-    "properties": ["accurata", "leggera"],
+    "properties": [
+      "accurata",
+      "leggera"
+    ],
     "finesse": true,
-    "proficiency": "martial"
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "trident",
@@ -576,8 +691,12 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "perforanti",
-    "properties": ["lancio 6/18 m", "versatile 1d8"],
-    "proficiency": "martial"
+    "properties": [
+      "lancio 6/18 m",
+      "versatile 1d8"
+    ],
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "war-pick",
@@ -590,7 +709,8 @@
     "damage": "1d8",
     "damageType": "perforanti",
     "properties": [],
-    "proficiency": "martial"
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "warhammer",
@@ -602,8 +722,11 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "contundenti",
-    "properties": ["versatile 1d10"],
-    "proficiency": "martial"
+    "properties": [
+      "versatile 1d10"
+    ],
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "whip",
@@ -615,9 +738,13 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "taglienti",
-    "properties": ["accurata", "portata"],
+    "properties": [
+      "accurata",
+      "portata"
+    ],
     "finesse": true,
-    "proficiency": "martial"
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "blowgun",
@@ -629,9 +756,13 @@
     "source": "SRD",
     "damage": "1",
     "damageType": "perforante",
-    "properties": ["munizioni 7,5/30 m", "ricarica"],
+    "properties": [
+      "munizioni 7,5/30 m",
+      "ricarica"
+    ],
     "ranged": true,
-    "proficiency": "martial"
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "hand-crossbow",
@@ -643,9 +774,14 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "perforanti",
-    "properties": ["munizioni 9/36 m", "leggera", "ricarica"],
+    "properties": [
+      "munizioni 9/36 m",
+      "leggera",
+      "ricarica"
+    ],
     "ranged": true,
-    "proficiency": "martial"
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "heavy-crossbow",
@@ -657,9 +793,15 @@
     "source": "SRD",
     "damage": "1d10",
     "damageType": "perforanti",
-    "properties": ["munizioni 30/120 m", "pesante", "ricarica", "a due mani"],
+    "properties": [
+      "munizioni 30/120 m",
+      "pesante",
+      "ricarica",
+      "a due mani"
+    ],
     "ranged": true,
-    "proficiency": "martial"
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "longbow",
@@ -671,9 +813,14 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "perforanti",
-    "properties": ["munizioni 45/180 m", "pesante", "a due mani"],
+    "properties": [
+      "munizioni 45/180 m",
+      "pesante",
+      "a due mani"
+    ],
     "ranged": true,
-    "proficiency": "martial"
+    "proficiency": "martial",
+    "isHidden": false
   },
   {
     "id": "net",
@@ -685,11 +832,14 @@
     "source": "SRD",
     "damage": "—",
     "damageType": "—",
-    "properties": ["speciale", "lancio 1,5/4,5 m"],
+    "properties": [
+      "speciale",
+      "lancio 1,5/4,5 m"
+    ],
     "ranged": true,
-    "proficiency": "martial"
+    "proficiency": "martial",
+    "isHidden": false
   },
-
   {
     "id": "abacus",
     "name": "Abaco",
@@ -697,7 +847,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "2 mo",
     "weightKg": 0.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "acid-vial",
@@ -706,7 +857,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "25 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "alchemists-fire",
@@ -715,7 +867,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "50 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "arrows-20",
@@ -724,7 +877,8 @@
     "group": "Munizioni",
     "cost": "1 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "bolts-20",
@@ -733,7 +887,8 @@
     "group": "Munizioni",
     "cost": "1 mo",
     "weightKg": 0.7,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "sling-bullets-20",
@@ -742,7 +897,8 @@
     "group": "Munizioni",
     "cost": "4 mr",
     "weightKg": 0.7,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "antitoxin",
@@ -751,7 +907,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "50 mo",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "arcane-crystal",
@@ -760,7 +917,8 @@
     "group": "Focus da incantatore",
     "cost": "10 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "arcane-orb",
@@ -769,7 +927,8 @@
     "group": "Focus da incantatore",
     "cost": "20 mo",
     "weightKg": 1.4,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "arcane-wand",
@@ -778,7 +937,8 @@
     "group": "Focus da incantatore",
     "cost": "10 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "backpack",
@@ -787,7 +947,8 @@
     "group": "Contenitori",
     "cost": "2 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "ball-bearings",
@@ -796,7 +957,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 mo",
     "weightKg": 0.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "bedroll",
@@ -805,7 +967,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 mo",
     "weightKg": 3.2,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "bell",
@@ -814,7 +977,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 mo",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "blanket",
@@ -823,7 +987,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 ma",
     "weightKg": 1.4,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "block-tackle",
@@ -832,7 +997,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "book",
@@ -841,7 +1007,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "25 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "bottle-glass",
@@ -850,7 +1017,8 @@
     "group": "Contenitori",
     "cost": "2 mo",
     "weightKg": 0.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "caltrops",
@@ -859,7 +1027,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 mo",
     "weightKg": 0.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "candle",
@@ -868,7 +1037,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 mr",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "chain-3m",
@@ -877,7 +1047,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 mo",
     "weightKg": 4.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "chalk",
@@ -886,7 +1057,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 mr",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "chest",
@@ -895,7 +1067,8 @@
     "group": "Contenitori",
     "cost": "5 mo",
     "weightKg": 11.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "climbers-kit",
@@ -904,7 +1077,8 @@
     "group": "Kit",
     "cost": "25 mo",
     "weightKg": 5.4,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "component-pouch",
@@ -913,7 +1087,8 @@
     "group": "Focus da incantatore",
     "cost": "25 mo",
     "weightKg": 0.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "crowbar",
@@ -922,7 +1097,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "2 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "fishing-tackle",
@@ -931,7 +1107,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 mo",
     "weightKg": 1.8,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "grappling-hook",
@@ -940,7 +1117,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "2 mo",
     "weightKg": 1.8,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "hammer",
@@ -949,7 +1127,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 mo",
     "weightKg": 1.4,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "healers-kit",
@@ -958,7 +1137,8 @@
     "group": "Kit",
     "cost": "5 mo",
     "weightKg": 1.4,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "holy-amulet",
@@ -967,7 +1147,8 @@
     "group": "Focus da incantatore",
     "cost": "5 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "holy-water",
@@ -976,7 +1157,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "25 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "hourglass",
@@ -985,7 +1167,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "25 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "hunting-trap",
@@ -994,7 +1177,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 mo",
     "weightKg": 11.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "ink",
@@ -1003,7 +1187,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "10 mo",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "ladder-3m",
@@ -1012,7 +1197,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 ma",
     "weightKg": 11.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "lantern-hooded",
@@ -1021,7 +1207,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 mo",
     "weightKg": 0.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "lock",
@@ -1030,7 +1217,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "10 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "manacles",
@@ -1039,7 +1227,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "2 mo",
     "weightKg": 2.7,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "mess-kit",
@@ -1048,7 +1237,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "2 ma",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "mirror-steel",
@@ -1057,7 +1247,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 mo",
     "weightKg": 0.2,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "oil-flask",
@@ -1066,7 +1257,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 ma",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "pick-miners",
@@ -1075,7 +1267,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "2 mo",
     "weightKg": 4.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "piton",
@@ -1084,7 +1277,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 mr",
     "weightKg": 0.1,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "poison-basic",
@@ -1093,7 +1287,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "100 mo",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "pole-3m",
@@ -1102,7 +1297,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 mr",
     "weightKg": 3.2,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "potion-healing",
@@ -1111,7 +1307,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "50 mo",
     "weightKg": 0.2,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "quiver",
@@ -1120,7 +1317,8 @@
     "group": "Contenitori",
     "cost": "1 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "rations",
@@ -1129,7 +1327,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 ma",
     "weightKg": 0.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "robes",
@@ -1138,7 +1337,8 @@
     "group": "Abiti",
     "cost": "1 mo",
     "weightKg": 1.8,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "rope-hemp-15m",
@@ -1147,7 +1347,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 mo",
     "weightKg": 4.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "rope-silk-15m",
@@ -1156,7 +1357,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "10 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "sack",
@@ -1165,7 +1367,8 @@
     "group": "Contenitori",
     "cost": "1 mr",
     "weightKg": 0.2,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "shovel",
@@ -1174,7 +1377,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "2 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "spellbook",
@@ -1183,7 +1387,8 @@
     "group": "Focus da incantatore",
     "cost": "50 mo",
     "weightKg": 1.4,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "tent-two",
@@ -1192,7 +1397,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "2 mo",
     "weightKg": 9.1,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "tinderbox",
@@ -1201,7 +1407,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 ma",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "torch",
@@ -1210,7 +1417,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 mr",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "waterskin",
@@ -1219,7 +1427,8 @@
     "group": "Contenitori",
     "cost": "2 ma",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "blowgun-needles-50",
@@ -1228,7 +1437,8 @@
     "group": "Munizioni",
     "cost": "1 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "arcane-rod",
@@ -1237,7 +1447,8 @@
     "group": "Focus da incantatore",
     "cost": "10 mo",
     "weightKg": 0.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "arcane-staff",
@@ -1246,7 +1457,8 @@
     "group": "Focus da incantatore",
     "cost": "5 mo",
     "weightKg": 1.8,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "barrel",
@@ -1255,7 +1467,8 @@
     "group": "Contenitori",
     "cost": "2 mo",
     "weightKg": 31.8,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "basket",
@@ -1264,7 +1477,8 @@
     "group": "Contenitori",
     "cost": "4 ma",
     "weightKg": 0.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "bucket",
@@ -1273,7 +1487,8 @@
     "group": "Contenitori",
     "cost": "5 mr",
     "weightKg": 0.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "case-bolts",
@@ -1282,7 +1497,8 @@
     "group": "Contenitori",
     "cost": "1 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "case-map-scroll",
@@ -1291,7 +1507,8 @@
     "group": "Contenitori",
     "cost": "1 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "clothes-costume",
@@ -1300,7 +1517,8 @@
     "group": "Abiti",
     "cost": "5 mo",
     "weightKg": 1.8,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "clothes-fine",
@@ -1309,7 +1527,8 @@
     "group": "Abiti",
     "cost": "15 mo",
     "weightKg": 2.7,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "clothes-traveler",
@@ -1318,7 +1537,8 @@
     "group": "Abiti",
     "cost": "2 mo",
     "weightKg": 1.8,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "druidic-mistletoe",
@@ -1327,7 +1547,8 @@
     "group": "Focus da incantatore",
     "cost": "1 mo",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "druidic-totem",
@@ -1336,7 +1557,8 @@
     "group": "Focus da incantatore",
     "cost": "1 mo",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "druidic-staff",
@@ -1345,7 +1567,8 @@
     "group": "Focus da incantatore",
     "cost": "5 mo",
     "weightKg": 1.8,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "druidic-yew-wand",
@@ -1354,7 +1577,8 @@
     "group": "Focus da incantatore",
     "cost": "10 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "flask-tankard",
@@ -1363,7 +1587,8 @@
     "group": "Contenitori",
     "cost": "2 mr",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "sledgehammer",
@@ -1372,7 +1597,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "2 mo",
     "weightKg": 4.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "holy-emblem",
@@ -1381,7 +1607,8 @@
     "group": "Focus da incantatore",
     "cost": "5 mo",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "holy-reliquary",
@@ -1390,7 +1617,8 @@
     "group": "Focus da incantatore",
     "cost": "5 mo",
     "weightKg": 0.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "ink-pen",
@@ -1399,7 +1627,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "2 mr",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "jug-pitcher",
@@ -1408,7 +1637,8 @@
     "group": "Contenitori",
     "cost": "2 mr",
     "weightKg": 1.8,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "lamp",
@@ -1417,7 +1647,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 ma",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "lantern-bullseye",
@@ -1426,7 +1657,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "10 mo",
     "weightKg": 0.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "magnifying-glass",
@@ -1435,7 +1667,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "100 mo",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "paper-sheet",
@@ -1444,7 +1677,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "2 ma",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "parchment-sheet",
@@ -1453,7 +1687,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 ma",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "perfume-vial",
@@ -1462,7 +1697,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 mo",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "pot-iron",
@@ -1471,7 +1707,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "2 mo",
     "weightKg": 4.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "pouch",
@@ -1480,7 +1717,8 @@
     "group": "Contenitori",
     "cost": "5 ma",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "portable-ram",
@@ -1489,7 +1727,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "4 mo",
     "weightKg": 15.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "merchant-scale",
@@ -1498,7 +1737,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 mo",
     "weightKg": 1.4,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "sealing-wax",
@@ -1507,7 +1747,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 ma",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "signal-whistle",
@@ -1516,7 +1757,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 mr",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "signet-ring",
@@ -1525,7 +1767,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "5 mo",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "soap",
@@ -1534,7 +1777,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "2 mr",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "iron-spikes-10",
@@ -1543,7 +1787,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "spyglass",
@@ -1552,7 +1797,8 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1.000 mo",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "vial",
@@ -1561,7 +1807,8 @@
     "group": "Contenitori",
     "cost": "1 mo",
     "weightKg": 0,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "whetstone",
@@ -1570,9 +1817,9 @@
     "group": "Equipaggiamento d'avventura",
     "cost": "1 mr",
     "weightKg": 0.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
-
   {
     "id": "alchemist-supplies",
     "name": "Scorte da alchimista",
@@ -1580,7 +1827,8 @@
     "group": "Strumenti da artigiano",
     "cost": "50 mo",
     "weightKg": 3.6,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "brewer-supplies",
@@ -1589,7 +1837,8 @@
     "group": "Strumenti da artigiano",
     "cost": "20 mo",
     "weightKg": 4.1,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "calligrapher-supplies",
@@ -1598,7 +1847,8 @@
     "group": "Strumenti da artigiano",
     "cost": "10 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "carpenter-tools",
@@ -1607,7 +1857,8 @@
     "group": "Strumenti da artigiano",
     "cost": "8 mo",
     "weightKg": 2.7,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "cartographer-tools",
@@ -1616,7 +1867,8 @@
     "group": "Strumenti da artigiano",
     "cost": "15 mo",
     "weightKg": 2.7,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "cobbler-tools",
@@ -1625,7 +1877,8 @@
     "group": "Strumenti da artigiano",
     "cost": "5 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "cook-utensils",
@@ -1634,7 +1887,8 @@
     "group": "Strumenti da artigiano",
     "cost": "1 mo",
     "weightKg": 3.6,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "glassblower-tools",
@@ -1643,7 +1897,8 @@
     "group": "Strumenti da artigiano",
     "cost": "30 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "jeweler-tools",
@@ -1652,7 +1907,8 @@
     "group": "Strumenti da artigiano",
     "cost": "25 mo",
     "weightKg": 0.9,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "leatherworker-tools",
@@ -1661,7 +1917,8 @@
     "group": "Strumenti da artigiano",
     "cost": "5 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "mason-tools",
@@ -1670,7 +1927,8 @@
     "group": "Strumenti da artigiano",
     "cost": "10 mo",
     "weightKg": 3.6,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "painter-supplies",
@@ -1679,7 +1937,8 @@
     "group": "Strumenti da artigiano",
     "cost": "10 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "potter-tools",
@@ -1688,7 +1947,8 @@
     "group": "Strumenti da artigiano",
     "cost": "10 mo",
     "weightKg": 1.4,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "smith-tools",
@@ -1697,7 +1957,8 @@
     "group": "Strumenti da artigiano",
     "cost": "20 mo",
     "weightKg": 3.6,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "tinker-tools",
@@ -1706,7 +1967,8 @@
     "group": "Strumenti da artigiano",
     "cost": "50 mo",
     "weightKg": 4.5,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "weaver-tools",
@@ -1715,7 +1977,8 @@
     "group": "Strumenti da artigiano",
     "cost": "1 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   },
   {
     "id": "woodcarver-tools",
@@ -1724,6 +1987,7 @@
     "group": "Strumenti da artigiano",
     "cost": "1 mo",
     "weightKg": 2.3,
-    "source": "SRD"
+    "source": "SRD",
+    "isHidden": false
   }
 ]

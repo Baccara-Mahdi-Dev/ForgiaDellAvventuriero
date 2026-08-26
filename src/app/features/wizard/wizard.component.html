@@ -1,7 +1,7 @@
 <header class="topbar no-print">
   <a routerLink="/" class="brand"
     ><img src="/brand/logo-d20-hammer.png" alt="" width="34" height="34" /> Forgia
-    dell’avventuriero</a
+    dell'avventuriero</a
   >
   <div class="save">
     <i></i
@@ -44,37 +44,68 @@
     </div>
     @switch (step()) {
       @case ('caratteristiche') {
-        <section>
+        <section >
           <p class="lead">
             Scegli come distribuire il potenziale del tuo personaggio. I bonus della discendenza
             verranno applicati in seguito.
           </p>
-          <div class="segmented" aria-label="Metodo caratteristiche">
-            <button
-              [class.active]="store.draft().abilityMethod === 'point-buy'"
-              (click)="setMethod('point-buy')"
+          <div class="flex w-full flex-wrap items-center sm:justify-between sm:gap-2">
+            <div
+              class="segmented !mb-3 w-full sm:w-auto"
+              aria-label="Metodo caratteristiche"
             >
-              Point buy</button
-            ><button
-              [class.active]="store.draft().abilityMethod === 'standard'"
-              (click)="setMethod('standard')"
+              <button
+                class="min-w-0 flex-1 sm:flex-none"
+                [class.active]="store.draft().abilityMethod === AbilityMethod.POINT"
+                (click)="setMethod(AbilityMethod.POINT)"
+              >
+                Point buy</button
+              ><button
+                class="min-w-0 flex-1 sm:flex-none"
+                [class.active]="store.draft().abilityMethod === AbilityMethod.STANDARD"
+                (click)="setMethod(AbilityMethod.STANDARD)"
+              >
+                Array standard</button
+              ><button
+                class="min-w-0 flex-1 sm:flex-none"
+                [class.active]="store.draft().abilityMethod === AbilityMethod.CUSTOM"
+                (click)="setMethod(AbilityMethod.CUSTOM)"
+              >
+                Personalizzato
+              </button>
+            </div>
+            <div
+              class="mb-3 flex w-full items-center justify-center gap-2 sm:w-auto sm:justify-end sm:pr-3"
+              aria-label="Modifiche rapide"
             >
-              Array standard</button
-            ><button
-              [class.active]="store.draft().abilityMethod === 'custom'"
-              (click)="setMethod('custom')"
-            >
-              Personalizzato
-            </button>
+              <button
+                class="inline-flex items-center justify-center gap-2 rounded border border-[var(--ember)] bg-[var(--paper-deep)] px-3 py-2 text-[var(--ember)]"
+                (click)="store.randomPoint(store.draft().abilityMethod)"
+              >
+                <ng-icon name="iconoirShuffle" />
+                Random
+              </button>
+              <button
+                class="inline-flex items-center justify-center gap-2 rounded border border-[var(--danger)] bg-[var(--danger-soft)] px-3 py-2 text-[var(--danger)]"
+                (click)="store.resetAll()"
+              >
+                <ng-icon name="iconoirUndoAction" />
+                Azzera
+              </button>
+            </div>
           </div>
-          @if (store.draft().abilityMethod === 'point-buy') {
+          @if (store.draft().abilityMethod === AbilityMethod.POINT) {
             <div class="budget">
               <div>
                 <small>Punti spesi</small><strong>{{ store.pointsSpent() }} <i>/ 27</i></strong>
               </div>
-              <progress max="27" [value]="store.pointsSpent()"></progress
-              ><button (click)="store.randomPointBuy()">↻ Genera</button>
-            </div>
+              <progress 
+                min="0" low="12" high="18" max="27" [value]="store.pointsSpent()"
+                [class.danger]="store.pointsSpent() < 12"
+                [class.warning]="store.pointsSpent() >= 12 && store.pointsSpent() < 18"
+                [class.success]="store.pointsSpent() >= 18">
+              ></progress>
+            </div>             
           }
           <div class="abilities">
             @for (ability of abilities; track ability.key) {
@@ -85,12 +116,21 @@
                 <span>{{ ability.short }}</span>
                 <h3>{{ ability.label }}</h3>
                 <div class="stepper">
-                  <button (click)="score(ability.key, -1)" aria-label="Riduci {{ ability.label }}">
-                    −</button
-                  ><strong>{{ store.draft().abilities[ability.key] }}</strong
-                  ><button (click)="score(ability.key, 1)" aria-label="Aumenta {{ ability.label }}">
-                    +
-                  </button>
+                  <button 
+                    (click)="handleClick(ability.key, -1)"
+                    (mousedown)="startHold(ability.key, -1)"
+                    (mouseup)="endHold()"
+                    (mouseleave)="endHold()"
+                    aria-label="Riduci {{ ability.label }}"
+                  >-</button>
+                  <strong>{{ store.draft().abilities[ability.key] }}</strong>
+                  <button 
+                    (click)="handleClick(ability.key, 1)"
+                    (mousedown)="startHold(ability.key, 1)"
+                    (mouseup)="endHold()"
+                    (mouseleave)="endHold()"
+                    aria-label="Aumenta {{ ability.label }}"
+                  >+</button>
                 </div>
                 <small>Modificatore {{ mod(store.derived().modifiers[ability.key]) }}</small>
               </article>
@@ -124,11 +164,24 @@
                 </div>
                 <span>SAN</span>
                 <h3>Sanità mentale</h3>
-                <div class="stepper">
-                  <button (click)="scoreSanity(-1)" aria-label="Riduci Sanità mentale">−</button>
-                  <strong>{{ store.derived().sanityScore }}</strong>
-                  <button (click)="scoreSanity(1)" aria-label="Aumenta Sanità mentale">+</button>
+                  <div class="stepper">
+                    <button
+                      (click)="handleSanityClick(-1)"
+                      (mousedown)="startSanityHold(-1)"
+                      (mouseup)="endHold()"
+                      (mouseleave)="endHold()"
+                      aria-label="Riduci Sanità mentale"
+                    >-</button>
+                    <strong>{{ store.draft().sanityScore ?? 8 }}</strong>
+                    <button
+                      (click)="handleSanityClick(1)"
+                      (mousedown)="startSanityHold(1)"
+                      (mouseup)="endHold()"
+                      (mouseleave)="endHold()"
+                      aria-label="Aumenta Sanità mentale"
+                    >+</button>
                 </div>
+
                 <small>Modificatore {{ mod(store.derived().sanityModifier ?? 0) }}</small>
               </article>
             }
@@ -149,7 +202,22 @@
                 (click)="selectAncestry(item.id)"
               >
                 <span class="source">{{ item.source }}</span>
-                <div class="option-icon">{{ item.name[0] }}</div>
+                <div
+                  tuiAvatar
+                  class="option-icon"
+                  size="xl"
+                  [tuiAvatar]="item.name[0]"
+                  [tuiSkeleton]="!loadedAncestryImages().has(item.id)"
+                >
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    [alt]="item.name"
+                    [src]="'assets/' + item.id + '.jpg'"
+                    (load)="markAncestryImageLoaded(item.id)"
+                    (error)="markAncestryImageLoaded(item.id)"
+                  />
+                </div>
                 <h3>{{ item.name }}</h3>
                 <p>{{ item.description }}</p>
                 <strong>{{
@@ -213,6 +281,7 @@
                       (click)="toggleAncestrySkill(skill.id)"
                     >
                       <strong>{{ skill.name }}</strong>
+                      <small>{{ skillAbilityShort(skill.id) }}</small>
                     </button>
                   }
                 }
@@ -252,47 +321,38 @@
           </p>
           <div class="option-grid classes">
             @for (item of store.classes; track item.id) {
-              <button
-                class="option"
-                [class.selected]="store.draft().classId === item.id"
-                [class.recommended]="isClassRecommended(item.id)"
-                (click)="selectClass(item.id)"
-              >
-                <span class="source">{{ item.source }}</span>
-                @if (isClassRecommended(item.id)) {
-                  <span
-                    class="class-recommendation"
-                    role="img"
-                    aria-label="Classe consigliata in base alle caratteristiche"
-                    title="Classe consigliata"
-                    ><ng-icon [svg]="recommendationIcon" size="31px"></ng-icon
-                  ></span>
-                }
-                <div class="die hit-die">
-                  <ng-icon [svg]="diceIcon(item.hitDie)" size="26px"></ng-icon>
-                  <span
-                    >Dado vita <strong>d{{ item.hitDie }}</strong></span
-                  >
-                </div>
-                <h3>{{ item.name }}</h3>
-                <p>{{ item.description }}</p>
-                <small
-                  >Caratteristica primaria: {{ item.primary.toUpperCase() }} · TS
-                  {{ item.saves.join(', ').toUpperCase() }}</small
+                <button
+                  class="option"
+                  [class.selected]="store.draft().classId === item.id"
+                  [class.recommended]="isClassRecommended(item.id)"
+                  (click)="selectClass(item.id)"
                 >
-              </button>
+                  <span class="source">{{ item.source }}</span>
+                  @if (isClassRecommended(item.id)) {
+                    <span
+                      class="class-recommendation"
+                      role="img"
+                      aria-label="Classe consigliata in base alle caratteristiche"
+                      title="Classe consigliata"
+                      ><ng-icon [svg]="recommendationIcon" size="31px"></ng-icon
+                    ></span>
+                  }
+                  <div class="die hit-die">
+                    <ng-icon [svg]="diceIcon(item.hitDie)" size="26px"></ng-icon>
+                    <span
+                      >Dado vita <strong>d{{ item.hitDie }}</strong></span
+                    >
+                  </div>
+                  <h3>{{ item.name }}</h3>
+                  <p>{{ item.description }}</p>
+                  <small
+                    >Caratteristica primaria: {{ item.primary.toUpperCase() }} · TS
+                    {{ item.saves.join(', ').toUpperCase() }}</small
+                  >
+                </button>
             }
           </div>
           @if (store.selectedClass()) {
-            <app-class-progression
-              [wizardStep]="'classe'"
-              [klass]="store.selectedClass()!"
-              [level]="store.draft().level"
-              [subclassId]="store.draft().subclassId"
-              [selections]="store.draft().classFeatureChoices ?? {}"
-              (subclassChange)="setSubclass($event)"
-              (selectionsChange)="setClassFeatureChoices($event)"
-            />
             <div class="choice-panel">
               <div>
                 <p class="kicker">Competenze di classe</p>
@@ -309,7 +369,7 @@
                       [class.selected]="store.draft().classSkillProficiencies?.includes(skill.id)"
                       (click)="toggleClassSkill(skill.id)"
                     >
-                      {{ skill.name }} <small>{{ skill.ability.toUpperCase() }}</small>
+                      {{ skill.name }} <small>{{ skillAbilityShort(skill.id) }}</small>
                     </button>
                   }
                 }
@@ -321,7 +381,7 @@
       @case ('background') {
         <section>
           <p class="lead">
-            Il background racconta chi eri prima dell’avventura e aggiunge due competenze.
+            Il background racconta chi eri prima dell'avventura e aggiunge due competenze.
           </p>
           @if (classSkillNames.length) {
             <div class="class-skill-reminder">
@@ -333,49 +393,53 @@
               </div>
               <div class="skill-reminder-list">
                 @for (skill of classSkillNames; track skill) {
-                  <span>{{ skill }}</span>
+                  <span
+                    >{{ skill }}
+                    <small style="display: inline">{{ backgroundSkillShort(skill) }}</small></span
+                  >
                 }
               </div>
             </div>
           }
           <div class="option-grid">
             @for (item of store.backgrounds; track item.id) {
-              <button
-                class="option"
-                [disabled]="backgroundHasClassSkill(item)"
-                [class.has-skill-conflict]="backgroundHasClassSkill(item)"
-                [class.selected]="store.draft().backgroundId === item.id"
-                (click)="store.patch({ backgroundId: item.id })"
-              >
-                <span class="source">{{ item.source }}</span>
-                <div class="option-icon">✦</div>
-                <h3>{{ item.name }}</h3>
-                <p>{{ item.description }}</p>
-                <div class="background-skill-tags">
-                  @for (skill of item.skills; track skill) {
-                    <span [class.already-known]="backgroundSkillFromClass(skill)">
-                      {{ skill }}
-                      @if (backgroundSkillFromClass(skill)) {
-                        <small>Già scelta con la classe</small>
-                      }
-                    </span>
-                  }
-                </div>
-                <small>
-                  @if (item.languages?.length) {
-                    Lingue: {{ item.languages!.join(', ') }} ·
-                  }
-                  @if (item.languageChoices) {
-                    {{ item.languageChoices }} lingua/e a scelta ·
-                  }
-                  @if (item.tools?.length) {
-                    Strumenti: {{ item.tools!.join(', ') }} ·
-                  }
-                  @if (item.toolChoices) {
-                    {{ item.toolChoices }} strumento/gioco a scelta
-                  }
-                </small>
-              </button>
+                <button
+                  class="option"
+                  [disabled]="backgroundHasClassSkill(item)"
+                  [class.has-skill-conflict]="backgroundHasClassSkill(item)"
+                  [class.selected]="store.draft().backgroundId === item.id"
+                  (click)="selectBackground(item.id)"
+                >
+                  <span class="source">{{ item.source }}</span>
+                  <div class="option-icon">✦</div>
+                  <h3>{{ item.name }}</h3>
+                  <p>{{ item.description }}</p>
+                  <div class="background-skill-tags">
+                    @for (skill of item.skills; track skill) {
+                      <span [class.already-known]="backgroundSkillFromClass(skill)">
+                        {{ skill }}
+                        <small style="display: inline">{{ backgroundSkillShort(skill) }}</small>
+                        @if (backgroundSkillFromClass(skill)) {
+                          <small>Già scelta con la classe</small>
+                        }
+                      </span>
+                    }
+                  </div>
+                  <small>
+                    @if (item.languages?.length) {
+                      Lingue: {{ item.languages!.join(', ') }} ·
+                    }
+                    @if (item.languageChoices) {
+                      {{ item.languageChoices }} lingua/e a scelta ·
+                    }
+                    @if (item.tools?.length) {
+                      Strumenti: {{ item.tools!.join(', ') }} ·
+                    }
+                    @if (item.toolChoices) {
+                      {{ item.toolChoices }} {{ backgroundToolChoiceSummary(item) }}
+                    }
+                  </small>
+                </button>
             }
           </div>
           <div class="background-details">
@@ -389,32 +453,78 @@
                 @for (item of alignments; track item.id) {
                   <option [value]="item.id">{{ item.label }}</option>
                 }
-              </select></label
-            >
-            <label class="field"
-              ><span>Lingue aggiuntive conosciute</span
-              ><input
-                placeholder="Es. Draconico, Elfico"
-                [ngModel]="store.draft().customLanguages?.join(', ') || ''"
-                (ngModelChange)="setList('customLanguages', $event)"
-              /><small
-                >Inserisci qui le lingue concesse “a scelta” da razza o background, separate da
-                virgole.</small
-              ></label
-            >
-            <label class="field"
-              ><span>Strumenti o giochi a scelta</span
-              ><input
-                placeholder="Es. Strumenti da fabbro"
-                [ngModel]="store.draft().customTools?.join(', ') || ''"
-                (ngModelChange)="setList('customTools', $event)"
-              /><small>Le competenze fisse vengono già aggiunte automaticamente.</small></label
-            >
+              </select>
+            </label>
+            @if (languageChoiceLimit) {
+              <div class="background-choice">
+                <div class="background-choice-heading">
+                  <span>Lingue a scelta</span>
+                  <small
+                    >{{ store.draft().customLanguages?.length ?? 0 }} /
+                    {{ languageChoiceLimit }}</small
+                  >
+                </div>
+                @if (fixedLanguages.length) {
+                  <small>Già conosciute: {{ fixedLanguages.join(', ') }}</small>
+                }
+                <div class="skill-picks">
+                  @for (language of languageOptions; track language) {
+                    <button
+                      type="button"
+                      [class.selected]="store.draft().customLanguages?.includes(language)"
+                      [disabled]="
+                        fixedLanguages.includes(language) ||
+                        (!store.draft().customLanguages?.includes(language) &&
+                          (store.draft().customLanguages?.length ?? 0) >= languageChoiceLimit)
+                      "
+                      (click)="toggleBackgroundChoice('customLanguages', language)"
+                    >
+                      {{ language }}
+                    </button>
+                  }
+                </div>
+              </div>
+            }
+            @if (toolChoiceLimit) {
+              <div class="background-choice">
+                <div class="background-choice-heading">
+                  <span>{{ toolChoiceLabel }}</span>
+                  <small
+                    >{{ store.draft().customTools?.length ?? 0 }} / {{ toolChoiceLimit }}</small
+                  >
+                </div>
+                @if (fixedTools.length) {
+                  <small>Già competenti: {{ fixedTools.join(', ') }}</small>
+                }
+                @if (backgroundToolConflicts.length) {
+                  <small>
+                    Competenza duplicata: scegli {{ backgroundToolConflicts.length }} strumento/i
+                    sostitutivo/i.
+                  </small>
+                }
+                <div class="skill-picks">
+                  @for (tool of toolOptions; track tool) {
+                    <button
+                      type="button"
+                      [class.selected]="store.draft().customTools?.includes(tool)"
+                      [disabled]="
+                        fixedTools.includes(tool) ||
+                        (!store.draft().customTools?.includes(tool) &&
+                          (store.draft().customTools?.length ?? 0) >= toolChoiceLimit)
+                      "
+                      (click)="toggleBackgroundChoice('customTools', tool)"
+                    >
+                      {{ tool }}
+                    </button>
+                  }
+                </div>
+              </div>
+            }
           </div>
         </section>
       }
       @case ('livello') {
-        <section>
+        <section class="level-section">
           <p class="lead">
             Scegli il livello di partenza e come determinare i punti ferita. Al 1° livello il dado
             vita è sempre massimo; per i livelli successivi puoi usare la media, tirare o indicare
@@ -445,11 +555,11 @@
           </div>
           @if (store.selectedClass()) {
             <app-class-progression
-              [wizardStep]="'livello'"
               [klass]="store.selectedClass()!"
               [level]="store.draft().level"
               [subclassId]="store.draft().subclassId"
               [selections]="store.draft().classFeatureChoices ?? {}"
+              [proficiencyIds]="progressionProficiencyIds"
               (subclassChange)="setSubclass($event)"
               (selectionsChange)="setClassFeatureChoices($event)"
             />
@@ -547,29 +657,51 @@
             }
             · Punti ASI assegnati: {{ asiPoints }} / {{ asiPointLimit }}
           </p>
+          <label class="equipment-search feat-search">
+            <span>Cerca talento</span>
+            <input
+              type="search"
+              placeholder="Nome, descrizione o fonte…"
+              [ngModel]="featSearch()"
+              (ngModelChange)="setFeatSearch($event)"
+            />
+          </label>
           <div class="option-grid feats">
-            @for (item of store.feats; track item.id) {
-              <button
-                class="option"
-                [disabled]="!eligible(item.id)"
-                [class.selected]="store.draft().featIds.includes(item.id)"
-                (click)="toggleFeat(item.id)"
-              >
-                <span class="source">{{ item.source }}</span>
-                <h3>{{ item.name }}</h3>
-                <p>{{ item.description }}</p>
-                @if (item.prerequisite) {
-                  <small>Prerequisito: {{ item.prerequisite }}</small>
-                }
-                @if (item.effects?.hitPointsPerLevel) {
-                  <small>PF: +{{ item.effects!.hitPointsPerLevel }} per livello</small>
-                }
-                @if (item.effects?.initiativeBonus) {
-                  <small>Iniziativa: +{{ item.effects!.initiativeBonus }}</small>
-                }
-              </button>
+            @for (item of pagedFeats; track item.id) {
+                <button
+                  class="option"
+                  [disabled]="!eligible(item.id)"
+                  [class.selected]="store.draft().featIds.includes(item.id)"
+                  (click)="toggleFeat(item.id)"
+                >
+                  <span class="source">{{ item.source }}</span>
+                  <h3>{{ item.name }}</h3>
+                  <p>{{ item.description }}</p>
+                  @if (item.prerequisite) {
+                    <small>Prerequisito: {{ item.prerequisite }}</small>
+                  }
+                  @if (item.effects?.hitPointsPerLevel) {
+                    <small>PF: +{{ item.effects!.hitPointsPerLevel }} per livello</small>
+                  }
+                  @if (item.effects?.initiativeBonus) {
+                    <small>Iniziativa: +{{ item.effects!.initiativeBonus }}</small>
+                  }
+                </button>
             }
           </div>
+          @if (!filteredFeats.length) {
+            <p class="hint">Nessun talento corrisponde alla ricerca.</p>
+          } @else {
+            <nav class="spell-pagination" aria-label="Pagine dei talenti">
+              <button type="button" [disabled]="featPage() <= 1" (click)="setFeatPage(featPage() - 1)">
+                Precedente
+              </button>
+              <span>Pagina {{ featPage() }} di {{ featPageCount }} · {{ filteredFeats.length }} talenti</span>
+              <button type="button" [disabled]="featPage() >= featPageCount" (click)="setFeatPage(featPage() + 1)">
+                Successiva
+              </button>
+            </nav>
+          }
           @if (selectedFeats.length) {
             <div class="feat-effect-choices">
               @for (feat of selectedFeats; track feat.id) {
@@ -590,6 +722,25 @@
                       }
                     </select>
                   </label>
+                }
+                @for (choice of feat.proficiencyChoices ?? []; track choice.id) {
+                  <article class="feat-proficiency-choice">
+                    <strong>{{ choice.label }}</strong>
+                    <small>
+                      {{ (store.draft().featProficiencyChoices?.[choice.id] ?? []).length }} / {{ choice.count }}
+                    </small>
+                    <div class="feat-choice-options">
+                      @for (option of featChoiceOptions(choice); track option.id) {
+                        <button
+                          type="button"
+                          [class.selected]="(store.draft().featProficiencyChoices?.[choice.id] ?? []).includes(option.id)"
+                          (click)="toggleFeatProficiency(choice, option.id)"
+                        >
+                          {{ option.name }}
+                        </button>
+                      }
+                    </div>
+                  </article>
                 }
                 @if (feat.effects?.notes?.length) {
                   <article class="feat-effect-note">
@@ -649,11 +800,18 @@
               <small>Carico massimo</small
               ><strong>{{ store.derived().carryingCapacityKg }} kg</strong>
             </div>
+            <div>
+              <small>Sintonia</small
+              ><strong
+                >{{ store.draft().attunedEquipmentIds?.length ?? 0 }} /
+                {{ maximumAttunedItems }}</strong
+              >
+            </div>
           </div>
           @if (store.derived().inventoryWeightKg > store.derived().carryingCapacityKg) {
-            <p class="load-warning">
+            <div tuiNotification appearance="warning" class="mt-4 w-full">
               Il peso dello zaino supera il carico massimo del personaggio.
-            </p>
+            </div>
           }
 
           @if (homebrewEquipment.length) {
@@ -721,7 +879,7 @@
             </label>
             <div class="armor-groups">
               @for (group of armorGroups; track group.name) {
-                <details class="armor-group" open>
+                <details class="armor-group" close>
                   <summary class="armor-group-summary">
                     <h3>{{ group.name }}</h3>
                   </summary>
@@ -844,7 +1002,7 @@
                           @if (item.category === 'weapon') {
                             @if (magicWeaponOptions(item).length) {
                               <small class="magic-meta"
-                                >Scegli l’arma base durante l’aggiunta</small
+                                >Scegli l'arma base durante l'aggiunta</small
                               >
                             } @else {
                               <small
@@ -1033,6 +1191,19 @@
                                         <option value="3">+3</option>
                                       </select>
                                     </label>
+                                    @if (canChooseWeaponIntelligence(entry.item)) {
+                                      <button
+                                        class="ability-weapon"
+                                        [class.active]="entry.equipped.useIntelligence !== false"
+                                        (click)="toggleWeaponIntelligence(entry.index)"
+                                      >
+                                        {{
+                                          entry.equipped.useIntelligence !== false
+                                            ? 'Usa INT'
+                                            : 'Usa FOR/DES'
+                                        }}
+                                      </button>
+                                    }
                                     <button
                                       class="unequip-weapon"
                                       (click)="unequipWeapon(entry.index)"
@@ -1042,7 +1213,11 @@
                                     <span class="weapon-result">
                                       Attacco
                                       <strong>{{
-                                        weaponAttack(entry.item, entry.equipped.bonus ?? 0)
+                                        weaponAttack(
+                                          entry.item,
+                                          entry.equipped.bonus ?? 0,
+                                          entry.equipped
+                                        )
                                       }}</strong>
                                       · Danni
                                       <strong>{{
@@ -1050,7 +1225,8 @@
                                           entry.item,
                                           entry.equipped.hands,
                                           entry.index === 1,
-                                          entry.equipped.bonus ?? 0
+                                          entry.equipped.bonus ?? 0,
+                                          entry.equipped
                                         )
                                       }}</strong>
                                     </span>
@@ -1493,6 +1669,7 @@
             </div>
             <div class="spell-grid detailed">
               @for (spell of visibleSpells; track spell.id) {
+
                 <button
                   class="spell-card"
                   [class.limit-reached]="spellLimitReached(spell)"
@@ -1558,6 +1735,7 @@
                     </div>
                   }
                 </button>
+
               } @empty {
                 <div class="empty-magic spell-empty">
                   @if (store.availableSpells().length) {
@@ -1965,7 +2143,7 @@
               @for (skill of store.derived().skills; track skill.id) {
                 <div [class.proficient]="skill.proficient">
                   <span
-                    >{{ skill.name }} <small>({{ skill.ability.toUpperCase() }})</small></span
+                    >{{ skill.name }} <small>({{ skillAbilityShort(skill.id) }})</small></span
                   ><strong>{{ mod(skill.value) }}</strong>
                 </div>
               }
@@ -1976,7 +2154,7 @@
               <h2>Tratti e competenze</h2>
               <ul>
                 @for (skill of store.selectedBackground()?.skills || []; track skill) {
-                  <li>Competenza: {{ skill }}</li>
+                  <li>Competenza: {{ skill }} ({{ backgroundSkillShort(skill) }})</li>
                 }
                 @for (feat of selectedFeats; track feat.id) {
                   <li>
@@ -2100,7 +2278,7 @@
             </article>
           </div>
           <section class="character-details">
-            <span class="kicker">Identità dell’avventuriero</span>
+            <span class="kicker">Identità dell'avventuriero</span>
             <h2>Dettagli del personaggio</h2>
             <div class="physical-details">
               <label
@@ -2233,9 +2411,6 @@
         </section>
       }
     }
-    @if (message()) {
-      <p class="notice" role="status">{{ message() }}</p>
-    }
     <footer class="wizard-nav no-print">
       <button class="back" [disabled]="index === 0" (click)="previous()">← Indietro</button>
       @if (index < stepTotal - 1) {
@@ -2243,7 +2418,7 @@
           Continua <span>→</span>
         </button>
       } @else {
-        <button class="next" routerLink="/">Torna all’archivio</button>
+        <button class="next" routerLink="/">Torna all'archivio</button>
       }
     </footer>
   </main>
@@ -2280,7 +2455,9 @@
         <span>
           COMP <strong>+{{ store.derived().proficiency }}</strong>
         </span>
-        <span>PERCEZIONE PASSIVA <strong>{{ store.derived().passivePerception }}</strong></span>
+        <span
+          >PERCEZIONE PASSIVA <strong>{{ store.derived().passivePerception }}</strong></span
+        >
       </div>
     </div>
     <small>La scheda si aggiorna mentre scegli.</small>

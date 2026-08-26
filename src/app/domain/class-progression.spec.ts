@@ -85,4 +85,35 @@ describe('progressione di classe data-driven', () => {
       ).classFeatureChoices,
     ).toEqual({ maneuvers: ['a', 'b', 'c'] });
   });
+
+  it('aggiunge maestrie e strumenti alla progressione di Bardo e Ladro', () => {
+    const bard = {
+      ...fighter,
+      id: 'bard',
+      name: 'Bardo',
+      subclassLevel: 3,
+      subclasses: ['Collegio della Sapienza'],
+    };
+    const bardChoices = activeClassFeatureChoices(bard, 3, 'Collegio della Sapienza');
+    expect(bardChoices.map((choice) => choice.id)).toEqual(
+      expect.arrayContaining([
+        'bard-musical-instruments',
+        'bard-expertise',
+        'bard-lore-bonus-skills',
+      ]),
+    );
+    expect(
+      classFeatureChoiceCount(
+        bardChoices.find((choice) => choice.id === 'bard-expertise')!,
+        10,
+      ),
+    ).toBe(4);
+
+    const rogue = { ...fighter, id: 'rogue', name: 'Ladro', subclasses: ['Assassino'] };
+    const expertise = activeClassFeatureChoices(rogue, 6, 'Assassino').find(
+      (choice) => choice.id === 'rogue-expertise',
+    );
+    expect(expertise?.options.some((option) => option.id === 'thieves-tools')).toBe(true);
+    expect(classFeatureChoiceCount(expertise!, 6)).toBe(4);
+  });
 });

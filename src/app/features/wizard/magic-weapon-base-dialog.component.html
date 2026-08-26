@@ -5,13 +5,13 @@
       <div>
         <p class="kicker">Configura arma magica</p>
         <h2 id="weapon-base-title">Scegli la forma di {{ item.name }}</h2>
-        <p>Statistiche, proprietà e competenza verranno ereditate dall’arma scelta.</p>
+        <p>Statistiche, proprietà e competenza verranno ereditate dall'arma scelta.</p>
       </div>
       <button aria-label="Chiudi" (click)="cancelled.emit()">×</button>
     </header>
 
     <label class="weapon-base-search">
-      <span>Cerca un’arma</span>
+      <span>Cerca un'arma</span>
       <input type="search" placeholder="Es. spada lunga, stocco…" [ngModel]="search()"
         (ngModelChange)="search.set($event)" />
     </label>

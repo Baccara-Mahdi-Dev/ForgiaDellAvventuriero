@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import {
   activeClassFeatureChoices,
   classFeatureChoiceCount,
   subclassAvailableAtLevel,
 } from '../../domain/class-progression';
-import { CharacterClass, ClassFeatureChoice, StepId } from '../../domain/models';
+import { ABILITIES, CharacterClass, ClassFeatureChoice, SKILLS } from '../../domain/models';
 
 @Component({
   selector: 'app-class-progression',
-  imports: [FormsModule],
+  imports: [],
   templateUrl: './class-progression.component.html',
   styleUrl: './class-progression.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,8 +18,7 @@ export class ClassProgressionComponent {
   readonly level = input.required<number>();
   readonly subclassId = input.required<string>();
   readonly selections = input.required<Record<string, string[]>>();
-  readonly wizardStep = input.required<StepId>();
-
+  readonly proficiencyIds = input<string[]>([]);
   readonly subclassChange = output<string>();
   readonly selectionsChange = output<Record<string, string[]>>();
 
@@ -45,7 +43,17 @@ export class ClassProgressionComponent {
     );
   }
 
+  abilityShort(optionId: string): string {
+    const ability = SKILLS.find((skill) => skill.id === optionId)?.ability;
+    return ABILITIES.find((item) => item.key === ability)?.short ?? '';
+  }
+
+  unavailable(choice: ClassFeatureChoice, optionId: string): boolean {
+    return !!choice.requiresProficiency && !this.proficiencyIds().includes(optionId);
+  }
+
   toggle(choice: ClassFeatureChoice, optionId: string): void {
+    if (this.unavailable(choice, optionId)) return;
     const limit = this.choiceCount(choice);
     const current = this.selected(choice.id);
     const next = current.includes(optionId)

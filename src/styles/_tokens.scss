@@ -1,3 +1,58 @@
+@mixin tui-forgia-theme {
+  // Taiga UI uses the Forgia palette too. Keep its structural component styles,
+  // but do not let its default blue/white theme become a second app theme.
+  --tui-background-base: var(--paper);
+  --tui-background-base-alt: var(--paper-deep);
+  --tui-background-neutral-1: var(--surface-soft);
+  --tui-background-neutral-1-hover: var(--surface-warm);
+  --tui-background-neutral-1-pressed: var(--surface-highlight);
+  --tui-background-neutral-2: var(--line);
+  --tui-background-neutral-2-hover: var(--prominent-border);
+  --tui-background-neutral-2-pressed: var(--muted);
+  --tui-background-accent-1: var(--ember);
+  --tui-background-accent-1-hover: var(--ember-dark);
+  --tui-background-accent-1-pressed: var(--ember-dark);
+  --tui-background-accent-2: var(--gold);
+  --tui-background-accent-2-hover: var(--gold);
+  --tui-background-accent-2-pressed: var(--gold);
+  --tui-background-accent-opposite: var(--ink);
+  --tui-background-accent-opposite-hover: var(--muted);
+  --tui-background-accent-opposite-pressed: var(--line);
+  --tui-background-elevation-1: var(--surface);
+  --tui-background-elevation-2: var(--surface-raised);
+  --tui-background-elevation-3: var(--surface-raised);
+  --tui-border-normal: var(--line);
+  --tui-border-hover: var(--prominent-border);
+  --tui-border-focus: var(--focus);
+  --tui-service-backdrop: rgb(16 14 13 / 72%);
+  --tui-service-selection-background: color-mix(in srgb, var(--focus) 20%, transparent);
+  --tui-status-negative: var(--danger);
+  --tui-status-negative-pale: var(--danger-soft);
+  --tui-status-negative-pale-hover: color-mix(in srgb, var(--danger) 24%, var(--danger-soft));
+  --tui-status-positive: var(--sage);
+  --tui-status-positive-pale: color-mix(in srgb, var(--sage) 18%, var(--surface));
+  --tui-status-positive-pale-hover: color-mix(in srgb, var(--sage) 28%, var(--surface));
+  --tui-status-warning: var(--gold);
+  --tui-status-warning-pale: color-mix(in srgb, var(--gold) 18%, var(--surface));
+  --tui-status-warning-pale-hover: color-mix(in srgb, var(--gold) 28%, var(--surface));
+  --tui-status-info: var(--focus);
+  --tui-status-info-pale: color-mix(in srgb, var(--focus) 18%, var(--surface));
+  --tui-status-info-pale-hover: color-mix(in srgb, var(--focus) 28%, var(--surface));
+  --tui-status-neutral: var(--muted);
+  --tui-text-primary: var(--ink);
+  --tui-text-secondary: var(--muted);
+  --tui-text-tertiary: color-mix(in srgb, var(--muted) 72%, transparent);
+  --tui-text-primary-on-accent-1: #fffaf4;
+  --tui-text-primary-on-accent-2: #2b2019;
+  --tui-text-action: var(--ember);
+  --tui-text-action-hover: var(--ember-dark);
+  --tui-text-positive: var(--sage);
+  --tui-text-positive-hover: var(--sage);
+  --tui-text-negative: var(--danger);
+  --tui-text-negative-hover: var(--danger-ink);
+  --tui-shadow-medium: var(--shadow);
+}
+
 :root {
   color-scheme: light;
   --paper: #f5eee3;
@@ -40,6 +95,8 @@
   --hero-end: #eee3d1;
   --glass: rgb(255 250 242 / 82%);
   --shadow: 0 16px 42px rgb(50 30 10 / 14%);
+  --mephisto: #9A1115;
+  --caliban: #004225;
 }
 
 :root[data-theme="dark"] {
@@ -84,4 +141,13 @@
   --hero-end: #100e0d;
   --glass: rgb(33 28 24 / 92%);
   --shadow: 0 16px 42px rgb(0 0 0 / 50%);
+  --mephisto: #9A1115;
+  --caliban: #016d44;
+}
+
+// Taiga mounts dialogs and toasts below body and sets its theme marker there.
+// Apply one palette bridge to both the document and its overlay container.
+:root,
+body[tuiTheme] {
+  @include tui-forgia-theme;
 }

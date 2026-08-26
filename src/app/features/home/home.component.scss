@@ -205,6 +205,10 @@
   margin: 0;
   color: var(--muted);
 }
+.character-copy {
+  flex: 1;
+  min-width: 0;
+}
 .avatar {
   width: 52px;
   height: 52px;
@@ -215,13 +219,40 @@
   color: var(--ember);
   font: 1.4rem Georgia;
 }
-.icon {
-  margin-left: auto;
+.delete-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 1.25rem auto;
+  min-height: 44px;
+  padding: 0.7rem 1rem;
   border: 0;
-  background: none;
-  font-size: 1.5rem;
-  color: var(--muted);
+  border-radius: 0.5rem;
+  font-weight: 750;
   cursor: pointer;
+}
+.delete-character {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  padding: 0;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.delete-all,
+.delete-character {
+  background: var(--danger) !important;
+  color: #fffaf4 !important;
+}
+@media (hover: hover) {
+  .delete-all:hover,
+  .delete-character:hover {
+    background: color-mix(in srgb, var(--danger) 82%, black) !important;
+  }
 }
 .empty {
   text-align: center;
@@ -258,5 +289,8 @@
   }
   .hero h1 {
     font-size: 3.7rem;
+  }
+  .delete-all {
+    width: 100%;
   }
 }

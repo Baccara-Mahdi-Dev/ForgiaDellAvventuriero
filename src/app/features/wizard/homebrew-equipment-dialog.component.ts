@@ -7,6 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TuiNotification } from '@taiga-ui/core';
 import {
   ABILITIES,
   ArmorType,
@@ -27,7 +28,7 @@ import {
 
 @Component({
   selector: 'app-homebrew-equipment-dialog',
-  imports: [FormsModule],
+  imports: [FormsModule, TuiNotification],
   templateUrl: './homebrew-equipment-dialog.component.html',
   styleUrl: './homebrew-equipment-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

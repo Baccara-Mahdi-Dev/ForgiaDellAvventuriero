@@ -1,21 +1,33 @@
 @if (subclassUnlocked()) {
-  <label class="field subclass-field">
-    <span>Sottoclasse</span>
-    <select [ngModel]="subclassId()" (ngModelChange)="subclassChange.emit($event)">
-      <option value="">Scegli una sottoclasse</option>
+  <section class="subclass-picker" aria-labelledby="subclass-picker-title">
+    <div class="subclass-heading">
+      <div>
+        <p class="kicker">Percorso di classe · livello {{ klass().subclassLevel }}</p>
+        <h2 id="subclass-picker-title">Scegli la sottoclasse</h2>
+      </div>
+      <small>{{ subclassId() ? 'Scelta completata' : 'Scelta richiesta' }}</small>
+    </div>
+    <div class="subclass-options" role="radiogroup" aria-labelledby="subclass-picker-title">
       @for (subclass of klass().subclasses; track subclass) {
-        <option [value]="subclass">{{ subclass }}</option>
+        <button
+          type="button"
+          role="radio"
+          [attr.aria-checked]="subclassId() === subclass"
+          [class.selected]="subclassId() === subclass"
+          (click)="subclassChange.emit(subclass)"
+        >
+          <span>{{ subclass }}</span>
+          <small>{{ subclassId() === subclass ? 'Selezionata' : 'Scegli' }}</small>
+        </button>
       }
-    </select>
-    <small>Disponibile dal livello {{ klass().subclassLevel }}.</small>
-  </label>
+    </div>
+  </section>
 } @else {
   <div class="subclass-locked" role="status">
     <strong>Sottoclasse non ancora disponibile</strong>
     <small>{{ klass().name }} la sceglie al livello {{ klass().subclassLevel }}.</small>
   </div>
 }
-<!-- @if (wizardStep() === 'livello') { -->
 @for (choice of activeChoices(); track choice.id) {
   <div class="choice-panel class-feature-choice">
     <div>
@@ -33,16 +45,21 @@
           type="button"
           [class.selected]="selected(choice.id).includes(option.id)"
           [disabled]="
-            !selected(choice.id).includes(option.id) &&
-            selected(choice.id).length >= choiceCount(choice)
+            unavailable(choice, option.id) ||
+            (!selected(choice.id).includes(option.id) &&
+              selected(choice.id).length >= choiceCount(choice))
           "
           (click)="toggle(choice, option.id)"
         >
-          <strong>{{ option.name }}</strong>
+          <strong>
+            {{ option.name }}
+            @if (abilityShort(option.id)) {
+              <small class="ability-short">{{ abilityShort(option.id) }}</small>
+            }
+          </strong>
           <small>{{ option.description }}</small>
         </button>
       }
     </div>
   </div>
 }
-<!-- } -->

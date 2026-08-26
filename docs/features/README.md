@@ -29,7 +29,7 @@ Questo evita dati duplicati e incoerenti. Per esempio la CA non è salvata: deri
 | --------------- | ----------------------------------------------- | --------------------------------------------------------------- |
 | Caratteristiche | metodo e sei punteggi, Sanità opzionale         | point buy esattamente 27 oppure altro metodo valido             |
 | Discendenza     | razza/variante e scelte razziali                | tutte le scelte dichiarate nel JSON sono effettuate             |
-| Classe          | classe, competenze e sottoclasse                | competenze complete; sottoclasse presente dal livello richiesto |
+| Classe          | classe e competenze                             | competenze di classe complete                                   |
 | Background      | background e allineamento                       | selezione presente e nessuna competenza duplicata con la classe |
 | Livello         | livello e metodo PF                             | valore manuale positivo quando richiesto                        |
 | Talenti e ASI   | una scelta per ogni sblocco                     | numero corretto di scelte, prerequisiti e limite 20 rispettati  |
@@ -92,9 +92,15 @@ Quando l'utente cambia razza vengono azzerate le scelte razziali e i talenti, pe
 
 Una nuova classe deve essere aggiunta anche a questa mappa per poter essere consigliata.
 
-Le competenze vengono scelte per ID tra `skillOptions`. La sottoclasse è richiesta soltanto quando `level >= subclassLevel`; sotto tale soglia la UI mostra il livello futuro senza un select obbligatorio. Se il livello viene ridotto, la normalizzazione elimina sottoclasse e scelte non più acquisite.
+Le competenze vengono scelte per ID tra `skillOptions`. La schermata Classe non contiene scelte dipendenti dal livello: sottoclasse, stile di combattimento e opzioni progressive sono raccolti nella schermata Livello. La sottoclasse è richiesta soltanto quando `level >= subclassLevel`; sotto tale soglia la UI mostra il livello futuro senza un select obbligatorio. Se il livello viene ridotto, la normalizzazione elimina sottoclasse e scelte non più acquisite.
 
 Le opzioni progressive sono risolte da un unico motore data-driven. `featureChoices` descrive le scelte della classe; `subclassFeatures` usa la stessa struttura per quelle della sottoclasse selezionata. Il catalogo copre le scelte del Guerriero Totemico ai livelli 3, 6 e 14, le manovre del Maestro di Battaglia ai livelli 3, 7, 10 e 15, la Terra del Circolo, le quattro scelte progressive del Cacciatore e l'Antenato Draconico. Le opzioni selezionate confluiscono anche nel riepilogo e nel PDF.
+
+L'Artificiere sceglie nello stesso step la competenza negli strumenti da artigiano; l'Armorer sceglie inoltre il modello Guardiano o Infiltratore. Le specializzazioni aggiungono automaticamente le competenze in strumenti e protezioni pertinenti. Battle Ready concede le armi marziali al Battle Smith e, per ogni arma magica impugnata, permette di attivare o disattivare l'uso di Intelligenza per attacco e danni. La scelta viene mantenuta anche nell'esportazione PDF.
+
+## Background, lingue e strumenti
+
+Le competenze fisse del background vengono applicate automaticamente. Le lingue e gli strumenti concessi “a scelta” usano selettori guidati: il contatore unisce le scelte della razza e del background, disabilita le competenze già possedute e impedisce di proseguire finché non è stato scelto il numero richiesto.
 
 ## Punti ferita
 
@@ -204,7 +210,7 @@ L'editor Homebrew permette un solo tipo compatibile tra arma, armatura, scudo, o
 - incantesimi concessi tramite gli ID del catalogo;
 - cariche massime e modalità di recupero.
 
-Gli effetti passivi entrano in `derive()` soltanto quando l'oggetto è equipaggiato e, se richiesto, in sintonia. La bozza conserva al massimo tre ID in `attunedEquipmentIds`. CA, caratteristiche, iniziativa, tiri salvezza, resistenze, attacchi e danni usano così lo stesso flusso di calcolo della scheda. Le cariche correnti sono salvate in `equipmentCharges` e i comandi attivi scalano il costo configurato.
+Gli effetti passivi entrano in `derive()` soltanto quando l'oggetto è equipaggiato e, se richiesto, in sintonia. Il limite normale è tre oggetti; per l'Artificiere sale a quattro al livello 10, cinque al 14 e sei al 18. Lo store normalizza la bozza con il limite del livello corrente e l'interfaccia mostra sempre slot occupati e disponibili. CA, caratteristiche, iniziativa, tiri salvezza, resistenze, attacchi e danni usano così lo stesso flusso di calcolo della scheda. Le cariche correnti sono salvate in `equipmentCharges` e i comandi attivi scalano il costo configurato.
 
 ## Armi
 

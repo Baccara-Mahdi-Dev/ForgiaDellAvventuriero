@@ -82,7 +82,7 @@ def page_columns(page) -> list[str]:
 
 
 def key_for_name(value: str) -> str:
-    value = value.replace("'", "").replace("’", "")
+    value = value.replace("'", "").replace("'", "")
     value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
