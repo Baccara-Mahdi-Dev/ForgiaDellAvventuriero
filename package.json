@@ -6,7 +6,7 @@
     "start": "ng serve ",
     "start:P": "ng serve  --configuration personal",
     "build": "ng build",
-    "build:P": "ng build --configuration production,personal",
+    "build:P": "ng build --configuration personal-production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --watch=false",

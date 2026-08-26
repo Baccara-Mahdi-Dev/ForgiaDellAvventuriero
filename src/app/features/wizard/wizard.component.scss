@@ -225,7 +225,7 @@
 }
 .budget {
   > progress {
-    padding:1px 0;
+    padding: 1px 0;
     border: 1px solid var(--ink);
     width: 100%;
     accent-color: var(--ember);
@@ -248,8 +248,8 @@
   }
 }
 
-.budget > button { 
-  cursor: pointer; 
+.budget > button {
+  cursor: pointer;
   background: var(--paper-deep);
   color: var(--ember);
 }
@@ -432,6 +432,17 @@
 .option-icon {
   min-width: 34px;
   min-height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--paper-deep);
+  color: var(--ember);
+  font: 1rem Georgia;
+}
+.option-icon.backgrounds {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
   display: grid;
   place-items: center;
   border-radius: 50%;
