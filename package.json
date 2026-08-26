@@ -14,7 +14,7 @@
     "validate:data": "node scripts/validate-data.mjs",
     "check:app": "npm run validate:data && npm run test:ci",
     "build:netlify": "npm run check:app && npm run build && node scripts/generate-public-metadata.mjs",
-    "build:netlify:P": "npm run check:app && npm run build:P && node scripts/generate-public-metadata.mjs"
+    "build:netlify:P": "npm run check:app && npm run build:P && node scripts/generate-public-metadata.mjs",
     "verify": "npm run validate:data && npm run test:ci && npm run build"
   },
   "private": true,
