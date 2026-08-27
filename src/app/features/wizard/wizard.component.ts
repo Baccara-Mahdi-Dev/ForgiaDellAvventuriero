@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TuiNotification } from '@taiga-ui/core';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -18,7 +17,20 @@ import {
   gamePerspectiveDiceSixFacesFour,
   gameRollingDices,
   gameBrainTentacle,
-} from '@ng-icons/game-icons'; 
+  gameSwordBrandish,
+  gameMagicSwirl,
+  gameNextButton,
+  gamePreviousButton,
+  gameScrollQuill,
+  gameSparkles,
+} from '@ng-icons/game-icons';
+import {
+  fluentAdd,
+  fluentBackpack,
+  fluentBackpackAdd,
+  fluentDelete,
+  fluentSubtract,
+} from '@ng-icons/fluent-ui';
 import { iconoirUndoAction, iconoirShuffle } from '@ng-icons/iconoir/regular';
 import {
   ABILITIES,
@@ -84,7 +96,14 @@ import {
   isArtificerSubclass,
 } from '../../domain/artificer-rules';
 import { AbilityMethod } from '../../models/enum/ability-method';
-import {TuiAvatar, TuiSkeleton } from '@taiga-ui/kit';
+import { TuiDropdown } from '@taiga-ui/core';
+import {
+  TuiAvatar,
+  TuiChevron,
+  TuiDataListWrapper,
+  TuiSelect,
+  TuiSkeleton,
+} from '@taiga-ui/kit';
 
 interface GrantedSpellSource {
   key: string;
@@ -119,6 +138,7 @@ const newHomebrewSpell = (): HomebrewSpell => ({
 });
 const SPELLS_PER_PAGE = 4;
 const FEATS_PER_PAGE = 4;
+const BACKGROUNDS_PER_PAGE = 6;
 const EQUIPMENT_PER_PAGE = 12;
 const LANGUAGE_OPTIONS = [
   'Abissale',
@@ -215,16 +235,29 @@ const MAGIC_GROUP_LABELS: Record<string, string> = {
     ClassProgressionComponent,
     HomebrewEquipmentDialogComponent,
     MagicWeaponBaseDialogComponent,
-    TuiNotification,
     TuiAvatar,
-    TuiSkeleton 
+    TuiChevron,
+    TuiDataListWrapper,
+    TuiDropdown,
+    TuiSelect,
+    TuiSkeleton,
   ],
   providers: [
-    provideIcons(
-      {
-        iconoirShuffle , iconoirUndoAction
-      }
-    )
+    provideIcons({
+      iconoirShuffle,
+      iconoirUndoAction,
+      fluentBackpackAdd,
+      fluentBackpack,
+      fluentDelete,
+      fluentAdd,
+      fluentSubtract,
+      gameSwordBrandish,
+      gameMagicSwirl,
+      gameNextButton,
+      gamePreviousButton,
+      gameScrollQuill,
+      gameSparkles,
+    }),
   ],
   templateUrl: './wizard.component.html',
   styleUrl: './wizard.component.scss',
@@ -259,6 +292,7 @@ export class WizardComponent implements OnInit, OnDestroy {
   readonly armorSearch = signal('');
   readonly featSearch = signal('');
   readonly featPage = signal(1);
+  readonly backgroundPage = signal(1);
   readonly equipmentSearch = signal('');
   readonly equipmentCategory = signal<EquipmentCategory | 'magic' | 'all'>('all');
   readonly equipmentPage = signal(1);
@@ -272,12 +306,17 @@ export class WizardComponent implements OnInit, OnDestroy {
   readonly homebrewSpellOpen = signal(false);
   readonly homebrewEquipmentOpen = signal(false);
   readonly magicWeaponChoice = signal<EquipmentItem | null>(null);
+  readonly removalRequest = signal<{
+    item: EquipmentItem;
+    available: number;
+    quantity: number;
+  } | null>(null);
   readonly homebrewSpell = signal<HomebrewSpell>(newHomebrewSpell());
   readonly homebrewMaterials = signal('');
   readonly homebrewHasDamage = signal(false);
   readonly pdfExporting = signal(false);
   readonly spellCardsExporting = signal(false);
-  private sub?: { unsubscribe(): void };  
+  private sub?: { unsubscribe(): void };
   private holdTimeout?: ReturnType<typeof setTimeout>;
   private holdInterval?: ReturnType<typeof setInterval>;
   private isHolding = false;
@@ -338,9 +377,9 @@ export class WizardComponent implements OnInit, OnDestroy {
     return this.store.feats.filter(
       (feat) =>
         !query ||
-          feat.name.toLocaleLowerCase('it').includes(query) ||
-          feat.description.toLocaleLowerCase('it').includes(query) ||
-          feat.source.toLocaleLowerCase('it').includes(query),
+        feat.name.toLocaleLowerCase('it').includes(query) ||
+        feat.description.toLocaleLowerCase('it').includes(query) ||
+        feat.source.toLocaleLowerCase('it').includes(query),
     );
   }
   get featPageCount() {
@@ -349,6 +388,16 @@ export class WizardComponent implements OnInit, OnDestroy {
   get pagedFeats() {
     const page = Math.min(this.featPage(), this.featPageCount);
     return this.filteredFeats.slice((page - 1) * FEATS_PER_PAGE, page * FEATS_PER_PAGE);
+  }
+  get backgroundPageCount() {
+    return Math.max(1, Math.ceil(this.store.backgrounds.length / BACKGROUNDS_PER_PAGE));
+  }
+  get currentBackgroundPage() {
+    return Math.min(this.backgroundPage(), this.backgroundPageCount);
+  }
+  get pagedBackgrounds() {
+    const start = (this.currentBackgroundPage - 1) * BACKGROUNDS_PER_PAGE;
+    return this.store.backgrounds.slice(start, start + BACKGROUNDS_PER_PAGE);
   }
   get selectedSpells() {
     const granted = new Set(this.grantedSpells.map((spell) => spell.id));
@@ -862,10 +911,13 @@ export class WizardComponent implements OnInit, OnDestroy {
   canEquipShield(shield: EquipmentItem) {
     return (
       equipmentKind(shield) === 'shield' &&
-      this.armorAllowed(shield) &&
       this.equippedWeaponEntries.length <= 1 &&
       !this.equippedWeaponEntries.some((entry) => entry.equipped.hands === 2)
     );
+  }
+
+  shieldProficient(shield: EquipmentItem) {
+    return this.armorAllowed(shield);
   }
   go(step: StepId) {
     void this.router.navigate(['/crea', this.store.draft().id, step]);
@@ -948,7 +1000,7 @@ export class WizardComponent implements OnInit, OnDestroy {
       next = current + delta;
     if (next < HOMEBREW_ABILITY_MIN || next > HOMEBREW_ABILITY_MAX) return;
     this.store.patch({ sanityScore: next });
-  } 
+  }
   setMethod(method: AbilityMethod) {
     this.store.patch({ abilityMethod: method });
     if (method === AbilityMethod.STANDARD)
@@ -1231,7 +1283,8 @@ export class WizardComponent implements OnInit, OnDestroy {
       const choices = { ...(this.store.draft().featAbilityChoices ?? {}) };
       delete choices[id];
       const proficiencyChoices = { ...(this.store.draft().featProficiencyChoices ?? {}) };
-      for (const choice of this.store.feats.find((feat) => feat.id === id)?.proficiencyChoices ?? [])
+      for (const choice of this.store.feats.find((feat) => feat.id === id)?.proficiencyChoices ??
+        [])
         delete proficiencyChoices[choice.id];
       this.store.patch({
         featAbilityChoices: choices,
@@ -1273,20 +1326,26 @@ export class WizardComponent implements OnInit, OnDestroy {
   setFeatPage(page: number) {
     this.featPage.set(Math.max(1, Math.min(this.featPageCount, page)));
   }
+  setBackgroundPage(page: number) {
+    this.backgroundPage.set(Math.max(1, Math.min(this.backgroundPageCount, page)));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   featChoiceOptions(choice: FeatProficiencyChoice) {
     const skills = this.skills.map((skill) => ({ id: skill.id, name: skill.name }));
     if (choice.kind === 'skill')
-      return choice.options?.length ? skills.filter((skill) => choice.options!.includes(skill.id)) : skills;
+      return choice.options?.length
+        ? skills.filter((skill) => choice.options!.includes(skill.id))
+        : skills;
     if (choice.kind === 'expertise')
-      return this.store.derived().skills
-        .filter((skill) => skill.proficient)
+      return this.store
+        .derived()
+        .skills.filter((skill) => skill.proficient)
         .map((skill) => ({ id: skill.id, name: skill.name }));
-    const tools = (choice.toolCategory === 'artisan-tool' ? ARTISAN_TOOL_OPTIONS : TOOL_OPTIONS).map(
-      (name) => ({ id: name, name }),
-    );
+    const tools = (
+      choice.toolCategory === 'artisan-tool' ? ARTISAN_TOOL_OPTIONS : TOOL_OPTIONS
+    ).map((name) => ({ id: name, name }));
     if (choice.kind === 'tool') return tools;
-    if (choice.kind === 'language')
-      return LANGUAGE_OPTIONS.map((name) => ({ id: name, name }));
+    if (choice.kind === 'language') return LANGUAGE_OPTIONS.map((name) => ({ id: name, name }));
     if (choice.kind === 'skill-or-tool')
       return [
         ...skills.map((item) => ({ id: `skill:${item.id}`, name: `Abilità · ${item.name}` })),
@@ -1296,15 +1355,60 @@ export class WizardComponent implements OnInit, OnDestroy {
       .filter((item) => item.category === 'weapon' && !item.magical)
       .map((item) => ({ id: item.id, name: item.name }));
   }
-  toggleFeatProficiency(choice: FeatProficiencyChoice, optionId: string) {
-    const all = { ...(this.store.draft().featProficiencyChoices ?? {}) },
-      current = all[choice.id] ?? [];
-    if (current.includes(optionId)) all[choice.id] = current.filter((id) => id !== optionId);
-    else if (current.length < choice.count) all[choice.id] = [...current, optionId];
-    else {
-      this.feedback.warning(`Puoi effettuare ${choice.count} scelte per questa competenza.`);
+  featAbilityOptions(featId: string) {
+    const increase = this.store.feats.find((feat) => feat.id === featId)?.effects?.abilityIncrease;
+    if (!increase) return [];
+    return this.abilities
+      .filter((ability) => increase.options.includes(ability.key))
+      .map((ability) => `${ability.label} +${increase.amount}`);
+  }
+  featAbilitySelection(featId: string): string | null {
+    const selected = this.store.draft().featAbilityChoices?.[featId];
+    if (!selected) return null;
+    return this.featAbilityOptions(featId).find((label) =>
+      label.startsWith(`${this.abilities.find((ability) => ability.key === selected)?.label} `),
+    ) ?? null;
+  }
+  setFeatAbilitySelection(featId: string, label: string | null) {
+    const ability = this.abilities.find((item) => label?.startsWith(`${item.label} `));
+    this.setFeatAbility(featId, ability?.key ?? '');
+  }
+  featChoiceSlots(choice: FeatProficiencyChoice) {
+    return Array.from({ length: choice.count }, (_, index) => index);
+  }
+  featChoiceSelection(choice: FeatProficiencyChoice, index: number): string | null {
+    const selectedId = this.store.draft().featProficiencyChoices?.[choice.id]?.[index];
+    return this.featChoiceOptions(choice).find((option) => option.id === selectedId)?.name ?? null;
+  }
+  featChoiceItems(choice: FeatProficiencyChoice, index: number) {
+    const selected = this.store.draft().featProficiencyChoices?.[choice.id] ?? [];
+    const current = selected[index];
+    return this.featChoiceOptions(choice)
+      .filter((option) => option.id === current || !selected.includes(option.id))
+      .map((option) => option.name);
+  }
+  featChoiceSlotDisabled(choice: FeatProficiencyChoice, index: number) {
+    return index > (this.store.draft().featProficiencyChoices?.[choice.id]?.length ?? 0);
+  }
+  setFeatProficiencySelection(
+    choice: FeatProficiencyChoice,
+    index: number,
+    optionName: string | null,
+  ) {
+    const all = { ...(this.store.draft().featProficiencyChoices ?? {}) };
+    const current = [...(all[choice.id] ?? [])];
+    if (!optionName) {
+      current.splice(index, 1);
+      all[choice.id] = current;
+      this.store.patch({ featProficiencyChoices: all });
       return;
     }
+    const option = this.featChoiceOptions(choice).find((item) => item.name === optionName);
+    if (!option || current.some((id, selectedIndex) => id === option.id && selectedIndex !== index))
+      return;
+    if (index > current.length) return;
+    current[index] = option.id;
+    all[choice.id] = current;
     this.store.patch({ featProficiencyChoices: all });
   }
   asi(k: AbilityKey, delta: number) {
@@ -1515,13 +1619,19 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   selectArmor(item: EquipmentItem) {
     if (!this.armorAllowed(item)) return;
+    const previousEncumbrance = this.store.derived().encumbrance;
     const previousArmorId = this.store.draft().equippedArmorId;
     const changed = previousArmorId !== item.id;
     const inventory = [...(this.store.draft().inventory ?? [])];
+    const addedToBackpack = !inventory.some((entry) => entry.equipmentId === item.id);
+    let removedArmorName = '';
     if (changed && previousArmorId) {
       const previousIndex = inventory.findIndex((entry) => entry.equipmentId === previousArmorId);
       if (previousIndex >= 0) {
         const previous = inventory[previousIndex];
+        removedArmorName =
+          this.store.equipment.find((candidate) => candidate.id === previousArmorId)?.name ??
+          'Armatura precedente';
         if (previous.quantity > 1)
           inventory[previousIndex] = { ...previous, quantity: previous.quantity - 1 };
         else inventory.splice(previousIndex, 1);
@@ -1534,12 +1644,16 @@ export class WizardComponent implements OnInit, OnDestroy {
       inventory,
       ...(changed || item.magical ? { armorMagicBonus: 0 } : {}),
     });
+    this.notifyEncumbranceIncrease(previousEncumbrance);
+    if (removedArmorName)
+      this.feedback.info(`${removedArmorName} rimossa dallo zaino.`, 'Oggetto rimosso');
+    if (addedToBackpack)
+      this.feedback.success(`${item.name} aggiunta e indossata.`, 'Equipaggiamento aggiornato');
   }
   addShieldToBackpack() {
     const shield = this.store.equipment.find((item) => item.id === 'shield');
     if (!shield) return;
     this.addItem(shield.id);
-    this.feedback.info('Scudo aggiunto allo zaino. Puoi impugnarlo dopo aver liberato una mano.');
   }
   magicWeaponOptions(item: EquipmentItem) {
     return magicWeaponBaseCandidates(item, this.store.equipment);
@@ -1549,7 +1663,7 @@ export class WizardComponent implements OnInit, OnDestroy {
       this.magicWeaponChoice.set(item);
       return;
     }
-    this.addItem(item.id);
+    this.addItem(item.id, false);
   }
   selectMagicWeaponBase(baseEquipmentId: string) {
     const item = this.magicWeaponChoice();
@@ -1593,15 +1707,24 @@ export class WizardComponent implements OnInit, OnDestroy {
     });
     this.ensureInBackpack(item.id);
   }
-  addItem(id: string) {
+  addItem(id: string, notify = true) {
+    const previousEncumbrance = this.store.derived().encumbrance;
     const inventory = [...(this.store.draft().inventory ?? [])],
       index = inventory.findIndex((entry) => entry.equipmentId === id);
     if (index >= 0)
       inventory[index] = { ...inventory[index], quantity: inventory[index].quantity + 1 };
     else inventory.push({ equipmentId: id, quantity: 1 });
     this.store.patch({ inventory });
+    this.notifyEncumbranceIncrease(previousEncumbrance);
+    if (notify) {
+      const item = this.store.equipment.find((candidate) => candidate.id === id);
+      this.feedback.success(`${item?.name ?? 'Oggetto'} aggiunto allo zaino.`, 'Oggetto aggiunto');
+    }
   }
   setItemQuantity(id: string, value: string | number) {
+    const previousEncumbrance = this.store.derived().encumbrance;
+    const previousQuantity =
+      this.store.draft().inventory?.find((entry) => entry.equipmentId === id)?.quantity ?? 0;
     const quantity = Math.max(0, Math.floor(Number(value) || 0));
     const inventory = (this.store.draft().inventory ?? [])
       .map((entry) => (entry.equipmentId === id ? { ...entry, quantity } : entry))
@@ -1633,6 +1756,107 @@ export class WizardComponent implements OnInit, OnDestroy {
     if (equippedWeapons.length !== (this.store.draft().equippedWeapons ?? []).length)
       update.equippedWeapons = equippedWeapons;
     this.store.patch(update);
+    this.notifyEncumbranceIncrease(previousEncumbrance);
+    const item = this.store.equipment.find((candidate) => candidate.id === id);
+    const itemName = item?.name ?? 'Oggetto';
+    if (quantity > previousQuantity)
+      this.feedback.success(
+        `${itemName}: aggiunt${quantity - previousQuantity === 1 ? 'a' : `e ${quantity - previousQuantity} unità`} allo zaino.`,
+        'Oggetto aggiunto',
+      );
+    else if (quantity < previousQuantity)
+      this.feedback.info(
+        quantity === 0
+          ? `${itemName} rimosso dallo zaino.`
+          : `${itemName}: rimosse ${previousQuantity - quantity} unità dallo zaino.`,
+        'Oggetto rimosso',
+      );
+  }
+
+  removeItem(item: EquipmentItem): void {
+    const available =
+      this.store.draft().inventory?.find((entry) => entry.equipmentId === item.id)?.quantity ?? 0;
+    if (available <= 0) return;
+    if (available === 1) {
+      this.setItemQuantity(item.id, 0);
+      return;
+    }
+    this.removalRequest.set({ item, available, quantity: 1 });
+  }
+
+  setRemovalQuantity(value: string | number): void {
+    const request = this.removalRequest();
+    if (!request) return;
+    const quantity = Math.min(request.available, Math.max(1, Math.floor(Number(value) || 1)));
+    this.removalRequest.set({ ...request, quantity });
+  }
+
+  cancelItemRemoval(): void {
+    this.removalRequest.set(null);
+  }
+
+  confirmItemRemoval(): void {
+    const request = this.removalRequest();
+    if (!request) return;
+    this.removalRequest.set(null);
+    this.setItemQuantity(request.item.id, request.available - request.quantity);
+  }
+
+  canAddAndEquip(item: EquipmentItem): boolean {
+    if (this.magicWeaponOptions(item).length) return false;
+    const kind = equipmentKind(item);
+    if (kind === 'armor') return this.armorAllowed(item);
+    if (kind === 'shield') return this.canEquipShield(item);
+    if (kind !== 'weapon') return true;
+    const weapon = this.effectiveWeapon(item);
+    const equipped = this.equippedWeaponEntries;
+    if (requiresTwoHands(weapon))
+      return !this.store.draft().shieldEquipped && equipped.length === 0;
+    if (this.store.draft().shieldEquipped) return equipped.length === 0;
+    return equipped.length < 2 && !equipped.some((entry) => entry.equipped.hands === 2);
+  }
+
+  addAndEquipItem(item: EquipmentItem): void {
+    if (!this.canAddAndEquip(item)) return;
+    this.addItem(item.id, false);
+    const kind = equipmentKind(item);
+    if (kind === 'armor') this.selectArmor(item);
+    else if (kind === 'shield') this.setShieldItem(item);
+    else if (kind === 'weapon') this.equipWeapon(item);
+    else if (!this.itemIsEquipped(item)) this.toggleGenericEquipment(item);
+    this.feedback.success(`${item.name} aggiunto ed equipaggiato.`, 'Equipaggiamento aggiornato');
+  }
+
+  private notifyEncumbranceIncrease(
+    previous: 'normal' | 'encumbered' | 'heavily-encumbered' | 'over-capacity',
+  ): void {
+    const derived = this.store.derived();
+    const rank = {
+      normal: 0,
+      encumbered: 1,
+      'heavily-encumbered': 2,
+      'over-capacity': 3,
+    } as const;
+    if (rank[derived.encumbrance] <= rank[previous]) return;
+    if (derived.encumbrance === 'encumbered') {
+      this.feedback.warning(
+        `Il peso supera ${derived.encumberedThresholdKg} kg: velocità ridotta di 3 m.`,
+        'Personaggio ingombrato',
+        5000,
+      );
+      return;
+    }
+    if (derived.encumbrance === 'heavily-encumbered') {
+      this.feedback.error(
+        `Il peso supera ${derived.heavilyEncumberedThresholdKg} kg: velocità ridotta di 6 m e svantaggio alle prove, agli attacchi e ai tiri salvezza basati su FOR, DES o COS.`,
+        'Pesantemente ingombrato',
+      );
+      return;
+    }
+    this.feedback.error(
+      `Il peso supera la capacità massima di ${derived.carryingCapacityKg} kg e non può essere trasportato.`,
+      'Carico oltre capacità',
+    );
   }
   updateCoin(kind: keyof Coins, value: string | number) {
     const coins = this.store.draft().coins ?? { cp: 0, sp: 0, ep: 0, gp: 0, pp: 0 };
@@ -1837,6 +2061,7 @@ export class WizardComponent implements OnInit, OnDestroy {
     this.homebrewEquipmentOpen.set(false);
   }
   saveHomebrewEquipment(item: EquipmentItem) {
+    const previousEncumbrance = this.store.derived().encumbrance;
     this.store.patch({
       homebrewEquipment: [...this.homebrewEquipment, item],
       inventory: [
@@ -1847,11 +2072,13 @@ export class WizardComponent implements OnInit, OnDestroy {
         ? { ...(this.store.draft().equipmentCharges ?? {}), [item.id]: item.charges.maximum }
         : this.store.draft().equipmentCharges,
     });
+    this.notifyEncumbranceIncrease(previousEncumbrance);
     this.homebrewEquipmentOpen.set(false);
     this.feedback.success(`${item.name} è stato creato e aggiunto allo zaino.`);
   }
   removeHomebrewEquipment(id: string) {
     const draft = this.store.draft();
+    const itemName = this.homebrewEquipment.find((item) => item.id === id)?.name ?? 'Oggetto';
     const equipmentCharges = { ...(draft.equipmentCharges ?? {}) };
     delete equipmentCharges[id];
     this.store.patch({
@@ -1867,6 +2094,7 @@ export class WizardComponent implements OnInit, OnDestroy {
       attunedEquipmentIds: (draft.attunedEquipmentIds ?? []).filter((itemId) => itemId !== id),
       equipmentCharges,
     });
+    this.feedback.info(`${itemName} rimosso dallo zaino.`, 'Oggetto rimosso');
   }
   itemIsEquipped(item: EquipmentItem) {
     return equippedEquipmentIds(this.store.draft()).has(item.id);
@@ -1969,6 +2197,6 @@ export class WizardComponent implements OnInit, OnDestroy {
     }
   }
   markAncestryImageLoaded(id: string): void {
-    this.loadedAncestryImages.update(ids => new Set(ids).add(id));
+    this.loadedAncestryImages.update((ids) => new Set(ids).add(id));
   }
 }

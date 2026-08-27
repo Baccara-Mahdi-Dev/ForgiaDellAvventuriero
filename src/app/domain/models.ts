@@ -1,4 +1,4 @@
-import { AbilityMethod } from "../models/enum/ability-method";
+import { AbilityMethod } from '../models/enum/ability-method';
 
 export type AbilityKey = 'str' | 'dex' | 'con' | 'int' | 'wis' | 'cha';
 export type StepId =
@@ -435,12 +435,17 @@ export interface DerivedCharacter {
   passiveInvestigation: number;
   savingThrows: SavingThrowValue[];
   speedMeters: number;
+  baseSpeedMeters: number;
+  encumbranceSpeedPenaltyMeters: number;
   size: string;
   hitDie: number;
   hitDiceRemaining: number;
   carryingCapacityKg: number;
   moveCapacityKg: number;
   inventoryWeightKg: number;
+  encumberedThresholdKg: number;
+  heavilyEncumberedThresholdKg: number;
+  encumbrance: 'normal' | 'encumbered' | 'heavily-encumbered' | 'over-capacity';
   armorProficient: boolean;
   skills: SkillValue[];
   languages: string[];

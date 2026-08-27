@@ -256,6 +256,36 @@ tui-dialog [data-appearance='negative'] {
   color: var(--gold);
   cursor: pointer;
 }
+.inventory-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+}
+.inventory-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+.inventory-actions > .attunement-button,
+.inventory-actions > .item-ability,
+.inventory-actions > .remove-item {
+  margin: 0;
+}
+.inventory-actions ng-icon {
+  flex: 0 0 auto;
+  font-size: 1rem;
+}
+.spell-pagination button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+.spell-pagination button ng-icon {
+  font-size: 1rem;
+}
 @media (max-width: 760px) {
   .equipment-intro {
     align-items: stretch;
@@ -282,4 +312,114 @@ tui-dialog [data-appearance='negative'] {
   background: color-mix(in srgb, var(--ember) 12%, transparent);
   color: var(--ember);
   font-weight: 800;
+}
+/* Shared compact confirmation dialog used above the wizard layout. */
+.remove-dialog-backdrop {
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgb(20 14 10 / 65%);
+}
+.remove-dialog {
+  width: min(390px, 100%);
+  padding: 1.2rem;
+  border: 1px solid var(--danger);
+  border-radius: 0.65rem;
+  background: var(--surface-raised);
+  box-shadow: var(--shadow);
+}
+.remove-dialog h2 {
+  margin: 0.2rem 0 0.55rem;
+}
+.remove-dialog p:not(.kicker) {
+  color: var(--muted);
+  line-height: 1.45;
+}
+.remove-dialog label span {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--muted);
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.remove-dialog input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 0.35rem;
+  background: var(--surface-raised);
+  color: var(--ink);
+  font: inherit;
+}
+.remove-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+.remove-dialog-actions button {
+  min-height: 42px;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.35rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.remove-dialog-cancel {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+}
+.remove-dialog-confirm {
+  border: 1px solid var(--danger);
+  background: var(--danger);
+  color: #fff;
+}
+@media (max-width: 760px) {
+  .catalog-table .item-description {
+    display: -webkit-box !important;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+}
+.feat-proficiency-choice {
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 0.85rem;
+}
+
+.feat-proficiency-choice header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.feat-proficiency-choice header small {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.feat-choice-selects {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.feat-choice-selects label > span {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.feat-ability-choice > strong {
+  display: block;
+  margin-bottom: 0.75rem;
 }

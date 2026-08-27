@@ -637,6 +637,8 @@ function fillFirstPageDetails(
     [
       ...inventoryLines(draft, catalog),
       `Peso: ${derived.inventoryWeightKg}/${derived.carryingCapacityKg} kg`,
+      `Ingombro: ${encumbranceLabel(derived)} (soglie ${derived.encumberedThresholdKg}/${derived.heavilyEncumberedThresholdKg} kg)`,
+      `Velocità: ${derived.speedMeters} m${derived.encumbranceSpeedPenaltyMeters ? ` (-${derived.encumbranceSpeedPenaltyMeters} m)` : ''}`,
     ].join('\n'),
     { multiline: true, fontSize: 6.5 },
   );
@@ -654,6 +656,19 @@ function fillFirstPageDetails(
       .join('\n'),
     { multiline: true, fontSize: 6.5 },
   );
+}
+
+function encumbranceLabel(derived: DerivedCharacter): string {
+  switch (derived.encumbrance) {
+    case 'encumbered':
+      return 'ingombrato';
+    case 'heavily-encumbered':
+      return 'pesantemente ingombrato';
+    case 'over-capacity':
+      return 'oltre capacità';
+    default:
+      return 'normale';
+  }
 }
 function fillSecondPage(
   form: PDFForm,

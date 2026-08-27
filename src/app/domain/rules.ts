@@ -307,8 +307,7 @@ export function featEffectTotals(draft: CharacterDraft, catalog: RulesCatalog) {
     const ability = draft.featAbilityChoices?.[feat.id];
     if (ability && effects.abilityIncrease?.options.includes(ability))
       abilityBonuses[ability] = (abilityBonuses[ability] ?? 0) + effects.abilityIncrease.amount;
-    if (ability && effects.savingThrowProficiencyFromAbility)
-      savingThrowProficiencies.add(ability);
+    if (ability && effects.savingThrowProficiencyFromAbility) savingThrowProficiencies.add(ability);
     for (const armor of effects.armorProficiencies ?? []) armorProficiencies.add(armor);
     for (const tool of effects.toolProficiencies ?? []) toolProficiencies.add(tool);
     for (const weapon of effects.weaponProficiencies ?? []) weaponProficiencyIds.add(weapon);
@@ -391,14 +390,15 @@ export function growthChoicesComplete(draft: CharacterDraft, catalog: RulesCatal
     featEffects = featEffectTotals(draft, catalog),
     selectedFeats = catalog.feats.filter((feat) => draft.featIds.includes(feat.id)),
     featChoicesComplete = selectedFeats.every((feat) => {
-        const choice = draft.featAbilityChoices?.[feat.id];
-        const abilityComplete = !feat.effects?.abilityIncrease ||
-          (!!choice && feat.effects.abilityIncrease.options.includes(choice));
-        const proficienciesComplete = (feat.proficiencyChoices ?? []).every((pick) =>
-          (draft.featProficiencyChoices?.[pick.id] ?? []).length === pick.count,
-        );
-        return abilityComplete && proficienciesComplete;
-      });
+      const choice = draft.featAbilityChoices?.[feat.id];
+      const abilityComplete =
+        !feat.effects?.abilityIncrease ||
+        (!!choice && feat.effects.abilityIncrease.options.includes(choice));
+      const proficienciesComplete = (feat.proficiencyChoices ?? []).every(
+        (pick) => (draft.featProficiencyChoices?.[pick.id] ?? []).length === pick.count,
+      );
+      return abilityComplete && proficienciesComplete;
+    });
   const scoresValid = ABILITIES.every(
     ({ key }) =>
       draft.abilities[key] +
@@ -771,10 +771,6 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
       ...subclassArmorProficiencies,
       ...featEffects.armorProficiencies,
     ]),
-    armorProficient =
-      !equippedArmor ||
-      equippedArmor.armorType === 'clothing' ||
-      (!!equippedArmor.armorType && armorTypes.has(equippedArmor.armorType)),
     armorBase = equippedArmor?.armorClass ?? 10,
     armorDex =
       equippedArmor?.dexterityBonus === 'none'
@@ -785,6 +781,11 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
     equippedShield = catalog.equipment.find(
       (item) => item.id === (draft.equippedShieldId ?? (draft.shieldEquipped ? 'shield' : '')),
     ),
+    armorProficient =
+      (!equippedArmor ||
+        equippedArmor.armorType === 'clothing' ||
+        (!!equippedArmor.armorType && armorTypes.has(equippedArmor.armorType))) &&
+      (!equippedShield || armorTypes.has('shield')),
     shieldBonus = equippedShield ? (equippedShield.armorClass ?? 2) : 0,
     armorMagicBonus =
       equippedArmor && !equippedArmor.magical
@@ -806,7 +807,28 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
             : rawItem;
         return sum + (item?.weightKg ?? 0) * Math.max(0, entry.quantity);
       }, 0)
-      .toFixed(1);
+      .toFixed(1),
+    sizeMultiplier = ancestry?.powerfulBuild ? 2 : 1,
+    encumberedThresholdKg = +(finalAbilities.str * 2.5 * sizeMultiplier).toFixed(1),
+    heavilyEncumberedThresholdKg = +(finalAbilities.str * 5 * sizeMultiplier).toFixed(1),
+    carryingCapacityKg = +(finalAbilities.str * 7.5 * sizeMultiplier).toFixed(1),
+    moveCapacityKg = +(finalAbilities.str * 15 * sizeMultiplier).toFixed(1),
+    encumbrance =
+      inventoryWeightKg > carryingCapacityKg
+        ? ('over-capacity' as const)
+        : inventoryWeightKg > heavilyEncumberedThresholdKg
+          ? ('heavily-encumbered' as const)
+          : inventoryWeightKg > encumberedThresholdKg
+            ? ('encumbered' as const)
+            : ('normal' as const),
+    encumbranceSpeedPenaltyMeters =
+      encumbrance === 'encumbered' ? 3 : encumbrance === 'normal' ? 0 : 6,
+    baseSpeedMeters =
+      (ancestry?.speed ?? 0) +
+      (isArtificerSubclass(draft, 'armorer') &&
+      (draft.classFeatureChoices?.['armorer-armor-model'] ?? []).includes('infiltrator')
+        ? 1.5
+        : 0);
   const featureChoices = activeClassFeatureChoices(klass, draft.level, draft.subclassId),
     selectedFeatureSkillIds = featureChoices.flatMap((choice) => {
       if (choice.effect !== 'skill-proficiency') return [];
@@ -912,28 +934,18 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
     passivePerception: 10 + perception.value + featEffects.passivePerceptionBonus,
     passiveInvestigation: 10 + investigation.value + featEffects.passiveInvestigationBonus,
     savingThrows,
-    speedMeters:
-      (ancestry?.speed ?? 0) +
-      (isArtificerSubclass(draft, 'armorer') &&
-      (draft.classFeatureChoices?.['armorer-armor-model'] ?? []).includes('infiltrator')
-        ? 1.5
-        : 0),
+    speedMeters: Math.max(0, baseSpeedMeters - encumbranceSpeedPenaltyMeters),
+    baseSpeedMeters,
+    encumbranceSpeedPenaltyMeters,
     size: ancestry?.size ?? 'Media',
     hitDie: klass?.hitDie ?? 0,
     hitDiceRemaining: Math.max(0, draft.level - (draft.hitDiceSpent ?? 0)),
-    carryingCapacityKg: +(
-      finalAbilities.str *
-      15 *
-      0.45359237 *
-      (ancestry?.powerfulBuild ? 2 : 1)
-    ).toFixed(1),
-    moveCapacityKg: +(
-      finalAbilities.str *
-      30 *
-      0.45359237 *
-      (ancestry?.powerfulBuild ? 2 : 1)
-    ).toFixed(1),
+    carryingCapacityKg,
+    moveCapacityKg,
     inventoryWeightKg,
+    encumberedThresholdKg,
+    heavilyEncumberedThresholdKg,
+    encumbrance,
     armorProficient,
     skills,
     languages,

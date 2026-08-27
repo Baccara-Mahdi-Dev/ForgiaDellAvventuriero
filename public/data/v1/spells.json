@@ -2,7 +2,7 @@
   {
     "id": "abi-dalzims-horrid-wilting",
     "name": "Orribile avvizzimento di Abi-Dalzim",
-    "description": "Orribile avvizzimento di Abi-Dalzim è un incantesimo di 8° livello di necromanzia tratto da XGE.",
+    "description": "L'incantatore prosciuga l'umidità dalle creature in un cubo di 9 metri; le creature nell'area effettuano un tiro salvezza su Costituzione e subiscono 12d8 danni necrotici se lo falliscono, o la metà se lo superano. Non influenza costrutti e non morti; piante e elementali dell'acqua hanno svantaggio al tiro salvezza.",
     "source": "XGE",
     "level": 8,
     "school": "Necromanzia",
@@ -20,12 +20,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "12d8",
+      "type": "necrotici"
+    }
   },
   {
     "id": "absorb-elements",
     "name": "Assorbire elementi",
-    "description": "Assorbire elementi è un incantesimo di 1° livello di abiurazione tratto da XGE.",
+    "description": "L'incantesimo assorbe energia elementale in risposta a un danno da acido, freddo, fuoco, fulmine o tuono, conferendo resistenza a quel tipo di danno fino all'inizio del turno successivo. Il prossimo attacco in mischia dell'incantatore infligge 1d6 danni extra del tipo assorbito.",
     "source": "XGE",
     "level": 1,
     "school": "Abiurazione",
@@ -46,7 +50,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d6",
+      "type": "acido/freddo/fuoco/fulmine/tuono"
+    }
   },
   {
     "id": "acid-arrow",
@@ -123,7 +131,7 @@
   {
     "id": "aganazzars-scorcher",
     "name": "Inceneritore di Aganazzar",
-    "description": "Inceneritore di Aganazzar è un incantesimo di 2° livello di invocazione tratto da XGE.",
+    "description": "Una linea di fiamme lunga 9 metri e larga 1,5 metri erompe dall'incantatore. Le creature nell'area effettuano un tiro salvezza su Destrezza e subiscono 3d8 danni da fuoco se lo falliscono, o la metà se lo superano.",
     "source": "XGE",
     "level": 2,
     "school": "Invocazione",
@@ -141,7 +149,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "3d8",
+      "type": "fuoco"
+    }
   },
   {
     "id": "aid",
@@ -223,7 +235,12 @@
       "text": "Concentrazione, fino a 1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "damage": {
+      "formula": "1d6",
+      "type": "contundenti",
+      "note": "Danni dei colpi senz'armi nella forma di Armi naturali."
+    }
   },
   {
     "id": "animal-friendship",
@@ -360,7 +377,12 @@
       "text": "Concentrazione, fino a 1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "damage": {
+      "formula": "1d4+4 / 1d8+2 / 2d6+1 / 2d10+2 / 2d12+4",
+      "type": "contundenti",
+      "note": "Danni dell'attacco Schianto, rispettivamente per oggetti di taglia Minuscola, Piccola, Media, Grande ed Enorme."
+    }
   },
   {
     "id": "antilife-shell",
@@ -472,7 +494,7 @@
   {
     "id": "arcane-gate",
     "name": "Portale arcano",
-    "description": "Portale arcano è un incantesimo di 6° livello di evocazione tratto da PHB.",
+    "description": "L'incantatore crea due portali di teletrasporto collegati, ciascuno di forma circolare e con diametro fino a 3 metri, in punti visibili entro gittata. Una creatura che attraversa un portale emerge dall'altro.",
     "source": "PHB",
     "level": 6,
     "school": "Evocazione",
@@ -608,7 +630,7 @@
   {
     "id": "armor-of-agathys",
     "name": "Armatura di Agathys",
-    "description": "Armatura di Agathys è un incantesimo di 1° livello di abiurazione tratto da PHB.",
+    "description": "Una brina protettiva avvolge l'incantatore, che ottiene 5 punti ferita temporanei. Finché conserva questi punti ferita, una creatura che lo colpisce con un attacco in mischia subisce 5 danni da freddo.",
     "source": "PHB",
     "level": 1,
     "school": "Abiurazione",
@@ -625,12 +647,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "5",
+      "type": "freddo"
+    }
   },
   {
     "id": "arms-of-hadar",
     "name": "Braccia di Hadar",
-    "description": "Braccia di Hadar è un incantesimo di 1° livello di evocazione tratto da PHB.",
+    "description": "Tentacoli oscuri erompono dall'incantatore. Ogni creatura entro 3 metri deve superare un tiro salvezza su Forza o subire 2d6 danni necrotici e non poter effettuare reazioni fino al suo prossimo turno.",
     "source": "PHB",
     "level": 1,
     "school": "Evocazione",
@@ -647,7 +673,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "2d6",
+      "type": "necrotici"
+    }
   },
   {
     "id": "astral-projection",
@@ -703,7 +733,7 @@
   {
     "id": "aura-of-life",
     "name": "Aura di vita",
-    "description": "Aura di vita è un incantesimo di 4° livello di abiurazione tratto da PHB.",
+    "description": "Un'aura di 9 metri circonda l'incantatore. Le creature non ostili nell'aura ottengono resistenza ai danni necrotici e il massimo dei loro punti ferita non può essere ridotto; inoltre, una creatura che inizia il turno a 0 punti ferita recupera 1 punto ferita.",
     "source": "PHB",
     "level": 4,
     "school": "Abiurazione",
@@ -732,7 +762,7 @@
       "cleric",
       "paladin"
     ],
-    "description": "Un'aura di 9 metri protegge gli alleati vicini da malattie, veleno e varie condizioni debilitanti.",
+    "description": "Un'aura di 9 metri protegge le creature consenzienti nell'area. Ogni bersaglio è immune alle malattie, alla condizione avvelenato, spaventato, affascinato e stordito e ha vantaggio ai tiri salvezza contro altri effetti debilitanti.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -767,7 +797,7 @@
       "druid",
       "paladin"
     ],
-    "description": "Un'aura curativa circonda l'incantatore. Con un'azione bonus può restituire 2d6 punti ferita a una creatura nell'aura.",
+    "description": "Un'aura di energia curativa di 9 metri circonda l'incantatore. Come azione bonus, l'incantatore può far recuperare 2d6 punti ferita a una creatura nell'aura.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -851,7 +881,7 @@
     "classes": [
       "paladin"
     ],
-    "description": "Il successivo colpo con un'arma infligge danni da forza extra e può esiliare un bersaglio indebolito.",
+    "description": "Il prossimo colpo con un'arma dell'incantatore infligge 5d10 danni da forza extra e, se porta il bersaglio a 50 punti ferita o meno, può esiliarlo su un semipiano innocuo fino al termine dell'incantesimo.",
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -967,7 +997,7 @@
   {
     "id": "beast-bond",
     "name": "Legame con la bestia",
-    "description": "Legame con la bestia è un incantesimo di 1° livello di divinazione tratto da XGE.",
+    "description": "L'incantatore stabilisce un legame telepatico con una bestia consenziente entro gittata. Finché il bersaglio è entro 1,5 km, l'incantatore può comunicare telepaticamente con esso e dispone di vantaggio ai tiri per colpire contro creature entro 1,5 metri dalla bestia.",
     "source": "XGE",
     "level": 1,
     "school": "Divinazione",
@@ -990,7 +1020,7 @@
   {
     "id": "beast-sense",
     "name": "Senso della bestia",
-    "description": "Senso della bestia è un incantesimo di 2° livello di divinazione tratto da PHB.",
+    "description": "L'incantatore tocca una bestia consenziente e può usare i suoi sensi fino alla fine dell'incantesimo, percependo ciò che essa percepisce e mantenendo la propria percezione passiva.",
     "source": "PHB",
     "level": 2,
     "school": "Divinazione",
@@ -1124,7 +1154,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "Crea una lama planare fluttuante che può essere mossa e usata per effettuare potenti attacchi magici in mischia.",
+    "description": "L'incantatore apre una fenditura planare a forma di lama in uno spazio entro gittata. Può effettuare un attacco con la lama come azione bonus; se colpisce infligge 4d12 danni da forza e un 18 o più sul d20 è un colpo critico.",
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -1149,7 +1179,7 @@
   {
     "id": "blade-ward",
     "name": "Interdizione con lame",
-    "description": "Interdizione con lame è un trucchetto di abiurazione tratto da PHB.",
+    "description": "L'incantatore traccia un simbolo protettivo e ottiene resistenza ai danni contundenti, perforanti e taglienti inflitti dagli attacchi con armi fino alla fine del suo prossimo turno.",
     "source": "PHB",
     "level": 0,
     "school": "Abiurazione",
@@ -1236,7 +1266,7 @@
   {
     "id": "blinding-smite",
     "name": "Punizione accecante",
-    "description": "Punizione accecante è un incantesimo di 3° livello di invocazione tratto da PHB.",
+    "description": "Il prossimo colpo con un'arma dell'incantatore infligge 3d8 danni radianti extra. Il bersaglio deve superare un tiro salvezza su Costituzione o rimanere accecato finché non supera un tiro salvezza alla fine di uno dei suoi turni.",
     "source": "PHB",
     "level": 3,
     "school": "Invocazione",
@@ -1253,7 +1283,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "3d8",
+      "type": "radianti"
+    }
   },
   {
     "id": "blindness-deafness",
@@ -1344,7 +1378,7 @@
   {
     "id": "bones-of-the-earth",
     "name": "Ossa della terra",
-    "description": "Ossa della terra è un incantesimo di 6° livello di trasmutazione tratto da XGE.",
+    "description": "Piloni di pietra emergono dal terreno sotto un massimo di sei creature o in punti scelti dall'incantatore, sollevandole e creando colonne di pietra.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
@@ -1375,7 +1409,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "L'incantatore effettua un attacco con un'arma da mischia. Il bersaglio viene avvolto da energia tonante che ne punisce il movimento volontario.",
+    "description": "L'incantatore effettua un attacco con un'arma da mischia. Il colpo infligge 1d8 danni da tuono extra; se il bersaglio si muove volontariamente prima dell'inizio del prossimo turno dell'incantatore, subisce ulteriori danni da tuono, che aumentano con il livello del personaggio.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1540,7 +1574,7 @@
   {
     "id": "catapult",
     "name": "Catapulta",
-    "description": "Catapulta è un incantesimo di 1° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore scaglia un oggetto del peso compreso tra 0,5 e 2,5 kg contro una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Destrezza e subisce 3d8 danni contundenti se lo fallisce; se supera il tiro, l'oggetto continua la traiettoria verso il bersaglio successivo.",
     "source": "XGE",
     "level": 1,
     "school": "Trasmutazione",
@@ -1559,12 +1593,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "3d8",
+      "type": "contundenti"
+    }
   },
   {
     "id": "catnap",
     "name": "Pisolino",
-    "description": "Pisolino è un incantesimo di 3° livello di ammaliamento tratto da XGE.",
+    "description": "Fino a tre creature consenzienti nell'area possono entrare in un sonno magico di 10 minuti. Al termine, ogni creatura beneficia di un riposo breve e non può essere influenzata di nuovo da questo incantesimo fino al termine di un riposo lungo.",
     "source": "XGE",
     "level": 3,
     "school": "Ammaliamento",
@@ -1589,7 +1627,7 @@
   {
     "id": "cause-fear",
     "name": "Causare paura",
-    "description": "Causare paura è un incantesimo di 1° livello di necromanzia tratto da XGE.",
+    "description": "Una creatura entro gittata deve superare un tiro salvezza su Saggezza o diventare spaventata dall'incantatore per la durata. Il bersaglio può ripetere il tiro salvezza alla fine di ciascun turno.",
     "source": "XGE",
     "level": 1,
     "school": "Necromanzia",
@@ -1612,7 +1650,7 @@
   {
     "id": "ceremony",
     "name": "Cerimonia",
-    "description": "Cerimonia è un incantesimo di 1° livello di abiurazione tratto da XGE.",
+    "description": "L'incantatore esegue un rito religioso magico scegliendo uno tra diversi effetti, tra cui consacrazione di un giovane, matrimonio, funerale, dedizione, espiazione e rito d'acqua.",
     "source": "XGE",
     "level": 1,
     "school": "Abiurazione",
@@ -1670,7 +1708,7 @@
   {
     "id": "chaos-bolt",
     "name": "Dardo del caos",
-    "description": "Dardo del caos è un incantesimo di 1° livello di invocazione tratto da XGE.",
+    "description": "L'incantatore scaglia un dardo di energia caotica contro una creatura. Con un attacco a distanza con incantesimo, se colpisce infligge 2d8 + 1d6 danni; i due d8 determinano il tipo di danno e, se mostrano lo stesso risultato, il dardo può saltare a un altro bersaglio.",
     "source": "XGE",
     "level": 1,
     "school": "Invocazione",
@@ -1687,12 +1725,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "2d8+1d6",
+      "type": "variabile"
+    }
   },
   {
     "id": "charm-monster",
     "name": "Charme sui mostri",
-    "description": "Charme sui mostri è un incantesimo di 4° livello di ammaliamento tratto da XGE.",
+    "description": "Una creatura entro gittata deve superare un tiro salvezza su Saggezza o diventare affascinata dall'incantatore per la durata. Il bersaglio ha vantaggio al tiro se l'incantatore o i suoi compagni stanno combattendo contro di lui.",
     "source": "XGE",
     "level": 4,
     "school": "Ammaliamento",
@@ -1783,7 +1825,7 @@
   {
     "id": "chromatic-orb",
     "name": "Globo cromatico",
-    "description": "Globo cromatico è un incantesimo di 1° livello di invocazione tratto da PHB.",
+    "description": "L'incantatore scaglia una sfera di energia contro una creatura entro gittata effettuando un attacco a distanza con incantesimo. Se colpisce, infligge 3d8 danni di un tipo scelto tra acido, freddo, fulmine, fuoco, veleno o tuono.",
     "source": "PHB",
     "level": 1,
     "school": "Invocazione",
@@ -1801,7 +1843,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "3d8",
+      "type": "variabile"
+    }
   },
   {
     "id": "circle-of-death",
@@ -1837,7 +1883,7 @@
   {
     "id": "circle-of-power",
     "name": "Cerchio di potere",
-    "description": "Cerchio di potere è un incantesimo di 5° livello di abiurazione tratto da PHB.",
+    "description": "Un'aura di 9 metri conferisce alle creature amiche nell'area vantaggio ai tiri salvezza contro incantesimi ed effetti magici. Se un effetto consente metà danno con un tiro salvezza riuscito, un successo permette invece di non subire danni.",
     "source": "PHB",
     "level": 5,
     "school": "Abiurazione",
@@ -1911,7 +1957,7 @@
   {
     "id": "cloud-of-daggers",
     "name": "Nube di pugnali",
-    "description": "Nube di pugnali è un incantesimo di 2° livello di evocazione tratto da PHB.",
+    "description": "Una nube di pugnali appare in un cubo di 1,5 metri. Una creatura che entra nell'area per la prima volta in un turno o vi inizia il turno subisce 4d4 danni taglienti.",
     "source": "PHB",
     "level": 2,
     "school": "Evocazione",
@@ -1931,7 +1977,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "4d4",
+      "type": "taglienti"
+    }
   },
   {
     "id": "cloudkill",
@@ -2087,7 +2137,7 @@
   {
     "id": "compelled-duel",
     "name": "Duello obbligato",
-    "description": "Duello obbligato è un incantesimo di 1° livello di ammaliamento tratto da PHB.",
+    "description": "Una creatura entro gittata effettua un tiro salvezza su Saggezza; se fallisce, è costretta a concentrarsi sull'incantatore, subendo svantaggio agli attacchi contro altre creature e dovendo cercare di avvicinarsi all'incantatore.",
     "source": "PHB",
     "level": 1,
     "school": "Ammaliamento",
@@ -2265,7 +2315,7 @@
     "classes": [
       "ranger"
     ],
-    "description": "L'incantatore lancia un'arma o una munizione, creando un cono di 18 metri formato da proiettili identici.",
+    "description": "L'incantatore lancia un'arma non magica o crea proiettili simili che si moltiplicano e colpiscono un'area. Le creature effettuano un tiro salvezza su Destrezza e subiscono 3d8 danni del tipo normalmente inflitto dall'arma, o la metà con un successo.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2402,7 +2452,7 @@
   {
     "id": "conjure-volley",
     "name": "Evoca salva",
-    "description": "Evoca salva è un incantesimo di 5° livello di evocazione tratto da PHB.",
+    "description": "L'incantatore scaglia un'arma o crea munizioni magiche che cadono in un cilindro di 12 metri di raggio e 6 metri di altezza. Le creature nell'area effettuano un tiro salvezza su Destrezza e subiscono 8d8 danni del tipo dell'arma, o la metà con un successo.",
     "source": "PHB",
     "level": 5,
     "school": "Evocazione",
@@ -2419,7 +2469,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "8d8",
+      "type": "dell'arma"
+    }
   },
   {
     "id": "conjure-woodland-beings",
@@ -2563,7 +2617,7 @@
   {
     "id": "control-flames",
     "name": "Controllare fiamme",
-    "description": "Controllare fiamme è un trucchetto di trasmutazione tratto da XGE.",
+    "description": "L'incantatore manipola una fiamma non magica entro gittata, espandendola, spegnendola, modificandone luce o colore oppure creando forme semplici animate al suo interno.",
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
@@ -2649,7 +2703,7 @@
   {
     "id": "control-winds",
     "name": "Controllare venti",
-    "description": "Controllare venti è un incantesimo di 5° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore controlla l'aria in un cubo di 30 metri, scegliendo tra raffiche, correnti discendenti o correnti ascendenti. Può cambiare l'effetto usando un'azione.",
     "source": "XGE",
     "level": 5,
     "school": "Trasmutazione",
@@ -2673,7 +2727,7 @@
   {
     "id": "cordon-of-arrows",
     "name": "Cordone di frecce",
-    "description": "Cordone di frecce è un incantesimo di 2° livello di trasmutazione tratto da PHB.",
+    "description": "L'incantatore pianta quattro frecce nel terreno. Quando una creatura diversa dall'incantatore entra entro 9 metri da una freccia, questa scatta verso di lei e può infliggere 1d6 danni perforanti con un tiro per colpire.",
     "source": "PHB",
     "level": 2,
     "school": "Trasmutazione",
@@ -2690,7 +2744,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d6",
+      "type": "perforanti"
+    }
   },
   {
     "id": "counterspell",
@@ -2722,7 +2780,7 @@
   {
     "id": "create-bonfire",
     "name": "Creare falò",
-    "description": "Creare falò è un trucchetto di evocazione tratto da XGE.",
+    "description": "L'incantatore crea un falò magico in uno spazio libero a terra entro gittata. Una creatura che entra nel fuoco o vi termina il turno effettua un tiro salvezza su Destrezza e subisce 1d8 danni da fuoco se lo fallisce.",
     "source": "XGE",
     "level": 0,
     "school": "Evocazione",
@@ -2743,7 +2801,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d8",
+      "type": "fuoco"
+    }
   },
   {
     "id": "create-food-and-water",
@@ -2774,7 +2836,7 @@
   {
     "id": "create-homunculus",
     "name": "Creare omuncolo",
-    "description": "Creare omuncolo è un incantesimo di 6° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore crea un servitore omuncolo usando il proprio sangue e materiali speciali. L'omuncolo è fedele e condivide un legame telepatico con il creatore.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
@@ -2873,7 +2935,7 @@
   {
     "id": "crown-of-madness",
     "name": "Corona di follia",
-    "description": "Corona di follia è un incantesimo di 2° livello di ammaliamento tratto da PHB.",
+    "description": "Una creatura umanoide entro gittata deve superare un tiro salvezza su Saggezza o diventare affascinata e obbligata a usare la propria azione per effettuare un attacco in mischia contro una creatura scelta dall'incantatore.",
     "source": "PHB",
     "level": 2,
     "school": "Ammaliamento",
@@ -2898,7 +2960,7 @@
   {
     "id": "crown-of-stars",
     "name": "Corona di stelle",
-    "description": "Corona di stelle è un incantesimo di 7° livello di invocazione tratto da XGE.",
+    "description": "Sette stelle luminose orbitano attorno all'incantatore per la durata. Come azione bonus può scagliarne una contro una creatura entro gittata effettuando un attacco a distanza con incantesimo; se colpisce infligge 4d12 danni radianti.",
     "source": "XGE",
     "level": 7,
     "school": "Invocazione",
@@ -2917,12 +2979,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "4d12",
+      "type": "radianti"
+    }
   },
   {
     "id": "crusaders-mantle",
     "name": "Manto del crociato",
-    "description": "Manto del crociato è un incantesimo di 3° livello di invocazione tratto da PHB.",
+    "description": "Una radianza divina emana dall'incantatore in un'aura di 9 metri. Gli attacchi con arma delle creature amiche nell'aura infliggono 1d4 danni radianti extra.",
     "source": "PHB",
     "level": 3,
     "school": "Invocazione",
@@ -2939,7 +3005,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d4",
+      "type": "radianti"
+    }
   },
   {
     "id": "cure-wounds",
@@ -3001,7 +3071,7 @@
   {
     "id": "danse-macabre",
     "name": "Danza macabra",
-    "description": "Danza macabra è un incantesimo di 5° livello di necromanzia tratto da XGE.",
+    "description": "L'incantatore anima fino a cinque cadaveri di taglia Media o Piccola come zombi sotto il suo controllo. Gli zombi ottengono un bonus ai tiri per colpire e ai danni e scompaiono al termine dell'incantesimo.",
     "source": "XGE",
     "level": 5,
     "school": "Necromanzia",
@@ -3019,7 +3089,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "variabile",
+      "type": "variabile"
+    }
   },
   {
     "id": "darkness",
@@ -3080,7 +3154,7 @@
   {
     "id": "dawn",
     "name": "Alba",
-    "description": "Alba è un incantesimo di 5° livello di invocazione tratto da XGE.",
+    "description": "Una sfera di luce solare del diametro di 9 metri appare in un punto entro gittata. Le creature nell'area effettuano un tiro salvezza su Costituzione e subiscono 4d10 danni radianti se lo falliscono, o la metà con un successo; l'incantatore può spostare la sfera ogni turno.",
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
@@ -3098,7 +3172,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "4d10",
+      "type": "radianti"
+    }
   },
   {
     "id": "daylight",
@@ -3183,7 +3261,12 @@
     "savingThrows": [
       "dex"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "damage": {
+      "formula": "12d6",
+      "type": "fuoco",
+      "scaling": "I danni aumentano di 1d6 alla fine di ogni turno in cui la sfera non esplode; con slot di 8° livello o superiore, i danni iniziali aumentano di 1d6 per ogni slot oltre il 7°."
+    }
   },
   {
     "id": "demiplane",
@@ -3214,7 +3297,7 @@
   {
     "id": "destructive-wave",
     "name": "Onda distruttiva",
-    "description": "Onda distruttiva è un incantesimo di 5° livello di invocazione tratto da PHB.",
+    "description": "L'incantatore crea un'onda di energia. Ogni creatura scelta entro 9 metri effettua un tiro salvezza su Costituzione: con un fallimento subisce 5d6 danni da tuono e 5d6 radianti o necrotici, a scelta dell'incantatore, e cade prona; con un successo subisce la metà e non cade prona.",
     "source": "PHB",
     "level": 5,
     "school": "Invocazione",
@@ -3231,7 +3314,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "5d6+5d6",
+      "type": "tuono+radianti/necrotici"
+    }
   },
   {
     "id": "detect-evil-and-good",
@@ -3505,7 +3592,7 @@
   {
     "id": "dissonant-whispers",
     "name": "Sussurri dissonanti",
-    "description": "Sussurri dissonanti è un incantesimo di 1° livello di ammaliamento tratto da PHB.",
+    "description": "Un sussurro doloroso raggiunge una creatura entro gittata. Se fallisce un tiro salvezza su Saggezza, subisce 3d6 danni psichici e deve usare immediatamente la propria reazione, se disponibile, per allontanarsi dall'incantatore.",
     "source": "PHB",
     "level": 1,
     "school": "Ammaliamento",
@@ -3522,7 +3609,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "3d6",
+      "type": "psichici"
+    }
   },
   {
     "id": "divination",
@@ -3702,7 +3793,7 @@
   {
     "id": "dragons-breath",
     "name": "Soffio del drago",
-    "description": "Soffio del drago è un incantesimo di 2° livello di trasmutazione tratto da XGE.",
+    "description": "Una creatura consenziente toccata dall'incantatore può espellere energia in un cono di 4,5 metri. Le creature nel cono effettuano un tiro salvezza su Destrezza e subiscono 3d6 danni del tipo scelto tra acido, freddo, fulmine, fuoco o veleno.",
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
@@ -3720,7 +3811,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "3d6",
+      "type": "acido/freddo/fulmine/fuoco/veleno"
+    }
   },
   {
     "id": "dream",
@@ -3765,7 +3860,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "Avvolge un gruppo consenziente in una visione condivisa e, al termine, lo trasporta su un altro mondo del Piano Materiale.",
+    "description": "L'incantatore e fino a otto creature consenzienti si addormentano e ricevono un sogno che conduce a un altro mondo del multiverso scelto dall'incantatore, dove i loro corpi vengono trasportati al risveglio.",
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -3784,7 +3879,7 @@
   {
     "id": "druid-grove",
     "name": "Boschetto del druido",
-    "description": "Boschetto del druido è un incantesimo di 6° livello di abiurazione tratto da XGE.",
+    "description": "L'incantatore crea un boschetto magico in un'area naturale. Può stabilire guardiani e barriere magiche, creare effetti atmosferici, far crescere piante e predisporre vari effetti difensivi che possono essere riattivati.",
     "source": "XGE",
     "level": 6,
     "school": "Abiurazione",
@@ -3830,7 +3925,7 @@
   {
     "id": "dust-devil",
     "name": "Diavolo di polvere",
-    "description": "Diavolo di polvere è un incantesimo di 2° livello di evocazione tratto da XGE.",
+    "description": "Un diavolo di polvere compare in un cubo di 1,5 metri. Le creature entro 1,5 metri effettuano un tiro salvezza su Forza e subiscono 1d8 danni contundenti se lo falliscono; l'incantatore può muovere il diavolo con un'azione bonus.",
     "source": "XGE",
     "level": 2,
     "school": "Evocazione",
@@ -3849,12 +3944,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d8",
+      "type": "contundenti"
+    }
   },
   {
     "id": "earth-tremor",
     "name": "Tremore della terra",
-    "description": "Tremore della terra è un incantesimo di 1° livello di invocazione tratto da XGE.",
+    "description": "Il terreno trema in un raggio di 3 metri. Le creature nell'area effettuano un tiro salvezza su Destrezza e subiscono 1d6 danni contundenti e cadono prone se lo falliscono.",
     "source": "XGE",
     "level": 1,
     "school": "Invocazione",
@@ -3874,12 +3973,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d6",
+      "type": "contundenti"
+    }
   },
   {
     "id": "earthbind",
     "name": "Vincolo della terra",
-    "description": "Vincolo della terra è un incantesimo di 2° livello di trasmutazione tratto da XGE.",
+    "description": "Una creatura volante entro gittata effettua un tiro salvezza su Forza. Se fallisce, la sua velocità di volare viene ridotta a 0 per la durata e scende lentamente verso il terreno.",
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
@@ -3969,7 +4072,7 @@
   {
     "id": "elemental-bane",
     "name": "Rovina elementale",
-    "description": "Rovina elementale è un incantesimo di 4° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore sceglie una creatura e un tipo di danno tra acido, freddo, fuoco, fulmine o tuono. Il bersaglio perde resistenza a quel tipo di danno e, ogni volta che subisce danni di quel tipo, ne subisce 2d6 extra.",
     "source": "XGE",
     "level": 4,
     "school": "Trasmutazione",
@@ -4001,7 +4104,7 @@
       "artificer",
       "paladin"
     ],
-    "description": "Un'arma non magica diventa magica, ottiene un bonus ai tiri per colpire e infligge danni elementali extra.",
+    "description": "Un'arma non magica diventa magica, ottiene un bonus ai tiri per colpire e infligge 1d4 danni extra di un tipo scelto tra acido, freddo, fuoco, fulmine o tuono.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4024,7 +4127,7 @@
   {
     "id": "enemies-abound",
     "name": "Nemici ovunque",
-    "description": "Nemici ovunque è un incantesimo di 3° livello di ammaliamento tratto da XGE.",
+    "description": "Una creatura entro gittata effettua un tiro salvezza su Intelligenza. Se fallisce, perde la capacità di distinguere amici e nemici e considera ogni creatura come ostile per la durata.",
     "source": "XGE",
     "level": 3,
     "school": "Ammaliamento",
@@ -4049,7 +4152,7 @@
   {
     "id": "enervation",
     "name": "Debilitazione",
-    "description": "Debilitazione è un incantesimo di 5° livello di necromanzia tratto da XGE.",
+    "description": "Un raggio oscuro collega l'incantatore a una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Destrezza e, se fallisce, subisce 4d8 danni necrotici; l'incantatore recupera punti ferita pari a metà dei danni inflitti e può mantenere il raggio per infliggere danni nuovamente nei turni successivi.",
     "source": "XGE",
     "level": 5,
     "school": "Necromanzia",
@@ -4128,12 +4231,17 @@
     "savingThrows": [
       "con"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "damage": {
+      "formula": "1d4",
+      "type": "contundenti",
+      "note": "Danni extra agli attacchi con armi effettuati nella forma ingrandita."
+    }
   },
   {
     "id": "ensnaring-strike",
     "name": "Colpo intrappolante",
-    "description": "Colpo intrappolante è un incantesimo di 1° livello di evocazione tratto da PHB.",
+    "description": "Il prossimo attacco con arma che colpisce il bersaglio crea rampicanti magici che lo trattengono. Il bersaglio effettua un tiro salvezza su Forza per liberarsi; i rampicanti infliggono 1d6 danni perforanti all'inizio di ogni turno del bersaglio.",
     "source": "PHB",
     "level": 1,
     "school": "Evocazione",
@@ -4210,7 +4318,7 @@
   {
     "id": "erupting-earth",
     "name": "Terra eruttante",
-    "description": "Terra eruttante è un incantesimo di 3° livello di trasmutazione tratto da XGE.",
+    "description": "Un punto del terreno esplode in un cubo di 6 metri. Le creature nell'area effettuano un tiro salvezza su Destrezza e subiscono 3d12 danni contundenti se lo falliscono, o la metà con un successo; il terreno diventa difficile.",
     "source": "XGE",
     "level": 3,
     "school": "Trasmutazione",
@@ -4229,7 +4337,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "3d12",
+      "type": "contundenti"
+    }
   },
   {
     "id": "etherealness",
@@ -4436,7 +4548,7 @@
   {
     "id": "far-step",
     "name": "Passo lontano",
-    "description": "Passo lontano è un incantesimo di 5° livello di evocazione tratto da XGE.",
+    "description": "L'incantatore si teletrasporta fino a 18 metri come azione bonus durante ogni suo turno, finché mantiene la concentrazione.",
     "source": "XGE",
     "level": 5,
     "school": "Evocazione",
@@ -4556,7 +4668,7 @@
   {
     "id": "feign-death",
     "name": "Fingere morte",
-    "description": "Fingere morte è un incantesimo di 3° livello di necromanzia tratto da PHB.",
+    "description": "L'incantatore o una creatura consenziente entra in uno stato catalettico simile alla morte, diventando accecata e incapacitata e apparendo morta alle osservazioni non magiche.",
     "source": "PHB",
     "level": 3,
     "school": "Necromanzia",
@@ -4607,7 +4719,7 @@
   {
     "id": "find-greater-steed",
     "name": "Trova cavalcatura superiore",
-    "description": "Trova cavalcatura superiore è un incantesimo di 4° livello di evocazione tratto da XGE.",
+    "description": "L'incantatore evoca uno spirito celestiale, fatato o immondo che assume la forma di una cavalcatura potente, come un pegaso, un grifone o una tigre dai denti a sciabola. La cavalcatura è fedele e condivide un legame telepatico con l'incantatore.",
     "source": "XGE",
     "level": 4,
     "school": "Evocazione",
@@ -4876,7 +4988,7 @@
   {
     "id": "flame-arrows",
     "name": "Frecce infuocate",
-    "description": "Frecce infuocate è un incantesimo di 3° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore infonde di energia infuocata una quantità di munizioni fino a dodici. Ogni munizione infligge 1d6 danni da fuoco extra quando colpisce.",
     "source": "XGE",
     "level": 3,
     "school": "Trasmutazione",
@@ -4897,7 +5009,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d6",
+      "type": "fuoco"
+    }
   },
   {
     "id": "flame-blade",
@@ -5133,7 +5249,12 @@
       "amount": 1
     },
     "ritual": true,
-    "isHidden": false
+    "isHidden": false,
+    "damage": {
+      "formula": "5d10",
+      "type": "radianti",
+      "note": "Danni inflitti a una creatura che entra nell'area per la prima volta in un turno o vi termina il turno, se appartiene al tipo di creatura scelto."
+    }
   },
   {
     "id": "forcecage",
@@ -5255,7 +5376,7 @@
   {
     "id": "friends",
     "name": "Amicizia",
-    "description": "Amicizia è un trucchetto di ammaliamento tratto da PHB.",
+    "description": "L'incantatore ottiene vantaggio alle prove di Carisma contro una creatura non ostile per 1 minuto, ma al termine la creatura si rende conto della manipolazione magica e può diventare ostile.",
     "source": "PHB",
     "level": 0,
     "school": "Ammaliamento",
@@ -5280,7 +5401,7 @@
   {
     "id": "frostbite",
     "name": "Morso del gelo",
-    "description": "Morso del gelo è un trucchetto di invocazione tratto da XGE.",
+    "description": "Una creatura entro gittata effettua un tiro salvezza su Costituzione e subisce 1d6 danni da freddo se lo fallisce; con un fallimento ha anche svantaggio al prossimo tiro per colpire con un'arma prima della fine del suo prossimo turno.",
     "source": "XGE",
     "level": 0,
     "school": "Invocazione",
@@ -5301,7 +5422,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d6",
+      "type": "freddo"
+    }
   },
   {
     "id": "gaseous-form",
@@ -5536,7 +5661,12 @@
     "savingThrows": [
       "dex"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "damage": {
+      "formula": "5d8",
+      "type": "variabile",
+      "scaling": "Le rune esplosive infliggono 1d8 aggiuntivo per ogni livello dello slot oltre il 3°."
+    }
   },
   {
     "id": "goodberry",
@@ -5566,7 +5696,7 @@
   {
     "id": "grasping-vine",
     "name": "Rampicante afferrante",
-    "description": "Rampicante afferrante è un incantesimo di 4° livello di evocazione tratto da PHB.",
+    "description": "Un rampicante magico emerge da un punto entro gittata e può trascinare una creatura o un oggetto fino a 9 metri verso il punto scelto come azione bonus.",
     "source": "PHB",
     "level": 4,
     "school": "Evocazione",
@@ -5682,7 +5812,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "L'incantatore effettua un attacco con un'arma da mischia e una fiamma verde può balzare dal bersaglio a una creatura vicina.",
+    "description": "L'incantatore effettua un attacco con un'arma da mischia. Se colpisce, una fiamma verde balza dal bersaglio a una creatura diversa entro 1,5 metri, infliggendo danni da fuoco extra che aumentano con il livello del personaggio.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5730,12 +5860,17 @@
     "savingThrows": [
       "dex"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "damage": {
+      "formula": "20",
+      "type": "radianti",
+      "note": "Il guardiano svanisce dopo aver inflitto complessivamente 60 danni."
+    }
   },
   {
     "id": "guardian-of-nature",
     "name": "Guardiano della natura",
-    "description": "Guardiano della natura è un incantesimo di 4° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore assume una forma naturale potenziata, scegliendo Forma della Bestia o Forma del Grande Albero. Ottiene bonus offensivi e difensivi, oltre a vantaggi legati al terreno e alla percezione.",
     "source": "XGE",
     "level": 4,
     "school": "Trasmutazione",
@@ -5842,7 +5977,7 @@
   {
     "id": "gust",
     "name": "Folata",
-    "description": "Folata è un trucchetto di trasmutazione tratto da XGE.",
+    "description": "L'incantatore manipola una corrente d'aria entro gittata, spingendo una creatura o un oggetto leggero, oppure creando un effetto scenico innocuo.",
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
@@ -5897,7 +6032,7 @@
   {
     "id": "hail-of-thorns",
     "name": "Pioggia di spine",
-    "description": "Pioggia di spine è un incantesimo di 1° livello di evocazione tratto da PHB.",
+    "description": "Il prossimo attacco a distanza che colpisce crea una pioggia di spine. Il bersaglio e le creature entro 1,5 metri devono superare un tiro salvezza su Destrezza o subire 1d10 danni perforanti.",
     "source": "PHB",
     "level": 1,
     "school": "Evocazione",
@@ -5914,7 +6049,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d10",
+      "type": "perforanti"
+    }
   },
   {
     "id": "hallow",
@@ -6059,7 +6198,7 @@
   {
     "id": "healing-spirit",
     "name": "Spirito guaritore",
-    "description": "Spirito guaritore è un incantesimo di 2° livello di evocazione tratto da XGE.",
+    "description": "L'incantatore evoca uno spirito curativo in uno spazio entro gittata. Una creatura che entra nello spazio dello spirito o vi inizia il turno recupera 1d6 punti ferita; l'incantatore può spostare lo spirito con un'azione bonus.",
     "source": "XGE",
     "level": 2,
     "school": "Evocazione",
@@ -6241,7 +6380,7 @@
   {
     "id": "hex",
     "name": "Maledizione",
-    "description": "Maledizione è un incantesimo di 1° livello di ammaliamento tratto da PHB.",
+    "description": "L'incantatore maledice una creatura entro gittata. Gli attacchi dell'incantatore contro il bersaglio infliggono 1d6 danni necrotici extra e il bersaglio subisce svantaggio alle prove di una caratteristica scelta.",
     "source": "PHB",
     "level": 1,
     "school": "Ammaliamento",
@@ -6258,7 +6397,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d6",
+      "type": "necrotici"
+    }
   },
   {
     "id": "hideous-laughter",
@@ -6384,7 +6527,7 @@
   {
     "id": "holy-weapon",
     "name": "Arma sacra",
-    "description": "Arma sacra è un incantesimo di 5° livello di invocazione tratto da XGE.",
+    "description": "Un'arma toccata dall'incantatore viene infusa di potere radiante: gli attacchi con essa infliggono 2d8 danni radianti extra. L'incantatore può porre fine all'incantesimo con un'esplosione che infligge 4d8 danni radianti alle creature vicine.",
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
@@ -6402,12 +6545,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "2d8",
+      "type": "radianti"
+    }
   },
   {
     "id": "hunger-of-hadar",
     "name": "Fame di Hadar",
-    "description": "Fame di Hadar è un incantesimo di 3° livello di evocazione tratto da PHB.",
+    "description": "Una sfera di oscurità e orrore si apre in un'area. La zona è fortemente oscurata e il terreno è difficile; le creature nell'area subiscono 2d6 danni da freddo all'inizio del loro turno e 2d6 danni da acido alla fine del turno.",
     "source": "PHB",
     "level": 3,
     "school": "Evocazione",
@@ -6424,7 +6571,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "2d6+2d6",
+      "type": "freddo+acido"
+    }
   },
   {
     "id": "hunters-mark",
@@ -6449,7 +6600,12 @@
       "text": "Concentrazione, fino a 1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "damage": {
+      "formula": "1d6",
+      "type": "variabile",
+      "note": "Danni extra a ogni attacco con arma che colpisce il bersaglio marchiato."
+    }
   },
   {
     "id": "hypnotic-pattern",
@@ -6494,7 +6650,7 @@
   {
     "id": "ice-knife",
     "name": "Coltello di ghiaccio",
-    "description": "Coltello di ghiaccio è un incantesimo di 1° livello di evocazione tratto da XGE.",
+    "description": "L'incantatore scaglia un frammento di ghiaccio contro una creatura. Con un colpo infligge 1d10 danni perforanti; poi esplode e le creature entro 1,5 metri devono superare un tiro salvezza su Destrezza o subire 2d6 danni da freddo.",
     "source": "XGE",
     "level": 1,
     "school": "Evocazione",
@@ -6513,7 +6669,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d10+2d6",
+      "type": "perforanti+freddo"
+    }
   },
   {
     "id": "ice-storm",
@@ -6588,7 +6748,7 @@
   {
     "id": "illusory-dragon",
     "name": "Drago illusorio",
-    "description": "Drago illusorio è un incantesimo di 8° livello di illusione tratto da XGE.",
+    "description": "L'incantatore crea un drago illusorio di taglia Grande che terrorizza le creature vicine. Una creatura che entra nell'area del drago o vi inizia il turno può subire 7d6 danni psichici e deve superare un tiro salvezza su Saggezza per non essere spaventata.",
     "source": "XGE",
     "level": 8,
     "school": "Illusione",
@@ -6605,7 +6765,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "7d6",
+      "type": "psichici"
+    }
   },
   {
     "id": "illusory-script",
@@ -6638,7 +6802,7 @@
   {
     "id": "immolation",
     "name": "Immolazione",
-    "description": "Immolazione è un incantesimo di 5° livello di invocazione tratto da XGE.",
+    "description": "Una fiamma avvolge una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Destrezza e subisce 8d6 danni da fuoco se lo fallisce, o la metà con un successo; se fallisce, continua a bruciare e subisce 4d6 danni da fuoco alla fine dei suoi turni finché non supera un tiro salvezza.",
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
@@ -6656,7 +6820,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "8d6",
+      "type": "fuoco"
+    }
   },
   {
     "id": "imprisonment",
@@ -6724,7 +6892,7 @@
   {
     "id": "infernal-calling",
     "name": "Chiamata infernale",
-    "description": "Chiamata infernale è un incantesimo di 5° livello di evocazione tratto da XGE.",
+    "description": "L'incantatore evoca un diavolo con grado di sfida 6 o inferiore in uno spazio libero entro gittata. Il diavolo è vincolato per la durata se l'incantatore riesce a controllarlo con un sigillo magico o una prova di Carisma.",
     "source": "XGE",
     "level": 5,
     "school": "Evocazione",
@@ -6747,7 +6915,7 @@
   {
     "id": "infestation",
     "name": "Infestazione",
-    "description": "Infestazione è un trucchetto di evocazione tratto da XGE.",
+    "description": "Insetti parassiti compaiono su una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Costituzione e subisce 1d6 danni da veleno se lo fallisce; con un fallimento si muove inoltre di 1,5 metri in una direzione casuale.",
     "source": "XGE",
     "level": 0,
     "school": "Evocazione",
@@ -6767,7 +6935,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d6",
+      "type": "veleno"
+    }
   },
   {
     "id": "inflict-wounds",
@@ -6881,7 +7053,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "Una creatura ottiene resistenza ai danni psichici e vantaggio ai tiri salvezza su Intelligenza, Saggezza e Carisma.",
+    "description": "Una creatura consenziente ottiene resistenza ai danni psichici e vantaggio ai tiri salvezza su Intelligenza, Saggezza e Carisma. Se una creatura subisce un attacco psichico, può usare una reazione per proteggere un alleato vicino.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6900,7 +7072,7 @@
   {
     "id": "investiture-of-flame",
     "name": "Investitura della fiamma",
-    "description": "Investitura della fiamma è un incantesimo di 6° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore assume un'aura di fiamme: è immune al fuoco, emette luce intensa e può usare un'azione per creare un cono di fuoco che infligge 4d8 danni da fuoco con un tiro salvezza su Destrezza.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
@@ -6920,12 +7092,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "4d8",
+      "type": "fuoco"
+    }
   },
   {
     "id": "investiture-of-ice",
     "name": "Investitura del ghiaccio",
-    "description": "Investitura del ghiaccio è un incantesimo di 6° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore assume un'aura di ghiaccio: è immune al freddo, può muoversi su superfici ghiacciate senza penalità e può creare un cono di gelo che infligge 4d8 danni da freddo con un tiro salvezza su Costituzione.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
@@ -6945,12 +7121,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "4d8",
+      "type": "freddo"
+    }
   },
   {
     "id": "investiture-of-stone",
     "name": "Investitura della pietra",
-    "description": "Investitura della pietra è un incantesimo di 6° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore assume una forma rocciosa, ottiene resistenza ai danni contundenti, perforanti e taglienti non magici e può attraversare terreno difficile senza penalità.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
@@ -6975,7 +7155,7 @@
   {
     "id": "investiture-of-wind",
     "name": "Investitura del vento",
-    "description": "Investitura del vento è un incantesimo di 6° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore assume una forma ventosa, ottiene velocità di volare e resistenza ai danni contundenti, perforanti e taglienti non magici. Può inoltre creare una linea di vento che infligge 2d10 danni contundenti e spinge le creature.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
@@ -6995,7 +7175,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "2d10",
+      "type": "contundenti"
+    }
   },
   {
     "id": "invisibility",
@@ -7029,7 +7213,7 @@
   {
     "id": "invulnerability",
     "name": "Invulnerabilità",
-    "description": "Invulnerabilità è un incantesimo di 9° livello di abiurazione tratto da XGE.",
+    "description": "L'incantatore diventa immune a tutti i danni finché mantiene la concentrazione, salvo eccezioni previste dall'incantesimo.",
     "source": "XGE",
     "level": 9,
     "school": "Abiurazione",
@@ -7218,7 +7402,7 @@
   {
     "id": "life-transference",
     "name": "Trasferimento vitale",
-    "description": "Trasferimento vitale è un incantesimo di 3° livello di necromanzia tratto da XGE.",
+    "description": "L'incantatore sacrifica parte dei propri punti ferita per curare un'altra creatura. Subisce 4d8 danni necrotici e il bersaglio recupera un numero di punti ferita pari al doppio dei danni subiti.",
     "source": "XGE",
     "level": 3,
     "school": "Necromanzia",
@@ -7236,7 +7420,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "4d8",
+      "type": "necrotici"
+    }
   },
   {
     "id": "light",
@@ -7270,7 +7458,7 @@
   {
     "id": "lightning-arrow",
     "name": "Freccia fulminante",
-    "description": "Freccia fulminante è un incantesimo di 3° livello di trasmutazione tratto da PHB.",
+    "description": "Il prossimo attacco con arma a distanza dell'incantatore diventa un fulmine. Il colpo infligge 4d8 danni da fulmine extra; con un tiro per colpire mancato, l'attacco non infligge danni al bersaglio ma il fulmine può comunque colpire creature vicine.",
     "source": "PHB",
     "level": 3,
     "school": "Trasmutazione",
@@ -7287,7 +7475,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "4d8",
+      "type": "fulmine"
+    }
   },
   {
     "id": "lightning-bolt",
@@ -7343,7 +7535,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "Una sferza di fulmine trascina verso l'incantatore una creatura che fallisce un tiro salvezza su Forza e può folgorarla.",
+    "description": "Un fulmine attira una creatura entro 4,5 metri verso l'incantatore. Il bersaglio effettua un tiro salvezza su Forza e subisce 1d8 danni da fulmine se lo fallisce; se viene trascinato entro 1,5 metri, subisce il danno.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7486,7 +7678,7 @@
   {
     "id": "maddening-darkness",
     "name": "Oscurità esasperante",
-    "description": "Oscurità esasperante è un incantesimo di 8° livello di invocazione tratto da XGE.",
+    "description": "Una sfera di oscurità magica avvolge un'area. Le creature nell'oscurità subiscono 8d8 danni psichici se falliscono un tiro salvezza su Saggezza, o la metà con un successo, ogni volta che iniziano il turno nell'area.",
     "source": "XGE",
     "level": 8,
     "school": "Invocazione",
@@ -7504,12 +7696,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "8d8",
+      "type": "psichici"
+    }
   },
   {
     "id": "maelstrom",
     "name": "Maelstrom",
-    "description": "Maelstrom è un incantesimo di 5° livello di invocazione tratto da XGE.",
+    "description": "Un vortice d'acqua del diametro di 9 metri si forma sul terreno o in acqua. Le creature nell'area devono superare un tiro salvezza su Forza o subire 6d6 danni contundenti e venire trascinate verso il centro.",
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
@@ -7526,7 +7722,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "6d6",
+      "type": "contundenti"
+    }
   },
   {
     "id": "mage-armor",
@@ -7711,7 +7911,7 @@
   {
     "id": "magic-stone",
     "name": "Pietra magica",
-    "description": "Pietra magica è un trucchetto di trasmutazione tratto da XGE.",
+    "description": "L'incantatore incanta fino a tre ciottoli, che diventano munizioni magiche. Una creatura può lanciarli effettuando un attacco a distanza con incantesimo; con un colpo infliggono 1d6 + il modificatore di caratteristica da incantatore danni contundenti.",
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
@@ -7730,7 +7930,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d6",
+      "type": "contundenti"
+    }
   },
   {
     "id": "magic-weapon",
@@ -7906,7 +8110,7 @@
   {
     "id": "mass-polymorph",
     "name": "Metamorfosi di massa",
-    "description": "Metamorfosi di massa è un incantesimo di 9° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore trasforma fino a dieci creature consenzienti o non consenzienti in nuove forme. Ogni bersaglio può diventare una bestia di grado di sfida 1 o inferiore e conserva i propri punti ferita; la trasformazione termina se il bersaglio scende a 0 punti ferita.",
     "source": "XGE",
     "level": 9,
     "school": "Trasmutazione",
@@ -7962,7 +8166,7 @@
   {
     "id": "maximilians-earthen-grasp",
     "name": "Presa terrigna di Maximilian",
-    "description": "Presa terrigna di Maximilian è un incantesimo di 2° livello di trasmutazione tratto da XGE.",
+    "description": "Una mano di terra compatta emerge dal suolo e tenta di afferrare una creatura di taglia Media o inferiore. L'incantatore può usare un'azione per stritolarla, infliggendo 2d6 danni contundenti con un tiro salvezza su Forza.",
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
@@ -7980,7 +8184,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "2d6",
+      "type": "contundenti"
+    }
   },
   {
     "id": "maze",
@@ -8041,7 +8249,7 @@
   {
     "id": "melfs-minute-meteors",
     "name": "Meteore minute di Melf",
-    "description": "Meteore minute di Melf è un incantesimo di 3° livello di invocazione tratto da XGE.",
+    "description": "Sei piccole meteore orbitano attorno all'incantatore. Come azione può scagliarne fino a due contro punti entro gittata; ogni meteora esplode e infligge 2d6 danni da fuoco alle creature entro 1,5 metri che falliscono un tiro salvezza su Destrezza.",
     "source": "XGE",
     "level": 3,
     "school": "Invocazione",
@@ -8059,7 +8267,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "2d6",
+      "type": "fuoco"
+    }
   },
   {
     "id": "mending",
@@ -8093,7 +8305,7 @@
   {
     "id": "mental-prison",
     "name": "Prigione mentale",
-    "description": "Prigione mentale è un incantesimo di 6° livello di illusione tratto da XGE.",
+    "description": "Una creatura entro gittata deve superare un tiro salvezza su Intelligenza o rimanere intrappolata in una gabbia psichica. Se la creatura si muove, tenta di uscire o un'altra creatura la raggiunge, l'illusione può infliggere 5d10 danni psichici.",
     "source": "XGE",
     "level": 6,
     "school": "Illusione",
@@ -8112,7 +8324,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "5d10",
+      "type": "psichici"
+    }
   },
   {
     "id": "message",
@@ -8174,7 +8390,7 @@
   {
     "id": "mighty-fortress",
     "name": "Fortezza possente",
-    "description": "Fortezza possente è un incantesimo di 8° livello di evocazione tratto da XGE.",
+    "description": "L'incantatore crea una fortezza di pietra imponente con torri, mura, porte, stanze e arredi, che permane per 7 giorni o finché non viene dissolta.",
     "source": "XGE",
     "level": 8,
     "school": "Evocazione",
@@ -8230,7 +8446,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "Insinua una scheggia psichica che ferisce la mente e penalizza il successivo tiro salvezza del bersaglio.",
+    "description": "L'incantatore colpisce la mente di una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Intelligenza e subisce 1d6 danni psichici se lo fallisce, oltre a subire 1d4 di penalità al prossimo tiro salvezza che effettua prima della fine del prossimo turno dell'incantatore.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8257,7 +8473,7 @@
   {
     "id": "mind-spike",
     "name": "Aculeo mentale",
-    "description": "Aculeo mentale è un incantesimo di 2° livello di divinazione tratto da XGE.",
+    "description": "L'incantatore penetra la mente di una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Saggezza e subisce 3d8 danni psichici se lo fallisce, oltre a permettere all'incantatore di sapere la sua posizione finché dura l'effetto.",
     "source": "XGE",
     "level": 2,
     "school": "Divinazione",
@@ -8276,7 +8492,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "3d8",
+      "type": "psichici"
+    }
   },
   {
     "id": "minor-illusion",
@@ -8449,7 +8669,7 @@
   {
     "id": "mold-earth",
     "name": "Modellare terra",
-    "description": "Modellare terra è un trucchetto di trasmutazione tratto da XGE.",
+    "description": "L'incantatore manipola un'area di terra o pietra non magica entro gittata, scavandola, spostandola, colorandola o creando semplici forme e segni.",
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
@@ -8534,7 +8754,7 @@
   {
     "id": "negative-energy-flood",
     "name": "Flusso di energia negativa",
-    "description": "Flusso di energia negativa è un incantesimo di 5° livello di necromanzia tratto da XGE.",
+    "description": "L'incantatore invia energia negativa in una creatura entro gittata. Un bersaglio vivente subisce 5d12 danni necrotici con un tiro salvezza su Costituzione fallito, o la metà con un successo; un bersaglio non morto può invece recuperare punti ferita.",
     "source": "XGE",
     "level": 5,
     "school": "Necromanzia",
@@ -8552,7 +8772,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "5d12",
+      "type": "necrotici"
+    }
   },
   {
     "id": "nondetection",
@@ -8643,7 +8867,7 @@
   {
     "id": "phantasmal-force",
     "name": "Forza fantasmagorica",
-    "description": "Forza fantasmagorica è un incantesimo di 2° livello di illusione tratto da PHB.",
+    "description": "L'incantatore crea un'illusione mentale che solo il bersaglio percepisce. L'illusione può interagire con la mente della vittima e infliggere 1d6 danni psichici per round se il bersaglio considera reale la minaccia.",
     "source": "PHB",
     "level": 2,
     "school": "Illusione",
@@ -8662,7 +8886,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d6",
+      "type": "psichici"
+    }
   },
   {
     "id": "phantasmal-killer",
@@ -8906,7 +9134,7 @@
   {
     "id": "power-word-heal",
     "name": "Parola del potere guarire",
-    "description": "Parola del potere guarire è un incantesimo di 9° livello di invocazione tratto da PHB.",
+    "description": "Una creatura che l'incantatore tocca recupera tutti i punti ferita e può terminare varie condizioni debilitanti. Se è priva di sensi, si risveglia e può alzarsi senza usare movimento.",
     "source": "PHB",
     "level": 9,
     "school": "Invocazione",
@@ -8955,7 +9183,7 @@
   {
     "id": "power-word-pain",
     "name": "Parola del potere dolore",
-    "description": "Parola del potere dolore è un incantesimo di 7° livello di ammaliamento tratto da XGE.",
+    "description": "Una creatura entro gittata con 100 punti ferita o meno subisce un dolore psichico intenso. Se fallisce un tiro salvezza su Costituzione, è incapacitata, ha velocità dimezzata e subisce 3d12 danni psichici all'inizio di ciascun turno.",
     "source": "XGE",
     "level": 7,
     "school": "Ammaliamento",
@@ -8974,7 +9202,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "3d12",
+      "type": "psichici"
+    }
   },
   {
     "id": "power-word-stun",
@@ -9006,7 +9238,7 @@
   {
     "id": "prayer-of-healing",
     "name": "Preghiera di guarigione",
-    "description": "Preghiera di guarigione è un incantesimo di 2° livello di invocazione tratto da PHB.",
+    "description": "Fino a sei creature a scelta dell'incantatore recuperano 2d8 + il modificatore di caratteristica da incantatore punti ferita.",
     "source": "PHB",
     "level": 2,
     "school": "Invocazione",
@@ -9057,7 +9289,7 @@
   {
     "id": "primal-savagery",
     "name": "Ferocia primordiale",
-    "description": "Ferocia primordiale è un trucchetto di trasmutazione tratto da XGE.",
+    "description": "L'incantatore fa crescere artigli corrosivi sulle mani e può effettuare un attacco in mischia con incantesimo. Se colpisce, infligge 1d10 danni da acido.",
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
@@ -9074,12 +9306,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d10",
+      "type": "acido"
+    }
   },
   {
     "id": "primordial-ward",
     "name": "Interdizione primordiale",
-    "description": "Interdizione primordiale è un incantesimo di 6° livello di abiurazione tratto da XGE.",
+    "description": "L'incantatore ottiene resistenza a un tipo di danno scelto tra acido, freddo, fuoco, fulmine e tuono. Può usare una reazione per assorbire energia quando subisce quel tipo di danno e recuperare parte dei punti ferita.",
     "source": "XGE",
     "level": 6,
     "school": "Abiurazione",
@@ -9371,7 +9607,7 @@
   {
     "id": "psychic-scream",
     "name": "Urlo psichico",
-    "description": "Urlo psichico è un incantesimo di 9° livello di ammaliamento tratto da XGE.",
+    "description": "L'incantatore scatena un urlo psichico che colpisce fino a dieci creature entro gittata. Ogni bersaglio effettua un tiro salvezza su Intelligenza e subisce 14d6 danni psichici se lo fallisce, o la metà con un successo; chi viene ridotto a 0 punti ferita muore.",
     "source": "XGE",
     "level": 9,
     "school": "Ammaliamento",
@@ -9391,7 +9627,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "14d6",
+      "type": "psichici"
+    }
   },
   {
     "id": "purify-food-and-drink",
@@ -9424,7 +9664,7 @@
   {
     "id": "pyrotechnics",
     "name": "Pirotecnica",
-    "description": "Pirotecnica è un incantesimo di 2° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore trasforma una fiamma non magica entro gittata in un'esplosione di fuochi d'artificio o in una nube di fumo, accecando o oscurando l'area a seconda dell'opzione scelta.",
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
@@ -9553,7 +9793,7 @@
   {
     "id": "ray-of-sickness",
     "name": "Raggio di infermità",
-    "description": "Raggio di infermità è un incantesimo di 1° livello di necromanzia tratto da PHB.",
+    "description": "L'incantatore scaglia un raggio verdastro contro una creatura entro gittata effettuando un attacco a distanza con incantesimo. Se colpisce, infligge 2d8 danni da veleno e il bersaglio deve superare un tiro salvezza su Costituzione o essere avvelenato fino alla fine del prossimo turno dell'incantatore.",
     "source": "PHB",
     "level": 1,
     "school": "Necromanzia",
@@ -9571,7 +9811,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "2d8",
+      "type": "veleno"
+    }
   },
   {
     "id": "regenerate",
@@ -9885,7 +10129,7 @@
   {
     "id": "scatter",
     "name": "Dispersione",
-    "description": "Dispersione è un incantesimo di 6° livello di evocazione tratto da XGE.",
+    "description": "Fino a cinque creature consenzienti o oggetti non indossati vengono teletrasportati in spazi liberi visibili entro gittata. L'incantatore può anche tentare di teletrasportare creature non consenzienti con un tiro salvezza su Saggezza.",
     "source": "XGE",
     "level": 6,
     "school": "Evocazione",
@@ -9973,7 +10217,7 @@
   {
     "id": "searing-smite",
     "name": "Punizione incandescente",
-    "description": "Punizione incandescente è un incantesimo di 1° livello di invocazione tratto da PHB.",
+    "description": "Il prossimo colpo con un'arma dell'incantatore infligge 1d6 danni da fuoco extra e incendia il bersaglio. Una creatura in fiamme subisce 1d6 danni da fuoco alla fine di ogni suo turno finché non spegne le fiamme o supera un tiro salvezza su Costituzione.",
     "source": "PHB",
     "level": 1,
     "school": "Invocazione",
@@ -9990,7 +10234,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d6",
+      "type": "fuoco"
+    }
   },
   {
     "id": "secret-chest",
@@ -10130,7 +10378,7 @@
   {
     "id": "shadow-blade",
     "name": "Lama d’ombra",
-    "description": "Lama d’ombra è un incantesimo di 2° livello di illusione tratto da XGE.",
+    "description": "L'incantatore crea una spada di oscurità che infligge 2d8 danni psichici. L'arma ha proprietà finesse, leggera e lancio e diventa più potente se usata in condizioni di luce scarsa o oscurità.",
     "source": "XGE",
     "level": 2,
     "school": "Illusione",
@@ -10149,12 +10397,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "2d8",
+      "type": "psichici"
+    }
   },
   {
     "id": "shadow-of-moil",
     "name": "Manto d’ombra",
-    "description": "Manto d’ombra è un incantesimo di 4° livello di necromanzia tratto da XGE.",
+    "description": "Fiamme d'ombra avvolgono l'incantatore, oscurandolo alla vista. Una creatura che lo colpisce con un attacco entro 1,5 metri subisce 2d8 danni necrotici.",
     "source": "XGE",
     "level": 4,
     "school": "Necromanzia",
@@ -10171,12 +10423,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "2d8",
+      "type": "necrotici"
+    }
   },
   {
     "id": "shape-water",
     "name": "Plasmare acqua",
-    "description": "Plasmare acqua è un trucchetto di trasmutazione tratto da XGE.",
+    "description": "L'incantatore manipola un cubo d'acqua di 1,5 metri, congelandolo, animandolo, cambiandone il colore o spostandolo lentamente.",
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
@@ -10398,7 +10654,7 @@
   {
     "id": "sickening-radiance",
     "name": "Luminescenza nauseante",
-    "description": "Luminescenza nauseante è un incantesimo di 4° livello di invocazione tratto da XGE.",
+    "description": "Una luce verdastra riempie una sfera di 9 metri. Una creatura che vi entra o vi inizia il turno deve superare un tiro salvezza su Costituzione o subire 4d10 danni radianti, un livello di indebolimento e irradiare luce fioca.",
     "source": "XGE",
     "level": 4,
     "school": "Invocazione",
@@ -10417,7 +10673,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "4d10",
+      "type": "radianti"
+    }
   },
   {
     "id": "silence",
@@ -10501,7 +10761,7 @@
   {
     "id": "skill-empowerment",
     "name": "Potenziamento dell’abilità",
-    "description": "Potenziamento dell’abilità è un incantesimo di 5° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore tocca una creatura e potenzia una delle sue competenze, permettendole di trattare un tiro del d20 inferiore a 9 come 10 per le prove di caratteristica che usano quella competenza.",
     "source": "XGE",
     "level": 5,
     "school": "Trasmutazione",
@@ -10526,7 +10786,7 @@
   {
     "id": "skywrite",
     "name": "Scritta celeste",
-    "description": "Scritta celeste è un incantesimo di 2° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore crea fino a dieci parole di scritta nel cielo, visibili a grande distanza. La scritta può essere cancellata o lasciata svanire alla fine della durata.",
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
@@ -10640,7 +10900,7 @@
   {
     "id": "snare",
     "name": "Laccio",
-    "description": "Laccio è un incantesimo di 1° livello di abiurazione tratto da XGE.",
+    "description": "L'incantatore prepara una trappola magica in uno spazio a terra. Una creatura che entra nell'area deve superare un tiro salvezza su Destrezza o essere sollevata, trattenuta e appesa a testa in giù.",
     "source": "XGE",
     "level": 1,
     "school": "Abiurazione",
@@ -10665,7 +10925,7 @@
   {
     "id": "snillocs-snowball-swarm",
     "name": "Sciame di palle di neve di Snilloc",
-    "description": "Sciame di palle di neve di Snilloc è un incantesimo di 2° livello di invocazione tratto da XGE.",
+    "description": "Un turbine di palle di neve magiche esplode in un'area sferica. Le creature nell'area effettuano un tiro salvezza su Destrezza e subiscono 3d6 danni da freddo se lo falliscono, o la metà con un successo.",
     "source": "XGE",
     "level": 2,
     "school": "Invocazione",
@@ -10683,12 +10943,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "3d6",
+      "type": "freddo"
+    }
   },
   {
     "id": "soul-cage",
     "name": "Gabbia dell’anima",
-    "description": "Gabbia dell’anima è un incantesimo di 6° livello di necromanzia tratto da XGE.",
+    "description": "Quando un umanoide muore entro 18 metri dall'incantatore, la sua anima può essere intrappolata in una gabbia spettrale per 8 ore. L'incantatore può sfruttare l'anima per ottenere informazioni, recuperare punti ferita, teletrasportarsi o danneggiare un'altra creatura.",
     "source": "XGE",
     "level": 6,
     "school": "Necromanzia",
@@ -10918,7 +11182,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "Spiriti incorporei circondano l'incantatore, potenziandone gli attacchi e ostacolando guarigione e movimento dei nemici vicini.",
+    "description": "Spiriti dei morti fluttuano intorno all'incantatore. Gli attacchi contro creature entro 3 metri infliggono 1d8 danni extra del tipo necrotico, radianti o freddo scelto dall'incantatore; le creature colpite non possono recuperare punti ferita fino all'inizio del turno successivo dell'incantatore.",
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -10962,12 +11226,17 @@
       "text": "1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "damage": {
+      "formula": "1d8",
+      "type": "forza",
+      "scaling": "I danni aumentano di 1d8 per ogni due livelli dello slot oltre il 2°."
+    }
   },
   {
     "id": "staggering-smite",
     "name": "Punizione demoralizzante",
-    "description": "Punizione demoralizzante è un incantesimo di 4° livello di invocazione tratto da PHB.",
+    "description": "Il prossimo colpo con un'arma infligge 4d6 danni psichici extra. Il bersaglio deve superare un tiro salvezza su Saggezza o subire svantaggio agli attacchi e alle prove, non poter effettuare reazioni e avere velocità dimezzata fino alla fine del suo prossimo turno.",
     "source": "PHB",
     "level": 4,
     "school": "Invocazione",
@@ -10984,12 +11253,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "4d6",
+      "type": "psichici"
+    }
   },
   {
     "id": "steel-wind-strike",
     "name": "Colpo del vento d’acciaio",
-    "description": "Colpo del vento d’acciaio è un incantesimo di 5° livello di evocazione tratto da XGE.",
+    "description": "L'incantatore effettua un attacco con incantesimo contro fino a cinque creature entro gittata. Ogni bersaglio colpito subisce 6d10 danni da forza, poi l'incantatore può teletrasportarsi vicino a uno dei bersagli.",
     "source": "XGE",
     "level": 5,
     "school": "Evocazione",
@@ -11007,7 +11280,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "6d10",
+      "type": "forza"
+    }
   },
   {
     "id": "stinking-cloud",
@@ -11137,7 +11414,7 @@
   {
     "id": "storm-sphere",
     "name": "Sfera tempestosa",
-    "description": "Sfera tempestosa è un incantesimo di 4° livello di invocazione tratto da XGE.",
+    "description": "Una sfera di aria turbinante appare in un punto entro gittata. Le creature nell'area subiscono 2d6 danni da fulmine con un tiro salvezza su Destrezza fallito; l'incantatore può evocare fulmini che infliggono 4d6 danni da fulmine.",
     "source": "XGE",
     "level": 4,
     "school": "Invocazione",
@@ -11155,7 +11432,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "2d6",
+      "type": "fulmine"
+    }
   },
   {
     "id": "suggestion",
@@ -11199,7 +11480,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "Evoca uno spirito aberrante che assume una delle forme previste dalla relativa scheda di evocazione.",
+    "description": "L'incantatore evoca uno spirito aberrante che assume una forma scelta tra Beholderkin, Slaad o Star Spawn. La creatura combatte per l'incantatore e usa un attacco caratteristico della forma scelta.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11225,7 +11506,7 @@
       "druid",
       "ranger"
     ],
-    "description": "Evoca uno spirito bestiale terrestre, acquatico o aereo secondo la forma scelta.",
+    "description": "L'incantatore evoca uno spirito bestiale che assume una forma terrestre, acquatica o aerea. La bestia obbedisce ai comandi dell'incantatore e agisce nel suo stesso turno.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11251,7 +11532,7 @@
       "cleric",
       "paladin"
     ],
-    "description": "Evoca uno spirito celestiale che assume una forma protettrice o vendicatrice.",
+    "description": "L'incantatore evoca uno spirito celestiale che assume una forma Avenger o Defender. La creatura è fedele, combatte per l'incantatore e possiede resistenze e attacchi radianti appropriati.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11277,7 +11558,7 @@
       "artificer",
       "wizard"
     ],
-    "description": "L'incantatore evoca uno spirito costrutto che obbedisce ai suoi comandi verbali e combatte al suo fianco.",
+    "description": "L'incantatore evoca uno spirito costrutto che assume una forma di Clay, Metal o Stone. La creatura obbedisce ai comandi dell'incantatore e possiede attacchi e difese determinate dalla forma.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11304,7 +11585,7 @@
       "ranger",
       "wizard"
     ],
-    "description": "Evoca uno spirito elementale di aria, acqua, fuoco o terra secondo la forma scelta.",
+    "description": "L'incantatore evoca uno spirito elementale che assume una forma di aria, acqua, terra o fuoco. La creatura obbedisce ai comandi dell'incantatore e agisce nel suo turno.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11332,7 +11613,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "Evoca uno spirito fatato il cui umore determina capacità e comportamento in combattimento.",
+    "description": "L'incantatore evoca uno spirito fatato che assume una forma di Fuming, Tricksy o Mirthful. La creatura è fedele e dispone di capacità diverse in base alla forma.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11358,7 +11639,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "Evoca uno spirito immondo che assume una forma demoniaca, diabolica o yugoloth.",
+    "description": "L'incantatore evoca uno spirito immondo che assume una forma di Demon, Devil o Yugoloth. La creatura obbedisce ai comandi dell'incantatore e combatte per lui.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11377,7 +11658,7 @@
   {
     "id": "summon-greater-demon",
     "name": "Evoca demone maggiore",
-    "description": "Evoca demone maggiore è un incantesimo di 4° livello di evocazione tratto da XGE.",
+    "description": "L'incantatore evoca un potente demone da uno spazio libero entro gittata. Il demone è inizialmente ostile e l'incantatore deve impartirgli ordini; può effettuare un tiro salvezza su Carisma ogni turno per liberarsi dal controllo.",
     "source": "XGE",
     "level": 4,
     "school": "Evocazione",
@@ -11400,7 +11681,7 @@
   {
     "id": "summon-lesser-demons",
     "name": "Evoca demoni minori",
-    "description": "Evoca demoni minori è un incantesimo di 3° livello di evocazione tratto da XGE.",
+    "description": "L'incantatore evoca un gruppo di demoni minori che compaiono in spazi liberi entro gittata e attaccano le creature non protette dal marchio dell'incantatore.",
     "source": "XGE",
     "level": 3,
     "school": "Evocazione",
@@ -11430,7 +11711,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "Evoca uno spirito d'ombra modellato da paura, furia o disperazione.",
+    "description": "L'incantatore evoca uno spirito d'ombra che assume una forma Fury, Despair o Fear. La forma scelta determina le capacità e gli effetti dell'attacco dello spirito.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11456,7 +11737,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "Evoca uno spirito non morto che assume una forma spettrale, putrida o scheletrica.",
+    "description": "L'incantatore evoca uno spirito non morto che assume una forma Ghostly, Putrid o Skeletal. La forma determina le capacità e gli attacchi della creatura.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11544,7 +11825,7 @@
   {
     "id": "swift-quiver",
     "name": "Faretra rapida",
-    "description": "Faretra rapida è un incantesimo di 5° livello di trasmutazione tratto da PHB.",
+    "description": "L'incantatore trasforma la propria faretra in una fonte inesauribile di munizioni. In ogni turno può usare un'azione bonus per effettuare due attacchi con un'arma a distanza.",
     "source": "PHB",
     "level": 5,
     "school": "Trasmutazione",
@@ -11575,7 +11856,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "Lame spettrali turbinano attorno all'incantatore. Le creature vicine effettuano un tiro salvezza su Destrezza.",
+    "description": "Spade spettrali compaiono e colpiscono tutte le altre creature entro 1,5 metri dall'incantatore. Ogni bersaglio effettua un tiro salvezza su Destrezza e subisce 1d6 danni da forza se lo fallisce.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11632,7 +11913,7 @@
   {
     "id": "synaptic-static",
     "name": "Scarica sinaptica",
-    "description": "Scarica sinaptica è un incantesimo di 5° livello di ammaliamento tratto da XGE.",
+    "description": "L'incantatore scatena energia psichica in una sfera di 6 metri. Le creature nell'area effettuano un tiro salvezza su Intelligenza e subiscono 8d6 danni psichici se lo falliscono, o la metà con un successo; chi fallisce subisce anche una penalità ai tiri per colpire, alle prove e ai tiri salvezza di concentrazione.",
     "source": "XGE",
     "level": 5,
     "school": "Ammaliamento",
@@ -11652,7 +11933,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "8d6",
+      "type": "psichici"
+    }
   },
   {
     "id": "tashas-caustic-brew",
@@ -11665,7 +11950,7 @@
       "sorcerer",
       "wizard"
     ],
-    "description": "Una linea di acido ricopre le creature che falliscono un tiro salvezza su Destrezza, danneggiandole finché l'acido non viene raschiato o lavato via.",
+    "description": "Una linea di acido di 9 metri ricopre le creature che falliscono un tiro salvezza su Destrezza. Una creatura coperta subisce 2d4 danni da acido all'inizio di ogni turno finché non usa un'azione per ripulirsi o l'acido viene lavato via.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11700,7 +11985,7 @@
       "sorcerer",
       "wizard"
     ],
-    "description": "Sferza la mente del bersaglio, infliggendo danni psichici e limitando le azioni che potrà compiere nel turno successivo.",
+    "description": "Una creatura entro gittata deve superare un tiro salvezza su Intelligenza o subire 3d6 danni psichici. Se fallisce, può scegliere nel turno successivo solo una tra azione, azione bonus e movimento.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11736,7 +12021,7 @@
       "warlock",
       "wizard"
     ],
-    "description": "Trasforma l'incantatore secondo un aspetto dei Piani Superiori o Inferiori, concedendo volo e capacità offensive e difensive.",
+    "description": "L'incantatore assume una forma ultraterrena scegliendo Celestiale o Immondo. Ottiene capacità di combattimento, velocità di volare, resistenze e un bonus ai tiri per colpire e ai danni con le armi.",
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -11807,7 +12092,7 @@
   {
     "id": "telepathy",
     "name": "Telepatia",
-    "description": "Telepatia è un incantesimo di 8° livello di invocazione tratto da PHB.",
+    "description": "L'incantatore stabilisce un collegamento telepatico con una creatura con cui ha familiarità. Può comunicare a distanza, anche su altri piani, purché il bersaglio abbia un linguaggio.",
     "source": "PHB",
     "level": 8,
     "school": "Invocazione",
@@ -11886,7 +12171,7 @@
   {
     "id": "temple-of-the-gods",
     "name": "Tempio degli dei",
-    "description": "Tempio degli dei è un incantesimo di 7° livello di evocazione tratto da XGE.",
+    "description": "L'incantatore crea un tempio fortificato di pietra, con pareti e porte magiche. Il tempio protegge gli occupanti e può essere personalizzato con vari effetti religiosi.",
     "source": "XGE",
     "level": 7,
     "school": "Evocazione",
@@ -11908,7 +12193,7 @@
   {
     "id": "tensers-transformation",
     "name": "Trasformazione di Tenser",
-    "description": "Trasformazione di Tenser è un incantesimo di 6° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore si trasforma in un guerriero sovrannaturale, ottenendo vantaggio agli attacchi con armi, competenza con armi e armature, punti ferita temporanei e danni extra con le armi.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
@@ -11925,7 +12210,12 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "2d12",
+      "type": "forza",
+      "note": "Danni extra agli attacchi con armi effettuati durante la trasformazione."
+    }
   },
   {
     "id": "thaumaturgy",
@@ -11962,7 +12252,7 @@
       "artificer",
       "druid"
     ],
-    "description": "Una frusta simile a un rampicante colpisce una creatura e può trascinare verso l'incantatore un bersaglio di taglia Grande o inferiore.",
+    "description": "Una frusta vegetale colpisce una creatura entro 9 metri con un attacco in mischia con incantesimo. Se colpisce, infligge 1d6 danni perforanti e può trascinare il bersaglio fino a 3 metri verso l'incantatore.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11986,7 +12276,7 @@
   {
     "id": "thunder-step",
     "name": "Passo tonante",
-    "description": "Passo tonante è un incantesimo di 3° livello di evocazione tratto da XGE.",
+    "description": "L'incantatore si teletrasporta in uno spazio libero entro 27 metri. Ogni creatura entro 3 metri dal punto di partenza deve superare un tiro salvezza su Costituzione o subire 3d10 danni da tuono.",
     "source": "XGE",
     "level": 3,
     "school": "Evocazione",
@@ -12005,12 +12295,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "3d10",
+      "type": "tuono"
+    }
   },
   {
     "id": "thunderclap",
     "name": "Rombo di tuono",
-    "description": "Rombo di tuono è un trucchetto di invocazione tratto da XGE.",
+    "description": "Un'esplosione di tuono scoppia intorno all'incantatore. Le creature entro 1,5 metri devono superare un tiro salvezza su Costituzione o subire 1d6 danni da tuono; il suono è udibile fino a 30 metri.",
     "source": "XGE",
     "level": 0,
     "school": "Invocazione",
@@ -12032,12 +12326,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d6",
+      "type": "tuono"
+    }
   },
   {
     "id": "thunderous-smite",
     "name": "Punizione tonante",
-    "description": "Punizione tonante è un incantesimo di 1° livello di invocazione tratto da PHB.",
+    "description": "Il prossimo colpo con un'arma infligge 2d6 danni da tuono extra e il bersaglio deve superare un tiro salvezza su Forza o essere spinto fino a 3 metri e cadere prono.",
     "source": "PHB",
     "level": 1,
     "school": "Invocazione",
@@ -12054,7 +12352,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "2d6",
+      "type": "tuono"
+    }
   },
   {
     "id": "thunderwave",
@@ -12103,7 +12405,7 @@
   {
     "id": "tidal-wave",
     "name": "Onda di marea",
-    "description": "Onda di marea è un incantesimo di 3° livello di evocazione tratto da XGE.",
+    "description": "Un'onda d'acqua appare in un'area cubica di 9 metri. Le creature nell'area effettuano un tiro salvezza su Destrezza e subiscono 4d8 danni contundenti se lo falliscono, o la metà con un successo; il terreno diventa difficile.",
     "source": "XGE",
     "level": 3,
     "school": "Evocazione",
@@ -12122,7 +12424,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "4d8",
+      "type": "contundenti"
+    }
   },
   {
     "id": "time-stop",
@@ -12179,7 +12485,7 @@
   {
     "id": "tiny-servant",
     "name": "Servitore minuscolo",
-    "description": "Servitore minuscolo è un incantesimo di 3° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore anima un oggetto non magico di taglia Piccola o Minuscola, trasformandolo in un costrutto fedele che può eseguire semplici comandi.",
     "source": "XGE",
     "level": 3,
     "school": "Trasmutazione",
@@ -12202,7 +12508,7 @@
   {
     "id": "toll-the-dead",
     "name": "Rintocco dei morti",
-    "description": "Rintocco dei morti è un trucchetto di necromanzia tratto da XGE.",
+    "description": "L'incantatore indica una creatura entro gittata che può vedere. Il bersaglio effettua un tiro salvezza su Saggezza e subisce 1d8 danni necrotici se lo fallisce; se ha già perso punti ferita, il danno aumenta a 1d12.",
     "source": "XGE",
     "level": 0,
     "school": "Necromanzia",
@@ -12221,7 +12527,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d8",
+      "type": "necrotici"
+    }
   },
   {
     "id": "tongues",
@@ -12255,7 +12565,7 @@
   {
     "id": "transmute-rock",
     "name": "Trasmutare roccia",
-    "description": "Trasmutare roccia è un incantesimo di 5° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore trasforma una massa di roccia non magica in fango o il fango in roccia. Il fango può intrappolare e rallentare le creature nell'area, mentre la roccia può creare una superficie solida.",
     "source": "XGE",
     "level": 5,
     "school": "Trasmutazione",
@@ -12443,7 +12753,7 @@
   {
     "id": "tsunami",
     "name": "Tsunami",
-    "description": "Tsunami è un incantesimo di 8° livello di evocazione tratto da PHB.",
+    "description": "Una parete d'acqua alta 90 metri e larga 90 metri attraversa un'area. Le creature nell'onda effettuano un tiro salvezza su Forza e subiscono 6d10 danni contundenti se lo falliscono, oltre a essere trascinate; la parete diminuisce gradualmente di altezza nei turni successivi.",
     "source": "PHB",
     "level": 8,
     "school": "Evocazione",
@@ -12460,7 +12770,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "6d10",
+      "type": "contundenti"
+    }
   },
   {
     "id": "unseen-servant",
@@ -12553,7 +12867,7 @@
   {
     "id": "vitriolic-sphere",
     "name": "Sfera vetriolica",
-    "description": "Sfera vetriolica è un incantesimo di 4° livello di invocazione tratto da XGE.",
+    "description": "L'incantatore scaglia una sfera di acido contro un punto entro gittata. Le creature entro 6 metri effettuano un tiro salvezza su Destrezza e subiscono 10d4 danni da acido se lo falliscono, o la metà con un successo; chi fallisce subisce ulteriori 5d4 danni alla fine del turno successivo.",
     "source": "XGE",
     "level": 4,
     "school": "Invocazione",
@@ -12571,7 +12885,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "10d4+5d4",
+      "type": "acido"
+    }
   },
   {
     "id": "wall-of-fire",
@@ -12687,7 +13005,7 @@
   {
     "id": "wall-of-light",
     "name": "Muro di luce",
-    "description": "Muro di luce è un incantesimo di 5° livello di invocazione tratto da XGE.",
+    "description": "Un muro luminoso appare in un punto entro gittata. Quando appare e quando una creatura termina il turno nel muro, può subire 4d8 danni radianti; l'incantatore può inoltre usare un'azione per scagliare una lama di luce che infligge 4d8 danni radianti.",
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
@@ -12706,12 +13024,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "4d8",
+      "type": "radianti"
+    }
   },
   {
     "id": "wall-of-sand",
     "name": "Muro di sabbia",
-    "description": "Muro di sabbia è un incantesimo di 3° livello di invocazione tratto da XGE.",
+    "description": "L'incantatore crea un muro di sabbia lungo fino a 45 metri e alto 3 metri. La parete è terreno difficile, oscura parzialmente la vista e può accecare temporaneamente chi la attraversa.",
     "source": "XGE",
     "level": 3,
     "school": "Invocazione",
@@ -12807,7 +13129,7 @@
   {
     "id": "wall-of-water",
     "name": "Muro d’acqua",
-    "description": "Muro d’acqua è un incantesimo di 3° livello di invocazione tratto da XGE.",
+    "description": "L'incantatore crea un muro d'acqua lungo fino a 9 metri, alto 3 metri e spesso 30 cm. Il muro è terreno difficile, spegne fiamme e conferisce copertura contro attacchi a distanza.",
     "source": "XGE",
     "level": 3,
     "school": "Invocazione",
@@ -12864,7 +13186,7 @@
   {
     "id": "warding-wind",
     "name": "Vento di interdizione",
-    "description": "Vento di interdizione è un incantesimo di 2° livello di invocazione tratto da XGE.",
+    "description": "Un forte vento circonda l'incantatore, che può essere udito entro 30 metri. Il vento spegne fiamme, disperde gas e rende difficili gli attacchi a distanza attraverso di esso.",
     "source": "XGE",
     "level": 2,
     "school": "Invocazione",
@@ -12949,7 +13271,7 @@
   {
     "id": "watery-sphere",
     "name": "Sfera acquosa",
-    "description": "Sfera acquosa è un incantesimo di 4° livello di evocazione tratto da XGE.",
+    "description": "Una sfera d'acqua del diametro di 1,5 metri compare entro gittata. Le creature nell'area possono effettuare un tiro salvezza su Forza per evitarla; una creatura trattenuta dalla sfera può essere trasportata e trattenuta finché non riesce a liberarsi.",
     "source": "XGE",
     "level": 4,
     "school": "Evocazione",
@@ -13040,7 +13362,7 @@
   {
     "id": "whirlwind",
     "name": "Turbine",
-    "description": "Turbine è un incantesimo di 7° livello di invocazione tratto da XGE.",
+    "description": "Un turbine di vento compare in un punto entro gittata e può essere spostato dall'incantatore. Le creature nell'area effettuano un tiro salvezza su Forza e subiscono 10d6 danni contundenti se lo falliscono, oltre a poter essere sollevate e trasportate dal turbine.",
     "source": "XGE",
     "level": 7,
     "school": "Invocazione",
@@ -13059,7 +13381,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "10d6",
+      "type": "contundenti"
+    }
   },
   {
     "id": "wind-walk",
@@ -13160,7 +13486,7 @@
   {
     "id": "witch-bolt",
     "name": "Dardo stregato",
-    "description": "Dardo stregato è un incantesimo di 1° livello di invocazione tratto da PHB.",
+    "description": "Un fulmine crepitante collega l'incantatore a una creatura colpita da un attacco a distanza con incantesimo, infliggendo 1d12 danni da fulmine. Nei turni successivi l'incantatore può usare un'azione per infliggere nuovamente 1d12 danni finché il collegamento persiste.",
     "source": "PHB",
     "level": 1,
     "school": "Invocazione",
@@ -13179,12 +13505,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d12",
+      "type": "fulmine"
+    }
   },
   {
     "id": "word-of-radiance",
     "name": "Parola di radiosità",
-    "description": "Parola di radiosità è un trucchetto di invocazione tratto da XGE.",
+    "description": "L'incantatore pronuncia una parola divina. Le creature a scelta dell'incantatore entro 1,5 metri effettuano un tiro salvezza su Costituzione e subiscono 1d6 danni radianti se lo falliscono.",
     "source": "XGE",
     "level": 0,
     "school": "Invocazione",
@@ -13201,7 +13531,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d6",
+      "type": "radianti"
+    }
   },
   {
     "id": "word-of-recall",
@@ -13230,7 +13564,7 @@
   {
     "id": "wrath-of-nature",
     "name": "Ira della natura",
-    "description": "Ira della natura è un incantesimo di 5° livello di invocazione tratto da XGE.",
+    "description": "L'incantatore trasforma un'area naturale in un terreno ostile. Radici, rocce e alberi possono colpire le creature, rallentarle o immobilizzarle, mentre l'area diventa difficile da attraversare.",
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
@@ -13248,12 +13582,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "4d6",
+      "type": "contundenti"
+    }
   },
   {
     "id": "wrathful-smite",
     "name": "Punizione collerica",
-    "description": "Punizione collerica è un incantesimo di 1° livello di invocazione tratto da PHB.",
+    "description": "Il prossimo colpo con un'arma infligge 1d6 danni psichici extra. Il bersaglio deve superare un tiro salvezza su Saggezza o essere spaventato dall'incantatore fino alla fine dell'incantesimo.",
     "source": "PHB",
     "level": 1,
     "school": "Invocazione",
@@ -13270,12 +13608,16 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d6",
+      "type": "psichici"
+    }
   },
   {
     "id": "zephyr-strike",
     "name": "Colpo dello zefiro",
-    "description": "Colpo dello zefiro è un incantesimo di 1° livello di trasmutazione tratto da XGE.",
+    "description": "L'incantatore si muove senza provocare attacchi di opportunità. Ha vantaggio al prossimo tiro per colpire con un'arma e, se colpisce, infligge 1d8 danni extra e può aumentare la propria velocità.",
     "source": "XGE",
     "level": 1,
     "school": "Trasmutazione",
@@ -13292,7 +13634,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "damage": {
+      "formula": "1d8",
+      "type": "variabile"
+    }
   },
   {
     "id": "zone-of-truth",

@@ -413,7 +413,7 @@
             </div>
           }
           <div class="option-grid">
-            @for (item of store.backgrounds; track item.id) {
+            @for (item of pagedBackgrounds; track item.id) {
               <button
                 class="option"
                 [disabled]="backgroundHasClassSkill(item)"
@@ -422,7 +422,9 @@
                 (click)="selectBackground(item.id)"
               >
                 <span class="source">{{ item.source }}</span>
-                <div class="option-icon backgrounds">✦</div>
+                <div class="option-icon backgrounds">
+                  <ng-icon name="gameScrollQuill" aria-hidden="true" />
+                </div>
                 <h3>{{ item.name }}</h3>
                 <p>{{ item.description }}</p>
                 <div class="background-skill-tags">
@@ -436,7 +438,7 @@
                     </span>
                   }
                 </div>
-                <small>
+                <small class="my-1">
                   @if (item.languages?.length) {
                     Lingue: {{ item.languages!.join(', ') }} ·
                   }
@@ -453,6 +455,28 @@
               </button>
             }
           </div>
+          @if (backgroundPageCount > 1) {
+            <nav class="spell-pagination" aria-label="Pagine dei background">
+              <button
+                [disabled]="currentBackgroundPage === 1"
+                (click)="setBackgroundPage(currentBackgroundPage - 1)"
+              >
+                <ng-icon name="gamePreviousButton" aria-hidden="true" />
+                Precedente
+              </button>
+              <span>
+                Pagina {{ currentBackgroundPage }} di {{ backgroundPageCount }} ·
+                {{ store.backgrounds.length }} background
+              </span>
+              <button
+                [disabled]="currentBackgroundPage === backgroundPageCount"
+                (click)="setBackgroundPage(currentBackgroundPage + 1)"
+              >
+                Successiva
+                <ng-icon name="gameNextButton" aria-hidden="true" />
+              </button>
+            </nav>
+          }
           <div class="background-details">
             <label class="field"
               ><span>Allineamento</span
@@ -469,7 +493,7 @@
             @if (languageChoiceLimit) {
               <div class="background-choice">
                 <div class="background-choice-heading">
-                  <span>Lingue a scelta</span>
+                  <span class="mt-2 mb-1">Lingue a scelta</span>
                   <small
                     >{{ store.draft().customLanguages?.length ?? 0 }} /
                     {{ languageChoiceLimit }}</small
@@ -668,7 +692,7 @@
             }
             · Punti ASI assegnati: {{ asiPoints }} / {{ asiPointLimit }}
           </p>
-          <label class="equipment-search feat-search">
+          <label class="equipment-search feat-search my-2">
             <span>Cerca talento</span>
             <input
               type="search"
@@ -728,43 +752,57 @@
             <div class="feat-effect-choices">
               @for (feat of selectedFeats; track feat.id) {
                 @if (feat.effects?.abilityIncrease; as increase) {
-                  <label class="field">
-                    <span>Aumento concesso da {{ feat.name }}</span>
-                    <select
-                      [ngModel]="store.draft().featAbilityChoices?.[feat.id] || ''"
-                      (ngModelChange)="setFeatAbility(feat.id, $event)"
-                    >
-                      <option value="">Scegli una caratteristica</option>
-                      @for (ability of abilities; track ability.key) {
-                        @if (increase.options.includes(ability.key)) {
-                          <option [value]="ability.key">
-                            {{ ability.label }} +{{ increase.amount }}
-                          </option>
-                        }
-                      }
-                    </select>
-                  </label>
+                  <article class="feat-proficiency-choice feat-ability-choice">
+                    <strong>Aumento concesso da {{ feat.name }}</strong>
+                    <tui-textfield tuiChevron [tuiTextfieldCleaner]="false">
+                      <input
+                        aria-label="Caratteristica aumentata da {{ feat.name }}"
+                        placeholder="Scegli una caratteristica"
+                        tuiSelect
+                        [ngModel]="featAbilitySelection(feat.id)"
+                        (ngModelChange)="setFeatAbilitySelection(feat.id, $event)"
+                      />
+                      <tui-data-list-wrapper
+                        *tuiDropdown
+                        [items]="featAbilityOptions(feat.id)"
+                      />
+                    </tui-textfield>
+                  </article>
                 }
                 @for (choice of feat.proficiencyChoices ?? []; track choice.id) {
                   <article class="feat-proficiency-choice">
-                    <strong>{{ choice.label }}</strong>
-                    <small>
-                      {{ (store.draft().featProficiencyChoices?.[choice.id] ?? []).length }} /
-                      {{ choice.count }}
-                    </small>
-                    <div class="feat-choice-options">
-                      @for (option of featChoiceOptions(choice); track option.id) {
-                        <button
-                          type="button"
-                          [class.selected]="
-                            (store.draft().featProficiencyChoices?.[choice.id] ?? []).includes(
-                              option.id
-                            )
-                          "
-                          (click)="toggleFeatProficiency(choice, option.id)"
-                        >
-                          {{ option.name }}
-                        </button>
+                    <header>
+                      <strong>{{ choice.label }}</strong>
+                      <small>
+                        {{ (store.draft().featProficiencyChoices?.[choice.id] ?? []).length }} /
+                        {{ choice.count }} scelte
+                      </small>
+                    </header>
+                    <div class="feat-choice-selects">
+                      @for (index of featChoiceSlots(choice); track index) {
+                        <label>
+                          <span>Scelta {{ index + 1 }}</span>
+                          <tui-textfield tuiChevron [tuiTextfieldCleaner]="index > 0">
+                            <input
+                              tuiSelect
+                              [attr.aria-label]="choice.label + ', scelta ' + (index + 1)"
+                              [disabled]="featChoiceSlotDisabled(choice, index)"
+                              [ngModel]="featChoiceSelection(choice, index)"
+                              [placeholder]="
+                                featChoiceSlotDisabled(choice, index)
+                                  ? 'Completa la scelta precedente'
+                                  : 'Seleziona un’opzione'
+                              "
+                              (ngModelChange)="
+                                setFeatProficiencySelection(choice, index, $event)
+                              "
+                            />
+                            <tui-data-list-wrapper
+                              *tuiDropdown
+                              [items]="featChoiceItems(choice, index)"
+                            />
+                          </tui-textfield>
+                        </label>
                       }
                     </div>
                   </article>
@@ -784,7 +822,7 @@
           }
           @if (slots) {
             <h2>Aumenti di caratteristica</h2>
-            <p class="hint">
+            <p class="hint mb-1">
               Completa ogni ASI assegnando esattamente 2 punti: entrambi alla stessa caratteristica
               oppure uno a due caratteristiche.
             </p>
@@ -828,6 +866,25 @@
               ><strong>{{ store.derived().carryingCapacityKg }} kg</strong>
             </div>
             <div>
+              <small>Stato del carico</small
+              ><strong>
+                @switch (store.derived().encumbrance) {
+                  @case ('encumbered') {
+                    Ingombrato
+                  }
+                  @case ('heavily-encumbered') {
+                    Pesantemente ingombrato
+                  }
+                  @case ('over-capacity') {
+                    Oltre capacità
+                  }
+                  @default {
+                    Normale
+                  }
+                }
+              </strong>
+            </div>
+            <div>
               <small>Sintonia</small
               ><strong
                 >{{ store.draft().attunedEquipmentIds?.length ?? 0 }} /
@@ -835,12 +892,6 @@
               >
             </div>
           </div>
-          @if (store.derived().inventoryWeightKg > store.derived().carryingCapacityKg) {
-            <div tuiNotification appearance="warning" class="mt-4 w-full">
-              Il peso dello zaino supera il carico massimo del personaggio.
-            </div>
-          }
-
           @if (homebrewEquipment.length) {
             <div class="homebrew-equipment-list">
               <div class="panel-heading">
@@ -974,8 +1025,13 @@
                 <option value="adventuring-gear">Equipaggiamento</option>
               </select>
             </div>
+            <p class="equipment-mobile-hint">
+              <ng-icon name="fluentBackpackAdd" aria-hidden="true" /> aggiunge allo zaino;
+              <ng-icon name="gameSwordBrandish" aria-hidden="true" /> aggiunge ed equipaggia
+              subito.
+            </p>
             <div class="equipment-table-wrap">
-              <table class="equipment-table">
+              <table class="equipment-table catalog-table">
                 <thead>
                   <tr>
                     <th>
@@ -1024,7 +1080,7 @@
                     }
                     @for (item of group.items; track item.id) {
                       <tr>
-                        <td>
+                        <td data-label="Oggetto" class="equipment-item-cell">
                           <strong>{{ item.name }}</strong>
                           @if (item.category === 'weapon') {
                             @if (magicWeaponOptions(item).length) {
@@ -1050,8 +1106,11 @@
                           @if (item.description) {
                             <small class="item-description">{{ item.description }}</small>
                           }
+                          <small class="mobile-item-meta">
+                            {{ item.cost }} · {{ item.weightKg }} kg
+                          </small>
                         </td>
-                        <td>
+                        <td data-label="Tipo">
                           {{
                             item.category === 'weapon'
                               ? 'Arma'
@@ -1062,20 +1121,37 @@
                                   : 'Oggetto'
                           }}
                         </td>
-                        <td>{{ item.cost }}</td>
-                        <td>{{ item.weightKg }} kg</td>
+                        <td data-label="Costo">{{ item.cost }}</td>
+                        <td data-label="Peso">{{ item.weightKg }} kg</td>
                         @if (equipmentCategory() === 'magic') {
-                          <td>{{ itemRarity(item) || 'Senza rarità' }}</td>
-                          <td>
+                          <td data-label="Rarità">{{ itemRarity(item) || 'Senza rarità' }}</td>
+                          <td data-label="Sintonia">
                             <span class="boolean-value" [class.is-true]="item.requiresAttunement">{{
                               item.requiresAttunement ? 'Sì' : 'No'
                             }}</span>
                           </td>
                         }
-                        <td>
-                          <button class="add-item" (click)="addCatalogItem(item)">
-                            + Aggiungi
+                        <td data-label="Azioni" class="equipment-actions">
+                          <button
+                            class="add-item catalog-action"
+                            [attr.aria-label]="'Aggiungi ' + item.name + ' allo zaino'"
+                            title="Aggiungi allo zaino"
+                            (click)="addCatalogItem(item)"
+                          >
+                            <ng-icon name="fluentBackpackAdd" aria-hidden="true" />
+                            <span>Aggiungi</span>
                           </button>
+                          @if (canAddAndEquip(item)) {
+                            <button
+                              class="add-and-equip catalog-action"
+                              [attr.aria-label]="'Aggiungi ed equipaggia ' + item.name"
+                              title="Aggiungi ed equipaggia subito"
+                              (click)="addAndEquipItem(item)"
+                            >
+                              <ng-icon name="gameSwordBrandish" aria-hidden="true" />
+                              <span>Equipaggia subito</span>
+                            </button>
+                          }
                         </td>
                       </tr>
                     }
@@ -1165,10 +1241,10 @@
                   <tbody>
                     @for (row of inventoryRows; track row.item.id) {
                       <tr>
-                        <td>
+                        <td data-label="Oggetto" class="equipment-item-cell">
                           <strong>{{ row.item.name }}</strong>
                         </td>
-                        <td>
+                        <td data-label="Quantità">
                           <input
                             type="number"
                             min="0"
@@ -1176,9 +1252,11 @@
                             (ngModelChange)="setItemQuantity(row.item.id, $event)"
                           />
                         </td>
-                        <td>{{ row.item.weightKg }} kg</td>
-                        <td>{{ (row.item.weightKg * row.entry.quantity).toFixed(1) }} kg</td>
-                        <td>
+                        <td data-label="Peso singolo">{{ row.item.weightKg }} kg</td>
+                        <td data-label="Peso totale">
+                          {{ (row.item.weightKg * row.entry.quantity).toFixed(1) }} kg
+                        </td>
+                        <td data-label="Uso e azioni" class="inventory-actions">
                           @if (row.item.category === 'weapon') {
                             <div class="weapon-loadout">
                               @for (entry of equippedWeaponEntries; track entry.index) {
@@ -1221,10 +1299,11 @@
                                     @if (canChooseWeaponIntelligence(entry.item)) {
                                       <button
                                         class="ability-weapon"
-                                        [class.active]="entry.equipped.useIntelligence !== false"
-                                        (click)="toggleWeaponIntelligence(entry.index)"
-                                      >
-                                        {{
+                                      [class.active]="entry.equipped.useIntelligence !== false"
+                                      (click)="toggleWeaponIntelligence(entry.index)"
+                                    >
+                                      <ng-icon [svg]="abilityIcon('int')" aria-hidden="true" />
+                                      {{
                                           entry.equipped.useIntelligence !== false
                                             ? 'Usa INT'
                                             : 'Usa FOR/DES'
@@ -1235,6 +1314,7 @@
                                       class="unequip-weapon"
                                       (click)="unequipWeapon(entry.index)"
                                     >
+                                      <ng-icon name="fluentBackpack" aria-hidden="true" />
                                       Riponi
                                     </button>
                                     <span class="weapon-result">
@@ -1262,6 +1342,7 @@
                               }
                               @if (canEquipWeapon(row.item)) {
                                 <button class="equip-weapon" (click)="equipWeapon(row.item)">
+                                  <ng-icon name="gameSwordBrandish" aria-hidden="true" />
                                   Impugna{{
                                     equippedWeaponEntries.length ? ' come seconda arma' : ''
                                   }}
@@ -1309,12 +1390,23 @@
                                     : setShieldItem(row.item)
                                 "
                               >
+                                <ng-icon
+                                  [name]="
+                                    store.draft().equippedShieldId === row.item.id
+                                      ? 'fluentBackpack'
+                                      : 'gameSwordBrandish'
+                                  "
+                                  aria-hidden="true"
+                                />
                                 {{
                                   store.draft().equippedShieldId === row.item.id
                                     ? 'Riponi'
                                     : 'Impugna'
                                 }}
                               </button>
+                              @if (!shieldProficient(row.item)) {
+                                <em>non competente</em>
+                              }
                             </div>
                           } @else if (store.draft().equippedArmorId === row.item.id) {
                             <div class="shield-loadout">
@@ -1340,15 +1432,24 @@
                               [class.unequip-weapon]="itemIsEquipped(row.item)"
                               (click)="toggleGenericEquipment(row.item)"
                             >
+                              <ng-icon
+                                [name]="
+                                  itemIsEquipped(row.item)
+                                    ? 'fluentBackpack'
+                                    : 'gameSwordBrandish'
+                                "
+                                aria-hidden="true"
+                              />
                               {{ itemIsEquipped(row.item) ? 'Riponi' : 'Equipaggia' }}
                             </button>
                           }
                           @if (row.item.requiresAttunement) {
                             <button
-                              class="attunement-button"
+                              class="attunement-button ml-1"
                               [class.active]="itemIsAttuned(row.item)"
                               (click)="toggleAttunement(row.item)"
                             >
+                              <ng-icon name="gameMagicSwirl" aria-hidden="true" />
                               {{
                                 itemIsAttuned(row.item) ? 'Sintonia attiva' : 'Entra in sintonia'
                               }}
@@ -1361,15 +1462,17 @@
                                   row.item.charges!.maximum
                                 }}</span
                               ><button
+                                aria-label="Usa una carica in meno"
                                 [disabled]="itemCharges(row.item) <= 0"
                                 (click)="changeItemCharges(row.item, -1)"
                               >
-                                −</button
+                                <ng-icon name="fluentSubtract" aria-hidden="true" /></button
                               ><button
+                                aria-label="Aggiungi una carica"
                                 [disabled]="itemCharges(row.item) >= row.item.charges!.maximum"
                                 (click)="changeItemCharges(row.item, 1)"
                               >
-                                +
+                                <ng-icon name="fluentAdd" aria-hidden="true" />
                               </button>
                             </div>
                           }
@@ -1386,6 +1489,7 @@
                                   )
                                 "
                               >
+                                <ng-icon name="gameSparkles" aria-hidden="true" />
                                 Usa {{ effect.name
                                 }}<span>{{
                                   effect.chargesCost ? ' · ' + effect.chargesCost + ' cariche' : ''
@@ -1406,12 +1510,17 @@
                                   )
                                 "
                               >
+                                <ng-icon name="gameSparkles" aria-hidden="true" />
                                 Lancia incantesimo<span>
                                   · {{ grant.chargesCost ?? 1 }} cariche</span
                                 >
                               </button>
                             }
                           }
+                          <button class="remove-item" (click)="removeItem(row.item)">
+                            <ng-icon name="fluentDelete" aria-hidden="true" />
+                            Rimuovi dallo zaino
+                          </button>
                         </td>
                       </tr>
                     }
@@ -1424,6 +1533,40 @@
               </p>
             }
           </div>
+
+          @if (removalRequest(); as removal) {
+            <div class="remove-dialog-backdrop" role="presentation" (click)="cancelItemRemoval()">
+              <section
+                class="remove-dialog"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="remove-item-title"
+                (click)="$event.stopPropagation()"
+              >
+                <p class="kicker">Rimuovi dallo zaino</p>
+                <h2 id="remove-item-title">{{ removal.item.name }}</h2>
+                <p>Ne possiedi {{ removal.available }}. Quanti elementi vuoi rimuovere?</p>
+                <label>
+                  <span>Quantità da rimuovere</span>
+                  <input
+                    type="number"
+                    min="1"
+                    [max]="removal.available"
+                    [ngModel]="removal.quantity"
+                    (ngModelChange)="setRemovalQuantity($event)"
+                  />
+                </label>
+                <div class="remove-dialog-actions">
+                  <button class="remove-dialog-cancel" (click)="cancelItemRemoval()">
+                    Annulla
+                  </button>
+                  <button class="remove-dialog-confirm" (click)="confirmItemRemoval()">
+                    Rimuovi {{ removal.quantity }}
+                  </button>
+                </div>
+              </section>
+            </div>
+          }
 
           @if (homebrewEquipmentOpen()) {
             <app-homebrew-equipment-dialog
@@ -2107,7 +2250,15 @@
               ><strong>{{ store.derived().passiveInvestigation }}</strong>
             </div>
             <div>
-              <small>Velocità</small><strong>{{ store.derived().speedMeters }} m</strong>
+              <small>Velocità attuale</small
+              ><strong
+                >{{ store.derived().speedMeters }} m
+                @if (store.derived().encumbranceSpeedPenaltyMeters) {
+                  <br /><small
+                    >−{{ store.derived().encumbranceSpeedPenaltyMeters }} m per carico</small
+                  >
+                }
+              </strong>
             </div>
             <div>
               <small>Taglia</small><strong>{{ store.derived().size }}</strong>
@@ -2122,18 +2273,6 @@
             <div>
               <small>Punti esperienza</small><strong>{{ store.derived().experience }}</strong>
             </div>
-            <div>
-              <small>Carico trasportabile</small
-              ><strong>{{ store.derived().carryingCapacityKg }} kg</strong>
-            </div>
-            <div>
-              <small>Peso equipaggiamento</small
-              ><strong>{{ store.derived().inventoryWeightKg }} kg</strong>
-            </div>
-            <div>
-              <small>Spingere, trascinare, sollevare</small
-              ><strong>{{ store.derived().moveCapacityKg }} kg</strong>
-            </div>
             @if (store.derived().spellDc) {
               <div>
                 <small>CD incantesimi</small><strong>{{ store.derived().spellDc }}</strong>
@@ -2146,6 +2285,67 @@
               </div>
             }
           </div>
+          <section
+            class="load-status-section"
+            [class.encumbered]="store.derived().encumbrance === 'encumbered'"
+            [class.heavily-encumbered]="
+              store.derived().encumbrance === 'heavily-encumbered'
+            "
+            [class.over-capacity]="store.derived().encumbrance === 'over-capacity'"
+          >
+            <div class="load-status-heading">
+              <div>
+                <p class="kicker">Trasporto e movimento</p>
+                <h2>Stato Carico</h2>
+              </div>
+              <strong class="load-status-label">
+                @switch (store.derived().encumbrance) {
+                  @case ('encumbered') {
+                    Ingombrato
+                  }
+                  @case ('heavily-encumbered') {
+                    Pesantemente ingombrato
+                  }
+                  @case ('over-capacity') {
+                    Oltre capacità
+                  }
+                  @default {
+                    Normale
+                  }
+                }
+              </strong>
+            </div>
+            <div class="load-status-grid">
+              <div>
+                <small>Peso trasportato</small>
+                <strong
+                  >{{ store.derived().inventoryWeightKg }} /
+                  {{ store.derived().carryingCapacityKg }} kg</strong
+                >
+              </div>
+              <div>
+                <small>Soglie ingombrato / pesante</small>
+                <strong
+                  >{{ store.derived().encumberedThresholdKg }} /
+                  {{ store.derived().heavilyEncumberedThresholdKg }} kg</strong
+                >
+              </div>
+              <div>
+                <small>Malus al movimento</small>
+                <strong>
+                  @if (store.derived().encumbranceSpeedPenaltyMeters) {
+                    −{{ store.derived().encumbranceSpeedPenaltyMeters }} m
+                  } @else {
+                    Nessuno
+                  }
+                </strong>
+              </div>
+              <div>
+                <small>Spingere, trascinare, sollevare</small>
+                <strong>{{ store.derived().moveCapacityKg }} kg</strong>
+              </div>
+            </div>
+          </section>
           <div class="saving-summary">
             <h2>Tiri salvezza</h2>
             <p class="hint">I tiri salvezza competenti includono il bonus di competenza.</p>

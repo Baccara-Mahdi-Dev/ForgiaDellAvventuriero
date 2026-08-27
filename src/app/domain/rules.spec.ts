@@ -288,10 +288,44 @@ describe('regole 5e 2014', () => {
   it('calcola PE, carico, abilità e percezione passiva', () => {
     const result = derive({ ...draft, classSkillProficiencies: ['perception'] }, catalog);
     expect(experienceForLevel(5)).toBe(6500);
-    expect(result.carryingCapacityKg).toBe(54.4);
+    expect(result.carryingCapacityKg).toBe(60);
+    expect(result.moveCapacityKg).toBe(120);
+    expect(result.encumberedThresholdKg).toBe(20);
+    expect(result.heavilyEncumberedThresholdKg).toBe(40);
+    expect(result.encumbrance).toBe('normal');
     expect(result.skills.find((skill) => skill.id === 'perception')?.value).toBe(3);
     expect(result.passivePerception).toBe(13);
     expect(result.savingThrows.find((save) => save.ability === 'con')?.value).toBe(5);
+  });
+  it('applica soglie e malus della variante Ingombro', () => {
+    const encumberedCatalog: RulesCatalog = {
+      ...catalog,
+      equipment: [
+        ...catalog.equipment,
+        {
+          id: 'load',
+          name: 'Carico',
+          description: '',
+          source: 'SRD',
+          category: 'adventuring-gear',
+          group: 'Test',
+          cost: '-',
+          weightKg: 21,
+        },
+      ],
+    };
+    const encumbered = derive(
+      { ...draft, inventory: [{ equipmentId: 'load', quantity: 1 }] },
+      encumberedCatalog,
+    );
+    const heavilyEncumbered = derive(
+      { ...draft, inventory: [{ equipmentId: 'load', quantity: 2 }] },
+      encumberedCatalog,
+    );
+    expect(encumbered.encumbrance).toBe('encumbered');
+    expect(encumbered.speedMeters).toBe(6);
+    expect(heavilyEncumbered.encumbrance).toBe('heavily-encumbered');
+    expect(heavilyEncumbered.speedMeters).toBe(3);
   });
   it('applica gli effetti numerici dei talenti dai dati', () => {
     const result = derive({ ...draft, featIds: ['alert', 'tough'] }, catalog);
@@ -436,6 +470,20 @@ describe('regole 5e 2014', () => {
     expect(result.armorClass).toBe(18);
     expect(result.armorProficient).toBe(true);
     expect(result.inventoryWeightKg).toBe(23.1);
+  });
+  it('applica lo scudo anche senza competenza e segnala la mancata competenza', () => {
+    const result = derive(
+      {
+        ...draft,
+        classId: '',
+        equippedShieldId: 'shield',
+        shieldEquipped: true,
+        inventory: [{ equipmentId: 'shield', quantity: 1 }],
+      },
+      catalog,
+    );
+    expect(result.armorClass).toBe(14);
+    expect(result.armorProficient).toBe(false);
   });
 });
 
