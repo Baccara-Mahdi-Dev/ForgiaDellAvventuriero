@@ -1,0 +1,787 @@
+<section class="equipment-builder">
+  <div class="equipment-intro">
+    <p class="lead">
+      Scegli protezioni, oggetti magici e strumenti. Tutto ciò che aggiungi viene conservato nello
+      zaino e usa le stesse regole di equipaggiamento.
+    </p>
+    <button class="homebrew-equipment-add" (click)="wizard().openHomebrewEquipmentWizard()">
+      + Aggiungi equipaggiamento Homebrew
+    </button>
+  </div>
+
+  <div class="equipment-vitals">
+    <div>
+      <small>Classe Armatura</small><strong>{{ wizard().store.derived().armorClass }}</strong>
+    </div>
+    <div>
+      <small>Peso nello zaino</small
+      ><strong>{{ wizard().store.derived().inventoryWeightKg }} kg</strong>
+    </div>
+    <div>
+      <small>Carico massimo</small
+      ><strong>{{ wizard().store.derived().carryingCapacityKg }} kg</strong>
+    </div>
+    <div>
+      <small>Stato del carico</small
+      ><strong>
+        @switch (wizard().store.derived().encumbrance) {
+          @case ('encumbered') {
+            Ingombrato
+          }
+          @case ('heavily-encumbered') {
+            Pesantemente ingombrato
+          }
+          @case ('over-capacity') {
+            Oltre capacità
+          }
+          @default {
+            Normale
+          }
+        }
+      </strong>
+    </div>
+    <div>
+      <small>Sintonia</small
+      ><strong
+        >{{ wizard().store.draft().attunedEquipmentIds?.length ?? 0 }} /
+        {{ wizard().maximumAttunedItems }}</strong
+      >
+    </div>
+  </div>
+  @if (wizard().homebrewEquipment.length) {
+    <div class="homebrew-equipment-list">
+      <div class="panel-heading">
+        <div>
+          <p class="kicker">Creazioni personali</p>
+          <h2>Equipaggiamento Homebrew</h2>
+        </div>
+        <span>{{ wizard().homebrewEquipment.length }} oggetti</span>
+      </div>
+      @for (item of wizard().homebrewEquipment; track item.id) {
+        <article>
+          <div>
+            <strong>{{ item.name }}</strong
+            ><small
+              >{{ wizard().itemKind(item) }} · {{ wizard().itemRarity(item) || 'Senza rarità'
+              }}<span>{{ item.requiresAttunement ? ' · Richiede sintonia' : '' }}</span></small
+            >
+            <p>{{ item.description }}</p>
+          </div>
+          <button class="homebrew-spell-remove" (click)="wizard().removeHomebrewEquipment(item.id)">
+            Rimuovi
+          </button>
+        </article>
+      }
+    </div>
+  }
+
+  <div class="armor-panel">
+    <div class="panel-heading">
+      <div>
+        <p class="kicker">Protezione</p>
+        <h2>Armatura indossata</h2>
+      </div>
+    </div>
+    <div class="shield-add-row">
+      <div>
+        <strong>Scudo</strong>
+        <small>Aggiungilo allo zaino senza modificare le armi impugnate.</small>
+      </div>
+      <button
+        class="shield-add"
+        (click)="wizard().addShieldToBackpack()"
+        aria-label="Aggiungi uno scudo allo zaino"
+      >
+        <span aria-hidden="true">+</span> Aggiungi
+      </button>
+    </div>
+    @if (!wizard().store.selectedClass()?.armorProficiencies?.includes('shield')) {
+      <small class="proficiency-note">La classe scelta non concede competenza negli scudi.</small>
+    }
+    <label class="equipment-search">
+      <span>Cerca armatura o abiti</span>
+      <input
+        type="search"
+        placeholder="Es. cuoio, corazza, abiti comuni…"
+        [ngModel]="wizard().armorSearch()"
+        (ngModelChange)="wizard().armorSearch.set($event)"
+      />
+    </label>
+    <div class="armor-groups">
+      @for (group of wizard().armorGroups; track group.name) {
+        <details class="armor-group" close>
+          <summary class="armor-group-summary">
+            <h3>{{ group.name }}</h3>
+          </summary>
+          <div class="armor-options">
+            @for (item of group.items; track item.id) {
+              <button
+                [class.selected]="wizard().store.draft().equippedArmorId === item.id"
+                [class.unavailable]="!wizard().armorAllowed(item)"
+                [disabled]="!wizard().armorAllowed(item)"
+                (click)="wizard().selectArmor(item)"
+              >
+                <strong>{{ item.name }}</strong>
+                <span
+                  >CA {{ item.armorClass
+                  }}{{
+                    item.dexterityBonus === 'full'
+                      ? ' + DES'
+                      : item.dexterityBonus === 'max-2'
+                        ? ' + DES (max 2)'
+                        : ''
+                  }}</span
+                >
+                <small>{{ item.weightKg }} kg · {{ item.cost }}</small>
+                @if (!wizard().armorAllowed(item)) {
+                  <em>Non competente</em>
+                }
+                @if (item.strengthRequirement) {
+                  <em>FOR {{ item.strengthRequirement }}</em>
+                }
+                @if (item.stealthDisadvantage) {
+                  <em>Svantaggio Furtività</em>
+                }
+              </button>
+            }
+          </div>
+        </details>
+      }
+    </div>
+  </div>
+
+  <div class="catalog-panel">
+    <div class="panel-heading">
+      <div>
+        <p class="kicker">Catalogo SRD</p>
+        <h2>Aggiungi allo zaino</h2>
+      </div>
+      <span>{{ wizard().store.equipment.length }} elementi</span>
+    </div>
+    <div class="catalog-filters">
+      <input
+        type="search"
+        placeholder="Cerca un oggetto…"
+        [ngModel]="wizard().equipmentSearch()"
+        (ngModelChange)="wizard().setEquipmentSearch($event)"
+      />
+      <select
+        [ngModel]="wizard().equipmentCategory()"
+        (ngModelChange)="wizard().setEquipmentCategory($event)"
+      >
+        <option value="all">Tutte le categorie</option>
+        <option value="magic">Oggetti magici</option>
+        <option value="weapon">Armi</option>
+        <option value="armor">Armature e abiti</option>
+        <option value="artisan-tool">Strumenti da artigiano</option>
+        <option value="adventuring-gear">Equipaggiamento</option>
+      </select>
+    </div>
+    <p class="equipment-mobile-hint">
+      <ng-icon name="fluentBackpackAdd" aria-hidden="true" /> aggiunge allo zaino;
+      <ng-icon name="gameSwordBrandish" aria-hidden="true" /> aggiunge ed equipaggia subito.
+    </p>
+    <div class="equipment-table-wrap">
+      <table class="equipment-table catalog-table">
+        <thead>
+          <tr>
+            <th>
+              <button class="table-sort" (click)="wizard().sortEquipment('name')">
+                Oggetto <span>{{ wizard().equipmentSortIndicator('name') }}</span>
+              </button>
+            </th>
+            <th>
+              <button class="table-sort" (click)="wizard().sortEquipment('type')">
+                Tipo <span>{{ wizard().equipmentSortIndicator('type') }}</span>
+              </button>
+            </th>
+            <th>
+              <button class="table-sort" (click)="wizard().sortEquipment('cost')">
+                Costo <span>{{ wizard().equipmentSortIndicator('cost') }}</span>
+              </button>
+            </th>
+            <th>
+              <button class="table-sort" (click)="wizard().sortEquipment('weight')">
+                Peso <span>{{ wizard().equipmentSortIndicator('weight') }}</span>
+              </button>
+            </th>
+            @if (wizard().equipmentCategory() === 'magic') {
+              <th>
+                <button class="table-sort" (click)="wizard().sortEquipment('rarity')">
+                  Rarità <span>{{ wizard().equipmentSortIndicator('rarity') }}</span>
+                </button>
+              </th>
+              <th>
+                <button class="table-sort" (click)="wizard().sortEquipment('attunement')">
+                  Richiede sintonia <span>{{ wizard().equipmentSortIndicator('attunement') }}</span>
+                </button>
+              </th>
+            }
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (group of wizard().equipmentGroups; track group.name) {
+            @if (group.name) {
+              <tr class="equipment-group-row">
+                <td [attr.colspan]="wizard().equipmentCategory() === 'magic' ? 7 : 5">
+                  {{ group.name }} <span>({{ group.items.length }})</span>
+                </td>
+              </tr>
+            }
+            @for (item of group.items; track item.id) {
+              <tr>
+                <td data-label="Oggetto" class="equipment-item-cell">
+                  <strong>{{ item.name }}</strong>
+                  @if (item.category === 'weapon') {
+                    @if (wizard().magicWeaponOptions(item).length) {
+                      <small class="magic-meta">Scegli l'arma base durante l'aggiunta</small>
+                    } @else {
+                      <small
+                        >{{ wizard().effectiveWeapon(item).damage }}
+                        {{ wizard().effectiveWeapon(item).damageType }} ·
+                        {{ wizard().effectiveWeapon(item).properties?.join(', ') }}</small
+                      >
+                    }
+                  }
+                  @if (item.magical) {
+                    <small class="magic-meta"
+                      >{{ wizard().itemRarity(item)
+                      }}<span>{{ item.requiresAttunement ? ' · Sintonia' : '' }}</span></small
+                    >
+                  }
+                  @if (item.description) {
+                    <small class="item-description">{{ item.description }}</small>
+                  }
+                  <small class="mobile-item-meta"> {{ item.cost }} · {{ item.weightKg }} kg </small>
+                </td>
+                <td data-label="Tipo">
+                  {{
+                    item.category === 'weapon'
+                      ? 'Arma'
+                      : item.category === 'armor'
+                        ? 'Armatura'
+                        : item.category === 'artisan-tool'
+                          ? 'Strumento'
+                          : 'Oggetto'
+                  }}
+                </td>
+                <td data-label="Costo">{{ item.cost }}</td>
+                <td data-label="Peso">{{ item.weightKg }} kg</td>
+                @if (wizard().equipmentCategory() === 'magic') {
+                  <td data-label="Rarità">{{ wizard().itemRarity(item) || 'Senza rarità' }}</td>
+                  <td data-label="Sintonia">
+                    <span class="boolean-value" [class.is-true]="item.requiresAttunement">{{
+                      item.requiresAttunement ? 'Sì' : 'No'
+                    }}</span>
+                  </td>
+                }
+                <td data-label="Azioni" class="equipment-actions">
+                  <button
+                    class="add-item catalog-action"
+                    [attr.aria-label]="'Aggiungi ' + item.name + ' allo zaino'"
+                    title="Aggiungi allo zaino"
+                    (click)="wizard().addCatalogItem(item)"
+                  >
+                    <ng-icon name="fluentBackpackAdd" aria-hidden="true" />
+                    <span>Aggiungi</span>
+                  </button>
+                  @if (wizard().canAddAndEquip(item)) {
+                    <button
+                      class="add-and-equip catalog-action"
+                      [attr.aria-label]="'Aggiungi ed equipaggia ' + item.name"
+                      title="Aggiungi ed equipaggia subito"
+                      (click)="wizard().addAndEquipItem(item)"
+                    >
+                      <ng-icon name="gameSwordBrandish" aria-hidden="true" />
+                      <span>Equipaggia subito</span>
+                    </button>
+                  }
+                </td>
+              </tr>
+            }
+          } @empty {
+            <tr>
+              <td
+                [attr.colspan]="wizard().equipmentCategory() === 'magic' ? 7 : 5"
+                class="empty-row"
+              >
+                Nessun elemento corrisponde alla ricerca.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    @if (wizard().equipmentPageCount > 1) {
+      <nav class="spell-pagination" aria-label="Pagine del catalogo equipaggiamento">
+        <button
+          [disabled]="wizard().currentEquipmentPage === 1"
+          (click)="wizard().setEquipmentPage(wizard().currentEquipmentPage - 1)"
+        >
+          ← Precedente
+        </button>
+        <span
+          >Pagina {{ wizard().currentEquipmentPage }} di {{ wizard().equipmentPageCount }} ·
+          {{ wizard().equipmentFilteredCount }} risultati</span
+        >
+        <button
+          [disabled]="wizard().currentEquipmentPage === wizard().equipmentPageCount"
+          (click)="wizard().setEquipmentPage(wizard().currentEquipmentPage + 1)"
+        >
+          Successiva →
+        </button>
+      </nav>
+    }
+  </div>
+
+  <div class="backpack-panel">
+    <div class="panel-heading">
+      <div>
+        <p class="kicker">Inventario</p>
+        <h2>Zaino</h2>
+      </div>
+      <strong
+        >{{ wizard().store.derived().inventoryWeightKg }} /
+        {{ wizard().store.derived().carryingCapacityKg }} kg</strong
+      >
+    </div>
+    <p class="weapon-loadout-hint">
+      Puoi impugnare fino a due armi. Uno scudo richiede una sola arma a una mano; un'arma a due
+      mani esclude scudo e seconda arma. La mano secondaria non aggiunge il modificatore ai danni
+      senza lo stile Combattere con Due Armi.
+    </p>
+    @if (wizard().inventoryRows.length) {
+      <div class="equipment-table-wrap">
+        <table class="equipment-table backpack-table">
+          <thead>
+            <tr>
+              <th>
+                <button class="table-sort" (click)="wizard().sortInventory('name')">
+                  Oggetto <span>{{ wizard().inventorySortIndicator('name') }}</span>
+                </button>
+              </th>
+              <th>
+                <button class="table-sort" (click)="wizard().sortInventory('quantity')">
+                  Quantità <span>{{ wizard().inventorySortIndicator('quantity') }}</span>
+                </button>
+              </th>
+              <th>
+                <button class="table-sort" (click)="wizard().sortInventory('unitWeight')">
+                  Peso singolo <span>{{ wizard().inventorySortIndicator('unitWeight') }}</span>
+                </button>
+              </th>
+              <th>
+                <button class="table-sort" (click)="wizard().sortInventory('totalWeight')">
+                  Peso totale <span>{{ wizard().inventorySortIndicator('totalWeight') }}</span>
+                </button>
+              </th>
+              <th>
+                <button class="table-sort" (click)="wizard().sortInventory('usage')">
+                  Uso <span>{{ wizard().inventorySortIndicator('usage') }}</span>
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of wizard().inventoryRows; track row.item.id) {
+              <tr>
+                <td data-label="Oggetto" class="equipment-item-cell">
+                  <strong>{{ row.item.name }}</strong>
+                </td>
+                <td data-label="Quantità">
+                  <input
+                    type="number"
+                    min="0"
+                    [ngModel]="row.entry.quantity"
+                    (ngModelChange)="wizard().setItemQuantity(row.item.id, $event)"
+                  />
+                </td>
+                <td data-label="Peso singolo">{{ row.item.weightKg }} kg</td>
+                <td data-label="Peso totale">
+                  {{ (row.item.weightKg * row.entry.quantity).toFixed(1) }} kg
+                </td>
+                <td data-label="Uso e azioni" class="inventory-actions">
+                  @if (row.item.category === 'weapon') {
+                    <div class="weapon-loadout">
+                      @for (entry of wizard().equippedWeaponEntries; track entry.index) {
+                        @if (entry.item.id === row.item.id) {
+                          <div class="weapon-slot">
+                            <span class="equipped-tag"
+                              >Impugnata · {{ wizard().weaponHandsLabel(entry.equipped) }}</span
+                            >
+                            @if (!entry.item.properties?.includes('a due mani')) {
+                              <label>
+                                <input
+                                  type="checkbox"
+                                  [checked]="entry.equipped.hands === 2"
+                                  [disabled]="
+                                    entry.equipped.hands === 1 &&
+                                    !wizard().canUseTwoHands(entry.index)
+                                  "
+                                  (change)="
+                                    wizard().setWeaponHands(
+                                      entry.index,
+                                      $any($event.target).checked ? 2 : 1
+                                    )
+                                  "
+                                />
+                                Due mani
+                              </label>
+                            }
+                            <label class="bonus-level">
+                              Livello
+                              <select
+                                [ngModel]="entry.equipped.bonus ?? 0"
+                                (ngModelChange)="wizard().setWeaponBonus(entry.index, $event)"
+                              >
+                                <option value="0">+0</option>
+                                <option value="1">+1</option>
+                                <option value="2">+2</option>
+                                <option value="3">+3</option>
+                              </select>
+                            </label>
+                            @if (wizard().canChooseWeaponIntelligence(entry.item)) {
+                              <button
+                                class="ability-weapon"
+                                [class.active]="entry.equipped.useIntelligence !== false"
+                                (click)="wizard().toggleWeaponIntelligence(entry.index)"
+                              >
+                                <ng-icon [svg]="wizard().abilityIcon('int')" aria-hidden="true" />
+                                {{
+                                  entry.equipped.useIntelligence !== false
+                                    ? 'Usa INT'
+                                    : 'Usa FOR/DES'
+                                }}
+                              </button>
+                            }
+                            <button
+                              class="unequip-weapon"
+                              (click)="wizard().unequipWeapon(entry.index)"
+                            >
+                              <ng-icon name="fluentBackpack" aria-hidden="true" />
+                              Riponi
+                            </button>
+                            <span class="weapon-result">
+                              Attacco
+                              <strong>{{
+                                wizard().weaponAttack(
+                                  entry.item,
+                                  entry.equipped.bonus ?? 0,
+                                  entry.equipped
+                                )
+                              }}</strong>
+                              · Danni
+                              <strong>{{
+                                wizard().weaponDamageWithLoadout(
+                                  entry.item,
+                                  entry.equipped.hands,
+                                  entry.index === 1,
+                                  entry.equipped.bonus ?? 0,
+                                  entry.equipped
+                                )
+                              }}</strong>
+                            </span>
+                          </div>
+                        }
+                      }
+                      @if (wizard().canEquipWeapon(row.item)) {
+                        <button class="equip-weapon" (click)="wizard().equipWeapon(row.item)">
+                          <ng-icon name="gameSwordBrandish" aria-hidden="true" />
+                          Impugna{{
+                            wizard().equippedWeaponEntries.length ? ' come seconda arma' : ''
+                          }}
+                        </button>
+                      }
+                      @if (!wizard().weaponProficient(row.item)) {
+                        <em>non competente</em>
+                      }
+                    </div>
+                  } @else if (wizard().itemKind(row.item) === 'shield') {
+                    <div class="shield-loadout">
+                      <span class="equipped-tag">
+                        {{
+                          wizard().store.draft().equippedShieldId === row.item.id
+                            ? 'Impugnato'
+                            : 'Nello zaino'
+                        }}
+                      </span>
+                      @if (wizard().store.draft().equippedShieldId === row.item.id) {
+                        <label class="bonus-level">
+                          Livello
+                          <select
+                            [ngModel]="wizard().shieldLevelFor(row.item)"
+                            (ngModelChange)="wizard().setShieldLevel(row.item, $event)"
+                          >
+                            <option value="0">+0</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                            <option value="3">+3</option>
+                          </select>
+                        </label>
+                      }
+                      <button
+                        class="equip-weapon"
+                        [class.unequip-weapon]="
+                          wizard().store.draft().equippedShieldId === row.item.id
+                        "
+                        [disabled]="
+                          wizard().store.draft().equippedShieldId !== row.item.id &&
+                          !wizard().canEquipShield(row.item)
+                        "
+                        (click)="
+                          wizard().store.draft().equippedShieldId === row.item.id
+                            ? wizard().setShield(false)
+                            : wizard().setShieldItem(row.item)
+                        "
+                      >
+                        <ng-icon
+                          [name]="
+                            wizard().store.draft().equippedShieldId === row.item.id
+                              ? 'fluentBackpack'
+                              : 'gameSwordBrandish'
+                          "
+                          aria-hidden="true"
+                        />
+                        {{
+                          wizard().store.draft().equippedShieldId === row.item.id
+                            ? 'Riponi'
+                            : 'Impugna'
+                        }}
+                      </button>
+                      @if (!wizard().shieldProficient(row.item)) {
+                        <em>non competente</em>
+                      }
+                    </div>
+                  } @else if (wizard().store.draft().equippedArmorId === row.item.id) {
+                    <div class="shield-loadout">
+                      <span class="equipped-tag">Indossata</span>
+                      @if (!row.item.magical) {
+                        <label class="bonus-level">
+                          Livello
+                          <select
+                            [ngModel]="wizard().armorLevelFor(row.item)"
+                            (ngModelChange)="wizard().setArmorLevel(row.item, $event)"
+                          >
+                            <option value="0">+0</option>
+                            <option value="1">+1</option>
+                            <option value="2">+2</option>
+                            <option value="3">+3</option>
+                          </select>
+                        </label>
+                      }
+                    </div>
+                  } @else {
+                    <button
+                      class="equip-weapon"
+                      [class.unequip-weapon]="wizard().itemIsEquipped(row.item)"
+                      (click)="wizard().toggleGenericEquipment(row.item)"
+                    >
+                      <ng-icon
+                        [name]="
+                          wizard().itemIsEquipped(row.item) ? 'fluentBackpack' : 'gameSwordBrandish'
+                        "
+                        aria-hidden="true"
+                      />
+                      {{ wizard().itemIsEquipped(row.item) ? 'Riponi' : 'Equipaggia' }}
+                    </button>
+                  }
+                  @if (row.item.requiresAttunement) {
+                    <button
+                      class="attunement-button ml-1"
+                      [class.active]="wizard().itemIsAttuned(row.item)"
+                      (click)="wizard().toggleAttunement(row.item)"
+                    >
+                      <ng-icon name="gameMagicSwirl" aria-hidden="true" />
+                      {{
+                        wizard().itemIsAttuned(row.item) ? 'Sintonia attiva' : 'Entra in sintonia'
+                      }}
+                    </button>
+                  }
+                  @if (row.item.charges) {
+                    <div class="charge-counter">
+                      <span
+                        >Cariche {{ wizard().itemCharges(row.item) }}/{{
+                          row.item.charges!.maximum
+                        }}</span
+                      ><button
+                        aria-label="Usa una carica in meno"
+                        [disabled]="wizard().itemCharges(row.item) <= 0"
+                        (click)="wizard().changeItemCharges(row.item, -1)"
+                      >
+                        <ng-icon name="fluentSubtract" aria-hidden="true" /></button
+                      ><button
+                        aria-label="Aggiungi una carica"
+                        [disabled]="wizard().itemCharges(row.item) >= row.item.charges!.maximum"
+                        (click)="wizard().changeItemCharges(row.item, 1)"
+                      >
+                        <ng-icon name="fluentAdd" aria-hidden="true" />
+                      </button>
+                    </div>
+                  }
+                  @for (effect of row.item.effects ?? []; track effect.id) {
+                    @if (effect.activation === 'active') {
+                      <button
+                        class="item-ability"
+                        [disabled]="(effect.chargesCost ?? 0) > wizard().itemCharges(row.item)"
+                        (click)="
+                          wizard().useEquipmentAbility(
+                            row.item,
+                            effect.chargesCost ?? 0,
+                            effect.name
+                          )
+                        "
+                      >
+                        <ng-icon name="gameSparkles" aria-hidden="true" />
+                        Usa {{ effect.name
+                        }}<span>{{
+                          effect.chargesCost ? ' · ' + effect.chargesCost + ' cariche' : ''
+                        }}</span>
+                      </button>
+                    }
+                  }
+                  @for (grant of row.item.spellGrants ?? []; track grant.id) {
+                    @if (grant.usage === 'charges') {
+                      <button
+                        class="item-ability"
+                        [disabled]="(grant.chargesCost ?? 1) > wizard().itemCharges(row.item)"
+                        (click)="
+                          wizard().useEquipmentAbility(
+                            row.item,
+                            grant.chargesCost ?? 1,
+                            'Incantesimo'
+                          )
+                        "
+                      >
+                        <ng-icon name="gameSparkles" aria-hidden="true" />
+                        Lancia incantesimo<span> · {{ grant.chargesCost ?? 1 }} cariche</span>
+                      </button>
+                    }
+                  }
+                  <button class="remove-item" (click)="wizard().removeItem(row.item)">
+                    <ng-icon name="fluentDelete" aria-hidden="true" />
+                    Rimuovi dallo zaino
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-backpack">
+        Lo zaino è vuoto. Cerca e aggiungi tutti gli oggetti che desideri.
+      </p>
+    }
+  </div>
+
+  @if (wizard().removalRequest(); as removal) {
+    <div class="remove-dialog-backdrop" role="presentation" (click)="wizard().cancelItemRemoval()">
+      <section
+        class="remove-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="remove-item-title"
+        (click)="$event.stopPropagation()"
+      >
+        <p class="kicker">Rimuovi dallo zaino</p>
+        <h2 id="remove-item-title">{{ removal.item.name }}</h2>
+        <p>Ne possiedi {{ removal.available }}. Quanti elementi vuoi rimuovere?</p>
+        <label>
+          <span>Quantità da rimuovere</span>
+          <input
+            type="number"
+            min="1"
+            [max]="removal.available"
+            [ngModel]="removal.quantity"
+            (ngModelChange)="wizard().setRemovalQuantity($event)"
+          />
+        </label>
+        <div class="remove-dialog-actions">
+          <button class="remove-dialog-cancel" (click)="wizard().cancelItemRemoval()">
+            Annulla
+          </button>
+          <button class="remove-dialog-confirm" (click)="wizard().confirmItemRemoval()">
+            Rimuovi {{ removal.quantity }}
+          </button>
+        </div>
+      </section>
+    </div>
+  }
+
+  @defer (when wizard().homebrewEquipmentOpen()) {
+    @if (wizard().homebrewEquipmentOpen()) {
+      <app-homebrew-equipment-dialog
+        [spells]="wizard().store.spells"
+        (saved)="wizard().saveHomebrewEquipment($event)"
+        (cancelled)="wizard().closeHomebrewEquipmentWizard()"
+      />
+    }
+  }
+
+  @defer (when wizard().magicWeaponChoice()) {
+    @if (wizard().magicWeaponChoice(); as magicWeapon) {
+      <app-magic-weapon-base-dialog
+        [item]="magicWeapon"
+        [options]="wizard().magicWeaponOptions(magicWeapon)"
+        [selectedId]="wizard().store.draft().magicWeaponBaseIds?.[magicWeapon.id] ?? ''"
+        (selected)="wizard().selectMagicWeaponBase($event)"
+        (cancelled)="wizard().closeMagicWeaponChoice()"
+      />
+    }
+  }
+
+  <div class="coins-panel">
+    <div>
+      <p class="kicker">Valuta</p>
+      <h2>Monete</h2>
+    </div>
+    <div class="coin-grid">
+      <label
+        ><span>Rame</span
+        ><input
+          type="number"
+          min="0"
+          [ngModel]="wizard().store.draft().coins?.cp ?? 0"
+          (ngModelChange)="wizard().updateCoin('cp', $event)"
+        /><small>MR</small></label
+      >
+      <label
+        ><span>Argento</span
+        ><input
+          type="number"
+          min="0"
+          [ngModel]="wizard().store.draft().coins?.sp ?? 0"
+          (ngModelChange)="wizard().updateCoin('sp', $event)"
+        /><small>MA</small></label
+      >
+      <label
+        ><span>Electrum</span
+        ><input
+          type="number"
+          min="0"
+          [ngModel]="wizard().store.draft().coins?.ep ?? 0"
+          (ngModelChange)="wizard().updateCoin('ep', $event)"
+        /><small>ME</small></label
+      >
+      <label
+        ><span>Oro</span
+        ><input
+          type="number"
+          min="0"
+          [ngModel]="wizard().store.draft().coins?.gp ?? 0"
+          (ngModelChange)="wizard().updateCoin('gp', $event)"
+        /><small>MO</small></label
+      >
+      <label
+        ><span>Platino</span
+        ><input
+          type="number"
+          min="0"
+          [ngModel]="wizard().store.draft().coins?.pp ?? 0"
+          (ngModelChange)="wizard().updateCoin('pp', $event)"
+        /><small>MP</small></label
+      >
+    </div>
+  </div>
+</section>

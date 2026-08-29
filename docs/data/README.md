@@ -201,22 +201,24 @@ Le selezioni di classe e sottoclasse condividono `classFeatureChoices` nella boz
 }
 ```
 
-| Campo                 | Significato                                                                      |
-| --------------------- | -------------------------------------------------------------------------------- |
-| `hitDie`              | dado vita e base dei PF al 1° livello                                            |
-| `primary`             | caratteristica principale e caratteristica da incantatore se `caster` è presente |
-| `saves`               | due tiri salvezza competenti                                                     |
-| `subclassLevel`       | livello dal quale `subclassId` diventa obbligatorio                              |
-| `subclasses`          | etichette selezionabili; oggi sono salvate come stringhe                         |
-| `skillChoices`        | numero di competenze di classe                                                   |
-| `skillOptions`        | ID delle abilità selezionabili                                                   |
-| `armorProficiencies`  | `clothing`, `light`, `medium`, `heavy`, `shield`                                 |
-| `weaponProficiencies` | categorie `simple`/`martial` o ID specifici                                      |
-| `caster`              | `full` o `half`; abilita CD, attacco magico e preparazione                       |
-| `featureChoices`      | scelte di classe progressive, opzioni e numero richiesto per livello             |
-| `subclassFeatures`    | feature con scelte collegate a una sottoclasse e alla relativa progressione      |
+| Campo                  | Significato                                                                      |
+| ---------------------- | -------------------------------------------------------------------------------- |
+| `hitDie`               | dado vita e base dei PF al 1° livello                                            |
+| `primary`              | caratteristica principale e caratteristica da incantatore se `caster` è presente |
+| `saves`                | due tiri salvezza competenti                                                     |
+| `subclassLevel`        | livello dal quale `subclassId` diventa obbligatorio                              |
+| `subclasses`           | etichette selezionabili; oggi sono salvate come stringhe                         |
+| `skillChoices`         | numero di competenze di classe                                                   |
+| `skillOptions`         | ID delle abilità selezionabili                                                   |
+| `armorProficiencies`   | `clothing`, `light`, `medium`, `heavy`, `shield`                                 |
+| `weaponProficiencies`  | categorie `simple`/`martial` o ID specifici                                      |
+| `caster`               | `full` o `half`; abilita CD, attacco magico e preparazione                       |
+| `classProgression`     | privilegi di classe per livello, attivazioni, risorse, usi e recupero            |
+| `featureChoices`       | scelte di classe progressive, opzioni e numero richiesto per livello             |
+| `subclassFeatures`     | feature con scelte collegate a una sottoclasse e alla relativa progressione      |
+| `subclassProgressions` | privilegi di ogni sottoclasse per livello e relativi metadati d'uso              |
 
-Le tabelle degli slot, la progressione ASI, le priorità per il consiglio di classe e le risorse di classe non sono ancora data-driven: vivono in `rules.ts`. Aggiungere una nuova classe richiede quindi sia il record JSON sia l'estensione di quelle funzioni.
+Le tabelle degli slot, la progressione ASI, le priorità per il consiglio di classe e i valori numerici delle risorse vivono ancora in `rules.ts`. I privilegi e le loro modalità d'uso sono invece dichiarati nel catalogo. Aggiungere una nuova classe richiede quindi sia il record JSON sia l'estensione delle sole regole numeriche pertinenti.
 
 ## `backgrounds.json`
 

@@ -208,6 +208,38 @@
     "isHidden": true
   },
   {
+    "id": "cleric-dominio-della-solidarieta",
+    "classId": "cleric",
+    "name": "Dominio della Solidarietà",
+    "description": "Dominio della Solidarietà è una sottoclasse del Chierico presentata in Plane Shift: Amonkhet.",
+    "source": "PSA",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-della-forza",
+    "classId": "cleric",
+    "name": "Dominio della Forza",
+    "description": "Dominio della Forza è una sottoclasse del Chierico presentata in Plane Shift: Amonkhet.",
+    "source": "PSA",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-dellambizione",
+    "classId": "cleric",
+    "name": "Dominio dell'Ambizione",
+    "description": "Dominio dell'Ambizione è una sottoclasse del Chierico presentata in Plane Shift: Amonkhet.",
+    "source": "PSA",
+    "isHidden": true
+  },
+  {
+    "id": "cleric-dominio-dello-zelo",
+    "classId": "cleric",
+    "name": "Dominio dello Zelo",
+    "description": "Dominio dello Zelo è una sottoclasse del Chierico presentata in Plane Shift: Amonkhet.",
+    "source": "PSA",
+    "isHidden": true
+  },
+  {
     "id": "druid-circolo-della-terra",
     "classId": "druid",
     "name": "Circolo della Terra",
@@ -277,6 +309,14 @@
     "name": "Maestro di Battaglia",
     "description": "Maestro di Battaglia è una sottoclasse del Guerriero presentata in PHB.",
     "source": "PHB",
+    "isHidden": true
+  },
+  {
+    "id": "fighter-araldo",
+    "classId": "fighter",
+    "name": "Araldo",
+    "description": "Araldo è una sottoclasse del Guerriero presentata in SCAG.",
+    "source": "SCAG",
     "isHidden": true
   },
   {
@@ -688,50 +728,58 @@
     "isHidden": true
   },
   {
+    "id": "warlock-limmortale",
+    "classId": "warlock",
+    "name": "L'Immortale",
+    "description": "L'Immortale è una sottoclasse del Warlock presentata in SCAG.",
+    "source": "SCAG",
+    "isHidden": false
+  },
+  {
     "id": "wizard-scuola-di-abiurazione",
     "classId": "wizard",
     "name": "Scuola di Abiurazione",
-    "description": "Scuola di Abiurazione è una sottoclasse del Mago presentata in PHB.",
+    "description": "Scuola di Abiurazione è una tradizione arcana del Mago presentata in PHB.",
     "source": "PHB",
-    "isHidden": true
+    "isHidden": false
   },
   {
     "id": "wizard-scuola-di-ammaliamento",
     "classId": "wizard",
     "name": "Scuola di Ammaliamento",
-    "description": "Scuola di Ammaliamento è una sottoclasse del Mago presentata in PHB.",
+    "description": "Scuola di Ammaliamento è una tradizione arcana del Mago presentata in PHB.",
     "source": "PHB",
-    "isHidden": true
+    "isHidden": false
   },
   {
     "id": "wizard-scuola-di-divinazione",
     "classId": "wizard",
     "name": "Scuola di Divinazione",
-    "description": "Scuola di Divinazione è una sottoclasse del Mago presentata in PHB.",
+    "description": "Scuola di Divinazione è una tradizione arcana del Mago presentata in PHB.",
     "source": "PHB",
-    "isHidden": true
+    "isHidden": false
   },
   {
     "id": "wizard-scuola-di-evocazione",
     "classId": "wizard",
     "name": "Scuola di Evocazione",
-    "description": "Scuola di Evocazione è una sottoclasse del Mago presentata in PHB.",
+    "description": "Scuola di Evocazione è una tradizione arcana del Mago presentata in PHB.",
     "source": "PHB",
-    "isHidden": true
+    "isHidden": false
   },
   {
     "id": "wizard-scuola-di-illusione",
     "classId": "wizard",
     "name": "Scuola di Illusione",
-    "description": "Scuola di Illusione è una sottoclasse del Mago presentata in PHB.",
+    "description": "Scuola di Illusione è una tradizione arcana del Mago presentata in PHB.",
     "source": "PHB",
-    "isHidden": true
+    "isHidden": false
   },
   {
     "id": "wizard-scuola-di-invocazione",
     "classId": "wizard",
     "name": "Scuola di Invocazione",
-    "description": "Scuola di Invocazione è una sottoclasse del Mago presentata in SRD.",
+    "description": "Scuola di Invocazione è una tradizione arcana del Mago presentata in SRD.",
     "source": "SRD",
     "isHidden": false
   },
@@ -739,72 +787,88 @@
     "id": "wizard-scuola-di-necromanzia",
     "classId": "wizard",
     "name": "Scuola di Necromanzia",
-    "description": "Scuola di Necromanzia è una sottoclasse del Mago presentata in PHB.",
+    "description": "Scuola di Necromanzia è una tradizione arcana del Mago presentata in PHB.",
     "source": "PHB",
-    "isHidden": true
+    "isHidden": false
   },
   {
     "id": "wizard-scuola-di-trasmutazione",
     "classId": "wizard",
     "name": "Scuola di Trasmutazione",
-    "description": "Scuola di Trasmutazione è una sottoclasse del Mago presentata in PHB.",
+    "description": "Scuola di Trasmutazione è una tradizione arcana del Mago presentata in PHB.",
     "source": "PHB",
-    "isHidden": true
+    "isHidden": false
   },
   {
     "id": "wizard-magia-da-guerra",
     "classId": "wizard",
     "name": "Magia da Guerra",
-    "description": "Magia da Guerra è una sottoclasse del Mago presentata in XGE.",
+    "description": "Magia da Guerra è una tradizione arcana del Mago presentata in XGE.",
     "source": "XGE",
-    "isHidden": true
+    "isHidden": false
   },
   {
     "id": "wizard-canto-della-lama",
     "classId": "wizard",
     "name": "Canto della Lama",
-    "description": "Canto della Lama è una sottoclasse del Mago presentata in TCE.",
+    "description": "Canto della Lama è una tradizione arcana del Mago presentata in TCE.",
     "source": "TCE",
-    "isHidden": true
+    "isHidden": false
   },
   {
     "id": "wizard-ordine-degli-scribi",
     "classId": "wizard",
     "name": "Ordine degli Scribi",
-    "description": "Ordine degli Scribi è una sottoclasse del Mago presentata in TCE.",
+    "description": "Ordine degli Scribi è una tradizione arcana del Mago presentata in TCE.",
     "source": "TCE",
-    "isHidden": true
+    "isHidden": false
+  },
+  {
+    "id": "wizard-magia-cronurgica",
+    "classId": "wizard",
+    "name": "Magia Cronurgica",
+    "description": "Magia Cronurgica è una tradizione arcana del Mago presentata in EGW.",
+    "source": "EGW",
+    "isHidden": false
+  },
+  {
+    "id": "wizard-magia-graviturgica",
+    "classId": "wizard",
+    "name": "Magia Graviturgica",
+    "description": "Magia Graviturgica è una tradizione arcana del Mago presentata in EGW.",
+    "source": "EGW",
+    "isHidden": false
   },
   {
     "id": "artificer-alchimista",
     "classId": "artificer",
     "name": "Alchimista",
-    "description": "Alchimista è una sottoclasse del Artificiere presentata in TCE.",
+    "description": "Esperto di reagenti che crea elisir e amplifica cure e danni alchemici.",
     "source": "TCE",
-    "isHidden": true
+    "isHidden": false
   },
   {
     "id": "artificer-armorer",
     "classId": "artificer",
     "name": "Armorer",
-    "description": "Armorer è una sottoclasse del Artificiere presentata in TCE.",
+    "description": "Artefice che trasforma un’armatura in una seconda pelle arcana modulare.",
     "source": "TCE",
-    "isHidden": true
+    "isHidden": false
   },
   {
     "id": "artificer-artigliere",
     "classId": "artificer",
     "name": "Artigliere",
-    "description": "Artigliere è una sottoclasse del Artificiere presentata in TCE.",
+    "description": "Specialista di cannoni mistici e focus capaci di proiettare energia distruttiva.",
     "source": "TCE",
-    "isHidden": true
+    "isHidden": false
   },
   {
     "id": "artificer-fabbro-da-battaglia",
     "classId": "artificer",
     "name": "Fabbro da Battaglia",
-    "description": "Fabbro da Battaglia è una sottoclasse del Artificiere presentata in TCE.",
+    "description": "Combattente e guaritore assistito da un fedele Difensore d’Acciaio.",
     "source": "TCE",
-    "isHidden": true
+    "isHidden": false
   }
 ]

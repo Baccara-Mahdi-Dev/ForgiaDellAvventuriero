@@ -76,12 +76,76 @@
 }
 
 .subclass-locked,
-.choice-panel {
+.choice-panel,
+.subclass-rules {
   margin-top: 1.2rem;
   padding: 1.2rem;
   border: 1px solid var(--line);
   border-radius: 0.6rem;
   background: var(--surface-raised);
+}
+
+.subclass-rules-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.subclass-rules-heading h2 {
+  margin: 0.3rem 0 0;
+  font: 1.25rem Georgia;
+}
+
+.subclass-rules-heading > small,
+.source-language-note {
+  color: var(--muted);
+}
+
+.source-language-note {
+  margin: 0.65rem 0 0;
+  line-height: 1.45;
+}
+
+.subclass-feature-list {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.subclass-feature-list details {
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  background: var(--surface);
+}
+
+.subclass-feature-list details.locked-feature {
+  opacity: 0.7;
+}
+
+.subclass-feature-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.8rem;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.subclass-feature-list summary small {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.subclass-feature-list details > p {
+  margin: 0;
+  padding: 0 0.8rem 0.9rem;
+  color: var(--muted);
+  line-height: 1.55;
+  white-space: pre-line;
 }
 
 .subclass-locked {
@@ -132,6 +196,33 @@
   background: var(--surface-highlight);
 }
 
+.repeatable-pick {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 0.45rem;
+  background: var(--surface);
+}
+
+.repeatable-pick.selected {
+  border-color: var(--gold);
+  background: var(--surface-highlight);
+}
+
+.repeatable-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.repeatable-controls button {
+  display: inline-grid;
+  min-width: 2rem;
+  padding: 0.25rem 0.55rem;
+  text-align: center;
+}
+
 .feature-picks button:disabled {
   cursor: not-allowed;
   opacity: 0.55;
@@ -154,6 +245,16 @@
   .subclass-heading {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .subclass-rules-heading,
+  .subclass-feature-list summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .subclass-feature-list summary small {
+    text-align: left;
   }
 
   .subclass-options {

@@ -58,8 +58,27 @@ if (manifest.additionalEquipment) {
   }
   catalogs.equipment.push(...records);
 }
+if (manifest.additionalCatalogs?.subclasses) {
+  const definition = manifest.additionalCatalogs.subclasses;
+  const records = await readJson(definition.file);
+  if (!Array.isArray(records) || records.length !== definition.count)
+    throw new Error(
+      `Sottoclassi: dichiarate ${definition.count}, trovate ${Array.isArray(records) ? records.length : 0}`,
+    );
+  const ids = records.map((record) => record.id);
+  if (ids.some((id) => typeof id !== 'string' || !id) || new Set(ids).size !== ids.length)
+    throw new Error('Sottoclassi: ID mancanti o duplicati');
+  for (const record of records) {
+    if (!record.name || !record.description || !record.classId || !record.source)
+      throw new Error(`Sottoclasse non valida: ${record.id ?? 'senza ID'}`);
+    if (!manifest.sources.includes(record.source))
+      throw new Error(`subclasses/${record.id}: fonte ${record.source} non dichiarata`);
+  }
+  catalogs.subclasses = records;
+}
 
 const classIds = new Set(catalogs.classes.map((item) => item.id));
+const spellIds = new Set(catalogs.spells.map((spell) => spell.id));
 const abilityIds = new Set(['str', 'dex', 'con', 'int', 'wis', 'cha']);
 const skillIds = new Set([
   'acrobatics',
@@ -122,7 +141,9 @@ for (const klass of catalogs.classes) {
     throw new Error(`classes/${klass.id}: scelta competenze non valida`);
   for (const skill of klass.skillOptions)
     if (!skillIds.has(skill)) throw new Error(`classes/${klass.id}: abilità sconosciuta ${skill}`);
+  const validActivations = new Set(['action', 'bonus-action', 'reaction', 'passive', 'special']);
   const choiceIds = new Set();
+  const choiceOptionIds = new Map();
   const validateChoice = (choice, owner) => {
     if (
       !choice.id ||
@@ -132,7 +153,17 @@ for (const klass of catalogs.classes) {
       choice.minLevel < 1 ||
       choice.minLevel > 20 ||
       !Array.isArray(choice.options) ||
-      !choice.options.length
+      !choice.options.length ||
+      (choice.repeatable !== undefined && typeof choice.repeatable !== 'boolean') ||
+      (choice.requiresKnownSpell !== undefined && typeof choice.requiresKnownSpell !== 'boolean') ||
+      (choice.exclusiveWithChoices !== undefined &&
+        (!Array.isArray(choice.exclusiveWithChoices) ||
+          new Set(choice.exclusiveWithChoices).size !== choice.exclusiveWithChoices.length)) ||
+      (choice.requiresSelection !== undefined &&
+        (!choiceIds.has(choice.requiresSelection.choiceId) ||
+          !choiceOptionIds
+            .get(choice.requiresSelection.choiceId)
+            ?.has(choice.requiresSelection.optionId)))
     )
       throw new Error(`classes/${klass.id}/${owner}: scelta non valida`);
     choiceIds.add(choice.id);
@@ -140,9 +171,29 @@ for (const klass of catalogs.classes) {
     if (
       optionIds.some((id) => typeof id !== 'string' || !id) ||
       new Set(optionIds).size !== optionIds.length ||
-      choice.options.some((option) => !option.name || !option.description)
+      choice.options.some(
+        (option) =>
+          !option.name ||
+          !option.description ||
+          (option.activations !== undefined &&
+            (!Array.isArray(option.activations) ||
+              !option.activations.length ||
+              option.activations.some((activation) => !validActivations.has(activation)))) ||
+          (option.resource !== undefined && typeof option.resource !== 'string') ||
+          (option.resourceCost !== undefined && typeof option.resourceCost !== 'string') ||
+          (option.minLevel !== undefined &&
+            (!Number.isInteger(option.minLevel) ||
+              option.minLevel < choice.minLevel ||
+              option.minLevel > 20)) ||
+          (option.requiresSelection !== undefined &&
+            (!choiceIds.has(option.requiresSelection.choiceId) ||
+              !choiceOptionIds
+                .get(option.requiresSelection.choiceId)
+                ?.has(option.requiresSelection.optionId))),
+      )
     )
       throw new Error(`classes/${klass.id}/${owner}/${choice.id}: opzioni non valide`);
+    choiceOptionIds.set(choice.id, new Set(optionIds));
     let previousLevel = 0;
     let previousCount = 0;
     for (const threshold of choice.countByLevel ?? []) {
@@ -152,7 +203,7 @@ for (const klass of catalogs.classes) {
         threshold.level <= previousLevel ||
         !Number.isInteger(threshold.count) ||
         threshold.count <= previousCount ||
-        threshold.count > choice.options.length
+        (!choice.repeatable && threshold.count > choice.options.length)
       )
         throw new Error(`classes/${klass.id}/${owner}/${choice.id}: progressione non valida`);
       previousLevel = threshold.level;
@@ -163,6 +214,25 @@ for (const klass of catalogs.classes) {
       throw new Error(`classes/${klass.id}/${owner}/${choice.id}: progressione mancante`);
   };
   for (const choice of klass.featureChoices ?? []) validateChoice(choice, 'classe');
+  const validateFeature = (feature, owner) => {
+    if (
+      !Number.isInteger(feature.level) ||
+      feature.level < 1 ||
+      feature.level > 20 ||
+      !feature.name ||
+      !feature.description ||
+      (feature.activations !== undefined &&
+        (!Array.isArray(feature.activations) ||
+          !feature.activations.length ||
+          feature.activations.some((activation) => !validActivations.has(activation)))) ||
+      (feature.resource !== undefined && typeof feature.resource !== 'string') ||
+      (feature.resourceCost !== undefined && typeof feature.resourceCost !== 'string')
+    )
+      throw new Error(`classes/${klass.id}/${owner}: privilegio non valido`);
+  };
+  if (!Array.isArray(klass.classProgression) || !klass.classProgression.length)
+    throw new Error(`classes/${klass.id}: progressione di classe mancante`);
+  for (const feature of klass.classProgression) validateFeature(feature, 'classe');
   const subclassFeatureIds = new Set();
   for (const featureSet of klass.subclassFeatures ?? []) {
     if (
@@ -180,6 +250,56 @@ for (const klass of catalogs.classes) {
         );
       validateChoice(choice, featureSet.subclassId);
     }
+  }
+  for (const choice of [
+    ...(klass.featureChoices ?? []),
+    ...(klass.subclassFeatures ?? []).flatMap((featureSet) => featureSet.choices),
+  ])
+    if ((choice.exclusiveWithChoices ?? []).some((choiceId) => !choiceIds.has(choiceId)))
+      throw new Error(`classes/${klass.id}/${choice.id}: gruppo esclusivo sconosciuto`);
+  const progressionIds = new Set();
+  for (const progression of klass.subclassProgressions ?? []) {
+    if (
+      !klass.subclasses.includes(progression.subclassId) ||
+      progressionIds.has(progression.subclassId) ||
+      !['PHB', 'XGE', 'TCE', 'PSA', 'SCAG', 'EGW'].includes(progression.sourceBook) ||
+      !Number.isInteger(progression.sourcePages?.from) ||
+      !Number.isInteger(progression.sourcePages?.to) ||
+      progression.sourcePages.from < 1 ||
+      progression.sourcePages.to < progression.sourcePages.from ||
+      !Array.isArray(progression.features) ||
+      !progression.features.length ||
+      progression.features.some((feature) => {
+        try {
+          validateFeature(feature, progression.subclassId);
+          return false;
+        } catch {
+          return true;
+        }
+      })
+    )
+      throw new Error(`classes/${klass.id}/${progression.subclassId}: progressione non valida`);
+    progressionIds.add(progression.subclassId);
+  }
+  const missingProgressions = klass.subclasses.filter((subclass) => !progressionIds.has(subclass));
+  if (missingProgressions.length)
+    throw new Error(
+      `classes/${klass.id}: progressioni mancanti: ${missingProgressions.join(', ')}`,
+    );
+  for (const list of klass.subclassSpellLists ?? []) {
+    if (
+      !klass.subclasses.includes(list.subclassId) ||
+      !Array.isArray(list.spellIds) ||
+      !list.spellIds.length ||
+      list.spellIds.some((id) => !spellIds.has(id)) ||
+      new Set(list.spellIds).size !== list.spellIds.length ||
+      (list.requiresSelection !== undefined &&
+        (!choiceIds.has(list.requiresSelection.choiceId) ||
+          !choiceOptionIds
+            .get(list.requiresSelection.choiceId)
+            ?.has(list.requiresSelection.optionId)))
+    )
+      throw new Error(`classes/${klass.id}/${list.subclassId}: lista incantesimi non valida`);
   }
 }
 
@@ -248,6 +368,7 @@ for (const spell of catalogs.spells) {
       throw new Error(`spells/${spell.id}: tiro salvezza multiplo non valido`);
   if (spell.damage && (!spell.damage.formula || !spell.damage.type))
     throw new Error(`spells/${spell.id}: danni incompleti`);
+  const grantKeys = new Set();
   for (const grant of spell.subclassGrants ?? []) {
     const klass = catalogs.classes.find((item) => item.id === grant.classId);
     if (
@@ -258,9 +379,12 @@ for (const spell of catalogs.spells) {
       grant.minLevel > 20
     )
       throw new Error(`spells/${spell.id}: concessione di sottoclasse non valida`);
+    const grantKey = `${grant.classId}|${grant.subclassId}`;
+    if (grantKeys.has(grantKey))
+      throw new Error(`spells/${spell.id}: concessione di sottoclasse duplicata`);
+    grantKeys.add(grantKey);
   }
 }
-const spellIds = new Set(catalogs.spells.map((spell) => spell.id));
 for (const owner of [...catalogs.ancestries, ...catalogs.feats]) {
   for (const grant of owner.spellGrants ?? []) {
     if (!spellIds.has(grant.spellId) || !Number.isInteger(grant.minLevel) || grant.minLevel < 1)
@@ -337,7 +461,8 @@ for (const item of catalogs.equipment) {
   if (item.source !== 'SRD') throw new Error(`equipment/${item.id}: fonte non SRD`);
 }
 
-const total = names.reduce((sum, name) => sum + catalogs[name].length, 0);
+const validatedCatalogNames = [...names, ...(catalogs.subclasses ? ['subclasses'] : [])];
+const total = validatedCatalogNames.reduce((sum, name) => sum + catalogs[name].length, 0);
 console.log(
-  `Dataset ${manifest.dataVersion}: ${total} record verificati in ${names.length} cataloghi.`,
+  `Dataset ${manifest.dataVersion}: ${total} record verificati in ${validatedCatalogNames.length} cataloghi.`,
 );

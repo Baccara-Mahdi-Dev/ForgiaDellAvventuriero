@@ -1,0 +1,519 @@
+<section class="sheet">
+  <div class="identity">
+    <label
+      >Nome del personaggio<input
+        placeholder="Come si chiama il tuo eroe?"
+        [ngModel]="wizard().store.draft().name"
+        (ngModelChange)="wizard().store.patch({ name: $event })"
+    /></label>
+    <div>
+      <strong>Livello {{ wizard().store.draft().level }}</strong
+      ><span
+        >{{ wizard().store.selectedAncestry()?.name || 'Discendenza da scegliere' }} ·
+        {{ wizard().store.selectedClass()?.name || 'Classe da scegliere' }}</span
+      ><small
+        >{{ wizard().store.draft().subclassId }}
+        {{
+          wizard().store.selectedBackground()?.name
+            ? '· ' + wizard().store.selectedBackground()?.name
+            : ''
+        }}
+        · {{ wizard().alignmentLabel() }}</small
+      >
+    </div>
+  </div>
+  <div class="summary-abilities">
+    @for (a of wizard().abilities; track a.key) {
+      <div>
+        <ng-icon [svg]="wizard().abilityIcon(a.key)" size="24px"></ng-icon><span>{{ a.short }}</span
+        ><strong>{{ wizard().store.derived().finalAbilities[a.key] }}</strong
+        ><em>{{ wizard().mod(wizard().store.derived().modifiers[a.key]) }}</em>
+      </div>
+    }
+    @if (wizard().store.draft().sanityEnabled) {
+      <div class="homebrew-ability">
+        <ng-icon [svg]="wizard().sanityIcon" size="24px"></ng-icon><span>SAN</span>
+        <strong>{{ wizard().store.derived().sanityScore }}</strong>
+        <em>{{ wizard().mod(wizard().store.derived().sanityModifier ?? 0) }}</em>
+      </div>
+    }
+  </div>
+  <div class="character-status">
+    <label>
+      <span>PF attuali</span>
+      <input
+        type="number"
+        min="0"
+        [placeholder]="wizard().store.derived().maxHp.toString()"
+        [ngModel]="wizard().store.draft().currentHp"
+        (ngModelChange)="wizard().store.patch({ currentHp: $event })"
+      />
+    </label>
+    <label>
+      <span>PF temporanei</span>
+      <input
+        type="number"
+        min="0"
+        [ngModel]="wizard().store.draft().temporaryHp ?? 0"
+        (ngModelChange)="wizard().store.patch({ temporaryHp: $event })"
+      />
+    </label>
+    <label>
+      <span>Dadi vita spesi</span>
+      <input
+        type="number"
+        min="0"
+        [max]="wizard().store.draft().level"
+        [ngModel]="wizard().store.draft().hitDiceSpent ?? 0"
+        (ngModelChange)="wizard().store.patch({ hitDiceSpent: $event })"
+      />
+    </label>
+    <label class="inspiration-check">
+      <input
+        type="checkbox"
+        [checked]="wizard().store.draft().inspiration"
+        (change)="wizard().store.patch({ inspiration: $any($event.target).checked })"
+      />
+      <span>Ispirazione</span>
+    </label>
+    <label>
+      <span>TS morte riusciti</span>
+      <input
+        type="number"
+        min="0"
+        max="3"
+        [ngModel]="wizard().store.draft().deathSaveSuccesses ?? 0"
+        (ngModelChange)="wizard().store.patch({ deathSaveSuccesses: $event })"
+      />
+    </label>
+    <label>
+      <span>TS morte falliti</span>
+      <input
+        type="number"
+        min="0"
+        max="3"
+        [ngModel]="wizard().store.draft().deathSaveFailures ?? 0"
+        (ngModelChange)="wizard().store.patch({ deathSaveFailures: $event })"
+      />
+    </label>
+  </div>
+  <div class="vitals">
+    <div>
+      <small>Classe Armatura</small><strong>{{ wizard().store.derived().armorClass }}</strong>
+    </div>
+    <div>
+      <small>Iniziativa</small
+      ><strong>{{ wizard().mod(wizard().store.derived().initiative) }}</strong>
+    </div>
+    <div>
+      <small>Punti Ferita</small><strong>{{ wizard().store.derived().maxHp }}</strong>
+    </div>
+    <div>
+      <small>Competenza</small><strong>+{{ wizard().store.derived().proficiency }}</strong>
+    </div>
+    <div>
+      <small>Percezione passiva</small
+      ><strong>{{ wizard().store.derived().passivePerception }}</strong>
+    </div>
+    <div>
+      <small>Indagare passivo</small
+      ><strong>{{ wizard().store.derived().passiveInvestigation }}</strong>
+    </div>
+    <div>
+      <small>Velocità attuale</small
+      ><strong
+        >{{ wizard().store.derived().speedMeters }} m
+        @if (wizard().store.derived().encumbranceSpeedPenaltyMeters) {
+          <br /><small
+            >−{{ wizard().store.derived().encumbranceSpeedPenaltyMeters }} m per carico</small
+          >
+        }
+      </strong>
+    </div>
+    <div>
+      <small>Taglia</small><strong>{{ wizard().store.derived().size }}</strong>
+    </div>
+    <div>
+      <small>Dadi vita</small
+      ><strong
+        >{{ wizard().store.derived().hitDiceRemaining }}d{{
+          wizard().store.derived().hitDie
+        }}
+        /<br />
+        {{ wizard().store.draft().level }}d{{ wizard().store.derived().hitDie }}</strong
+      >
+    </div>
+    <div>
+      <small>Punti esperienza</small><strong>{{ wizard().store.derived().experience }}</strong>
+    </div>
+    @if (wizard().store.derived().spellDc) {
+      <div>
+        <small>CD incantesimi</small><strong>{{ wizard().store.derived().spellDc }}</strong>
+      </div>
+    }
+    @if (wizard().store.derived().spellAttack !== undefined) {
+      <div>
+        <small>Attacco con incantesimi</small
+        ><strong>{{ wizard().mod(wizard().store.derived().spellAttack!) }}</strong>
+      </div>
+    }
+  </div>
+  <section
+    class="load-status-section"
+    [class.encumbered]="wizard().store.derived().encumbrance === 'encumbered'"
+    [class.heavily-encumbered]="wizard().store.derived().encumbrance === 'heavily-encumbered'"
+    [class.over-capacity]="wizard().store.derived().encumbrance === 'over-capacity'"
+  >
+    <div class="load-status-heading">
+      <div>
+        <p class="kicker">Trasporto e movimento</p>
+        <h2>Stato Carico</h2>
+      </div>
+      <strong class="load-status-label">
+        @switch (wizard().store.derived().encumbrance) {
+          @case ('encumbered') {
+            Ingombrato
+          }
+          @case ('heavily-encumbered') {
+            Pesantemente ingombrato
+          }
+          @case ('over-capacity') {
+            Oltre capacità
+          }
+          @default {
+            Normale
+          }
+        }
+      </strong>
+    </div>
+    <div class="load-status-grid">
+      <div>
+        <small>Peso trasportato</small>
+        <strong
+          >{{ wizard().store.derived().inventoryWeightKg }} /
+          {{ wizard().store.derived().carryingCapacityKg }} kg</strong
+        >
+      </div>
+      <div>
+        <small>Soglie ingombrato / pesante</small>
+        <strong
+          >{{ wizard().store.derived().encumberedThresholdKg }} /
+          {{ wizard().store.derived().heavilyEncumberedThresholdKg }} kg</strong
+        >
+      </div>
+      <div>
+        <small>Malus al movimento</small>
+        <strong>
+          @if (wizard().store.derived().encumbranceSpeedPenaltyMeters) {
+            −{{ wizard().store.derived().encumbranceSpeedPenaltyMeters }} m
+          } @else {
+            Nessuno
+          }
+        </strong>
+      </div>
+      <div>
+        <small>Spingere, trascinare, sollevare</small>
+        <strong>{{ wizard().store.derived().moveCapacityKg }} kg</strong>
+      </div>
+    </div>
+  </section>
+  <div class="saving-summary">
+    <h2>Tiri salvezza</h2>
+    <p class="hint">I tiri salvezza competenti includono il bonus di competenza.</p>
+    <div class="saving-list">
+      @for (save of wizard().store.derived().savingThrows; track save.ability) {
+        <div [class.proficient]="save.proficient">
+          <span>{{ save.name }}</span
+          ><strong>{{ wizard().mod(save.value) }}</strong>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="skill-summary">
+    <h2>Abilità</h2>
+    <p class="hint">
+      Le abilità competenti sono evidenziate in grassetto e includono il bonus di competenza.
+    </p>
+    <div class="skill-list">
+      @for (skill of wizard().store.derived().skills; track skill.id) {
+        <div [class.proficient]="skill.proficient">
+          <span
+            >{{ skill.name }} <small>({{ wizard().skillAbilityShort(skill.id) }})</small></span
+          ><strong>{{ wizard().mod(skill.value) }}</strong>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="summary-columns">
+    <article>
+      <h2>Tratti e competenze</h2>
+      <ul>
+        @for (skill of wizard().store.selectedBackground()?.skills || []; track skill) {
+          <li>Competenza: {{ skill }} ({{ wizard().backgroundSkillShort(skill) }})</li>
+        }
+        @for (feat of wizard().selectedFeats; track feat.id) {
+          <li>
+            <strong>Talento: {{ feat.name }}</strong>
+            @if (feat.effects?.abilityIncrease) {
+              <small>
+                ·
+                {{ (wizard().store.draft().featAbilityChoices?.[feat.id] || '').toUpperCase() }} +{{
+                  feat.effects!.abilityIncrease!.amount
+                }}</small
+              >
+            }
+            @if (feat.effects?.notes?.length) {
+              <ul>
+                @for (note of feat.effects!.notes; track note) {
+                  <li>{{ note }}</li>
+                }
+              </ul>
+            }
+          </li>
+        }
+        @if (wizard().store.derived().languages.length) {
+          <li><strong>Lingue:</strong> {{ wizard().store.derived().languages.join(', ') }}</li>
+        }
+        @if (wizard().store.derived().tools.length) {
+          <li><strong>Strumenti:</strong> {{ wizard().store.derived().tools.join(', ') }}</li>
+        }
+        @if (wizard().store.derived().armorProficiencies.length) {
+          <li>
+            <strong>Armature:</strong>
+            {{ wizard().proficiencyNames(wizard().store.derived().armorProficiencies) }}
+          </li>
+        }
+        @if (wizard().store.derived().weaponProficiencies.length) {
+          <li>
+            <strong>Armi:</strong>
+            {{ wizard().proficiencyNames(wizard().store.derived().weaponProficiencies) }}
+          </li>
+        }
+        @if (wizard().store.derived().resistances.length) {
+          <li>
+            <strong>Resistenze:</strong> {{ wizard().store.derived().resistances.join(', ') }}
+          </li>
+        }
+        @if (wizard().store.derived().senses.length) {
+          <li><strong>Sensi:</strong> {{ wizard().store.derived().senses.join(', ') }}</li>
+        }
+      </ul>
+    </article>
+    <article>
+      <h2>Privilegi acquisiti</h2>
+      @if (wizard().acquiredFeatures.length) {
+        <ul class="resource-list class-feature-summary">
+          @for (feature of wizard().acquiredFeatures; track feature.id) {
+            <li>
+              <strong>{{ feature.name }}</strong>
+              <span>
+                {{ feature.sourceName }} · livello {{ feature.level }}
+                @for (activation of feature.activations ?? []; track activation) {
+                  ·
+                  @switch (activation) {
+                    @case ('action') {
+                      Azione
+                    }
+                    @case ('bonus-action') {
+                      Azione bonus
+                    }
+                    @case ('reaction') {
+                      Reazione
+                    }
+                    @case ('passive') {
+                      Passiva
+                    }
+                    @default {
+                      Speciale
+                    }
+                  }
+                }
+              </span>
+              <small>{{ feature.description }}</small>
+              @if (feature.resource) {
+                <small>
+                  <strong>Risorsa:</strong> {{ feature.resource }}
+                  {{ feature.resourceCost ? '· costo ' + feature.resourceCost : '' }}
+                  {{ feature.uses ? '· ' + feature.uses : '' }}
+                  {{ feature.recovery ? '· recupero ' + feature.recovery : '' }}
+                </small>
+              }
+            </li>
+          }
+        </ul>
+      }
+      <h2>Risorse di classe</h2>
+      @if (wizard().store.derived().classResources.length) {
+        <ul class="resource-list">
+          @for (resource of wizard().store.derived().classResources; track resource.name) {
+            <li>
+              <strong>{{ resource.name }}: {{ resource.value }}</strong>
+              @if (resource.detail) {
+                <small>{{ resource.detail }}</small>
+              }
+              @if (wizard().resourceUses(resource.name).length) {
+                <ul>
+                  @for (use of wizard().resourceUses(resource.name); track use.id) {
+                    <li>
+                      {{ use.name }}
+                      @if (use.resourceCost) {
+                        <small>· {{ use.resourceCost }}</small>
+                      }
+                    </li>
+                  }
+                </ul>
+              }
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="hint">Nessuna risorsa speciale disponibile a questo livello.</p>
+      }
+    </article>
+    <article>
+      <h2>Equipaggiamento</h2>
+      @if (wizard().inventoryRows.length) {
+        <ul>
+          @for (row of wizard().inventoryRows; track row.item.id) {
+            <li>
+              {{ row.item.name }} × {{ row.entry.quantity }}
+              @if (row.item.category === 'weapon') {
+                <small
+                  >· {{ wizard().weaponAttack(row.item, wizard().equippedWeaponBonus(row.item)) }} ·
+                  {{
+                    wizard().weaponDamage(row.item, wizard().equippedWeaponBonus(row.item))
+                  }}</small
+                >
+              }
+            </li>
+          }
+        </ul>
+        <p class="hint">
+          Monete: {{ wizard().store.draft().coins?.cp ?? 0 }} MR ·
+          {{ wizard().store.draft().coins?.sp ?? 0 }} MA ·
+          {{ wizard().store.draft().coins?.ep ?? 0 }} ME ·
+          {{ wizard().store.draft().coins?.gp ?? 0 }} MO ·
+          {{ wizard().store.draft().coins?.pp ?? 0 }} MP
+        </p>
+      } @else {
+        <p class="hint">Nessun oggetto nello zaino.</p>
+      }
+    </article>
+    <article>
+      <h2>Magia</h2>
+      @if (wizard().selectedSpells.length) {
+        <ul>
+          @for (spell of wizard().selectedSpells; track spell.id) {
+            <li>
+              {{ spell.name }} <small>({{ spell.school }})</small>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="hint">Nessun incantesimo selezionato.</p>
+      }
+      @if (wizard().grantedSpells.length) {
+        <h3>Incantesimi concessi</h3>
+        <ul>
+          @for (spell of wizard().grantedSpells; track spell.id) {
+            <li>{{ spell.name }} <small>· non conta nei limiti della classe</small></li>
+          }
+        </ul>
+      }
+    </article>
+  </div>
+  <section class="character-details">
+    <span class="kicker">Identità dell'avventuriero</span>
+    <h2>Dettagli del personaggio</h2>
+    <div class="physical-details">
+      <label
+        ><span>Età</span
+        ><input
+          [ngModel]="wizard().store.draft().age || ''"
+          (ngModelChange)="wizard().store.patch({ age: $event })"
+      /></label>
+      <label
+        ><span>Altezza (cm)</span
+        ><input
+          type="number"
+          min="0"
+          [ngModel]="wizard().store.draft().heightCm"
+          (ngModelChange)="wizard().store.patch({ heightCm: $event })"
+      /></label>
+      <label
+        ><span>Peso (kg)</span
+        ><input
+          type="number"
+          min="0"
+          [ngModel]="wizard().store.draft().weightKg"
+          (ngModelChange)="wizard().store.patch({ weightKg: $event })"
+      /></label>
+      <label
+        ><span>Aspetto</span
+        ><input
+          [ngModel]="wizard().store.draft().appearance || ''"
+          (ngModelChange)="wizard().store.patch({ appearance: $event })"
+      /></label>
+    </div>
+    <div class="roleplay-details">
+      <label
+        ><span>Tratti della personalità</span
+        ><textarea
+          rows="3"
+          [ngModel]="wizard().store.draft().personalityTraits || ''"
+          (ngModelChange)="wizard().store.patch({ personalityTraits: $event })"
+        ></textarea></label
+      ><label
+        ><span>Ideali</span
+        ><textarea
+          rows="3"
+          [ngModel]="wizard().store.draft().ideals || ''"
+          (ngModelChange)="wizard().store.patch({ ideals: $event })"
+        ></textarea></label
+      ><label
+        ><span>Legami</span
+        ><textarea
+          rows="3"
+          [ngModel]="wizard().store.draft().bonds || ''"
+          (ngModelChange)="wizard().store.patch({ bonds: $event })"
+        ></textarea></label
+      ><label
+        ><span>Difetti</span
+        ><textarea
+          rows="3"
+          [ngModel]="wizard().store.draft().flaws || ''"
+          (ngModelChange)="wizard().store.patch({ flaws: $event })"
+        ></textarea>
+      </label>
+    </div>
+  </section>
+  @if (wizard().store.selectedAncestry(); as ancestry) {
+    <section class="racial-traits">
+      <span class="kicker">Retaggio di {{ ancestry.name }}</span>
+      <h2>Capacità razziali</h2>
+      <div class="racial-trait-list">
+        @for (trait of ancestry.traitDetails || []; track trait.name) {
+          <article>
+            <h3>{{ trait.name }}</h3>
+            <p>{{ trait.effect }}</p>
+          </article>
+        } @empty {
+          @for (trait of ancestry.traits; track trait) {
+            <article>
+              <h3>{{ trait }}</h3>
+            </article>
+          }
+        }
+      </div>
+    </section>
+  }
+  <label class="field"
+    ><span>Note</span
+    ><textarea
+      rows="4"
+      placeholder="Ideali, legami, equipaggiamento o appunti…"
+      [ngModel]="wizard().store.draft().notes"
+      (ngModelChange)="wizard().store.patch({ notes: $event })"
+    ></textarea>
+  </label>
+</section>

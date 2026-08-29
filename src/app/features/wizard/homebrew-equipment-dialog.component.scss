@@ -3,6 +3,11 @@
   z-index: 100;
 }
 
+.validation-summary {
+  z-index: 1;
+  margin: 0 1.5rem 1rem;
+}
+
 .equipment-dialog-backdrop {
   position: fixed;
   inset: 0;

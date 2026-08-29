@@ -1,4 +1,12 @@
-import { CharacterClass, CharacterDraft, ClassFeatureChoice, SKILLS } from './models';
+import {
+  Ancestry,
+  CharacterClass,
+  CharacterDraft,
+  CharacterFeature,
+  ClassFeatureChoice,
+  FeatureActivation,
+  SKILLS,
+} from './models';
 
 const skillOptions = SKILLS.map((skill) => ({
   id: skill.id,
@@ -22,6 +30,31 @@ const musicalInstruments = [
   id: `instrument-${name.toLowerCase().replaceAll(' ', '-')}`,
   name,
   description: 'Strumento musicale',
+  kind: 'tool' as const,
+}));
+
+const artisanTools = [
+  'Scorte da alchimista',
+  'Scorte da birraio',
+  'Scorte da calligrafo',
+  'Strumenti da carpentiere',
+  'Strumenti da cartografo',
+  'Strumenti da ciabattino',
+  'Utensili da cuoco',
+  'Strumenti da soffiatore di vetro',
+  'Strumenti da gioielliere',
+  'Strumenti da conciatore',
+  'Strumenti da muratore',
+  'Scorte da pittore',
+  'Strumenti da vasaio',
+  'Strumenti da fabbro',
+  'Strumenti da stagnino',
+  'Strumenti da tessitore',
+  'Strumenti da intagliatore del legno',
+].map((name) => ({
+  id: `artisan-${name.toLowerCase().replaceAll(' ', '-')}`,
+  name,
+  description: 'Strumento da artigiano',
   kind: 'tool' as const,
 }));
 
@@ -110,6 +143,17 @@ function rulesChoices(klass: CharacterClass, subclassId: string): ClassFeatureCh
         effect: 'tool-proficiency',
       });
   }
+  if (klass.id === 'monk')
+    choices.push({
+      id: 'monk-tool-proficiency',
+      name: 'Competenza negli strumenti',
+      description:
+        'Scegli un tipo di strumenti da artigiano o uno strumento musicale nel quale ottieni competenza.',
+      minLevel: 1,
+      countByLevel: [{ level: 1, count: 1 }],
+      options: [...artisanTools, ...musicalInstruments],
+      effect: 'tool-proficiency',
+    });
   if (klass.id === 'monk' && subclassId === 'Via del Kensei')
     choices.push({
       id: 'monk-kensei-artisan-tool',
@@ -163,8 +207,28 @@ export function activeClassFeatureChoices(
   klass: CharacterClass | undefined,
   level: number,
   subclassId: string,
+  selections: Record<string, string[]> = {},
 ): ClassFeatureChoice[] {
-  return classFeatureChoicesFor(klass, subclassId).filter((choice) => choice.minLevel <= level);
+  return classFeatureChoicesFor(klass, subclassId)
+    .filter((choice) => choice.minLevel <= level)
+    .filter(
+      (choice) =>
+        !choice.requiresSelection ||
+        (selections[choice.requiresSelection.choiceId] ?? []).includes(
+          choice.requiresSelection.optionId,
+        ),
+    )
+    .map((choice) => ({
+      ...choice,
+      options: choice.options.filter(
+        (option) =>
+          (option.minLevel ?? choice.minLevel) <= level &&
+          (!option.requiresSelection ||
+            (selections[option.requiresSelection.choiceId] ?? []).includes(
+              option.requiresSelection.optionId,
+            )),
+      ),
+    }));
 }
 
 export function classFeatureChoiceCount(choice: ClassFeatureChoice, level: number): number {
@@ -175,22 +239,122 @@ export function classFeatureChoiceCount(choice: ClassFeatureChoice, level: numbe
 }
 
 export function normalizeClassProgression(
-  draft: Pick<CharacterDraft, 'level' | 'subclassId' | 'classFeatureChoices'>,
+  draft: Pick<CharacterDraft, 'level' | 'subclassId' | 'classFeatureChoices'> &
+    Partial<Pick<CharacterDraft, 'spellIds'>>,
   klass: CharacterClass | undefined,
 ): Pick<CharacterDraft, 'subclassId' | 'classFeatureChoices'> {
   const subclassId =
     subclassAvailableAtLevel(klass, draft.level) && klass?.subclasses.includes(draft.subclassId)
       ? draft.subclassId
       : '';
-  const choices = activeClassFeatureChoices(klass, draft.level, subclassId);
-  const classFeatureChoices = Object.fromEntries(
-    choices.map((choice) => {
-      const validOptions = new Set(choice.options.map((option) => option.id));
-      const selected = [...new Set(draft.classFeatureChoices?.[choice.id] ?? [])]
-        .filter((optionId) => validOptions.has(optionId))
-        .slice(0, classFeatureChoiceCount(choice, draft.level));
-      return [choice.id, selected];
-    }),
+  const choices = activeClassFeatureChoices(
+    klass,
+    draft.level,
+    subclassId,
+    draft.classFeatureChoices,
   );
+  const classFeatureChoices = choices.reduce<Record<string, string[]>>((normalized, choice) => {
+    const validOptions = new Set(
+      choice.options
+        .filter(
+          (option) => !choice.requiresKnownSpell || (draft.spellIds ?? []).includes(option.id),
+        )
+        .map((option) => option.id),
+    );
+    const rawSelected = draft.classFeatureChoices?.[choice.id] ?? [];
+    const excludedOptions = new Set(
+      (choice.exclusiveWithChoices ?? []).flatMap((choiceId) => normalized[choiceId] ?? []),
+    );
+    const selected = (choice.repeatable ? [...rawSelected] : [...new Set(rawSelected)])
+      .filter((optionId) => validOptions.has(optionId) && !excludedOptions.has(optionId))
+      .slice(0, classFeatureChoiceCount(choice, draft.level));
+    normalized[choice.id] = selected;
+    return normalized;
+  }, {});
   return { subclassId, classFeatureChoices };
+}
+
+function inferredActivations(description: string): FeatureActivation[] {
+  const text = description.toLocaleLowerCase('it');
+  const activations: FeatureActivation[] = [];
+  if (text.includes('azione bonus')) activations.push('bonus-action');
+  if (text.includes('reazione')) activations.push('reaction');
+  if (/come azione|usare l['’]azione|effettui l['’]azione/.test(text)) activations.push('action');
+  return activations.length ? activations : ['passive'];
+}
+
+function featureId(...parts: string[]): string {
+  return parts
+    .join('-')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLocaleLowerCase('it')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+/** Costruisce la lista completa mostrata in scheda esclusivamente da catalogo e scelte salvate. */
+export function acquiredCharacterFeatures(
+  draft: Pick<CharacterDraft, 'level' | 'subclassId' | 'classFeatureChoices'>,
+  klass: CharacterClass | undefined,
+  ancestry: Ancestry | undefined,
+): CharacterFeature[] {
+  const ancestryFeatures: CharacterFeature[] = (ancestry?.traitDetails ?? []).map((trait) => ({
+    id: featureId('ancestry', ancestry?.id ?? '', trait.name),
+    sourceType: 'ancestry',
+    sourceName: ancestry?.name ?? '',
+    level: 1,
+    name: trait.name,
+    description: trait.effect,
+    activations: inferredActivations(trait.effect),
+  }));
+  const classFeatures: CharacterFeature[] = (klass?.classProgression ?? [])
+    .filter((feature) => feature.level <= draft.level)
+    .map((feature) => ({
+      ...feature,
+      id: featureId('class', klass?.id ?? '', String(feature.level), feature.name),
+      sourceType: 'class',
+      sourceName: klass?.name ?? '',
+      activations: feature.activations ?? inferredActivations(feature.description),
+    }));
+  const progression = (klass?.subclassProgressions ?? []).find(
+    (candidate) => candidate.subclassId === draft.subclassId,
+  );
+  const subclassFeatures: CharacterFeature[] = (progression?.features ?? [])
+    .filter((feature) => feature.level <= draft.level)
+    .map((feature) => ({
+      ...feature,
+      id: featureId(
+        'subclass',
+        klass?.id ?? '',
+        draft.subclassId,
+        String(feature.level),
+        feature.name,
+      ),
+      sourceType: 'subclass',
+      sourceName: draft.subclassId,
+      activations: feature.activations ?? inferredActivations(feature.description),
+    }));
+  const choiceFeatures: CharacterFeature[] = activeClassFeatureChoices(
+    klass,
+    draft.level,
+    draft.subclassId,
+    draft.classFeatureChoices,
+  ).flatMap((choice) => {
+    const selected = new Set(draft.classFeatureChoices?.[choice.id] ?? []);
+    return choice.options
+      .filter((option) => selected.has(option.id))
+      .map((option) => ({
+        id: featureId('choice', choice.id, option.id),
+        sourceType: 'choice' as const,
+        sourceName: choice.name,
+        level: option.minLevel ?? choice.minLevel,
+        name: option.name,
+        description: option.description,
+        activations: option.activations ?? inferredActivations(option.description),
+        resource: option.resource,
+        resourceCost: option.resourceCost,
+      }));
+  });
+  return [...ancestryFeatures, ...classFeatures, ...subclassFeatures, ...choiceFeatures];
 }

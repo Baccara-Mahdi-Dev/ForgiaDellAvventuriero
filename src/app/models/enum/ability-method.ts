@@ -1,5 +1,5 @@
 export enum AbilityMethod {
-  CUSTOM  = 'custom',
+  CUSTOM = 'custom',
   POINT = 'point-buy',
-  STANDARD  = 'standard'
+  STANDARD = 'standard',
 }

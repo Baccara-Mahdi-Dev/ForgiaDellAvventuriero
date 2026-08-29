@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "dataVersion": "3.0.0",
+  "dataVersion": "3.1.0",
   "locale": "it",
   "ruleset": "5e-2014",
   "catalog": {
-    "ancestries": 26,
+    "ancestries": 32,
     "classes": 13,
     "backgrounds": 18,
     "feats": 72,
-    "spells": 477,
+    "spells": 478,
     "equipment": 167
   },
   "files": {
@@ -26,7 +26,7 @@
   "additionalCatalogs": {
     "subclasses": {
       "file": "subclasses.json",
-      "count": 101
+      "count": 109
     }
   },
   "sources": [
@@ -34,7 +34,13 @@
     "PHB",
     "XGE",
     "TCE",
-    "ERLW"
+    "PSA",
+    "SCAG",
+    "ERLW",
+    "MPMM",
+    "EEPC",
+    "VRGR",
+    "EGW"
   ],
   "scope": {
     "kind": "private-personal-catalog",
@@ -43,7 +49,12 @@
       "Player's Handbook (2014)",
       "Xanathar's Guide to Everything",
       "Tasha's Cauldron of Everything",
-      "Eberron Rising from the Last War"
+      "Sword Coast Adventurer's Guide",
+      "Eberron Rising from the Last War",
+      "Explorer's Guide to Wildemount",
+      "Van Richten's Guide to Ravenloft",
+      "Elemental Evil Player's Guide",
+      "Mordenkainen Presents: Monsters of the Multiverse"
     ]
   },
   "coverage": {
@@ -53,7 +64,7 @@
     },
     "subclasses": {
       "status": "complete",
-      "records": 101
+      "records": 102
     },
     "backgrounds": {
       "status": "complete",

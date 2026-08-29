@@ -16,7 +16,6 @@ import { EquipmentItem } from '../../domain/models';
   styleUrl: './magic-weapon-base-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class MagicWeaponBaseDialogComponent {
   @Input({ required: true }) item!: EquipmentItem;
   @Input({ required: true }) options: readonly EquipmentItem[] = [];

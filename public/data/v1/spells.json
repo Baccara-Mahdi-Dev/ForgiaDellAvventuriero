@@ -1,5 +1,32 @@
 [
   {
+    "id": "bigbys-hand",
+    "name": "Mano di Bigby",
+    "description": "Crei una mano Grande di forza traslucida che dura per la concentrazione. Come azione bonus puoi muoverla e usarla per colpire, spingere, afferrare e stritolare una creatura, oppure interporla per ottenere copertura.",
+    "source": "PHB",
+    "level": 5,
+    "school": "Invocazione",
+    "classes": [
+      "wizard",
+      "artificer",
+      "sorcerer"
+    ],
+    "castingTime": {
+      "amount": 1,
+      "unit": "action",
+      "text": "1 azione"
+    },
+    "range": "36 metri",
+    "components": "V, S, M (un guscio d'uovo e un guanto di pelle di serpente)",
+    "duration": {
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
+    },
+    "isHidden": false
+  },
+  {
     "id": "abi-dalzims-horrid-wilting",
     "name": "Orribile avvizzimento di Abi-Dalzim",
     "description": "L'incantatore prosciuga l'umidità dalle creature in un cubo di 9 metri; le creature nell'area effettuano un tiro salvezza su Costituzione e subiscono 12d8 danni necrotici se lo falliscono, o la metà se lo superano. Non influenza costrutti e non morti; piante e elementali dell'acqua hanno svantaggio al tiro salvezza.",
@@ -84,7 +111,15 @@
       "type": "acido",
       "scaling": "Quando l'incantatore lancia questo incantesimo usando uno slot incantesimo di 3° livello o superiore, i danni (sia iniziali che successivi) aumentano di 1d4 per ogni slot di livello superiore al 2°."
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "artificer",
+        "subclassId": "Alchimista",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "acid-splash",
@@ -118,14 +153,6 @@
       "formula": "1d6",
       "type": "acido"
     },
-    "subclassGrants": [
-      {
-        "classId": "artificer",
-        "subclassId": "Alchimista",
-        "minLevel": 3,
-        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
-      }
-    ],
     "isHidden": false
   },
   {
@@ -180,7 +207,21 @@
       "text": "8 ore",
       "amount": 8
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Pace",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "Anima Meccanica",
+        "minLevel": 3,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "alarm",
@@ -208,7 +249,21 @@
       "amount": 8
     },
     "ritual": true,
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento dei Guardiani",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "Anima Meccanica",
+        "minLevel": 1,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "alter-self",
@@ -271,7 +326,15 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Natura",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "animal-messenger",
@@ -349,7 +412,21 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "druid",
+        "subclassId": "Circolo delle Spore",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "Scuola di Necromanzia",
+        "minLevel": 6,
+        "note": "Aggiunto al libro degli incantesimi da Servitori Non Morti."
+      }
+    ]
   },
   {
     "id": "animate-objects",
@@ -382,7 +459,15 @@
       "formula": "1d4+4 / 1d8+2 / 2d6+1 / 2d10+2 / 2d12+4",
       "type": "contundenti",
       "note": "Danni dell'attacco Schianto, rispettivamente per oggetti di taglia Minuscola, Piccola, Media, Grande ed Enorme."
-    }
+    },
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Forgia",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "antilife-shell",
@@ -407,7 +492,15 @@
       "text": "Concentrazione, fino a 1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Sepoltura",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "antimagic-field",
@@ -489,7 +582,21 @@
       "text": "Concentrazione, fino a 1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Conoscenza",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Custode degli Sciami",
+        "minLevel": 13,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "arcane-gate",
@@ -651,7 +758,15 @@
     "damage": {
       "formula": "5",
       "type": "freddo"
-    }
+    },
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Conquista",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "arms-of-hadar",
@@ -677,7 +792,15 @@
     "damage": {
       "formula": "2d6",
       "type": "necrotici"
-    }
+    },
+    "subclassGrants": [
+      {
+        "classId": "sorcerer",
+        "subclassId": "Mente Aberrante",
+        "minLevel": 1,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "astral-projection",
@@ -728,7 +851,15 @@
       "text": "Istantanea"
     },
     "ritual": true,
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Conoscenza",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "aura-of-life",
@@ -750,7 +881,21 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio del Crepuscolo",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo del Fuoco Selvaggio",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "aura-of-purity",
@@ -780,6 +925,18 @@
       {
         "classId": "artificer",
         "subclassId": "Fabbro da Battaglia",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Pace",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento dei Guardiani",
         "minLevel": 13,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
@@ -816,6 +973,12 @@
         "classId": "artificer",
         "subclassId": "Fabbro da Battaglia",
         "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio del Crepuscolo",
+        "minLevel": 5,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
@@ -870,7 +1033,21 @@
       "text": "Concentrazione, fino a 1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Sepoltura",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Vendetta",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "banishing-smite",
@@ -941,7 +1118,33 @@
     "savingThrows": [
       "cha"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento dei Guardiani",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Vendetta",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Uccisore di Mostri",
+        "minLevel": 13,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Viandante dell'Orizzonte",
+        "minLevel": 13,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "barkskin",
@@ -967,7 +1170,15 @@
       "text": "Concentrazione, fino a 1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Natura",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "beacon-of-hope",
@@ -992,7 +1203,27 @@
       "text": "Concentrazione, fino a 1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Pace",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Vita",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Devozione",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "beast-bond",
@@ -1075,7 +1306,15 @@
       "type": "necrotici",
       "scaling": "Se l'incantatore lancia questo incantesimo usando uno slot incantesimo di 4° livello o superiore, la durata diventa concentrazione, fino a 10 minuti. Se usa uno slot incantesimo di 5° livello o superiore, la durata diventa 8 ore. Se usa uno slot incantesimo di 7° livello o superiore, la durata è di 24 ore. Se usa uno slot incantesimo di 9° livello, l'incantesimo dura finché non viene dissolto. Usando uno slot incantesimo di 5° livello o superiore, la durata non richiede concentrazione."
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Conquista",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "black-tentacles",
@@ -1108,7 +1347,21 @@
       "formula": "3d6",
       "type": "contundenti"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "sorcerer",
+        "subclassId": "Mente Aberrante",
+        "minLevel": 7,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      },
+      {
+        "classId": "warlock",
+        "subclassId": "L'Insondabile",
+        "minLevel": 10,
+        "note": "Sempre conosciuto; non conta nel limite e può essere lanciato una volta senza slot per riposo lungo."
+      }
+    ]
   },
   {
     "id": "blade-barrier",
@@ -1225,7 +1478,15 @@
       "text": "Concentrazione, fino a 1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Vita",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "blight",
@@ -1261,7 +1522,27 @@
       "type": "necrotici",
       "scaling": "Quando l'incantatore lancia questo incantesimo usando uno slot incantesimo di 5° livello o superiore, i danni aumentano di 1d8 per ogni slot di livello superiore al 4°."
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Sepoltura",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo delle Spore",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "artificer",
+        "subclassId": "Alchimista",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "blinding-smite",
@@ -1319,7 +1600,15 @@
     "savingThrows": [
       "con"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "druid",
+        "subclassId": "Circolo delle Spore",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "blink",
@@ -1346,7 +1635,15 @@
       "text": "1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Inganno",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "blur",
@@ -1503,9 +1800,15 @@
     },
     "subclassGrants": [
       {
-        "classId": "artificer",
-        "subclassId": "Artigliere",
-        "minLevel": 3,
+        "classId": "cleric",
+        "subclassId": "Dominio della Luce",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo del Fuoco Selvaggio",
+        "minLevel": 2,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
@@ -1539,7 +1842,15 @@
       "type": "fulmine",
       "scaling": "Quando l'incantatore lancia questo incantesimo usando uno slot incantesimo di 4° livello o superiore, i danni aumentano di 1d10 per ogni slot di livello superiore al 3°."
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Tempesta",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "calm-emotions",
@@ -1569,7 +1880,21 @@
     "savingThrows": [
       "cha"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Redenzione",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "Mente Aberrante",
+        "minLevel": 3,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "catapult",
@@ -1788,7 +2113,21 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Inganno",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Viandante Fatato",
+        "minLevel": 3,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "chill-touch",
@@ -1820,7 +2159,15 @@
       "formula": "1d8",
       "type": "necrotici"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "druid",
+        "subclassId": "Circolo delle Spore",
+        "minLevel": 2,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "chromatic-orb",
@@ -1900,7 +2247,15 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio del Crepuscolo",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "clairvoyance",
@@ -2022,6 +2377,18 @@
         "subclassId": "Alchimista",
         "minLevel": 17,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo delle Spore",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Conquista",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
     "isHidden": false
@@ -2080,7 +2447,27 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Ordine",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Conoscenza",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Conquista",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "commune",
@@ -2106,7 +2493,27 @@
       "amount": 1
     },
     "ritual": true,
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Ordine",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Devozione",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Gloria",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "commune-with-nature",
@@ -2132,7 +2539,15 @@
       "text": "Istantanea"
     },
     "ritual": true,
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento degli Antichi",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "compelled-duel",
@@ -2208,7 +2623,21 @@
       "text": "Concentrazione, fino a 1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Ordine",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Gloria",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "cone-of-cold",
@@ -2278,7 +2707,21 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Conoscenza",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo delle Spore",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "conjure-animals",
@@ -2561,7 +3004,15 @@
     "savingThrows": [
       "con"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "druid",
+        "subclassId": "Circolo delle Spore",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "contingency",
@@ -2671,7 +3122,15 @@
       "formula": "2d8",
       "type": "contundenti"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Tempesta",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "control-weather",
@@ -2775,7 +3234,21 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento dei Guardiani",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Redenzione",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "create-bonfire",
@@ -2930,7 +3403,15 @@
       "concentration": false,
       "text": "Speciale"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Forgia",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "crown-of-madness",
@@ -3009,7 +3490,15 @@
     "damage": {
       "formula": "1d4",
       "type": "radianti"
-    }
+    },
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Guerra",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "cure-wounds",
@@ -3038,7 +3527,21 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Vita",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo del Fuoco Selvaggio",
+        "minLevel": 2,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "dancing-lights",
@@ -3120,7 +3623,15 @@
       "text": "Concentrazione, fino a 10 minuti",
       "amount": 10
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "sorcerer",
+        "subclassId": "Magia delle Ombre",
+        "minLevel": 3,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti. Può essere lanciato con 2 punti stregoneria."
+      }
+    ]
   },
   {
     "id": "darkvision",
@@ -3205,7 +3716,15 @@
       "text": "1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Luce",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "death-ward",
@@ -3231,7 +3750,27 @@
       "text": "8 ore",
       "amount": 8
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Sepoltura",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Vita",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "artificer",
+        "subclassId": "Alchimista",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "delayed-blast-fireball",
@@ -3318,7 +3857,15 @@
     "damage": {
       "formula": "5d6+5d6",
       "type": "tuono+radianti/necrotici"
-    }
+    },
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Tempesta",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "detect-evil-and-good",
@@ -3377,7 +3924,15 @@
       "amount": 10
     },
     "ritual": true,
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento dei Guardiani",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "detect-poison-and-disease",
@@ -3433,7 +3988,15 @@
       "text": "Concentrazione, fino a 1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "sorcerer",
+        "subclassId": "Mente Aberrante",
+        "minLevel": 3,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "dimension-door",
@@ -3464,7 +4027,27 @@
       "formula": "4d6",
       "type": "forza"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Inganno",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Vendetta",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Viandante Fatato",
+        "minLevel": 13,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "disguise-self",
@@ -3492,7 +4075,21 @@
       "text": "1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Inganno",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Cacciatore delle Tenebre",
+        "minLevel": 3,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "disintegrate",
@@ -3587,7 +4184,33 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Inganno",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Devozione",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Viandante Fatato",
+        "minLevel": 9,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "Anima Meccanica",
+        "minLevel": 5,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "dissonant-whispers",
@@ -3613,7 +4236,15 @@
     "damage": {
       "formula": "3d6",
       "type": "psichici"
-    }
+    },
+    "subclassGrants": [
+      {
+        "classId": "sorcerer",
+        "subclassId": "Mente Aberrante",
+        "minLevel": 1,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "divination",
@@ -3667,7 +4298,15 @@
       "formula": "1d4",
       "type": "radianti"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Guerra",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "divine-word",
@@ -3725,7 +4364,21 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Natura",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Conquista",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "dominate-monster",
@@ -3788,7 +4441,27 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Inganno",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Ordine",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Conquista",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "dragons-breath",
@@ -4122,7 +4795,15 @@
       "formula": "1d4",
       "type": "elementali a scelta"
     },
-    "isHidden": true
+    "isHidden": true,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Forgia",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "enemies-abound",
@@ -4200,7 +4881,15 @@
       "text": "Concentrazione, fino a 1 ora.",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Gloria",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "enlarge-reduce",
@@ -4258,7 +4947,15 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento degli Antichi",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "entangle",
@@ -4455,7 +5152,15 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Forgia",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "faerie-fire",
@@ -4486,7 +5191,27 @@
     "savingThrows": [
       "dex"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio del Crepuscolo",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Luce",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Custode degli Sciami",
+        "minLevel": 3,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "faithful-hound",
@@ -4543,7 +5268,15 @@
       "text": "1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Sepoltura",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "far-step",
@@ -4599,7 +5332,21 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Conquista",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Cacciatore delle Tenebre",
+        "minLevel": 9,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "feather-fall",
@@ -4909,6 +5656,18 @@
         "subclassId": "Fabbro da Battaglia",
         "minLevel": 13,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo del Fuoco Selvaggio",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "artificer",
+        "subclassId": "Armorer",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
     "isHidden": false
@@ -4980,6 +5739,12 @@
         "classId": "artificer",
         "subclassId": "Artigliere",
         "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Luce",
+        "minLevel": 5,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
@@ -5072,7 +5837,39 @@
       "type": "fuoco",
       "scaling": "Quando l'incantatore lancia questo incantesimo usando uno slot incantesimo di 6° livello o superiore, i danni da fuoco o i danni radiosi (a sua scelta) aumentano di 1d6 per ogni slot di livello superiore al 5°."
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Guerra",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Luce",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo del Fuoco Selvaggio",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Devozione",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Gloria",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "flaming-sphere",
@@ -5108,6 +5905,18 @@
         "classId": "artificer",
         "subclassId": "Alchimista",
         "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Luce",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo del Fuoco Selvaggio",
+        "minLevel": 3,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
@@ -5223,7 +6032,15 @@
       "text": "Concentrazione, fino a 1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Tempesta",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "forbiddance",
@@ -5342,7 +6159,33 @@
       "text": "1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Guerra",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Devozione",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Gloria",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "Anima Meccanica",
+        "minLevel": 7,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "freezing-sphere",
@@ -5459,6 +6302,18 @@
         "subclassId": "Alchimista",
         "minLevel": 9,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo delle Spore",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Custode degli Sciami",
+        "minLevel": 9,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
       }
     ],
     "isHidden": false
@@ -5553,7 +6408,21 @@
       "amount": 10
     },
     "ritual": true,
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Sepoltura",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo delle Spore",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "giant-insect",
@@ -5714,7 +6583,15 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Natura",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "grease",
@@ -5771,7 +6648,27 @@
       "text": "Concentrazione, fino a 1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio del Crepuscolo",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Cacciatore delle Tenebre",
+        "minLevel": 13,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      },
+      {
+        "classId": "artificer",
+        "subclassId": "Armorer",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "greater-restoration",
@@ -5798,7 +6695,21 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Pace",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "Anima Meccanica",
+        "minLevel": 9,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "green-flame-blade",
@@ -5865,7 +6776,27 @@
       "formula": "20",
       "type": "radianti",
       "note": "Il guardiano svanisce dopo aver inflitto complessivamente 60 danni."
-    }
+    },
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Luce",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Vita",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Devozione",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "guardian-of-nature",
@@ -5972,7 +6903,21 @@
       "type": "radianti",
       "scaling": "Quando l'incantatore lancia questo incantesimo usando uno slot incantesimo di 2° livello o superiore, i danni aumentano di 1d6 per ogni slot di livello superiore al 1°."
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "druid",
+        "subclassId": "Circolo delle Stelle",
+        "minLevel": 2,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Gloria",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "gust",
@@ -6027,7 +6972,15 @@
     "savingThrows": [
       "str"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Tempesta",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "hail-of-thorns",
@@ -6168,7 +7121,27 @@
       "text": "Concentrazione, fino a 1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Gloria",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Vendetta",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Viandante dell'Orizzonte",
+        "minLevel": 9,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "heal",
@@ -6286,7 +7259,15 @@
       "type": "fuoco",
       "scaling": "Quando l'incantatore lancia questo incantesimo usando uno slot incantesimo di 3° livello o superiore, i danni aumentano di 1d8 per ogni slot di livello superiore al 2°."
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Forgia",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "hellish-rebuke",
@@ -6371,6 +7352,24 @@
       {
         "classId": "artificer",
         "subclassId": "Fabbro da Battaglia",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Ordine",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Pace",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Gloria",
         "minLevel": 3,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
@@ -6463,7 +7462,39 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Guerra",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento dei Guardiani",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Redenzione",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Vendetta",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Uccisore di Mostri",
+        "minLevel": 17,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "hold-person",
@@ -6497,7 +7528,33 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Ordine",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Conquista",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Redenzione",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Vendetta",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "holy-aura",
@@ -6575,7 +7632,15 @@
     "damage": {
       "formula": "2d6+2d6",
       "type": "freddo+acido"
-    }
+    },
+    "subclassGrants": [
+      {
+        "classId": "sorcerer",
+        "subclassId": "Mente Aberrante",
+        "minLevel": 5,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "hunters-mark",
@@ -6605,7 +7670,15 @@
       "formula": "1d6",
       "type": "variabile",
       "note": "Danni extra a ogni attacco con arma che colpisce il bersaglio marchiato."
-    }
+    },
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Vendetta",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "hypnotic-pattern",
@@ -6641,6 +7714,12 @@
       {
         "classId": "artificer",
         "subclassId": "Armorer",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Redenzione",
         "minLevel": 9,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
@@ -6714,6 +7793,18 @@
         "subclassId": "Artigliere",
         "minLevel": 13,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Tempesta",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento degli Antichi",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
     "isHidden": false
@@ -6743,7 +7834,21 @@
       "text": "Istantanea"
     },
     "ritual": true,
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Conoscenza",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Forgia",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "illusory-dragon",
@@ -7007,10 +8112,22 @@
     },
     "subclassGrants": [
       {
-        "classId": "artificer",
-        "subclassId": "Alchimista",
-        "minLevel": 13,
+        "classId": "cleric",
+        "subclassId": "Dominio della Natura",
+        "minLevel": 9,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Tempesta",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Custode degli Sciami",
+        "minLevel": 17,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
       }
     ],
     "isHidden": false
@@ -7337,7 +8454,15 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Conoscenza",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "lesser-restoration",
@@ -7366,7 +8491,27 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Vita",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Devozione",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "Anima Meccanica",
+        "minLevel": 3,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "levitate",
@@ -7453,7 +8598,15 @@
       "text": "1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "warlock",
+        "subclassId": "Il Celestiale",
+        "minLevel": 1,
+        "note": "Sempre conosciuto; non conta nel limite dei trucchetti conosciuti."
+      }
+    ]
   },
   {
     "id": "lightning-arrow",
@@ -7614,7 +8767,15 @@
       "text": "Concentrazione, fino a 1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Ordine",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "locate-object",
@@ -7781,7 +8942,21 @@
       "text": "1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "rogue",
+        "subclassId": "Mistificatore Arcano",
+        "minLevel": 3,
+        "note": "Sempre conosciuto; è incluso nel numero di trucchetti conosciuti del Mistificatore Arcano."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Custode degli Sciami",
+        "minLevel": 3,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "magic-circle",
@@ -7813,7 +8988,15 @@
     "savingThrows": [
       "cha"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "ranger",
+        "subclassId": "Uccisore di Mostri",
+        "minLevel": 9,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "magic-jar",
@@ -7961,7 +9144,27 @@
       "text": "Concentrazione, fino a 1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Forgia",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Guerra",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Gloria",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "magnificent-mansion",
@@ -8047,6 +9250,18 @@
         "subclassId": "Fabbro da Battaglia",
         "minLevel": 17,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Vita",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo del Fuoco Selvaggio",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
     "isHidden": false
@@ -8102,6 +9317,12 @@
         "classId": "artificer",
         "subclassId": "Alchimista",
         "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Ordine",
+        "minLevel": 5,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
@@ -8468,7 +9689,15 @@
       "type": "psichico",
       "scaling": "Il danno aumenta ai livelli 5, 11 e 17."
     },
-    "isHidden": true
+    "isHidden": true,
+    "subclassGrants": [
+      {
+        "classId": "sorcerer",
+        "subclassId": "Mente Aberrante",
+        "minLevel": 1,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "mind-spike",
@@ -8584,6 +9813,12 @@
         "subclassId": "Armorer",
         "minLevel": 5,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Inganno",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
     "isHidden": false
@@ -8612,7 +9847,21 @@
       "text": "Concentrazione, fino a 1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio del Crepuscolo",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Viandante Fatato",
+        "minLevel": 17,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "misty-step",
@@ -8638,7 +9887,33 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento degli Antichi",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Vendetta",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Viandante dell'Orizzonte",
+        "minLevel": 5,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Viandante Fatato",
+        "minLevel": 5,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "modify-memory",
@@ -8664,7 +9939,15 @@
       "text": "Concentrazione, fino a 1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Inganno",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "mold-earth",
@@ -8722,7 +10005,27 @@
       "type": "radianti",
       "scaling": "Quando l'incantatore lancia questo incantesimo usando uno slot incantesimo di 3° livello o superiore, i danni aumentano di 1d10 per ogni slot di livello superiore al 2°."
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio del Crepuscolo",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento degli Antichi",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento dei Guardiani",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "move-earth",
@@ -8803,7 +10106,21 @@
       "text": "8 ore",
       "amount": 8
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Conoscenza",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento dei Guardiani",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "pass-without-trace",
@@ -8829,7 +10146,15 @@
       "text": "Concentrazione, fino a 1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Inganno",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "passwall",
@@ -9061,7 +10386,27 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Natura",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo del Fuoco Selvaggio",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento degli Antichi",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "poison-spray",
@@ -9129,7 +10474,21 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Inganno",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "wizard",
+        "subclassId": "Scuola di Trasmutazione",
+        "minLevel": 10,
+        "note": "Aggiunto al libro degli incantesimi da Mutaforma."
+      }
+    ]
   },
   {
     "id": "power-word-heal",
@@ -9427,14 +10786,6 @@
       "text": "24 ore",
       "amount": 24
     },
-    "subclassGrants": [
-      {
-        "classId": "artificer",
-        "subclassId": "Armorer",
-        "minLevel": 13,
-        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
-      }
-    ],
     "isHidden": false
   },
   {
@@ -9545,7 +10896,39 @@
       "text": "Concentrazione, fino a 1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Forgia",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento degli Antichi",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Gloria",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Vendetta",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "Anima Meccanica",
+        "minLevel": 5,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "protection-from-evil-and-good",
@@ -9573,7 +10956,33 @@
       "text": "Concentrazione, fino a 10 minuti",
       "amount": 10
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Devozione",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Uccisore di Mostri",
+        "minLevel": 3,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Viandante dell'Orizzonte",
+        "minLevel": 3,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "Anima Meccanica",
+        "minLevel": 1,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "protection-from-poison",
@@ -9716,6 +11125,18 @@
         "subclassId": "Alchimista",
         "minLevel": 17,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Sepoltura",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Vita",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
     "isHidden": false
@@ -9751,9 +11172,9 @@
     ],
     "subclassGrants": [
       {
-        "classId": "artificer",
-        "subclassId": "Alchimista",
-        "minLevel": 5,
+        "classId": "cleric",
+        "subclassId": "Dominio della Sepoltura",
+        "minLevel": 3,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
@@ -9815,7 +11236,15 @@
     "damage": {
       "formula": "2d8",
       "type": "veleno"
-    }
+    },
+    "subclassGrants": [
+      {
+        "classId": "artificer",
+        "subclassId": "Alchimista",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "regenerate",
@@ -9921,8 +11350,14 @@
     },
     "subclassGrants": [
       {
-        "classId": "artificer",
-        "subclassId": "Armorer",
+        "classId": "cleric",
+        "subclassId": "Dominio della Pace",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Redenzione",
         "minLevel": 13,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
@@ -10036,7 +11471,27 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Sepoltura",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Vita",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo del Fuoco Selvaggio",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "rope-trick",
@@ -10062,7 +11517,15 @@
       "text": "1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "ranger",
+        "subclassId": "Cacciatore delle Tenebre",
+        "minLevel": 5,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "sacred-flame",
@@ -10094,7 +11557,15 @@
       "formula": "1d8",
       "type": "radianti"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "warlock",
+        "subclassId": "Il Celestiale",
+        "minLevel": 1,
+        "note": "Sempre conosciuto; non conta nel limite dei trucchetti conosciuti."
+      }
+    ]
   },
   {
     "id": "sanctuary",
@@ -10124,7 +11595,27 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Pace",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Devozione",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Redenzione",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "scatter",
@@ -10179,7 +11670,27 @@
       "type": "fuoco",
       "scaling": "Quando l'incantatore lancia questo incantesimo usando uno slot incantesimo di 3° livello o superiore, crea un raggio aggiuntivo per ogni slot superiore al 2°."
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "artificer",
+        "subclassId": "Artigliere",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Luce",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "druid",
+        "subclassId": "Circolo del Fuoco Selvaggio",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "scrying",
@@ -10212,7 +11723,33 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Conoscenza",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Luce",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento dei Guardiani",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Vendetta",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "searing-smite",
@@ -10238,7 +11775,15 @@
     "damage": {
       "formula": "1d6",
       "type": "fuoco"
-    }
+    },
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Forgia",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "secret-chest",
@@ -10291,7 +11836,21 @@
       "text": "1 ora",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio del Crepuscolo",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento dei Guardiani",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "seeming",
@@ -10322,7 +11881,15 @@
     "savingThrows": [
       "cha"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "ranger",
+        "subclassId": "Cacciatore delle Tenebre",
+        "minLevel": 17,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "sending",
@@ -10349,7 +11916,21 @@
       "text": "1 round",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Pace",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "Mente Aberrante",
+        "minLevel": 5,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "sequester",
@@ -10525,6 +12106,12 @@
         "subclassId": "Artigliere",
         "minLevel": 5,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Tempesta",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
     "isHidden": false
@@ -10594,7 +12181,15 @@
       "text": "Concentrazione, fino a 10 minuti",
       "amount": 10
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Guerra",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "shillelagh",
@@ -10834,7 +12429,21 @@
       "text": "1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio del Crepuscolo",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Redenzione",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "sleet-storm",
@@ -10865,7 +12474,15 @@
     "savingThrows": [
       "dex"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Tempesta",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "slow",
@@ -10895,7 +12512,15 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Ordine",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "snare",
@@ -10995,7 +12620,15 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "warlock",
+        "subclassId": "L'Immortale",
+        "minLevel": 1,
+        "note": "Sempre conosciuto come trucchetto del Warlock."
+      }
+    ]
   },
   {
     "id": "speak-with-animals",
@@ -11023,7 +12656,21 @@
       "amount": 10
     },
     "ritual": true,
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Natura",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento degli Antichi",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "speak-with-dead",
@@ -11049,7 +12696,15 @@
       "text": "10 minuti",
       "amount": 10
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Conoscenza",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "speak-with-plants",
@@ -11134,7 +12789,15 @@
       "formula": "2d4",
       "type": "perforanti"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Natura",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "spirit-guardians",
@@ -11168,7 +12831,15 @@
       "type": "radianti",
       "scaling": "Quando l'incantatore lancia questo incantesimo usando uno slot incantesimo di 4° livello o superiore, i danni aumentano di 1d8 per ogni slot di livello superiore al 3°."
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Guerra",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "spirit-shroud",
@@ -11231,7 +12902,27 @@
       "formula": "1d8",
       "type": "forza",
       "scaling": "I danni aumentano di 1d8 per ogni due livelli dello slot oltre il 2°."
-    }
+    },
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Guerra",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Vita",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Conquista",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "staggering-smite",
@@ -11369,8 +13060,26 @@
     },
     "subclassGrants": [
       {
-        "classId": "artificer",
-        "subclassId": "Alchimista",
+        "classId": "cleric",
+        "subclassId": "Dominio della Guerra",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento degli Antichi",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Conquista",
+        "minLevel": 13,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Redenzione",
         "minLevel": 13,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
@@ -11468,7 +13177,15 @@
     "savingThrows": [
       "wis"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Conoscenza",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "summon-aberration",
@@ -11494,7 +13211,15 @@
       "concentration": true,
       "text": "Concentrazione, fino a 1 ora"
     },
-    "isHidden": true
+    "isHidden": true,
+    "subclassGrants": [
+      {
+        "classId": "sorcerer",
+        "subclassId": "Mente Aberrante",
+        "minLevel": 7,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "summon-beast",
@@ -11572,7 +13297,15 @@
       "concentration": true,
       "text": "Concentrazione, fino a 1 ora"
     },
-    "isHidden": true
+    "isHidden": true,
+    "subclassGrants": [
+      {
+        "classId": "sorcerer",
+        "subclassId": "Anima Meccanica",
+        "minLevel": 7,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "summon-elemental",
@@ -11627,6 +13360,14 @@
       "concentration": true,
       "text": "Concentrazione, fino a 1 ora"
     },
+    "subclassGrants": [
+      {
+        "classId": "ranger",
+        "subclassId": "Viandante Fatato",
+        "minLevel": 11,
+        "note": "Rinforzi Fatati; non conta tra gli incantesimi conosciuti e può essere lanciato una volta per riposo lungo senza slot né componente materiale."
+      }
+    ],
     "isHidden": true
   },
   {
@@ -12061,7 +13802,15 @@
       "text": "Concentrazione, fino a 10 minuti",
       "amount": 10
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "sorcerer",
+        "subclassId": "Mente Aberrante",
+        "minLevel": 9,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "telepathic-bond",
@@ -12087,7 +13836,21 @@
       "amount": 1
     },
     "ritual": true,
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Pace",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "Mente Aberrante",
+        "minLevel": 9,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "telepathy",
@@ -12166,7 +13929,15 @@
       "text": "1 round",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "ranger",
+        "subclassId": "Viandante dell'Orizzonte",
+        "minLevel": 17,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "temple-of-the-gods",
@@ -12398,6 +14169,18 @@
         "subclassId": "Armorer",
         "minLevel": 3,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Tempesta",
+        "minLevel": 1,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "artificer",
+        "subclassId": "Artigliere",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
     "isHidden": false
@@ -12480,7 +14263,15 @@
       "amount": 8
     },
     "ritual": true,
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio del Crepuscolo",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "tiny-servant",
@@ -12635,7 +14426,21 @@
       "text": "Concentrazione, fino a 1 minuto",
       "amount": 1
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Natura",
+        "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento degli Antichi",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "true-polymorph",
@@ -12834,7 +14639,15 @@
       "type": "necrotici",
       "scaling": "Quando l'incantatore lancia questo incantesimo usando uno slot incantesimo di 4° livello o superiore, i danni aumentano di 1d6 per ogni slot di livello superiore al 3°."
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Sepoltura",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      }
+    ]
   },
   {
     "id": "vicious-mockery",
@@ -12931,6 +14744,18 @@
         "subclassId": "Artigliere",
         "minLevel": 13,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Forgia",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Luce",
+        "minLevel": 7,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
     "isHidden": false
@@ -12962,6 +14787,24 @@
       {
         "classId": "artificer",
         "subclassId": "Armorer",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Redenzione",
+        "minLevel": 17,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "sorcerer",
+        "subclassId": "Anima Meccanica",
+        "minLevel": 9,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      },
+      {
+        "classId": "artificer",
+        "subclassId": "Artigliere",
         "minLevel": 17,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
@@ -13082,14 +14925,6 @@
     "savingThrows": [
       "dex"
     ],
-    "subclassGrants": [
-      {
-        "classId": "artificer",
-        "subclassId": "Artigliere",
-        "minLevel": 17,
-        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
-      }
-    ],
     "isHidden": false
   },
   {
@@ -13178,6 +15013,12 @@
         "classId": "artificer",
         "subclassId": "Fabbro da Battaglia",
         "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Pace",
+        "minLevel": 3,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
@@ -13325,7 +15166,15 @@
       "formula": "2d4",
       "type": "fuoco"
     },
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "ranger",
+        "subclassId": "Custode degli Sciami",
+        "minLevel": 5,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   },
   {
     "id": "weird",
@@ -13449,6 +15298,12 @@
         "classId": "artificer",
         "subclassId": "Artigliere",
         "minLevel": 9,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio della Natura",
+        "minLevel": 5,
         "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
       }
     ],
@@ -13672,6 +15527,26 @@
       "dex",
       "con"
     ],
-    "isHidden": false
+    "isHidden": false,
+    "subclassGrants": [
+      {
+        "classId": "cleric",
+        "subclassId": "Dominio dell'Ordine",
+        "minLevel": 3,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "paladin",
+        "subclassId": "Giuramento di Devozione",
+        "minLevel": 5,
+        "note": "Sempre preparato; non conta nel limite degli incantesimi preparati."
+      },
+      {
+        "classId": "ranger",
+        "subclassId": "Uccisore di Mostri",
+        "minLevel": 5,
+        "note": "Sempre conosciuto; non conta nel limite degli incantesimi conosciuti."
+      }
+    ]
   }
 ]

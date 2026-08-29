@@ -261,9 +261,13 @@ Guerriero, Paladino e Ranger espongono gli stili di combattimento ai rispettivi 
 
 Le scelte sono salvate in `CharacterDraft.classFeatureChoices`, ricompaiono quando si ricarica il personaggio e sono riportate nel riepilogo con la descrizione dei loro effetti. La pagina del livello ripropone le scelte appena sbloccate, perché il livello viene deciso dopo la classe nel flusso guidato.
 
+Il modello supporta conteggi cumulativi per livello, opzioni sbloccate a livelli diversi, prerequisiti basati su una scelta precedente, gruppi reciprocamente esclusivi e opzioni ripetibili. La normalizzazione elimina selezioni obsolete quando cambiano livello, classe o sottoclasse. Segreti Magici del Bardo e Segreti Magici Aggiuntivi del Collegio della Sapienza usano lo stesso meccanismo e concedono gli incantesimi selezionati senza introdurre uno stato parallelo.
+
 ## Risorse di classe
 
 `classResources()` produce le risorse visibili nel riepilogo: Ire, Ispirazione bardica, Incanalare Divinità, Forma Selvatica, Azione Impetuosa, dadi di superiorità, Ki, Attacco Furtivo, Imposizione delle Mani, Punti Stregoneria, slot del Patto, Recupero Arcano e infusioni dell'Artefice.
+
+`classProgression` e `subclassProgressions` collegano i privilegi ottenuti al livello, al tipo di attivazione e, quando applicabile, alla risorsa consumata. Il riepilogo e il PDF costruiscono la lista dei privilegi dal catalogo, includendo classe, sottoclasse, discendenza e opzioni effettivamente selezionate.
 
 Le tabelle sono attualmente nel codice. Per aggiungere o correggere una progressione, modificare il relativo ramo dello `switch` e aggiungere asserzioni in `rules.spec.ts` ai livelli di soglia.
 

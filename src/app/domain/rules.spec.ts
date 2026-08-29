@@ -240,6 +240,48 @@ describe('regole 5e 2014', () => {
     expect(result.preparedSpells).toBe(6);
     expect(result.weaponProficiencies).toContain('martial');
   });
+  it('applica addestramento e arma scelti dal Cantore della Lama', () => {
+    const wizardCatalog: RulesCatalog = {
+      ...catalog,
+      classes: catalog.classes.map((klass) =>
+        klass.id === 'wizard'
+          ? {
+              ...klass,
+              subclasses: ['Canto della Lama'],
+              subclassFeatures: [
+                {
+                  subclassId: 'Canto della Lama',
+                  choices: [
+                    {
+                      id: 'bladesinger-weapon',
+                      name: 'Arma del Cantore',
+                      description: 'Scegli un’arma.',
+                      minLevel: 2,
+                      countByLevel: [{ level: 2, count: 1 }],
+                      effect: 'weapon-proficiency',
+                      options: [{ id: 'rapier', name: 'Stocco', description: 'Competenza.' }],
+                    },
+                  ],
+                },
+              ],
+            }
+          : klass,
+      ),
+    };
+    const result = derive(
+      {
+        ...draft,
+        classId: 'wizard',
+        subclassId: 'Canto della Lama',
+        level: 2,
+        asi: {},
+        classFeatureChoices: { 'bladesinger-weapon': ['rapier'] },
+      },
+      wizardCatalog,
+    );
+    expect(result.weaponProficiencies).toContain('rapier');
+    expect(result.skills.find((skill) => skill.id === 'performance')?.proficient).toBe(true);
+  });
   it('applica le scelte razziali del Mezzelfo e gli strumenti del Nano', () => {
     const halfElf = derive(
       {
@@ -600,8 +642,10 @@ describe('limiti di selezione degli incantesimi', () => {
       spellClassId: 'wizard',
       ability: 'int',
       schools: ['Ammaliamento', 'Illusione'],
+      cantrips: 3,
       unrestrictedLeveledSpells: 3,
     });
+    expect(subclassSpellcastingProfile('rogue', 'Mistificatore Arcano', 3)?.cantrips).toBe(2);
   });
 });
 

@@ -1,0 +1,661 @@
+.wizard {
+  .equipment-builder > div + div {
+    margin-top: 1.2rem;
+  }
+
+  .equipment-vitals {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+
+  .equipment-vitals > div {
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.45rem;
+    background: var(--surface-raised);
+  }
+
+  .equipment-vitals small,
+  .equipment-vitals strong {
+    display: block;
+  }
+
+  .equipment-vitals small {
+    color: var(--muted);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  .equipment-vitals strong {
+    margin-top: 0.25rem;
+    color: var(--ember);
+    font: 1.5rem Georgia;
+  }
+
+  .armor-panel,
+  .catalog-panel,
+  .backpack-panel,
+  .coins-panel {
+    padding: 1.2rem;
+    border: 1px solid var(--line);
+    border-radius: 0.6rem;
+    background: var(--surface-raised);
+  }
+
+  .catalog-panel {
+    container-type: inline-size;
+  }
+
+  .armor-panel {
+    border-color: var(--prominent-border);
+    background: var(--prominent-surface);
+  }
+
+  .panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .panel-heading h2,
+  .coins-panel h2 {
+    margin: 0.2rem 0 !important;
+    font: 1.35rem Georgia !important;
+  }
+
+  .proficiency-note {
+    display: block;
+    margin-top: 0.4rem;
+    color: var(--muted);
+  }
+
+  .catalog-filters input,
+  .catalog-filters select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 0.35rem;
+    background: var(--surface-raised);
+  }
+
+  .armor-group h3 {
+    margin: 1.2rem 0 0.55rem;
+    color: var(--muted);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .armor-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .armor-options button {
+    min-height: 112px;
+    padding: 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 0.4rem;
+    background: var(--prominent-soft);
+    color: var(--ink);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .armor-options button.selected {
+    border: 2px solid var(--gold);
+    background: color-mix(in srgb, var(--gold) 16%, var(--prominent-surface));
+    box-shadow: 0 5px 14px rgb(0 0 0 / 16%);
+  }
+
+  .armor-options button.unavailable {
+    opacity: 0.48;
+    cursor: not-allowed;
+  }
+
+  .armor-options strong,
+  .armor-options span,
+  .armor-options small {
+    display: block;
+  }
+
+  .armor-options span {
+    margin-top: 0.3rem;
+    color: var(--ember);
+    font-size: 0.72rem;
+    font-weight: 800;
+  }
+
+  .armor-options small {
+    margin: 0.35rem 0;
+    color: var(--muted);
+  }
+
+  .armor-options em,
+  .weapon-result em,
+  .equipped-tag {
+    display: inline-block;
+    margin: 0.15rem 0.2rem 0 0;
+    padding: 0.18rem 0.35rem;
+    border-radius: 2rem;
+    background: var(--paper-deep);
+    color: var(--muted);
+    font-size: 0.56rem;
+    font-style: normal;
+  }
+
+  .catalog-filters {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0.6rem;
+    margin: 1rem 0;
+  }
+
+  .equipment-table-wrap {
+    max-height: 470px;
+    overflow: auto;
+    border: 1px solid var(--line);
+    border-radius: 0.4rem;
+  }
+
+  .equipment-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.72rem;
+  }
+
+  .equipment-table th,
+  .equipment-table td {
+    padding: 0.65rem;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .equipment-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--paper-deep);
+    color: var(--muted);
+    text-transform: uppercase;
+    font-size: 0.58rem;
+  }
+
+  .table-sort {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    text-transform: inherit;
+    cursor: pointer;
+  }
+
+  .table-sort:hover,
+  .table-sort:focus-visible {
+    color: var(--ember);
+  }
+
+  .table-sort span {
+    min-width: 0.65rem;
+    color: var(--ember);
+    font-size: 0.75rem;
+  }
+
+  .boolean-value {
+    display: inline-block;
+    min-width: 2.2rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 999px;
+    background: var(--surface-highlight);
+    color: var(--muted);
+    text-align: center;
+    font-weight: 800;
+  }
+
+  .boolean-value.is-true {
+    background: var(--magic-soft);
+    color: var(--magic);
+  }
+
+  .equipment-table td small {
+    display: block;
+    max-width: 360px;
+    margin-top: 0.2rem;
+    color: var(--muted);
+  }
+
+  .catalog-table .equipment-item-cell > strong {
+    display: block;
+  }
+
+  .catalog-table .magic-meta {
+    display: inline;
+    margin-right: 0.2rem;
+  }
+
+  .catalog-table .magic-meta + .magic-meta::before {
+    content: '· ';
+  }
+
+  .catalog-table .item-description {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .group-row th {
+    background: var(--surface-highlight);
+    color: var(--ember);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+  }
+
+  .add-item {
+    white-space: nowrap;
+    padding: 0.45rem 0.6rem;
+    border: 0;
+    border-radius: 0.3rem;
+    background: var(--ember);
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .equipment-actions {
+    white-space: nowrap;
+  }
+
+  .catalog-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+  }
+
+  .catalog-action ng-icon {
+    font-size: 1.05rem;
+  }
+
+  .equipment-actions .catalog-action + .catalog-action {
+    margin-left: 0.4rem;
+  }
+
+  .mobile-item-meta {
+    display: none !important;
+  }
+
+  .add-and-equip,
+  .remove-item {
+    padding: 0.45rem 0.6rem;
+    border: 1px solid var(--ember);
+    border-radius: 0.3rem;
+    background: transparent;
+    color: var(--ember);
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .remove-item {
+    margin-top: 0.45rem;
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+
+  .equipment-mobile-hint {
+    display: none;
+  }
+
+  .empty-row,
+  .empty-backpack {
+    padding: 1.4rem !important;
+    color: var(--muted);
+    text-align: center !important;
+  }
+
+  .backpack-table input {
+    width: 64px;
+    padding: 0.45rem;
+    border: 1px solid var(--line);
+    border-radius: 0.3rem;
+  }
+
+  .weapon-result {
+    white-space: nowrap;
+  }
+
+  .weapon-result strong {
+    color: var(--ember);
+  }
+
+  .weapon-loadout-hint {
+    margin: 0.85rem 0;
+    color: var(--muted);
+    font-size: 0.72rem;
+    line-height: 1.45;
+  }
+
+  .weapon-loadout,
+  .weapon-slot,
+  .shield-loadout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .weapon-slot label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--muted);
+    font-size: 0.65rem;
+  }
+
+  .equip-weapon,
+  .unequip-weapon,
+  .ability-weapon {
+    padding: 0.35rem 0.5rem;
+    border: 1px solid var(--ember);
+    border-radius: 0.3rem;
+    background: transparent;
+    color: var(--ember);
+    font: inherit;
+    font-size: 0.65rem;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .unequip-weapon {
+    border-color: var(--line);
+    color: var(--muted);
+  }
+
+  .equipped-tag {
+    background: color-mix(in srgb, var(--sage) 18%, var(--surface));
+    color: var(--sage);
+    font-weight: 800;
+  }
+
+  .coin-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.55rem;
+    margin-top: 1rem;
+  }
+
+  .coin-grid label {
+    position: relative;
+  }
+
+  .coin-grid span {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--muted);
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .coin-grid input {
+    width: 100%;
+    padding: 0.7rem 2.1rem 0.7rem 0.55rem;
+    border: 1px solid var(--line);
+    background: transparent;
+    border-radius: 0.35rem;
+  }
+
+  .coin-grid small {
+    position: absolute;
+    right: 0.55rem;
+    bottom: 0.72rem;
+    color: var(--gold);
+    font-weight: 900;
+  }
+
+  @container (max-width: 850px) {
+    .catalog-table th,
+    .catalog-table td {
+      padding: 0.5rem;
+    }
+
+    .catalog-table .item-description {
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+    }
+
+    .catalog-table .equipment-actions {
+      width: 3.25rem;
+      padding-inline: 0.35rem;
+      text-align: center;
+      white-space: normal;
+    }
+
+    .catalog-table .catalog-action {
+      display: flex;
+      width: 2.4rem;
+      min-width: 2.4rem;
+      min-height: 2.4rem;
+      margin-inline: auto;
+      padding: 0;
+    }
+
+    .catalog-table .equipment-actions .catalog-action + .catalog-action {
+      margin: 0.4rem auto 0;
+    }
+
+    .catalog-table .catalog-action span {
+      display: none;
+    }
+
+    .catalog-table .catalog-action ng-icon {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .equipment-vitals,
+    .armor-options,
+    .coin-grid,
+    .catalog-filters {
+      grid-template-columns: 1fr;
+    }
+
+    .panel-heading {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .equipment-mobile-hint {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      margin: 0.8rem 0;
+      padding: 0.75rem;
+      border: 1px solid var(--gold);
+      border-radius: 0.4rem;
+      background: var(--surface-highlight);
+      color: var(--ink);
+      font-size: 0.76rem;
+      line-height: 1.45;
+    }
+
+    .equipment-table-wrap {
+      max-height: none;
+      overflow: visible;
+      border: 0;
+    }
+
+    .equipment-table,
+    .equipment-table tbody {
+      display: block;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .equipment-table thead {
+      display: none;
+    }
+
+    .equipment-table tbody {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .equipment-table tr {
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 0.55rem;
+      background: var(--surface-raised);
+    }
+
+    .equipment-table td {
+      display: grid;
+      grid-template-columns: minmax(88px, 0.4fr) minmax(0, 1fr);
+      gap: 0.65rem;
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .equipment-table td::before {
+      content: attr(data-label);
+      color: var(--muted);
+      font-size: 0.58rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .equipment-table .equipment-item-cell {
+      display: block;
+      padding: 0.85rem 0.75rem;
+      background: var(--surface-highlight);
+    }
+
+    .equipment-table .equipment-item-cell::before,
+    .equipment-group-row td::before,
+    .empty-row::before {
+      display: none;
+    }
+
+    .equipment-table .equipment-item-cell > strong {
+      font-size: 0.9rem;
+    }
+
+    .equipment-table .equipment-group-row {
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .equipment-table .equipment-group-row td {
+      display: block;
+      padding: 0.65rem 0.2rem 0.2rem;
+      border: 0;
+      color: var(--ember);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .equipment-table .equipment-actions,
+    .equipment-table .inventory-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      border-bottom: 0;
+    }
+
+    .equipment-table .equipment-actions::before,
+    .equipment-table .inventory-actions::before {
+      display: none;
+    }
+
+    .equipment-actions button,
+    .inventory-actions > button,
+    .inventory-actions .weapon-loadout > button,
+    .inventory-actions .shield-loadout > button {
+      width: 100%;
+      min-height: 42px;
+    }
+
+    .inventory-actions .weapon-loadout,
+    .inventory-actions .shield-loadout {
+      width: 100%;
+    }
+
+    .remove-item {
+      margin-top: 0.2rem;
+    }
+
+    .catalog-table tbody {
+      gap: 0.45rem;
+    }
+
+    .catalog-table tr:not(.equipment-group-row) {
+      display: grid;
+      grid-template-columns: 88px minmax(0, 1fr);
+      grid-template-areas: 'actions item';
+    }
+
+    .catalog-table
+      tr:not(.equipment-group-row)
+      > td:not(.equipment-item-cell):not(.equipment-actions) {
+      display: none;
+    }
+
+    .catalog-table .equipment-item-cell {
+      grid-area: item;
+      padding: 0.65rem 0.7rem;
+      border: 0;
+      background: transparent;
+    }
+
+    .catalog-table .equipment-item-cell > strong {
+      display: block;
+      font-size: 0.82rem;
+    }
+
+    .catalog-table .mobile-item-meta {
+      display: block !important;
+      color: var(--ember);
+      font-size: 0.64rem;
+      font-weight: 800;
+    }
+
+    .catalog-table .equipment-actions {
+      grid-area: actions;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 0.2rem;
+      padding: 0.35rem;
+      border-right: 1px solid var(--line);
+      background: var(--surface-highlight);
+    }
+
+    .catalog-table .equipment-actions button {
+      width: 38px;
+      min-height: 38px;
+      padding: 0;
+      border-radius: 0.45rem;
+    }
+
+    .catalog-table .catalog-action span {
+      display: none;
+    }
+
+    .catalog-table .catalog-action ng-icon {
+      font-size: 1.3rem;
+    }
+  }
+}

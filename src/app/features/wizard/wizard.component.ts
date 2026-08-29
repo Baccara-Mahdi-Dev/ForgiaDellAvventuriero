@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Injector,
+  OnDestroy,
+  OnInit,
+  ViewEncapsulation,
+  signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -53,6 +61,7 @@ import {
   StepId,
 } from '../../domain/models';
 import {
+  acquiredCharacterFeatures,
   activeClassFeatureChoices,
   classFeatureChoiceCount,
   normalizeClassProgression,
@@ -82,12 +91,11 @@ import {
 } from '../../domain/weapon-loadout';
 import { WizardStore } from '../../state/wizard.store';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
-import { CharacterSheetPdfService } from '../../core/character-sheet-pdf.service';
 import { UiFeedbackService } from '../../core/ui-feedback.service';
-import { SpellCardsPdfService } from '../../core/spell-cards-pdf.service';
 import { ClassProgressionComponent } from './class-progression.component';
-import { HomebrewEquipmentDialogComponent } from './homebrew-equipment-dialog.component';
-import { MagicWeaponBaseDialogComponent } from './magic-weapon-base-dialog.component';
+import { EquipmentStepComponent } from './steps/equipment-step.component';
+import { SpellsStepComponent } from './steps/spells-step.component';
+import { SummaryStepComponent } from './steps/summary-step.component';
 import { EQUIPMENT_RARITY_LABELS, equipmentKind } from '../../domain/homebrew-equipment';
 import { equippedEquipmentIds, weaponEffectTotal } from '../../domain/equipment-effects';
 import {
@@ -97,13 +105,7 @@ import {
 } from '../../domain/artificer-rules';
 import { AbilityMethod } from '../../models/enum/ability-method';
 import { TuiDropdown } from '@taiga-ui/core';
-import {
-  TuiAvatar,
-  TuiChevron,
-  TuiDataListWrapper,
-  TuiSelect,
-  TuiSkeleton,
-} from '@taiga-ui/kit';
+import { TuiAvatar, TuiChevron, TuiDataListWrapper, TuiSelect, TuiSkeleton } from '@taiga-ui/kit';
 
 interface GrantedSpellSource {
   key: string;
@@ -233,8 +235,9 @@ const MAGIC_GROUP_LABELS: Record<string, string> = {
     NgIcon,
     ThemeToggleComponent,
     ClassProgressionComponent,
-    HomebrewEquipmentDialogComponent,
-    MagicWeaponBaseDialogComponent,
+    EquipmentStepComponent,
+    SpellsStepComponent,
+    SummaryStepComponent,
     TuiAvatar,
     TuiChevron,
     TuiDataListWrapper,
@@ -261,9 +264,11 @@ const MAGIC_GROUP_LABELS: Record<string, string> = {
   ],
   templateUrl: './wizard.component.html',
   styleUrl: './wizard.component.scss',
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WizardComponent implements OnInit, OnDestroy {
+  readonly self = this;
   readonly AbilityMethod = AbilityMethod;
   readonly abilities = ABILITIES;
   readonly alignments = ALIGNMENTS;
@@ -326,8 +331,7 @@ export class WizardComponent implements OnInit, OnDestroy {
     readonly store: WizardStore,
     private route: ActivatedRoute,
     private router: Router,
-    private characterSheetPdf: CharacterSheetPdfService,
-    private spellCardsPdf: SpellCardsPdfService,
+    private injector: Injector,
     private feedback: UiFeedbackService,
   ) {}
   ngOnInit() {
@@ -415,14 +419,27 @@ export class WizardComponent implements OnInit, OnDestroy {
     const selectedClass = this.store.selectedClass();
     if (!selectedClass) return [];
     const draft = this.store.draft();
-    return activeClassFeatureChoices(selectedClass, draft.level, draft.subclassId).flatMap(
-      (choice) => {
-        const selected = new Set(draft.classFeatureChoices?.[choice.id] ?? []);
-        return choice.options
-          .filter((option) => selected.has(option.id))
-          .map((option) => ({ group: choice.name, ...option }));
-      },
+    return activeClassFeatureChoices(
+      selectedClass,
+      draft.level,
+      draft.subclassId,
+      draft.classFeatureChoices,
+    ).flatMap((choice) => {
+      const selected = new Set(draft.classFeatureChoices?.[choice.id] ?? []);
+      return choice.options
+        .filter((option) => selected.has(option.id))
+        .map((option) => ({ group: choice.name, ...option }));
+    });
+  }
+  get acquiredFeatures() {
+    return acquiredCharacterFeatures(
+      this.store.draft(),
+      this.store.selectedClass(),
+      this.store.selectedAncestry(),
     );
+  }
+  resourceUses(resourceName: string) {
+    return this.acquiredFeatures.filter((feature) => feature.resource === resourceName);
   }
   classFeaturesComplete() {
     const draft = this.store.draft();
@@ -430,6 +447,7 @@ export class WizardComponent implements OnInit, OnDestroy {
       this.store.selectedClass(),
       draft.level,
       draft.subclassId,
+      draft.classFeatureChoices,
     ).every(
       (choice) =>
         (draft.classFeatureChoices?.[choice.id]?.length ?? 0) ===
@@ -1128,6 +1146,7 @@ export class WizardComponent implements OnInit, OnDestroy {
       this.store.selectedClass(),
       draft.level,
       draft.subclassId,
+      draft.classFeatureChoices,
     )) {
       if (choice.effect !== 'skill-proficiency') continue;
       for (const optionId of draft.classFeatureChoices?.[choice.id] ?? []) selected.add(optionId);
@@ -1161,7 +1180,12 @@ export class WizardComponent implements OnInit, OnDestroy {
     this.store.patch(normalizeClassProgression(draft, this.store.selectedClass()));
   }
   setClassFeatureChoices(classFeatureChoices: Record<string, string[]>) {
-    this.store.patch({ classFeatureChoices });
+    this.store.patch(
+      normalizeClassProgression(
+        { ...this.store.draft(), classFeatureChoices },
+        this.store.selectedClass(),
+      ),
+    );
   }
   setLevel(value: string) {
     const level = Number(value),
@@ -1365,9 +1389,11 @@ export class WizardComponent implements OnInit, OnDestroy {
   featAbilitySelection(featId: string): string | null {
     const selected = this.store.draft().featAbilityChoices?.[featId];
     if (!selected) return null;
-    return this.featAbilityOptions(featId).find((label) =>
-      label.startsWith(`${this.abilities.find((ability) => ability.key === selected)?.label} `),
-    ) ?? null;
+    return (
+      this.featAbilityOptions(featId).find((label) =>
+        label.startsWith(`${this.abilities.find((ability) => ability.key === selected)?.label} `),
+      ) ?? null
+    );
   }
   setFeatAbilitySelection(featId: string, label: string | null) {
     const ability = this.abilities.find((item) => label?.startsWith(`${item.label} `));
@@ -1604,7 +1630,18 @@ export class WizardComponent implements OnInit, OnDestroy {
     if (
       item.armorType === 'heavy' &&
       ((draft.classId === 'cleric' &&
-        ['Dominio della Vita', 'Dominio della Guerra'].includes(draft.subclassId)) ||
+        [
+          'Dominio della Vita',
+          'Dominio della Guerra',
+          'Dominio della Natura',
+          'Dominio della Tempesta',
+          'Dominio della Forgia',
+          "Dominio dell'Ordine",
+          'Dominio del Crepuscolo',
+          'Dominio della Solidarietà',
+          'Dominio della Forza',
+          'Dominio dello Zelo',
+        ].includes(draft.subclassId)) ||
         isArtificerSubclass(draft, 'armorer'))
     )
       return true;
@@ -2158,7 +2195,8 @@ export class WizardComponent implements OnInit, OnDestroy {
     this.pdfExporting.set(true);
     this.feedback.info('Compilazione della scheda PDF in corso...', 'Esportazione PDF');
     try {
-      await this.characterSheetPdf.download(this.store.draft());
+      const { CharacterSheetPdfService } = await import('../../core/character-sheet-pdf.service');
+      await this.injector.get(CharacterSheetPdfService).download(this.store.draft());
       this.feedback.success('Scheda PDF compilata e scaricata.');
     } catch {
       this.feedback.error('Non è stato possibile generare la scheda PDF.');
@@ -2171,7 +2209,8 @@ export class WizardComponent implements OnInit, OnDestroy {
     this.spellCardsExporting.set(true);
     this.feedback.info('Creazione delle carte incantesimo in corso...', 'Esportazione PDF');
     try {
-      await this.spellCardsPdf.download(this.store.draft());
+      const { SpellCardsPdfService } = await import('../../core/spell-cards-pdf.service');
+      await this.injector.get(SpellCardsPdfService).download(this.store.draft());
       this.feedback.success('Carte incantesimo ordinate e scaricate.');
     } catch {
       this.feedback.warning('Seleziona almeno un incantesimo prima di creare le carte PDF.');

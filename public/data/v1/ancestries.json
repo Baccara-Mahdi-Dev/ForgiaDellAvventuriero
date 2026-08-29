@@ -15,13 +15,9 @@
     },
     "speed": 9,
     "size": "Media",
-    "languages": [
-      "Comune"
-    ],
+    "languages": ["Comune"],
     "languageChoices": 1,
-    "traits": [
-      "Versatilità umana"
-    ],
+    "traits": ["Versatilità umana"],
     "traitDetails": [
       {
         "name": "Versatilità umana",
@@ -40,14 +36,7 @@
     "speed": 9,
     "size": "Media",
     "flexibleBonusCount": 2,
-    "flexibleBonusOptions": [
-      "str",
-      "dex",
-      "con",
-      "int",
-      "wis",
-      "cha"
-    ],
+    "flexibleBonusOptions": ["str", "dex", "con", "int", "wis", "cha"],
     "skillChoices": 1,
     "skillChoiceOptions": [
       "acrobatics",
@@ -70,15 +59,9 @@
       "performance"
     ],
     "bonusFeat": true,
-    "languages": [
-      "Comune"
-    ],
+    "languages": ["Comune"],
     "languageChoices": 1,
-    "traits": [
-      "Due caratteristiche +1",
-      "Talento bonus",
-      "Competenza versatile"
-    ],
+    "traits": ["Due caratteristiche +1", "Talento bonus", "Competenza versatile"],
     "traitDetails": [
       {
         "name": "Caratteristiche versatili",
@@ -108,30 +91,13 @@
     "speed": 7.5,
     "size": "Media",
     "darkvisionMeters": 18,
-    "resistances": [
-      "Veleno"
-    ],
+    "resistances": ["Veleno"],
     "hitPointsPerLevel": 1,
-    "weaponProficiencies": [
-      "battleaxe",
-      "handaxe",
-      "light-hammer",
-      "warhammer"
-    ],
+    "weaponProficiencies": ["battleaxe", "handaxe", "light-hammer", "warhammer"],
     "toolChoices": 1,
-    "toolOptions": [
-      "Strumenti da fabbro",
-      "Scorte da birraio",
-      "Strumenti da muratore"
-    ],
-    "languages": [
-      "Comune",
-      "Nanico"
-    ],
-    "traits": [
-      "Resilienza nanica",
-      "Tenacia nanica"
-    ],
+    "toolOptions": ["Strumenti da fabbro", "Scorte da birraio", "Strumenti da muratore"],
+    "languages": ["Comune", "Nanico"],
+    "traits": ["Resilienza nanica", "Tenacia nanica"],
     "traitDetails": [
       {
         "name": "Scurovisione",
@@ -177,33 +143,13 @@
     "speed": 7.5,
     "size": "Media",
     "darkvisionMeters": 18,
-    "resistances": [
-      "Veleno"
-    ],
-    "weaponProficiencies": [
-      "battleaxe",
-      "handaxe",
-      "light-hammer",
-      "warhammer"
-    ],
-    "armorProficiencies": [
-      "light",
-      "medium"
-    ],
+    "resistances": ["Veleno"],
+    "weaponProficiencies": ["battleaxe", "handaxe", "light-hammer", "warhammer"],
+    "armorProficiencies": ["light", "medium"],
     "toolChoices": 1,
-    "toolOptions": [
-      "Strumenti da fabbro",
-      "Scorte da birraio",
-      "Strumenti da muratore"
-    ],
-    "languages": [
-      "Comune",
-      "Nanico"
-    ],
-    "traits": [
-      "Resilienza nanica",
-      "Addestramento nelle armature"
-    ],
+    "toolOptions": ["Strumenti da fabbro", "Scorte da birraio", "Strumenti da muratore"],
+    "languages": ["Comune", "Nanico"],
+    "traits": ["Resilienza nanica", "Addestramento nelle armature"],
     "traitDetails": [
       {
         "name": "Scurovisione",
@@ -249,36 +195,20 @@
     "speed": 9,
     "size": "Media",
     "darkvisionMeters": 18,
-    "skillProficiencies": [
-      "perception"
-    ],
-    "weaponProficiencies": [
-      "longsword",
-      "shortsword",
-      "shortbow",
-      "longbow"
-    ],
+    "skillProficiencies": ["perception"],
+    "weaponProficiencies": ["longsword", "shortsword", "shortbow", "longbow"],
     "spellChoices": [
       {
         "id": "high-elf-cantrip",
         "label": "Trucchetto da Mago",
         "count": 1,
         "level": 0,
-        "classes": [
-          "wizard"
-        ]
+        "classes": ["wizard"]
       }
     ],
-    "languages": [
-      "Comune",
-      "Elfico"
-    ],
+    "languages": ["Comune", "Elfico"],
     "languageChoices": 1,
-    "traits": [
-      "Sensi acuti",
-      "Retaggio fatato",
-      "Trucchetto"
-    ],
+    "traits": ["Sensi acuti", "Retaggio fatato", "Trucchetto"],
     "traitDetails": [
       {
         "name": "Scurovisione",
@@ -320,24 +250,10 @@
     "speed": 10.5,
     "size": "Media",
     "darkvisionMeters": 18,
-    "skillProficiencies": [
-      "perception"
-    ],
-    "weaponProficiencies": [
-      "longsword",
-      "shortsword",
-      "shortbow",
-      "longbow"
-    ],
-    "languages": [
-      "Comune",
-      "Elfico"
-    ],
-    "traits": [
-      "Sensi acuti",
-      "Piede veloce",
-      "Maschera della selva"
-    ],
+    "skillProficiencies": ["perception"],
+    "weaponProficiencies": ["longsword", "shortsword", "shortbow", "longbow"],
+    "languages": ["Comune", "Elfico"],
+    "traits": ["Sensi acuti", "Piede veloce", "Maschera della selva"],
     "traitDetails": [
       {
         "name": "Scurovisione",
@@ -383,14 +299,8 @@
     "speed": 9,
     "size": "Media",
     "darkvisionMeters": 36,
-    "skillProficiencies": [
-      "perception"
-    ],
-    "weaponProficiencies": [
-      "rapier",
-      "shortsword",
-      "hand-crossbow"
-    ],
+    "skillProficiencies": ["perception"],
+    "weaponProficiencies": ["rapier", "shortsword", "hand-crossbow"],
     "spellGrants": [
       {
         "spellId": "dancing-lights",
@@ -407,15 +317,8 @@
         "note": "Una volta per riposo lungo"
       }
     ],
-    "languages": [
-      "Comune",
-      "Elfico"
-    ],
-    "traits": [
-      "Scurovisione superiore",
-      "Sensibilità alla luce",
-      "Magia drow"
-    ],
+    "languages": ["Comune", "Elfico"],
+    "traits": ["Scurovisione superiore", "Sensibilità alla luce", "Magia drow"],
     "traitDetails": [
       {
         "name": "Scurovisione",
@@ -460,15 +363,8 @@
     },
     "speed": 7.5,
     "size": "Piccola",
-    "languages": [
-      "Comune",
-      "Halfling"
-    ],
-    "traits": [
-      "Fortunato",
-      "Coraggioso",
-      "Furtività naturale"
-    ],
+    "languages": ["Comune", "Halfling"],
+    "traits": ["Fortunato", "Coraggioso", "Furtività naturale"],
     "traitDetails": [
       {
         "name": "Fortunato",
@@ -501,18 +397,9 @@
     },
     "speed": 7.5,
     "size": "Piccola",
-    "resistances": [
-      "Veleno"
-    ],
-    "languages": [
-      "Comune",
-      "Halfling"
-    ],
-    "traits": [
-      "Fortunato",
-      "Coraggioso",
-      "Resilienza dei tozzi"
-    ],
+    "resistances": ["Veleno"],
+    "languages": ["Comune", "Halfling"],
+    "traits": ["Fortunato", "Coraggioso", "Resilienza dei tozzi"],
     "traitDetails": [
       {
         "name": "Fortunato",
@@ -545,17 +432,9 @@
     },
     "speed": 9,
     "size": "Media",
-    "resistances": [
-      "Acido"
-    ],
-    "languages": [
-      "Comune",
-      "Draconico"
-    ],
-    "traits": [
-      "Resistenza: Acido",
-      "Soffio: Acido"
-    ],
+    "resistances": ["Acido"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Acido", "Soffio: Acido"],
     "traitDetails": [
       {
         "name": "Resistenza draconica",
@@ -580,17 +459,9 @@
     },
     "speed": 9,
     "size": "Media",
-    "resistances": [
-      "Fulmine"
-    ],
-    "languages": [
-      "Comune",
-      "Draconico"
-    ],
-    "traits": [
-      "Resistenza: Fulmine",
-      "Soffio: Fulmine"
-    ],
+    "resistances": ["Fulmine"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Fulmine", "Soffio: Fulmine"],
     "traitDetails": [
       {
         "name": "Resistenza draconica",
@@ -615,17 +486,9 @@
     },
     "speed": 9,
     "size": "Media",
-    "resistances": [
-      "Fuoco"
-    ],
-    "languages": [
-      "Comune",
-      "Draconico"
-    ],
-    "traits": [
-      "Resistenza: Fuoco",
-      "Soffio: Fuoco"
-    ],
+    "resistances": ["Fuoco"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Fuoco", "Soffio: Fuoco"],
     "traitDetails": [
       {
         "name": "Resistenza draconica",
@@ -650,17 +513,9 @@
     },
     "speed": 9,
     "size": "Media",
-    "resistances": [
-      "Fulmine"
-    ],
-    "languages": [
-      "Comune",
-      "Draconico"
-    ],
-    "traits": [
-      "Resistenza: Fulmine",
-      "Soffio: Fulmine"
-    ],
+    "resistances": ["Fulmine"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Fulmine", "Soffio: Fulmine"],
     "traitDetails": [
       {
         "name": "Resistenza draconica",
@@ -685,17 +540,9 @@
     },
     "speed": 9,
     "size": "Media",
-    "resistances": [
-      "Acido"
-    ],
-    "languages": [
-      "Comune",
-      "Draconico"
-    ],
-    "traits": [
-      "Resistenza: Acido",
-      "Soffio: Acido"
-    ],
+    "resistances": ["Acido"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Acido", "Soffio: Acido"],
     "traitDetails": [
       {
         "name": "Resistenza draconica",
@@ -720,17 +567,9 @@
     },
     "speed": 9,
     "size": "Media",
-    "resistances": [
-      "Fuoco"
-    ],
-    "languages": [
-      "Comune",
-      "Draconico"
-    ],
-    "traits": [
-      "Resistenza: Fuoco",
-      "Soffio: Fuoco"
-    ],
+    "resistances": ["Fuoco"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Fuoco", "Soffio: Fuoco"],
     "traitDetails": [
       {
         "name": "Resistenza draconica",
@@ -755,17 +594,9 @@
     },
     "speed": 9,
     "size": "Media",
-    "resistances": [
-      "Veleno"
-    ],
-    "languages": [
-      "Comune",
-      "Draconico"
-    ],
-    "traits": [
-      "Resistenza: Veleno",
-      "Soffio: Veleno"
-    ],
+    "resistances": ["Veleno"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Veleno", "Soffio: Veleno"],
     "traitDetails": [
       {
         "name": "Resistenza draconica",
@@ -790,17 +621,9 @@
     },
     "speed": 9,
     "size": "Media",
-    "resistances": [
-      "Fuoco"
-    ],
-    "languages": [
-      "Comune",
-      "Draconico"
-    ],
-    "traits": [
-      "Resistenza: Fuoco",
-      "Soffio: Fuoco"
-    ],
+    "resistances": ["Fuoco"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Fuoco", "Soffio: Fuoco"],
     "traitDetails": [
       {
         "name": "Resistenza draconica",
@@ -825,17 +648,9 @@
     },
     "speed": 9,
     "size": "Media",
-    "resistances": [
-      "Freddo"
-    ],
-    "languages": [
-      "Comune",
-      "Draconico"
-    ],
-    "traits": [
-      "Resistenza: Freddo",
-      "Soffio: Freddo"
-    ],
+    "resistances": ["Freddo"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Freddo", "Soffio: Freddo"],
     "traitDetails": [
       {
         "name": "Resistenza draconica",
@@ -860,17 +675,9 @@
     },
     "speed": 9,
     "size": "Media",
-    "resistances": [
-      "Freddo"
-    ],
-    "languages": [
-      "Comune",
-      "Draconico"
-    ],
-    "traits": [
-      "Resistenza: Freddo",
-      "Soffio: Freddo"
-    ],
+    "resistances": ["Freddo"],
+    "languages": ["Comune", "Draconico"],
+    "traits": ["Resistenza: Freddo", "Soffio: Freddo"],
     "traitDetails": [
       {
         "name": "Resistenza draconica",
@@ -902,15 +709,8 @@
         "minLevel": 1
       }
     ],
-    "languages": [
-      "Comune",
-      "Gnomesco"
-    ],
-    "traits": [
-      "Astuzia gnomesca",
-      "Illusionista naturale",
-      "Parlare con piccole bestie"
-    ],
+    "languages": ["Comune", "Gnomesco"],
+    "traits": ["Astuzia gnomesca", "Illusionista naturale", "Parlare con piccole bestie"],
     "traitDetails": [
       {
         "name": "Scurovisione",
@@ -944,18 +744,9 @@
     "speed": 7.5,
     "size": "Piccola",
     "darkvisionMeters": 18,
-    "tools": [
-      "Strumenti da inventore"
-    ],
-    "languages": [
-      "Comune",
-      "Gnomesco"
-    ],
-    "traits": [
-      "Astuzia gnomesca",
-      "Sapienza artefice",
-      "Inventore"
-    ],
+    "tools": ["Strumenti da inventore"],
+    "languages": ["Comune", "Gnomesco"],
+    "traits": ["Astuzia gnomesca", "Sapienza artefice", "Inventore"],
     "traitDetails": [
       {
         "name": "Scurovisione",
@@ -988,13 +779,7 @@
     "speed": 9,
     "size": "Media",
     "flexibleBonusCount": 2,
-    "flexibleBonusOptions": [
-      "str",
-      "dex",
-      "con",
-      "int",
-      "wis"
-    ],
+    "flexibleBonusOptions": ["str", "dex", "con", "int", "wis"],
     "skillChoices": 2,
     "skillChoiceOptions": [
       "acrobatics",
@@ -1016,16 +801,9 @@
       "history",
       "performance"
     ],
-    "languages": [
-      "Comune",
-      "Elfico"
-    ],
+    "languages": ["Comune", "Elfico"],
     "languageChoices": 1,
-    "traits": [
-      "Scurovisione",
-      "Retaggio fatato",
-      "Versatilità nelle abilità"
-    ],
+    "traits": ["Scurovisione", "Retaggio fatato", "Versatilità nelle abilità"],
     "traitDetails": [
       {
         "name": "Scurovisione",
@@ -1059,18 +837,9 @@
     "speed": 9,
     "size": "Media",
     "darkvisionMeters": 18,
-    "skillProficiencies": [
-      "intimidation"
-    ],
-    "languages": [
-      "Comune",
-      "Orchesco"
-    ],
-    "traits": [
-      "Minaccioso",
-      "Tenacia implacabile",
-      "Attacchi selvaggi"
-    ],
+    "skillProficiencies": ["intimidation"],
+    "languages": ["Comune", "Orchesco"],
+    "traits": ["Minaccioso", "Tenacia implacabile", "Attacchi selvaggi"],
     "traitDetails": [
       {
         "name": "Scurovisione",
@@ -1104,9 +873,7 @@
     "speed": 9,
     "size": "Media",
     "darkvisionMeters": 18,
-    "resistances": [
-      "Fuoco"
-    ],
+    "resistances": ["Fuoco"],
     "spellGrants": [
       {
         "spellId": "thaumaturgy",
@@ -1123,15 +890,8 @@
         "note": "Una volta per riposo lungo"
       }
     ],
-    "languages": [
-      "Comune",
-      "Infernale"
-    ],
-    "traits": [
-      "Scurovisione",
-      "Resistenza infernale",
-      "Eredità infernale"
-    ],
+    "languages": ["Comune", "Infernale"],
+    "traits": ["Scurovisione", "Resistenza infernale", "Eredità infernale"],
     "traitDetails": [
       {
         "name": "Scurovisione",
@@ -1158,14 +918,7 @@
       "con": 2
     },
     "flexibleBonusCount": 1,
-    "flexibleBonusOptions": [
-      "str",
-      "dex",
-      "con",
-      "int",
-      "wis",
-      "cha"
-    ],
+    "flexibleBonusOptions": ["str", "dex", "con", "int", "wis", "cha"],
     "speed": 9,
     "size": "Media",
     "darkvisionMeters": 0,
@@ -1210,13 +963,9 @@
       "Strumenti da tessitore",
       "Strumenti da intagliatore"
     ],
-    "languages": [
-      "Comune"
-    ],
+    "languages": ["Comune"],
     "languageChoices": 1,
-    "resistances": [
-      "Veleno"
-    ],
+    "resistances": ["Veleno"],
     "armorClassBonus": 1,
     "traits": [
       "Resilienza Costruttiva",
@@ -1253,30 +1002,14 @@
     "bonuses": {},
     "flexibleBonusCount": 1,
     "flexibleBonusAmount": 2,
-    "flexibleBonusOptions": [
-      "str",
-      "dex",
-      "con",
-      "int",
-      "wis",
-      "cha"
-    ],
+    "flexibleBonusOptions": ["str", "dex", "con", "int", "wis", "cha"],
     "speed": 9,
     "size": "Media",
-    "sizeOptions": [
-      "Piccola",
-      "Media"
-    ],
+    "sizeOptions": ["Piccola", "Media"],
     "bonusFeat": true,
-    "languages": [
-      "Comune"
-    ],
+    "languages": ["Comune"],
     "languageChoices": 1,
-    "traits": [
-      "Talento bonus",
-      "Taglia variabile",
-      "Tratto variabile"
-    ],
+    "traits": ["Talento bonus", "Taglia variabile", "Tratto variabile"],
     "traitChoices": [
       {
         "id": "darkvision",
@@ -1290,5 +1023,268 @@
       }
     ],
     "isHidden": true
+  },
+  {
+    "id": "kenku",
+    "name": "Kenku",
+    "race": "Kenku",
+    "description": "Agile, furtivo e maestro nell'imitazione e nella contraffazione.",
+    "source": "MPMM",
+    "bonuses": {
+      "dex": 2,
+      "wis": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "skillChoices": 2,
+    "skillChoiceOptions": ["acrobatics", "deception", "stealth", "sleight-of-hand"],
+    "languages": ["Comune", "Auran"],
+    "traits": ["Esperto contraffattore", "Addestramento kenku", "Mimesi"],
+    "traitDetails": [
+      {
+        "name": "Esperto contraffattore",
+        "effect": "Puoi duplicare la calligrafia e i lavori artigianali di altre creature. Hai vantaggio a tutte le prove effettuate per creare contraffazioni o duplicati di oggetti esistenti."
+      },
+      {
+        "name": "Addestramento kenku",
+        "effect": "Ottieni competenza in due abilità a scelta tra Acrobazia, Inganno, Furtività e Rapidità di Mano."
+      },
+      {
+        "name": "Mimesi",
+        "effect": "Puoi imitare suoni che hai udito, comprese le voci. Una creatura che ascolta i suoni che produci può riconoscere che sono imitazioni superando una prova di Saggezza (Intuizione) contrapposta alla tua prova di Carisma (Inganno)."
+      }
+    ]
+  },
+  {
+    "id": "goliath",
+    "name": "Goliath",
+    "race": "Goliath",
+    "description": "Imponente e resistente, abituato alle alte montagne e capace di sopportare ferite devastanti.",
+    "source": "EEPC",
+    "bonuses": {
+      "str": 2,
+      "con": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "skillProficiencies": ["athletics"],
+    "resistances": ["Freddo"],
+    "languages": ["Comune", "Gigante"],
+    "traits": [
+      "Atleta naturale",
+      "Resistenza della pietra",
+      "Corporatura possente",
+      "Nato tra le montagne"
+    ],
+    "traitDetails": [
+      {
+        "name": "Atleta naturale",
+        "effect": "Ottieni competenza nell'abilità Atletica."
+      },
+      {
+        "name": "Resistenza della pietra",
+        "effect": "Quando subisci danni, puoi usare la tua reazione per tirare 1d12 e aggiungere il tuo modificatore di Costituzione al risultato, riducendo i danni subiti di quel totale. Dopo aver usato questo tratto, non puoi usarlo di nuovo finché non completi un riposo breve o lungo."
+      },
+      {
+        "name": "Corporatura possente",
+        "effect": "Sei considerato di una taglia superiore quando determini la tua capacità di trasporto e il peso che puoi spingere, trascinare o sollevare."
+      },
+      {
+        "name": "Nato tra le montagne",
+        "effect": "Hai resistenza ai danni da freddo e sei acclimatato alle alte altitudini, comprese quelle superiori a 6.000 metri."
+      }
+    ]
+  },
+  {
+    "id": "kalashtar",
+    "name": "Kalashtar",
+    "race": "Kalashtar",
+    "description": "Legato a uno spirito ultraterreno, dotato di disciplina mentale e capacità telepatiche.",
+    "source": "ERLW",
+    "bonuses": {
+      "wis": 2,
+      "cha": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "resistances": ["Psichico"],
+    "languages": ["Comune", "Quori"],
+    "languageChoices": 1,
+    "traits": ["Mente doppia", "Disciplina mentale", "Legame mentale", "Separato dai sogni"],
+    "traitDetails": [
+      {
+        "name": "Mente doppia",
+        "effect": "Hai vantaggio a tutti i tiri salvezza di Saggezza."
+      },
+      {
+        "name": "Disciplina mentale",
+        "effect": "Hai resistenza ai danni psichici."
+      },
+      {
+        "name": "Legame mentale",
+        "effect": "Puoi parlare telepaticamente con qualsiasi creatura tu possa vedere, purché si trovi entro una distanza in metri pari a 3 × il tuo livello. Non è necessario condividere una lingua con la creatura, ma essa deve essere in grado di comprendere almeno una lingua. Usando un'azione, puoi permettere a una creatura di comunicare telepaticamente con te per 1 ora o finché non termini l'effetto come azione. Puoi concedere questo beneficio a una sola creatura alla volta."
+      },
+      {
+        "name": "Separato dai sogni",
+        "effect": "Sei immune agli incantesimi e agli effetti magici che richiedono di sognare, come l'incantesimo Sogno. Questa immunità non si applica agli incantesimi e agli effetti che fanno addormentare, come Sonno."
+      }
+    ]
+  },
+  {
+    "id": "dhampir",
+    "name": "Dhampir",
+    "race": "Dhampir",
+    "description": "Un lignaggio predatorio dotato di sensi oscuri, capacità di arrampicarsi e un morso vampirico.",
+    "source": "VRGR",
+    "bonuses": {},
+    "flexibleBonusCount": 1,
+    "flexibleBonusAmount": 2,
+    "flexibleBonusOptions": ["str", "dex", "con", "int", "wis", "cha"],
+    "speed": 10.5,
+    "size": "Media",
+    "sizeOptions": ["Piccola", "Media"],
+    "darkvisionMeters": 18,
+    "skillChoices": 2,
+    "skillChoiceOptions": [
+      "acrobatics",
+      "animal-handling",
+      "arcana",
+      "athletics",
+      "deception",
+      "history",
+      "insight",
+      "intimidation",
+      "investigation",
+      "medicine",
+      "nature",
+      "perception",
+      "performance",
+      "persuasion",
+      "religion",
+      "sleight-of-hand",
+      "stealth",
+      "survival"
+    ],
+    "languages": ["Comune"],
+    "languageChoices": 1,
+    "resistances": [],
+    "traits": [
+      "Eredità ancestrale",
+      "Scurovisione",
+      "Natura senza morte",
+      "Scalata del ragno",
+      "Morso vampirico"
+    ],
+    "traitDetails": [
+      {
+        "name": "Eredità ancestrale",
+        "effect": "Se sostituisci una razza con questo lignaggio, puoi mantenere le competenze nelle abilità e le velocità di scalata, volo o nuoto ottenute dalla razza precedente. Se non mantieni nessuno di questi elementi, o scegli questo lignaggio alla creazione del personaggio, ottieni competenza in due abilità a scelta."
+      },
+      {
+        "name": "Scurovisione",
+        "effect": "Vedi nella luce fioca entro 18 m come se fosse luce intensa e nell'oscurità come se fosse luce fioca. Nell'oscurità distingui i colori solo come tonalità di grigio."
+      },
+      {
+        "name": "Natura senza morte",
+        "effect": "Non hai bisogno di respirare."
+      },
+      {
+        "name": "Scalata del ragno",
+        "effect": "Hai una velocità di scalata pari alla tua velocità di camminata. Dal 3° livello puoi muoverti su, giù e attraverso superfici verticali e a testa in giù lungo i soffitti, mantenendo le mani libere."
+      },
+      {
+        "name": "Morso vampirico",
+        "effect": "Il tuo morso zannuto è un'arma naturale con cui sei competente e conta come arma semplice da mischia. Usi il modificatore di Costituzione, invece di quello di Forza, ai tiri per colpire e ai danni. Infligge 1d4 danni perforanti. Quando hai metà o meno dei tuoi punti ferita, hai vantaggio ai tiri per colpire effettuati con questo morso. Quando colpisci con il morso una creatura che non sia un Costrutto o un Non Morto, puoi potenziarti in uno dei seguenti modi: recuperi punti ferita pari ai danni perforanti inflitti oppure ottieni un bonus alla prossima prova di caratteristica o tiro per colpire pari ai danni perforanti inflitti. Puoi potenziarti con questo morso un numero di volte pari al tuo bonus di competenza e recuperi tutti gli usi al termine di un riposo lungo."
+      }
+    ]
+  },
+  {
+    "id": "goblin",
+    "name": "Goblin",
+    "race": "Goblin",
+    "description": "Piccolo, rapido e opportunista, capace di sfruttare la propria taglia contro avversari più grandi.",
+    "source": "MPMM",
+    "bonuses": {
+      "dex": 2,
+      "con": 1
+    },
+    "speed": 9,
+    "size": "Piccola",
+    "darkvisionMeters": 18,
+    "languages": ["Comune", "Goblin"],
+    "traits": ["Scurovisione", "Furia del piccolo", "Fuga agile"],
+    "traitDetails": [
+      {
+        "name": "Scurovisione",
+        "effect": "Vedi nella luce fioca entro 18 m come se fosse luce intensa e nell'oscurità come se fosse luce fioca. Nell'oscurità distingui solo tonalità di grigio."
+      },
+      {
+        "name": "Furia del piccolo",
+        "effect": "Quando infliggi danni a una creatura con un attacco o un incantesimo e la sua taglia è superiore alla tua, puoi infliggere danni extra pari al tuo livello. Dopo aver usato questo tratto, non puoi usarlo di nuovo finché non completi un riposo breve o lungo."
+      },
+      {
+        "name": "Fuga agile",
+        "effect": "Puoi effettuare l'azione Disimpegno o Nascondersi come azione bonus durante ciascuno dei tuoi turni."
+      }
+    ]
+  },
+  {
+    "id": "yuan-ti",
+    "name": "Yuan-ti",
+    "race": "Yuan-ti",
+    "description": "Retaggio serpentino dotato di resistenza al veleno e alla magia, oltre a innate capacità magiche.",
+    "source": "MPMM",
+    "bonuses": {
+      "cha": 2,
+      "int": 1
+    },
+    "speed": 9,
+    "size": "Media",
+    "sizeOptions": ["Piccola", "Media"],
+    "darkvisionMeters": 18,
+    "resistances": ["Veleno"],
+    "languages": ["Comune"],
+    "languageChoices": 1,
+    "spellGrants": [
+      {
+        "spellId": "poison-spray",
+        "minLevel": 1
+      },
+      {
+        "spellId": "animal-friendship",
+        "minLevel": 1,
+        "note": "Utilizzabile senza limite, ma può avere come bersaglio soltanto serpenti"
+      },
+      {
+        "spellId": "suggestion",
+        "minLevel": 3,
+        "note": "Una volta per riposo lungo; può essere lanciato anche usando slot di 2° livello o superiore"
+      }
+    ],
+    "spellcastingAbilityChoice": ["int", "wis", "cha"],
+    "traits": [
+      "Scurovisione",
+      "Resistenza alla magia",
+      "Resilienza al veleno",
+      "Incantatore serpentino"
+    ],
+    "traitDetails": [
+      {
+        "name": "Scurovisione",
+        "effect": "Vedi nella luce fioca entro 18 m come se fosse luce intensa e nell'oscurità come se fosse luce fioca. Nell'oscurità distingui i colori solo come tonalità di grigio."
+      },
+      {
+        "name": "Resistenza alla magia",
+        "effect": "Hai vantaggio ai tiri salvezza contro gli incantesimi."
+      },
+      {
+        "name": "Resilienza al veleno",
+        "effect": "Hai vantaggio ai tiri salvezza effettuati per evitare o terminare la condizione avvelenato e hai resistenza ai danni da veleno."
+      },
+      {
+        "name": "Incantatore serpentino",
+        "effect": "Conosci il trucchetto Spruzzo Velenoso. Puoi lanciare Amicizia con gli Animali senza limite tramite questo tratto, ma puoi bersagliare soltanto serpenti. Dal 3° livello puoi anche lanciare Suggestione una volta per riposo lungo e puoi utilizzare gli slot incantesimo di 2° livello o superiore per lanciarlo. Scegli Intelligenza, Saggezza o Carisma come caratteristica da incantatore per questi incantesimi."
+      }
+    ]
   }
 ]

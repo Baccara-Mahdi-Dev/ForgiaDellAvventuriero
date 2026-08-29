@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
     }
   }
   async removeAll(event: Event) {
-    event.stopPropagation(); 
+    event.stopPropagation();
     if (await this.feedback.confirmDelete('', 'Vuoi dire addio a tutti i tuoi avventurieri?')) {
       const cs: CharacterDraft[] = this.characters();
       cs.forEach((c: CharacterDraft) => this.rmpg(c));

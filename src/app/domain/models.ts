@@ -31,7 +31,7 @@ export interface OptionItem {
   id: string;
   name: string;
   description: string;
-  source: 'PHB' | 'XGE' | 'TCE' | 'WGE' | 'SRD';
+  source: 'PHB' | 'XGE' | 'TCE' | 'WGE' | 'PSA' | 'SCAG' | 'SRD';
 }
 export interface Ancestry extends OptionItem {
   race: string;
@@ -92,8 +92,11 @@ export interface CharacterClass extends OptionItem {
   armorProficiencies?: ArmorType[];
   weaponProficiencies?: string[];
   caster?: 'full' | 'half';
+  classProgression?: ClassFeatureDetail[];
   featureChoices?: ClassFeatureChoice[];
   subclassFeatures?: SubclassFeatureChoices[];
+  subclassProgressions?: SubclassProgression[];
+  subclassSpellLists?: SubclassSpellList[];
   isHidden?: boolean;
 }
 export interface Subclass extends OptionItem {
@@ -105,6 +108,19 @@ export interface ClassFeatureOption {
   name: string;
   description: string;
   kind?: 'skill' | 'tool';
+  minLevel?: number;
+  requiresSelection?: { choiceId: string; optionId: string };
+  activations?: FeatureActivation[];
+  resource?: string;
+  resourceCost?: string;
+}
+
+export type FeatureActivation = 'action' | 'bonus-action' | 'reaction' | 'passive' | 'special';
+
+export interface SubclassSpellList {
+  subclassId: string;
+  spellIds: string[];
+  requiresSelection?: { choiceId: string; optionId: string };
 }
 
 export interface ClassFeatureChoice {
@@ -114,12 +130,41 @@ export interface ClassFeatureChoice {
   minLevel: number;
   countByLevel: { level: number; count: number }[];
   options: ClassFeatureOption[];
-  effect?: 'skill-proficiency' | 'skill-expertise' | 'tool-proficiency';
+  effect?:
+    | 'skill-proficiency'
+    | 'skill-expertise'
+    | 'skill-proficiency-expertise'
+    | 'tool-proficiency'
+    | 'weapon-proficiency'
+    | 'spell-grant';
   requiresProficiency?: boolean;
+  requiresKnownSpell?: boolean;
+  requiresSelection?: { choiceId: string; optionId: string };
+  /** Permette alla stessa opzione di occupare più slot quando la regola lo prevede. */
+  repeatable?: boolean;
+  /** Impedisce di riutilizzare opzioni già scelte nei gruppi indicati. */
+  exclusiveWithChoices?: string[];
 }
 export interface SubclassFeatureChoices {
   subclassId: string;
   choices: ClassFeatureChoice[];
+}
+export interface ClassFeatureDetail {
+  level: number;
+  name: string;
+  description: string;
+  activations?: FeatureActivation[];
+  resource?: string;
+  resourceCost?: string;
+  uses?: string;
+  recovery?: string;
+}
+export interface SubclassFeatureDetail extends ClassFeatureDetail {}
+export interface SubclassProgression {
+  subclassId: string;
+  sourceBook: 'PHB' | 'XGE' | 'TCE' | 'PSA' | 'SCAG' | 'EGW';
+  sourcePages: { from: number; to: number };
+  features: SubclassFeatureDetail[];
 }
 export type ArmorType = 'clothing' | 'light' | 'medium' | 'heavy' | 'shield';
 export type EquipmentCategory = 'armor' | 'weapon' | 'adventuring-gear' | 'artisan-tool';
@@ -356,6 +401,11 @@ export interface ClassResource {
   name: string;
   value: string;
   detail?: string;
+}
+export interface CharacterFeature extends ClassFeatureDetail {
+  id: string;
+  sourceType: 'class' | 'subclass' | 'ancestry' | 'choice';
+  sourceName: string;
 }
 export interface CharacterDraft {
   schemaVersion: 1;

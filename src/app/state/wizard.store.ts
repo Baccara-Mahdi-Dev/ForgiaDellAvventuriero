@@ -14,11 +14,10 @@ import {
   pointBuyCost,
   subclassSpellcastingProfile,
 } from '../domain/rules';
-import { normalizeClassProgression } from '../domain/class-progression';
+import { activeClassFeatureChoices, normalizeClassProgression } from '../domain/class-progression';
 import { attunementLimit } from '../domain/artificer-rules';
 import { normalizeHomebrewEquipment } from '../domain/homebrew-equipment';
 import { AbilityMethod } from '../models/enum/ability-method';
-
 
 const base = () => ({ str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 }) as const;
 
@@ -60,19 +59,38 @@ export class WizardStore {
       draft.level,
     );
     const spellClassId = subclassCaster?.spellClassId ?? draft.classId;
+    const divineSoul = draft.classId === 'sorcerer' && draft.subclassId === 'Anima Divina';
+    const klass = this.classes.find((item) => item.id === draft.classId);
+    const expandedSpellIds = new Set(
+      (klass?.subclassSpellLists ?? [])
+        .filter(
+          (list) =>
+            list.subclassId === draft.subclassId &&
+            (!list.requiresSelection ||
+              (draft.classFeatureChoices?.[list.requiresSelection.choiceId] ?? []).includes(
+                list.requiresSelection.optionId,
+              )),
+        )
+        .flatMap((list) => list.spellIds),
+    );
     const granted = new Set([
       ...this.fixedGrantedSpellIds(),
       ...this.activeGrantedSpellChoiceIds(),
     ]);
     return this.spells.filter(
       (spell) =>
-        spell.classes.includes(spellClassId) && spell.level <= maxLevel && !granted.has(spell.id),
+        (spell.classes.includes(spellClassId) ||
+          expandedSpellIds.has(spell.id) ||
+          (divineSoul && spell.classes.includes('cleric'))) &&
+        spell.level <= maxLevel &&
+        !granted.has(spell.id),
     );
   });
   readonly fixedGrantedSpellIds = computed(() => {
     const draft = this.draft();
     const ancestry = this.ancestries.find((item) => item.id === draft.ancestryId);
     const feats = this.feats.filter((item) => draft.featIds.includes(item.id));
+    const klass = this.classes.find((item) => item.id === draft.classId);
     const ids = [
       ...(ancestry?.spellGrants ?? []),
       ...feats.flatMap((feat) => feat.spellGrants ?? []),
@@ -80,6 +98,14 @@ export class WizardStore {
       .filter((grant) => grant.minLevel <= draft.level)
       .map((grant) => grant.spellId);
     ids.push(
+      ...activeClassFeatureChoices(
+        klass,
+        draft.level,
+        draft.subclassId,
+        draft.classFeatureChoices,
+      ).flatMap((choice) =>
+        choice.effect === 'spell-grant' ? (draft.classFeatureChoices?.[choice.id] ?? []) : [],
+      ),
       ...this.spells
         .filter((spell) =>
           spell.subclassGrants?.some(
@@ -163,27 +189,29 @@ export class WizardStore {
   }
   toggleSpell(id: string): void {
     const selected = this.draft().spellIds;
+    const spellIds = selected.includes(id)
+      ? selected.filter((item) => item !== id)
+      : [...selected, id];
     this.patch({
-      spellIds: selected.includes(id) ? selected.filter((item) => item !== id) : [...selected, id],
+      spellIds,
+      ...normalizeClassProgression({ ...this.draft(), spellIds }, this.selectedClass()),
     });
   }
-  randomPoint(abilityMethod:AbilityMethod){
+  randomPoint(abilityMethod: AbilityMethod) {
     switch (abilityMethod) {
-      case AbilityMethod.POINT:        
+      case AbilityMethod.POINT:
         this.randomPointBuy();
-      break;
+        break;
       default:
         this.scramblePoints();
-      break;    
+        break;
     }
   }
   private scramblePoints(): void {
     const scores = { ...base() } as Record<AbilityKey, number>,
-    keys = Object.keys(scores) as AbilityKey[];
+      keys = Object.keys(scores) as AbilityKey[];
     for (const key of keys) {
-      const rolls = Array.from({ length: 4 }, () =>
-        Math.floor(Math.random() * 6) + 1
-      );
+      const rolls = Array.from({ length: 4 }, () => Math.floor(Math.random() * 6) + 1);
       rolls.sort((a, b) => a - b);
       scores[key] = rolls.slice(1).reduce((sum, roll) => sum + roll, 0);
     }
@@ -204,11 +232,10 @@ export class WizardStore {
     }
     this.patch({ abilities: scores });
   }
-  resetAll():void{
-    const
-      scores:Record<AbilityKey, number> = { ...base() } as Record<AbilityKey, number>,
-      keys:AbilityKey[] = Object.keys(scores) as AbilityKey[];
-    keys.forEach( (k) => this.setAbility(k, 8) );
+  resetAll(): void {
+    const scores: Record<AbilityKey, number> = { ...base() } as Record<AbilityKey, number>,
+      keys: AbilityKey[] = Object.keys(scores) as AbilityKey[];
+    keys.forEach((k) => this.setAbility(k, 8));
   }
   exportJson(): void {
     const blob = new Blob([JSON.stringify(this.draft(), null, 2)], { type: 'application/json' }),

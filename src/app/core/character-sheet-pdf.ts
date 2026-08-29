@@ -8,7 +8,7 @@ import {
   EquippedWeapon,
   Spell,
 } from '../domain/models';
-import { activeClassFeatureChoices } from '../domain/class-progression';
+import { acquiredCharacterFeatures, activeClassFeatureChoices } from '../domain/class-progression';
 import { derive, spellSlots } from '../domain/rules';
 import { asSpell } from '../domain/homebrew-spell';
 import {
@@ -387,6 +387,15 @@ export function characterSpells(draft: CharacterDraft, catalog: CatalogData): Sp
   const ancestry = catalog.ancestries.find((item) => item.id === draft.ancestryId);
   const feats = catalog.feats.filter((item) => draft.featIds.includes(item.id));
   const ids = new Set(draft.spellIds);
+  const klass = catalog.classes.find((item) => item.id === draft.classId);
+  for (const choice of activeClassFeatureChoices(
+    klass,
+    draft.level,
+    draft.subclassId,
+    draft.classFeatureChoices,
+  ))
+    if (choice.effect === 'spell-grant')
+      for (const spellId of draft.classFeatureChoices?.[choice.id] ?? []) ids.add(spellId);
   for (const grant of [
     ...(ancestry?.spellGrants ?? []),
     ...feats.flatMap((feat) => feat.spellGrants ?? []),
@@ -428,12 +437,13 @@ export function characterSpells(draft: CharacterDraft, catalog: CatalogData): Sp
 }
 function selectedClassFeatures(draft: CharacterDraft, catalog: CatalogData): string[] {
   const klass = catalog.classes.find((item) => item.id === draft.classId);
-  return activeClassFeatureChoices(klass, draft.level, draft.subclassId).flatMap((choice) => {
-    const selected = new Set(draft.classFeatureChoices?.[choice.id] ?? []);
-    return choice.options
-      .filter((option) => selected.has(option.id))
-      .map((option) => `${choice.name}: ${option.name} - ${option.description}`);
-  });
+  const ancestry = catalog.ancestries.find((item) => item.id === draft.ancestryId);
+  return acquiredCharacterFeatures(draft, klass, ancestry)
+    .filter((feature) => feature.sourceType !== 'ancestry')
+    .map(
+      (feature) =>
+        `${feature.name}: ${feature.description}${feature.resource ? ` [${feature.resource}${feature.resourceCost ? `: ${feature.resourceCost}` : ''}]` : ''}`,
+    );
 }
 function inventoryLines(draft: CharacterDraft, catalog: CatalogData): string[] {
   const equipment = [...catalog.equipment, ...(draft.homebrewEquipment ?? [])];

@@ -1,6 +1,6 @@
 # Forgia dell'avventuriero
 
-PWA offline per creare personaggi monoclasse compatibili con D&D 5e 2014. Il progetto usa Angular 21 standalone e zoneless, Taiga UI, Tailwind CSS, Signals, RxJS e Dexie/IndexedDB.
+PWA offline per creare personaggi monoclasse compatibili con D&D 5e 2014. Il progetto usa Angular 21 standalone e zoneless, Taiga UI,  Signals, RxJS e Dexie/IndexedDB.
 
 ## Avvio
 
