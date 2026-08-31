@@ -708,7 +708,11 @@ export function classResources(
 export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCharacter {
   const ancestry = catalog.ancestries.find((x) => x.id === draft.ancestryId),
     klass = catalog.classes.find((x) => x.id === draft.classId),
-    background = catalog.backgrounds.find((x) => x.id === draft.backgroundId),
+    backgroundMode = draft.backgroundSelectionMode ?? 'catalog',
+    background =
+      backgroundMode === 'catalog'
+        ? catalog.backgrounds.find((x) => x.id === draft.backgroundId)
+        : undefined,
     finalAbilities = {} as AbilityScores,
     featEffects = featEffectTotals(draft, catalog),
     equipmentEffects = activeEquipmentEffects(draft, catalog.equipment),
@@ -793,6 +797,12 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
         : equippedArmor?.dexterityBonus === 'max-2'
           ? Math.min(2, modifiers.dex)
           : modifiers.dex,
+    unarmoredDefenseModifier =
+      draft.classId === 'barbarian' &&
+      draft.level >= 1 &&
+      (!equippedArmor || equippedArmor.armorType === 'clothing')
+        ? modifiers.con
+        : 0,
     equippedShield = catalog.equipment.find(
       (item) => item.id === (draft.equippedShieldId ?? (draft.shieldEquipped ? 'shield' : '')),
     ),
@@ -881,6 +891,7 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
       ...(draft.classSkillProficiencies ?? []),
       ...(draft.ancestrySkillProficiencies ?? []),
       ...(ancestry?.skillProficiencies ?? []),
+      ...(backgroundMode === 'homebrew' ? (draft.homebrewBackgroundSkills ?? []) : []),
       ...selectedFeatureSkillIds,
       ...featEffects.skillProficiencyIds,
       ...fixedSubclassSkillIds,
@@ -934,6 +945,7 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
       ...(ancestry?.languages ?? []),
       ...(background?.languages ?? []),
       ...(draft.customLanguages ?? []),
+      ...(backgroundMode === 'homebrew' ? (draft.homebrewBackgroundLanguages ?? []) : []),
       ...featEffects.languageProficiencies,
     ].filter((value, index, all) => value && all.indexOf(value) === index),
     classTools = classToolProficiencies(draft, klass),
@@ -943,7 +955,9 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
       ...(background?.tools ?? []),
       ...classTools,
       ...featEffects.toolProficiencies,
-      ...(draft.customTools ?? []),
+      ...(backgroundMode === 'catalog'
+        ? (draft.customTools ?? [])
+        : (draft.homebrewBackgroundTools ?? [])),
     ].filter((value, index, all) => value && all.indexOf(value) === index);
   return {
     finalAbilities,
@@ -954,7 +968,13 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
       : undefined,
     proficiency: pb,
     armorClass:
-      armorBase + armorDex + shieldBonus + armorMagicBonus + shieldMagicBonus + armorClassBonus,
+      armorBase +
+      armorDex +
+      unarmoredDefenseModifier +
+      shieldBonus +
+      armorMagicBonus +
+      shieldMagicBonus +
+      armorClassBonus,
     initiative: modifiers.dex + featEffects.initiativeBonus + initiativeBonus,
     maxHp: klass
       ? maximumHp(
@@ -987,6 +1007,7 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
     armorProficiencies: [
       ...new Set([
         ...(klass?.armorProficiencies ?? []),
+        ...(ancestry?.armorProficiencies ?? []),
         ...subclassArmorProficiencies,
         ...featEffects.armorProficiencies,
       ]),

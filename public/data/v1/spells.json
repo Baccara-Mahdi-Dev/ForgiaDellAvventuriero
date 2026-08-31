@@ -6,11 +6,7 @@
     "source": "PHB",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "wizard",
-      "artificer",
-      "sorcerer"
-    ],
+    "classes": ["wizard", "artificer", "sorcerer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -33,10 +29,7 @@
     "source": "XGE",
     "level": 8,
     "school": "Necromanzia",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -60,13 +53,7 @@
     "source": "XGE",
     "level": 1,
     "school": "Abiurazione",
-    "classes": [
-      "druid",
-      "ranger",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["druid", "ranger", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -90,9 +77,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -128,11 +113,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Evocazione",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -146,9 +127,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "1d6",
       "type": "acido"
@@ -162,10 +141,7 @@
     "source": "XGE",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -189,11 +165,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "paladin",
-      "artificer"
-    ],
+    "classes": ["cleric", "paladin", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -230,11 +202,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Abiurazione",
-    "classes": [
-      "ranger",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["ranger", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -272,11 +240,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -304,11 +268,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "druid",
-      "ranger"
-    ],
+    "classes": ["bard", "druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -323,9 +283,7 @@
       "amount": 24
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -343,11 +301,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "druid",
-      "ranger"
-    ],
+    "classes": ["bard", "druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -371,9 +325,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Trasmutazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -396,10 +348,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Necromanzia",
-    "classes": [
-      "cleric",
-      "wizard"
-    ],
+    "classes": ["cleric", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -435,12 +384,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -476,9 +420,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Abiurazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -509,10 +451,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "wizard"
-    ],
+    "classes": ["cleric", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -535,10 +474,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Ammaliamento",
-    "classes": [
-      "druid",
-      "wizard"
-    ],
+    "classes": ["druid", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "hour",
@@ -553,9 +489,7 @@
       "amount": 10
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false
   },
   {
@@ -565,10 +499,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Divinazione",
-    "classes": [
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -605,11 +536,7 @@
     "source": "PHB",
     "level": 6,
     "school": "Evocazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -629,10 +556,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -661,10 +585,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Abiurazione",
-    "classes": [
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -686,10 +607,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "wizard"
-    ],
+    "classes": ["bard", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -716,9 +634,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Illusione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -741,9 +657,7 @@
     "source": "PHB",
     "level": 1,
     "school": "Abiurazione",
-    "classes": [
-      "warlock"
-    ],
+    "classes": ["warlock"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -775,9 +689,7 @@
     "source": "PHB",
     "level": 1,
     "school": "Evocazione",
-    "classes": [
-      "warlock"
-    ],
+    "classes": ["warlock"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -809,11 +721,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Necromanzia",
-    "classes": [
-      "cleric",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["cleric", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "hour",
@@ -835,9 +743,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Divinazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -868,9 +774,7 @@
     "source": "PHB",
     "level": 4,
     "school": "Abiurazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -903,10 +807,7 @@
     "source": "PHB",
     "level": 4,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "paladin"
-    ],
+    "classes": ["cleric", "paladin"],
     "description": "Un'aura di 9 metri protegge le creature consenzienti nell'area. Ogni bersaglio è immune alle malattie, alla condizione avvelenato, spaventato, affascinato e stordito e ha vantaggio ai tiri salvezza contro altri effetti debilitanti.",
     "castingTime": {
       "amount": 1,
@@ -949,11 +850,7 @@
     "source": "PHB",
     "level": 3,
     "school": "Invocazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "paladin"
-    ],
+    "classes": ["cleric", "druid", "paladin"],
     "description": "Un'aura di energia curativa di 9 metri circonda l'incantatore. Come azione bonus, l'incantatore può far recuperare 2d6 punti ferita a una creatura nell'aura.",
     "castingTime": {
       "amount": 1,
@@ -991,10 +888,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "druid"
-    ],
+    "classes": ["bard", "druid"],
     "castingTime": {
       "amount": 8,
       "unit": "hour",
@@ -1016,10 +910,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "cleric"
-    ],
+    "classes": ["bard", "cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1055,9 +946,7 @@
     "source": "PHB",
     "level": 5,
     "school": "Abiurazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "description": "Il prossimo colpo con un'arma dell'incantatore infligge 5d10 danni da forza extra e, se porta il bersaglio a 50 punti ferita o meno, può esiliarlo su un semipiano innocuo fino al termine dell'incantesimo.",
     "castingTime": {
       "amount": 1,
@@ -1094,13 +983,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "paladin",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["cleric", "paladin", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1115,9 +998,7 @@
       "amount": 1
     },
     "savingThrow": "cha",
-    "savingThrows": [
-      "cha"
-    ],
+    "savingThrows": ["cha"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -1153,10 +1034,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1187,9 +1065,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Abiurazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1232,10 +1108,7 @@
     "source": "XGE",
     "level": 1,
     "school": "Divinazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1255,10 +1128,7 @@
     "source": "PHB",
     "level": 2,
     "school": "Divinazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1279,11 +1149,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Necromanzia",
-    "classes": [
-      "bard",
-      "cleric",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1298,9 +1164,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "damage": {
       "formula": "1d8",
       "type": "necrotici",
@@ -1323,9 +1187,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1340,9 +1202,7 @@
       "amount": 1
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "3d6",
       "type": "contundenti"
@@ -1370,9 +1230,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Invocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1387,9 +1245,7 @@
       "amount": 10
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "6d10",
       "type": "taglienti"
@@ -1402,11 +1258,7 @@
     "source": "TCE",
     "level": 9,
     "school": "Evocazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "description": "L'incantatore apre una fenditura planare a forma di lama in uno spazio entro gittata. Può effettuare un attacco con la lama come azione bonus; se colpisce infligge 4d12 danni da forza e un 18 o più sul d20 è un colpo critico.",
     "castingTime": {
       "amount": 1,
@@ -1436,12 +1288,7 @@
     "source": "PHB",
     "level": 0,
     "school": "Abiurazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1461,10 +1308,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Ammaliamento",
-    "classes": [
-      "cleric",
-      "paladin"
-    ],
+    "classes": ["cleric", "paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1495,12 +1339,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Necromanzia",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1514,9 +1353,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "damage": {
       "formula": "8d8",
       "type": "necrotici",
@@ -1551,9 +1388,7 @@
     "source": "PHB",
     "level": 3,
     "school": "Invocazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1577,12 +1412,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Necromanzia",
-    "classes": [
-      "bard",
-      "cleric",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1597,9 +1427,7 @@
       "amount": 1
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -1617,11 +1445,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1652,11 +1476,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Illusione",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1679,9 +1499,7 @@
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1700,12 +1518,7 @@
     "source": "TCE",
     "level": 0,
     "school": "Invocazione",
-    "classes": [
-      "artificer",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["artificer", "sorcerer", "warlock", "wizard"],
     "description": "L'incantatore effettua un attacco con un'arma da mischia. Il colpo infligge 1d8 danni da tuono extra; se il bersaglio si muove volontariamente prima dell'inizio del prossimo turno dell'incantatore, subisce ulteriori danni da tuono, che aumentano con il livello del personaggio.",
     "castingTime": {
       "amount": 1,
@@ -1735,9 +1548,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -1773,10 +1584,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1790,9 +1598,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "3d6",
       "type": "fuoco",
@@ -1821,9 +1627,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Evocazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1859,10 +1663,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "cleric"
-    ],
+    "classes": ["bard", "cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1877,9 +1678,7 @@
       "amount": 1
     },
     "savingThrow": "cha",
-    "savingThrows": [
-      "cha"
-    ],
+    "savingThrows": ["cha"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -1903,11 +1702,7 @@
     "source": "XGE",
     "level": 1,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1931,12 +1726,7 @@
     "source": "XGE",
     "level": 3,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1956,10 +1746,7 @@
     "source": "XGE",
     "level": 1,
     "school": "Necromanzia",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -1979,10 +1766,7 @@
     "source": "XGE",
     "level": 1,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "paladin"
-    ],
+    "classes": ["cleric", "paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2003,10 +1787,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2020,9 +1801,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "10d8",
       "type": "fulmine",
@@ -2037,9 +1816,7 @@
     "source": "XGE",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer"
-    ],
+    "classes": ["sorcerer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2063,13 +1840,7 @@
     "source": "XGE",
     "level": 4,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "druid", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2089,13 +1860,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "druid", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2110,9 +1875,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -2136,11 +1899,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Necromanzia",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2176,10 +1935,7 @@
     "source": "PHB",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2203,11 +1959,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Necromanzia",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2234,9 +1986,7 @@
     "source": "PHB",
     "level": 5,
     "school": "Abiurazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2264,12 +2014,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -2292,9 +2037,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Necromanzia",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "hour",
@@ -2316,12 +2059,7 @@
     "source": "PHB",
     "level": 2,
     "school": "Evocazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2345,10 +2083,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Evocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2363,9 +2098,7 @@
       "amount": 10
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "damage": {
       "formula": "5d8",
       "type": "veleno",
@@ -2400,10 +2133,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Illusione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2426,10 +2156,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Ammaliamento",
-    "classes": [
-      "cleric",
-      "paladin"
-    ],
+    "classes": ["cleric", "paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2444,9 +2171,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -2476,9 +2201,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Divinazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -2522,10 +2245,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Divinazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -2556,9 +2276,7 @@
     "source": "PHB",
     "level": 1,
     "school": "Ammaliamento",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2578,12 +2296,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2607,9 +2320,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Ammaliamento",
-    "classes": [
-      "bard"
-    ],
+    "classes": ["bard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2646,10 +2357,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2684,12 +2392,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2704,9 +2407,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -2730,10 +2431,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2755,9 +2453,7 @@
     "source": "PHB",
     "level": 3,
     "school": "Evocazione",
-    "classes": [
-      "ranger"
-    ],
+    "classes": ["ranger"],
     "description": "L'incantatore lancia un'arma non magica o crea proiettili simili che si moltiplicano e colpiscono un'area. Le creature effettuano un tiro salvezza su Destrezza e subiscono 3d8 danni del tipo normalmente inflitto dall'arma, o la metà con un successo.",
     "castingTime": {
       "amount": 1,
@@ -2772,9 +2468,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "3d8",
       "type": "dell'arma"
@@ -2796,9 +2490,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Evocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -2821,10 +2513,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "wizard"
-    ],
+    "classes": ["druid", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -2847,10 +2536,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "warlock"
-    ],
+    "classes": ["druid", "warlock"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -2873,10 +2559,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "wizard"
-    ],
+    "classes": ["druid", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -2899,9 +2582,7 @@
     "source": "PHB",
     "level": 5,
     "school": "Evocazione",
-    "classes": [
-      "ranger"
-    ],
+    "classes": ["ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2925,10 +2606,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -2951,10 +2629,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Divinazione",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -2982,10 +2657,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Necromanzia",
-    "classes": [
-      "cleric",
-      "druid"
-    ],
+    "classes": ["cleric", "druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3001,9 +2673,7 @@
     },
     "attackRoll": "melee",
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -3021,9 +2691,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Invocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -3046,11 +2714,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "cleric",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["cleric", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3072,11 +2736,7 @@
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3096,11 +2756,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Trasmutazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "wizard"
-    ],
+    "classes": ["cleric", "druid", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3115,9 +2771,7 @@
       "amount": 10
     },
     "savingThrow": "str",
-    "savingThrows": [
-      "str"
-    ],
+    "savingThrows": ["str"],
     "damage": {
       "formula": "2d8",
       "type": "contundenti"
@@ -3139,11 +2793,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Trasmutazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "wizard"
-    ],
+    "classes": ["cleric", "druid", "wizard"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -3166,11 +2816,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3190,9 +2836,7 @@
     "source": "PHB",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "ranger"
-    ],
+    "classes": ["ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3216,11 +2860,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Abiurazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "reaction",
@@ -3257,13 +2897,7 @@
     "source": "XGE",
     "level": 0,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["druid", "sorcerer", "warlock", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3287,11 +2921,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Evocazione",
-    "classes": [
-      "cleric",
-      "paladin",
-      "artificer"
-    ],
+    "classes": ["cleric", "paladin", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3313,9 +2943,7 @@
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3335,10 +2963,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Trasmutazione",
-    "classes": [
-      "cleric",
-      "druid"
-    ],
+    "classes": ["cleric", "druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3360,11 +2985,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Necromanzia",
-    "classes": [
-      "cleric",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["cleric", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -3386,11 +3007,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Illusione",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -3420,12 +3037,7 @@
     "source": "PHB",
     "level": 2,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3445,11 +3057,7 @@
     "source": "XGE",
     "level": 7,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3473,9 +3081,7 @@
     "source": "PHB",
     "level": 3,
     "school": "Invocazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3507,14 +3113,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "paladin",
-      "ranger",
-      "artificer"
-    ],
+    "classes": ["bard", "cleric", "druid", "paladin", "ranger", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3550,12 +3149,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3578,10 +3172,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Necromanzia",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3605,11 +3196,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3640,13 +3227,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "ranger",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["druid", "ranger", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3669,10 +3250,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "cleric",
-      "wizard"
-    ],
+    "classes": ["cleric", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3696,13 +3274,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Invocazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "paladin",
-      "ranger",
-      "sorcerer"
-    ],
+    "classes": ["cleric", "druid", "paladin", "ranger", "sorcerer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3733,10 +3305,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "paladin"
-    ],
+    "classes": ["cleric", "paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3779,10 +3348,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3797,9 +3363,7 @@
       "amount": 1
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "isHidden": false,
     "damage": {
       "formula": "12d6",
@@ -3814,10 +3378,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Evocazione",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3840,9 +3401,7 @@
     "source": "PHB",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3874,10 +3433,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Divinazione",
-    "classes": [
-      "cleric",
-      "paladin"
-    ],
+    "classes": ["cleric", "paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3900,16 +3456,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "paladin",
-      "ranger",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3941,12 +3488,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Divinazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "paladin",
-      "ranger"
-    ],
+    "classes": ["cleric", "druid", "paladin", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -3970,11 +3512,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4005,12 +3543,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4056,12 +3589,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4098,10 +3626,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4115,9 +3640,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "10d6+40",
       "type": "forza",
@@ -4132,10 +3655,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "paladin"
-    ],
+    "classes": ["cleric", "paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4150,9 +3670,7 @@
       "amount": 1
     },
     "savingThrow": "cha",
-    "savingThrows": [
-      "cha"
-    ],
+    "savingThrows": ["cha"],
     "isHidden": false
   },
   {
@@ -4162,16 +3680,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Abiurazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "paladin",
-      "sorcerer",
-      "warlock",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "cleric", "druid", "paladin", "sorcerer", "warlock", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4219,9 +3728,7 @@
     "source": "PHB",
     "level": 1,
     "school": "Ammaliamento",
-    "classes": [
-      "bard"
-    ],
+    "classes": ["bard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4253,9 +3760,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Divinazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4278,9 +3783,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -4315,9 +3818,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Invocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -4331,9 +3832,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "cha",
-    "savingThrows": [
-      "cha"
-    ],
+    "savingThrows": ["cha"],
     "isHidden": false
   },
   {
@@ -4343,10 +3842,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Ammaliamento",
-    "classes": [
-      "druid",
-      "sorcerer"
-    ],
+    "classes": ["druid", "sorcerer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4361,9 +3857,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -4387,12 +3881,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4407,9 +3896,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false
   },
   {
@@ -4419,11 +3906,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4438,9 +3921,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -4470,10 +3951,7 @@
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4497,11 +3975,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -4527,12 +4001,7 @@
     "source": "TCE",
     "level": 7,
     "school": "Evocazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "description": "L'incantatore e fino a otto creature consenzienti si addormentano e ricevono un sogno che conduce a un altro mondo del multiverso scelto dall'incantatore, dove i loro corpi vengono trasportati al risveglio.",
     "castingTime": {
       "amount": 10,
@@ -4556,9 +4025,7 @@
     "source": "XGE",
     "level": 6,
     "school": "Abiurazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4578,9 +4045,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Trasmutazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4602,11 +4067,7 @@
     "source": "XGE",
     "level": 2,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4630,12 +4091,7 @@
     "source": "XGE",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4659,12 +4115,7 @@
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4684,11 +4135,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Invocazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "sorcerer"
-    ],
+    "classes": ["cleric", "druid", "sorcerer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4703,10 +4150,7 @@
       "amount": 1
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con",
-      "dex"
-    ],
+    "savingThrows": ["con", "dex"],
     "damage": {
       "formula": "5d6",
       "type": "contundenti"
@@ -4720,9 +4164,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Invocazione",
-    "classes": [
-      "warlock"
-    ],
+    "classes": ["warlock"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4749,12 +4191,7 @@
     "source": "XGE",
     "level": 4,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4773,10 +4210,7 @@
     "source": "PHB",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "artificer",
-      "paladin"
-    ],
+    "classes": ["artificer", "paladin"],
     "description": "Un'arma non magica diventa magica, ottiene un bonus ai tiri per colpire e infligge 1d4 danni extra di un tipo scelto tra acido, freddo, fuoco, fulmine o tuono.",
     "castingTime": {
       "amount": 1,
@@ -4812,12 +4246,7 @@
     "source": "XGE",
     "level": 3,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4837,11 +4266,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Necromanzia",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4861,13 +4286,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "sorcerer",
-      "artificer"
-    ],
+    "classes": ["bard", "cleric", "druid", "sorcerer", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4898,11 +4317,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4917,9 +4332,7 @@
       "amount": 1
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "isHidden": false,
     "damage": {
       "formula": "1d4",
@@ -4934,9 +4347,7 @@
     "source": "PHB",
     "level": 1,
     "school": "Evocazione",
-    "classes": [
-      "ranger"
-    ],
+    "classes": ["ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4964,9 +4375,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Evocazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -4981,9 +4390,7 @@
       "amount": 1
     },
     "savingThrow": "str",
-    "savingThrows": [
-      "str"
-    ],
+    "savingThrows": ["str"],
     "isHidden": false
   },
   {
@@ -4993,10 +4400,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "warlock"
-    ],
+    "classes": ["bard", "warlock"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5019,11 +4423,7 @@
     "source": "XGE",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5047,13 +4447,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5076,12 +4470,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -5104,12 +4493,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Necromanzia",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5124,9 +4508,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false
   },
   {
@@ -5136,10 +4518,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Trasmutazione",
-    "classes": [
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["wizard", "artificer"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -5169,11 +4548,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "druid",
-      "artificer"
-    ],
+    "classes": ["bard", "druid", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5188,9 +4563,7 @@
       "amount": 1
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -5220,10 +4593,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5250,11 +4620,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Necromanzia",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5285,11 +4651,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Evocazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5309,12 +4671,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5329,9 +4686,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -5355,12 +4710,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "reaction",
@@ -5384,12 +4734,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "druid",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "druid", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5403,9 +4748,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "int",
-    "savingThrows": [
-      "int"
-    ],
+    "savingThrows": ["int"],
     "damage": {
       "formula": "4d6",
       "type": "psichici"
@@ -5419,12 +4762,7 @@
     "source": "PHB",
     "level": 3,
     "school": "Necromanzia",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "druid", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5445,9 +4783,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Evocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "hour",
@@ -5470,9 +4806,7 @@
     "source": "XGE",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5492,9 +4826,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Evocazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -5516,11 +4848,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid"
-    ],
+    "classes": ["bard", "cleric", "druid"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -5543,11 +4871,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Divinazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "ranger"
-    ],
+    "classes": ["cleric", "druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5569,11 +4893,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Necromanzia",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5599,11 +4919,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5630,9 +4946,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Invocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5679,11 +4993,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Invocazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "sorcerer"
-    ],
+    "classes": ["cleric", "druid", "sorcerer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5709,10 +5019,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5726,9 +5033,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "8d6",
       "type": "fuoco",
@@ -5757,13 +5062,7 @@
     "source": "XGE",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "ranger",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["druid", "ranger", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5787,9 +5086,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -5817,9 +5114,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5878,10 +5173,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "wizard"
-    ],
+    "classes": ["druid", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5929,10 +5221,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Trasmutazione",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5947,9 +5236,7 @@
       "amount": 1
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "isHidden": false
   },
   {
@@ -5959,9 +5246,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Evocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -5985,12 +5270,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6013,12 +5293,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "ranger",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "ranger", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6049,9 +5324,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Abiurazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -6080,11 +5353,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6099,9 +5368,7 @@
       "amount": 1
     },
     "savingThrow": "cha",
-    "savingThrows": [
-      "cha"
-    ],
+    "savingThrows": ["cha"],
     "isHidden": false
   },
   {
@@ -6111,12 +5378,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "druid",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "druid", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -6139,13 +5401,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Abiurazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "ranger",
-      "artificer"
-    ],
+    "classes": ["bard", "cleric", "druid", "ranger", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6194,9 +5450,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Invocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6223,12 +5477,7 @@
     "source": "PHB",
     "level": 0,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6248,13 +5497,7 @@
     "source": "XGE",
     "level": 0,
     "school": "Invocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["druid", "sorcerer", "warlock", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6278,11 +5521,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6325,11 +5564,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Evocazione",
-    "classes": [
-      "cleric",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["cleric", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6352,13 +5587,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "paladin",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "druid", "paladin", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -6373,9 +5602,7 @@
       "amount": 30
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "damage": {
       "formula": "5d10",
       "type": "psichici",
@@ -6390,10 +5617,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Necromanzia",
-    "classes": [
-      "cleric",
-      "wizard"
-    ],
+    "classes": ["cleric", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6431,9 +5655,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Trasmutazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6456,10 +5678,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "warlock"
-    ],
+    "classes": ["bard", "warlock"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6482,10 +5701,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Abiurazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6508,12 +5724,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Abiurazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "cleric", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "hour",
@@ -6527,9 +5738,7 @@
       "text": "Finché non viene dissolto o innescato"
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "isHidden": false,
     "damage": {
       "formula": "5d8",
@@ -6544,10 +5753,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6569,10 +5775,7 @@
     "source": "PHB",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6600,10 +5803,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Evocazione",
-    "classes": [
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6618,9 +5818,7 @@
       "amount": 1
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "isHidden": false
   },
   {
@@ -6630,11 +5828,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6677,12 +5871,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Abiurazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "artificer"
-    ],
+    "classes": ["bard", "cleric", "druid", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6717,12 +5906,7 @@
     "source": "TCE",
     "level": 0,
     "school": "Invocazione",
-    "classes": [
-      "artificer",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["artificer", "sorcerer", "warlock", "wizard"],
     "description": "L'incantatore effettua un attacco con un'arma da mischia. Se colpisce, una fiamma verde balza dal bersaglio a una creatura diversa entro 1,5 metri, infliggendo danni da fuoco extra che aumentano con il livello del personaggio.",
     "castingTime": {
       "amount": 1,
@@ -6751,9 +5935,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6768,9 +5950,7 @@
       "amount": 8
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "isHidden": false,
     "damage": {
       "formula": "20",
@@ -6805,10 +5985,7 @@
     "source": "XGE",
     "level": 4,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6828,10 +6005,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Abiurazione",
-    "classes": [
-      "bard",
-      "wizard"
-    ],
+    "classes": ["bard", "wizard"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -6854,11 +6028,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Divinazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "artificer"
-    ],
+    "classes": ["cleric", "druid", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6881,9 +6051,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6926,11 +6094,7 @@
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6950,11 +6114,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -6969,9 +6129,7 @@
       "amount": 1
     },
     "savingThrow": "str",
-    "savingThrows": [
-      "str"
-    ],
+    "savingThrows": ["str"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -6989,9 +6147,7 @@
     "source": "PHB",
     "level": 1,
     "school": "Evocazione",
-    "classes": [
-      "ranger"
-    ],
+    "classes": ["ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7015,9 +6171,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 24,
       "unit": "hour",
@@ -7031,9 +6185,7 @@
       "text": "Finché non viene dissolto"
     },
     "savingThrow": "cha",
-    "savingThrows": [
-      "cha"
-    ],
+    "savingThrows": ["cha"],
     "isHidden": false
   },
   {
@@ -7043,12 +6195,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "druid",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "druid", "warlock", "wizard"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -7071,9 +6218,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Necromanzia",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7087,9 +6232,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "damage": {
       "formula": "14d6",
       "type": "necrotici"
@@ -7103,11 +6246,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7150,10 +6289,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Invocazione",
-    "classes": [
-      "cleric",
-      "druid"
-    ],
+    "classes": ["cleric", "druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7175,10 +6311,7 @@
     "source": "XGE",
     "level": 2,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7198,11 +6331,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid"
-    ],
+    "classes": ["bard", "cleric", "druid"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -7232,11 +6361,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "druid",
-      "artificer"
-    ],
+    "classes": ["bard", "druid", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7251,9 +6376,7 @@
       "amount": 1
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "damage": {
       "formula": "2d8",
       "type": "fuoco",
@@ -7276,9 +6399,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "warlock"
-    ],
+    "classes": ["warlock"],
     "castingTime": {
       "amount": 1,
       "unit": "reaction",
@@ -7306,10 +6427,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Evocazione",
-    "classes": [
-      "cleric",
-      "druid"
-    ],
+    "classes": ["cleric", "druid"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -7331,10 +6449,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "paladin"
-    ],
+    "classes": ["bard", "paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7383,9 +6498,7 @@
     "source": "PHB",
     "level": 1,
     "school": "Ammaliamento",
-    "classes": [
-      "warlock"
-    ],
+    "classes": ["warlock"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7409,10 +6522,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "wizard"
-    ],
+    "classes": ["bard", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7427,9 +6537,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false
   },
   {
@@ -7439,12 +6547,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7459,9 +6562,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -7503,14 +6604,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "druid", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7525,9 +6619,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -7563,9 +6655,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Abiurazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7588,10 +6678,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "cleric",
-      "paladin"
-    ],
+    "classes": ["cleric", "paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7615,9 +6702,7 @@
     "source": "PHB",
     "level": 3,
     "school": "Evocazione",
-    "classes": [
-      "warlock"
-    ],
+    "classes": ["warlock"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7649,9 +6734,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Divinazione",
-    "classes": [
-      "ranger"
-    ],
+    "classes": ["ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -7687,12 +6770,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7707,9 +6785,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "subclassGrants": [
       {
         "classId": "artificer",
@@ -7733,11 +6809,7 @@
     "source": "XGE",
     "level": 1,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7761,11 +6833,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Invocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7779,9 +6847,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "2d8",
       "type": "contundenti",
@@ -7816,11 +6882,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -7857,9 +6919,7 @@
     "source": "XGE",
     "level": 8,
     "school": "Illusione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7883,11 +6943,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -7911,10 +6967,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7938,10 +6991,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Abiurazione",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -7955,9 +7005,7 @@
       "text": "Finché non viene dissolto"
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false
   },
   {
@@ -7967,10 +7015,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Evocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -7985,9 +7030,7 @@
       "amount": 1
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "10d8",
       "type": "fuoco"
@@ -8001,10 +7044,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Evocazione",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8024,12 +7064,7 @@
     "source": "XGE",
     "level": 0,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8053,9 +7088,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Necromanzia",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8083,11 +7116,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Evocazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "sorcerer"
-    ],
+    "classes": ["cleric", "druid", "sorcerer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8102,9 +7131,7 @@
       "amount": 10
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "damage": {
       "formula": "4d10",
       "type": "perforanti",
@@ -8139,9 +7166,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Evocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -8163,13 +7188,7 @@
     "source": "TCE",
     "level": 3,
     "school": "Abiurazione",
-    "classes": [
-      "artificer",
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["artificer", "bard", "sorcerer", "warlock", "wizard"],
     "description": "Una creatura consenziente ottiene resistenza ai danni psichici e vantaggio ai tiri salvezza su Intelligenza, Saggezza e Carisma. Se una creatura subisce un attacco psichico, può usare una reazione per proteggere un alleato vicino.",
     "castingTime": {
       "amount": 1,
@@ -8193,12 +7212,7 @@
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8222,12 +7236,7 @@
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8251,12 +7260,7 @@
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8276,12 +7280,7 @@
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8305,13 +7304,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8334,9 +7327,7 @@
     "source": "XGE",
     "level": 9,
     "school": "Abiurazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8356,10 +7347,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "wizard"
-    ],
+    "classes": ["bard", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8382,13 +7370,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "ranger",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["druid", "ranger", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8411,11 +7393,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8437,11 +7415,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "wizard"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -8471,14 +7445,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Abiurazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "paladin",
-      "ranger",
-      "artificer"
-    ],
+    "classes": ["bard", "cleric", "druid", "paladin", "ranger", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8520,11 +7487,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8539,9 +7502,7 @@
       "amount": 10
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "isHidden": false
   },
   {
@@ -8551,10 +7512,7 @@
     "source": "XGE",
     "level": 3,
     "school": "Necromanzia",
-    "classes": [
-      "cleric",
-      "wizard"
-    ],
+    "classes": ["cleric", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8578,13 +7536,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "cleric", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8615,9 +7567,7 @@
     "source": "PHB",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "ranger"
-    ],
+    "classes": ["ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8641,10 +7591,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8658,9 +7605,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "8d6",
       "type": "fulmine",
@@ -8682,12 +7627,7 @@
     "source": "TCE",
     "level": 0,
     "school": "Invocazione",
-    "classes": [
-      "artificer",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["artificer", "sorcerer", "warlock", "wizard"],
     "description": "Un fulmine attira una creatura entro 4,5 metri verso l'incantatore. Il bersaglio effettua un tiro salvezza su Forza e subisce 1d8 danni da fulmine se lo fallisce; se viene trascinato entro 1,5 metri, subisce il danno.",
     "castingTime": {
       "amount": 1,
@@ -8702,9 +7642,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "str",
-    "savingThrows": [
-      "str"
-    ],
+    "savingThrows": ["str"],
     "damage": {
       "formula": "1d8",
       "type": "fulmine",
@@ -8719,11 +7657,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "druid",
-      "ranger"
-    ],
+    "classes": ["bard", "druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8746,14 +7680,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "paladin",
-      "ranger",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "druid", "paladin", "ranger", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8784,14 +7711,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "paladin",
-      "ranger",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "druid", "paladin", "ranger", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8814,13 +7734,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "druid",
-      "ranger",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "druid", "ranger", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8843,10 +7757,7 @@
     "source": "XGE",
     "level": 8,
     "school": "Invocazione",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8870,9 +7781,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8896,10 +7805,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Abiurazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8922,13 +7828,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Evocazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8965,12 +7865,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "paladin",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["cleric", "paladin", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -8985,9 +7880,7 @@
       "amount": 1
     },
     "savingThrow": "cha",
-    "savingThrows": [
-      "cha"
-    ],
+    "savingThrows": ["cha"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -9005,9 +7898,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Necromanzia",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -9021,9 +7912,7 @@
       "text": "Finché non viene dissolto"
     },
     "savingThrow": "cha",
-    "savingThrows": [
-      "cha"
-    ],
+    "savingThrows": ["cha"],
     "isHidden": false
   },
   {
@@ -9033,10 +7922,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9071,11 +7957,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -9098,11 +7980,7 @@
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "warlock",
-      "artificer"
-    ],
+    "classes": ["druid", "warlock", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9126,11 +8004,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "paladin",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["paladin", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -9173,10 +8047,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Evocazione",
-    "classes": [
-      "bard",
-      "wizard"
-    ],
+    "classes": ["bard", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -9199,12 +8070,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9227,11 +8093,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid"
-    ],
+    "classes": ["bard", "cleric", "druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9273,9 +8135,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Invocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9297,9 +8157,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Invocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -9335,11 +8193,7 @@
     "source": "XGE",
     "level": 9,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9359,12 +8213,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9379,9 +8228,7 @@
       "amount": 24
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false
   },
   {
@@ -9391,10 +8238,7 @@
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9418,9 +8262,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Evocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9443,10 +8285,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "cleric",
-      "druid"
-    ],
+    "classes": ["cleric", "druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9474,10 +8313,7 @@
     "source": "XGE",
     "level": 3,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9501,14 +8337,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "cleric", "druid", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -9530,11 +8359,7 @@
     "source": "XGE",
     "level": 6,
     "school": "Illusione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9558,12 +8383,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9586,10 +8406,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9615,9 +8432,7 @@
     "source": "XGE",
     "level": 8,
     "school": "Evocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9637,10 +8452,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Abiurazione",
-    "classes": [
-      "bard",
-      "wizard"
-    ],
+    "classes": ["bard", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9662,11 +8474,7 @@
     "source": "TCE",
     "level": 0,
     "school": "Ammaliamento",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "description": "L'incantatore colpisce la mente di una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Intelligenza e subisce 1d6 danni psichici se lo fallisce, oltre a subire 1d4 di penalità al prossimo tiro salvezza che effettua prima della fine del prossimo turno dell'incantatore.",
     "castingTime": {
       "amount": 1,
@@ -9681,9 +8489,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "int",
-    "savingThrows": [
-      "int"
-    ],
+    "savingThrows": ["int"],
     "damage": {
       "formula": "1d6",
       "type": "psichico",
@@ -9706,11 +8512,7 @@
     "source": "XGE",
     "level": 2,
     "school": "Divinazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9734,12 +8536,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9762,11 +8559,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "druid",
-      "wizard"
-    ],
+    "classes": ["bard", "druid", "wizard"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -9789,11 +8582,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Illusione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9830,10 +8619,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "wizard"
-    ],
+    "classes": ["bard", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9870,11 +8656,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Evocazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -9922,10 +8704,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "wizard"
-    ],
+    "classes": ["bard", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9956,11 +8735,7 @@
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9980,9 +8755,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -9997,9 +8770,7 @@
       "amount": 1
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "damage": {
       "formula": "2d10",
       "type": "radianti",
@@ -10034,11 +8805,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10061,10 +8828,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Necromanzia",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10088,11 +8852,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Abiurazione",
-    "classes": [
-      "bard",
-      "ranger",
-      "wizard"
-    ],
+    "classes": ["bard", "ranger", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10129,10 +8889,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Abiurazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10163,9 +8920,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Trasmutazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10196,11 +8951,7 @@
     "source": "PHB",
     "level": 2,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10224,9 +8975,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Illusione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10241,9 +8990,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "damage": {
       "formula": "4d10",
       "type": "psichici",
@@ -10258,9 +9005,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Illusione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -10284,9 +9029,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Evocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -10308,12 +9051,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Abiurazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "druid", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "hour",
@@ -10328,9 +9066,7 @@
       "amount": 24
     },
     "savingThrow": "cha",
-    "savingThrows": [
-      "cha"
-    ],
+    "savingThrows": ["cha"],
     "isHidden": false
   },
   {
@@ -10340,13 +9076,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Evocazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["cleric", "druid", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10369,11 +9099,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "druid",
-      "ranger"
-    ],
+    "classes": ["bard", "druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10415,13 +9141,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["druid", "sorcerer", "warlock", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10435,9 +9155,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "damage": {
       "formula": "1d12",
       "type": "veleno"
@@ -10451,12 +9169,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10471,9 +9184,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -10497,9 +9208,7 @@
     "source": "PHB",
     "level": 9,
     "school": "Invocazione",
-    "classes": [
-      "bard"
-    ],
+    "classes": ["bard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10519,12 +9228,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10546,11 +9250,7 @@
     "source": "XGE",
     "level": 7,
     "school": "Ammaliamento",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10574,12 +9274,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10601,9 +9296,7 @@
     "source": "PHB",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10623,13 +9316,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10652,9 +9339,7 @@
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10678,9 +9363,7 @@
     "source": "XGE",
     "level": 6,
     "school": "Abiurazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10700,10 +9383,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10717,11 +9397,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex",
-      "con",
-      "wis"
-    ],
+    "savingThrows": ["dex", "con", "wis"],
     "damage": {
       "formula": "10d6",
       "type": "fuoco"
@@ -10735,9 +9411,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Abiurazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10752,10 +9426,7 @@
       "amount": 10
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex",
-      "wis"
-    ],
+    "savingThrows": ["dex", "wis"],
     "damage": {
       "formula": "10d6",
       "type": "fuoco"
@@ -10769,10 +9440,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Abiurazione",
-    "classes": [
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["wizard", "artificer"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -10795,9 +9463,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Evocazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10824,10 +9490,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "wizard"
-    ],
+    "classes": ["bard", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10849,10 +9512,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "wizard"
-    ],
+    "classes": ["bard", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10875,14 +9535,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "ranger",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["cleric", "druid", "ranger", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10937,12 +9590,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "paladin",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["cleric", "paladin", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -10991,13 +9639,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "paladin",
-      "ranger",
-      "artificer"
-    ],
+    "classes": ["cleric", "druid", "paladin", "ranger", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11020,12 +9662,7 @@
     "source": "XGE",
     "level": 9,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11049,12 +9686,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Trasmutazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "paladin",
-      "artificer"
-    ],
+    "classes": ["cleric", "druid", "paladin", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11077,12 +9709,7 @@
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11102,11 +9729,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Necromanzia",
-    "classes": [
-      "bard",
-      "cleric",
-      "paladin"
-    ],
+    "classes": ["bard", "cleric", "paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "hour",
@@ -11148,10 +9771,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Necromanzia",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11167,9 +9787,7 @@
     },
     "attackRoll": "ranged",
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "subclassGrants": [
       {
         "classId": "cleric",
@@ -11187,11 +9805,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11218,10 +9832,7 @@
     "source": "PHB",
     "level": 1,
     "school": "Necromanzia",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11253,11 +9864,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid"
-    ],
+    "classes": ["bard", "cleric", "druid"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -11280,9 +9887,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Trasmutazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "hour",
@@ -11304,12 +9909,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "paladin",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["cleric", "paladin", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11331,10 +9931,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Invocazione",
-    "classes": [
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11371,11 +9968,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "artificer"
-    ],
+    "classes": ["cleric", "druid", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11398,10 +9991,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Necromanzia",
-    "classes": [
-      "bard",
-      "cleric"
-    ],
+    "classes": ["bard", "cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "hour",
@@ -11423,11 +10013,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11442,9 +10028,7 @@
       "amount": 1
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "isHidden": false
   },
   {
@@ -11454,11 +10038,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Necromanzia",
-    "classes": [
-      "cleric",
-      "paladin",
-      "artificer"
-    ],
+    "classes": ["cleric", "paladin", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11500,10 +10080,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11534,9 +10111,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Invocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11550,9 +10125,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "1d8",
       "type": "radianti"
@@ -11574,10 +10147,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "artificer"
-    ],
+    "classes": ["cleric", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -11592,9 +10162,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -11624,11 +10192,7 @@
     "source": "XGE",
     "level": 6,
     "school": "Evocazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11648,10 +10212,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11699,13 +10260,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "druid",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "druid", "warlock", "wizard"],
     "castingTime": {
       "amount": 10,
       "unit": "minute",
@@ -11720,9 +10275,7 @@
       "amount": 10
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -11758,9 +10311,7 @@
     "source": "PHB",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11792,10 +10343,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11817,12 +10365,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11859,11 +10402,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11878,9 +10417,7 @@
       "amount": 8
     },
     "savingThrow": "cha",
-    "savingThrows": [
-      "cha"
-    ],
+    "savingThrows": ["cha"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -11898,11 +10435,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11939,9 +10472,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Trasmutazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11963,11 +10494,7 @@
     "source": "XGE",
     "level": 2,
     "school": "Illusione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -11991,9 +10518,7 @@
     "source": "XGE",
     "level": 4,
     "school": "Necromanzia",
-    "classes": [
-      "warlock"
-    ],
+    "classes": ["warlock"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12017,11 +10542,7 @@
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12041,10 +10562,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "wizard"
-    ],
+    "classes": ["druid", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12067,12 +10585,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12086,9 +10599,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "damage": {
       "formula": "3d8",
       "type": "tuono",
@@ -12123,10 +10634,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Abiurazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "reaction",
@@ -12164,10 +10672,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Abiurazione",
-    "classes": [
-      "cleric",
-      "paladin"
-    ],
+    "classes": ["cleric", "paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -12198,9 +10703,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Trasmutazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -12223,11 +10726,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12253,11 +10752,7 @@
     "source": "XGE",
     "level": 4,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12281,11 +10776,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "cleric",
-      "ranger"
-    ],
+    "classes": ["bard", "cleric", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12309,11 +10800,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Illusione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12336,9 +10823,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Illusione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 12,
       "unit": "hour",
@@ -12360,12 +10845,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12385,12 +10865,7 @@
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "druid",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "druid", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12411,11 +10886,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12452,11 +10923,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12471,9 +10938,7 @@
       "amount": 1
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -12491,10 +10956,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12509,9 +10971,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -12529,12 +10989,7 @@
     "source": "XGE",
     "level": 1,
     "school": "Abiurazione",
-    "classes": [
-      "druid",
-      "ranger",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["druid", "ranger", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12554,10 +11009,7 @@
     "source": "XGE",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12581,10 +11033,7 @@
     "source": "XGE",
     "level": 6,
     "school": "Necromanzia",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12604,10 +11053,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Necromanzia",
-    "classes": [
-      "cleric",
-      "artificer"
-    ],
+    "classes": ["cleric", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12637,11 +11083,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "druid",
-      "ranger"
-    ],
+    "classes": ["bard", "druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12679,10 +11121,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Necromanzia",
-    "classes": [
-      "bard",
-      "cleric"
-    ],
+    "classes": ["bard", "cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12713,11 +11152,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "druid",
-      "ranger"
-    ],
+    "classes": ["bard", "druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12740,12 +11175,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12768,10 +11198,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12806,9 +11233,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Evocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12823,9 +11248,7 @@
       "amount": 10
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "damage": {
       "formula": "3d8",
       "type": "radianti",
@@ -12847,12 +11270,7 @@
     "source": "TCE",
     "level": 3,
     "school": "Necromanzia",
-    "classes": [
-      "cleric",
-      "paladin",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["cleric", "paladin", "warlock", "wizard"],
     "description": "Spiriti dei morti fluttuano intorno all'incantatore. Gli attacchi contro creature entro 3 metri infliggono 1d8 danni extra del tipo necrotico, radianti o freddo scelto dall'incantatore; le creature colpite non possono recuperare punti ferita fino all'inizio del turno successivo dell'incantatore.",
     "castingTime": {
       "amount": 1,
@@ -12881,9 +11299,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -12931,9 +11347,7 @@
     "source": "PHB",
     "level": 4,
     "school": "Invocazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12957,10 +11371,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Evocazione",
-    "classes": [
-      "ranger",
-      "wizard"
-    ],
+    "classes": ["ranger", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12984,11 +11395,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Evocazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13011,12 +11418,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Trasmutazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["cleric", "druid", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13038,13 +11440,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Abiurazione",
-    "classes": [
-      "druid",
-      "ranger",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["druid", "ranger", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13093,9 +11489,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Evocazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13110,10 +11504,7 @@
       "amount": 1
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con",
-      "dex"
-    ],
+    "savingThrows": ["con", "dex"],
     "damage": {
       "formula": "2d6",
       "type": "tuono"
@@ -13127,10 +11518,7 @@
     "source": "XGE",
     "level": 4,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13154,12 +11542,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13174,9 +11557,7 @@
       "amount": 8
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false,
     "subclassGrants": [
       {
@@ -13193,10 +11574,7 @@
     "source": "TCE",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "description": "L'incantatore evoca uno spirito aberrante che assume una forma scelta tra Beholderkin, Slaad o Star Spawn. La creatura combatte per l'incantatore e usa un attacco caratteristico della forma scelta.",
     "castingTime": {
       "amount": 1,
@@ -13227,10 +11605,7 @@
     "source": "TCE",
     "level": 2,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "description": "L'incantatore evoca uno spirito bestiale che assume una forma terrestre, acquatica o aerea. La bestia obbedisce ai comandi dell'incantatore e agisce nel suo stesso turno.",
     "castingTime": {
       "amount": 1,
@@ -13253,10 +11628,7 @@
     "source": "TCE",
     "level": 5,
     "school": "Evocazione",
-    "classes": [
-      "cleric",
-      "paladin"
-    ],
+    "classes": ["cleric", "paladin"],
     "description": "L'incantatore evoca uno spirito celestiale che assume una forma Avenger o Defender. La creatura è fedele, combatte per l'incantatore e possiede resistenze e attacchi radianti appropriati.",
     "castingTime": {
       "amount": 1,
@@ -13279,10 +11651,7 @@
     "source": "TCE",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "artificer",
-      "wizard"
-    ],
+    "classes": ["artificer", "wizard"],
     "description": "L'incantatore evoca uno spirito costrutto che assume una forma di Clay, Metal o Stone. La creatura obbedisce ai comandi dell'incantatore e possiede attacchi e difese determinate dalla forma.",
     "castingTime": {
       "amount": 1,
@@ -13313,11 +11682,7 @@
     "source": "TCE",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "ranger",
-      "wizard"
-    ],
+    "classes": ["druid", "ranger", "wizard"],
     "description": "L'incantatore evoca uno spirito elementale che assume una forma di aria, acqua, terra o fuoco. La creatura obbedisce ai comandi dell'incantatore e agisce nel suo turno.",
     "castingTime": {
       "amount": 1,
@@ -13340,12 +11705,7 @@
     "source": "TCE",
     "level": 3,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "ranger",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["druid", "ranger", "warlock", "wizard"],
     "description": "L'incantatore evoca uno spirito fatato che assume una forma di Fuming, Tricksy o Mirthful. La creatura è fedele e dispone di capacità diverse in base alla forma.",
     "castingTime": {
       "amount": 1,
@@ -13376,10 +11736,7 @@
     "source": "TCE",
     "level": 6,
     "school": "Evocazione",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "description": "L'incantatore evoca uno spirito immondo che assume una forma di Demon, Devil o Yugoloth. La creatura obbedisce ai comandi dell'incantatore e combatte per lui.",
     "castingTime": {
       "amount": 1,
@@ -13403,10 +11760,7 @@
     "source": "XGE",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13426,10 +11780,7 @@
     "source": "XGE",
     "level": 3,
     "school": "Evocazione",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13448,10 +11799,7 @@
     "source": "TCE",
     "level": 3,
     "school": "Evocazione",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "description": "L'incantatore evoca uno spirito d'ombra che assume una forma Fury, Despair o Fear. La forma scelta determina le capacità e gli effetti dell'attacco dello spirito.",
     "castingTime": {
       "amount": 1,
@@ -13474,10 +11822,7 @@
     "source": "TCE",
     "level": 3,
     "school": "Necromanzia",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "description": "L'incantatore evoca uno spirito non morto che assume una forma Ghostly, Putrid o Skeletal. La forma determina le capacità e gli attacchi della creatura.",
     "castingTime": {
       "amount": 1,
@@ -13501,11 +11846,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Invocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13520,9 +11861,7 @@
       "amount": 1
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "damage": {
       "formula": "6d8",
       "type": "radianti"
@@ -13536,11 +11875,7 @@
     "source": "SRD",
     "level": 8,
     "school": "Invocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13554,9 +11889,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "damage": {
       "formula": "12d6",
       "type": "radianti"
@@ -13570,9 +11903,7 @@
     "source": "PHB",
     "level": 5,
     "school": "Trasmutazione",
-    "classes": [
-      "ranger"
-    ],
+    "classes": ["ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13591,12 +11922,7 @@
     "source": "TCE",
     "level": 0,
     "school": "Evocazione",
-    "classes": [
-      "artificer",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["artificer", "sorcerer", "warlock", "wizard"],
     "description": "Spade spettrali compaiono e colpiscono tutte le altre creature entro 1,5 metri dall'incantatore. Ogni bersaglio effettua un tiro salvezza su Destrezza e subisce 1d6 danni da forza se lo fallisce.",
     "castingTime": {
       "amount": 1,
@@ -13611,9 +11937,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "1d6",
       "type": "forza",
@@ -13628,11 +11952,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Abiurazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -13658,12 +11978,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13686,11 +12001,7 @@
     "source": "TCE",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "artificer",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["artificer", "sorcerer", "wizard"],
     "description": "Una linea di acido di 9 metri ricopre le creature che falliscono un tiro salvezza su Destrezza. Una creatura coperta subisce 2d4 danni da acido all'inizio di ogni turno finché non usa un'azione per ripulirsi o l'acido viene lavato via.",
     "castingTime": {
       "amount": 1,
@@ -13706,9 +12017,7 @@
       "text": "Concentrazione, fino a 1 minuto"
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "2d4",
       "type": "acido",
@@ -13722,10 +12031,7 @@
     "source": "TCE",
     "level": 2,
     "school": "Ammaliamento",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "description": "Una creatura entro gittata deve superare un tiro salvezza su Intelligenza o subire 3d6 danni psichici. Se fallisce, può scegliere nel turno successivo solo una tra azione, azione bonus e movimento.",
     "castingTime": {
       "amount": 1,
@@ -13741,9 +12047,7 @@
       "text": "1 round"
     },
     "savingThrow": "int",
-    "savingThrows": [
-      "int"
-    ],
+    "savingThrows": ["int"],
     "damage": {
       "formula": "3d6",
       "type": "psichico",
@@ -13757,11 +12061,7 @@
     "source": "TCE",
     "level": 6,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "description": "L'incantatore assume una forma ultraterrena scegliendo Celestiale o Immondo. Ottiene capacità di combattimento, velocità di volare, resistenze e un bonus ai tiri per colpire e ai danni con le armi.",
     "castingTime": {
       "amount": 1,
@@ -13785,10 +12085,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13819,9 +12116,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Divinazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13859,9 +12154,7 @@
     "source": "PHB",
     "level": 8,
     "school": "Invocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13881,11 +12174,7 @@
     "source": "SRD",
     "level": 7,
     "school": "Evocazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13911,11 +12200,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Evocazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -13946,9 +12231,7 @@
     "source": "XGE",
     "level": 7,
     "school": "Evocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13968,9 +12251,7 @@
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -13995,9 +12276,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Trasmutazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14019,10 +12298,7 @@
     "source": "PHB",
     "level": 0,
     "school": "Trasmutazione",
-    "classes": [
-      "artificer",
-      "druid"
-    ],
+    "classes": ["artificer", "druid"],
     "description": "Una frusta vegetale colpisce una creatura entro 9 metri con un attacco in mischia con incantesimo. Se colpisce, infligge 1d6 danni perforanti e può trascinare il bersaglio fino a 3 metri verso l'incantatore.",
     "castingTime": {
       "amount": 1,
@@ -14051,11 +12327,7 @@
     "source": "XGE",
     "level": 3,
     "school": "Evocazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14079,14 +12351,7 @@
     "source": "XGE",
     "level": 0,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "druid",
-      "sorcerer",
-      "warlock",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["bard", "druid", "sorcerer", "warlock", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14110,9 +12375,7 @@
     "source": "PHB",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14136,12 +12399,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14155,9 +12413,7 @@
       "text": "Istantanea"
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "damage": {
       "formula": "2d8",
       "type": "tuono",
@@ -14192,11 +12448,7 @@
     "source": "XGE",
     "level": 3,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14220,10 +12472,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Trasmutazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14245,10 +12494,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "wizard"
-    ],
+    "classes": ["bard", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -14280,10 +12526,7 @@
     "source": "XGE",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14303,11 +12546,7 @@
     "source": "XGE",
     "level": 0,
     "school": "Necromanzia",
-    "classes": [
-      "cleric",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["cleric", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14331,13 +12570,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14360,11 +12593,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["druid", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14384,9 +12613,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Evocazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14409,10 +12636,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14449,11 +12673,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Trasmutazione",
-    "classes": [
-      "bard",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14468,9 +12688,7 @@
       "amount": 1
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "isHidden": false
   },
   {
@@ -14480,10 +12698,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Necromanzia",
-    "classes": [
-      "cleric",
-      "druid"
-    ],
+    "classes": ["cleric", "druid"],
     "castingTime": {
       "amount": 1,
       "unit": "hour",
@@ -14505,13 +12720,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "cleric",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "cleric", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14534,12 +12743,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Divinazione",
-    "classes": [
-      "bard",
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14562,9 +12766,7 @@
     "source": "PHB",
     "level": 8,
     "school": "Evocazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14588,11 +12790,7 @@
     "source": "SRD",
     "level": 1,
     "school": "Evocazione",
-    "classes": [
-      "bard",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["bard", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14616,10 +12814,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Necromanzia",
-    "classes": [
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14656,9 +12851,7 @@
     "source": "SRD",
     "level": 0,
     "school": "Ammaliamento",
-    "classes": [
-      "bard"
-    ],
+    "classes": ["bard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14684,10 +12877,7 @@
     "source": "XGE",
     "level": 4,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14711,11 +12901,7 @@
     "source": "SRD",
     "level": 4,
     "school": "Invocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14730,9 +12916,7 @@
       "amount": 1
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "5d8",
       "type": "fuoco",
@@ -14767,9 +12951,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14818,9 +13000,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Invocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14835,9 +13015,7 @@
       "amount": 10
     },
     "savingThrow": "con",
-    "savingThrows": [
-      "con"
-    ],
+    "savingThrows": ["con"],
     "damage": {
       "formula": "10d6",
       "type": "freddo",
@@ -14852,11 +13030,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14880,9 +13054,7 @@
     "source": "XGE",
     "level": 3,
     "school": "Invocazione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14902,12 +13074,7 @@
     "source": "SRD",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["druid", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14922,9 +13089,7 @@
       "amount": 10
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "isHidden": false
   },
   {
@@ -14934,9 +13099,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Evocazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14951,9 +13114,7 @@
       "amount": 10
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "7d8",
       "type": "perforanti",
@@ -14968,11 +13129,7 @@
     "source": "XGE",
     "level": 3,
     "school": "Invocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -14992,9 +13149,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Abiurazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15031,12 +13186,7 @@
     "source": "XGE",
     "level": 2,
     "school": "Invocazione",
-    "classes": [
-      "bard",
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["bard", "druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15056,13 +13206,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "druid",
-      "ranger",
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["druid", "ranger", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15086,13 +13230,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Trasmutazione",
-    "classes": [
-      "cleric",
-      "druid",
-      "ranger",
-      "sorcerer",
-      "artificer"
-    ],
+    "classes": ["cleric", "druid", "ranger", "sorcerer", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15116,11 +13254,7 @@
     "source": "XGE",
     "level": 4,
     "school": "Evocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15140,11 +13274,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Evocazione",
-    "classes": [
-      "sorcerer",
-      "wizard",
-      "artificer"
-    ],
+    "classes": ["sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15159,9 +13289,7 @@
       "amount": 1
     },
     "savingThrow": "dex",
-    "savingThrows": [
-      "dex"
-    ],
+    "savingThrows": ["dex"],
     "damage": {
       "formula": "2d4",
       "type": "fuoco"
@@ -15183,9 +13311,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Illusione",
-    "classes": [
-      "wizard"
-    ],
+    "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15199,9 +13325,7 @@
       "text": "Concentrazione, fino a un minuto"
     },
     "savingThrow": "wis",
-    "savingThrows": [
-      "wis"
-    ],
+    "savingThrows": ["wis"],
     "damage": {
       "formula": "4d10",
       "type": "psichici"
@@ -15215,11 +13339,7 @@
     "source": "XGE",
     "level": 7,
     "school": "Invocazione",
-    "classes": [
-      "druid",
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["druid", "sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15243,9 +13363,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Trasmutazione",
-    "classes": [
-      "druid"
-    ],
+    "classes": ["druid"],
     "castingTime": {
       "amount": 1,
       "unit": "minute",
@@ -15268,10 +13386,7 @@
     "source": "SRD",
     "level": 3,
     "school": "Invocazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15286,9 +13401,7 @@
       "amount": 1
     },
     "savingThrow": "str",
-    "savingThrows": [
-      "str"
-    ],
+    "savingThrows": ["str"],
     "damage": {
       "formula": "3d8",
       "type": "contundenti"
@@ -15316,10 +13429,7 @@
     "source": "SRD",
     "level": 9,
     "school": "Evocazione",
-    "classes": [
-      "sorcerer",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15345,11 +13455,7 @@
     "source": "PHB",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "sorcerer",
-      "warlock",
-      "wizard"
-    ],
+    "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15373,9 +13479,7 @@
     "source": "XGE",
     "level": 0,
     "school": "Invocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15399,9 +13503,7 @@
     "source": "SRD",
     "level": 6,
     "school": "Evocazione",
-    "classes": [
-      "cleric"
-    ],
+    "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15423,10 +13525,7 @@
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
-    "classes": [
-      "druid",
-      "ranger"
-    ],
+    "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15450,9 +13549,7 @@
     "source": "PHB",
     "level": 1,
     "school": "Invocazione",
-    "classes": [
-      "paladin"
-    ],
+    "classes": ["paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15476,9 +13573,7 @@
     "source": "XGE",
     "level": 1,
     "school": "Trasmutazione",
-    "classes": [
-      "ranger"
-    ],
+    "classes": ["ranger"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15502,11 +13597,7 @@
     "source": "SRD",
     "level": 2,
     "school": "Ammaliamento",
-    "classes": [
-      "bard",
-      "cleric",
-      "paladin"
-    ],
+    "classes": ["bard", "cleric", "paladin"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -15521,12 +13612,7 @@
       "amount": 10
     },
     "savingThrow": "cha",
-    "savingThrows": [
-      "cha",
-      "str",
-      "dex",
-      "con"
-    ],
+    "savingThrows": ["cha", "str", "dex", "con"],
     "isHidden": false,
     "subclassGrants": [
       {

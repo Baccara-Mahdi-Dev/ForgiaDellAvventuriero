@@ -1,7 +1,9 @@
 <header class="masthead no-print">
-  <a class="brand" href="/" aria-label="Forgia dell'avventuriero, pagina iniziale"><img class="sigil"
-      src="/brand/logo-d20-hammer.png" alt="" width="42" height="42" /><span>Forgia dell'avventuriero<small>Creazione
-        personaggi · 5e 2014</small></span></a>
+  <a class="brand" href="/" aria-label="Forgia dell'avventuriero, pagina iniziale"
+    ><img class="sigil" src="/brand/logo-d20-hammer.png" alt="" width="42" height="42" /><span
+      >Forgia dell'avventuriero<small>Creazione personaggi · 5e 2014</small></span
+    ></a
+  >
   <div class="masthead-actions">
     <span class="offline">● Pronta offline</span><app-theme-toggle />
   </div>
@@ -16,9 +18,14 @@
         tuoi dati restano su questo dispositivo.
       </p>
       <div class="actions">
-        <button class="primary" (click)="create()">Crea un personaggio <span>→</span></button><label
-          class="secondary">Importa JSON<input class="sr-only" type="file" accept="application/json"
-            (change)="import($event)" /></label>
+        <button class="primary" (click)="create()">Crea un personaggio <span>→</span></button
+        ><label class="secondary"
+          >Importa JSON<input
+            class="sr-only"
+            type="file"
+            accept="application/json"
+            (change)="import($event)"
+        /></label>
       </div>
       <p class="trust">
         ✓ Nessun account &nbsp; · &nbsp; ✓ Salvataggio automatico &nbsp; · &nbsp; ✓ Funziona senza
@@ -38,33 +45,41 @@
       <h2 id="library-title">Personaggi e bozze</h2>
     </div>
     @if (characters().length) {
-    <button type="button" class="delete-all" (click)="removeAll($event)">
-      Cancella tutto
-    </button>
-    <div class="cards">
-      @for (character of characters(); track character.id) {
-      <article class="character" tabindex="0" (click)="open(character)" (keydown.enter)="open(character)">
-        <div class="avatar">{{ (character.name || '?')[0].toUpperCase() }}</div>
-        <div class="character-copy">
-          <h3>{{ character.name || 'Senza nome' }}</h3>
-          <p>
-            Livello {{ character.level }} · {{ character.classId || 'Classe da scegliere' }}
-          </p>
-          <small>Aggiornato {{ character.updatedAt | date: 'dd MMM, HH:mm' }}</small>
-        </div>
-        <button type="button" class="delete-character" title="Elimina"
-          [attr.aria-label]="'Elimina ' + (character.name || 'Senza nome')" (click)="remove(character, $event)">
-          <ng-icon name="monoDelete" size="20px" />
-        </button>
-      </article>
-      }
-    </div>
+      <button type="button" class="delete-all" (click)="removeAll($event)">Cancella tutto</button>
+      <div class="cards">
+        @for (character of characters(); track character.id) {
+          <article
+            class="character"
+            tabindex="0"
+            (click)="open(character)"
+            (keydown.enter)="open(character)"
+          >
+            <div class="avatar">{{ (character.name || '?')[0].toUpperCase() }}</div>
+            <div class="character-copy">
+              <h3>{{ character.name || 'Senza nome' }}</h3>
+              <p>
+                Livello {{ character.level }} · {{ character.classId || 'Classe da scegliere' }}
+              </p>
+              <small>Aggiornato {{ character.updatedAt | date: 'dd MMM, HH:mm' }}</small>
+            </div>
+            <button
+              type="button"
+              class="delete-character"
+              title="Elimina"
+              [attr.aria-label]="'Elimina ' + (character.name || 'Senza nome')"
+              (click)="remove(character, $event)"
+            >
+              <ng-icon name="monoDelete" size="20px" />
+            </button>
+          </article>
+        }
+      </div>
     } @else {
-    <div class="empty">
-      <span>◇</span>
-      <h3>La forgia attende</h3>
-      <p>Non ci sono ancora personaggi. Inizia una nuova storia.</p>
-    </div>
+      <div class="empty">
+        <span>◇</span>
+        <h3>La forgia attende</h3>
+        <p>Non ci sono ancora personaggi. Inizia una nuova storia.</p>
+      </div>
     }
   </section>
 </main>

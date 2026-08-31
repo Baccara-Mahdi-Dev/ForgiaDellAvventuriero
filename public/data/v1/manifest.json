@@ -29,19 +29,7 @@
       "count": 109
     }
   },
-  "sources": [
-    "SRD",
-    "PHB",
-    "XGE",
-    "TCE",
-    "PSA",
-    "SCAG",
-    "ERLW",
-    "MPMM",
-    "EEPC",
-    "VRGR",
-    "EGW"
-  ],
+  "sources": ["SRD", "PHB", "XGE", "TCE", "PSA", "SCAG", "ERLW", "MPMM", "EEPC", "VRGR", "EGW"],
   "scope": {
     "kind": "private-personal-catalog",
     "restrictedContentHiddenByDefault": true,
@@ -78,12 +66,7 @@
     "spells": {
       "status": "complete",
       "records": 477,
-      "completeSources": [
-        "PHB",
-        "XGE",
-        "TCE",
-        "SRD"
-      ]
+      "completeSources": ["PHB", "XGE", "TCE", "SRD"]
     }
   }
 }

@@ -1,6 +1,11 @@
 <div class="weapon-base-backdrop" (click)="cancelled.emit()">
-  <section class="weapon-base-dialog" role="dialog" aria-modal="true" aria-labelledby="weapon-base-title"
-    (click)="$event.stopPropagation()">
+  <section
+    class="weapon-base-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="weapon-base-title"
+    (click)="$event.stopPropagation()"
+  >
     <header>
       <div>
         <p class="kicker">Configura arma magica</p>
@@ -12,19 +17,25 @@
 
     <label class="weapon-base-search">
       <span>Cerca un'arma</span>
-      <input type="search" placeholder="Es. spada lunga, stocco…" [ngModel]="search()"
-        (ngModelChange)="search.set($event)" />
+      <input
+        type="search"
+        placeholder="Es. spada lunga, stocco…"
+        [ngModel]="search()"
+        (ngModelChange)="search.set($event)"
+      />
     </label>
 
     <div class="weapon-base-grid">
       @for (option of filteredOptions; track option.id) {
-      <button [class.selected]="selectedId === option.id" (click)="selected.emit(option.id)">
-        <strong>{{ option.name }}</strong>
-        <span>{{ option.damage }} {{ option.damageType }}</span>
-        <small>{{ option.group }} · {{ option.properties?.join(', ') || 'Nessuna proprietà' }}</small>
-      </button>
+        <button [class.selected]="selectedId === option.id" (click)="selected.emit(option.id)">
+          <strong>{{ option.name }}</strong>
+          <span>{{ option.damage }} {{ option.damageType }}</span>
+          <small
+            >{{ option.group }} · {{ option.properties?.join(', ') || 'Nessuna proprietà' }}</small
+          >
+        </button>
       } @empty {
-      <p>Nessuna arma corrisponde alla ricerca.</p>
+        <p>Nessuna arma corrisponde alla ricerca.</p>
       }
     </div>
   </section>

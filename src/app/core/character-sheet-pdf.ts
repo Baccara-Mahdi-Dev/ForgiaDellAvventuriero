@@ -491,7 +491,14 @@ function fillIdentity(
     .join(' ');
   setText(form, 'CharacterName', draft.name, { fontSize: 12 });
   setText(form, 'ClassLevel', classLabel, { fontSize: 7 });
-  setText(form, 'Background', background?.name, { fontSize: 8 });
+  setText(
+    form,
+    'Background',
+    (draft.backgroundSelectionMode ?? 'catalog') === 'homebrew'
+      ? draft.homebrewBackgroundName
+      : background?.name,
+    { fontSize: 8 },
+  );
   setText(form, 'PlayerName', '', { fontSize: 8 });
   setText(form, 'Race ', ancestry?.name, { fontSize: 8 });
   setText(form, 'Alignment', ALIGNMENTS[draft.alignment ?? ''] ?? '', { fontSize: 8 });

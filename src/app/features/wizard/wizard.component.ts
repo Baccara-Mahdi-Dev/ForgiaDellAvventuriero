@@ -31,6 +31,11 @@ import {
   gamePreviousButton,
   gameScrollQuill,
   gameSparkles,
+  gameBookmarklet,
+  gameHammerDrop,
+  gameSkills,
+  gameTalk,
+  gameYinYang,
 } from '@ng-icons/game-icons';
 import {
   fluentAdd,
@@ -45,6 +50,7 @@ import {
   ALIGNMENTS,
   SKILLS,
   AbilityKey,
+  BackgroundSelectionMode,
   Background,
   Coins,
   EquipmentCategory,
@@ -105,7 +111,14 @@ import {
 } from '../../domain/artificer-rules';
 import { AbilityMethod } from '../../models/enum/ability-method';
 import { TuiDropdown } from '@taiga-ui/core';
-import { TuiAvatar, TuiChevron, TuiDataListWrapper, TuiSelect, TuiSkeleton } from '@taiga-ui/kit';
+import {
+  TuiAvatar,
+  TuiChevron,
+  TuiDataListWrapper,
+  TuiSelect,
+  TuiSkeleton,
+  TuiTabs,
+} from '@taiga-ui/kit';
 
 interface GrantedSpellSource {
   key: string;
@@ -244,6 +257,7 @@ const MAGIC_GROUP_LABELS: Record<string, string> = {
     TuiDropdown,
     TuiSelect,
     TuiSkeleton,
+    TuiTabs,
   ],
   providers: [
     provideIcons({
@@ -271,6 +285,12 @@ export class WizardComponent implements OnInit, OnDestroy {
   readonly self = this;
   readonly AbilityMethod = AbilityMethod;
   readonly abilities = ABILITIES;
+  readonly allToolOptions = TOOL_OPTIONS;
+  readonly catalogBackgroundIcon = gameBookmarklet;
+  readonly homebrewBackgroundIcon = gameHammerDrop;
+  readonly skillsIcon = gameSkills;
+  readonly languagesIcon = gameTalk;
+  readonly yingyangIcon = gameYinYang;
   readonly alignments = ALIGNMENTS;
   readonly languageOptions = LANGUAGE_OPTIONS;
   readonly skills = SKILLS;
@@ -868,13 +888,15 @@ export class WizardComponent implements OnInit, OnDestroy {
   get languageChoiceLimit() {
     return (
       (this.store.selectedAncestry()?.languageChoices ?? 0) +
-      (this.store.selectedBackground()?.languageChoices ?? 0)
+      (this.backgroundMode === 'catalog'
+        ? (this.store.selectedBackground()?.languageChoices ?? 0)
+        : 0)
     );
   }
   get toolChoiceLimit() {
-    return (
-      (this.store.selectedBackground()?.toolChoices ?? 0) + this.backgroundToolConflicts.length
-    );
+    return this.backgroundMode === 'catalog'
+      ? (this.store.selectedBackground()?.toolChoices ?? 0) + this.backgroundToolConflicts.length
+      : 0;
   }
   get fixedLanguages() {
     return [
@@ -968,7 +990,11 @@ export class WizardComponent implements OnInit, OnDestroy {
         );
       case 'background':
         return (
-          !!d.backgroundId &&
+          (this.backgroundMode === 'catalog'
+            ? !!d.backgroundId
+            : !!d.homebrewBackgroundName?.trim() &&
+              (d.homebrewBackgroundSkills?.length ?? 0) === 2 &&
+              this.homebrewBackgroundSecondaryCount === 2) &&
           !!d.alignment &&
           (d.customLanguages?.length ?? 0) === this.languageChoiceLimit &&
           (d.customTools?.length ?? 0) === this.toolChoiceLimit &&
@@ -1085,9 +1111,54 @@ export class WizardComponent implements OnInit, OnDestroy {
       customTools: changed ? [] : this.store.draft().customTools,
     });
   }
+  get backgroundMode(): BackgroundSelectionMode {
+    return this.store.draft().backgroundSelectionMode ?? 'catalog';
+  }
+  get backgroundDisplayName(): string {
+    return this.backgroundMode === 'homebrew'
+      ? this.store.draft().homebrewBackgroundName || 'Background homebrew'
+      : this.store.selectedBackground()?.name || 'Background da scegliere';
+  }
+  get homebrewBackgroundSecondaryCount(): number {
+    const draft = this.store.draft();
+    return (
+      (draft.homebrewBackgroundLanguages?.length ?? 0) +
+      (draft.homebrewBackgroundTools?.length ?? 0)
+    );
+  }
+  setBackgroundTab(index: number) {
+    const mode: BackgroundSelectionMode = index === 1 ? 'homebrew' : 'catalog';
+    this.store.patch({
+      backgroundSelectionMode: mode,
+      backgroundId: mode === 'homebrew' ? '' : this.store.draft().backgroundId,
+      customLanguages: [],
+      customTools: [],
+    });
+  }
+  toggleHomebrewBackgroundChoice(
+    field: 'homebrewBackgroundSkills' | 'homebrewBackgroundLanguages' | 'homebrewBackgroundTools',
+    value: string,
+  ) {
+    const draft = this.store.draft();
+    const selected = [...(draft[field] ?? [])];
+    const active = selected.includes(value);
+    const limitReached =
+      field === 'homebrewBackgroundSkills'
+        ? selected.length >= 2
+        : this.homebrewBackgroundSecondaryCount >= 2;
+    if (!active && limitReached) return;
+    this.store.patch({
+      [field]: active ? selected.filter((item) => item !== value) : [...selected, value],
+    });
+  }
   selectBackground(id: string) {
     if (this.store.draft().backgroundId === id) return;
-    this.store.patch({ backgroundId: id, customLanguages: [], customTools: [] });
+    this.store.patch({
+      backgroundSelectionMode: 'catalog',
+      backgroundId: id,
+      customLanguages: [],
+      customTools: [],
+    });
   }
   toggleAncestryBonus(k: AbilityKey) {
     const selected = this.store.draft().ancestryBonusAbilities ?? [],
@@ -1112,10 +1183,7 @@ export class WizardComponent implements OnInit, OnDestroy {
         key,
         draft.abilities[key] +
           (ancestry?.bonuses[key] ?? 0) +
-          ((draft.ancestryBonusAbilities ?? []).includes(key) &&
-          (!ancestry?.flexibleBonusOptions || ancestry.flexibleBonusOptions.includes(key))
-            ? 1
-            : 0),
+          ((draft.ancestryBonusAbilities ?? []).includes(key) ? 1 : 0),
       ]),
     ) as Record<AbilityKey, number>;
   }
@@ -1123,6 +1191,9 @@ export class WizardComponent implements OnInit, OnDestroy {
   skillAbilityShort(skillId: string): string {
     const ability = this.skills.find((skill) => skill.id === skillId)?.ability;
     return this.abilities.find((item) => item.key === ability)?.short ?? '';
+  }
+  skillName(skillId: string): string {
+    return this.skills.find((skill) => skill.id === skillId)?.name ?? skillId;
   }
 
   backgroundSkillShort(skillName: string): string {
@@ -1136,6 +1207,7 @@ export class WizardComponent implements OnInit, OnDestroy {
       ...(draft.classSkillProficiencies ?? []),
       ...(draft.ancestrySkillProficiencies ?? []),
       ...(this.store.selectedAncestry()?.skillProficiencies ?? []),
+      ...(this.backgroundMode === 'homebrew' ? (draft.homebrewBackgroundSkills ?? []) : []),
       ...(this.store.selectedBackground()?.skills ?? []).flatMap((name) => {
         const skill = this.skills.find((candidate) => candidate.name === name);
         return skill ? [skill.id] : [];

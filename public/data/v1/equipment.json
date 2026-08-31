@@ -201,9 +201,7 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "contundenti",
-    "properties": [
-      "leggera"
-    ],
+    "properties": ["leggera"],
     "proficiency": "simple",
     "isHidden": false
   },
@@ -219,9 +217,7 @@
     "damage": "1d4",
     "damageType": "contundenti",
     "properties": [],
-    "tags": [
-      "unarmed"
-    ],
+    "tags": ["unarmed"],
     "proficiency": "improvised",
     "isHidden": false
   },
@@ -235,11 +231,7 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "perforanti",
-    "properties": [
-      "accurata",
-      "leggera",
-      "lancio 6/18 m"
-    ],
+    "properties": ["accurata", "leggera", "lancio 6/18 m"],
     "finesse": true,
     "proficiency": "simple",
     "isHidden": false
@@ -254,9 +246,7 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "contundenti",
-    "properties": [
-      "a due mani"
-    ],
+    "properties": ["a due mani"],
     "proficiency": "simple",
     "isHidden": false
   },
@@ -270,10 +260,7 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "taglienti",
-    "properties": [
-      "leggera",
-      "lancio 6/18 m"
-    ],
+    "properties": ["leggera", "lancio 6/18 m"],
     "proficiency": "simple",
     "isHidden": false
   },
@@ -287,9 +274,7 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "perforanti",
-    "properties": [
-      "lancio 9/36 m"
-    ],
+    "properties": ["lancio 9/36 m"],
     "proficiency": "simple",
     "isHidden": false
   },
@@ -303,10 +288,7 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "contundenti",
-    "properties": [
-      "leggera",
-      "lancio 6/18 m"
-    ],
+    "properties": ["leggera", "lancio 6/18 m"],
     "proficiency": "simple",
     "isHidden": false
   },
@@ -334,9 +316,7 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "contundenti",
-    "properties": [
-      "versatile 1d8"
-    ],
+    "properties": ["versatile 1d8"],
     "proficiency": "simple",
     "isHidden": false
   },
@@ -350,9 +330,7 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "taglienti",
-    "properties": [
-      "leggera"
-    ],
+    "properties": ["leggera"],
     "proficiency": "simple",
     "isHidden": false
   },
@@ -366,10 +344,7 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "perforanti",
-    "properties": [
-      "lancio 6/18 m",
-      "versatile 1d8"
-    ],
+    "properties": ["lancio 6/18 m", "versatile 1d8"],
     "proficiency": "simple",
     "isHidden": false
   },
@@ -383,11 +358,7 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "perforanti",
-    "properties": [
-      "munizioni 24/96 m",
-      "ricarica",
-      "a due mani"
-    ],
+    "properties": ["munizioni 24/96 m", "ricarica", "a due mani"],
     "ranged": true,
     "proficiency": "simple",
     "isHidden": false
@@ -402,10 +373,7 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "perforanti",
-    "properties": [
-      "accurata",
-      "lancio 6/18 m"
-    ],
+    "properties": ["accurata", "lancio 6/18 m"],
     "ranged": true,
     "finesse": true,
     "proficiency": "simple",
@@ -421,10 +389,7 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "perforanti",
-    "properties": [
-      "munizioni 24/96 m",
-      "a due mani"
-    ],
+    "properties": ["munizioni 24/96 m", "a due mani"],
     "ranged": true,
     "proficiency": "simple",
     "isHidden": false
@@ -439,9 +404,7 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "contundenti",
-    "properties": [
-      "munizioni 9/36 m"
-    ],
+    "properties": ["munizioni 9/36 m"],
     "ranged": true,
     "proficiency": "simple",
     "isHidden": false
@@ -456,9 +419,7 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "taglienti",
-    "properties": [
-      "versatile 1d10"
-    ],
+    "properties": ["versatile 1d10"],
     "proficiency": "martial",
     "isHidden": false
   },
@@ -486,11 +447,7 @@
     "source": "SRD",
     "damage": "1d10",
     "damageType": "taglienti",
-    "properties": [
-      "pesante",
-      "portata",
-      "a due mani"
-    ],
+    "properties": ["pesante", "portata", "a due mani"],
     "proficiency": "martial",
     "isHidden": false
   },
@@ -504,10 +461,7 @@
     "source": "SRD",
     "damage": "1d12",
     "damageType": "taglienti",
-    "properties": [
-      "pesante",
-      "a due mani"
-    ],
+    "properties": ["pesante", "a due mani"],
     "proficiency": "martial",
     "isHidden": false
   },
@@ -521,10 +475,7 @@
     "source": "SRD",
     "damage": "2d6",
     "damageType": "taglienti",
-    "properties": [
-      "pesante",
-      "a due mani"
-    ],
+    "properties": ["pesante", "a due mani"],
     "proficiency": "martial",
     "isHidden": false
   },
@@ -538,11 +489,7 @@
     "source": "SRD",
     "damage": "1d10",
     "damageType": "taglienti",
-    "properties": [
-      "pesante",
-      "portata",
-      "a due mani"
-    ],
+    "properties": ["pesante", "portata", "a due mani"],
     "proficiency": "martial",
     "isHidden": false
   },
@@ -556,10 +503,7 @@
     "source": "SRD",
     "damage": "1d12",
     "damageType": "perforanti",
-    "properties": [
-      "portata",
-      "speciale"
-    ],
+    "properties": ["portata", "speciale"],
     "proficiency": "martial",
     "isHidden": false
   },
@@ -573,9 +517,7 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "taglienti",
-    "properties": [
-      "versatile 1d10"
-    ],
+    "properties": ["versatile 1d10"],
     "proficiency": "martial",
     "isHidden": false
   },
@@ -589,10 +531,7 @@
     "source": "SRD",
     "damage": "2d6",
     "damageType": "contundenti",
-    "properties": [
-      "pesante",
-      "a due mani"
-    ],
+    "properties": ["pesante", "a due mani"],
     "proficiency": "martial",
     "isHidden": false
   },
@@ -620,11 +559,7 @@
     "source": "SRD",
     "damage": "1d10",
     "damageType": "perforanti",
-    "properties": [
-      "pesante",
-      "portata",
-      "a due mani"
-    ],
+    "properties": ["pesante", "portata", "a due mani"],
     "proficiency": "martial",
     "isHidden": false
   },
@@ -638,9 +573,7 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "perforanti",
-    "properties": [
-      "accurata"
-    ],
+    "properties": ["accurata"],
     "finesse": true,
     "proficiency": "martial",
     "isHidden": false
@@ -655,10 +588,7 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "taglienti",
-    "properties": [
-      "accurata",
-      "leggera"
-    ],
+    "properties": ["accurata", "leggera"],
     "finesse": true,
     "proficiency": "martial",
     "isHidden": false
@@ -673,10 +603,7 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "perforanti",
-    "properties": [
-      "accurata",
-      "leggera"
-    ],
+    "properties": ["accurata", "leggera"],
     "finesse": true,
     "proficiency": "martial",
     "isHidden": false
@@ -691,10 +618,7 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "perforanti",
-    "properties": [
-      "lancio 6/18 m",
-      "versatile 1d8"
-    ],
+    "properties": ["lancio 6/18 m", "versatile 1d8"],
     "proficiency": "martial",
     "isHidden": false
   },
@@ -722,9 +646,7 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "contundenti",
-    "properties": [
-      "versatile 1d10"
-    ],
+    "properties": ["versatile 1d10"],
     "proficiency": "martial",
     "isHidden": false
   },
@@ -738,10 +660,7 @@
     "source": "SRD",
     "damage": "1d4",
     "damageType": "taglienti",
-    "properties": [
-      "accurata",
-      "portata"
-    ],
+    "properties": ["accurata", "portata"],
     "finesse": true,
     "proficiency": "martial",
     "isHidden": false
@@ -756,10 +675,7 @@
     "source": "SRD",
     "damage": "1",
     "damageType": "perforante",
-    "properties": [
-      "munizioni 7,5/30 m",
-      "ricarica"
-    ],
+    "properties": ["munizioni 7,5/30 m", "ricarica"],
     "ranged": true,
     "proficiency": "martial",
     "isHidden": false
@@ -774,11 +690,7 @@
     "source": "SRD",
     "damage": "1d6",
     "damageType": "perforanti",
-    "properties": [
-      "munizioni 9/36 m",
-      "leggera",
-      "ricarica"
-    ],
+    "properties": ["munizioni 9/36 m", "leggera", "ricarica"],
     "ranged": true,
     "proficiency": "martial",
     "isHidden": false
@@ -793,12 +705,7 @@
     "source": "SRD",
     "damage": "1d10",
     "damageType": "perforanti",
-    "properties": [
-      "munizioni 30/120 m",
-      "pesante",
-      "ricarica",
-      "a due mani"
-    ],
+    "properties": ["munizioni 30/120 m", "pesante", "ricarica", "a due mani"],
     "ranged": true,
     "proficiency": "martial",
     "isHidden": false
@@ -813,11 +720,7 @@
     "source": "SRD",
     "damage": "1d8",
     "damageType": "perforanti",
-    "properties": [
-      "munizioni 45/180 m",
-      "pesante",
-      "a due mani"
-    ],
+    "properties": ["munizioni 45/180 m", "pesante", "a due mani"],
     "ranged": true,
     "proficiency": "martial",
     "isHidden": false
@@ -832,10 +735,7 @@
     "source": "SRD",
     "damage": "—",
     "damageType": "—",
-    "properties": [
-      "speciale",
-      "lancio 1,5/4,5 m"
-    ],
+    "properties": ["speciale", "lancio 1,5/4,5 m"],
     "ranged": true,
     "proficiency": "martial",
     "isHidden": false

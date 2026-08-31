@@ -1,14 +1,17 @@
 <div class="wizard">
   <header class="topbar no-print">
-    <a routerLink="/" class="brand"><img src="/brand/logo-d20-hammer.png" alt="" width="34" height="34" /> Forgia
-      dell'avventuriero</a>
+    <a routerLink="/" class="brand"
+      ><img src="/brand/logo-d20-hammer.png" alt="" width="34" height="34" /> Forgia
+      dell'avventuriero</a
+    >
     <div class="save">
-      <i></i>{{
-      store.saveState() === 'salvataggio'
-      ? 'Salvataggio…'
-      : store.saveState() === 'locale'
-      ? 'Salvato nel browser'
-      : 'Salvato offline'
+      <i></i
+      >{{
+        store.saveState() === 'salvataggio'
+          ? 'Salvataggio…'
+          : store.saveState() === 'locale'
+            ? 'Salvato nel browser'
+            : 'Salvato offline'
       }}
     </div>
     <app-theme-toggle />
@@ -18,13 +21,18 @@
     <aside class="rail no-print" aria-label="Passi di creazione">
       <nav>
         @for (item of steps; track item.id; let i = $index) {
-        <button [class.active]="item.id === step()" [class.done]="i < index" [disabled]="!canNavigateTo(i)"
-          (click)="go(item.id)">
-          <span>{{ stepNumber(i) }}</span>
-          <div>
-            <small>{{ item.eyebrow }}</small>{{ item.label }}
-          </div>
-        </button>
+          <button
+            [class.active]="item.id === step()"
+            [class.done]="i < index"
+            [disabled]="!canNavigateTo(i)"
+            (click)="go(item.id)"
+          >
+            <span>{{ stepNumber(i) }}</span>
+            <div>
+              <small>{{ item.eyebrow }}</small
+              >{{ item.label }}
+            </div>
+          </button>
         }
       </nav>
       <div class="progress"><span [style.width.%]="((index + 1) / stepTotal) * 100"></span></div>
@@ -36,679 +44,1058 @@
         <h1>{{ current.label }}</h1>
       </div>
       @switch (step()) {
-      @case ('caratteristiche') {
-      <section>
-        <p class="lead">
-          Scegli come distribuire il potenziale del tuo personaggio. I bonus della discendenza
-          verranno applicati in seguito.
-        </p>
-        <div class="ability-controls">
-          <div class="segmented ability-methods" aria-label="Metodo caratteristiche">
-            <button [class.active]="store.draft().abilityMethod === AbilityMethod.POINT"
-              (click)="setMethod(AbilityMethod.POINT)">
-              Point buy</button><button [class.active]="store.draft().abilityMethod === AbilityMethod.STANDARD"
-              (click)="setMethod(AbilityMethod.STANDARD)">
-              Array standard</button><button [class.active]="store.draft().abilityMethod === AbilityMethod.CUSTOM"
-              (click)="setMethod(AbilityMethod.CUSTOM)">
-              Personalizzato
-            </button>
-          </div>
-          <div class="ability-actions" aria-label="Modifiche rapide">
-            <button class="ability-action random-action" (click)="store.randomPoint(store.draft().abilityMethod)">
-              <ng-icon name="iconoirShuffle" />
-              Random
-            </button>
-            <button class="ability-action reset-action" (click)="store.resetAll()">
-              <ng-icon name="iconoirUndoAction" />
-              Azzera
-            </button>
-          </div>
-        </div>
-        @if (store.draft().abilityMethod === AbilityMethod.POINT) {
-        <div class="budget">
-          <div>
-            <small>Punti spesi</small><strong>{{ store.pointsSpent() }} <i>/ 27</i></strong>
-          </div>
-          <progress min="0" low="12" high="18" max="27" [value]="store.pointsSpent()"
-            [class.danger]="store.pointsSpent() < 12"
-            [class.warning]="store.pointsSpent() >= 12 && store.pointsSpent() < 18"
-            [class.success]="store.pointsSpent() >= 18">
-            >
-          </progress>
-        </div>
-        }
-        <div class="abilities">
-          @for (ability of abilities; track ability.key) {
-          <article>
-            <div class="ability-icon">
-              <ng-icon [svg]="abilityIcon(ability.key)" size="30px"></ng-icon>
+        @case ('caratteristiche') {
+          <section>
+            <p class="lead">
+              Scegli come distribuire il potenziale del tuo personaggio. I bonus della discendenza
+              verranno applicati in seguito.
+            </p>
+            <div class="ability-controls">
+              <div class="segmented ability-methods" aria-label="Metodo caratteristiche">
+                <button
+                  [class.active]="store.draft().abilityMethod === AbilityMethod.POINT"
+                  (click)="setMethod(AbilityMethod.POINT)"
+                >
+                  Point buy</button
+                ><button
+                  [class.active]="store.draft().abilityMethod === AbilityMethod.STANDARD"
+                  (click)="setMethod(AbilityMethod.STANDARD)"
+                >
+                  Array standard</button
+                ><button
+                  [class.active]="store.draft().abilityMethod === AbilityMethod.CUSTOM"
+                  (click)="setMethod(AbilityMethod.CUSTOM)"
+                >
+                  Personalizzato
+                </button>
+              </div>
+              <div class="ability-actions" aria-label="Modifiche rapide">
+                <button
+                  class="ability-action random-action"
+                  (click)="store.randomPoint(store.draft().abilityMethod)"
+                >
+                  <ng-icon name="iconoirShuffle" />
+                  Random
+                </button>
+                <button class="ability-action reset-action" (click)="store.resetAll()">
+                  <ng-icon name="iconoirUndoAction" />
+                  Azzera
+                </button>
+              </div>
             </div>
-            <span>{{ ability.short }}</span>
-            <h3>{{ ability.label }}</h3>
-            <div class="stepper">
-              <button (click)="handleClick(ability.key, -1)" (mousedown)="startHold(ability.key, -1)"
-                (mouseup)="endHold()" (mouseleave)="endHold()" aria-label="Riduci {{ ability.label }}">
-                -
-              </button>
-              <strong>{{ store.draft().abilities[ability.key] }}</strong>
-              <button (click)="handleClick(ability.key, 1)" (mousedown)="startHold(ability.key, 1)"
-                (mouseup)="endHold()" (mouseleave)="endHold()" aria-label="Aumenta {{ ability.label }}">
-                +
-              </button>
+            @if (store.draft().abilityMethod === AbilityMethod.POINT) {
+              <div class="budget">
+                <div>
+                  <small>Punti spesi</small><strong>{{ store.pointsSpent() }} <i>/ 27</i></strong>
+                </div>
+                <progress
+                  min="0"
+                  low="12"
+                  high="18"
+                  max="27"
+                  [value]="store.pointsSpent()"
+                  [class.danger]="store.pointsSpent() < 12"
+                  [class.warning]="store.pointsSpent() >= 12 && store.pointsSpent() < 18"
+                  [class.success]="store.pointsSpent() >= 18"
+                >
+                  >
+                </progress>
+              </div>
+            }
+            <div class="abilities">
+              @for (ability of abilities; track ability.key) {
+                <article>
+                  <div class="ability-icon">
+                    <ng-icon [svg]="abilityIcon(ability.key)" size="30px"></ng-icon>
+                  </div>
+                  <span>{{ ability.short }}</span>
+                  <h3>{{ ability.label }}</h3>
+                  <div class="stepper">
+                    <button
+                      (click)="handleClick(ability.key, -1)"
+                      (mousedown)="startHold(ability.key, -1)"
+                      (mouseup)="endHold()"
+                      (mouseleave)="endHold()"
+                      aria-label="Riduci {{ ability.label }}"
+                    >
+                      -
+                    </button>
+                    <strong>{{ store.draft().abilities[ability.key] }}</strong>
+                    <button
+                      (click)="handleClick(ability.key, 1)"
+                      (mousedown)="startHold(ability.key, 1)"
+                      (mouseup)="endHold()"
+                      (mouseleave)="endHold()"
+                      aria-label="Aumenta {{ ability.label }}"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <small>Modificatore {{ mod(store.derived().modifiers[ability.key]) }}</small>
+                </article>
+              }
             </div>
-            <small>Modificatore {{ mod(store.derived().modifiers[ability.key]) }}</small>
-          </article>
-          }
-        </div>
-        <div class="homebrew-stats">
-          <div class="homebrew-heading">
-            <div>
-              <p class="kicker">Statistiche homebrew</p>
-              <h2>Sanità mentale</h2>
-              <small>
-                Caratteristica opzionale indipendente da 0 a 20: non riceve bonus dalla
-                discendenza e non modifica il point buy standard.
-              </small>
-            </div>
-            <button class="sanity-toggle" [class.active]="store.draft().sanityEnabled"
-              [attr.aria-pressed]="store.draft().sanityEnabled" (click)="toggleSanity()">
-              {{
-              store.draft().sanityEnabled
-              ? 'Rimuovi caratteristica'
-              : 'Aggiungi caratteristica'
-              }}
-            </button>
-          </div>
-          @if (store.draft().sanityEnabled) {
-          <article class="sanity-card">
-            <div class="ability-icon sanity-icon">
-              <ng-icon [svg]="sanityIcon" size="30px"></ng-icon>
-            </div>
-            <span>SAN</span>
-            <h3>Sanità mentale</h3>
-            <div class="stepper">
-              <button (click)="handleSanityClick(-1)" (mousedown)="startSanityHold(-1)" (mouseup)="endHold()"
-                (mouseleave)="endHold()" aria-label="Riduci Sanità mentale">
-                -
-              </button>
-              <strong>{{ store.draft().sanityScore ?? 8 }}</strong>
-              <button (click)="handleSanityClick(1)" (mousedown)="startSanityHold(1)" (mouseup)="endHold()"
-                (mouseleave)="endHold()" aria-label="Aumenta Sanità mentale">
-                +
-              </button>
-            </div>
+            <div class="homebrew-stats">
+              <div class="homebrew-heading">
+                <div>
+                  <p class="kicker">Statistiche homebrew</p>
+                  <h2>Sanità mentale</h2>
+                  <small>
+                    Caratteristica opzionale indipendente da 0 a 20: non riceve bonus dalla
+                    discendenza e non modifica il point buy standard.
+                  </small>
+                </div>
+                <button
+                  class="sanity-toggle"
+                  [class.active]="store.draft().sanityEnabled"
+                  [attr.aria-pressed]="store.draft().sanityEnabled"
+                  (click)="toggleSanity()"
+                >
+                  {{
+                    store.draft().sanityEnabled
+                      ? 'Rimuovi caratteristica'
+                      : 'Aggiungi caratteristica'
+                  }}
+                </button>
+              </div>
+              @if (store.draft().sanityEnabled) {
+                <article class="sanity-card">
+                  <div class="ability-icon sanity-icon">
+                    <ng-icon [svg]="sanityIcon" size="30px"></ng-icon>
+                  </div>
+                  <span>SAN</span>
+                  <h3>Sanità mentale</h3>
+                  <div class="stepper">
+                    <button
+                      (click)="handleSanityClick(-1)"
+                      (mousedown)="startSanityHold(-1)"
+                      (mouseup)="endHold()"
+                      (mouseleave)="endHold()"
+                      aria-label="Riduci Sanità mentale"
+                    >
+                      -
+                    </button>
+                    <strong>{{ store.draft().sanityScore ?? 8 }}</strong>
+                    <button
+                      (click)="handleSanityClick(1)"
+                      (mousedown)="startSanityHold(1)"
+                      (mouseup)="endHold()"
+                      (mouseleave)="endHold()"
+                      aria-label="Aumenta Sanità mentale"
+                    >
+                      +
+                    </button>
+                  </div>
 
-            <small>Modificatore {{ mod(store.derived().sanityModifier ?? 0) }}</small>
-          </article>
-          }
-        </div>
-      </section>
-      }
-      @case ('razza') {
-      <section>
-        <p class="lead">
-          Il retaggio definisce bonus, velocità e capacità innate. Puoi filtrare visivamente per
-          fonte tramite i badge.
-        </p>
-        <div class="option-grid">
-          @for (item of store.ancestries; track item.id) {
-          <button class="option" [class.selected]="store.draft().ancestryId === item.id"
-            (click)="selectAncestry(item.id)">
-            <span class="source">{{ item.source }}</span>
-            <div tuiAvatar class="option-icon" size="xl" [tuiAvatar]="item.name[0]"
-              [tuiSkeleton]="!loadedAncestryImages().has(item.id)">
-              <img loading="lazy" decoding="async" [alt]="item.name" [src]="'assets/' + item.id + '.jpg'"
-                (load)="markAncestryImageLoaded(item.id)" (error)="markAncestryImageLoaded(item.id)" />
+                  <small>Modificatore {{ mod(store.derived().sanityModifier ?? 0) }}</small>
+                </article>
+              }
             </div>
-            <h3>{{ item.name }}</h3>
-            <p>{{ item.description }}</p>
-            <strong>{{
-              item.flexibleBonusCount
-              ? bonusText(item.bonuses) +
-              (bonusText(item.bonuses) ? ' · ' : '') +
-              item.flexibleBonusCount +
-              ' a scelta +1'
-              : bonusText(item.bonuses)
-              }}</strong><small>{{ item.traits.join(' · ') }}</small>
-          </button>
-          }
-        </div>
-        @if (store.selectedAncestry()?.flexibleBonusCount) {
-        <div class="flexible-bonuses">
-          <div>
-            <p class="kicker">{{ store.selectedAncestry()!.name }}</p>
-            <h2>Scegli caratteristiche diverse</h2>
-            <small>{{ store.draft().ancestryBonusAbilities?.length ?? 0 }} /
-              {{ store.selectedAncestry()!.flexibleBonusCount }} selezionate</small>
-          </div>
-          <div class="bonus-picks">
-            @for (a of abilities; track a.key) {
-            @if (ancestryBonusAllowed(a.key)) {
-            <button [class.selected]="store.draft().ancestryBonusAbilities?.includes(a.key)"
-              (click)="toggleAncestryBonus(a.key)">
-              <ng-icon [svg]="abilityIcon(a.key)" size="20px"></ng-icon><strong>{{ a.short }}</strong><span>+1</span>
-            </button>
-            }
-            }
-          </div>
-        </div>
+          </section>
         }
-        @if (store.selectedAncestry()?.skillChoices) {
-        <div class="flexible-bonuses">
-          <div>
-            <p class="kicker">Competenze razziali</p>
-            <h2>Scegli {{ store.selectedAncestry()!.skillChoices }} abilità</h2>
-            <small>{{ store.draft().ancestrySkillProficiencies?.length ?? 0 }} /
-              {{ store.selectedAncestry()!.skillChoices }} selezionate</small>
-          </div>
-          <div class="bonus-picks">
-            @for (skill of skills; track skill.id) {
-            @if (
-            !store.selectedAncestry()!.skillChoiceOptions ||
-            store.selectedAncestry()!.skillChoiceOptions!.includes(skill.id)
-            ) {
-            <button [class.selected]="
+        @case ('razza') {
+          <section>
+            <p class="lead">
+              Il retaggio definisce bonus, velocità e capacità innate. Puoi filtrare visivamente per
+              fonte tramite i badge.
+            </p>
+            <div class="option-grid">
+              @for (item of store.ancestries; track item.id) {
+                <button
+                  class="option"
+                  [class.selected]="store.draft().ancestryId === item.id"
+                  (click)="selectAncestry(item.id)"
+                >
+                  <span class="source">{{ item.source }}</span>
+                  <div
+                    tuiAvatar
+                    class="option-icon"
+                    size="xl"
+                    [tuiAvatar]="item.name[0]"
+                    [tuiSkeleton]="!loadedAncestryImages().has(item.id)"
+                  >
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      [alt]="item.name"
+                      [src]="'assets/' + item.id + '.jpg'"
+                      (load)="markAncestryImageLoaded(item.id)"
+                      (error)="markAncestryImageLoaded(item.id)"
+                    />
+                  </div>
+                  <h3>{{ item.name }}</h3>
+                  <p>{{ item.description }}</p>
+                  <strong>{{
+                    item.flexibleBonusCount
+                      ? bonusText(item.bonuses) +
+                        (bonusText(item.bonuses) ? ' · ' : '') +
+                        item.flexibleBonusCount +
+                        ' a scelta +1'
+                      : bonusText(item.bonuses)
+                  }}</strong
+                  ><small>{{ item.traits.join(' · ') }}</small>
+                </button>
+              }
+            </div>
+            @if (store.selectedAncestry()?.flexibleBonusCount) {
+              <div class="flexible-bonuses">
+                <div>
+                  <p class="kicker">{{ store.selectedAncestry()!.name }}</p>
+                  <h2>Scegli caratteristiche diverse</h2>
+                  <small
+                    >{{ store.draft().ancestryBonusAbilities?.length ?? 0 }} /
+                    {{ store.selectedAncestry()!.flexibleBonusCount }} selezionate</small
+                  >
+                </div>
+                <div class="bonus-picks">
+                  @for (a of abilities; track a.key) {
+                    @if (ancestryBonusAllowed(a.key)) {
+                      <button
+                        [class.selected]="store.draft().ancestryBonusAbilities?.includes(a.key)"
+                        (click)="toggleAncestryBonus(a.key)"
+                      >
+                        <ng-icon [svg]="abilityIcon(a.key)" size="20px"></ng-icon
+                        ><strong>{{ a.short }}</strong
+                        ><span>+1</span>
+                      </button>
+                    }
+                  }
+                </div>
+              </div>
+            }
+            @if (store.selectedAncestry()?.skillChoices) {
+              <div class="flexible-bonuses">
+                <div>
+                  <p class="kicker">Competenze razziali</p>
+                  <h2>Scegli {{ store.selectedAncestry()!.skillChoices }} abilità</h2>
+                  <small
+                    >{{ store.draft().ancestrySkillProficiencies?.length ?? 0 }} /
+                    {{ store.selectedAncestry()!.skillChoices }} selezionate</small
+                  >
+                </div>
+                <div class="bonus-picks">
+                  @for (skill of skills; track skill.id) {
+                    @if (
+                      !store.selectedAncestry()!.skillChoiceOptions ||
+                      store.selectedAncestry()!.skillChoiceOptions!.includes(skill.id)
+                    ) {
+                      <button
+                        [class.selected]="
                           store.draft().ancestrySkillProficiencies?.includes(skill.id)
-                        " (click)="toggleAncestrySkill(skill.id)">
-              <strong>{{ skill.name }}</strong>
-              <small>{{ skillAbilityShort(skill.id) }}</small>
-            </button>
+                        "
+                        (click)="toggleAncestrySkill(skill.id)"
+                      >
+                        <strong>{{ skill.name }}</strong>
+                        <small>{{ skillAbilityShort(skill.id) }}</small>
+                      </button>
+                    }
+                  }
+                </div>
+              </div>
             }
+            @if (store.selectedAncestry()?.toolChoices) {
+              <div class="flexible-bonuses">
+                <div>
+                  <p class="kicker">Addestramento razziale</p>
+                  <h2>Scegli {{ store.selectedAncestry()!.toolChoices }} strumento</h2>
+                  <small
+                    >{{ store.draft().ancestryToolProficiencies?.length ?? 0 }} /
+                    {{ store.selectedAncestry()!.toolChoices }} selezionati</small
+                  >
+                </div>
+                <div class="bonus-picks">
+                  @for (tool of store.selectedAncestry()!.toolOptions ?? []; track tool) {
+                    <button
+                      [class.selected]="store.draft().ancestryToolProficiencies?.includes(tool)"
+                      (click)="toggleAncestryTool(tool)"
+                    >
+                      <strong>{{ tool }}</strong>
+                    </button>
+                  }
+                </div>
+              </div>
             }
-          </div>
-        </div>
+          </section>
         }
-        @if (store.selectedAncestry()?.toolChoices) {
-        <div class="flexible-bonuses">
-          <div>
-            <p class="kicker">Addestramento razziale</p>
-            <h2>Scegli {{ store.selectedAncestry()!.toolChoices }} strumento</h2>
-            <small>{{ store.draft().ancestryToolProficiencies?.length ?? 0 }} /
-              {{ store.selectedAncestry()!.toolChoices }} selezionati</small>
-          </div>
-          <div class="bonus-picks">
-            @for (tool of store.selectedAncestry()!.toolOptions ?? []; track tool) {
-            <button [class.selected]="store.draft().ancestryToolProficiencies?.includes(tool)"
-              (click)="toggleAncestryTool(tool)">
-              <strong>{{ tool }}</strong>
-            </button>
-            }
-          </div>
-        </div>
-        }
-      </section>
-      }
-      @case ('classe') {
-      <section>
-        <p class="lead">
-          La classe determina punti ferita, competenze, progressione e — quando presente — la
-          magia. <br />
-          Il d20 dorato evidenzia le classi più adatte alle tue due caratteristiche migliori.
-        </p>
-        <div class="option-grid classes">
-          @for (item of store.classes; track item.id) {
-          <button class="option" [class.selected]="store.draft().classId === item.id"
-            [class.recommended]="isClassRecommended(item.id)" (click)="selectClass(item.id)">
-            <span class="source">{{ item.source }}</span>
-            @if (isClassRecommended(item.id)) {
-            <span class="class-recommendation" role="img" aria-label="Classe consigliata in base alle caratteristiche"
-              title="Classe consigliata"><ng-icon [svg]="recommendationIcon" size="31px"></ng-icon></span>
-            }
-            <div class="die hit-die">
-              <ng-icon [svg]="diceIcon(item.hitDie)" size="26px"></ng-icon>
-              <span>Dado vita <strong>d{{ item.hitDie }}</strong></span>
+        @case ('classe') {
+          <section>
+            <p class="lead">
+              La classe determina punti ferita, competenze, progressione e — quando presente — la
+              magia. <br />
+              Il d20 dorato evidenzia le classi più adatte alle tue due caratteristiche migliori.
+            </p>
+            <div class="option-grid classes">
+              @for (item of store.classes; track item.id) {
+                <button
+                  class="option"
+                  [class.selected]="store.draft().classId === item.id"
+                  [class.recommended]="isClassRecommended(item.id)"
+                  (click)="selectClass(item.id)"
+                >
+                  <span class="source">{{ item.source }}</span>
+                  @if (isClassRecommended(item.id)) {
+                    <span
+                      class="class-recommendation"
+                      role="img"
+                      aria-label="Classe consigliata in base alle caratteristiche"
+                      title="Classe consigliata"
+                      ><ng-icon [svg]="recommendationIcon" size="31px"></ng-icon
+                    ></span>
+                  }
+                  <div class="die hit-die">
+                    <ng-icon [svg]="diceIcon(item.hitDie)" size="26px"></ng-icon>
+                    <span
+                      >Dado vita <strong>d{{ item.hitDie }}</strong></span
+                    >
+                  </div>
+                  <h3>{{ item.name }}</h3>
+                  <p>{{ item.description }}</p>
+                  <small
+                    >Caratteristica primaria: {{ item.primary.toUpperCase() }} · TS
+                    {{ item.saves.join(', ').toUpperCase() }}</small
+                  >
+                </button>
+              }
             </div>
-            <h3>{{ item.name }}</h3>
-            <p>{{ item.description }}</p>
-            <small>Caratteristica primaria: {{ item.primary.toUpperCase() }} · TS
-              {{ item.saves.join(', ').toUpperCase() }}</small>
-          </button>
-          }
-        </div>
-        @if (store.selectedClass()) {
-        <div class="choice-panel">
-          <div>
-            <p class="kicker">Competenze di classe</p>
-            <h2>Scegli {{ store.selectedClass()!.skillChoices }} abilità</h2>
-          </div>
-          <small>{{ store.draft().classSkillProficiencies?.length ?? 0 }} /
-            {{ store.selectedClass()!.skillChoices }} selezionate</small>
-          <div class="skill-picks">
-            @for (skill of skills; track skill.id) {
-            @if (store.selectedClass()!.skillOptions.includes(skill.id)) {
-            <button [class.selected]="store.draft().classSkillProficiencies?.includes(skill.id)"
-              (click)="toggleClassSkill(skill.id)">
-              {{ skill.name }} <small>{{ skillAbilityShort(skill.id) }}</small>
-            </button>
+            @if (store.selectedClass()) {
+              <div class="choice-panel">
+                <div>
+                  <p class="kicker">Competenze di classe</p>
+                  <h2>Scegli {{ store.selectedClass()!.skillChoices }} abilità</h2>
+                </div>
+                <small
+                  >{{ store.draft().classSkillProficiencies?.length ?? 0 }} /
+                  {{ store.selectedClass()!.skillChoices }} selezionate</small
+                >
+                <div class="skill-picks">
+                  @for (skill of skills; track skill.id) {
+                    @if (store.selectedClass()!.skillOptions.includes(skill.id)) {
+                      <button
+                        [class.selected]="store.draft().classSkillProficiencies?.includes(skill.id)"
+                        (click)="toggleClassSkill(skill.id)"
+                      >
+                        {{ skill.name }} <small>{{ skillAbilityShort(skill.id) }}</small>
+                      </button>
+                    }
+                  }
+                </div>
+              </div>
             }
-            }
-          </div>
-        </div>
+          </section>
         }
-      </section>
-      }
-      @case ('background') {
-      <section>
-        <p class="lead">
-          Il background racconta chi eri prima dell'avventura e aggiunge due competenze.
-        </p>
-        @if (classSkillNames.length) {
-        <div class="class-skill-reminder">
-          <div>
-            <strong>Competenze già scelte con la classe</strong>
-            <small>I background che ripetono una di queste abilità non sono selezionabili.</small>
-          </div>
-          <div class="skill-reminder-list">
-            @for (skill of classSkillNames; track skill) {
-            <span>{{ skill }}
-              <small style="display: inline">{{ backgroundSkillShort(skill) }}</small></span>
-            }
-          </div>
-        </div>
-        }
-        <div class="option-grid">
-          @for (item of pagedBackgrounds; track item.id) {
-          <button class="option" [disabled]="backgroundHasClassSkill(item)"
-            [class.has-skill-conflict]="backgroundHasClassSkill(item)"
-            [class.selected]="store.draft().backgroundId === item.id" (click)="selectBackground(item.id)">
-            <span class="source">{{ item.source }}</span>
-            <div class="option-icon backgrounds">
-              <ng-icon name="gameScrollQuill" aria-hidden="true" />
-            </div>
-            <h3>{{ item.name }}</h3>
-            <p>{{ item.description }}</p>
-            <div class="background-skill-tags">
-              @for (skill of item.skills; track skill) {
-              <span [class.already-known]="backgroundSkillFromClass(skill)">
-                {{ skill }}
-                <small style="display: inline">{{ backgroundSkillShort(skill) }}</small>
-                @if (backgroundSkillFromClass(skill)) {
-                <small>Già scelta con la classe</small>
+        @case ('background') {
+          <section>
+            <p class="lead">
+              Il background racconta chi eri prima dell'avventura e aggiunge due competenze.
+            </p>
+            <tui-tabs
+              class="background-tabs"
+              [activeItemIndex]="backgroundMode === 'homebrew' ? 1 : 0"
+              (activeItemIndexChange)="setBackgroundTab($event)"
+              size="l"
+            >
+              <button tuiTab type="button">
+                <ng-icon [svg]="catalogBackgroundIcon" size="20px" aria-hidden="true" />
+                <span class="tab-context-label">Background ufficiali</span>
+              </button>
+              <button tuiTab type="button">
+                <ng-icon [svg]="homebrewBackgroundIcon" size="20px" aria-hidden="true" />
+                <span class="tab-context-label">Background homebrew</span>
+              </button>
+            </tui-tabs>
+            @if (backgroundMode === 'catalog') {
+              <div class="background-tab-panel">
+                @if (classSkillNames.length) {
+                  <div class="class-skill-reminder">
+                    <div>
+                      <strong>Competenze già scelte con la classe</strong>
+                      <small
+                        >I background che ripetono una di queste abilità non sono
+                        selezionabili.</small
+                      >
+                    </div>
+                    <div class="skill-reminder-list">
+                      @for (skill of classSkillNames; track skill) {
+                        <span
+                          >{{ skill }}
+                          <small style="display: inline">{{
+                            backgroundSkillShort(skill)
+                          }}</small></span
+                        >
+                      }
+                    </div>
+                  </div>
                 }
-              </span>
-              }
-            </div>
-            <small class="option-meta">
-              @if (item.languages?.length) {
-              Lingue: {{ item.languages!.join(', ') }} ·
-              }
-              @if (item.languageChoices) {
-              {{ item.languageChoices }} lingua/e a scelta ·
-              }
-              @if (item.tools?.length) {
-              Strumenti: {{ item.tools!.join(', ') }} ·
-              }
-              @if (item.toolChoices) {
-              {{ item.toolChoices }} {{ backgroundToolChoiceSummary(item) }}
-              }
-            </small>
-          </button>
-          }
-        </div>
-        @if (backgroundPageCount > 1) {
-        <nav class="spell-pagination" aria-label="Pagine dei background">
-          <button [disabled]="currentBackgroundPage === 1" (click)="setBackgroundPage(currentBackgroundPage - 1)">
-            <ng-icon name="gamePreviousButton" aria-hidden="true" />
-            Precedente
-          </button>
-          <span>
-            Pagina {{ currentBackgroundPage }} di {{ backgroundPageCount }} ·
-            {{ store.backgrounds.length }} background
-          </span>
-          <button [disabled]="currentBackgroundPage === backgroundPageCount"
-            (click)="setBackgroundPage(currentBackgroundPage + 1)">
-            Successiva
-            <ng-icon name="gameNextButton" aria-hidden="true" />
-          </button>
-        </nav>
-        }
-        <div class="background-details">
-          <label class="field"><span>Allineamento</span><select [ngModel]="store.draft().alignment || ''"
-              (ngModelChange)="store.patch({ alignment: $event })">
-              <option value="">Scegli un allineamento</option>
-              @for (item of alignments; track item.id) {
-              <option [value]="item.id">{{ item.label }}</option>
-              }
-            </select>
-          </label>
-          @if (languageChoiceLimit) {
-          <div class="background-choice">
-            <div class="background-choice-heading">
-              <span class="choice-label-spaced">Lingue a scelta</span>
-              <small>{{ store.draft().customLanguages?.length ?? 0 }} /
-                {{ languageChoiceLimit }}</small>
-            </div>
-            @if (fixedLanguages.length) {
-            <small>Già conosciute: {{ fixedLanguages.join(', ') }}</small>
+                <div class="option-grid">
+                  @for (item of pagedBackgrounds; track item.id) {
+                    <button
+                      class="option"
+                      [disabled]="backgroundHasClassSkill(item)"
+                      [class.has-skill-conflict]="backgroundHasClassSkill(item)"
+                      [class.selected]="store.draft().backgroundId === item.id"
+                      (click)="selectBackground(item.id)"
+                    >
+                      <span class="source">{{ item.source }}</span>
+                      <div class="option-icon backgrounds">
+                        <ng-icon name="gameScrollQuill" aria-hidden="true" />
+                      </div>
+                      <h3>{{ item.name }}</h3>
+                      <p>{{ item.description }}</p>
+                      <div class="background-skill-tags">
+                        @for (skill of item.skills; track skill) {
+                          <span [class.already-known]="backgroundSkillFromClass(skill)">
+                            {{ skill }}
+                            <small style="display: inline">{{ backgroundSkillShort(skill) }}</small>
+                            @if (backgroundSkillFromClass(skill)) {
+                              <small>Già scelta con la classe</small>
+                            }
+                          </span>
+                        }
+                      </div>
+                      <small class="option-meta">
+                        @if (item.languages?.length) {
+                          Lingue: {{ item.languages!.join(', ') }} ·
+                        }
+                        @if (item.languageChoices) {
+                          {{ item.languageChoices }} lingua/e a scelta ·
+                        }
+                        @if (item.tools?.length) {
+                          Strumenti: {{ item.tools!.join(', ') }} ·
+                        }
+                        @if (item.toolChoices) {
+                          {{ item.toolChoices }} {{ backgroundToolChoiceSummary(item) }}
+                        }
+                      </small>
+                    </button>
+                  }
+                </div>
+                @if (backgroundPageCount > 1) {
+                  <nav class="spell-pagination" aria-label="Pagine dei background">
+                    <button
+                      [disabled]="currentBackgroundPage === 1"
+                      (click)="setBackgroundPage(currentBackgroundPage - 1)"
+                    >
+                      <ng-icon name="gamePreviousButton" aria-hidden="true" />
+                      Precedente
+                    </button>
+                    <span>
+                      Pagina {{ currentBackgroundPage }} di {{ backgroundPageCount }} ·
+                      {{ store.backgrounds.length }} background
+                    </span>
+                    <button
+                      [disabled]="currentBackgroundPage === backgroundPageCount"
+                      (click)="setBackgroundPage(currentBackgroundPage + 1)"
+                    >
+                      Successiva
+                      <ng-icon name="gameNextButton" aria-hidden="true" />
+                    </button>
+                  </nav>
+                }
+                <div class="background-details">
+                  @if (languageChoiceLimit) {
+                    <div class="background-choice">
+                      <div class="background-choice-heading">
+                        <span class="choice-label-spaced">Lingue a scelta</span>
+                        <small
+                          >{{ store.draft().customLanguages?.length ?? 0 }} /
+                          {{ languageChoiceLimit }}</small
+                        >
+                      </div>
+                      @if (fixedLanguages.length) {
+                        <small>Già conosciute: {{ fixedLanguages.join(', ') }}</small>
+                      }
+                      <div class="skill-picks">
+                        @for (language of languageOptions; track language) {
+                          <button
+                            type="button"
+                            [class.selected]="store.draft().customLanguages?.includes(language)"
+                            [disabled]="
+                              fixedLanguages.includes(language) ||
+                              (!store.draft().customLanguages?.includes(language) &&
+                                (store.draft().customLanguages?.length ?? 0) >= languageChoiceLimit)
+                            "
+                            (click)="toggleBackgroundChoice('customLanguages', language)"
+                          >
+                            {{ language }}
+                          </button>
+                        }
+                      </div>
+                    </div>
+                  }
+                  @if (toolChoiceLimit) {
+                    <div class="background-choice">
+                      <div class="background-choice-heading">
+                        <span>{{ toolChoiceLabel }}</span>
+                        <small
+                          >{{ store.draft().customTools?.length ?? 0 }} /
+                          {{ toolChoiceLimit }}</small
+                        >
+                      </div>
+                      @if (fixedTools.length) {
+                        <small>Già competenti: {{ fixedTools.join(', ') }}</small>
+                      }
+                      @if (backgroundToolConflicts.length) {
+                        <small>
+                          Competenza duplicata: scegli
+                          {{ backgroundToolConflicts.length }} strumento/i sostitutivo/i.
+                        </small>
+                      }
+                      <div class="skill-picks">
+                        @for (tool of toolOptions; track tool) {
+                          <button
+                            type="button"
+                            [class.selected]="store.draft().customTools?.includes(tool)"
+                            [disabled]="
+                              fixedTools.includes(tool) ||
+                              (!store.draft().customTools?.includes(tool) &&
+                                (store.draft().customTools?.length ?? 0) >= toolChoiceLimit)
+                            "
+                            (click)="toggleBackgroundChoice('customTools', tool)"
+                          >
+                            {{ tool }}
+                          </button>
+                        }
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
             }
-            <div class="skill-picks">
-              @for (language of languageOptions; track language) {
-              <button type="button" [class.selected]="store.draft().customLanguages?.includes(language)" [disabled]="
+            @if (backgroundMode === 'homebrew') {
+              <div class="background-tab-panel homebrew-background-panel">
+                <div class="homebrew-background-intro">
+                  <ng-icon [svg]="homebrewBackgroundIcon" size="36px" aria-hidden="true" />
+                  <div>
+                    <p class="kicker">Creazione libera</p>
+                    <h2>Il tuo background homebrew</h2>
+                    <small>Sostituisce completamente i background ufficiali.</small>
+                  </div>
+                </div>
+                <div class="homebrew-background-fields">
+                  <label class="field">
+                    <span>Nome del background</span>
+                    <input
+                      class="homebrew-background-field"
+                      [ngModel]="store.draft().homebrewBackgroundName || ''"
+                      (ngModelChange)="store.patch({ homebrewBackgroundName: $event })"
+                      placeholder="Es. Custode delle rovine"
+                    />
+                  </label>
+                  <label class="field">
+                    <span>Descrizione</span>
+                    <textarea
+                      class="homebrew-background-field"
+                      rows="3"
+                      [ngModel]="store.draft().homebrewBackgroundDescription || ''"
+                      (ngModelChange)="store.patch({ homebrewBackgroundDescription: $event })"
+                      placeholder="Racconta chi eri prima dell'avventura…"
+                    ></textarea>
+                  </label>
+                </div>
+
+                <div class="background-choice homebrew-choice-card">
+                  <div class="background-choice-heading">
+                    <span
+                      ><ng-icon [svg]="skillsIcon" size="20px" aria-hidden="true" /> Due
+                      abilità</span
+                    >
+                    <small>{{ store.draft().homebrewBackgroundSkills?.length ?? 0 }} / 2</small>
+                  </div>
+                  <div class="skill-picks">
+                    @for (skill of skills; track skill.id) {
+                      <button
+                        type="button"
+                        [class.selected]="
+                          store.draft().homebrewBackgroundSkills?.includes(skill.id)
+                        "
+                        [disabled]="
+                          store.draft().classSkillProficiencies?.includes(skill.id) ||
+                          (!store.draft().homebrewBackgroundSkills?.includes(skill.id) &&
+                            (store.draft().homebrewBackgroundSkills?.length ?? 0) >= 2)
+                        "
+                        (click)="
+                          toggleHomebrewBackgroundChoice('homebrewBackgroundSkills', skill.id)
+                        "
+                      >
+                        {{ skill.name }} <small>{{ skillAbilityShort(skill.id) }}</small>
+                      </button>
+                    }
+                  </div>
+                </div>
+
+                <div class="background-choice homebrew-choice-card">
+                  <div class="background-choice-heading">
+                    <span
+                      ><ng-icon [svg]="languagesIcon" size="20px" aria-hidden="true" /> Lingue o
+                      strumenti</span
+                    >
+                    <small>{{ homebrewBackgroundSecondaryCount }} / 2</small>
+                  </div>
+                  <small
+                    >Scegli in totale due competenze, combinando liberamente lingue e
+                    strumenti.</small
+                  >
+                  <p>Lingue</p>
+                  <div class="skill-picks">
+                    @for (language of languageOptions; track language) {
+                      <button
+                        type="button"
+                        [class.selected]="
+                          store.draft().homebrewBackgroundLanguages?.includes(language)
+                        "
+                        [disabled]="
                           fixedLanguages.includes(language) ||
-                          (!store.draft().customLanguages?.includes(language) &&
-                            (store.draft().customLanguages?.length ?? 0) >= languageChoiceLimit)
-                        " (click)="toggleBackgroundChoice('customLanguages', language)">
-                {{ language }}
-              </button>
-              }
-            </div>
-          </div>
-          }
-          @if (toolChoiceLimit) {
-          <div class="background-choice">
-            <div class="background-choice-heading">
-              <span>{{ toolChoiceLabel }}</span>
-              <small>{{ store.draft().customTools?.length ?? 0 }} / {{ toolChoiceLimit }}</small>
-            </div>
-            @if (fixedTools.length) {
-            <small>Già competenti: {{ fixedTools.join(', ') }}</small>
-            }
-            @if (backgroundToolConflicts.length) {
-            <small>
-              Competenza duplicata: scegli {{ backgroundToolConflicts.length }} strumento/i
-              sostitutivo/i.
-            </small>
-            }
-            <div class="skill-picks">
-              @for (tool of toolOptions; track tool) {
-              <button type="button" [class.selected]="store.draft().customTools?.includes(tool)" [disabled]="
+                          store.draft().customLanguages?.includes(language) ||
+                          (!store.draft().homebrewBackgroundLanguages?.includes(language) &&
+                            homebrewBackgroundSecondaryCount >= 2)
+                        "
+                        (click)="
+                          toggleHomebrewBackgroundChoice('homebrewBackgroundLanguages', language)
+                        "
+                      >
+                        {{ language }}
+                      </button>
+                    }
+                  </div>
+                  <p>Strumenti</p>
+                  <div class="skill-picks">
+                    @for (tool of allToolOptions; track tool) {
+                      <button
+                        type="button"
+                        [class.selected]="store.draft().homebrewBackgroundTools?.includes(tool)"
+                        [disabled]="
                           fixedTools.includes(tool) ||
-                          (!store.draft().customTools?.includes(tool) &&
-                            (store.draft().customTools?.length ?? 0) >= toolChoiceLimit)
-                        " (click)="toggleBackgroundChoice('customTools', tool)">
-                {{ tool }}
-              </button>
-              }
-            </div>
-          </div>
-          }
-        </div>
-      </section>
-      }
-      @case ('livello') {
-      <section class="level-section">
-        <p class="lead">
-          Scegli il livello di partenza e come determinare i punti ferita. Al 1° livello il dado
-          vita è sempre massimo; per i livelli successivi puoi usare la media, tirare o indicare
-          direttamente il totale.
-        </p>
-        <div class="level-panel">
-          <label for="level">Livello</label><select id="level" [ngModel]="store.draft().level"
-            (ngModelChange)="setLevel($event)">
-            @for (
-            n of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-            track n
-            ) {
-            <option [value]="n">{{ n }}</option>
-            }
-          </select>
-          <div class="level-number">{{ store.draft().level }}</div>
-          <div class="stats">
-            <div>
-              <small>Bonus competenza</small><strong>+{{ store.derived().proficiency }}</strong>
-            </div>
-            <div>
-              <small>Punti ferita massimi</small><strong>{{ store.derived().maxHp }}</strong>
-            </div>
-            <div>
-              <small>Slot ASI/talento</small><strong>{{ slots }}</strong>
-            </div>
-          </div>
-        </div>
-        @if (store.selectedClass()) {
-        @defer (when step() === 'livello') {
-        <app-class-progression [klass]="store.selectedClass()!" [level]="store.draft().level"
-          [subclassId]="store.draft().subclassId" [selections]="store.draft().classFeatureChoices ?? {}"
-          [proficiencyIds]="progressionProficiencyIds" [knownSpellIds]="store.draft().spellIds"
-          (subclassChange)="setSubclass($event)" (selectionsChange)="setClassFeatureChoices($event)" />
-        }
-        <div class="hp-builder">
-          <div class="hp-heading">
-            <div>
-              <p class="kicker">Punti ferita</p>
-              <h2>Dado vita d{{ store.selectedClass()!.hitDie }}</h2>
-            </div>
-            <span>1° livello: {{ store.selectedClass()!.hitDie }} + COS</span>
-          </div>
-          <div class="hp-methods">
-            <button [class.active]="(store.draft().hpMethod ?? 'average') === 'average'"
-              (click)="setHpMethod('average')">
-              <strong>Valore medio</strong><small>{{ store.selectedClass()!.hitDie / 2 + 1 }} per livello dopo il
-                primo</small></button><button [class.active]="store.draft().hpMethod === 'roll'"
-              (click)="setHpMethod('roll')">
-              <strong>Tira i dadi</strong><small>{{ store.draft().level > 1 ? store.draft().level - 1 : 0 }} × d{{
-                store.selectedClass()!.hitDie
-                }}</small></button><button [class.active]="store.draft().hpMethod === 'manual'"
-              (click)="setHpMethod('manual')">
-              <strong>Inserimento manuale</strong><small>Indica direttamente i PF massimi</small>
-            </button>
-          </div>
-          @if (store.draft().hpMethod === 'roll') {
-          <div class="roll-box">
-            <div>
-              <strong>Risultati</strong>
-              @if (store.draft().level === 1) {
-              <small>Nessun tiro: al 1° livello usi il massimo.</small>
-              } @else {
-              <div class="dice-results">
-                @for (result of store.draft().hpRolls ?? []; track $index) {
-                <span title="Livello {{ $index + 2 }}">{{ result }}</span>
+                          (!store.draft().homebrewBackgroundTools?.includes(tool) &&
+                            homebrewBackgroundSecondaryCount >= 2)
+                        "
+                        (click)="toggleHomebrewBackgroundChoice('homebrewBackgroundTools', tool)"
+                      >
+                        {{ tool }}
+                      </button>
+                    }
+                  </div>
+                </div>
+
+                @if (languageChoiceLimit) {
+                  <div class="background-choice homebrew-choice-card ancestry-language-choice">
+                    <div class="background-choice-heading">
+                      <span>Lingue aggiuntive della discendenza</span>
+                      <small
+                        >{{ store.draft().customLanguages?.length ?? 0 }} /
+                        {{ languageChoiceLimit }}</small
+                      >
+                    </div>
+                    <div class="skill-picks">
+                      @for (language of languageOptions; track language) {
+                        <button
+                          type="button"
+                          [class.selected]="store.draft().customLanguages?.includes(language)"
+                          [disabled]="
+                            fixedLanguages.includes(language) ||
+                            (!store.draft().customLanguages?.includes(language) &&
+                              (store.draft().customLanguages?.length ?? 0) >= languageChoiceLimit)
+                          "
+                          (click)="toggleBackgroundChoice('customLanguages', language)"
+                        >
+                          {{ language }}
+                        </button>
+                      }
+                    </div>
+                  </div>
                 }
               </div>
+            }
+
+            <div class="alignment-section">
+              <div class="alignment-section-heading">
+                <ng-icon [svg]="yingyangIcon" size="26px" aria-hidden="true" />
+                <div>
+                  <p class="kicker">Scelta conclusiva</p>
+                  <h2>Allineamento</h2>
+                </div>
+              </div>
+              <label class="field"
+                ><span>Indole morale del personaggio</span
+                ><select
+                  [ngModel]="store.draft().alignment || ''"
+                  (ngModelChange)="store.patch({ alignment: $event })"
+                >
+                  <option value="">Scegli un allineamento</option>
+                  @for (item of alignments; track item.id) {
+                    <option [value]="item.id">{{ item.label }}</option>
+                  }
+                </select>
+              </label>
+            </div>
+          </section>
+        }
+        @case ('livello') {
+          <section class="level-section">
+            <p class="lead">
+              Scegli il livello di partenza e come determinare i punti ferita. Al 1° livello il dado
+              vita è sempre massimo; per i livelli successivi puoi usare la media, tirare o indicare
+              direttamente il totale.
+            </p>
+            <div class="level-panel">
+              <label for="level">Livello</label
+              ><select
+                id="level"
+                [ngModel]="store.draft().level"
+                (ngModelChange)="setLevel($event)"
+              >
+                @for (
+                  n of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+                  track n
+                ) {
+                  <option [value]="n">{{ n }}</option>
+                }
+              </select>
+              <div class="level-number">{{ store.draft().level }}</div>
+              <div class="stats">
+                <div>
+                  <small>Bonus competenza</small><strong>+{{ store.derived().proficiency }}</strong>
+                </div>
+                <div>
+                  <small>Punti ferita massimi</small><strong>{{ store.derived().maxHp }}</strong>
+                </div>
+                <div>
+                  <small>Slot ASI/talento</small><strong>{{ slots }}</strong>
+                </div>
+              </div>
+            </div>
+            @if (store.selectedClass()) {
+              @defer (when step() === 'livello') {
+                <app-class-progression
+                  [klass]="store.selectedClass()!"
+                  [level]="store.draft().level"
+                  [subclassId]="store.draft().subclassId"
+                  [selections]="store.draft().classFeatureChoices ?? {}"
+                  [proficiencyIds]="progressionProficiencyIds"
+                  [knownSpellIds]="store.draft().spellIds"
+                  (subclassChange)="setSubclass($event)"
+                  (selectionsChange)="setClassFeatureChoices($event)"
+                />
+              }
+              <div class="hp-builder">
+                <div class="hp-heading">
+                  <div>
+                    <p class="kicker">Punti ferita</p>
+                    <h2>Dado vita d{{ store.selectedClass()!.hitDie }}</h2>
+                  </div>
+                  <span>1° livello: {{ store.selectedClass()!.hitDie }} + COS</span>
+                </div>
+                <div class="hp-methods">
+                  <button
+                    [class.active]="(store.draft().hpMethod ?? 'average') === 'average'"
+                    (click)="setHpMethod('average')"
+                  >
+                    <strong>Valore medio</strong
+                    ><small
+                      >{{ store.selectedClass()!.hitDie / 2 + 1 }} per livello dopo il primo</small
+                    ></button
+                  ><button
+                    [class.active]="store.draft().hpMethod === 'roll'"
+                    (click)="setHpMethod('roll')"
+                  >
+                    <strong>Tira i dadi</strong
+                    ><small
+                      >{{ store.draft().level > 1 ? store.draft().level - 1 : 0 }} × d{{
+                        store.selectedClass()!.hitDie
+                      }}</small
+                    ></button
+                  ><button
+                    [class.active]="store.draft().hpMethod === 'manual'"
+                    (click)="setHpMethod('manual')"
+                  >
+                    <strong>Inserimento manuale</strong
+                    ><small>Indica direttamente i PF massimi</small>
+                  </button>
+                </div>
+                @if (store.draft().hpMethod === 'roll') {
+                  <div class="roll-box">
+                    <div>
+                      <strong>Risultati</strong>
+                      @if (store.draft().level === 1) {
+                        <small>Nessun tiro: al 1° livello usi il massimo.</small>
+                      } @else {
+                        <div class="dice-results">
+                          @for (result of store.draft().hpRolls ?? []; track $index) {
+                            <span title="Livello {{ $index + 2 }}">{{ result }}</span>
+                          }
+                        </div>
+                      }
+                    </div>
+                    <button class="secondary" type="button" (click)="rollHp()">
+                      {{ store.draft().hpRolls?.length ? 'Tira di nuovo' : 'Tira i dadi' }}
+                    </button>
+                  </div>
+                }
+                @if (store.draft().hpMethod === 'manual') {
+                  <label class="field manual-hp"
+                    ><span>PF massimi complessivi</span
+                    ><input
+                      type="number"
+                      min="1"
+                      [ngModel]="store.draft().manualHp"
+                      (ngModelChange)="setManualHp($event)"
+                      placeholder="Es. 38"
+                    /><small
+                      >Questo valore è usato così com'è e sostituisce il calcolo automatico.</small
+                    ></label
+                  >
+                }
+              </div>
+            }
+          </section>
+        }
+        @case ('talenti') {
+          <section>
+            <p class="lead">
+              Per ogni sblocco scegli una sola alternativa: +2 a una caratteristica, +1 a due
+              caratteristiche diverse oppure un talento. Le caratteristiche non possono superare 20.
+            </p>
+            <div class="quota growth-quota">
+              <span>Scelte di classe completate</span
+              ><strong>{{ choicesUsed }} / {{ slots }}</strong>
+              @if (racialFeatSlots) {
+                <span>Talento Umano Variante</span
+                ><strong>{{
+                  store.draft().featIds.length >= racialFeatSlots ? 'Scelto' : 'Da scegliere'
+                }}</strong>
               }
             </div>
-            <button class="secondary" type="button" (click)="rollHp()">
-              {{ store.draft().hpRolls?.length ? 'Tira di nuovo' : 'Tira i dadi' }}
-            </button>
-          </div>
-          }
-          @if (store.draft().hpMethod === 'manual') {
-          <label class="field manual-hp"><span>PF massimi complessivi</span><input type="number" min="1"
-              [ngModel]="store.draft().manualHp" (ngModelChange)="setManualHp($event)"
-              placeholder="Es. 38" /><small>Questo valore è usato così com'è e sostituisce il calcolo
-              automatico.</small></label>
-          }
-        </div>
-        }
-      </section>
-      }
-      @case ('talenti') {
-      <section>
-        <p class="lead">
-          Per ogni sblocco scegli una sola alternativa: +2 a una caratteristica, +1 a due
-          caratteristiche diverse oppure un talento. Le caratteristiche non possono superare 20.
-        </p>
-        <div class="quota growth-quota">
-          <span>Scelte di classe completate</span><strong>{{ choicesUsed }} / {{ slots }}</strong>
-          @if (racialFeatSlots) {
-          <span>Talento Umano Variante</span><strong>{{
-            store.draft().featIds.length >= racialFeatSlots ? 'Scelto' : 'Da scegliere'
-            }}</strong>
-          }
-        </div>
-        <p class="hint">
-          Talenti selezionati: {{ store.draft().featIds.length }}
-          @if (racialFeatSlots) {
-          (uno è concesso dalla razza)
-          }
-          · Punti ASI assegnati: {{ asiPoints }} / {{ asiPointLimit }}
-        </p>
-        <label class="equipment-search feat-search my-2">
-          <span>Cerca talento</span>
-          <input type="search" placeholder="Nome, descrizione o fonte…" [ngModel]="featSearch()"
-            (ngModelChange)="setFeatSearch($event)" />
-        </label>
-        <div class="option-grid feats">
-          @for (item of pagedFeats; track item.id) {
-          <button class="option" [disabled]="!eligible(item.id)"
-            [class.selected]="store.draft().featIds.includes(item.id)" (click)="toggleFeat(item.id)">
-            <span class="source">{{ item.source }}</span>
-            <h3>{{ item.name }}</h3>
-            <p>{{ item.description }}</p>
-            @if (item.prerequisite) {
-            <small>Prerequisito: {{ item.prerequisite }}</small>
+            <p class="hint">
+              Talenti selezionati: {{ store.draft().featIds.length }}
+              @if (racialFeatSlots) {
+                (uno è concesso dalla razza)
+              }
+              · Punti ASI assegnati: {{ asiPoints }} / {{ asiPointLimit }}
+            </p>
+            <label class="equipment-search feat-search my-2">
+              <span>Cerca talento</span>
+              <input
+                type="search"
+                placeholder="Nome, descrizione o fonte…"
+                [ngModel]="featSearch()"
+                (ngModelChange)="setFeatSearch($event)"
+              />
+            </label>
+            <div class="option-grid feats">
+              @for (item of pagedFeats; track item.id) {
+                <button
+                  class="option"
+                  [disabled]="!eligible(item.id)"
+                  [class.selected]="store.draft().featIds.includes(item.id)"
+                  (click)="toggleFeat(item.id)"
+                >
+                  <span class="source">{{ item.source }}</span>
+                  <h3>{{ item.name }}</h3>
+                  <p>{{ item.description }}</p>
+                  @if (item.prerequisite) {
+                    <small>Prerequisito: {{ item.prerequisite }}</small>
+                  }
+                  @if (item.effects?.hitPointsPerLevel) {
+                    <small>PF: +{{ item.effects!.hitPointsPerLevel }} per livello</small>
+                  }
+                  @if (item.effects?.initiativeBonus) {
+                    <small>Iniziativa: +{{ item.effects!.initiativeBonus }}</small>
+                  }
+                </button>
+              }
+            </div>
+            @if (!filteredFeats.length) {
+              <p class="hint">Nessun talento corrisponde alla ricerca.</p>
+            } @else {
+              <nav class="spell-pagination" aria-label="Pagine dei talenti">
+                <button
+                  type="button"
+                  [disabled]="featPage() <= 1"
+                  (click)="setFeatPage(featPage() - 1)"
+                >
+                  Precedente
+                </button>
+                <span
+                  >Pagina {{ featPage() }} di {{ featPageCount }} ·
+                  {{ filteredFeats.length }} talenti</span
+                >
+                <button
+                  type="button"
+                  [disabled]="featPage() >= featPageCount"
+                  (click)="setFeatPage(featPage() + 1)"
+                >
+                  Successiva
+                </button>
+              </nav>
             }
-            @if (item.effects?.hitPointsPerLevel) {
-            <small>PF: +{{ item.effects!.hitPointsPerLevel }} per livello</small>
-            }
-            @if (item.effects?.initiativeBonus) {
-            <small>Iniziativa: +{{ item.effects!.initiativeBonus }}</small>
-            }
-          </button>
-          }
-        </div>
-        @if (!filteredFeats.length) {
-        <p class="hint">Nessun talento corrisponde alla ricerca.</p>
-        } @else {
-        <nav class="spell-pagination" aria-label="Pagine dei talenti">
-          <button type="button" [disabled]="featPage() <= 1" (click)="setFeatPage(featPage() - 1)">
-            Precedente
-          </button>
-          <span>Pagina {{ featPage() }} di {{ featPageCount }} ·
-            {{ filteredFeats.length }} talenti</span>
-          <button type="button" [disabled]="featPage() >= featPageCount" (click)="setFeatPage(featPage() + 1)">
-            Successiva
-          </button>
-        </nav>
-        }
-        @if (selectedFeats.length) {
-        <div class="feat-effect-choices">
-          @for (feat of selectedFeats; track feat.id) {
-          @if (feat.effects?.abilityIncrease; as increase) {
-          <article class="feat-proficiency-choice feat-ability-choice">
-            <strong>Aumento concesso da {{ feat.name }}</strong>
-            <tui-textfield tuiChevron [tuiTextfieldCleaner]="false">
-              <input aria-label="Caratteristica aumentata da {{ feat.name }}" placeholder="Scegli una caratteristica"
-                tuiSelect [ngModel]="featAbilitySelection(feat.id)"
-                (ngModelChange)="setFeatAbilitySelection(feat.id, $event)" />
-              <tui-data-list-wrapper *tuiDropdown [items]="featAbilityOptions(feat.id)" />
-            </tui-textfield>
-          </article>
-          }
-          @for (choice of feat.proficiencyChoices ?? []; track choice.id) {
-          <article class="feat-proficiency-choice">
-            <header>
-              <strong>{{ choice.label }}</strong>
-              <small>
-                {{ (store.draft().featProficiencyChoices?.[choice.id] ?? []).length }} /
-                {{ choice.count }} scelte
-              </small>
-            </header>
-            <div class="feat-choice-selects">
-              @for (index of featChoiceSlots(choice); track index) {
-              <label>
-                <span>Scelta {{ index + 1 }}</span>
-                <tui-textfield tuiChevron [tuiTextfieldCleaner]="index > 0">
-                  <input tuiSelect [attr.aria-label]="choice.label + ', scelta ' + (index + 1)"
-                    [disabled]="featChoiceSlotDisabled(choice, index)" [ngModel]="featChoiceSelection(choice, index)"
-                    [placeholder]="
+            @if (selectedFeats.length) {
+              <div class="feat-effect-choices">
+                @for (feat of selectedFeats; track feat.id) {
+                  @if (feat.effects?.abilityIncrease; as increase) {
+                    <article class="feat-proficiency-choice feat-ability-choice">
+                      <strong>Aumento concesso da {{ feat.name }}</strong>
+                      <tui-textfield tuiChevron [tuiTextfieldCleaner]="false">
+                        <input
+                          aria-label="Caratteristica aumentata da {{ feat.name }}"
+                          placeholder="Scegli una caratteristica"
+                          tuiSelect
+                          [ngModel]="featAbilitySelection(feat.id)"
+                          (ngModelChange)="setFeatAbilitySelection(feat.id, $event)"
+                        />
+                        <tui-data-list-wrapper *tuiDropdown [items]="featAbilityOptions(feat.id)" />
+                      </tui-textfield>
+                    </article>
+                  }
+                  @for (choice of feat.proficiencyChoices ?? []; track choice.id) {
+                    <article class="feat-proficiency-choice">
+                      <header>
+                        <strong>{{ choice.label }}</strong>
+                        <small>
+                          {{ (store.draft().featProficiencyChoices?.[choice.id] ?? []).length }} /
+                          {{ choice.count }} scelte
+                        </small>
+                      </header>
+                      <div class="feat-choice-selects">
+                        @for (index of featChoiceSlots(choice); track index) {
+                          <label>
+                            <span>Scelta {{ index + 1 }}</span>
+                            <tui-textfield tuiChevron [tuiTextfieldCleaner]="index > 0">
+                              <input
+                                tuiSelect
+                                [attr.aria-label]="choice.label + ', scelta ' + (index + 1)"
+                                [disabled]="featChoiceSlotDisabled(choice, index)"
+                                [ngModel]="featChoiceSelection(choice, index)"
+                                [placeholder]="
                                   featChoiceSlotDisabled(choice, index)
                                     ? 'Completa la scelta precedente'
                                     : 'Seleziona un’opzione'
-                                " (ngModelChange)="setFeatProficiencySelection(choice, index, $event)" />
-                  <tui-data-list-wrapper *tuiDropdown [items]="featChoiceItems(choice, index)" />
-                </tui-textfield>
-              </label>
-              }
+                                "
+                                (ngModelChange)="setFeatProficiencySelection(choice, index, $event)"
+                              />
+                              <tui-data-list-wrapper
+                                *tuiDropdown
+                                [items]="featChoiceItems(choice, index)"
+                              />
+                            </tui-textfield>
+                          </label>
+                        }
+                      </div>
+                    </article>
+                  }
+                  @if (feat.effects?.notes?.length) {
+                    <article class="feat-effect-note">
+                      <strong>{{ feat.name }}</strong>
+                      <ul>
+                        @for (note of feat.effects!.notes; track note) {
+                          <li>{{ note }}</li>
+                        }
+                      </ul>
+                    </article>
+                  }
+                }
+              </div>
+            }
+            @if (slots) {
+              <h2>Aumenti di caratteristica</h2>
+              <p class="hint asi-hint">
+                Completa ogni ASI assegnando esattamente 2 punti: entrambi alla stessa
+                caratteristica oppure uno a due caratteristiche.
+              </p>
+              <div class="asi-grid">
+                @for (a of abilities; track a.key) {
+                  <div>
+                    <ng-icon [svg]="abilityIcon(a.key)" size="20px"></ng-icon
+                    ><span>{{ a.short }}</span
+                    ><button (click)="asi(a.key, -1)" aria-label="Riduci aumento {{ a.label }}">
+                      −</button
+                    ><strong>+{{ store.draft().asi[a.key] || 0 }}</strong
+                    ><button (click)="asi(a.key, 1)" aria-label="Aumenta {{ a.label }}">+</button>
+                  </div>
+                }
+              </div>
+            }
+          </section>
+        }
+        @case ('equipaggiamento') {
+          <app-equipment-step [wizard]="self" />
+        }
+        @case ('incantesimi') {
+          <app-spells-step [wizard]="self" />
+        }
+        @case ('riepilogo') {
+          <app-summary-step [wizard]="self" />
+        }
+        @case ('esporta') {
+          <section class="export">
+            <div class="seal">✓</div>
+            <p class="kicker">Forgiatura completata</p>
+            <h2>{{ store.draft().name || 'Il tuo personaggio' }} è pronto.</h2>
+            <p>
+              I dati sono salvati localmente e saranno disponibili anche offline. Puoi stampare la
+              scheda o conservarne una copia portabile.
+            </p>
+            <div class="export-actions">
+              <button class="primary" [disabled]="pdfExporting()" (click)="exportPdf()">
+                {{ pdfExporting() ? 'Compilazione PDF…' : 'Scarica scheda PDF compilata' }}</button
+              ><button
+                class="secondary"
+                [disabled]="spellCardsExporting()"
+                (click)="exportSpellCardsPdf()"
+              >
+                {{
+                  spellCardsExporting() ? 'Creazione carte…' : 'Esporta carte incantesimo'
+                }}</button
+              ><button class="secondary" (click)="store.exportJson()">Esporta JSON</button
+              ><label class="secondary"
+                >Importa JSON<input
+                  class="sr-only"
+                  type="file"
+                  accept="application/json"
+                  (change)="import($event)"
+              /></label>
             </div>
-          </article>
-          }
-          @if (feat.effects?.notes?.length) {
-          <article class="feat-effect-note">
-            <strong>{{ feat.name }}</strong>
-            <ul>
-              @for (note of feat.effects!.notes; track note) {
-              <li>{{ note }}</li>
-              }
-            </ul>
-          </article>
-          }
-          }
-        </div>
+            <div class="export-card">
+              <span>{{ store.selectedAncestry()?.name }}</span
+              ><strong>{{ store.draft().name || 'Senza nome' }}</strong
+              ><small
+                >{{ store.selectedClass()?.name }} {{ store.draft().level }} ·
+                {{ store.draft().subclassId }}</small
+              >
+            </div>
+          </section>
         }
-        @if (slots) {
-        <h2>Aumenti di caratteristica</h2>
-        <p class="hint asi-hint">
-          Completa ogni ASI assegnando esattamente 2 punti: entrambi alla stessa
-          caratteristica oppure uno a due caratteristiche.
-        </p>
-        <div class="asi-grid">
-          @for (a of abilities; track a.key) {
-          <div>
-            <ng-icon [svg]="abilityIcon(a.key)" size="20px"></ng-icon><span>{{ a.short }}</span><button
-              (click)="asi(a.key, -1)" aria-label="Riduci aumento {{ a.label }}">
-              −</button><strong>+{{ store.draft().asi[a.key] || 0 }}</strong><button (click)="asi(a.key, 1)"
-              aria-label="Aumenta {{ a.label }}">+</button>
-          </div>
-          }
-        </div>
-        }
-      </section>
-      }
-      @case ('equipaggiamento') {
-      <app-equipment-step [wizard]="self" />
-      }
-      @case ('incantesimi') {
-      <app-spells-step [wizard]="self" />
-      }
-      @case ('riepilogo') {
-      <app-summary-step [wizard]="self" />
-      }
-      @case ('esporta') {
-      <section class="export">
-        <div class="seal">✓</div>
-        <p class="kicker">Forgiatura completata</p>
-        <h2>{{ store.draft().name || 'Il tuo personaggio' }} è pronto.</h2>
-        <p>
-          I dati sono salvati localmente e saranno disponibili anche offline. Puoi stampare la
-          scheda o conservarne una copia portabile.
-        </p>
-        <div class="export-actions">
-          <button class="primary" [disabled]="pdfExporting()" (click)="exportPdf()">
-            {{ pdfExporting() ? 'Compilazione PDF…' : 'Scarica scheda PDF compilata' }}</button><button
-            class="secondary" [disabled]="spellCardsExporting()" (click)="exportSpellCardsPdf()">
-            {{
-            spellCardsExporting() ? 'Creazione carte…' : 'Esporta carte incantesimo'
-            }}</button><button class="secondary" (click)="store.exportJson()">Esporta JSON</button><label
-            class="secondary">Importa JSON<input class="sr-only" type="file" accept="application/json"
-              (change)="import($event)" /></label>
-        </div>
-        <div class="export-card">
-          <span>{{ store.selectedAncestry()?.name }}</span><strong>{{ store.draft().name || 'Senza nome'
-            }}</strong><small>{{ store.selectedClass()?.name }} {{ store.draft().level }} ·
-            {{ store.draft().subclassId }}</small>
-        </div>
-      </section>
-      }
       }
       <footer class="wizard-nav no-print">
         <button class="back" [disabled]="index === 0" (click)="previous()">← Indietro</button>
-        @if (index < stepTotal - 1) { <button class="next" [disabled]="!canContinue()" (click)="next()">
-          Continua <span>→</span>
+        @if (index < stepTotal - 1) {
+          <button class="next" [disabled]="!canContinue()" (click)="next()">
+            Continua <span>→</span>
           </button>
-          } @else {
+        } @else {
           <button class="next" routerLink="/">Torna all'archivio</button>
-          }
+        }
       </footer>
     </main>
     <aside class="preview no-print" aria-label="Riepilogo rapido del personaggio">
       <div class="mini-sheet">
         <div class="crest">{{ (store.draft().name || '?')[0].toUpperCase() }}</div>
         <h2>{{ store.draft().name || 'Il tuo eroe' }}</h2>
-        <span>{{ store.selectedAncestry()?.name || 'Discendenza' }} ·
-          {{ store.selectedClass()?.name || 'Classe' }} {{ store.draft().level }}</span>
+        <span
+          >{{ store.selectedAncestry()?.name || 'Discendenza' }} ·
+          {{ store.selectedClass()?.name || 'Classe' }} {{ store.draft().level }}</span
+        >
         <div class="mini-abilities">
           @for (a of abilities; track a.key) {
-          <div>
-            <small>{{ a.short }}</small><strong>{{ store.derived().finalAbilities[a.key] }}</strong><em>{{
-              mod(store.derived().modifiers[a.key]) }}</em>
-          </div>
+            <div>
+              <small>{{ a.short }}</small
+              ><strong>{{ store.derived().finalAbilities[a.key] }}</strong
+              ><em>{{ mod(store.derived().modifiers[a.key]) }}</em>
+            </div>
           }
           @if (store.draft().sanityEnabled) {
-          <div class="homebrew-ability">
-            <small>SAN</small><strong>{{ store.derived().sanityScore }}</strong>
-            <em>{{ mod(store.derived().sanityModifier ?? 0) }}</em>
-          </div>
+            <div class="homebrew-ability">
+              <small>SAN</small><strong>{{ store.derived().sanityScore }}</strong>
+              <em>{{ mod(store.derived().sanityModifier ?? 0) }}</em>
+            </div>
           }
         </div>
         <div class="mini-stats">
@@ -721,7 +1108,9 @@
           <span>
             COMP <strong>+{{ store.derived().proficiency }}</strong>
           </span>
-          <span>PERCEZIONE PASSIVA <strong>{{ store.derived().passivePerception }}</strong></span>
+          <span
+            >PERCEZIONE PASSIVA <strong>{{ store.derived().passivePerception }}</strong></span
+          >
         </div>
       </div>
       <small>La scheda si aggiorna mentre scegli.</small>

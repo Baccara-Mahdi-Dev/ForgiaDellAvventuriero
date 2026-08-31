@@ -95,11 +95,11 @@
   --hero-end: #eee3d1;
   --glass: rgb(255 250 242 / 82%);
   --shadow: 0 16px 42px rgb(50 30 10 / 14%);
-  --mephisto: #9A1115;
+  --mephisto: #9a1115;
   --caliban: #004225;
 }
 
-:root[data-theme="dark"] {
+:root[data-theme='dark'] {
   color-scheme: dark;
   --paper: #100e0d;
   --paper-deep: #181411;
@@ -141,7 +141,7 @@
   --hero-end: #100e0d;
   --glass: rgb(33 28 24 / 92%);
   --shadow: 0 16px 42px rgb(0 0 0 / 50%);
-  --mephisto: #9A1115;
+  --mephisto: #9a1115;
   --caliban: #016d44;
 }
 

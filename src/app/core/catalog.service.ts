@@ -39,25 +39,25 @@ export class CatalogService {
       additionalEquipment,
       subclasses,
     ] = await Promise.all([
-        path<Ancestry>('ancestries'),
-        path<CharacterClass>('classes'),
-        path<Background>('backgrounds'),
-        path<Feat>('feats'),
-        path<Spell>('spells'),
-        path<EquipmentItem>('equipment'),
-        manifest.additionalEquipment
-          ? firstValueFrom(
-              this.http.get<EquipmentItem[]>(`${DATA_ROOT}/${manifest.additionalEquipment.file}`),
-            )
-          : Promise.resolve([]),
-        manifest.additionalCatalogs?.subclasses
-          ? firstValueFrom(
-              this.http.get<Subclass[]>(
-                `${DATA_ROOT}/${manifest.additionalCatalogs.subclasses.file}`,
-              ),
-            )
-          : Promise.resolve([]),
-      ]);
+      path<Ancestry>('ancestries'),
+      path<CharacterClass>('classes'),
+      path<Background>('backgrounds'),
+      path<Feat>('feats'),
+      path<Spell>('spells'),
+      path<EquipmentItem>('equipment'),
+      manifest.additionalEquipment
+        ? firstValueFrom(
+            this.http.get<EquipmentItem[]>(`${DATA_ROOT}/${manifest.additionalEquipment.file}`),
+          )
+        : Promise.resolve([]),
+      manifest.additionalCatalogs?.subclasses
+        ? firstValueFrom(
+            this.http.get<Subclass[]>(
+              `${DATA_ROOT}/${manifest.additionalCatalogs.subclasses.file}`,
+            ),
+          )
+        : Promise.resolve([]),
+    ]);
     if (
       additionalEquipment.length !== (manifest.additionalEquipment?.count ?? 0) ||
       new Set([...equipment, ...additionalEquipment].map((item) => item.id)).size !==

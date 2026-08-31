@@ -21,16 +21,11 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "int",
-          "wis"
-        ]
+        "options": ["int", "wis"]
       },
       "passivePerceptionBonus": 5,
       "passiveInvestigationBonus": 5,
-      "notes": [
-        "Puoi leggere le labbra di una creatura che comprendi e riesci a vedere."
-      ]
+      "notes": ["Puoi leggere le labbra di una creatura che comprendi e riesci a vedere."]
     },
     "isHidden": true
   },
@@ -74,14 +69,7 @@
         "count": 2,
         "level": 0,
         "traditionKey": "magic-initiate",
-        "traditionOptions": [
-          "bard",
-          "cleric",
-          "druid",
-          "sorcerer",
-          "warlock",
-          "wizard"
-        ]
+        "traditionOptions": ["bard", "cleric", "druid", "sorcerer", "warlock", "wizard"]
       },
       {
         "id": "magic-initiate-spell",
@@ -101,11 +89,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "int",
-          "wis",
-          "cha"
-        ]
+        "options": ["int", "wis", "cha"]
       }
     },
     "spellGrants": [
@@ -121,10 +105,7 @@
         "label": "Un incantesimo di 1° livello di Divinazione o Ammaliamento",
         "count": 1,
         "level": 1,
-        "schools": [
-          "Divination",
-          "Enchantment"
-        ]
+        "schools": ["Divination", "Enchantment"]
       }
     ],
     "isHidden": true
@@ -137,10 +118,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "dex"
-        ]
+        "options": ["str", "dex"]
       }
     },
     "isHidden": true
@@ -153,9 +131,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "cha"
-        ]
+        "options": ["cha"]
       }
     },
     "isHidden": true
@@ -203,9 +179,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "con"
-        ]
+        "options": ["con"]
       }
     },
     "isHidden": true
@@ -246,13 +220,9 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str"
-        ]
+        "options": ["str"]
       },
-      "armorProficiencies": [
-        "heavy"
-      ]
+      "armorProficiencies": ["heavy"]
     },
     "isHidden": true
   },
@@ -264,9 +234,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str"
-        ]
+        "options": ["str"]
       }
     },
     "isHidden": true
@@ -286,9 +254,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "int"
-        ]
+        "options": ["int"]
       }
     },
     "isHidden": true
@@ -301,14 +267,9 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "dex"
-        ]
+        "options": ["str", "dex"]
       },
-      "armorProficiencies": [
-        "light"
-      ]
+      "armorProficiencies": ["light"]
     },
     "isHidden": true
   },
@@ -320,9 +281,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "int"
-        ]
+        "options": ["int"]
       }
     },
     "isHidden": true
@@ -370,15 +329,9 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "dex"
-        ]
+        "options": ["str", "dex"]
       },
-      "armorProficiencies": [
-        "medium",
-        "shield"
-      ]
+      "armorProficiencies": ["medium", "shield"]
     },
     "isHidden": true
   },
@@ -404,14 +357,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "dex",
-          "con",
-          "int",
-          "wis",
-          "cha"
-        ]
+        "options": ["str", "dex", "con", "int", "wis", "cha"]
       },
       "savingThrowProficiencyFromAbility": true
     },
@@ -489,15 +435,9 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "con"
-        ]
+        "options": ["str", "con"]
       },
-      "weaponProficiencies": [
-        "unarmed-strike",
-        "improvised"
-      ]
+      "weaponProficiencies": ["unarmed-strike", "improvised"]
     },
     "isHidden": true
   },
@@ -509,10 +449,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "dex"
-        ]
+        "options": ["str", "dex"]
       }
     },
     "proficiencyChoices": [
@@ -531,10 +468,7 @@
     "description": "Permette di condividere la fortuna halfling con un alleato vicino.",
     "source": "XGE",
     "requirements": {
-      "ancestryIds": [
-        "halfling-lightfoot",
-        "halfling-stout"
-      ]
+      "ancestryIds": ["halfling-lightfoot", "halfling-stout"]
     },
     "isHidden": true
   },
@@ -560,11 +494,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "con",
-          "cha"
-        ]
+        "options": ["str", "con", "cha"]
       }
     },
     "isHidden": true
@@ -591,11 +521,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "con",
-          "cha"
-        ]
+        "options": ["str", "con", "cha"]
       }
     },
     "isHidden": true
@@ -606,9 +532,7 @@
     "description": "Concede ulteriori incantesimi innati drow.",
     "source": "XGE",
     "requirements": {
-      "ancestryIds": [
-        "elf-drow"
-      ]
+      "ancestryIds": ["elf-drow"]
     },
     "isHidden": true
   },
@@ -618,17 +542,12 @@
     "description": "Permette di spendere un Dado Vita durante l'azione Schivare.",
     "source": "XGE",
     "requirements": {
-      "ancestryIds": [
-        "dwarf-hill",
-        "dwarf-mountain"
-      ]
+      "ancestryIds": ["dwarf-hill", "dwarf-mountain"]
     },
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "con"
-        ]
+        "options": ["con"]
       }
     },
     "isHidden": true
@@ -639,22 +558,12 @@
     "description": "Rende più affidabili gli attacchi effettuati con vantaggio.",
     "source": "XGE",
     "requirements": {
-      "ancestryIds": [
-        "elf-high",
-        "elf-wood",
-        "elf-drow",
-        "half-elf"
-      ]
+      "ancestryIds": ["elf-high", "elf-wood", "elf-drow", "half-elf"]
     },
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "dex",
-          "int",
-          "wis",
-          "cha"
-        ]
+        "options": ["dex", "int", "wis", "cha"]
       }
     },
     "isHidden": true
@@ -665,18 +574,12 @@
     "description": "Permette a uno gnomo di diventare invisibile dopo essere stato colpito.",
     "source": "XGE",
     "requirements": {
-      "ancestryIds": [
-        "gnome-forest",
-        "gnome-rock"
-      ]
+      "ancestryIds": ["gnome-forest", "gnome-rock"]
     },
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "dex",
-          "int"
-        ]
+        "options": ["dex", "int"]
       }
     },
     "isHidden": true
@@ -687,17 +590,12 @@
     "description": "Concede un breve teletrasporto legato all'eredità degli elfi alti.",
     "source": "XGE",
     "requirements": {
-      "ancestryIds": [
-        "elf-high"
-      ]
+      "ancestryIds": ["elf-high"]
     },
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "int",
-          "cha"
-        ]
+        "options": ["int", "cha"]
       }
     },
     "isHidden": true
@@ -708,17 +606,12 @@
     "description": "Potenzia le fiamme magiche di un tiefling e lo avvolge nel fuoco.",
     "source": "XGE",
     "requirements": {
-      "ancestryIds": [
-        "tiefling"
-      ]
+      "ancestryIds": ["tiefling"]
     },
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "int",
-          "cha"
-        ]
+        "options": ["int", "cha"]
       }
     },
     "isHidden": true
@@ -729,16 +622,12 @@
     "description": "Aumenta la resistenza fisica e concede difese infernali.",
     "source": "XGE",
     "requirements": {
-      "ancestryIds": [
-        "tiefling"
-      ]
+      "ancestryIds": ["tiefling"]
     },
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "con"
-        ]
+        "options": ["con"]
       }
     },
     "isHidden": true
@@ -749,17 +638,12 @@
     "description": "Potenzia un attacco e permette una reazione quando si resiste alla caduta.",
     "source": "XGE",
     "requirements": {
-      "ancestryIds": [
-        "half-orc"
-      ]
+      "ancestryIds": ["half-orc"]
     },
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "con"
-        ]
+        "options": ["str", "con"]
       }
     },
     "isHidden": true
@@ -770,12 +654,7 @@
     "description": "Ottieni una competenza in un’abilità, una competenza in uno strumento e una lingua; scegli inoltre un’abilità in cui sei competente per raddoppiare il bonus di competenza.",
     "source": "XGE",
     "requirements": {
-      "ancestryIds": [
-        "human",
-        "human-variant",
-        "half-elf",
-        "half-orc"
-      ]
+      "ancestryIds": ["human", "human-variant", "half-elf", "half-orc"]
     },
     "proficiencyChoices": [
       {
@@ -811,19 +690,12 @@
     "description": "Permette di costringere un aggressore a ripetere un attacco.",
     "source": "XGE",
     "requirements": {
-      "ancestryIds": [
-        "halfling-lightfoot",
-        "halfling-stout"
-      ]
+      "ancestryIds": ["halfling-lightfoot", "halfling-stout"]
     },
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "dex",
-          "con",
-          "cha"
-        ]
+        "options": ["dex", "con", "cha"]
       }
     },
     "isHidden": true
@@ -846,10 +718,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "dex"
-        ]
+        "options": ["str", "dex"]
       }
     },
     "proficiencyChoices": [
@@ -858,10 +727,7 @@
         "label": "Acrobazia o Atletica",
         "count": 1,
         "kind": "skill",
-        "options": [
-          "acrobatics",
-          "athletics"
-        ]
+        "options": ["acrobatics", "athletics"]
       }
     ],
     "isHidden": true
@@ -872,9 +738,7 @@
     "description": "Concede magie collegate alla natura e alla furtività.",
     "source": "XGE",
     "requirements": {
-      "ancestryIds": [
-        "elf-wood"
-      ]
+      "ancestryIds": ["elf-wood"]
     },
     "isHidden": true
   },
@@ -902,14 +766,9 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "con",
-          "wis"
-        ]
+        "options": ["con", "wis"]
       },
-      "toolProficiencies": [
-        "Utensili da cuoco"
-      ]
+      "toolProficiencies": ["Utensili da cuoco"]
     },
     "isHidden": true
   },
@@ -921,10 +780,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "con"
-        ]
+        "options": ["str", "con"]
       }
     },
     "isHidden": true
@@ -951,13 +807,9 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "dex"
-        ]
+        "options": ["dex"]
       },
-      "weaponProficiencies": [
-        "firearm"
-      ]
+      "weaponProficiencies": ["firearm"]
     },
     "isHidden": true
   },
@@ -976,10 +828,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "dex"
-        ]
+        "options": ["str", "dex"]
       }
     },
     "isHidden": true
@@ -990,9 +839,7 @@
     "description": "Migliora la preparazione e l'impiego dei veleni.",
     "source": "TCE",
     "effects": {
-      "toolProficiencies": [
-        "Kit da avvelenatore"
-      ]
+      "toolProficiencies": ["Kit da avvelenatore"]
     },
     "isHidden": true
   },
@@ -1004,11 +851,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "int",
-          "wis",
-          "cha"
-        ]
+        "options": ["int", "wis", "cha"]
       }
     },
     "isHidden": true
@@ -1021,14 +864,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "dex",
-          "con",
-          "int",
-          "wis",
-          "cha"
-        ]
+        "options": ["str", "dex", "con", "int", "wis", "cha"]
       }
     },
     "proficiencyChoices": [
@@ -1055,10 +891,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "str",
-          "dex"
-        ]
+        "options": ["str", "dex"]
       }
     },
     "isHidden": true
@@ -1071,11 +904,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "int",
-          "wis",
-          "cha"
-        ]
+        "options": ["int", "wis", "cha"]
       }
     },
     "isHidden": true
@@ -1088,11 +917,7 @@
     "effects": {
       "abilityIncrease": {
         "amount": 1,
-        "options": [
-          "int",
-          "wis",
-          "cha"
-        ]
+        "options": ["int", "wis", "cha"]
       }
     },
     "isHidden": true

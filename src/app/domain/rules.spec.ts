@@ -146,6 +146,21 @@ const catalog: RulesCatalog = {
       armorProficiencies: ['light'],
       weaponProficiencies: ['simple'],
     },
+    {
+      id: 'barbarian',
+      name: 'Barbaro',
+      description: '',
+      source: 'PHB',
+      hitDie: 12,
+      primary: 'str',
+      saves: ['str', 'con'],
+      subclassLevel: 3,
+      subclasses: ['Cammino della Bestia'],
+      skillChoices: 2,
+      skillOptions: ['athletics', 'survival'],
+      armorProficiencies: ['light', 'medium', 'shield'],
+      weaponProficiencies: ['simple', 'martial'],
+    },
   ],
   backgrounds: [
     { id: 'sage', name: 'Sapiente', description: '', source: 'PHB', skills: ['Arcano', 'Storia'] },
@@ -239,6 +254,20 @@ describe('regole 5e 2014', () => {
     expect(result.spellDc).toBe(15);
     expect(result.preparedSpells).toBe(6);
     expect(result.weaponProficiencies).toContain('martial');
+  });
+  it('applica Difesa senza Armatura del Barbaro soltanto senza armatura', () => {
+    const barbarian = {
+      ...draft,
+      classId: 'barbarian',
+      subclassId: '',
+      level: 1,
+      asi: {},
+      spellIds: [],
+    };
+
+    expect(derive(barbarian, catalog).armorClass).toBe(14);
+    expect(derive({ ...barbarian, shieldEquipped: true }, catalog).armorClass).toBe(16);
+    expect(derive({ ...barbarian, equippedArmorId: 'scale-mail' }, catalog).armorClass).toBe(16);
   });
   it('applica addestramento e arma scelti dal Cantore della Lama', () => {
     const wizardCatalog: RulesCatalog = {
@@ -526,6 +555,27 @@ describe('regole 5e 2014', () => {
     );
     expect(result.armorClass).toBe(14);
     expect(result.armorProficient).toBe(false);
+  });
+});
+
+describe('background homebrew', () => {
+  it('sostituisce il background di catalogo con le competenze personalizzate', () => {
+    const result = derive(
+      {
+        ...draft,
+        backgroundSelectionMode: 'homebrew',
+        homebrewBackgroundName: 'Custode delle rovine',
+        homebrewBackgroundSkills: ['perception', 'survival'],
+        homebrewBackgroundLanguages: ['Primordiale'],
+        homebrewBackgroundTools: ['Strumenti da fabbro'],
+      },
+      catalog,
+    );
+
+    expect(result.languages).toContain('Primordiale');
+    expect(result.skills.find((skill) => skill.id === 'perception')?.proficient).toBe(true);
+    expect(result.skills.find((skill) => skill.id === 'arcana')?.proficient).toBe(false);
+    expect(result.tools).toContain('Strumenti da fabbro');
   });
 });
 

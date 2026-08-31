@@ -1,106 +1,124 @@
 @if (subclassUnlocked()) {
-<section class="subclass-picker" aria-labelledby="subclass-picker-title">
-  <div class="subclass-heading">
-    <div>
-      <p class="kicker">Percorso di classe · livello {{ klass().subclassLevel }}</p>
-      <h2 id="subclass-picker-title">Scegli la sottoclasse</h2>
+  <section class="subclass-picker" aria-labelledby="subclass-picker-title">
+    <div class="subclass-heading">
+      <div>
+        <p class="kicker">Percorso di classe · livello {{ klass().subclassLevel }}</p>
+        <h2 id="subclass-picker-title">Scegli la sottoclasse</h2>
+      </div>
+      <small>{{ subclassId() ? 'Scelta completata' : 'Scelta richiesta' }}</small>
     </div>
-    <small>{{ subclassId() ? 'Scelta completata' : 'Scelta richiesta' }}</small>
-  </div>
-  <div class="subclass-options" role="radiogroup" aria-labelledby="subclass-picker-title">
-    @for (subclass of klass().subclasses; track subclass) {
-    <button type="button" role="radio" [attr.aria-checked]="subclassId() === subclass"
-      [class.selected]="subclassId() === subclass" (click)="subclassChange.emit(subclass)">
-      <span>{{ subclass }}</span>
-      <small>{{ subclassId() === subclass ? 'Selezionata' : 'Scegli' }}</small>
-    </button>
-    }
-  </div>
-</section>
+    <div class="subclass-options" role="radiogroup" aria-labelledby="subclass-picker-title">
+      @for (subclass of klass().subclasses; track subclass) {
+        <button
+          type="button"
+          role="radio"
+          [attr.aria-checked]="subclassId() === subclass"
+          [class.selected]="subclassId() === subclass"
+          (click)="subclassChange.emit(subclass)"
+        >
+          <span>{{ subclass }}</span>
+          <small>{{ subclassId() === subclass ? 'Selezionata' : 'Scegli' }}</small>
+        </button>
+      }
+    </div>
+  </section>
 } @else {
-<div class="subclass-locked" role="status">
-  <strong>Sottoclasse non ancora disponibile</strong>
-  <small>{{ klass().name }} la sceglie al livello {{ klass().subclassLevel }}.</small>
-</div>
+  <div class="subclass-locked" role="status">
+    <strong>Sottoclasse non ancora disponibile</strong>
+    <small>{{ klass().name }} la sceglie al livello {{ klass().subclassLevel }}.</small>
+  </div>
 }
 @if (subclassProgression(); as progression) {
-<section class="subclass-rules" aria-labelledby="subclass-rules-title">
-  <div class="subclass-rules-heading">
-    <div>
-      <p class="kicker">Progressione completa</p>
-      <h2 id="subclass-rules-title">Capacità di {{ progression.subclassId }}</h2>
+  <section class="subclass-rules" aria-labelledby="subclass-rules-title">
+    <div class="subclass-rules-heading">
+      <div>
+        <p class="kicker">Progressione completa</p>
+        <h2 id="subclass-rules-title">Capacità di {{ progression.subclassId }}</h2>
+      </div>
+      <small>
+        {{ progression.sourceBook }} · pagine {{ progression.sourcePages.from }}–{{
+          progression.sourcePages.to
+        }}
+      </small>
     </div>
-    <small>
-      {{ progression.sourceBook }} · pagine {{ progression.sourcePages.from }}–{{
-      progression.sourcePages.to
-      }}
-    </small>
-  </div>
-  <p class="source-language-note">
-    Regole meccaniche tradotte in italiano, con formule, dadi, distanze e condizioni preservati.
-  </p>
-  <div class="subclass-feature-list">
-    @for (feature of progression.features; track feature.name + feature.level) {
-    <details [class.locked-feature]="!featureAvailable(feature)">
-      <summary>
-        <span>{{ feature.name }}</span>
-        <small>
-          Livello {{ feature.level }} ·
-          {{ featureAvailable(feature) ? 'disponibile' : 'si sblocca più avanti' }}
-        </small>
-      </summary>
-      <p>{{ feature.description }}</p>
-    </details>
-    }
-  </div>
-</section>
+    <p class="source-language-note">
+      Regole meccaniche tradotte in italiano, con formule, dadi, distanze e condizioni preservati.
+    </p>
+    <div class="subclass-feature-list">
+      @for (feature of progression.features; track feature.name + feature.level) {
+        <details [class.locked-feature]="!featureAvailable(feature)">
+          <summary>
+            <span>{{ feature.name }}</span>
+            <small>
+              Livello {{ feature.level }} ·
+              {{ featureAvailable(feature) ? 'disponibile' : 'si sblocca più avanti' }}
+            </small>
+          </summary>
+          <p>{{ feature.description }}</p>
+        </details>
+      }
+    </div>
+  </section>
 }
 @for (choice of activeChoices(); track choice.id) {
-<div class="choice-panel class-feature-choice">
-  <div>
-    <p class="kicker">
-      {{ isSubclassChoice(choice.id) ? 'Opzione di sottoclasse' : 'Opzione di classe' }} · livello
-      {{ choice.minLevel }}
-    </p>
-    <h2>{{ choice.name }}</h2>
-    <p>{{ choice.description }}</p>
-  </div>
-  <small>{{ selected(choice.id).length }} / {{ choiceCount(choice) }} selezionate</small>
-  <div class="feature-picks">
-    @for (option of choice.options; track option.id) {
-    @if (choice.repeatable) {
-    <div class="repeatable-pick" [class.selected]="selectedCount(choice.id, option.id)">
-      <strong>{{ option.name }}</strong>
-      <small>{{ option.description }}</small>
-      <div class="repeatable-controls">
-        <button type="button" [disabled]="!selectedCount(choice.id, option.id)" (click)="removeOne(choice, option.id)">
-          −
-        </button>
-        <span>{{ selectedCount(choice.id, option.id) }}</span>
-        <button type="button" [disabled]="
+  <div class="choice-panel class-feature-choice">
+    <div>
+      <p class="kicker">
+        {{ isSubclassChoice(choice.id) ? 'Opzione di sottoclasse' : 'Opzione di classe' }} · livello
+        {{ choice.minLevel }}
+      </p>
+      <h2>{{ choice.name }}</h2>
+      <p>{{ choice.description }}</p>
+    </div>
+    <small>{{ selected(choice.id).length }} / {{ choiceCount(choice) }} selezionate</small>
+    <div class="feature-picks">
+      @for (option of choice.options; track option.id) {
+        @if (choice.repeatable) {
+          <div class="repeatable-pick" [class.selected]="selectedCount(choice.id, option.id)">
+            <strong>{{ option.name }}</strong>
+            <small>{{ option.description }}</small>
+            <div class="repeatable-controls">
+              <button
+                type="button"
+                [disabled]="!selectedCount(choice.id, option.id)"
+                (click)="removeOne(choice, option.id)"
+              >
+                −
+              </button>
+              <span>{{ selectedCount(choice.id, option.id) }}</span>
+              <button
+                type="button"
+                [disabled]="
                   unavailable(choice, option.id) ||
                   selected(choice.id).length >= choiceCount(choice)
-                " (click)="toggle(choice, option.id)">
-          +
-        </button>
-      </div>
-    </div>
-    } @else {
-    <button type="button" [class.selected]="selected(choice.id).includes(option.id)" [disabled]="
+                "
+                (click)="toggle(choice, option.id)"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        } @else {
+          <button
+            type="button"
+            [class.selected]="selected(choice.id).includes(option.id)"
+            [disabled]="
               unavailable(choice, option.id) ||
               (!selected(choice.id).includes(option.id) &&
                 selected(choice.id).length >= choiceCount(choice))
-            " (click)="toggle(choice, option.id)">
-      <strong>
-        {{ option.name }}
-        @if (abilityShort(option.id)) {
-        <small class="ability-short">{{ abilityShort(option.id) }}</small>
+            "
+            (click)="toggle(choice, option.id)"
+          >
+            <strong>
+              {{ option.name }}
+              @if (abilityShort(option.id)) {
+                <small class="ability-short">{{ abilityShort(option.id) }}</small>
+              }
+            </strong>
+            <small>{{ option.description }}</small>
+          </button>
         }
-      </strong>
-      <small>{{ option.description }}</small>
-    </button>
-    }
-    }
+      }
+    </div>
   </div>
-</div>
 }

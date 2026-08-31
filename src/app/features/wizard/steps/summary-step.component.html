@@ -12,13 +12,8 @@
         >{{ wizard().store.selectedAncestry()?.name || 'Discendenza da scegliere' }} ·
         {{ wizard().store.selectedClass()?.name || 'Classe da scegliere' }}</span
       ><small
-        >{{ wizard().store.draft().subclassId }}
-        {{
-          wizard().store.selectedBackground()?.name
-            ? '· ' + wizard().store.selectedBackground()?.name
-            : ''
-        }}
-        · {{ wizard().alignmentLabel() }}</small
+        >{{ wizard().store.draft().subclassId }} · {{ wizard().backgroundDisplayName }} ·
+        {{ wizard().alignmentLabel() }}</small
       >
     </div>
   </div>
@@ -250,6 +245,15 @@
       <ul>
         @for (skill of wizard().store.selectedBackground()?.skills || []; track skill) {
           <li>Competenza: {{ skill }} ({{ wizard().backgroundSkillShort(skill) }})</li>
+        }
+        @if (wizard().backgroundMode === 'homebrew') {
+          @for (skillId of wizard().store.draft().homebrewBackgroundSkills || []; track skillId) {
+            <li>
+              Competenza: {{ wizard().skillName(skillId) }} ({{
+                wizard().skillAbilityShort(skillId)
+              }})
+            </li>
+          }
         }
         @for (feat of wizard().selectedFeats; track feat.id) {
           <li>

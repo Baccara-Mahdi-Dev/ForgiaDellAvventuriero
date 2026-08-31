@@ -13,10 +13,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -34,10 +31,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi spada), rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -61,10 +55,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi ascia o spada), rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -88,10 +79,7 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "spellGrants": [
       {
@@ -117,10 +105,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -138,10 +123,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -167,10 +149,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [
       {
         "id": "effect-punteggio-di-caratteristica",
@@ -198,10 +177,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -219,10 +195,7 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Anello, leggendario",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "spellGrants": [
       {
@@ -248,10 +221,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Anello, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [
       {
         "id": "effect-resistenza-freddo",
@@ -279,10 +249,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Anello, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -300,10 +267,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Anello, leggendario (richiede sintonia)",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [
       {
         "id": "effect-resistenza-acido",
@@ -422,10 +386,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Anello, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -443,10 +404,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Anello, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [
       {
@@ -472,10 +430,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -498,10 +453,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -519,10 +471,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -540,10 +489,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -561,10 +507,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, molto raro (richiede sintonia in un luogo",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "attunementRequirements": "un luogo",
     "charges": {
@@ -602,10 +545,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -628,10 +568,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Anello, leggendario (richiede sintonia)",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "isHidden": false
   },
@@ -649,10 +586,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Anello, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -689,10 +623,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Anello, leggendario (richiede sintonia)",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "isHidden": false
   },
@@ -710,10 +641,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [
       {
         "id": "effect-protezione",
@@ -748,10 +676,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -769,10 +694,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, molto raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -790,10 +712,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Anello, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -811,10 +730,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Anello, molto raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -840,10 +756,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Anello, leggendario (richiede sintonia)",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "isHidden": false
   },
@@ -861,10 +774,7 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "isHidden": false
   },
@@ -882,10 +792,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (arco lungo), molto rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "baseEquipmentId": "longbow",
     "damage": "1d8",
@@ -909,10 +816,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi), rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -936,10 +840,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (armatura a piastre), molto rara",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "plate",
@@ -964,10 +865,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Armatura (armatura a piastre), leggendaria",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "spellGrants": [
       {
@@ -999,10 +897,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Armatura (corazza di scaglie), non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "scale-mail",
@@ -1026,10 +921,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Armatura (armatura completa), non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "plate",
@@ -1054,10 +946,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Armatura (armatura a piastre), molto rara",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "plate",
@@ -1082,10 +971,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Armatura (armatura a piastre), leggendaria",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "plate",
@@ -1110,10 +996,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (cuoio), rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "leather",
@@ -1137,10 +1020,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (corazza di scaglie), rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "scale-mail",
@@ -1164,10 +1044,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (armatura completa), rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "plate",
@@ -1192,10 +1069,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (armatura a piastre), rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -1233,10 +1107,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Armatura (cuoio borchiato), rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "studded-leather",
@@ -1260,10 +1131,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Armatura (giaco di maglia), non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "chain-shirt",
@@ -1287,10 +1155,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Armatura (armatura completa), non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "plate",
@@ -1315,10 +1180,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi ascia), rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -1342,10 +1204,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia con un incantatore)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "attunementRequirements": "un incantatore",
     "charges": {
@@ -1377,10 +1236,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Bacchetta, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -1403,10 +1259,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia con un incantatore)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "attunementRequirements": "un incantatore",
     "charges": {
@@ -1444,10 +1297,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, non comune (+1)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [
       {
         "id": "effect-bonus-alla-classe-armatura",
@@ -1475,10 +1325,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (+2)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [
       {
         "id": "effect-bonus-alla-classe-armatura",
@@ -1506,10 +1353,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, molto rara (+3)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [
       {
         "id": "effect-bonus-alla-classe-armatura",
@@ -1537,10 +1381,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, molto rara (richiede sintonia con un",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "attunementRequirements": "un",
     "charges": {
@@ -1572,10 +1413,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia con un incantatore)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "attunementRequirements": "un incantatore",
     "charges": {
@@ -1599,10 +1437,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "charges": {
       "maximum": 7,
@@ -1625,10 +1460,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, non comune (richiede sintonia con un",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "attunementRequirements": "un",
     "charges": {
@@ -1660,10 +1492,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia con un incantatore)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "attunementRequirements": "un incantatore",
     "charges": {
@@ -1687,10 +1516,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia con un incantatore)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "attunementRequirements": "un incantatore",
     "charges": {
@@ -1722,10 +1548,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bacchetta, rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "charges": {
       "maximum": 7,
@@ -1748,10 +1571,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Bacchetta, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -1782,10 +1602,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Bacchetta, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "charges": {
       "maximum": 7,
@@ -1816,10 +1633,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -1837,10 +1651,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, raro (richiede sintonia con un druido)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "attunementRequirements": "un druido",
     "baseEquipmentId": "",
@@ -1896,10 +1707,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Bastone, leggendario (richiede sintonia con un mago,",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "attunementRequirements": "un mago,",
     "baseEquipmentId": "",
@@ -1967,10 +1775,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, molto raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -1994,10 +1799,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, molto raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -2026,10 +1828,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, raro (richiede sintonia con un chierico,",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "attunementRequirements": "un chierico,",
     "baseEquipmentId": "",
@@ -2059,10 +1858,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, molto raro (richiede sintonia con un druido,",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [
       {
         "id": "effect-resistenza-fuoco",
@@ -2122,10 +1918,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, molto raro (richiede sintonia con un druido,",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [
       {
         "id": "effect-resistenza-freddo",
@@ -2191,10 +1984,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Bastone, non comune (richiede sintonia con un",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "attunementRequirements": "un",
     "baseEquipmentId": "",
@@ -2219,10 +2009,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, molto raro (richiede sintonia con un mago,",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "attunementRequirements": "un mago,",
     "baseEquipmentId": "",
@@ -2278,10 +2065,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, raro (richiede sintonia con un bardo,",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "attunementRequirements": "un bardo,",
     "baseEquipmentId": "",
@@ -2325,10 +2109,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, raro (richiede sintonia con un bardo,",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "attunementRequirements": "un bardo,",
     "baseEquipmentId": "",
@@ -2367,10 +2148,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Bastone, raro (richiede sintonia con un bardo,",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "attunementRequirements": "un bardo,",
     "baseEquipmentId": "",
@@ -2408,10 +2186,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -2429,10 +2204,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -2458,10 +2230,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -2479,10 +2248,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -2500,10 +2266,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -2521,10 +2284,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -2542,10 +2302,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -2563,10 +2320,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -2584,10 +2338,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -2605,10 +2356,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [
       {
         "id": "effect-difesa-senza-armatura",
@@ -2636,10 +2384,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -2657,10 +2402,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -2678,10 +2420,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -2699,10 +2438,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -2734,10 +2470,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -2755,10 +2488,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [
       {
@@ -2784,10 +2514,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -2805,10 +2532,7 @@
     "rarity": "varies",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, rarità variabile (richiede sintonia)",
-    "tags": [
-      "magico",
-      "varies"
-    ],
+    "tags": ["magico", "varies"],
     "effects": [],
     "isHidden": false
   },
@@ -2826,10 +2550,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [
       {
         "id": "effect-resistenza-veleno",
@@ -2857,10 +2578,7 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "spellGrants": [
       {
@@ -2892,10 +2610,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -2913,10 +2628,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -2942,10 +2654,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia con un",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "attunementRequirements": "un",
     "isHidden": false
@@ -2964,10 +2673,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (corazza a scaglie), molto rara",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "scale-mail",
@@ -2991,10 +2697,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -3012,10 +2715,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -3033,10 +2733,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro (ottone o argento),",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -3054,10 +2751,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -3075,10 +2769,7 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "spellGrants": [
       {
@@ -3110,10 +2801,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "charges": {
       "maximum": 36,
@@ -3136,10 +2824,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -3157,10 +2842,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), leggendaria",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -3184,10 +2866,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -3218,10 +2897,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [
       {
@@ -3253,10 +2929,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [
       {
         "id": "effect-resistenza-fuoco",
@@ -3298,10 +2971,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [
       {
@@ -3345,10 +3015,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -3366,10 +3033,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -3387,10 +3051,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [
       {
         "id": "effect-punteggio-di-caratteristica",
@@ -3418,10 +3079,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [
       {
@@ -3447,10 +3105,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -3468,10 +3123,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -3489,10 +3141,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -3510,10 +3159,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -3536,10 +3182,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -3562,10 +3205,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -3591,10 +3231,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Arma (freccia), molto rara",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -3618,10 +3255,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "charges": {
       "maximum": 50,
@@ -3644,10 +3278,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -3670,10 +3301,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [
       {
@@ -3699,10 +3327,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Armatura (giaco di maglia), rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "chain-shirt",
@@ -3726,10 +3351,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Arma (giavellotto), non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "baseEquipmentId": "javelin",
     "damage": "1d6",
@@ -3753,10 +3375,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -3774,10 +3393,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -3795,10 +3411,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [
       {
         "id": "effect-punteggio-di-caratteristica",
@@ -3826,10 +3439,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -3847,10 +3457,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (spada lunga), rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "baseEquipmentId": "longsword",
     "damage": "1d8",
@@ -3874,10 +3481,7 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi spada), leggendaria (richiede",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -3901,10 +3505,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -3922,10 +3523,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -3943,10 +3541,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -3964,10 +3559,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -3985,10 +3577,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -4014,10 +3603,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -4035,10 +3621,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -4064,10 +3647,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [
       {
         "id": "effect-resistenza-veleno",
@@ -4095,10 +3675,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -4116,10 +3693,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [
       {
         "id": "effect-protezione",
@@ -4154,10 +3728,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -4175,10 +3746,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -4196,10 +3764,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -4217,10 +3782,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -4238,10 +3800,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -4259,10 +3818,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -4280,10 +3836,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -4301,10 +3854,7 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Arma (maglio), leggendaria",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -4333,10 +3883,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (martello da guerra), molto rara",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -4360,10 +3907,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (mazza), rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -4392,10 +3936,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (mazza), rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -4419,10 +3960,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Arma (mazza), rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -4446,10 +3984,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -4467,10 +4002,7 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "spellGrants": [
       {
@@ -4502,10 +4034,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -4536,10 +4065,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi munizione), non comune (+1),",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [
       {
         "id": "effect-bonus-agli-attacchi",
@@ -4582,10 +4108,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi munizione), non comune (+1),",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [
       {
         "id": "effect-bonus-agli-attacchi",
@@ -4628,10 +4151,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi munizione), non comune (+1),",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [
       {
         "id": "effect-bonus-agli-attacchi",
@@ -4674,10 +4194,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -4695,10 +4212,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, molto rara",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -4716,10 +4230,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -4745,10 +4256,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [
       {
@@ -4774,10 +4282,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -4795,10 +4300,7 @@
     "rarity": "varies",
     "requiresAttunement": false,
     "specialProperties": "Pergamena, rarità variabile",
-    "tags": [
-      "magico",
-      "varies"
-    ],
+    "tags": ["magico", "varies"],
     "effects": [],
     "isHidden": false
   },
@@ -4816,10 +4318,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -4837,10 +4336,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -4866,10 +4362,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [
       {
         "id": "effect-buona-fortuna",
@@ -4896,10 +4389,7 @@
     "rarity": "varies",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, rarità variabile (richiede sintonia)",
-    "tags": [
-      "magico",
-      "varies"
-    ],
+    "tags": ["magico", "varies"],
     "effects": [],
     "isHidden": false
   },
@@ -4917,10 +4407,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -4938,10 +4425,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -4959,10 +4443,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -4980,10 +4461,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [
       {
@@ -5009,10 +4487,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -5030,10 +4505,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -5051,10 +4523,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, molto rara",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -5072,10 +4541,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -5101,10 +4567,7 @@
     "rarity": "varies",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rarità variabile",
-    "tags": [
-      "magico",
-      "varies"
-    ],
+    "tags": ["magico", "varies"],
     "effects": [],
     "isHidden": false
   },
@@ -5122,10 +4585,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [
       {
@@ -5151,10 +4611,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -5180,10 +4637,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [
       {
@@ -5209,10 +4663,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -5238,10 +4689,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -5267,10 +4715,7 @@
     "rarity": "varies",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rarità variabile",
-    "tags": [
-      "magico",
-      "varies"
-    ],
+    "tags": ["magico", "varies"],
     "effects": [],
     "isHidden": false
   },
@@ -5288,10 +4733,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -5317,10 +4759,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -5338,10 +4777,7 @@
     "rarity": "common",
     "requiresAttunement": false,
     "specialProperties": "Pozione, comune",
-    "tags": [
-      "magico",
-      "common"
-    ],
+    "tags": ["magico", "common"],
     "effects": [],
     "isHidden": false
   },
@@ -5359,10 +4795,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, molto rara",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -5388,10 +4821,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Pozione, molto rara",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -5409,10 +4839,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Pozione, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -5430,10 +4857,7 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "isHidden": false
   },
@@ -5451,10 +4875,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Arma (pugnale), rara",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "baseEquipmentId": "dagger",
     "damage": "1d4",
@@ -5478,10 +4899,7 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Arma (qualsiasi spada), leggendaria (richiede",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -5505,10 +4923,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, leggendario (richiede sintonia)",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "charges": {
       "maximum": 12,
@@ -5531,10 +4946,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (scimitarra), molto rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "baseEquipmentId": "scimitar",
     "damage": "1d6",
@@ -5558,10 +4970,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -5579,10 +4988,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (scudo), molto raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "shield",
@@ -5605,10 +5011,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (scudo), molto raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "shield",
@@ -5631,10 +5034,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (scudo), rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -5664,10 +5064,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Armatura (scudo), rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [],
     "baseEquipmentId": "shield",
@@ -5690,10 +5087,7 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "isHidden": false
   },
@@ -5711,10 +5105,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro o leggendario",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "spellGrants": [
       {
@@ -5752,10 +5143,7 @@
     "rarity": "legendary",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, leggendario",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "isHidden": false
   },
@@ -5773,10 +5161,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada che infligga danni taglienti), molto rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -5800,10 +5185,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), molto rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -5827,10 +5209,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -5854,10 +5233,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -5881,10 +5257,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), molto rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -5908,10 +5281,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada che infligga danni taglienti), leggendaria (richiede sintonia)",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "baseEquipmentId": "",
     "damage": "1d6",
@@ -5935,10 +5305,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Arma (qualsiasi spada), molto rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [
       {
         "id": "effect-resistenza-fuoco",
@@ -5972,10 +5339,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "charges": {
       "maximum": 24,
@@ -6006,10 +5370,7 @@
     "rarity": "varies",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, rarità variabile",
-    "tags": [
-      "magico",
-      "varies"
-    ],
+    "tags": ["magico", "varies"],
     "effects": [],
     "isHidden": false
   },
@@ -6027,10 +5388,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -6048,10 +5406,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [
       {
         "id": "effect-resistenza-freddo",
@@ -6079,10 +5434,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -6108,10 +5460,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -6129,10 +5478,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -6150,10 +5496,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -6171,10 +5514,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, leggendario (richiede sintonia",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "charges": {
       "maximum": 7,
@@ -6197,10 +5537,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, leggendario (richiede sintonia",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "charges": {
       "maximum": 6,
@@ -6223,10 +5560,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -6244,10 +5578,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -6265,10 +5596,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, leggendario (richiede sintonia)",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "isHidden": false
   },
@@ -6286,10 +5614,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -6307,10 +5632,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -6328,10 +5650,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -6349,10 +5668,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -6370,10 +5686,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, molto raro",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -6391,10 +5704,7 @@
     "rarity": "uncommon",
     "requiresAttunement": true,
     "specialProperties": "Arma (tridente), non comune (richiede sintonia)",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "baseEquipmentId": "trident",
     "damage": "1d6",
@@ -6437,10 +5747,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -6466,10 +5773,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -6487,10 +5791,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "charges": {
       "maximum": 3,
@@ -6513,10 +5814,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, leggendario (richiede sintonia",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "isHidden": false
   },
@@ -6534,10 +5832,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Oggetto meraviglioso, molto raro (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -6555,10 +5850,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -6576,10 +5868,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "spellGrants": [
       {
@@ -6605,10 +5894,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Verga, molto rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "spellGrants": [
       {
@@ -6646,10 +5932,7 @@
     "rarity": "very-rare",
     "requiresAttunement": true,
     "specialProperties": "Verga, molto rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -6667,10 +5950,7 @@
     "rarity": "legendary",
     "requiresAttunement": true,
     "specialProperties": "Verga, leggendaria (richiede sintonia)",
-    "tags": [
-      "magico",
-      "legendary"
-    ],
+    "tags": ["magico", "legendary"],
     "effects": [],
     "isHidden": false
   },
@@ -6688,10 +5968,7 @@
     "rarity": "very-rare",
     "requiresAttunement": false,
     "specialProperties": "Verga, molto rara",
-    "tags": [
-      "magico",
-      "very-rare"
-    ],
+    "tags": ["magico", "very-rare"],
     "effects": [],
     "isHidden": false
   },
@@ -6709,10 +5986,7 @@
     "rarity": "rare",
     "requiresAttunement": true,
     "specialProperties": "Verga, rara (richiede sintonia)",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   },
@@ -6730,10 +6004,7 @@
     "rarity": "uncommon",
     "requiresAttunement": false,
     "specialProperties": "Verga, non comune",
-    "tags": [
-      "magico",
-      "uncommon"
-    ],
+    "tags": ["magico", "uncommon"],
     "effects": [],
     "isHidden": false
   },
@@ -6751,10 +6022,7 @@
     "rarity": "rare",
     "requiresAttunement": false,
     "specialProperties": "Oggetto meraviglioso, raro",
-    "tags": [
-      "magico",
-      "rare"
-    ],
+    "tags": ["magico", "rare"],
     "effects": [],
     "isHidden": false
   }

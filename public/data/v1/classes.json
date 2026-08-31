@@ -233,6 +233,75 @@
             ]
           }
         ]
+      },
+      {
+        "subclassId": "Cammino della Bestia",
+        "choices": [
+          {
+            "id": "beast-form-weapon",
+            "name": "Arma di Forma della Bestia",
+            "description": "Scegli l'arma naturale manifestata durante l'ira. Puoi cambiare questa scelta ogni volta che entri in ira.",
+            "minLevel": 3,
+            "countByLevel": [
+              {
+                "level": 3,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "bite",
+                "name": "Morso",
+                "description": "Infligge 1d8 danni perforanti. Una volta per turno, quando colpisci e hai meno della metà dei punti ferita massimi, recuperi punti ferita pari al bonus di competenza.",
+                "activations": ["passive"]
+              },
+              {
+                "id": "claws",
+                "name": "Artigli",
+                "description": "Infliggono 1d6 danni taglienti. Una volta per turno, quando attacchi con un artiglio usando l'azione Attacco, puoi effettuare un attacco aggiuntivo con gli artigli.",
+                "activations": ["action"]
+              },
+              {
+                "id": "tail",
+                "name": "Coda",
+                "description": "Infligge 1d8 danni perforanti e possiede portata. Quando un attacco entro 3 m ti colpisce, puoi usare la reazione per aggiungere 1d8 alla CA contro quell'attacco.",
+                "activations": ["reaction"]
+              }
+            ]
+          },
+          {
+            "id": "bestial-soul-adaptation",
+            "name": "Adattamento di Anima Bestiale",
+            "description": "Al termine di ogni riposo breve o lungo scegli un adattamento, che rimane attivo fino al riposo successivo.",
+            "minLevel": 6,
+            "countByLevel": [
+              {
+                "level": 6,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "swimming",
+                "name": "Nuoto",
+                "description": "Ottieni una velocità di nuoto pari alla velocità sul terreno e puoi respirare sott'acqua.",
+                "activations": ["passive"]
+              },
+              {
+                "id": "climbing",
+                "name": "Scalata",
+                "description": "Ottieni una velocità di scalata pari alla velocità sul terreno e puoi arrampicarti su superfici difficili o soffitti senza prove di caratteristica.",
+                "activations": ["passive"]
+              },
+              {
+                "id": "jumping",
+                "name": "Salto",
+                "description": "Una volta per turno, quando salti, puoi effettuare una prova di Atletica e aumentare la distanza del salto di un numero di piedi pari al risultato.",
+                "activations": ["passive"]
+              }
+            ]
+          }
+        ]
       }
     ],
     "subclassProgressions": [
@@ -8706,6 +8775,96 @@
             ]
           }
         ]
+      },
+      {
+        "subclassId": "Circolo delle Stelle",
+        "choices": [
+          {
+            "id": "star-map-form",
+            "name": "Forma della Mappa Stellare",
+            "description": "Scegli l'aspetto della tua mappa stellare. Se viene perduta, puoi crearne una nuova con una cerimonia di 1 ora durante un riposo breve o lungo.",
+            "minLevel": 2,
+            "countByLevel": [
+              {
+                "level": 2,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "constellation-scroll",
+                "name": "Pergamena delle Costellazioni",
+                "description": "Una pergamena ricoperta da raffigurazioni di costellazioni.",
+                "activations": ["passive"]
+              },
+              {
+                "id": "perforated-stone-tablet",
+                "name": "Tavoletta di Pietra",
+                "description": "Una tavoletta di pietra attraversata da piccoli fori accuratamente praticati.",
+                "activations": ["passive"]
+              },
+              {
+                "id": "speckled-owlbear-hide",
+                "name": "Pelle di Orsogufo",
+                "description": "Una pelle maculata di orsogufo lavorata con simboli in rilievo.",
+                "activations": ["passive"]
+              },
+              {
+                "id": "ebony-map-book",
+                "name": "Raccolta in Ebano",
+                "description": "Una raccolta di mappe rilegate in una copertina d'ebano.",
+                "activations": ["passive"]
+              },
+              {
+                "id": "star-projecting-crystal",
+                "name": "Cristallo Stellare",
+                "description": "Un cristallo che, posto davanti a una luce, proietta motivi stellari.",
+                "activations": ["passive"]
+              },
+              {
+                "id": "constellation-glass-disks",
+                "name": "Dischi di Vetro",
+                "description": "Una serie di dischi di vetro che raffigurano diverse costellazioni.",
+                "activations": ["passive"]
+              }
+            ]
+          },
+          {
+            "id": "starry-form-constellation",
+            "name": "Costellazione della Forma Stellata",
+            "description": "Scegli la costellazione che risplende quando assumi Forma Stellata. Puoi effettuare una scelta diversa a ogni attivazione e, dal 10° livello, cambiarla all'inizio di ogni tuo turno.",
+            "minLevel": 2,
+            "countByLevel": [
+              {
+                "level": 2,
+                "count": 1
+              }
+            ],
+            "options": [
+              {
+                "id": "archer",
+                "name": "Arciere",
+                "description": "Quando attivi la forma e come azione bonus nei turni successivi, effettui un attacco magico a distanza entro 18 m che infligge 1d8 + Saggezza danni radiosi; il dado diventa 2d8 al 10° livello.",
+                "activations": ["bonus-action"],
+                "resource": "Forma Selvatica"
+              },
+              {
+                "id": "chalice",
+                "name": "Calice",
+                "description": "Quando lanci con uno slot un incantesimo che ripristina punti ferita, tu o un'altra creatura entro 9 m recuperate 1d8 + Saggezza punti ferita; il dado diventa 2d8 al 10° livello.",
+                "activations": ["passive"],
+                "resource": "Forma Selvatica"
+              },
+              {
+                "id": "dragon",
+                "name": "Drago",
+                "description": "Nelle prove di Intelligenza o Saggezza e nei tiri salvezza di Costituzione per mantenere la concentrazione, consideri 10 un risultato di 9 o meno; dal 10° livello ottieni volo di 6 m e stazionamento.",
+                "activations": ["passive"],
+                "resource": "Forma Selvatica"
+              }
+            ]
+          }
+        ]
       }
     ],
     "subclassProgressions": [
@@ -10503,121 +10662,139 @@
               {
                 "id": "fangs-of-the-fire-snake",
                 "name": "Zanne del Serpente di Fuoco",
-                "description": "Spendi ki per aumentare la portata dei colpi senz'armi, convertirne i danni in fuoco e potenziarne gli impatti.",
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "description": "Quando usi l'azione Attacco, spendi 1 punto ki: per il resto del turno la portata dei colpi senz'armi aumenta di 3 m e i danni diventano da fuoco. Quando colpisci puoi spendere 1 punto ki aggiuntivo per infliggere 1d10 danni da fuoco extra.",
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "1, più 1 facoltativo per colpo"
               },
               {
                 "id": "fist-of-four-thunders",
                 "name": "Pugno dei Quattro Tuoni",
                 "description": "Spendi 2 punti ki per lanciare Onda Tonante.",
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "2"
               },
               {
                 "id": "fist-of-unbroken-air",
                 "name": "Pugno dell'Aria Infrangibile",
-                "description": "Una raffica d'aria danneggia, respinge e può gettare prono un bersaglio entro 9 m.",
-                "activations": ["passive"]
+                "description": "Come azione spendi 2 punti ki: un bersaglio entro 9 m effettua un tiro salvezza di Forza. Se fallisce subisce 3d10 danni contundenti, può essere spinto di 6 m e cadere prono; con un successo subisce metà danni. Ogni punto ki aggiuntivo aumenta i danni di 1d10.",
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "2 o più"
               },
               {
                 "id": "rush-of-the-gale-spirits",
                 "name": "Corsa degli Spiriti della Burrasca",
                 "description": "Spendi 2 punti ki per lanciare Folata di Vento.",
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "2"
               },
               {
                 "id": "shape-the-flowing-river",
                 "name": "Modellare il Fiume Fluente",
                 "description": "Spendi 1 punto ki per trasformare e modellare ghiaccio o acqua in un'area.",
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "1"
               },
               {
                 "id": "sweeping-cinder-strike",
                 "name": "Colpo delle Ceneri Sferzanti",
                 "description": "Spendi 2 punti ki per lanciare Mani Brucianti.",
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "2"
               },
               {
                 "id": "water-whip",
                 "name": "Frusta d'Acqua",
-                "description": "Una frusta d'acqua danneggia e può trascinare o gettare prono un bersaglio entro 9 m.",
-                "activations": ["passive"]
+                "description": "Come azione spendi 2 punti ki: un bersaglio entro 9 m effettua un tiro salvezza di Destrezza. Se fallisce subisce 3d10 danni contundenti e puoi trascinarlo di 7,5 m o farlo cadere prono; con un successo subisce metà danni. Ogni punto ki aggiuntivo aumenta i danni di 1d10.",
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "2 o più"
               },
               {
                 "id": "clench-of-the-north-wind",
                 "name": "Stretta del Vento del Nord",
                 "description": "Spendi 3 punti ki per lanciare Blocca Persone.",
                 "minLevel": 6,
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "3"
               },
               {
                 "id": "gong-of-the-summit",
                 "name": "Gong della Vetta",
                 "description": "Spendi 3 punti ki per lanciare Frantumare.",
                 "minLevel": 6,
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "3"
               },
               {
                 "id": "flames-of-the-phoenix",
                 "name": "Fiamme della Fenice",
                 "description": "Spendi 4 punti ki per lanciare Palla di Fuoco.",
                 "minLevel": 11,
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "4"
               },
               {
                 "id": "mist-stance",
                 "name": "Posizione della Nebbia",
                 "description": "Spendi 4 punti ki per lanciare Forma Gassosa su te stesso.",
                 "minLevel": 11,
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "4"
               },
               {
                 "id": "ride-the-wind",
                 "name": "Cavalcare il Vento",
                 "description": "Spendi 4 punti ki per lanciare Volare su te stesso.",
                 "minLevel": 11,
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "4"
               },
               {
                 "id": "breath-of-winter",
                 "name": "Respiro dell'Inverno",
                 "description": "Spendi 6 punti ki per lanciare Cono di Freddo.",
                 "minLevel": 17,
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "6"
               },
               {
                 "id": "eternal-mountain-defense",
                 "name": "Difesa della Montagna Eterna",
                 "description": "Spendi 5 punti ki per lanciare Pelle di Pietra su te stesso.",
                 "minLevel": 17,
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "5"
               },
               {
                 "id": "river-of-hungry-flame",
                 "name": "Fiume della Fiamma Affamata",
                 "description": "Spendi 5 punti ki per lanciare Muro di Fuoco.",
                 "minLevel": 17,
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "5"
               },
               {
                 "id": "wave-of-rolling-earth",
                 "name": "Onda della Terra Rotolante",
                 "description": "Spendi 6 punti ki per lanciare Muro di Pietra.",
                 "minLevel": 17,
-                "activations": ["passive"],
-                "resource": "Punti ki"
+                "activations": ["action"],
+                "resource": "Punti ki",
+                "resourceCost": "6"
               }
             ]
           }
@@ -12735,7 +12912,7 @@
               {
                 "id": "giant-killer",
                 "name": "Uccisore di Giganti",
-                "description": "Quando una creatura Grande o più grande adiacente ti attacca, puoi usare la reazione per attaccarla dopo il suo colpo.",
+                "description": "Quando una creatura Grande o più grande entro 1,5 m ti colpisce o ti manca con un attacco, puoi usare la reazione per attaccarla subito dopo, purché tu possa vederla.",
                 "activations": ["reaction"]
               },
               {
@@ -12794,13 +12971,13 @@
                 "id": "volley",
                 "name": "Raffica",
                 "description": "Usi un'azione per effettuare un attacco a distanza contro ogni creatura scelta in un'area di 3 m entro la gittata dell'arma.",
-                "activations": ["passive"]
+                "activations": ["action"]
               },
               {
                 "id": "whirlwind-attack",
                 "name": "Attacco Turbinante",
                 "description": "Usi un'azione per effettuare un attacco in mischia contro ogni creatura entro 1,5 m da te.",
-                "activations": ["passive"]
+                "activations": ["action"]
               }
             ]
           },

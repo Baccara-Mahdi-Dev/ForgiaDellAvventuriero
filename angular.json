@@ -31,16 +31,13 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "node_modules/@taiga-ui/styles/taiga-ui-theme.less",
-              "src/styles.scss"
-            ]
+            "styles": ["node_modules/@taiga-ui/styles/taiga-ui-theme.less", "src/styles.scss"]
           },
           "configurations": {
             "production": {
               "optimization": {
-                "styles":{
-                  "inlineCritical":false
+                "styles": {
+                  "inlineCritical": false
                 }
               },
               "budgets": [

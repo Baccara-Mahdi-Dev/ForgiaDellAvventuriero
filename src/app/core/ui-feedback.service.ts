@@ -24,8 +24,8 @@ export class UiFeedbackService {
   private readonly notifications = inject(TuiNotificationService);
   private readonly dialogs = inject(TuiDialogService);
 
-  show(message: string, kind: FeedbackKind = 'info', label = LABEL[kind], duration?:number): void {
-     const _d = duration??3000;
+  show(message: string, kind: FeedbackKind = 'info', label = LABEL[kind], duration?: number): void {
+    const _d = duration ?? 3000;
     this.notifications
       .open(message, {
         appearance: APPEARANCE[kind],
@@ -36,24 +36,26 @@ export class UiFeedbackService {
       .subscribe();
   }
 
-  info(message: string, label?: string, duration?:number): void {
+  info(message: string, label?: string, duration?: number): void {
     this.show(message, 'info', label, duration);
   }
 
-  success(message: string, label?: string, duration?:number): void {
+  success(message: string, label?: string, duration?: number): void {
     this.show(message, 'success', label, duration);
   }
 
-  warning(message: string, label?: string, duration?:number): void {
+  warning(message: string, label?: string, duration?: number): void {
     this.show(message, 'warning', label, duration);
   }
 
-  error(message: string, label?: string, duration?:number): void {
+  error(message: string, label?: string, duration?: number): void {
     this.show(message, 'error', label, duration);
   }
 
-  confirmDelete(name: string, customContent?:string): Promise<boolean> {
-    const _c:string = customContent?.length?customContent:`Il personaggio “${name}” verrà rimosso da questo dispositivo.`;
+  confirmDelete(name: string, customContent?: string): Promise<boolean> {
+    const _c: string = customContent?.length
+      ? customContent
+      : `Il personaggio “${name}” verrà rimosso da questo dispositivo.`;
     return firstValueFrom(
       this.dialogs.open<boolean>(TUI_CONFIRM, {
         label: 'Eliminare definitivamente?',

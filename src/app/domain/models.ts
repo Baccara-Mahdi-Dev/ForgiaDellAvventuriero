@@ -16,6 +16,7 @@ export type AbilityScores = Record<AbilityKey, number>;
 export const HOMEBREW_ABILITY_MIN = 0;
 export const HOMEBREW_ABILITY_MAX = 20;
 export type HpMethod = 'average' | 'roll' | 'manual';
+export type BackgroundSelectionMode = 'catalog' | 'homebrew';
 export type Alignment =
   | 'lawful-good'
   | 'neutral-good'
@@ -428,6 +429,12 @@ export interface CharacterDraft {
   classSkillProficiencies?: string[];
   classFeatureChoices?: Record<string, string[]>;
   backgroundId: string;
+  backgroundSelectionMode?: BackgroundSelectionMode;
+  homebrewBackgroundName?: string;
+  homebrewBackgroundDescription?: string;
+  homebrewBackgroundSkills?: string[];
+  homebrewBackgroundLanguages?: string[];
+  homebrewBackgroundTools?: string[];
   customLanguages?: string[];
   customTools?: string[];
   level: number;
