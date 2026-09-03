@@ -797,15 +797,17 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
         : equippedArmor?.dexterityBonus === 'max-2'
           ? Math.min(2, modifiers.dex)
           : modifiers.dex,
-    unarmoredDefenseModifier =
-      draft.classId === 'barbarian' &&
-      draft.level >= 1 &&
-      (!equippedArmor || equippedArmor.armorType === 'clothing')
-        ? modifiers.con
-        : 0,
     equippedShield = catalog.equipment.find(
       (item) => item.id === (draft.equippedShieldId ?? (draft.shieldEquipped ? 'shield' : '')),
     ),
+    unarmoredDefenseModifier =
+      draft.level >= 1 && (!equippedArmor || equippedArmor.armorType === 'clothing')
+        ? draft.classId === 'barbarian'
+          ? modifiers.con
+          : draft.classId === 'monk' && !equippedShield
+            ? modifiers.wis
+            : 0
+        : 0,
     armorProficient =
       (!equippedArmor ||
         equippedArmor.armorType === 'clothing' ||
@@ -820,7 +822,8 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
       equippedShield && !equippedShield.magical
         ? Math.max(0, Math.min(3, Math.floor(draft.shieldMagicBonus ?? 0)))
         : 0,
-    armorClassBonus = equipmentEffectTotal(equipmentEffects, 'armor-class'),
+    armorClassBonus =
+      (ancestry?.armorClassBonus ?? 0) + equipmentEffectTotal(equipmentEffects, 'armor-class'),
     initiativeBonus = equipmentEffectTotal(equipmentEffects, 'initiative'),
     savingThrowBonus = equipmentEffectTotal(equipmentEffects, 'saving-throw-bonus'),
     inventoryWeightKg = +(draft.inventory ?? [])
@@ -848,6 +851,14 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
             : ('normal' as const),
     encumbranceSpeedPenaltyMeters =
       encumbrance === 'encumbered' ? 3 : encumbrance === 'normal' ? 0 : 6,
+    armorStrengthSpeedPenaltyMeters =
+      equippedArmor?.armorType === 'heavy' &&
+      !!equippedArmor.strengthRequirement &&
+      finalAbilities.str < equippedArmor.strengthRequirement &&
+      ancestry?.race !== 'Nano'
+        ? 3
+        : 0,
+    stealthDisadvantage = !!equippedArmor?.stealthDisadvantage,
     baseSpeedMeters =
       (ancestry?.speed ?? 0) +
       (isArtificerSubclass(draft, 'armorer') &&
@@ -921,6 +932,7 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
       ...skill,
       proficient: proficientNames.has(skill.name),
       expertise: expertiseIds.has(skill.id),
+      disadvantage: skill.id === 'stealth' && stealthDisadvantage,
       value:
         modifiers[skill.ability] +
         (proficientNames.has(skill.name) ? pb * (expertiseIds.has(skill.id) ? 2 : 1) : 0),
@@ -988,9 +1000,14 @@ export function derive(draft: CharacterDraft, catalog: RulesCatalog): DerivedCha
     passivePerception: 10 + perception.value + featEffects.passivePerceptionBonus,
     passiveInvestigation: 10 + investigation.value + featEffects.passiveInvestigationBonus,
     savingThrows,
-    speedMeters: Math.max(0, baseSpeedMeters - encumbranceSpeedPenaltyMeters),
+    speedMeters: Math.max(
+      0,
+      baseSpeedMeters - encumbranceSpeedPenaltyMeters - armorStrengthSpeedPenaltyMeters,
+    ),
     baseSpeedMeters,
     encumbranceSpeedPenaltyMeters,
+    armorStrengthSpeedPenaltyMeters,
+    stealthDisadvantage,
     size: ancestry?.size ?? 'Media',
     hitDie: klass?.hitDie ?? 0,
     hitDiceRemaining: Math.max(0, draft.level - (draft.hitDiceSpent ?? 0)),

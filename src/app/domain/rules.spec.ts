@@ -100,6 +100,18 @@ const catalog: RulesCatalog = {
       toolChoices: 1,
       toolOptions: ['Strumenti da fabbro'],
     },
+    {
+      id: 'warforged',
+      name: 'Forgiato',
+      race: 'Forgiato',
+      description: '',
+      source: 'WGE',
+      bonuses: { con: 2 },
+      armorClassBonus: 1,
+      speed: 9,
+      traits: [],
+      languages: ['Comune'],
+    },
   ],
   classes: [
     {
@@ -160,6 +172,20 @@ const catalog: RulesCatalog = {
       skillOptions: ['athletics', 'survival'],
       armorProficiencies: ['light', 'medium', 'shield'],
       weaponProficiencies: ['simple', 'martial'],
+    },
+    {
+      id: 'monk',
+      name: 'Monaco',
+      description: '',
+      source: 'PHB',
+      hitDie: 8,
+      primary: 'dex',
+      saves: ['str', 'dex'],
+      subclassLevel: 3,
+      subclasses: [],
+      skillChoices: 2,
+      skillOptions: [],
+      weaponProficiencies: ['simple'],
     },
   ],
   backgrounds: [
@@ -268,6 +294,72 @@ describe('regole 5e 2014', () => {
     expect(derive(barbarian, catalog).armorClass).toBe(14);
     expect(derive({ ...barbarian, shieldEquipped: true }, catalog).armorClass).toBe(16);
     expect(derive({ ...barbarian, equippedArmorId: 'scale-mail' }, catalog).armorClass).toBe(16);
+  });
+  it('applica Difesa senza Armatura del Monaco soltanto senza armatura e scudo', () => {
+    const monk = {
+      ...draft,
+      classId: 'monk',
+      subclassId: '',
+      level: 1,
+      abilities: { ...draft.abilities, wis: 16 },
+      asi: {},
+      spellIds: [],
+    };
+
+    expect(derive(monk, catalog).armorClass).toBe(15);
+    expect(derive({ ...monk, shieldEquipped: true }, catalog).armorClass).toBe(14);
+    expect(derive({ ...monk, equippedArmorId: 'scale-mail' }, catalog).armorClass).toBe(16);
+  });
+  it('applica il bonus alla Classe Armatura del Forgiato', () => {
+    expect(derive({ ...draft, ancestryId: 'warforged', asi: {} }, catalog).armorClass).toBe(13);
+  });
+  it('deriva penalità di velocità e svantaggio Furtività dall’armatura', () => {
+    const armorCatalog: RulesCatalog = {
+      ...catalog,
+      equipment: [
+        ...catalog.equipment,
+        {
+          id: 'chain-mail',
+          name: 'Cotta di maglia',
+          category: 'armor',
+          group: 'Armature pesanti',
+          cost: '75 mo',
+          weightKg: 24.9,
+          source: 'SRD',
+          armorType: 'heavy',
+          armorClass: 16,
+          dexterityBonus: 'none',
+          strengthRequirement: 13,
+          stealthDisadvantage: true,
+        },
+      ],
+    };
+    const underStrength = derive(
+      { ...draft, equippedArmorId: 'chain-mail', asi: {} },
+      armorCatalog,
+    );
+    const enoughStrength = derive(
+      {
+        ...draft,
+        equippedArmorId: 'chain-mail',
+        abilities: { ...draft.abilities, str: 13 },
+        asi: {},
+      },
+      armorCatalog,
+    );
+    const dwarf = derive(
+      { ...draft, ancestryId: 'dwarf-mountain', equippedArmorId: 'chain-mail', asi: {} },
+      armorCatalog,
+    );
+
+    expect(underStrength.armorStrengthSpeedPenaltyMeters).toBe(3);
+    expect(underStrength.speedMeters).toBe(6);
+    expect(underStrength.stealthDisadvantage).toBe(true);
+    expect(underStrength.skills.find((skill) => skill.id === 'stealth')?.disadvantage).toBe(true);
+    expect(enoughStrength.armorStrengthSpeedPenaltyMeters).toBe(0);
+    expect(enoughStrength.speedMeters).toBe(9);
+    expect(dwarf.armorStrengthSpeedPenaltyMeters).toBe(0);
+    expect(dwarf.speedMeters).toBe(7.5);
   });
   it('applica addestramento e arma scelti dal Cantore della Lama', () => {
     const wizardCatalog: RulesCatalog = {

@@ -37,6 +37,7 @@ export interface OptionItem {
 export interface Ancestry extends OptionItem {
   race: string;
   bonuses: Partial<AbilityScores>;
+  armorClassBonus?: number;
   speed: number;
   size?: 'Piccola' | 'Media';
   darkvisionMeters?: number;
@@ -391,6 +392,7 @@ export interface SkillValue extends SkillDefinition {
   value: number;
   proficient: boolean;
   expertise?: boolean;
+  disadvantage?: boolean;
 }
 export interface SavingThrowValue {
   ability: AbilityKey;
@@ -501,6 +503,8 @@ export interface DerivedCharacter {
   moveCapacityKg: number;
   inventoryWeightKg: number;
   encumberedThresholdKg: number;
+  armorStrengthSpeedPenaltyMeters: number;
+  stealthDisadvantage: boolean;
   heavilyEncumberedThresholdKg: number;
   encumbrance: 'normal' | 'encumbered' | 'heavily-encumbered' | 'over-capacity';
   armorProficient: boolean;

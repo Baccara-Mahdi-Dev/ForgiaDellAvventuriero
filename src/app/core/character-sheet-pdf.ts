@@ -656,6 +656,7 @@ function fillFirstPageDetails(
       `Peso: ${derived.inventoryWeightKg}/${derived.carryingCapacityKg} kg`,
       `Ingombro: ${encumbranceLabel(derived)} (soglie ${derived.encumberedThresholdKg}/${derived.heavilyEncumberedThresholdKg} kg)`,
       `Velocità: ${derived.speedMeters} m${derived.encumbranceSpeedPenaltyMeters ? ` (-${derived.encumbranceSpeedPenaltyMeters} m)` : ''}`,
+      ...(derived.stealthDisadvantage ? ['Furtività: svantaggio per armatura'] : []),
     ].join('\n'),
     { multiline: true, fontSize: 6.5 },
   );
