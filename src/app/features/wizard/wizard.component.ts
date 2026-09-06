@@ -86,15 +86,12 @@ import {
   subclassSpellcastingProfile,
 } from '../../domain/rules';
 import {
-  battleSmithUsesIntelligence,
-  damageForHands,
-  hasTwoWeaponFighting,
-  isUnarmedStrike,
   magicWeaponBaseCandidates,
   requiresTwoHands,
   resolveWeaponBase,
-  unarmedDamage,
 } from '../../domain/weapon-loadout';
+import { computeWeaponProfile } from '../../character/domain/weapon-profile.rules';
+import { isCharacterStepComplete } from '../../character/domain/character-progress.rules';
 import { WizardStore } from '../../state/wizard.store';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
 import { UiFeedbackService } from '../../core/ui-feedback.service';
@@ -103,7 +100,7 @@ import { EquipmentStepComponent } from './steps/equipment-step.component';
 import { SpellsStepComponent } from './steps/spells-step.component';
 import { SummaryStepComponent } from './steps/summary-step.component';
 import { EQUIPMENT_RARITY_LABELS, equipmentKind } from '../../domain/homebrew-equipment';
-import { equippedEquipmentIds, weaponEffectTotal } from '../../domain/equipment-effects';
+import { equippedEquipmentIds } from '../../domain/equipment-effects';
 import {
   attunementLimit,
   battleSmithCanUseIntelligence,
@@ -971,48 +968,19 @@ export class WizardComponent implements OnInit, OnDestroy {
   }
   private stepComplete(step: StepId) {
     const d = this.store.draft();
-    switch (step) {
-      case 'caratteristiche':
-        return d.abilityMethod !== AbilityMethod.POINT || this.store.pointsSpent() === 27;
-      case 'razza':
-        const ancestry = this.store.selectedAncestry();
-        return (
-          !!d.ancestryId &&
-          (d.ancestryBonusAbilities?.length ?? 0) === (ancestry?.flexibleBonusCount ?? 0) &&
-          (d.ancestrySkillProficiencies?.length ?? 0) === (ancestry?.skillChoices ?? 0) &&
-          (d.ancestryToolProficiencies?.length ?? 0) === (ancestry?.toolChoices ?? 0)
-        );
-      case 'classe':
-        return (
-          !!d.classId &&
-          (d.classSkillProficiencies?.length ?? 0) ===
-            (this.store.selectedClass()?.skillChoices ?? 0)
-        );
-      case 'background':
-        return (
-          (this.backgroundMode === 'catalog'
-            ? !!d.backgroundId
-            : !!d.homebrewBackgroundName?.trim() &&
-              (d.homebrewBackgroundSkills?.length ?? 0) === 2 &&
-              this.homebrewBackgroundSecondaryCount === 2) &&
-          !!d.alignment &&
-          (d.customLanguages?.length ?? 0) === this.languageChoiceLimit &&
-          (d.customTools?.length ?? 0) === this.toolChoiceLimit &&
-          !this.backgroundHasClassSkill(this.store.selectedBackground())
-        );
-      case 'livello':
-        return (
-          (d.hpMethod !== 'manual' || (d.manualHp ?? 0) > 0) &&
-          (d.level < (this.store.selectedClass()?.subclassLevel ?? 21) || !!d.subclassId) &&
-          this.classFeaturesComplete()
-        );
-      case 'talenti':
-        return growthChoicesComplete(d, this.store.rulesCatalog);
-      case 'riepilogo':
-        return !!d.name.trim();
-      default:
-        return true;
-    }
+    return isCharacterStepComplete(step, {
+      draft: d,
+      catalog: this.store.rulesCatalog,
+      pointsSpent: this.store.pointsSpent(),
+      ancestry: this.store.selectedAncestry(),
+      klass: this.store.selectedClass(),
+      backgroundMode: this.backgroundMode,
+      homebrewBackgroundSecondaryCount: this.homebrewBackgroundSecondaryCount,
+      languageChoiceLimit: this.languageChoiceLimit,
+      toolChoiceLimit: this.toolChoiceLimit,
+      backgroundHasClassSkill: this.backgroundHasClassSkill(this.store.selectedBackground()),
+      classFeaturesComplete: this.classFeaturesComplete(),
+    });
   }
   next() {
     if (!this.canContinue()) {
@@ -1099,17 +1067,7 @@ export class WizardComponent implements OnInit, OnDestroy {
     this.isHolding = false;
   }
   selectAncestry(id: string) {
-    const changed = this.store.draft().ancestryId !== id;
-    this.store.patch({
-      ancestryId: id,
-      ancestryBonusAbilities: changed ? [] : this.store.draft().ancestryBonusAbilities,
-      ancestrySkillProficiencies: changed ? [] : this.store.draft().ancestrySkillProficiencies,
-      ancestryToolProficiencies: changed ? [] : this.store.draft().ancestryToolProficiencies,
-      featIds: changed ? [] : this.store.draft().featIds,
-      featAbilityChoices: changed ? {} : this.store.draft().featAbilityChoices,
-      customLanguages: changed ? [] : this.store.draft().customLanguages,
-      customTools: changed ? [] : this.store.draft().customTools,
-    });
+    this.store.selectAncestry(id);
   }
   get backgroundMode(): BackgroundSelectionMode {
     return this.store.draft().backgroundSelectionMode ?? 'catalog';
@@ -1226,26 +1184,7 @@ export class WizardComponent implements OnInit, OnDestroy {
     return [...selected];
   }
   selectClass(id: string) {
-    const old = this.store.draft().classId;
-    this.store.patch({
-      classId: id,
-      subclassId: old === id ? this.store.draft().subclassId : '',
-      classSkillProficiencies: old === id ? this.store.draft().classSkillProficiencies : [],
-      classFeatureChoices: old === id ? this.store.draft().classFeatureChoices : {},
-      hpRolls: old === id ? this.store.draft().hpRolls : [],
-      manualHp: old === id ? this.store.draft().manualHp : undefined,
-      asi: old === id ? this.store.draft().asi : {},
-      featIds: old === id ? this.store.draft().featIds : [],
-      featAbilityChoices: old === id ? this.store.draft().featAbilityChoices : {},
-      spellIds: [],
-      customTools: old === id ? this.store.draft().customTools : [],
-      equippedArmorId: old === id ? this.store.draft().equippedArmorId : '',
-      shieldEquipped: old === id ? this.store.draft().shieldEquipped : false,
-      attunedEquipmentIds: (this.store.draft().attunedEquipmentIds ?? []).slice(
-        0,
-        attunementLimit({ classId: id, level: this.store.draft().level }),
-      ),
-    });
+    this.store.selectClass(id);
   }
   setSubclass(value: string) {
     const draft = { ...this.store.draft(), subclassId: value };
@@ -1260,25 +1199,7 @@ export class WizardComponent implements OnInit, OnDestroy {
     );
   }
   setLevel(value: string) {
-    const level = Number(value),
-      needed = Math.max(0, level - 1),
-      die = this.store.selectedClass()?.hitDie ?? 1,
-      rolls = (this.store.draft().hpRolls ?? []).slice(0, needed);
-    if (this.store.draft().hpMethod === 'roll')
-      while (rolls.length < needed) rolls.push(Math.floor(Math.random() * die) + 1);
-    const progression = normalizeClassProgression(
-      { ...this.store.draft(), level },
-      this.store.selectedClass(),
-    );
-    this.store.patch({
-      level,
-      hpRolls: rolls,
-      attunedEquipmentIds: (this.store.draft().attunedEquipmentIds ?? []).slice(
-        0,
-        attunementLimit({ classId: this.store.draft().classId, level }),
-      ),
-      ...progression,
-    });
+    this.store.setLevel(Number(value));
   }
   toggleClassSkill(id: string) {
     const selected = this.store.draft().classSkillProficiencies ?? [],
@@ -1979,44 +1900,13 @@ export class WizardComponent implements OnInit, OnDestroy {
     );
   }
   weaponProficient(item: EquipmentItem) {
-    const weapon = this.effectiveWeapon(item);
-    const proficiencies = [...this.store.derived().weaponProficiencies];
-    if (isUnarmedStrike(weapon))
-      return this.store.draft().classId === 'monk' || proficiencies.includes(weapon.id);
-    const racialWeapons: Record<string, readonly string[]> = {
-      'dwarf-hill': ['battleaxe', 'handaxe', 'light-hammer', 'warhammer'],
-      'elf-high': ['longsword', 'shortsword', 'shortbow', 'longbow'],
-      'elf-drow': ['rapier', 'shortsword', 'hand-crossbow'],
-    };
-    return (
-      proficiencies.includes(weapon.proficiency ?? '') ||
-      proficiencies.includes(weapon.id) ||
-      (racialWeapons[this.store.draft().ancestryId] ?? []).includes(weapon.id)
-    );
+    return this.weaponProfile(item).proficient;
   }
   weaponAbilityModifier(item: EquipmentItem, equipped?: EquippedWeapon) {
-    const weapon = this.effectiveWeapon(item);
-    const modifiers = this.store.derived().modifiers;
-    if (battleSmithUsesIntelligence(this.store.draft(), weapon, equipped)) return modifiers.int;
-    if (isUnarmedStrike(weapon) && this.store.draft().classId === 'monk')
-      return Math.max(modifiers.str, modifiers.dex);
-    return weapon.ranged
-      ? modifiers.dex
-      : weapon.finesse
-        ? Math.max(modifiers.str, modifiers.dex)
-        : modifiers.str;
+    return this.weaponProfile(item, { equipped }).abilityModifier;
   }
   weaponAttack(item: EquipmentItem, bonus = 0, equipped?: EquippedWeapon) {
-    const weapon = this.effectiveWeapon(item);
-    const magicBonus = this.itemMagicActive(weapon)
-      ? (weapon.attackBonus ?? weaponEffectTotal(weapon, 'attack-bonus'))
-      : 0;
-    const value =
-      this.weaponAbilityModifier(weapon, equipped) +
-      (this.weaponProficient(weapon) ? this.store.derived().proficiency : 0) +
-      magicBonus +
-      Math.max(0, Math.min(3, bonus));
-    return this.mod(value);
+    return this.mod(this.weaponProfile(item, { bonus, equipped }).attackBonus);
   }
   weaponDamage(item: EquipmentItem, bonus = 0) {
     return this.weaponDamageWithLoadout(item, 1, false, bonus);
@@ -2028,28 +1918,26 @@ export class WizardComponent implements OnInit, OnDestroy {
     bonus = 0,
     equipped?: EquippedWeapon,
   ) {
-    const weapon = this.effectiveWeapon(item);
-    const damage = isUnarmedStrike(weapon)
-      ? unarmedDamage(this.store.draft().classId, this.store.draft().level)
-      : damageForHands(weapon, hands);
+    const profile = this.weaponProfile(item, { hands, offHand, bonus, equipped });
+    const damage = profile.damageDice;
     if (!damage || damage === '—') return '—';
-    const value =
-      offHand && !hasTwoWeaponFighting(this.store.draft())
-        ? 0
-        : this.weaponAbilityModifier(weapon, equipped);
-    const magicBonus = this.itemMagicActive(weapon)
-      ? (weapon.damageBonus ?? weaponEffectTotal(weapon, 'damage-bonus'))
-      : 0;
-    const total = value + magicBonus + Math.max(0, Math.min(3, bonus));
+    const total = profile.damageModifier;
     const base = total === 0 ? damage : `${damage}${total > 0 ? '+' : '−'}${Math.abs(total)}`;
-    const extra = this.itemMagicActive(weapon)
-      ? weapon.additionalDamage ||
-        weapon.effects?.find((effect) => effect.type === 'extra-damage')?.formula
-      : '';
-    const extraType =
-      weapon.additionalDamageType ||
-      weapon.effects?.find((effect) => effect.type === 'extra-damage')?.damageType;
-    return extra ? `${base} + ${extra} ${extraType ?? ''}`.trim() : base;
+    return profile.additionalDamage
+      ? `${base} + ${profile.additionalDamage} ${profile.additionalDamageType ?? ''}`.trim()
+      : base;
+  }
+  private weaponProfile(
+    item: EquipmentItem,
+    options: { equipped?: EquippedWeapon; hands?: 1 | 2; offHand?: boolean; bonus?: number } = {},
+  ) {
+    return computeWeaponProfile(
+      this.store.draft(),
+      this.store.derived(),
+      this.store.equipment,
+      item,
+      options,
+    );
   }
   weaponHandsLabel(equipped: EquippedWeapon) {
     return equipped.hands === 2 ? 'Due mani' : 'Una mano';

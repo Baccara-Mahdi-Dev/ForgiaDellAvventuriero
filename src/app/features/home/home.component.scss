@@ -92,12 +92,34 @@
   margin: 2.25rem 0 1.15rem;
 }
 .primary,
-.secondary {
+.secondary,
+.quick-create {
   border: 0;
   border-radius: 0.4rem;
   padding: 1rem 1.3rem;
   font-weight: 750;
   cursor: pointer;
+}
+.quick-create {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 75%, var(--line));
+  background: color-mix(in srgb, var(--gold) 11%, var(--surface));
+  color: var(--ink);
+}
+.quick-create .quick-icon {
+  color: var(--gold);
+  font-size: 1.05rem;
+}
+.quick-create small {
+  padding: 0.18rem 0.42rem;
+  border-radius: 999px;
+  background: var(--ember);
+  color: white;
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 .primary {
   background: var(--ember);

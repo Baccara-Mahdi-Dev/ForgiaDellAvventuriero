@@ -1889,5 +1889,25 @@
     "weightKg": 2.3,
     "source": "SRD",
     "isHidden": false
+  },
+  {
+    "id": "thieves-tools",
+    "name": "Arnesi da scasso",
+    "category": "artisan-tool",
+    "group": "Strumenti",
+    "cost": "25 mo",
+    "weightKg": 0.5,
+    "source": "SRD",
+    "isHidden": false
+  },
+  {
+    "id": "lute",
+    "name": "Liuto",
+    "category": "adventuring-gear",
+    "group": "Strumenti musicali",
+    "cost": "35 mo",
+    "weightKg": 0.9,
+    "source": "SRD",
+    "isHidden": false
   }
 ]

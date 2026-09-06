@@ -1,7 +1,7 @@
 import { PDFDocument, PDFFont, PDFPage, rgb, StandardFonts } from 'pdf-lib';
 import { CatalogData } from '../domain/catalog';
 import { AbilityKey, CharacterDraft, Spell } from '../domain/models';
-import { characterSpells } from './character-sheet-pdf';
+import { selectCharacterSpells } from '../character/domain/spellcasting.rules';
 
 const PAGE_WIDTH = 595.28;
 const PAGE_HEIGHT = 841.89;
@@ -261,7 +261,7 @@ function drawCard(
 }
 
 export function orderedCharacterSpells(draft: CharacterDraft, catalog: CatalogData): Spell[] {
-  return characterSpells(draft, catalog).sort(
+  return selectCharacterSpells(draft, catalog).sort(
     (a, b) => a.level - b.level || a.name.localeCompare(b.name, 'it'),
   );
 }

@@ -1,29 +1,35 @@
 import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { CatalogService } from '../core/catalog.service';
-import { characterDb } from '../core/character.database';
+import { CHARACTER_REPOSITORY } from '../character/application/character.repository';
+import {
+  decodePersistedCharacter,
+  encodePersistedCharacter,
+} from '../character/data-access/character-dto';
+import { CharacterFileService } from '../character/data-access/character-file.service';
 import { RulesCatalog } from '../domain/catalog';
-import {
-  AbilityKey,
-  CharacterDraft,
-  HOMEBREW_ABILITY_MAX,
-  HOMEBREW_ABILITY_MIN,
-} from '../domain/models';
-import {
-  derive,
-  maximumSpellLevel,
-  pointBuyCost,
-  subclassSpellcastingProfile,
-} from '../domain/rules';
-import { activeClassFeatureChoices, normalizeClassProgression } from '../domain/class-progression';
-import { attunementLimit } from '../domain/artificer-rules';
-import { normalizeHomebrewEquipment } from '../domain/homebrew-equipment';
+import { AbilityKey, CharacterDraft } from '../domain/models';
+import { derive, pointBuyCost } from '../domain/rules';
+import { normalizeClassProgression } from '../domain/class-progression';
 import { AbilityMethod } from '../models/enum/ability-method';
+import { createFreshCharacter, normalizeCharacterDraft } from '../character/domain/character-draft';
+import {
+  selectActiveGrantedSpellChoiceIds,
+  selectAvailableSpells,
+  selectFixedGrantedSpellIds,
+} from '../character/domain/spellcasting.rules';
+import {
+  changeAncestry,
+  changeClass,
+  changeLevel,
+} from '../character/domain/character-transitions';
 
 const base = () => ({ str: 8, dex: 8, con: 8, int: 8, wis: 8, cha: 8 }) as const;
 
 @Injectable({ providedIn: 'root' })
 export class WizardStore {
   private readonly catalog = inject(CatalogService);
+  private readonly repository = inject(CHARACTER_REPOSITORY);
+  private readonly characterFiles = inject(CharacterFileService);
   readonly draft = signal<CharacterDraft>(this.fresh());
   readonly derived = computed(() => derive(this.draft(), this.rulesCatalog));
   readonly pointsSpent = computed(() =>
@@ -38,87 +44,15 @@ export class WizardStore {
   readonly selectedBackground = computed(() =>
     this.backgrounds.find((item) => item.id === this.draft().backgroundId),
   );
-  readonly activeGrantedSpellChoiceIds = computed(() => {
-    const draft = this.draft();
-    const ancestry = this.ancestries.find((item) => item.id === draft.ancestryId);
-    const feats = this.feats.filter((item) => draft.featIds.includes(item.id));
-    const activeChoices = new Set([
-      ...(ancestry?.spellChoices ?? []).map((choice) => choice.id),
-      ...feats.flatMap((feat) => (feat.spellChoices ?? []).map((choice) => choice.id)),
-    ]);
-    return Object.entries(draft.grantedSpellChoices ?? {})
-      .filter(([choiceId]) => activeChoices.has(choiceId))
-      .flatMap(([, spellIds]) => spellIds);
-  });
-  readonly availableSpells = computed(() => {
-    const draft = this.draft();
-    const maxLevel = maximumSpellLevel(draft.classId, draft.level, draft.subclassId);
-    const subclassCaster = subclassSpellcastingProfile(
-      draft.classId,
-      draft.subclassId,
-      draft.level,
-    );
-    const spellClassId = subclassCaster?.spellClassId ?? draft.classId;
-    const divineSoul = draft.classId === 'sorcerer' && draft.subclassId === 'Anima Divina';
-    const klass = this.classes.find((item) => item.id === draft.classId);
-    const expandedSpellIds = new Set(
-      (klass?.subclassSpellLists ?? [])
-        .filter(
-          (list) =>
-            list.subclassId === draft.subclassId &&
-            (!list.requiresSelection ||
-              (draft.classFeatureChoices?.[list.requiresSelection.choiceId] ?? []).includes(
-                list.requiresSelection.optionId,
-              )),
-        )
-        .flatMap((list) => list.spellIds),
-    );
-    const granted = new Set([
-      ...this.fixedGrantedSpellIds(),
-      ...this.activeGrantedSpellChoiceIds(),
-    ]);
-    return this.spells.filter(
-      (spell) =>
-        (spell.classes.includes(spellClassId) ||
-          expandedSpellIds.has(spell.id) ||
-          (divineSoul && spell.classes.includes('cleric'))) &&
-        spell.level <= maxLevel &&
-        !granted.has(spell.id),
-    );
-  });
-  readonly fixedGrantedSpellIds = computed(() => {
-    const draft = this.draft();
-    const ancestry = this.ancestries.find((item) => item.id === draft.ancestryId);
-    const feats = this.feats.filter((item) => draft.featIds.includes(item.id));
-    const klass = this.classes.find((item) => item.id === draft.classId);
-    const ids = [
-      ...(ancestry?.spellGrants ?? []),
-      ...feats.flatMap((feat) => feat.spellGrants ?? []),
-    ]
-      .filter((grant) => grant.minLevel <= draft.level)
-      .map((grant) => grant.spellId);
-    ids.push(
-      ...activeClassFeatureChoices(
-        klass,
-        draft.level,
-        draft.subclassId,
-        draft.classFeatureChoices,
-      ).flatMap((choice) =>
-        choice.effect === 'spell-grant' ? (draft.classFeatureChoices?.[choice.id] ?? []) : [],
-      ),
-      ...this.spells
-        .filter((spell) =>
-          spell.subclassGrants?.some(
-            (grant) =>
-              grant.classId === draft.classId &&
-              grant.subclassId === draft.subclassId &&
-              grant.minLevel <= draft.level,
-          ),
-        )
-        .map((spell) => spell.id),
-    );
-    return [...new Set(ids)];
-  });
+  readonly activeGrantedSpellChoiceIds = computed(() =>
+    selectActiveGrantedSpellChoiceIds(this.draft(), this.catalog.requireData()),
+  );
+  readonly availableSpells = computed(() =>
+    selectAvailableSpells(this.draft(), this.catalog.requireData()),
+  );
+  readonly fixedGrantedSpellIds = computed(() =>
+    selectFixedGrantedSpellIds(this.draft(), this.catalog.requireData()),
+  );
   readonly saveState = signal<'salvato' | 'salvataggio' | 'locale'>('salvato');
   private timer?: ReturnType<typeof setTimeout>;
 
@@ -158,13 +92,16 @@ export class WizardStore {
     this.draft.set(draft);
     return draft;
   }
+  replaceDraft(value: CharacterDraft): CharacterDraft {
+    const draft = this.normalize(value);
+    this.draft.set(draft);
+    return draft;
+  }
   async load(id: string): Promise<void> {
-    try {
-      this.draft.set(this.normalize((await characterDb.characters.get(id)) ?? this.fresh(id)));
-    } catch {
-      const raw = localStorage.getItem(`forgia:${id}`);
-      this.draft.set(raw ? this.normalize(JSON.parse(raw) as CharacterDraft) : this.fresh(id));
-    }
+    const value = await this.repository.get(id);
+    this.draft.set(
+      value === undefined ? this.fresh(id) : this.normalize(decodePersistedCharacter(value)),
+    );
   }
   patch(update: Partial<CharacterDraft>): void {
     this.draft.update((draft) => ({
@@ -238,160 +175,33 @@ export class WizardStore {
     keys.forEach((k) => this.setAbility(k, 8));
   }
   exportJson(): void {
-    const blob = new Blob([JSON.stringify(this.draft(), null, 2)], { type: 'application/json' }),
-      url = URL.createObjectURL(blob),
-      anchor = document.createElement('a');
-    anchor.href = url;
-    anchor.download = `${this.draft().name || 'personaggio'}.json`;
-    anchor.click();
-    URL.revokeObjectURL(url);
+    this.characterFiles.download(this.draft());
   }
   async importJson(file: File): Promise<void> {
-    const value = JSON.parse(await file.text()) as CharacterDraft;
-    if (value.schemaVersion !== 1 || !value.id || !value.abilities)
-      throw new Error('File non riconosciuto');
+    const value = await this.characterFiles.read(file);
     this.draft.set(this.normalize({ ...value, id: crypto.randomUUID(), revision: 0 }));
   }
-  async list(): Promise<CharacterDraft[]> {
-    try {
-      return (await characterDb.characters.orderBy('updatedAt').reverse().toArray()).map((value) =>
-        this.normalize(value),
-      );
-    } catch {
-      return Object.keys(localStorage)
-        .filter((key) => key.startsWith('forgia:'))
-        .map((key) => this.normalize(JSON.parse(localStorage.getItem(key)!) as CharacterDraft));
-    }
+  selectAncestry(id: string): void {
+    this.patch(changeAncestry(this.draft(), id));
   }
-  async remove(id: string): Promise<void> {
-    try {
-      await characterDb.characters.delete(id);
-    } catch {
-      localStorage.removeItem(`forgia:${id}`);
-    }
+  selectClass(id: string): void {
+    this.patch(changeClass(this.draft(), id));
   }
-
+  setLevel(level: number): void {
+    this.patch(changeLevel(this.draft(), this.selectedClass(), level));
+  }
   private fresh(id: string = crypto.randomUUID()): CharacterDraft {
-    return {
-      schemaVersion: 1,
-      catalogVersion: this.catalog.requireData().manifest.dataVersion,
-      id,
-      revision: 0,
-      updatedAt: new Date().toISOString(),
-      name: '',
-      alignment: '',
-      abilityMethod: AbilityMethod.POINT,
-      abilities: { ...base() },
-      sanityEnabled: false,
-      sanityScore: 8,
-      ancestryId: '',
-      ancestryBonusAbilities: [],
-      ancestrySkillProficiencies: [],
-      ancestryToolProficiencies: [],
-      classId: '',
-      subclassId: '',
-      classSkillProficiencies: [],
-      classFeatureChoices: {},
-      backgroundId: '',
-      backgroundSelectionMode: 'catalog',
-      homebrewBackgroundName: '',
-      homebrewBackgroundDescription: '',
-      homebrewBackgroundSkills: [],
-      homebrewBackgroundLanguages: [],
-      homebrewBackgroundTools: [],
-      customLanguages: [],
-      customTools: [],
-      level: 1,
-      hpMethod: 'average',
-      hpRolls: [],
-      asi: {},
-      featIds: [],
-      featAbilityChoices: {},
-      featProficiencyChoices: {},
-      spellIds: [],
-      homebrewSpells: [],
-      homebrewEquipment: [],
-      grantedSpellChoices: {},
-      spellGrantTraditions: {},
-      equippedArmorId: '',
-      shieldEquipped: false,
-      equippedShieldId: '',
-      equippedWeapons: [],
-      equippedItemIds: [],
-      attunedEquipmentIds: [],
-      equipmentCharges: {},
-      inventory: [],
-      coins: { cp: 0, sp: 0, ep: 0, gp: 0, pp: 0 },
-      hitDiceSpent: 0,
-      inspiration: false,
-      deathSaveSuccesses: 0,
-      deathSaveFailures: 0,
-      notes: '',
-    };
+    return createFreshCharacter(this.catalog.requireData().manifest.dataVersion, id);
   }
   private normalize(value: CharacterDraft): CharacterDraft {
-    const normalized = {
-      ...value,
-      catalogVersion: this.catalog.requireData().manifest.dataVersion,
-      alignment: value.alignment ?? '',
-      sanityEnabled: value.sanityEnabled ?? false,
-      sanityScore: Math.max(
-        HOMEBREW_ABILITY_MIN,
-        Math.min(HOMEBREW_ABILITY_MAX, Math.floor(value.sanityScore ?? 8)),
-      ),
-      ancestryBonusAbilities: value.ancestryBonusAbilities ?? [],
-      ancestrySkillProficiencies: value.ancestrySkillProficiencies ?? [],
-      ancestryToolProficiencies: value.ancestryToolProficiencies ?? [],
-      classSkillProficiencies: value.classSkillProficiencies ?? [],
-      classFeatureChoices: value.classFeatureChoices ?? {},
-      customLanguages: value.customLanguages ?? [],
-      customTools: value.customTools ?? [],
-      backgroundSelectionMode: value.backgroundSelectionMode ?? 'catalog',
-      homebrewBackgroundName: value.homebrewBackgroundName ?? '',
-      homebrewBackgroundDescription: value.homebrewBackgroundDescription ?? '',
-      homebrewBackgroundSkills: value.homebrewBackgroundSkills ?? [],
-      homebrewBackgroundLanguages: value.homebrewBackgroundLanguages ?? [],
-      homebrewBackgroundTools: value.homebrewBackgroundTools ?? [],
-      hpMethod: value.hpMethod ?? 'average',
-      hpRolls: value.hpRolls ?? [],
-      featAbilityChoices: value.featAbilityChoices ?? {},
-      featProficiencyChoices: value.featProficiencyChoices ?? {},
-      grantedSpellChoices: value.grantedSpellChoices ?? {},
-      spellGrantTraditions: value.spellGrantTraditions ?? {},
-      homebrewSpells: (value.homebrewSpells ?? [])
-        .filter(
-          (spell) => spell && !!spell.id && !!spell.name && spell.level >= 0 && spell.level <= 9,
-        )
-        .map((spell) => ({ ...spell, concentration: spell.concentration ?? false })),
-      homebrewEquipment: (value.homebrewEquipment ?? [])
-        .filter((item) => item && !!item.id && !!item.name && !!item.kind)
-        .map(normalizeHomebrewEquipment),
-      equippedArmorId: value.equippedArmorId ?? '',
-      shieldEquipped: value.shieldEquipped ?? false,
-      equippedShieldId: value.equippedShieldId ?? (value.shieldEquipped ? 'shield' : ''),
-      equippedWeapons: (value.equippedWeapons ?? []).filter(
-        (weapon) => weapon && (weapon.hands === 1 || weapon.hands === 2) && !!weapon.equipmentId,
-      ),
-      equippedItemIds: value.equippedItemIds ?? [],
-      attunedEquipmentIds: (value.attunedEquipmentIds ?? []).slice(0, attunementLimit(value)),
-      equipmentCharges: value.equipmentCharges ?? {},
-      inventory: value.inventory ?? [],
-      coins: value.coins ?? { cp: 0, sp: 0, ep: 0, gp: 0, pp: 0 },
-      hitDiceSpent: value.hitDiceSpent ?? 0,
-      inspiration: value.inspiration ?? false,
-      deathSaveSuccesses: value.deathSaveSuccesses ?? 0,
-      deathSaveFailures: value.deathSaveFailures ?? 0,
-    };
-    const klass = this.classes.find((item) => item.id === normalized.classId);
-    return { ...normalized, ...normalizeClassProgression(normalized, klass) };
+    const data = this.catalog.requireData();
+    return normalizeCharacterDraft(value, {
+      catalogVersion: data.manifest.dataVersion,
+      classes: data.classes,
+    });
   }
   private async persist(value: CharacterDraft): Promise<void> {
-    try {
-      await characterDb.characters.put(value);
-      this.saveState.set('salvato');
-    } catch {
-      localStorage.setItem(`forgia:${value.id}`, JSON.stringify(value));
-      this.saveState.set('locale');
-    }
+    const target = await this.repository.put(encodePersistedCharacter(value));
+    this.saveState.set(target === 'primary' ? 'salvato' : 'locale');
   }
 }

@@ -1,7 +1,7 @@
 import Dexie, { Table } from 'dexie';
-import { CharacterDraft } from '../domain/models';
+import { PersistedCharacterV1 } from '../character/data-access/character-dto';
 export class CharacterDatabase extends Dexie {
-  characters!: Table<CharacterDraft, string>;
+  characters!: Table<PersistedCharacterV1, string>;
   constructor() {
     super('ForgiaAvventurieroDB');
     this.version(1).stores({ characters: 'id, updatedAt, revision' });

@@ -1,24 +1,11 @@
 import { PDFCheckBox, PDFDocument, PDFFont, PDFForm, PDFTextField, StandardFonts } from 'pdf-lib';
 import { CatalogData } from '../domain/catalog';
-import {
-  AbilityKey,
-  CharacterDraft,
-  DerivedCharacter,
-  EquipmentItem,
-  EquippedWeapon,
-  Spell,
-} from '../domain/models';
+import { AbilityKey, CharacterDraft, DerivedCharacter, EquipmentItem } from '../domain/models';
 import { acquiredCharacterFeatures, activeClassFeatureChoices } from '../domain/class-progression';
 import { derive, spellSlots } from '../domain/rules';
-import { asSpell } from '../domain/homebrew-spell';
-import {
-  battleSmithUsesIntelligence,
-  damageForHands,
-  equippedWeaponItems,
-  hasTwoWeaponFighting,
-  resolveWeaponBase,
-} from '../domain/weapon-loadout';
-import { equippedEquipmentIds, weaponEffectTotal } from '../domain/equipment-effects';
+import { equippedWeaponItems, resolveWeaponBase } from '../domain/weapon-loadout';
+import { selectCharacterSpells } from '../character/domain/spellcasting.rules';
+import { computeWeaponProfile } from '../character/domain/weapon-profile.rules';
 
 const ABILITIES: AbilityKey[] = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 
@@ -364,77 +351,6 @@ function setChecked(form: PDFForm, name: string, checked: boolean): void {
   const field = getCheckBox(form, name);
   if (field && checked) field.check();
 }
-function weaponModifier(
-  item: EquipmentItem,
-  derived: DerivedCharacter,
-  draft: CharacterDraft,
-  equipped?: EquippedWeapon,
-): number {
-  if (battleSmithUsesIntelligence(draft, item, equipped)) return derived.modifiers.int;
-  return item.ranged
-    ? derived.modifiers.dex
-    : item.finesse
-      ? Math.max(derived.modifiers.str, derived.modifiers.dex)
-      : derived.modifiers.str;
-}
-function weaponProficient(item: EquipmentItem, derived: DerivedCharacter): boolean {
-  return (
-    derived.weaponProficiencies.includes(item.id) ||
-    derived.weaponProficiencies.includes(item.proficiency ?? '')
-  );
-}
-export function characterSpells(draft: CharacterDraft, catalog: CatalogData): Spell[] {
-  const ancestry = catalog.ancestries.find((item) => item.id === draft.ancestryId);
-  const feats = catalog.feats.filter((item) => draft.featIds.includes(item.id));
-  const ids = new Set(draft.spellIds);
-  const klass = catalog.classes.find((item) => item.id === draft.classId);
-  for (const choice of activeClassFeatureChoices(
-    klass,
-    draft.level,
-    draft.subclassId,
-    draft.classFeatureChoices,
-  ))
-    if (choice.effect === 'spell-grant')
-      for (const spellId of draft.classFeatureChoices?.[choice.id] ?? []) ids.add(spellId);
-  for (const grant of [
-    ...(ancestry?.spellGrants ?? []),
-    ...feats.flatMap((feat) => feat.spellGrants ?? []),
-  ])
-    if (grant.minLevel <= draft.level) ids.add(grant.spellId);
-  const activeChoiceIds = new Set([
-    ...(ancestry?.spellChoices ?? [])
-      .filter((choice) => (choice.minLevel ?? 1) <= draft.level)
-      .map((choice) => choice.id),
-    ...feats.flatMap((feat) =>
-      (feat.spellChoices ?? [])
-        .filter((choice) => (choice.minLevel ?? 1) <= draft.level)
-        .map((choice) => choice.id),
-    ),
-  ]);
-  Object.entries(draft.grantedSpellChoices ?? {})
-    .filter(([choiceId]) => activeChoiceIds.has(choiceId))
-    .flatMap(([, spellIds]) => spellIds)
-    .forEach((id) => ids.add(id));
-  for (const spell of catalog.spells)
-    if (
-      spell.subclassGrants?.some(
-        (grant) =>
-          grant.classId === draft.classId &&
-          grant.subclassId === draft.subclassId &&
-          grant.minLevel <= draft.level,
-      )
-    )
-      ids.add(spell.id);
-  const equipped = equippedEquipmentIds(draft);
-  const attuned = new Set(draft.attunedEquipmentIds ?? []);
-  for (const item of [...catalog.equipment, ...(draft.homebrewEquipment ?? [])])
-    if (equipped.has(item.id) && (!item.requiresAttunement || attuned.has(item.id)))
-      for (const grant of item.spellGrants ?? []) ids.add(grant.spellId);
-  return [
-    ...catalog.spells.filter((spell) => ids.has(spell.id)),
-    ...(draft.homebrewSpells ?? []).map(asSpell),
-  ].sort((a, b) => a.level - b.level || a.name.localeCompare(b.name, 'it'));
-}
 function selectedClassFeatures(draft: CharacterDraft, catalog: CatalogData): string[] {
   const klass = catalog.classes.find((item) => item.id === draft.classId);
   const ancestry = catalog.ancestries.find((item) => item.id === draft.ancestryId);
@@ -573,40 +489,24 @@ function fillCombat(
     ['Wpn Name 5', 'Wpn5 AtkBonus', 'Wpn5 Damage'],
   ];
   weapons.slice(0, fields.length).forEach(({ item: weapon, equipped }, index) => {
-    const ability =
-      index === 1 && !hasTwoWeaponFighting(draft)
-        ? 0
-        : weaponModifier(weapon, derived, draft, equipped);
-    const magicActive =
-      !weapon.requiresAttunement || (draft.attunedEquipmentIds ?? []).includes(weapon.id);
-    const attack =
-      weaponModifier(weapon, derived, draft, equipped) +
-      (weaponProficient(weapon, derived) ? derived.proficiency : 0) +
-      (equipped.bonus ?? 0) +
-      (magicActive ? (weapon.attackBonus ?? weaponEffectTotal(weapon, 'attack-bonus')) : 0);
+    const profile = computeWeaponProfile(
+      draft,
+      derived,
+      [...catalog.equipment, ...(draft.homebrewEquipment ?? [])],
+      weapon,
+      { equipped, hands: equipped.hands, offHand: index === 1, bonus: equipped.bonus ?? 0 },
+    );
     setText(form, fields[index][0], `${weapon.name}${equipped.hands === 2 ? ' (2 mani)' : ''}`, {
       fontSize: 7,
     });
 
-    setText(form, fields[index][1], signed(attack), { fontSize: 7 });
+    setText(form, fields[index][1], signed(profile.attackBonus), { fontSize: 7 });
     setText(
       form,
       fields[index][2],
-      `${damageForHands(weapon, equipped.hands)}${
-        ability +
-        (equipped.bonus ?? 0) +
-        (magicActive ? (weapon.damageBonus ?? weaponEffectTotal(weapon, 'damage-bonus')) : 0)
-          ? signed(
-              ability +
-                (equipped.bonus ?? 0) +
-                (magicActive
-                  ? (weapon.damageBonus ?? weaponEffectTotal(weapon, 'damage-bonus'))
-                  : 0),
-            )
-          : ''
-      } ${weapon.damageType ?? ''}${
-        magicActive && weapon.additionalDamage
-          ? ` + ${weapon.additionalDamage} ${weapon.additionalDamageType ?? ''}`
+      `${profile.damageDice}${profile.damageModifier ? signed(profile.damageModifier) : ''} ${profile.item.damageType ?? ''}${
+        profile.additionalDamage
+          ? ` + ${profile.additionalDamage} ${profile.additionalDamageType ?? ''}`
           : ''
       }`,
       { fontSize: 6.5 },
@@ -763,7 +663,7 @@ function fillSpellPage(
     setText(form, SLOT_FIELDS[level][0], slot?.slots ?? '', { fontSize: 10 });
     setText(form, SLOT_FIELDS[level][1], slot?.slots ?? '', { fontSize: 10 });
   }
-  const spells = characterSpells(draft, catalog);
+  const spells = selectCharacterSpells(draft, catalog);
   for (let level = 0; level <= 9; level += 1) {
     const atLevel = spells.filter((spell) => spell.level === level);
     SPELL_FIELDS[level].forEach((field, index) =>

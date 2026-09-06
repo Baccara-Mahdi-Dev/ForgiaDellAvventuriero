@@ -1,0 +1,72 @@
+<form class="quick-form" (ngSubmit)="submit()">
+  <p class="intro">
+    Scegli solo l'essenziale. La Forgia assegnerà statistiche, competenze, background, incantesimi
+    ed equipaggiamento adatti a un personaggio di livello 1.
+  </p>
+
+  <label class="field">
+    <span>Nome del personaggio</span>
+    <input
+      tuiAutoFocus
+      type="text"
+      autocomplete="off"
+      maxlength="80"
+      placeholder="Es. Arannis"
+      [ngModel]="name()"
+      (ngModelChange)="name.set($event)"
+      name="characterName"
+    />
+  </label>
+
+  <label class="field">
+    <span><b>1.</b> Classe</span>
+    <select [ngModel]="profileId()" (ngModelChange)="selectClass($event)" name="classProfile">
+      <option value="">Scegli la classe</option>
+      @for (option of classOptions; track option.id) {
+        <option [value]="option.id">{{ option.label }}</option>
+      }
+    </select>
+    <small>Il Guerriero è disponibile nelle varianti basate su FOR o DES.</small>
+  </label>
+
+  @if (needsSubclass()) {
+    <label class="field reveal">
+      <span>Sottoclasse di 1° livello</span>
+      <select [ngModel]="subclassId()" (ngModelChange)="subclassId.set($event)" name="subclass">
+        <option value="">Scegli la sottoclasse</option>
+        @for (subclass of selectedClass()?.subclasses ?? []; track subclass) {
+          <option [value]="subclass">{{ subclass }}</option>
+        }
+      </select>
+    </label>
+  }
+
+  <label class="field" [class.locked]="!profileId()">
+    <span><b>2.</b> Razza</span>
+    <select
+      [disabled]="!profileId()"
+      [ngModel]="ancestryId()"
+      (ngModelChange)="ancestryId.set($event)"
+      name="ancestry"
+    >
+      <option value="">{{ profileId() ? 'Scegli la razza' : 'Prima scegli la classe' }}</option>
+      @for (ancestry of context.data.ancestries; track ancestry.id) {
+        <option [value]="ancestry.id">{{ ancestry.name }}</option>
+      }
+    </select>
+  </label>
+
+  <aside class="ready-note">
+    <strong>Pronto all'avventura</strong>
+    <span>Livello 1 · statistiche predefinite · carico ottimizzato</span>
+  </aside>
+
+  <footer>
+    <button type="button" tuiButton appearance="secondary" (click)="context.$implicit.complete()">
+      Annulla
+    </button>
+    <button type="submit" tuiButton appearance="primary" [disabled]="!canSubmit()">
+      Crea personaggio
+    </button>
+  </footer>
+</form>

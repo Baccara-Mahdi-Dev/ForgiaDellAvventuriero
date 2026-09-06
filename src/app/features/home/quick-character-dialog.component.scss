@@ -1,0 +1,105 @@
+:host {
+  display: block;
+}
+
+.quick-form {
+  display: grid;
+  gap: 0.8rem;
+  min-width: min(31rem, 78vw);
+}
+
+.intro {
+  margin: -0.25rem 0 0.25rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.field > span {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.field b {
+  color: var(--ember);
+}
+
+.field small {
+  color: var(--muted);
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 2.7rem;
+  padding: 0.58rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.55rem;
+  outline: none;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--ember);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ember) 20%, transparent);
+}
+
+.field.locked {
+  opacity: 0.62;
+}
+
+.reveal {
+  animation: reveal 180ms ease-out;
+}
+
+.ready-note {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--sage) 45%, var(--line));
+  border-radius: 0.6rem;
+  background: color-mix(in srgb, var(--sage) 9%, var(--surface));
+}
+
+.ready-note strong {
+  color: var(--sage);
+}
+
+.ready-note span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-0.4rem);
+  }
+}
+
+@media (max-width: 520px) {
+  .quick-form {
+    min-width: 0;
+  }
+
+  footer {
+    flex-direction: column-reverse;
+  }
+
+  footer button {
+    width: 100%;
+  }
+}

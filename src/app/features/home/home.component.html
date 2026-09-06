@@ -18,8 +18,13 @@
         tuoi dati restano su questo dispositivo.
       </p>
       <div class="actions">
-        <button class="primary" (click)="create()">Crea un personaggio <span>→</span></button
-        ><label class="secondary"
+        <button class="primary" (click)="create()">Crea un personaggio <span>→</span></button>
+        <button class="quick-create" (click)="createQuick()">
+          <span class="quick-icon" aria-hidden="true">✦</span>
+          Creazione rapida
+          <small>Livello 1</small>
+        </button>
+        <label class="secondary"
           >Importa JSON<input
             class="sr-only"
             type="file"

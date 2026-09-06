@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "dataVersion": "3.1.0",
+  "dataVersion": "3.1.1",
   "locale": "it",
   "ruleset": "5e-2014",
   "catalog": {
@@ -9,7 +9,7 @@
     "backgrounds": 18,
     "feats": 72,
     "spells": 478,
-    "equipment": 167
+    "equipment": 169
   },
   "files": {
     "ancestries": "ancestries.json",
