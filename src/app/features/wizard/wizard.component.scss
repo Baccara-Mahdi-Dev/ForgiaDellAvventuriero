@@ -657,14 +657,12 @@
 
   .level-panel {
     position: relative;
-    max-width: 680px;
     padding: 2rem;
     border: 1px solid var(--line);
     border-radius: 0.7rem;
     background: linear-gradient(135deg, var(--surface-raised), var(--paper-deep));
     overflow: hidden;
-    width: fit-content;
-    max-width: 100%;
+    width: 100%;
   }
 
   .level-panel > label {
