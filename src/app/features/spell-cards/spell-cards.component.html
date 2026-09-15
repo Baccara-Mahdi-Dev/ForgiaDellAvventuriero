@@ -1,0 +1,382 @@
+<header class="masthead no-print">
+  <a class="brand" routerLink="/" aria-label="Forgia dell'avventuriero, pagina iniziale">
+    <img class="sigil" src="/brand/logo-d20-hammer.png" alt="" width="42" height="42" />
+    <span>Forgia dell'avventuriero<small>Creazione personaggi · 5e 2014</small></span>
+  </a>
+  <div class="masthead-actions">
+    <a class="back-link" routerLink="/">
+      <ng-icon name="iconoirArrowLeft" size="18px" aria-hidden="true" />
+      <span>Torna ai personaggi</span>
+    </a>
+    <app-theme-toggle />
+  </div>
+</header>
+
+<main id="contenuto" class="spell-card-page">
+  <section class="page-hero" aria-labelledby="page-title">
+    <div>
+      <p class="kicker">Archivio arcano</p>
+      <h1 id="page-title">Crea le tue <em>Card Incantesimo</em></h1>
+      <p>
+        Cerca nel catalogo, combina i filtri e componi un set di carte pronto da stampare. Le
+        selezioni restano separate dai personaggi salvati.
+      </p>
+    </div>
+    <div class="hero-mark" aria-hidden="true">
+      <ng-icon name="iconoirBookStack" size="42px" />
+      <strong>{{ selectedSpells().length }}</strong>
+      <span>card scelte</span>
+    </div>
+  </section>
+
+  <div class="workspace">
+    <aside class="filter-panel" aria-labelledby="filter-title">
+      <header class="panel-heading">
+        <ng-icon name="iconoirFilter" size="21px" aria-hidden="true" />
+        <div>
+          <p class="kicker">Ricerca incantesimi</p>
+          <h2 id="filter-title">Filtri</h2>
+        </div>
+      </header>
+
+      <form (ngSubmit)="applyFilters()">
+        <label class="field">
+          <span>Nome dell'incantesimo</span>
+          <div class="input-with-icon">
+            <ng-icon name="iconoirSearch" size="18px" aria-hidden="true" />
+            <input
+              type="search"
+              autocomplete="off"
+              placeholder="Es. Dardo incantato"
+              [ngModel]="nameFilter()"
+              (ngModelChange)="updateFilter(nameFilter, $event)"
+              name="spellName"
+            />
+          </div>
+        </label>
+
+        <label class="field">
+          <span>Descrizione</span>
+          <input
+            type="search"
+            autocomplete="off"
+            placeholder="Parole contenute nell'effetto"
+            [ngModel]="descriptionFilter()"
+            (ngModelChange)="updateFilter(descriptionFilter, $event)"
+            name="description"
+          />
+        </label>
+
+        <details class="advanced-filters">
+          <summary>
+            <span>
+              <ng-icon name="iconoirFilter" size="18px" aria-hidden="true" />
+              Filtri avanzati
+            </span>
+            <small>{{ advancedFilterCount() }} attivi</small>
+          </summary>
+          <div class="advanced-filter-content">
+            <div class="field-grid">
+              <label class="field">
+                <span>Livello</span>
+                <select
+                  [ngModel]="levelFilter()"
+                  (ngModelChange)="updateFilter(levelFilter, $event)"
+                  name="level"
+                >
+                  @for (level of levels; track level) {
+                    <option [value]="level">{{ level }}</option>
+                  }
+                </select>
+              </label>
+              <label class="field">
+                <span>Scuola</span>
+                <select
+                  [ngModel]="schoolFilter()"
+                  (ngModelChange)="updateFilter(schoolFilter, $event)"
+                  name="school"
+                >
+                  @for (school of schools; track school) {
+                    <option [value]="school">{{ school }}</option>
+                  }
+                </select>
+              </label>
+            </div>
+
+            <label class="field">
+              <span>Classe</span>
+              <select [ngModel]="classFilter()" (ngModelChange)="updateClass($event)" name="class">
+                <option value="">Tutte le classi</option>
+                @for (klass of classes; track klass.id) {
+                  <option [value]="klass.id">{{ klass.name }}</option>
+                }
+              </select>
+            </label>
+
+            <label class="field" [class.disabled]="!subclasses().length">
+              <span>Sottoclasse</span>
+              <select
+                [disabled]="!subclasses().length"
+                [ngModel]="subclassFilter()"
+                (ngModelChange)="updateFilter(subclassFilter, $event)"
+                name="subclass"
+              >
+                <option value="">Tutte le sottoclassi</option>
+                @for (subclass of subclasses(); track subclass.id) {
+                  <option [value]="subclass.id">{{ subclass.name }}</option>
+                }
+              </select>
+            </label>
+
+            <div class="field-grid">
+              <label class="field">
+                <span>Concentrazione</span>
+                <select
+                  [ngModel]="concentrationFilter()"
+                  (ngModelChange)="updateFilter(concentrationFilter, $event)"
+                  name="concentration"
+                >
+                  <option [value]="allLabel">Tutti</option>
+                  <option [value]="yesLabel">Sì</option>
+                  <option [value]="noLabel">No</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Rituale</span>
+                <select
+                  [ngModel]="ritualFilter()"
+                  (ngModelChange)="updateFilter(ritualFilter, $event)"
+                  name="ritual"
+                >
+                  <option [value]="allLabel">Tutti</option>
+                  <option [value]="yesLabel">Sì</option>
+                  <option [value]="noLabel">No</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="field">
+              <span>Tempo di lancio</span>
+              <select
+                [ngModel]="castingTimeFilter()"
+                (ngModelChange)="updateFilter(castingTimeFilter, $event)"
+                name="castingTime"
+              >
+                @for (time of castingTimes; track time) {
+                  <option [value]="time">{{ time }}</option>
+                }
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Manuale</span>
+              <select
+                [ngModel]="sourceFilter()"
+                (ngModelChange)="updateFilter(sourceFilter, $event)"
+                name="source"
+              >
+                <option [value]="allLabel">Tutti i manuali</option>
+                @for (manual of manuals; track manual) {
+                  <option [value]="manual">{{ manualName(manual) }}</option>
+                }
+              </select>
+            </label>
+          </div>
+        </details>
+
+        <div class="filter-actions">
+          <button tuiButton type="submit" appearance="primary" size="m">Applica filtri</button>
+          <button tuiButton type="button" appearance="secondary" size="m" (click)="resetFilters()">
+            Reimposta
+          </button>
+        </div>
+      </form>
+    </aside>
+
+    <section class="results-panel" aria-labelledby="results-title">
+      <header class="results-heading">
+        <div>
+          <p class="kicker">Catalogo disponibile</p>
+          <h2 id="results-title">Incantesimi</h2>
+          <p aria-live="polite">
+            {{ filteredSpells().length }} risultati · {{ selectedSpells().length }} selezionati
+          </p>
+        </div>
+        @if (pageSpells().length) {
+          <div class="page-selection-actions">
+            <button
+              tuiButton
+              type="button"
+              appearance="secondary"
+              size="s"
+              [disabled]="currentPageFullySelected()"
+              (click)="selectCurrentPage()"
+            >
+              Seleziona la pagina
+            </button>
+            <button
+              tuiButton
+              type="button"
+              appearance="secondary"
+              size="s"
+              [disabled]="!currentPageSelectionCount()"
+              (click)="deselectCurrentPage()"
+            >
+              Deseleziona la pagina
+            </button>
+          </div>
+        }
+      </header>
+
+      @if (activeFilters().length) {
+        <div class="active-filters" aria-label="Filtri attivi">
+          <span>Filtri attivi</span>
+          @for (filter of activeFilters(); track filter.key) {
+            <button
+              type="button"
+              (click)="removeFilter(filter.key)"
+              [attr.aria-label]="'Rimuovi filtro ' + filter.label"
+            >
+              {{ filter.label }}: {{ filter.value }}
+              <ng-icon name="iconoirXmark" size="15px" aria-hidden="true" />
+            </button>
+          }
+        </div>
+      }
+
+      <div id="risultati-incantesimi" class="spell-results" tabindex="-1">
+        @for (spell of pageSpells(); track spell.id) {
+          <label class="spell-result" [class.selected]="isSelected(spell.id)">
+            <input
+              type="checkbox"
+              tuiCheckbox
+              [ngModel]="isSelected(spell.id)"
+              (ngModelChange)="toggleSpell(spell.id, $event)"
+              [ngModelOptions]="{ standalone: true }"
+              [attr.aria-label]="'Aggiungi ' + spell.name + ' alle card'"
+            />
+            <span class="spell-copy">
+              <span class="spell-title-row">
+                <strong>{{ spell.name }}</strong>
+                <span class="level-badge level-{{ spell.level }}">{{
+                  levelLabel(spell.level)
+                }}</span>
+              </span>
+              <span class="spell-meta"
+                >{{ spell.school }} · {{ spell.source }} · {{ classNames(spell) }}</span
+              >
+              @if (subclassGrantNames(spell)) {
+                <span class="subclass-meta">Concesso da: {{ subclassGrantNames(spell) }}</span>
+              }
+              <span class="spell-description">{{ spell.description }}</span>
+              <span class="spell-tags">
+                <span>{{
+                  spell.castingTime.text || spell.castingTime.amount + ' ' + spell.castingTime.unit
+                }}</span>
+                <span>{{ spell.range || 'Gittata speciale' }}</span>
+                @if (spell.duration.concentration) {
+                  <em>Concentrazione</em>
+                }
+                @if (spell.ritual) {
+                  <em>Rituale</em>
+                }
+              </span>
+            </span>
+          </label>
+        } @empty {
+          <div class="empty-results">
+            <ng-icon name="iconoirSearch" size="34px" aria-hidden="true" />
+            <h3>Nessun incantesimo trovato</h3>
+            <p>Prova a rimuovere un filtro o a usare termini più generali.</p>
+            <button tuiButton type="button" appearance="secondary" (click)="resetFilters()">
+              Reimposta i filtri
+            </button>
+          </div>
+        }
+      </div>
+
+      @if (filteredSpells().length > 12) {
+        <nav class="pagination" aria-label="Pagine dei risultati">
+          <button
+            tuiButton
+            type="button"
+            appearance="secondary"
+            size="s"
+            [disabled]="page() === 1"
+            (click)="setPage(page() - 1)"
+          >
+            Precedente
+          </button>
+          <span>Pagina {{ page() }} di {{ pageCount() }}</span>
+          <button
+            tuiButton
+            type="button"
+            appearance="secondary"
+            size="s"
+            [disabled]="page() === pageCount()"
+            (click)="setPage(page() + 1)"
+          >
+            Successiva
+          </button>
+        </nav>
+      }
+    </section>
+
+    <aside class="selection-panel" aria-labelledby="selection-title">
+      <header class="panel-heading">
+        <ng-icon name="iconoirCheckCircle" size="21px" aria-hidden="true" />
+        <div>
+          <p class="kicker">Set di stampa</p>
+          <h2 id="selection-title">Card selezionate</h2>
+        </div>
+      </header>
+      <p class="selection-help">
+        Ogni incantesimo genera una card; i testi più lunghi proseguono su una seconda card.
+      </p>
+
+      @if (selectedSpells().length) {
+        <ol class="selected-list">
+          @for (spell of selectedSpells(); track spell.id) {
+            <li>
+              <span
+                ><strong>{{ spell.name }}</strong
+                ><small>{{ levelLabel(spell.level) }} · {{ spell.school }}</small></span
+              >
+              <button
+                type="button"
+                (click)="toggleSpell(spell.id, false)"
+                [attr.aria-label]="'Rimuovi ' + spell.name"
+              >
+                <ng-icon name="iconoirXmark" size="18px" aria-hidden="true" />
+              </button>
+            </li>
+          }
+        </ol>
+        <button class="clear-selection" type="button" (click)="clearSelection()">
+          Svuota selezione
+        </button>
+      } @else {
+        <div class="empty-selection">
+          <ng-icon name="iconoirBookStack" size="30px" aria-hidden="true" />
+          <p>Seleziona almeno un incantesimo dall'elenco.</p>
+        </div>
+      }
+
+      <button
+        class="export-button"
+        tuiButton
+        type="button"
+        appearance="primary"
+        size="l"
+        [disabled]="!selectedSpells().length || exporting()"
+        (click)="exportPdf()"
+      >
+        <ng-icon name="iconoirDownload" size="20px" aria-hidden="true" />
+        {{ exporting() ? 'Generazione…' : 'Genera PDF delle card' }}
+      </button>
+      <small class="export-note"
+        >Formato A4 · 4 card per pagina · ordinamento per livello e nome</small
+      >
+    </aside>
+  </div>
+</main>

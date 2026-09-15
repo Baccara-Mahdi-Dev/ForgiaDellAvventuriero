@@ -1,4 +1,12 @@
-import { Ancestry, Background, CharacterClass, EquipmentItem, Feat, Spell } from './models';
+import {
+  Ancestry,
+  Background,
+  CharacterClass,
+  EquipmentItem,
+  Feat,
+  Spell,
+  Subclass,
+} from './models';
 
 export interface CatalogManifest {
   schemaVersion: number;
@@ -30,6 +38,7 @@ export interface CatalogData {
   backgrounds: readonly Background[];
   feats: readonly Feat[];
   spells: readonly Spell[];
+  subclasses?: readonly Subclass[];
   equipment: readonly EquipmentItem[];
 }
 

@@ -77,6 +77,7 @@ export class CatalogService {
       backgrounds,
       feats,
       spells,
+      subclasses,
       equipment: [...equipment, ...additionalEquipment],
     };
     this.assertCatalog(rawData);
@@ -101,6 +102,7 @@ export class CatalogService {
       backgrounds: this.visible(backgrounds),
       feats: this.visible(feats),
       spells: this.visible(spells),
+      subclasses: this.visible(subclasses),
       equipment: [...equipment, ...additionalEquipment],
     });
   }

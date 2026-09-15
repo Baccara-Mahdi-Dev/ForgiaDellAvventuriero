@@ -261,27 +261,39 @@ function drawCard(
 }
 
 export function orderedCharacterSpells(draft: CharacterDraft, catalog: CatalogData): Spell[] {
-  return selectCharacterSpells(draft, catalog).sort(
-    (a, b) => a.level - b.level || a.name.localeCompare(b.name, 'it'),
-  );
+  return orderedSpells(selectCharacterSpells(draft, catalog));
+}
+
+export function orderedSpells(spells: readonly Spell[]): Spell[] {
+  return [...spells].sort((a, b) => a.level - b.level || a.name.localeCompare(b.name, 'it'));
+}
+
+export async function buildSpellCardsPdfFromSpells(
+  spells: readonly Spell[],
+  title = 'Card incantesimo',
+): Promise<Uint8Array> {
+  const pdf = await PDFDocument.create();
+  const font = await pdf.embedFont(StandardFonts.Helvetica);
+  const bold = await pdf.embedFont(StandardFonts.HelveticaBold);
+  const cards = buildCards(orderedSpells(spells), font);
+  if (!cards.length) throw new Error('Nessun incantesimo da esportare.');
+  for (let start = 0; start < cards.length; start += 4) {
+    const page = pdf.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
+    cards.slice(start, start + 4).forEach((card, index) => drawCard(page, card, index, font, bold));
+  }
+  pdf.setTitle(title);
+  pdf.setSubject('Incantesimi ordinati per livello e nome');
+  pdf.setCreator("Forgia dell'Avventuriero");
+  pdf.setProducer("Forgia dell'Avventuriero");
+  return pdf.save();
 }
 
 export async function buildSpellCardsPdf(
   draft: CharacterDraft,
   catalog: CatalogData,
 ): Promise<Uint8Array> {
-  const pdf = await PDFDocument.create();
-  const font = await pdf.embedFont(StandardFonts.Helvetica);
-  const bold = await pdf.embedFont(StandardFonts.HelveticaBold);
-  const cards = buildCards(orderedCharacterSpells(draft, catalog), font);
-  if (!cards.length) throw new Error('Nessun incantesimo da esportare.');
-  for (let start = 0; start < cards.length; start += 4) {
-    const page = pdf.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
-    cards.slice(start, start + 4).forEach((card, index) => drawCard(page, card, index, font, bold));
-  }
-  pdf.setTitle(`${draft.name || 'Personaggio'} - Carte incantesimo`);
-  pdf.setSubject('Incantesimi ordinati per livello e nome');
-  pdf.setCreator("Forgia dell'Avventuriero");
-  pdf.setProducer("Forgia dell'Avventuriero");
-  return pdf.save();
+  return buildSpellCardsPdfFromSpells(
+    orderedCharacterSpells(draft, catalog),
+    `${draft.name || 'Personaggio'} - Carte incantesimo`,
+  );
 }

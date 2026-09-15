@@ -3,7 +3,12 @@ import { describe, expect, it } from 'vitest';
 import { CatalogData } from '../domain/catalog';
 import { CharacterDraft, Spell } from '../domain/models';
 import { AbilityMethod } from '../models/enum/ability-method';
-import { buildSpellCardsPdf, orderedCharacterSpells, SPELL_LEVEL_COLORS } from './spell-cards-pdf';
+import {
+  buildSpellCardsPdf,
+  buildSpellCardsPdfFromSpells,
+  orderedCharacterSpells,
+  SPELL_LEVEL_COLORS,
+} from './spell-cards-pdf';
 
 const spell = (id: string, name: string, level: number): Spell => ({
   id,
@@ -101,6 +106,13 @@ describe('carte PDF degli incantesimi', () => {
     expect(pdf.getPageCount()).toBe(2);
     expect(pdf.getTitle()).toContain('Aria della Forgia');
     expect(bytes.length).toBeGreaterThan(2_000);
+  });
+
+  it('genera le card anche da una selezione indipendente dal personaggio', async () => {
+    const bytes = await buildSpellCardsPdfFromSpells([spells[3], spells[1]], 'Card incantesimo');
+    const pdf = await PDFDocument.load(bytes);
+    expect(pdf.getPageCount()).toBe(1);
+    expect(pdf.getTitle()).toBe('Card incantesimo');
   });
 
   it('rifiuta una lista vuota', async () => {

@@ -16,6 +16,24 @@
   align-items: center;
   gap: 1rem;
 }
+.spell-cards-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 42px;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.spell-cards-link:hover {
+  border-color: var(--gold);
+  color: var(--ember);
+}
 .brand {
   display: flex;
   align-items: center;
@@ -304,6 +322,14 @@
   }
   .offline {
     display: none;
+  }
+  .spell-cards-link span {
+    display: none;
+  }
+  .spell-cards-link {
+    width: 42px;
+    padding: 0;
+    justify-content: center;
   }
   .actions {
     flex-direction: column;

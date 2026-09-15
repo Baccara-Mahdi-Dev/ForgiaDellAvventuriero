@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CharacterDraft } from '../domain/models';
+import { CharacterDraft, Spell } from '../domain/models';
 import { CatalogService } from './catalog.service';
-import { buildSpellCardsPdf } from './spell-cards-pdf';
+import { buildSpellCardsPdf, buildSpellCardsPdfFromSpells } from './spell-cards-pdf';
 
 @Injectable({ providedIn: 'root' })
 export class SpellCardsPdfService {
@@ -9,12 +9,21 @@ export class SpellCardsPdfService {
 
   async download(draft: CharacterDraft): Promise<void> {
     const bytes = await buildSpellCardsPdf(draft, this.catalog.requireData());
+    this.downloadBytes(bytes, `${this.filename(draft.name || 'personaggio')}-incantesimi.pdf`);
+  }
+
+  async downloadSpells(spells: readonly Spell[]): Promise<void> {
+    const bytes = await buildSpellCardsPdfFromSpells(spells, 'Card incantesimo');
+    this.downloadBytes(bytes, 'card-incantesimo.pdf');
+  }
+
+  private downloadBytes(bytes: Uint8Array, filename: string): void {
     const data = new Uint8Array(bytes);
     const blob = new Blob([data.buffer as ArrayBuffer], { type: 'application/pdf' });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement('a');
     anchor.href = url;
-    anchor.download = `${this.filename(draft.name || 'personaggio')}-incantesimi.pdf`;
+    anchor.download = filename;
     anchor.click();
     URL.revokeObjectURL(url);
   }

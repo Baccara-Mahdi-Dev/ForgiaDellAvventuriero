@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CharacterDraft } from '../../domain/models';
 import { WizardStore } from '../../state/wizard.store';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
@@ -8,6 +8,7 @@ import { UiFeedbackService } from '../../core/ui-feedback.service';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
 import { monoDelete } from '@ng-icons/mono-icons';
+import { iconoirBookStack } from '@ng-icons/iconoir';
 import { CharacterLibraryService } from '../../character/application/character-library.service';
 import { tuiDialog } from '@taiga-ui/core';
 import { CatalogService } from '../../core/catalog.service';
@@ -15,11 +16,11 @@ import { QuickCharacterDialogComponent } from './quick-character-dialog.componen
 import { buildQuickCharacter } from './quick-character';
 @Component({
   selector: 'app-home',
-  imports: [DatePipe, ThemeToggleComponent, NgIcon],
+  imports: [DatePipe, RouterLink, ThemeToggleComponent, NgIcon],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [provideIcons({ monoDelete })],
+  providers: [provideIcons({ monoDelete, iconoirBookStack })],
 })
 export class HomeComponent implements OnInit {
   readonly characters = signal<CharacterDraft[]>([]);
