@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostListener,
   WritableSignal,
   computed,
   inject,
@@ -14,15 +15,20 @@ import {
   iconoirBookStack,
   iconoirCheckCircle,
   iconoirDownload,
+  iconoirEye,
   iconoirFilter,
+  iconoirPlus,
+  iconoirMinus,
   iconoirSearch,
+  iconoirTrash,
   iconoirXmark,
 } from '@ng-icons/iconoir';
 import { TuiButton, TuiCheckbox } from '@taiga-ui/core';
 import { CatalogService } from '../../core/catalog.service';
 import { SpellCardsPdfService } from '../../core/spell-cards-pdf.service';
 import { UiFeedbackService } from '../../core/ui-feedback.service';
-import { Spell } from '../../domain/models';
+import { asSpell } from '../../domain/homebrew-spell';
+import { HomebrewSpell, Spell } from '../../domain/models';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
 
 type FilterKey =
@@ -43,7 +49,6 @@ interface ActiveFilter {
   value: string;
 }
 
-const PAGE_SIZE = 12;
 const ALL = 'Tutti';
 const YES = 'Sì';
 const NO = 'No';
@@ -56,6 +61,27 @@ const MANUAL_NAMES: Record<Spell['source'], string> = {
   SCAG: 'Guida degli Avventurieri alla Costa della Spada (SCAG)',
   SRD: 'System Reference Document (SRD)',
 };
+const SPELL_SCHOOLS = [
+  'Abiurazione',
+  'Ammaliamento',
+  'Divinazione',
+  'Evocazione',
+  'Illusione',
+  'Invocazione',
+  'Necromanzia',
+  'Trasmutazione',
+] as const;
+const newHomebrewSpell = (): HomebrewSpell => ({
+  id: `homebrew-${crypto.randomUUID()}`,
+  name: '',
+  level: 0,
+  school: 'Evocazione',
+  description: '',
+  castingTime: 'action',
+  duration: 'Istantanea',
+  concentration: false,
+  components: ['V', 'S'],
+});
 
 @Component({
   selector: 'app-spell-cards',
@@ -66,8 +92,12 @@ const MANUAL_NAMES: Record<Spell['source'], string> = {
       iconoirBookStack,
       iconoirCheckCircle,
       iconoirDownload,
+      iconoirEye,
       iconoirFilter,
+      iconoirPlus,
+      iconoirMinus,
       iconoirSearch,
+      iconoirTrash,
       iconoirXmark,
     }),
   ],
@@ -97,6 +127,8 @@ export class SpellCardsComponent {
     this.manualName(a).localeCompare(this.manualName(b), 'it'),
   );
   readonly castingTimes = [ALL, 'Azione', 'Azione bonus', 'Reazione', '1 minuto o più'];
+  readonly spellSchools = SPELL_SCHOOLS;
+  readonly spellLevels = Array.from({ length: 10 }, (_, level) => level);
 
   readonly nameFilter = signal('');
   readonly descriptionFilter = signal('');
@@ -109,8 +141,16 @@ export class SpellCardsComponent {
   readonly castingTimeFilter = signal(ALL);
   readonly sourceFilter = signal(ALL);
   readonly page = signal(1);
+  readonly viewport = signal({ width: window.innerWidth, height: window.innerHeight });
   readonly selectedIds = signal<ReadonlySet<string>>(new Set());
   readonly exporting = signal(false);
+  readonly homebrewSpells = signal<HomebrewSpell[]>([]);
+  readonly homebrewSpellOpen = signal(false);
+  readonly homebrewSpell = signal<HomebrewSpell>(newHomebrewSpell());
+  readonly homebrewMaterials = signal('');
+  readonly homebrewHasDamage = signal(false);
+  readonly openedSpell = signal<Spell | null>(null);
+  readonly allSpells = computed(() => [...this.data.spells, ...this.homebrewSpells().map(asSpell)]);
 
   readonly subclasses = computed(() => {
     const classId = this.classFilter();
@@ -131,7 +171,7 @@ export class SpellCardsComponent {
     const castingTime = this.castingTimeFilter();
     const source = this.sourceFilter();
 
-    return [...this.data.spells]
+    return [...this.allSpells()]
       .filter((spell) => !name || this.normalize(spell.name).includes(name))
       .filter((spell) => !description || this.normalize(spell.description).includes(description))
       .filter((spell) => level === ALL || spell.level === this.levelValue(level))
@@ -153,20 +193,28 @@ export class SpellCardsComponent {
       .filter((spell) => school === ALL || spell.school === school)
       .filter((spell) => ritual === ALL || !!spell.ritual === (ritual === YES))
       .filter((spell) => castingTime === ALL || this.matchesCastingTime(spell, castingTime))
-      .filter((spell) => source === ALL || spell.source === source)
+      .filter((spell) => source === ALL || (!this.isHomebrew(spell) && spell.source === source))
       .sort((a, b) => a.level - b.level || a.name.localeCompare(b.name, 'it'));
   });
 
+  readonly pageSize = computed(() => {
+    const { width, height } = this.viewport();
+    if (width <= 760) return height >= 850 ? 4 : 3;
+    const reservedHeight = width <= 1180 ? 330 : 300;
+    const rowHeight = width <= 1180 ? 150 : 145;
+    const rows = Math.floor((height - reservedHeight) / rowHeight);
+    return Math.max(2, Math.min(width >= 1500 ? 6 : 5, rows));
+  });
   readonly pageCount = computed(() =>
-    Math.max(1, Math.ceil(this.filteredSpells().length / PAGE_SIZE)),
+    Math.max(1, Math.ceil(this.filteredSpells().length / this.pageSize())),
   );
   readonly pageSpells = computed(() => {
     const safePage = Math.min(this.page(), this.pageCount());
-    const start = (safePage - 1) * PAGE_SIZE;
-    return this.filteredSpells().slice(start, start + PAGE_SIZE);
+    const start = (safePage - 1) * this.pageSize();
+    return this.filteredSpells().slice(start, start + this.pageSize());
   });
   readonly selectedSpells = computed(() =>
-    this.data.spells
+    this.allSpells()
       .filter((spell) => this.selectedIds().has(spell.id))
       .sort((a, b) => a.level - b.level || a.name.localeCompare(b.name, 'it')),
   );
@@ -204,6 +252,18 @@ export class SpellCardsComponent {
       this.activeFilters().filter((filter) => filter.key !== 'name' && filter.key !== 'description')
         .length,
   );
+
+  @HostListener('document:keydown.escape')
+  closeDialogs(): void {
+    this.closeSpell();
+    this.closeHomebrewSpellWizard();
+  }
+
+  @HostListener('window:resize')
+  updateViewport(): void {
+    this.viewport.set({ width: window.innerWidth, height: window.innerHeight });
+    this.page.update((page) => Math.min(page, this.pageCount()));
+  }
 
   updateFilter(target: WritableSignal<string>, value: string): void {
     target.set(value);
@@ -261,6 +321,75 @@ export class SpellCardsComponent {
     const ids = new Set(this.selectedIds());
     selected ? ids.add(id) : ids.delete(id);
     this.selectedIds.set(ids);
+  }
+
+  openSpell(spell: Spell): void {
+    this.openedSpell.set(spell);
+  }
+
+  closeSpell(): void {
+    this.openedSpell.set(null);
+  }
+
+  openHomebrewSpellWizard(): void {
+    this.homebrewSpell.set(newHomebrewSpell());
+    this.homebrewMaterials.set('');
+    this.homebrewHasDamage.set(false);
+    this.homebrewSpellOpen.set(true);
+  }
+
+  closeHomebrewSpellWizard(): void {
+    this.homebrewSpellOpen.set(false);
+  }
+
+  patchHomebrewSpell(update: Partial<HomebrewSpell>): void {
+    this.homebrewSpell.update((spell) => ({ ...spell, ...update }));
+  }
+
+  toggleHomebrewComponent(component: 'V' | 'S' | 'M', checked: boolean): void {
+    const components = this.homebrewSpell().components;
+    this.patchHomebrewSpell({
+      components: checked
+        ? [...new Set([...components, component])]
+        : components.filter((item) => item !== component),
+    });
+  }
+
+  saveHomebrewSpell(): void {
+    const spell = this.homebrewSpell();
+    if (!spell.name.trim() || !spell.description.trim()) {
+      this.feedback.warning('Inserisci almeno nome e descrizione dell’incantesimo homebrew.');
+      return;
+    }
+    const materials = spell.components.includes('M')
+      ? this.homebrewMaterials()
+          .split(/\r?\n/)
+          .map((material) => material.trim())
+          .filter(Boolean)
+      : [];
+    const damage =
+      this.homebrewHasDamage() && spell.damage?.formula?.trim() && spell.damage.type.trim()
+        ? { ...spell.damage, formula: spell.damage.formula.trim(), type: spell.damage.type.trim() }
+        : undefined;
+    const saved = {
+      ...spell,
+      name: spell.name.trim(),
+      description: spell.description.trim(),
+      duration: spell.duration.trim() || 'Istantanea',
+      materials,
+      damage,
+    };
+    this.homebrewSpells.update((spells) => [...spells, saved]);
+    this.toggleSpell(saved.id, true);
+    this.page.set(1);
+    this.closeHomebrewSpellWizard();
+    this.feedback.success('Incantesimo homebrew aggiunto alle card.');
+  }
+
+  removeHomebrewSpell(id: string): void {
+    this.homebrewSpells.update((spells) => spells.filter((spell) => spell.id !== id));
+    this.toggleSpell(id, false);
+    if (this.openedSpell()?.id === id) this.closeSpell();
   }
 
   isSelected(id: string): boolean {
@@ -323,6 +452,31 @@ export class SpellCardsComponent {
 
   manualName(source: Spell['source']): string {
     return MANUAL_NAMES[source];
+  }
+
+  isHomebrew(spell: Spell): boolean {
+    return spell.homebrew === true;
+  }
+
+  castingTimeLabel(spell: Spell): string {
+    if (spell.castingTime.text) return spell.castingTime.text;
+    const units: Record<Spell['castingTime']['unit'], string> = {
+      action: 'azione',
+      'bonus-action': 'azione bonus',
+      reaction: 'reazione',
+      minute: 'minuto',
+      hour: 'ora',
+      special: 'speciale',
+    };
+    return `${spell.castingTime.amount} ${units[spell.castingTime.unit]}`;
+  }
+
+  durationLabel(spell: Spell): string {
+    if (spell.duration.text) return spell.duration.text;
+    if (spell.duration.unit === 'instantaneous') return 'Istantanea';
+    if (spell.duration.unit === 'until-dispelled') return 'Finché non dissolto';
+    if (spell.duration.unit === 'special') return 'Speciale';
+    return `${spell.duration.amount ?? 1} ${spell.duration.unit}`;
   }
 
   private className(id: string): string {

@@ -23,7 +23,8 @@ describe('incantesimi homebrew', () => {
     expect(spell.castingTime.unit).toBe('bonus-action');
     expect(spell.duration.text).toBe('Fino a 1 minuto');
     expect(spell.duration.concentration).toBe(true);
-    expect(spell.components).toBe('V, S, M');
+    expect(spell.components).toBe('V, S, M (un pugno di cenere e un accaromp)');
+    expect(spell.homebrew).toBe(true);
     expect(spell.damage).toEqual({ formula: '1d6', type: 'fuoco' });
   });
 });

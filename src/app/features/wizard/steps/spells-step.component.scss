@@ -43,9 +43,9 @@
   }
   .spell-cards-export {
     padding: 0.65rem 0.8rem;
-    border: 1px solid var(--magic);
+    border: 1px solid var(--gold);
     background: var(--surface-raised);
-    color: var(--magic);
+    color: var(--gold);
   }
   .spell-cards-export:disabled {
     opacity: 0.55;
@@ -291,8 +291,8 @@
     font-size: 0.58rem;
   }
   .spell-slot.pact-slot {
-    border-color: var(--magic);
-    background: var(--magic-soft);
+    border-color: var(--gold);
+    background: var(--surface-warm);
   }
   .spell-filters {
     display: grid;
@@ -327,9 +327,115 @@
     white-space: nowrap;
   }
   .spell-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.4rem;
+    background: var(--surface-raised);
     min-height: 285px;
     position: relative;
     gap: 0.35rem;
+  }
+  .spell-card.selected {
+    border-color: var(--ember);
+    background: var(--surface-highlight);
+  }
+  .spell-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+  .spell-read,
+  .spell-select,
+  .spell-grid .spell-card-actions button {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.45rem 0.6rem;
+    border: 0;
+    border-radius: 0.3rem;
+    background: var(--ember);
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+  }
+  .spell-read,
+  .spell-grid .spell-card-actions .spell-read {
+    border: 1px solid var(--ember);
+    background: transparent;
+    color: var(--ember);
+    font-weight: 800;
+  }
+  .spell-select:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .spell-read:focus-visible,
+  .spell-select:focus-visible {
+    outline: 2px solid var(--ember);
+    outline-offset: 3px;
+  }
+  .wizard-spell-dialog {
+    width: min(760px, calc(100vw - 2rem));
+    max-height: calc(100dvh - 2rem);
+    box-sizing: border-box;
+    padding: 0;
+    border: 1px solid var(--gold);
+    border-radius: 0.65rem;
+    background: var(--surface-raised);
+    color: var(--ink);
+    box-shadow: var(--shadow);
+    overflow: auto;
+  }
+  .wizard-spell-dialog::backdrop {
+    background: rgb(20 14 10 / 65%);
+  }
+  .homebrew-spell-list .spell-read,
+  .homebrew-spell-list .spell-select {
+    background: var(--magic-soft);
+    border-color: var(--magic);
+    color: var(--magic);
+  }
+  .homebrew-spell-list .spell-read:focus-visible,
+  .homebrew-spell-list .spell-select:focus-visible {
+    outline-color: var(--magic);
+  }
+  .wizard-spell-dialog.homebrew-spell-detail {
+    border-color: var(--magic);
+
+    .spell-tags .concentration,
+    .spell-upcasting {
+      background: var(--magic-soft);
+      border-color: var(--magic);
+      color: var(--magic);
+    }
+    .spell-upcasting small {
+      color: var(--magic);
+    }
+  }
+  .wizard-spell-detail {
+    padding: 1.25rem;
+    overflow-wrap: anywhere;
+  }
+  .spell-full-description,
+  .spell-detail-section p {
+    white-space: pre-wrap;
+    line-height: 1.6;
+  }
+  .spell-detail-section {
+    margin-top: 1rem;
+  }
+  .spell-detail-section h3 {
+    font-size: 1rem;
   }
   .spell-card:disabled {
     opacity: 1;
@@ -398,8 +504,8 @@
     color: var(--muted);
   }
   .spell-tags .concentration {
-    background: var(--magic-soft);
-    color: var(--magic);
+    background: var(--surface-warm);
+    color: var(--gold);
   }
   .spell-note {
     display: block;
@@ -433,8 +539,8 @@
   .spell-upcasting {
     width: 100%;
     padding: 0.65rem 0.75rem;
-    border-left: 3px solid var(--magic);
-    background: var(--magic-soft);
+    border-left: 3px solid var(--gold);
+    background: var(--surface-warm);
     text-align: left;
   }
   .spell-upcasting small,
@@ -442,7 +548,7 @@
     display: block;
   }
   .spell-upcasting small {
-    color: var(--magic);
+    color: var(--gold);
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;

@@ -88,7 +88,10 @@ describe('pagina card incantesimo', () => {
       providers: [
         { provide: CatalogService, useValue: { requireData: () => catalog } },
         { provide: SpellCardsPdfService, useValue: { downloadSpells } },
-        { provide: UiFeedbackService, useValue: { success: vi.fn(), error: vi.fn() } },
+        {
+          provide: UiFeedbackService,
+          useValue: { success: vi.fn(), warning: vi.fn(), error: vi.fn() },
+        },
       ],
     });
     return {
@@ -131,12 +134,45 @@ describe('pagina card incantesimo', () => {
     expect(downloadSpells).toHaveBeenCalledWith([catalog.spells[0]]);
   });
 
+  it('apre il dettaglio senza selezionare implicitamente l’incantesimo', () => {
+    const { component } = create();
+    component.openSpell(catalog.spells[0]);
+    expect(component.openedSpell()?.id).toBe('fire');
+    expect(component.selectedSpells()).toEqual([]);
+  });
+
+  it('crea un homebrew, lo aggiunge ai risultati e lo seleziona per il PDF', () => {
+    const { component } = create();
+    component.openHomebrewSpellWizard();
+    component.patchHomebrewSpell({
+      name: 'Fiamma della forgia',
+      description: 'Una fiamma creata dal fabbro.',
+      components: ['V', 'M'],
+    });
+    component.homebrewMaterials.set('polvere di ferro');
+    component.saveHomebrewSpell();
+
+    const homebrew = component.allSpells().find((item) => item.homebrew);
+    expect(homebrew?.name).toBe('Fiamma della forgia');
+    expect(homebrew?.components).toBe('V, M (polvere di ferro)');
+    expect(component.selectedSpells().map((item) => item.id)).toContain(homebrew?.id);
+  });
+
   it('seleziona e deseleziona soltanto gli incantesimi della pagina corrente', () => {
     const { component } = create();
+    const visibleSpells = component.pageSpells().length;
     component.selectCurrentPage();
-    expect(component.currentPageSelectionCount()).toBe(3);
+    expect(component.currentPageSelectionCount()).toBe(visibleSpells);
     expect(component.currentPageFullySelected()).toBe(true);
     component.deselectCurrentPage();
     expect(component.currentPageSelectionCount()).toBe(0);
+  });
+
+  it('adatta il numero massimo di incantesimi alla dimensione dello schermo', () => {
+    const { component } = create();
+    component.viewport.set({ width: 1600, height: 1080 });
+    expect(component.pageSize()).toBe(5);
+    component.viewport.set({ width: 390, height: 700 });
+    expect(component.pageSize()).toBe(3);
   });
 });

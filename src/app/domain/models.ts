@@ -354,6 +354,7 @@ export interface SubclassSpellGrant {
   note?: string;
 }
 export interface Spell extends OptionItem {
+  homebrew?: boolean;
   level: number;
   school: string;
   classes: string[];

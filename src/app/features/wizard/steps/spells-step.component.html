@@ -49,8 +49,21 @@
               <small>Materiali: {{ spell.materials?.join(', ') }}</small>
             }
           </div>
-          <button class="homebrew-spell-remove" (click)="wizard().removeHomebrewSpell(spell.id)">
-            Rimuovi
+          <button
+            type="button"
+            class="spell-read"
+            [attr.aria-label]="'Leggi ' + spell.name"
+            (click)="openSpell(asSpell(spell))"
+          >
+            <ng-icon name="iconoirEye" size="20px" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            class="spell-select"
+            [attr.aria-label]="'Rimuovi ' + spell.name"
+            (click)="wizard().removeHomebrewSpell(spell.id)"
+          >
+            <ng-icon name="iconoirMinus" size="20px" aria-hidden="true" />
           </button>
         </article>
       }
@@ -58,8 +71,8 @@
   }
   @if (wizard().store.selectedClass()?.caster) {
     <p class="lead">
-      Scegli la magia del personaggio. Ogni scheda indica immediatamente come si lancia, quanto
-      dura, quale tiro richiede e gli eventuali danni.
+      Scegli la magia del personaggio con + e −. Premi l’occhio per leggere tutti i dettagli
+      dell’incantesimo prima di selezionarlo.
     </p>
     <div class="quota magic-quota">
       <span>Trucchetti scelti</span
@@ -115,6 +128,14 @@
                 @for (grant of source.fixed; track grant.spell.id) {
                   <div [class.locked]="!grant.unlocked">
                     <strong>{{ grant.spell.name }}</strong>
+                    <button
+                      type="button"
+                      class="spell-read"
+                      [attr.aria-label]="'Leggi ' + grant.spell.name"
+                      (click)="openSpell(grant.spell, false)"
+                    >
+                      <ng-icon name="iconoirEye" size="20px" aria-hidden="true" />
+                    </button>
                     <span>{{ wizard().spellLevel(grant.spell) }}</span>
                     @if (grant.unlocked) {
                       <small>{{ grant.note || 'Sempre conosciuto' }}</small>
@@ -197,72 +218,63 @@
     </div>
     <div class="spell-grid detailed">
       @for (spell of wizard().visibleSpells; track spell.id) {
-        <button
+        <article
           class="spell-card"
-          [class.limit-reached]="wizard().spellLimitReached(spell)"
-          [class.selected]="
-            wizard().store.draft().spellIds.includes(spell.id) || wizard().isGranted(spell.id)
-          "
-          [disabled]="wizard().isGranted(spell.id) || wizard().spellLimitReached(spell)"
-          [attr.aria-pressed]="
-            wizard().store.draft().spellIds.includes(spell.id) || wizard().isGranted(spell.id)
-          "
-          [attr.title]="wizard().spellLimitReached(spell) ? 'Limite di selezione raggiunto' : null"
-          (click)="wizard().toggleSpell(spell)"
+          [class.selected]="isSelected(spell) || wizard().isGranted(spell.id)"
         >
           <span class="spell-source"
-            >{{ wizard().spellLevel(spell) }} · {{ spell.school }} · {{ spell.source }}</span
-          ><strong class="spell-name">{{ spell.name }}</strong>
-          <p class="spell-description" [title]="wizard().spellDescription(spell)">
-            {{ wizard().spellDescription(spell) }}
-          </p>
-          <div class="spell-facts">
-            <span
-              ><small>Lancio</small><strong>{{ wizard().castingTime(spell) }}</strong></span
-            ><span
-              ><small>Durata</small><strong>{{ wizard().duration(spell) }}</strong></span
-            ><span
-              ><small>Risoluzione</small
-              ><strong>{{ wizard().spellResolution(spell) }}</strong></span
-            ><span
-              ><small>Gittata</small><strong>{{ spell.range || '—' }}</strong></span
-            ><span
-              ><small>Componenti</small><strong>{{ spell.components || '—' }}</strong></span
-            >
-          </div>
+            >{{ wizard().spellLevel(spell) }} · {{ spell.school }} ·
+            {{ spell.homebrew ? 'Homebrew' : spell.source }}</span
+          >
+          <strong class="spell-name">{{ spell.name }}</strong>
+          <p class="spell-description">{{ wizard().spellDescription(spell) }}</p>
           <div class="spell-tags">
             @if (spell.duration.concentration) {
-              <span class="concentration">Concentrazione</span>
+              <span>Concentrazione</span>
             }
             @if (spell.ritual) {
               <span>Rituale</span>
             }
             @if (wizard().isGranted(spell.id)) {
-              <em>Sempre preparato</em>
+              <em>Incantesimo concesso</em>
+            } @else if (isSelected(spell)) {
+              <em>Selezionato</em>
             }
           </div>
-          @if (spell.castingTime.condition) {
-            <small class="spell-note">{{ spell.castingTime.condition }}</small>
-          }
-          @if (spell.damage) {
-            <div class="spell-damage">
-              <small>Danni</small
-              ><strong>{{ spell.damage.formula }} {{ spell.damage.type }}</strong>
-              @if (spell.damage.scaling && !wizard().spellHigherLevels(spell)) {
-                <span>{{ spell.damage.scaling }}</span>
-              }
-              @if (spell.damage.note) {
-                <span>{{ spell.damage.note }}</span>
-              }
-            </div>
-          }
-          @if (wizard().spellHigherLevels(spell); as upcasting) {
-            <div class="spell-upcasting">
-              <small>Ai livelli superiori</small>
-              <span>{{ upcasting }}</span>
-            </div>
-          }
-        </button>
+          <div class="spell-card-actions">
+            <button
+              type="button"
+              class="spell-read"
+              [attr.aria-label]="'Leggi ' + spell.name"
+              (click)="openSpell(spell)"
+            >
+              <ng-icon name="iconoirEye" size="20px" aria-hidden="true" /> Leggi
+            </button>
+            <button
+              type="button"
+              class="spell-select"
+              [disabled]="wizard().isGranted(spell.id) || wizard().spellLimitReached(spell)"
+              [attr.aria-label]="(isSelected(spell) ? 'Rimuovi ' : 'Aggiungi ') + spell.name"
+              [attr.aria-pressed]="isSelected(spell) || wizard().isGranted(spell.id)"
+              [title]="
+                wizard().isGranted(spell.id)
+                  ? 'Concesso automaticamente'
+                  : wizard().spellLimitReached(spell)
+                    ? 'Limite di selezione raggiunto'
+                    : isSelected(spell)
+                      ? 'Rimuovi incantesimo'
+                      : 'Aggiungi incantesimo'
+              "
+              (click)="wizard().toggleSpell(spell)"
+            >
+              <ng-icon
+                [name]="isSelected(spell) ? 'iconoirMinus' : 'iconoirPlus'"
+                size="20px"
+                aria-hidden="true"
+              />
+            </button>
+          </div>
+        </article>
       } @empty {
         <div class="empty-magic spell-empty">
           @if (wizard().store.availableSpells().length) {
@@ -305,6 +317,137 @@
       <p>Non ci sono magie da selezionare per questa classe.</p>
     </div>
   }
+
+  <dialog
+    #spellDialog
+    class="wizard-spell-dialog"
+    [class.homebrew-spell-detail]="openedSpell()?.homebrew"
+    aria-labelledby="wizard-spell-detail-title"
+    (cancel)="closeSpell()"
+    (close)="openedSpell.set(null)"
+    (click)="$event.target === spellDialog && closeSpell()"
+  >
+    @if (openedSpell(); as spell) {
+      <div class="wizard-spell-detail" (click)="$event.stopPropagation()">
+        <header class="homebrew-dialog-heading">
+          <h2 id="wizard-spell-detail-title">{{ spell.name }}</h2>
+          <button
+            type="button"
+            class="homebrew-dialog-close"
+            aria-label="Chiudi dettagli"
+            autofocus
+            (click)="closeSpell()"
+          >
+            <ng-icon name="iconoirXmark" size="22px" aria-hidden="true" />
+          </button>
+        </header>
+        <span class="spell-source"
+          >{{ wizard().spellLevel(spell) }} · {{ spell.school }} ·
+          {{ spell.homebrew ? 'Homebrew' : spell.source }}</span
+        >
+        <p class="spell-full-description" [title]="wizard().spellDescription(spell)">
+          {{ wizard().spellDescription(spell) }}
+        </p>
+        <div class="spell-facts">
+          <span
+            ><small>Lancio</small><strong>{{ wizard().castingTime(spell) }}</strong></span
+          ><span
+            ><small>Durata</small><strong>{{ wizard().duration(spell) }}</strong></span
+          ><span
+            ><small>Risoluzione</small><strong>{{ wizard().spellResolution(spell) }}</strong></span
+          ><span
+            ><small>Gittata</small><strong>{{ spell.range || '—' }}</strong></span
+          ><span
+            ><small>Componenti</small><strong>{{ spell.components || '—' }}</strong></span
+          >
+        </div>
+        <div class="spell-tags">
+          @if (spell.duration.concentration) {
+            <span class="concentration">Concentrazione</span>
+          }
+          @if (spell.ritual) {
+            <span>Rituale</span>
+          }
+          @if (wizard().isGranted(spell.id)) {
+            <em>Incantesimo concesso</em>
+          }
+        </div>
+        @if (spell.castingTime.condition) {
+          <small class="spell-note">{{ spell.castingTime.condition }}</small>
+        }
+        @if (spell.damage) {
+          <div class="spell-damage">
+            <small>Danni</small><strong>{{ spell.damage.formula }} {{ spell.damage.type }}</strong>
+            @if (spell.damage.scaling) {
+              <span>{{ spell.damage.scaling }}</span>
+            }
+            @if (spell.damage.note) {
+              <span>{{ spell.damage.note }}</span>
+            }
+          </div>
+        }
+        @if (wizard().spellHigherLevels(spell); as upcasting) {
+          <div class="spell-upcasting">
+            <small>Ai livelli superiori</small>
+            <span>{{ upcasting }}</span>
+          </div>
+        }
+
+        <section class="spell-detail-section">
+          <h3>Classi</h3>
+          <p>
+            @for (classId of spell.classes; track classId; let last = $last) {
+              {{ wizard().traditionName(classId) }}{{ last ? '' : ', ' }}
+            } @empty {
+              Non specificate
+            }
+          </p>
+        </section>
+        @if (spell.subclassGrants?.length) {
+          <section class="spell-detail-section">
+            <h3>Concessioni delle sottoclassi</h3>
+            @for (grant of spell.subclassGrants; track grant.classId + grant.subclassId) {
+              <p>
+                {{ wizard().traditionName(grant.classId) }} · {{ grant.subclassId }} · Livello
+                {{ grant.minLevel }}
+              </p>
+              @if (grant.note) {
+                <p>{{ grant.note }}</p>
+              }
+            }
+          </section>
+        }
+        <p>
+          Concentrazione: {{ spell.duration.concentration ? 'Sì' : 'No' }} · Rituale:
+          {{ spell.ritual ? 'Sì' : 'No' }}
+        </p>
+        @if (!spell.homebrew && canSelectOpenedSpell()) {
+          <footer class="spell-card-actions">
+            <button
+              type="button"
+              class="spell-select"
+              [disabled]="wizard().isGranted(spell.id) || wizard().spellLimitReached(spell)"
+              [attr.aria-pressed]="isSelected(spell) || wizard().isGranted(spell.id)"
+              (click)="wizard().toggleSpell(spell)"
+            >
+              <ng-icon
+                [name]="isSelected(spell) ? 'iconoirMinus' : 'iconoirPlus'"
+                size="20px"
+                aria-hidden="true"
+              />
+              {{
+                wizard().isGranted(spell.id)
+                  ? 'Concesso automaticamente'
+                  : isSelected(spell)
+                    ? 'Rimuovi incantesimo'
+                    : 'Aggiungi incantesimo'
+              }}
+            </button>
+          </footer>
+        }
+      </div>
+    }
+  </dialog>
 
   @if (wizard().homebrewSpellOpen()) {
     <div

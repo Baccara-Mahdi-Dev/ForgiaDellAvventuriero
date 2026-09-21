@@ -25,7 +25,7 @@
   {
     "id": "abi-dalzims-horrid-wilting",
     "name": "Orribile avvizzimento di Abi-Dalzim",
-    "description": "L'incantatore prosciuga l'umidità dalle creature in un cubo di 9 metri; le creature nell'area effettuano un tiro salvezza su Costituzione e subiscono 12d8 danni necrotici se lo falliscono, o la metà se lo superano. Non influenza costrutti e non morti; piante e elementali dell'acqua hanno svantaggio al tiro salvezza.",
+    "description": "L'incantatore prosciuga l'umidità dalle creature in un cubo di 9 metri; le creature nell'area effettuano un tiro salvezza su Costituzione e subiscono 12d8 danni necrotici se lo falliscono, o la metà se lo superano. Non influenza costrutti e non morti; piante e elementali dell'acqua hanno svantaggio al tiro salvezza. Le piante non magiche nell'area che non sono creature avvizziscono e muoiono.",
     "source": "XGE",
     "level": 8,
     "school": "Necromanzia",
@@ -44,31 +44,39 @@
     "damage": {
       "formula": "12d8",
       "type": "necrotici"
-    }
+    },
+    "range": "45 metri",
+    "components": "V, S, M (un pezzo di spugna)",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "absorb-elements",
     "name": "Assorbire elementi",
-    "description": "L'incantesimo assorbe energia elementale in risposta a un danno da acido, freddo, fuoco, fulmine o tuono, conferendo resistenza a quel tipo di danno fino all'inizio del turno successivo. Il prossimo attacco in mischia dell'incantatore infligge 1d6 danni extra del tipo assorbito.",
+    "description": "L'incantatore ottiene resistenza al tipo di danno che ha innescato la reazione fino all'inizio del proprio turno successivo. La prima volta che colpisce con un attacco in mischia durante quel turno, infligge 1d6 danni extra del tipo assorbito e l'incantesimo termina. Con slot superiori al 1°, il danno extra aumenta di 1d6 per livello dello slot.",
     "source": "XGE",
     "level": 1,
     "school": "Abiurazione",
     "classes": ["druid", "ranger", "sorcerer", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "reaction",
+      "text": "1 reazione, quando subisci danni da acido, freddo, fuoco, fulmine o tuono"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "round",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "1 round",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "1d6",
-      "type": "acido/freddo/fuoco/fulmine/tuono"
-    }
+      "type": "acido/freddo/fuoco/fulmine/tuono",
+      "scaling": "Con slot superiori al 1°, il danno extra aumenta di 1d6 per livello dello slot."
+    },
+    "range": "Incantatore",
+    "components": "S"
   },
   {
     "id": "acid-arrow",
@@ -137,7 +145,7 @@
   {
     "id": "aganazzars-scorcher",
     "name": "Inceneritore di Aganazzar",
-    "description": "Una linea di fiamme lunga 9 metri e larga 1,5 metri erompe dall'incantatore. Le creature nell'area effettuano un tiro salvezza su Destrezza e subiscono 3d8 danni da fuoco se lo falliscono, o la metà se lo superano.",
+    "description": "Una linea di fiamme lunga 9 metri e larga 1,5 metri erompe dall'incantatore. Le creature nell'area effettuano un tiro salvezza su Destrezza e subiscono 3d8 danni da fuoco se lo falliscono, o la metà se lo superano. Con slot superiori al 2°, i danni aumentano di 1d8 per livello dello slot.",
     "source": "XGE",
     "level": 2,
     "school": "Invocazione",
@@ -155,8 +163,13 @@
     "isHidden": true,
     "damage": {
       "formula": "3d8",
-      "type": "fuoco"
-    }
+      "type": "fuoco",
+      "scaling": "Con slot superiori al 2°, i danni aumentano di 1d8 per livello dello slot."
+    },
+    "range": "9 metri",
+    "components": "V, S, M (una scaglia di drago rosso)",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "aid",
@@ -1104,7 +1117,7 @@
   {
     "id": "beast-bond",
     "name": "Legame con la bestia",
-    "description": "L'incantatore stabilisce un legame telepatico con una bestia consenziente entro gittata. Finché il bersaglio è entro 1,5 km, l'incantatore può comunicare telepaticamente con esso e dispone di vantaggio ai tiri per colpire contro creature entro 1,5 metri dalla bestia.",
+    "description": "L'incantatore tocca una bestia amichevole o affascinata da lui con Intelligenza inferiore a 4. Finché i due rimangono in linea di vista, la bestia comprende i suoi messaggi telepatici e può rispondere con emozioni e concetti semplici. È la bestia a ottenere vantaggio ai tiri per colpire contro le creature entro 1,5 metri dall'incantatore che quest'ultimo può vedere.",
     "source": "XGE",
     "level": 1,
     "school": "Divinazione",
@@ -1115,11 +1128,14 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "Contatto",
+    "components": "V, S, M (un ciuffo di pelo avvolto in un panno)"
   },
   {
     "id": "beast-sense",
@@ -1259,7 +1275,7 @@
     "level": 9,
     "school": "Evocazione",
     "classes": ["sorcerer", "warlock", "wizard"],
-    "description": "L'incantatore apre una fenditura planare a forma di lama in uno spazio entro gittata. Può effettuare un attacco con la lama come azione bonus; se colpisce infligge 4d12 danni da forza e un 18 o più sul d20 è un colpo critico.",
+    "description": "L'incantatore crea una lama planare in uno spazio libero visibile entro gittata. Al lancio può effettuare fino a due attacchi in mischia con incantesimo contro creature, oggetti non fissati o strutture entro 1,5 metri dalla lama. Ogni colpo infligge 4d12 danni da forza; con 18-20 sul d20 è critico e infligge 12d12 danni totali. Nei turni successivi, con un'azione bonus può muovere la lama fino a 9 metri in uno spazio libero visibile ed effettuare altri due attacchi. La lama attraversa anche le barriere, incluso muro di forza.",
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -1269,15 +1285,15 @@
     "components": "V, S",
     "duration": {
       "unit": "minute",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 minuto"
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "attackRoll": "melee",
     "damage": {
       "formula": "4d12",
       "type": "forza",
-      "note": "La lama produce colpi critici con maggiore frequenza e ne amplifica il danno."
+      "note": "Due attacchi al lancio e con ogni azione bonus; critico con 18-20: 12d12 totali per colpo."
     },
     "isHidden": true
   },
@@ -1495,7 +1511,7 @@
   {
     "id": "bones-of-the-earth",
     "name": "Ossa della terra",
-    "description": "Piloni di pietra emergono dal terreno sotto un massimo di sei creature o in punti scelti dall'incantatore, sollevandole e creando colonne di pietra.",
+    "description": "Fino a sei pilastri di pietra, ciascuno di diametro 1,5 metri e altezza massima 9 metri, emergono da punti del terreno visibili entro gittata. Un pilastro può sorgere sotto una creatura Media o più piccola: con un tiro salvezza su Destrezza fallito la solleva. Se un ostacolo impedisce al pilastro di raggiungere l'altezza completa, la creatura subisce 6d6 danni contundenti ed è trattenuta; può liberarsi con un'azione e una prova di Forza o Destrezza contro la CD dell'incantesimo. Ogni pilastro ha CA 5 e 30 PF; distruggerlo crea macerie e terreno difficile entro 3 metri. Con slot superiori al 6°, si creano due pilastri aggiuntivi per livello dello slot.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
@@ -1510,7 +1526,17 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "36 metri",
+    "components": "V, S",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"],
+    "damage": {
+      "formula": "6d6",
+      "type": "contundenti",
+      "note": "Solo se il pilastro schiaccia una creatura contro un ostacolo.",
+      "scaling": "Con slot superiori al 6°, si creano due pilastri aggiuntivi per livello dello slot."
+    }
   },
   {
     "id": "booming-blade",
@@ -1519,25 +1545,26 @@
     "level": 0,
     "school": "Invocazione",
     "classes": ["artificer", "sorcerer", "warlock", "wizard"],
-    "description": "L'incantatore effettua un attacco con un'arma da mischia. Il colpo infligge 1d8 danni da tuono extra; se il bersaglio si muove volontariamente prima dell'inizio del prossimo turno dell'incantatore, subisce ulteriori danni da tuono, che aumentano con il livello del personaggio.",
+    "description": "L'incantatore effettua un attacco con l'arma da mischia usata come componente contro una creatura entro 1,5 metri. Se colpisce, applica i normali effetti dell'arma e avvolge il bersaglio di energia fino all'inizio del proprio turno successivo: se il bersaglio si muove volontariamente di almeno 1,5 metri, subisce 1d8 danni da tuono e l'effetto termina. Dal 5° livello il colpo infligge anche 1d8 danni da tuono e il movimento ne infligge 2d8; diventano rispettivamente 2d8/3d8 all'11° e 3d8/4d8 al 17° livello.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
-    "range": "Incantatore (1.5 m)",
-    "components": "S, M",
+    "range": "Incantatore (raggio di 1,5 metri)",
+    "components": "S, M (un'arma da mischia del valore di almeno 1 ma)",
     "duration": {
       "unit": "round",
-      "amount": 1,
       "concentration": false,
-      "text": "1 round"
+      "text": "1 round",
+      "amount": 1
     },
     "attackRoll": "melee",
     "damage": {
       "formula": "1d8",
       "type": "tuono",
-      "note": "Danni causati dal movimento; l'incantesimo aumenta di potenza con il livello del personaggio."
+      "note": "Danno da movimento volontario di almeno 1,5 metri; al livello 1 nessun danno da tuono aggiuntivo al colpo.",
+      "scaling": "Al 5° livello: 1d8 al colpo e 2d8 al movimento; all’11°: 2d8 e 3d8; al 17°: 3d8 e 4d8."
     },
     "isHidden": true
   },
@@ -1698,7 +1725,7 @@
   {
     "id": "catapult",
     "name": "Catapulta",
-    "description": "L'incantatore scaglia un oggetto del peso compreso tra 0,5 e 2,5 kg contro una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Destrezza e subisce 3d8 danni contundenti se lo fallisce; se supera il tiro, l'oggetto continua la traiettoria verso il bersaglio successivo.",
+    "description": "L'incantatore sceglie un oggetto non indossato né trasportato, del peso tra 0,5 e 2,5 kg, entro gittata. L'oggetto vola in linea retta fino a 27 metri nella direzione scelta, fermandosi contro una superficie solida. Una creatura sulla traiettoria effettua un tiro salvezza su Destrezza: se fallisce, l'oggetto la colpisce e si ferma; se supera il tiro, prosegue. Quando urta qualcosa, l'oggetto e ciò che ha colpito subiscono entrambi 3d8 danni contundenti. Con slot superiori al 1°, il peso massimo aumenta di 2,5 kg e i danni di 1d8 per livello dello slot.",
     "source": "XGE",
     "level": 1,
     "school": "Trasmutazione",
@@ -1716,13 +1743,18 @@
     "isHidden": true,
     "damage": {
       "formula": "3d8",
-      "type": "contundenti"
-    }
+      "type": "contundenti",
+      "scaling": "Con slot superiori al 1°, il peso massimo aumenta di 2,5 kg e i danni di 1d8 per livello dello slot."
+    },
+    "range": "18 metri",
+    "components": "S",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "catnap",
     "name": "Pisolino",
-    "description": "Fino a tre creature consenzienti nell'area possono entrare in un sonno magico di 10 minuti. Al termine, ogni creatura beneficia di un riposo breve e non può essere influenzata di nuovo da questo incantesimo fino al termine di un riposo lungo.",
+    "description": "Fino a tre creature consenzienti visibili entro gittata diventano prive di sensi per 10 minuti. L'effetto termina prima su un bersaglio se subisce danni o qualcuno usa un'azione per svegliarlo. Chi rimane privo di sensi per tutta la durata beneficia di un riposo breve e non può beneficiare nuovamente di questo incantesimo prima di completare un riposo lungo. Con slot superiori al 3°, si aggiunge una creatura consenziente per livello dello slot.",
     "source": "XGE",
     "level": 3,
     "school": "Ammaliamento",
@@ -1733,16 +1765,19 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "minute",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "10 minuti",
+      "amount": 10
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "9 metri",
+    "components": "S, M (un pizzico di sabbia)"
   },
   {
     "id": "cause-fear",
     "name": "Causare paura",
-    "description": "Una creatura entro gittata deve superare un tiro salvezza su Saggezza o diventare spaventata dall'incantatore per la durata. Il bersaglio può ripetere il tiro salvezza alla fine di ciascun turno.",
+    "description": "Una creatura visibile entro gittata deve superare un tiro salvezza su Saggezza o diventare spaventata dall'incantatore. Costrutti e non morti sono immuni. Il bersaglio ripete il tiro salvezza alla fine di ogni proprio turno, terminando l'effetto su di sé con un successo. Con slot superiori al 1°, si aggiunge un bersaglio per livello dello slot; al lancio i bersagli devono trovarsi entro 9 metri gli uni dagli altri.",
     "source": "XGE",
     "level": 1,
     "school": "Necromanzia",
@@ -1753,24 +1788,29 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "18 metri",
+    "components": "V",
+    "savingThrow": "wis",
+    "savingThrows": ["wis"]
   },
   {
     "id": "ceremony",
     "name": "Cerimonia",
-    "description": "L'incantatore esegue un rito religioso magico scegliendo uno tra diversi effetti, tra cui consacrazione di un giovane, matrimonio, funerale, dedizione, espiazione e rito d'acqua.",
+    "description": "L'incantatore esegue un rito su bersagli che devono rimanere entro 3 metri durante il lancio. Espiazione ripristina l'allineamento originario di una creatura consenziente con una prova di Saggezza (Intuizione) CD 20; Benedire l'acqua rende santa una fiala d'acqua. Passaggio all'età adulta concede a un giovane umanoide +1d4 alle prove di caratteristica per 24 ore; Dedizione concede a un umanoide devoto +1d4 ai tiri salvezza per 24 ore: ciascuno può beneficiarne una sola volta. Rito funebre impedisce a un cadavere di diventare non morto per 7 giorni, salvo desiderio. Matrimonio concede agli umanoidi adulti consenzienti +2 alla CA per 7 giorni mentre si trovano entro 9 metri l'uno dall'altro; può essere ripetuto solo dopo essere rimasti vedovi.",
     "source": "XGE",
     "level": 1,
     "school": "Abiurazione",
     "classes": ["cleric", "paladin"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "hour",
+      "text": "1 ora"
     },
     "duration": {
       "unit": "instantaneous",
@@ -1778,7 +1818,9 @@
       "text": "Istantanea"
     },
     "ritual": true,
-    "isHidden": true
+    "isHidden": true,
+    "range": "Contatto",
+    "components": "V, S, M (polvere d'argento del valore di 25 mo, consumata dall'incantesimo)"
   },
   {
     "id": "chain-lightning",
@@ -1812,7 +1854,7 @@
   {
     "id": "chaos-bolt",
     "name": "Dardo del caos",
-    "description": "L'incantatore scaglia un dardo di energia caotica contro una creatura. Con un attacco a distanza con incantesimo, se colpisce infligge 2d8 + 1d6 danni; i due d8 determinano il tipo di danno e, se mostrano lo stesso risultato, il dardo può saltare a un altro bersaglio.",
+    "description": "Un attacco a distanza con incantesimo contro una creatura entro gittata infligge 2d8 + 1d6 danni. Si sceglie uno dei due d8 per il tipo: 1 acido, 2 freddo, 3 fuoco, 4 forza, 5 fulmine, 6 veleno, 7 psichici, 8 tuono. Se i d8 mostrano lo stesso risultato, l'energia balza a una diversa creatura scelta entro 9 metri dal bersaglio, con un nuovo tiro per colpire e nuovi danni; può continuare a rimbalzare, ma ogni creatura può essere bersagliata una sola volta per lancio. Con slot superiori al 1°, ogni bersaglio subisce 1d6 danni extra per livello dello slot.",
     "source": "XGE",
     "level": 1,
     "school": "Invocazione",
@@ -1830,13 +1872,17 @@
     "isHidden": true,
     "damage": {
       "formula": "2d8+1d6",
-      "type": "variabile"
-    }
+      "type": "variabile",
+      "scaling": "Con slot superiori al 1°, ogni bersaglio subisce 1d6 danni extra per livello dello slot."
+    },
+    "range": "36 metri",
+    "components": "V, S",
+    "attackRoll": "ranged"
   },
   {
     "id": "charm-monster",
     "name": "Charme sui mostri",
-    "description": "Una creatura entro gittata deve superare un tiro salvezza su Saggezza o diventare affascinata dall'incantatore per la durata. Il bersaglio ha vantaggio al tiro se l'incantatore o i suoi compagni stanno combattendo contro di lui.",
+    "description": "Una creatura visibile entro gittata effettua un tiro salvezza su Saggezza, con vantaggio se l'incantatore o i suoi compagni la stanno combattendo. Se fallisce, è affascinata dall'incantatore e amichevole nei suoi confronti per la durata, o finché lui o i suoi compagni le fanno qualcosa di dannoso. Quando l'effetto termina, sa di essere stata affascinata. Con slot superiori al 4°, si aggiunge un bersaglio per livello dello slot; al lancio i bersagli devono trovarsi entro 9 metri gli uni dagli altri.",
     "source": "XGE",
     "level": 4,
     "school": "Ammaliamento",
@@ -1847,11 +1893,16 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "hour",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "1 ora",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "9 metri",
+    "components": "V, S",
+    "savingThrow": "wis",
+    "savingThrows": ["wis"]
   },
   {
     "id": "charm-person",
@@ -2732,7 +2783,7 @@
   {
     "id": "control-flames",
     "name": "Controllare fiamme",
-    "description": "L'incantatore manipola una fiamma non magica entro gittata, espandendola, spegnendola, modificandone luce o colore oppure creando forme semplici animate al suo interno.",
+    "description": "L'incantatore modifica una fiamma non magica visibile entro gittata contenuta in un cubo di 1,5 metri. Può espanderla istantaneamente di 1,5 metri dove c'è combustibile, spegnerla, raddoppiarne o dimezzarne la luce e cambiarne il colore per 1 ora, oppure crearvi forme semplici animate per 1 ora. Può mantenere fino a tre effetti non istantanei e terminarne uno con un'azione.",
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
@@ -2743,11 +2794,13 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "special",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "Istantanea o 1 ora (vedi descrizione)"
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "18 metri",
+    "components": "S"
   },
   {
     "id": "control-water",
@@ -2812,7 +2865,7 @@
   {
     "id": "control-winds",
     "name": "Controllare venti",
-    "description": "L'incantatore controlla l'aria in un cubo di 30 metri, scegliendo tra raffiche, correnti discendenti o correnti ascendenti. Può cambiare l'effetto usando un'azione.",
+    "description": "L'incantatore controlla l'aria in un cubo visibile di 30 metri entro gittata e può cambiare, sospendere o riprendere l'effetto con un'azione. Raffiche: vento orizzontale calmo, moderato o forte; moderato o forte impone svantaggio agli attacchi con armi a distanza che attraversano l'area, quello forte raddoppia il costo del movimento controvento. Corrente discendente: svantaggio agli attacchi con armi a distanza che attraversano il cubo o bersagliano chi vi si trova; chi entra volando per la prima volta in un turno o vi inizia il turno in volo deve superare un tiro salvezza su Forza o cadere prono. Corrente ascendente: dimezza i danni da caduta per chi atterra nel cubo e aumenta di 3 metri l'altezza dei salti verticali al suo interno.",
     "source": "XGE",
     "level": 5,
     "school": "Trasmutazione",
@@ -2823,11 +2876,16 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "hour",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "90 metri",
+    "components": "V, S",
+    "savingThrow": "str",
+    "savingThrows": ["str"]
   },
   {
     "id": "cordon-of-arrows",
@@ -2893,7 +2951,7 @@
   {
     "id": "create-bonfire",
     "name": "Creare falò",
-    "description": "L'incantatore crea un falò magico in uno spazio libero a terra entro gittata. Una creatura che entra nel fuoco o vi termina il turno effettua un tiro salvezza su Destrezza e subisce 1d8 danni da fuoco se lo fallisce.",
+    "description": "Un falò magico riempie un cubo di 1,5 metri su terreno visibile entro gittata. Una creatura nel cubo al lancio, che vi entra per la prima volta in un turno o che vi termina il proprio turno deve superare un tiro salvezza su Destrezza o subire 1d8 danni da fuoco. Il falò incendia gli oggetti infiammabili non indossati né trasportati nella sua area. I danni aumentano con il livello del personaggio: 2d8 al 5°, 3d8 all’11° e 4d8 al 17°.",
     "source": "XGE",
     "level": 0,
     "school": "Evocazione",
@@ -2904,15 +2962,21 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "1d8",
-      "type": "fuoco"
-    }
+      "type": "fuoco",
+      "scaling": "I danni aumentano con il livello del personaggio: 2d8 al 5°, 3d8 all’11° e 4d8 al 17°."
+    },
+    "range": "18 metri",
+    "components": "V, S",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "create-food-and-water",
@@ -2939,22 +3003,29 @@
   {
     "id": "create-homunculus",
     "name": "Creare omuncolo",
-    "description": "L'incantatore crea un servitore omuncolo usando il proprio sangue e materiali speciali. L'omuncolo è fedele e condivide un legame telepatico con il creatore.",
+    "description": "L'incantatore si ferisce con il pugnale componente, subendo 2d4 danni perforanti non riducibili, e crea un omuncolo fedele con le statistiche del Manuale dei Mostri. L'omuncolo muore se muore il creatore e non è possibile averne più di uno. Al termine di un riposo lungo, se si trovano sullo stesso piano, il creatore può spendere fino a metà dei propri Dadi Vita: per ogni dado somma il modificatore di Costituzione, riduce del totale i propri PF massimi (senza scendere sotto 1) e aumenta dello stesso valore i PF attuali e massimi dell'omuncolo fino al prossimo riposo lungo. La riduzione non può essere rimossa prima, salvo la morte dell'omuncolo.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
     "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "hour",
+      "text": "1 ora"
     },
     "duration": {
       "unit": "instantaneous",
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "Contatto",
+    "components": "V, S, M (argilla, cenere e radice di mandragora, consumate dall'incantesimo, e un pugnale tempestato di gemme del valore di almeno 1.000 mo)",
+    "damage": {
+      "formula": "2d4",
+      "type": "perforanti",
+      "note": "Danni subiti dall'incantatore, non riducibili."
+    }
   },
   {
     "id": "create-or-destroy-water",
@@ -3053,7 +3124,7 @@
   {
     "id": "crown-of-stars",
     "name": "Corona di stelle",
-    "description": "Sette stelle luminose orbitano attorno all'incantatore per la durata. Come azione bonus può scagliarne una contro una creatura entro gittata effettuando un attacco a distanza con incantesimo; se colpisce infligge 4d12 danni radianti.",
+    "description": "Sette stelle orbitano attorno all'incantatore per la durata. Con un'azione bonus può consumarne una per effettuare un attacco a distanza con incantesimo contro una creatura o un oggetto entro 36 metri: se colpisce infligge 4d12 danni radianti. Con almeno quattro stelle emette luce intensa entro 9 metri e fioca per altri 9; con una, due o tre emette solo luce fioca entro 9 metri. L'effetto termina quando esaurisce le stelle. Con slot superiori al 7°, si creano due stelle aggiuntive per livello dello slot.",
     "source": "XGE",
     "level": 7,
     "school": "Invocazione",
@@ -3064,15 +3135,20 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "hour",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "1 ora",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "4d12",
-      "type": "radianti"
-    }
+      "type": "radianti",
+      "scaling": "Con slot superiori al 7°, si creano due stelle aggiuntive per livello dello slot."
+    },
+    "range": "Incantatore",
+    "components": "V, S",
+    "attackRoll": "ranged"
   },
   {
     "id": "crusaders-mantle",
@@ -3168,7 +3244,7 @@
   {
     "id": "danse-macabre",
     "name": "Danza macabra",
-    "description": "L'incantatore anima fino a cinque cadaveri di taglia Media o Piccola come zombi sotto il suo controllo. Gli zombi ottengono un bonus ai tiri per colpire e ai danni e scompaiono al termine dell'incantesimo.",
+    "description": "L'incantatore anima fino a cinque cadaveri Piccoli o Medi visibili entro gittata come scheletri o zombi. Aggiungono il suo modificatore di caratteristica da incantatore ai tiri per colpire e ai danni. Con un'azione bonus può impartire lo stesso ordine mentale a quelli entro 18 metri; senza ordini si limitano a difendersi. Al termine dell'incantesimo tornano cadaveri inanimati. Con slot superiori al 5°, si animano due cadaveri aggiuntivi per livello dello slot.",
     "source": "XGE",
     "level": 5,
     "school": "Necromanzia",
@@ -3179,15 +3255,14 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "hour",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "isHidden": true,
-    "damage": {
-      "formula": "variabile",
-      "type": "variabile"
-    }
+    "range": "18 metri",
+    "components": "V, S"
   },
   {
     "id": "darkness",
@@ -3246,7 +3321,7 @@
   {
     "id": "dawn",
     "name": "Alba",
-    "description": "Una sfera di luce solare del diametro di 9 metri appare in un punto entro gittata. Le creature nell'area effettuano un tiro salvezza su Costituzione e subiscono 4d10 danni radianti se lo falliscono, o la metà con un successo; l'incantatore può spostare la sfera ogni turno.",
+    "description": "Un cilindro di luce solare di raggio 9 metri e altezza 12 metri appare entro gittata. Ogni creatura al suo interno quando compare o che vi termina il proprio turno effettua un tiro salvezza su Costituzione: subisce 4d10 danni radianti se fallisce, metà se supera il tiro. Se si trova entro 18 metri dal cilindro, l'incantatore può spostarlo fino a 18 metri con un'azione bonus.",
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
@@ -3257,15 +3332,20 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "4d10",
       "type": "radianti"
-    }
+    },
+    "range": "18 metri",
+    "components": "V, S, M (un pendente a forma di sole del valore di almeno 100 mo)",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "daylight",
@@ -3947,26 +4027,32 @@
   {
     "id": "dragons-breath",
     "name": "Soffio del drago",
-    "description": "Una creatura consenziente toccata dall'incantatore può espellere energia in un cono di 4,5 metri. Le creature nel cono effettuano un tiro salvezza su Destrezza e subiscono 3d6 danni del tipo scelto tra acido, freddo, fulmine, fuoco o veleno.",
+    "description": "L'incantatore tocca una creatura consenziente dotata di bocca e sceglie acido, freddo, fuoco, fulmine o veleno. Per la durata, il bersaglio può usare un'azione per soffiare un cono di 4,5 metri. Ogni creatura nel cono effettua un tiro salvezza su Destrezza, subendo 3d6 danni del tipo scelto se fallisce, metà se supera il tiro. Con slot superiori al 2°, i danni aumentano di 1d6 per livello dello slot.",
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
     "classes": ["sorcerer", "wizard"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "bonus-action",
+      "text": "1 azione bonus"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "3d6",
-      "type": "acido/freddo/fulmine/fuoco/veleno"
-    }
+      "type": "acido/freddo/fulmine/fuoco/veleno",
+      "scaling": "Con slot superiori al 2°, i danni aumentano di 1d6 per livello dello slot."
+    },
+    "range": "Contatto",
+    "components": "V, S, M (un peperoncino piccante)",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "dream",
@@ -4002,41 +4088,44 @@
     "level": 7,
     "school": "Evocazione",
     "classes": ["bard", "sorcerer", "warlock", "wizard"],
-    "description": "L'incantatore e fino a otto creature consenzienti si addormentano e ricevono un sogno che conduce a un altro mondo del multiverso scelto dall'incantatore, dove i loro corpi vengono trasportati al risveglio.",
+    "description": "L'incantatore e fino a otto creature consenzienti entro gittata diventano privi di sensi per 6 ore, sognando un altro mondo del Piano Materiale. Per raggiungerlo l'incantatore deve conoscerne l'esistenza e avere un oggetto magico creato lì, oppure includere tra i bersagli una creatura nata lì. Al termine sono trasportati in un luogo sicuro entro 1,5 chilometri dal luogo di creazione dell'oggetto o di nascita della creatura. Chi subisce danni si sveglia e non viaggia; se li subisce l'incantatore, l'incantesimo termina per tutti senza trasporto.",
     "castingTime": {
       "amount": 10,
       "unit": "minute",
       "text": "10 minuti"
     },
     "range": "6 metri",
-    "components": "V, S, M",
+    "components": "V, S, M (un oggetto magico o una creatura consenziente originari del mondo di destinazione)",
     "duration": {
       "unit": "hour",
-      "amount": 6,
-      "concentration": true,
-      "text": "Concentrazione, fino a 6 ore"
+      "concentration": false,
+      "text": "6 ore",
+      "amount": 6
     },
     "isHidden": true
   },
   {
     "id": "druid-grove",
     "name": "Boschetto del druido",
-    "description": "L'incantatore crea un boschetto magico in un'area naturale. Può stabilire guardiani e barriere magiche, creare effetti atmosferici, far crescere piante e predisporre vari effetti difensivi che possono essere riattivati.",
+    "description": "L'incantatore protegge un'area all'aperto o sotterranea, esclusi edifici e strutture, compresa tra un cubo di 9 metri e uno di 27 metri. Designa creature o una parola d'ordine per ignorarne gli effetti. Può riempire zone di nebbia fitta alta 3 metri che oscura pesantemente e triplica il costo del movimento, altre zone di vegetazione come intralciare, e animare fino a quattro alberi come alberi risvegliati che difendono il boschetto senza poterlo lasciare. Aggiunge raffica di vento in due punti, crescita di spine in uno o muro di vento in due. Dissolvi magie rimuove un solo effetto per lancio. Ripetere il lancio ogni giorno per un anno rende il boschetto permanente finché non viene dissolto.",
     "source": "XGE",
     "level": 6,
     "school": "Abiurazione",
     "classes": ["druid"],
     "castingTime": {
-      "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "amount": 10,
+      "unit": "minute",
+      "text": "10 minuti"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "hour",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "24 ore",
+      "amount": 24
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "Contatto",
+    "components": "V, S, M (vischio raccolto con un falcetto d'oro alla luce della luna piena, consumato dall'incantesimo)"
   },
   {
     "id": "druidcraft",
@@ -4063,7 +4152,7 @@
   {
     "id": "dust-devil",
     "name": "Diavolo di polvere",
-    "description": "Un diavolo di polvere compare in un cubo di 1,5 metri. Le creature entro 1,5 metri effettuano un tiro salvezza su Forza e subiscono 1d8 danni contundenti se lo falliscono; l'incantatore può muovere il diavolo con un'azione bonus.",
+    "description": "Un diavolo di polvere occupa un cubo libero visibile di 1,5 metri entro gittata. Chi termina il proprio turno entro 1,5 metri effettua un tiro salvezza su Forza: se fallisce subisce 1d8 danni contundenti ed è spinto di 3 metri; se supera il tiro subisce metà danni senza essere spinto. L'incantatore lo muove fino a 9 metri con un'azione bonus. Attraversando terra sciolta, sabbia, polvere o ghiaia leggera, solleva una nube pesantemente oscurata di raggio 3 metri fino all'inizio del turno successivo dell'incantatore. Con slot superiori al 2°, i danni aumentano di 1d8 per livello dello slot.",
     "source": "XGE",
     "level": 2,
     "school": "Evocazione",
@@ -4074,20 +4163,26 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "1d8",
-      "type": "contundenti"
-    }
+      "type": "contundenti",
+      "scaling": "Con slot superiori al 2°, i danni aumentano di 1d8 per livello dello slot."
+    },
+    "range": "18 metri",
+    "components": "V, S, M (un pizzico di polvere)",
+    "savingThrow": "str",
+    "savingThrows": ["str"]
   },
   {
     "id": "earth-tremor",
     "name": "Tremore della terra",
-    "description": "Il terreno trema in un raggio di 3 metri. Le creature nell'area effettuano un tiro salvezza su Destrezza e subiscono 1d6 danni contundenti e cadono prone se lo falliscono.",
+    "description": "Il terreno entro 3 metri dall'incantatore trema. Ogni altra creatura nell'area effettua un tiro salvezza su Destrezza: se fallisce subisce 1d6 danni contundenti e cade prona. Terra sciolta o pietra diventano terreno difficile finché non vengono sgombrate, richiedendo almeno 1 minuto di lavoro manuale per ogni porzione di diametro 1,5 metri. Con slot superiori al 1°, i danni aumentano di 1d6 per livello dello slot.",
     "source": "XGE",
     "level": 1,
     "school": "Invocazione",
@@ -4105,13 +4200,18 @@
     "isHidden": true,
     "damage": {
       "formula": "1d6",
-      "type": "contundenti"
-    }
+      "type": "contundenti",
+      "scaling": "Con slot superiori al 1°, i danni aumentano di 1d6 per livello dello slot."
+    },
+    "range": "3 metri",
+    "components": "V, S",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "earthbind",
     "name": "Vincolo della terra",
-    "description": "Una creatura volante entro gittata effettua un tiro salvezza su Forza. Se fallisce, la sua velocità di volare viene ridotta a 0 per la durata e scende lentamente verso il terreno.",
+    "description": "Una creatura visibile entro gittata effettua un tiro salvezza su Forza. Se fallisce, la sua velocità di volare, se ne possiede una, diventa 0 per la durata. Se è in aria, scende in sicurezza di 18 metri per round finché raggiunge il terreno o l'incantesimo termina.",
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
@@ -4122,11 +4222,16 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "90 metri",
+    "components": "V",
+    "savingThrow": "str",
+    "savingThrows": ["str"]
   },
   {
     "id": "earthquake",
@@ -4187,22 +4292,33 @@
   {
     "id": "elemental-bane",
     "name": "Rovina elementale",
-    "description": "L'incantatore sceglie una creatura e un tipo di danno tra acido, freddo, fuoco, fulmine o tuono. Il bersaglio perde resistenza a quel tipo di danno e, ogni volta che subisce danni di quel tipo, ne subisce 2d6 extra.",
+    "description": "L'incantatore sceglie una creatura visibile entro gittata e un tipo di danno tra acido, freddo, fuoco, fulmine o tuono. Se il bersaglio fallisce un tiro salvezza su Costituzione, perde la resistenza a quel tipo per la durata e subisce 2d6 danni extra dello stesso tipo la prima volta in ciascun turno che riceve danni di quel tipo. Con slot superiori al 4°, si aggiunge un bersaglio per livello dello slot; al lancio i bersagli devono trovarsi entro 9 metri gli uni dagli altri.",
     "source": "XGE",
     "level": 4,
     "school": "Trasmutazione",
-    "classes": ["druid", "sorcerer", "warlock", "wizard"],
+    "classes": ["druid", "warlock", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "27 metri",
+    "components": "V, S",
+    "savingThrow": "con",
+    "savingThrows": ["con"],
+    "damage": {
+      "formula": "2d6",
+      "type": "acido/freddo/fuoco/fulmine/tuono",
+      "note": "Danni aggiuntivi del tipo scelto, solo la prima volta in ogni turno.",
+      "scaling": "Con slot superiori al 4°, si aggiunge un bersaglio per livello dello slot; al lancio i bersagli devono trovarsi entro 9 metri gli uni dagli altri."
+    }
   },
   {
     "id": "elemental-weapon",
@@ -4242,7 +4358,7 @@
   {
     "id": "enemies-abound",
     "name": "Nemici ovunque",
-    "description": "Una creatura entro gittata effettua un tiro salvezza su Intelligenza. Se fallisce, perde la capacità di distinguere amici e nemici e considera ogni creatura come ostile per la durata.",
+    "description": "Una creatura visibile entro gittata effettua un tiro salvezza su Intelligenza; chi è immune alla condizione spaventato lo supera automaticamente. Se fallisce, considera nemiche tutte le creature che vede e sceglie casualmente i bersagli delle proprie capacità tra quelli visibili a portata. Deve effettuare gli attacchi di opportunità provocati se ne è in grado. Ogni volta che subisce danni può ripetere il tiro salvezza, terminando l'effetto con un successo.",
     "source": "XGE",
     "level": 3,
     "school": "Ammaliamento",
@@ -4253,16 +4369,21 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "36 metri",
+    "components": "V, S",
+    "savingThrow": "int",
+    "savingThrows": ["int"]
   },
   {
     "id": "enervation",
     "name": "Debilitazione",
-    "description": "Un raggio oscuro collega l'incantatore a una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Destrezza e, se fallisce, subisce 4d8 danni necrotici; l'incantatore recupera punti ferita pari a metà dei danni inflitti e può mantenere il raggio per infliggere danni nuovamente nei turni successivi.",
+    "description": "Una creatura visibile entro gittata effettua un tiro salvezza su Destrezza. Se lo supera subisce 2d8 danni necrotici e l'incantesimo termina; se fallisce subisce 4d8 danni necrotici e nei turni successivi l'incantatore può usare la propria azione per infliggerle automaticamente altri 4d8. Ogni volta recupera PF pari alla metà dei danni necrotici subiti dal bersaglio. L'effetto termina se usa l'azione per altro, se il bersaglio esce dalla gittata o ottiene copertura totale. Con slot superiori al 5°, i danni aumentano di 1d8 per livello dello slot.",
     "source": "XGE",
     "level": 5,
     "school": "Necromanzia",
@@ -4273,11 +4394,22 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "18 metri",
+    "components": "V, S",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"],
+    "damage": {
+      "formula": "4d8",
+      "type": "necrotici",
+      "note": "2d8 se il tiro salvezza iniziale riesce; 4d8 per ogni azione successiva dedicata a mantenere il legame.",
+      "scaling": "Con slot superiori al 5°, i danni aumentano di 1d8 per livello dello slot."
+    }
   },
   {
     "id": "enhance-ability",
@@ -4419,7 +4551,7 @@
   {
     "id": "erupting-earth",
     "name": "Terra eruttante",
-    "description": "Un punto del terreno esplode in un cubo di 6 metri. Le creature nell'area effettuano un tiro salvezza su Destrezza e subiscono 3d12 danni contundenti se lo falliscono, o la metà con un successo; il terreno diventa difficile.",
+    "description": "Un punto del terreno esplode in un cubo di 6 metri. Le creature nell'area effettuano un tiro salvezza su Destrezza e subiscono 3d12 danni contundenti se lo falliscono, o la metà con un successo; il terreno diventa difficile. Con slot superiori al 3°, i danni aumentano di 1d12 per livello dello slot.",
     "source": "XGE",
     "level": 3,
     "school": "Trasmutazione",
@@ -4437,8 +4569,13 @@
     "isHidden": true,
     "damage": {
       "formula": "3d12",
-      "type": "contundenti"
-    }
+      "type": "contundenti",
+      "scaling": "Con slot superiori al 3°, i danni aumentano di 1d12 per livello dello slot."
+    },
+    "range": "36 metri",
+    "components": "V, S, M (un pezzo di ossidiana)",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "etherealness",
@@ -4654,15 +4791,18 @@
     "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "bonus-action",
+      "text": "1 azione bonus"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "Incantatore",
+    "components": "V"
   },
   {
     "id": "fear",
@@ -4808,16 +4948,18 @@
     "school": "Evocazione",
     "classes": ["paladin"],
     "castingTime": {
-      "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "amount": 10,
+      "unit": "minute",
+      "text": "10 minuti"
     },
     "duration": {
       "unit": "instantaneous",
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "9 metri",
+    "components": "V, S"
   },
   {
     "id": "find-steed",
@@ -5058,7 +5200,7 @@
   {
     "id": "flame-arrows",
     "name": "Frecce infuocate",
-    "description": "L'incantatore infonde di energia infuocata una quantità di munizioni fino a dodici. Ogni munizione infligge 1d6 danni da fuoco extra quando colpisce.",
+    "description": "L'incantatore tocca una faretra di frecce o quadrelli. Un attacco con arma a distanza che colpisce usando una munizione estratta dalla faretra infligge 1d6 danni da fuoco extra. La magia sulla munizione termina dopo l'attacco, a prescindere dall'esito. L'incantesimo termina quando sono state estratte dodici munizioni. Con slot superiori al 3°, si possono estrarre due munizioni aggiuntive per livello dello slot.",
     "source": "XGE",
     "level": 3,
     "school": "Trasmutazione",
@@ -5069,15 +5211,19 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "hour",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "1d6",
-      "type": "fuoco"
-    }
+      "type": "fuoco",
+      "scaling": "Con slot superiori al 3°, si possono estrarre due munizioni aggiuntive per livello dello slot."
+    },
+    "range": "Contatto",
+    "components": "V, S"
   },
   {
     "id": "flame-blade",
@@ -5493,7 +5639,7 @@
   {
     "id": "frostbite",
     "name": "Morso del gelo",
-    "description": "Una creatura entro gittata effettua un tiro salvezza su Costituzione e subisce 1d6 danni da freddo se lo fallisce; con un fallimento ha anche svantaggio al prossimo tiro per colpire con un'arma prima della fine del suo prossimo turno.",
+    "description": "Una creatura entro gittata effettua un tiro salvezza su Costituzione e subisce 1d6 danni da freddo se lo fallisce; con un fallimento ha anche svantaggio al prossimo tiro per colpire con un'arma prima della fine del suo prossimo turno. I danni aumentano con il livello del personaggio: 2d6 al 5°, 3d6 all’11° e 4d6 al 17°.",
     "source": "XGE",
     "level": 0,
     "school": "Invocazione",
@@ -5511,8 +5657,13 @@
     "isHidden": true,
     "damage": {
       "formula": "1d6",
-      "type": "freddo"
-    }
+      "type": "freddo",
+      "scaling": "I danni aumentano con il livello del personaggio: 2d6 al 5°, 3d6 all’11° e 4d6 al 17°."
+    },
+    "range": "18 metri",
+    "components": "V, S",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "gaseous-form",
@@ -5907,14 +6058,14 @@
     "level": 0,
     "school": "Invocazione",
     "classes": ["artificer", "sorcerer", "warlock", "wizard"],
-    "description": "L'incantatore effettua un attacco con un'arma da mischia. Se colpisce, una fiamma verde balza dal bersaglio a una creatura diversa entro 1,5 metri, infliggendo danni da fuoco extra che aumentano con il livello del personaggio.",
+    "description": "L'incantatore attacca con l'arma da mischia componente una creatura entro 1,5 metri. Se colpisce, applica i normali effetti dell'arma e può far balzare una fiamma a una seconda creatura visibile entro 1,5 metri dal primo bersaglio, infliggendole danni da fuoco pari al proprio modificatore di caratteristica da incantatore. Dal 5° livello il primo bersaglio subisce anche 1d8 danni da fuoco e il secondo 1d8 più il modificatore; i dadi diventano 2d8 all'11° e 3d8 al 17° livello.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
-    "range": "Incantatore (1.5 m)",
-    "components": "S, M",
+    "range": "Incantatore (raggio di 1,5 metri)",
+    "components": "S, M (un'arma da mischia del valore di almeno 1 ma)",
     "duration": {
       "unit": "instantaneous",
       "concentration": false,
@@ -5922,9 +6073,10 @@
     },
     "attackRoll": "melee",
     "damage": {
-      "formula": "1d8",
+      "formula": "modificatore di caratteristica da incantatore",
       "type": "fuoco",
-      "note": "Danni da fuoco secondari; l'incantesimo aumenta di potenza con il livello del personaggio."
+      "note": "Danno al secondo bersaglio al livello 1; dal livello 5 aumenta e si aggiunge danno al colpo iniziale.",
+      "scaling": "Dal 5° livello: 1d8 al colpo e 1d8 + modificatore al secondo bersaglio; i dadi diventano 2d8 all’11° e 3d8 al 17°."
     },
     "isHidden": true
   },
@@ -5981,22 +6133,30 @@
   {
     "id": "guardian-of-nature",
     "name": "Guardiano della natura",
-    "description": "L'incantatore assume una forma naturale potenziata, scegliendo Forma della Bestia o Forma del Grande Albero. Ottiene bonus offensivi e difensivi, oltre a vantaggi legati al terreno e alla percezione.",
+    "description": "L'incantatore sceglie una forma. Bestia primordiale: velocità di camminare +3 metri, scurovisione 36 metri, vantaggio ai tiri per colpire basati su Forza e 1d6 danni da forza extra con gli attacchi con armi da mischia. Grande albero: 10 PF temporanei, vantaggio ai tiri salvezza su Costituzione e ai tiri per colpire basati su Destrezza o Saggezza; mentre è a terra, il terreno entro 4,5 metri è difficile per i nemici.",
     "source": "XGE",
     "level": 4,
     "school": "Trasmutazione",
     "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "bonus-action",
+      "text": "1 azione bonus"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "Incantatore",
+    "components": "V",
+    "damage": {
+      "formula": "1d6",
+      "type": "forza",
+      "note": "Danni extra degli attacchi con armi da mischia nella forma Bestia primordiale."
+    }
   },
   {
     "id": "guards-and-wards",
@@ -6090,7 +6250,7 @@
   {
     "id": "gust",
     "name": "Folata",
-    "description": "L'incantatore manipola una corrente d'aria entro gittata, spingendo una creatura o un oggetto leggero, oppure creando un effetto scenico innocuo.",
+    "description": "L'incantatore crea una corrente in un punto visibile entro gittata. Può spingere una creatura Media o più piccola fino a 1,5 metri lontano da sé se fallisce un tiro salvezza su Forza; spostare fino a 3 metri un oggetto non indossato né trasportato di peso massimo 2,5 kg senza infliggere danni; oppure produrre un effetto sensoriale innocuo con l'aria.",
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
@@ -6105,7 +6265,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "9 metri",
+    "components": "V, S",
+    "savingThrow": "str",
+    "savingThrows": ["str"]
   },
   {
     "id": "gust-of-wind",
@@ -6307,22 +6471,25 @@
   {
     "id": "healing-spirit",
     "name": "Spirito guaritore",
-    "description": "L'incantatore evoca uno spirito curativo in uno spazio entro gittata. Una creatura che entra nello spazio dello spirito o vi inizia il turno recupera 1d6 punti ferita; l'incantatore può spostare lo spirito con un'azione bonus.",
+    "description": "Uno spirito incorporeo occupa un cubo visibile di 1,5 metri entro gittata. Quando l'incantatore o una creatura che vede entra nello spazio per la prima volta in un turno o vi inizia il proprio turno, l'incantatore può farle recuperare 1d6 PF senza usare azioni. Non cura costrutti o non morti. Con un'azione bonus l'incantatore può spostarlo fino a 9 metri in uno spazio visibile. Con slot superiori al 2°, la guarigione aumenta di 1d6 per livello dello slot.",
     "source": "XGE",
     "level": 2,
     "school": "Evocazione",
     "classes": ["druid", "ranger"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "bonus-action",
+      "text": "1 azione bonus"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "18 metri",
+    "components": "V, S"
   },
   {
     "id": "healing-word",
@@ -6674,26 +6841,32 @@
   {
     "id": "holy-weapon",
     "name": "Arma sacra",
-    "description": "Un'arma toccata dall'incantatore viene infusa di potere radiante: gli attacchi con essa infliggono 2d8 danni radianti extra. L'incantatore può porre fine all'incantesimo con un'esplosione che infligge 4d8 danni radianti alle creature vicine.",
+    "description": "Un'arma toccata emette luce intensa entro 9 metri e fioca per altri 9, diventa magica se non lo era e infligge 2d8 danni radianti extra quando colpisce. Con un'azione bonus l'incantatore può terminare l'incantesimo creando un'esplosione: le creature a sua scelta visibili entro 9 metri da lui effettuano un tiro salvezza su Costituzione, subendo 4d8 danni radianti e rimanendo accecate per 1 minuto se falliscono, oppure metà danni senza accecamento se lo superano. Le creature accecate ripetono il tiro alla fine di ogni proprio turno per terminare l'effetto.",
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
     "classes": ["cleric", "paladin"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "bonus-action",
+      "text": "1 azione bonus"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "hour",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "2d8",
-      "type": "radianti"
-    }
+      "type": "radianti",
+      "note": "Danni extra con l'arma; l'esplosione finale infligge 4d8, dimezzati con TS su Costituzione riuscito."
+    },
+    "range": "Contatto",
+    "components": "V, S",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "hunger-of-hadar",
@@ -6805,7 +6978,7 @@
   {
     "id": "ice-knife",
     "name": "Coltello di ghiaccio",
-    "description": "L'incantatore scaglia un frammento di ghiaccio contro una creatura. Con un colpo infligge 1d10 danni perforanti; poi esplode e le creature entro 1,5 metri devono superare un tiro salvezza su Destrezza o subire 2d6 danni da freddo.",
+    "description": "Un attacco a distanza con incantesimo contro una creatura entro gittata infligge 1d10 danni perforanti se colpisce. A prescindere dall'esito dell'attacco, il frammento esplode: il bersaglio e ogni creatura entro 1,5 metri da esso devono superare un tiro salvezza su Destrezza o subire 2d6 danni da freddo. Con slot superiori al 1°, solo i danni da freddo aumentano di 1d6 per livello dello slot.",
     "source": "XGE",
     "level": 1,
     "school": "Evocazione",
@@ -6823,8 +6996,15 @@
     "isHidden": true,
     "damage": {
       "formula": "1d10+2d6",
-      "type": "perforanti+freddo"
-    }
+      "type": "perforanti+freddo",
+      "note": "1d10 perforanti solo se l'attacco colpisce; esplosione di 2d6 da freddo anche se manca, evitabile con TS su Destrezza.",
+      "scaling": "Con slot superiori al 1°, solo i danni da freddo aumentano di 1d6 per livello dello slot."
+    },
+    "range": "18 metri",
+    "components": "S, M (una goccia d'acqua o un pezzo di ghiaccio)",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"],
+    "attackRoll": "ranged"
   },
   {
     "id": "ice-storm",
@@ -6915,7 +7095,7 @@
   {
     "id": "illusory-dragon",
     "name": "Drago illusorio",
-    "description": "L'incantatore crea un drago illusorio di taglia Grande che terrorizza le creature vicine. Una creatura che entra nell'area del drago o vi inizia il turno può subire 7d6 danni psichici e deve superare un tiro salvezza su Saggezza per non essere spaventata.",
+    "description": "Un drago illusorio Enorme appare in uno spazio libero visibile entro gittata. I nemici che lo vedono comparire devono superare un tiro salvezza su Saggezza o esserne spaventati per 1 minuto; possono ripeterlo a fine turno se non lo hanno in linea di vista. Con un'azione bonus l'incantatore muove il drago fino a 18 metri e durante il movimento può fargli emettere un cono di 18 metri: tiro salvezza su Intelligenza, 7d6 danni se fallito, metà se superato. Il tipo, scelto al lancio, è acido, freddo, fuoco, fulmine, necrotico o veleno. Il drago è immune a danni e condizioni, supera ogni tiro salvezza e gli attacchi lo mancano. Un'azione e una prova di Intelligenza (Indagare) contro la CD rivelano l'illusione e concedono vantaggio contro il soffio.",
     "source": "XGE",
     "level": 8,
     "school": "Illusione",
@@ -6926,15 +7106,21 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "7d6",
-      "type": "psichici"
-    }
+      "type": "acido/freddo/fuoco/fulmine/necrotici/veleno",
+      "note": "Soffio: tiro salvezza su Intelligenza per dimezzare; tipo scelto al lancio."
+    },
+    "range": "36 metri",
+    "components": "S",
+    "savingThrow": "wis",
+    "savingThrows": ["wis", "int"]
   },
   {
     "id": "illusory-script",
@@ -6974,15 +7160,20 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "8d6",
       "type": "fuoco"
-    }
+    },
+    "range": "27 metri",
+    "components": "V",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "imprisonment",
@@ -7040,27 +7231,30 @@
   {
     "id": "infernal-calling",
     "name": "Chiamata infernale",
-    "description": "L'incantatore evoca un diavolo con grado di sfida 6 o inferiore in uno spazio libero entro gittata. Il diavolo è vincolato per la durata se l'incantatore riesce a controllarlo con un sigillo magico o una prova di Carisma.",
+    "description": "L'incantatore evoca un diavolo di GS massimo 6 in uno spazio libero visibile. È ostile all'incantatore e ai suoi compagni, agisce con iniziativa propria ed è controllato dal DM. Gli ordini verbali non richiedono azioni: se contrari ai suoi desideri, serve una prova di Carisma (Inganno, Intimidire o Persuasione) contrapposta alla sua Saggezza (Intuizione), con vantaggio se si pronuncia il suo vero nome. Un fallimento lo rende immune agli ordini successivi. Se si interrompe prima la concentrazione, un diavolo immune agli ordini rimane per 3d6 minuti. Il talismano di uno specifico diavolo consente di evocarlo con GS massimo aumentato di 1 e di farsi obbedire senza prove. Con slot superiori al 5°, il GS massimo aumenta di 1 per livello dello slot.",
     "source": "XGE",
     "level": 5,
     "school": "Evocazione",
     "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "minute",
+      "text": "1 minuto"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "hour",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "27 metri",
+    "components": "V, S, M (un rubino del valore di almeno 999 mo)"
   },
   {
     "id": "infestation",
     "name": "Infestazione",
-    "description": "Insetti parassiti compaiono su una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Costituzione e subisce 1d6 danni da veleno se lo fallisce; con un fallimento si muove inoltre di 1,5 metri in una direzione casuale.",
+    "description": "Insetti parassiti compaiono su una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Costituzione e subisce 1d6 danni da veleno se lo fallisce; con un fallimento si muove inoltre di 1,5 metri in una direzione casuale. Lo spostamento avviene solo se il bersaglio può muoversi e ha una velocità di almeno 1,5 metri, non provoca attacchi di opportunità e non avviene se la direzione è bloccata. Si tira 1d4 per la direzione: nord, sud, est o ovest. I danni aumentano con il livello del personaggio: 2d6 al 5°, 3d6 all’11° e 4d6 al 17°.",
     "source": "XGE",
     "level": 0,
     "school": "Evocazione",
@@ -7078,8 +7272,13 @@
     "isHidden": true,
     "damage": {
       "formula": "1d6",
-      "type": "veleno"
-    }
+      "type": "veleno",
+      "scaling": "I danni aumentano con il livello del personaggio: 2d6 al 5°, 3d6 all’11° e 4d6 al 17°."
+    },
+    "range": "9 metri",
+    "components": "V, S, M (una pulce viva)",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "inflict-wounds",
@@ -7189,26 +7388,26 @@
     "level": 3,
     "school": "Abiurazione",
     "classes": ["artificer", "bard", "sorcerer", "warlock", "wizard"],
-    "description": "Una creatura consenziente ottiene resistenza ai danni psichici e vantaggio ai tiri salvezza su Intelligenza, Saggezza e Carisma. Se una creatura subisce un attacco psichico, può usare una reazione per proteggere un alleato vicino.",
+    "description": "L'incantatore o una creatura consenziente visibile entro gittata ottiene resistenza ai danni psichici e vantaggio ai tiri salvezza su Intelligenza, Saggezza e Carisma per la durata. Con slot superiori al 3°, si aggiunge un bersaglio per livello dello slot; al lancio i bersagli devono trovarsi entro 9 metri gli uni dagli altri.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
-    "range": "9 m",
+    "range": "9 metri",
     "components": "V",
     "duration": {
       "unit": "hour",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 ora"
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "isHidden": true
   },
   {
     "id": "investiture-of-flame",
     "name": "Investitura della fiamma",
-    "description": "L'incantatore assume un'aura di fiamme: è immune al fuoco, emette luce intensa e può usare un'azione per creare un cono di fuoco che infligge 4d8 danni da fuoco con un tiro salvezza su Destrezza.",
+    "description": "L'incantatore è immune ai danni da fuoco e resistente al freddo; emette luce intensa entro 9 metri e fioca per altri 9. Ogni creatura che si avvicina entro 1,5 metri per la prima volta in un turno o vi termina il proprio turno subisce 1d10 danni da fuoco. Con un'azione crea una linea di fuoco lunga 4,5 metri e larga 1,5 metri: tiro salvezza su Destrezza, 4d8 danni da fuoco se fallito, metà se superato.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
@@ -7219,20 +7418,26 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
     "isHidden": true,
     "damage": {
       "formula": "4d8",
-      "type": "fuoco"
-    }
+      "type": "fuoco",
+      "note": "Linea con TS su Destrezza per dimezzare; aura ravvicinata: 1d10 senza tiro salvezza."
+    },
+    "range": "Incantatore",
+    "components": "V, S",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "investiture-of-ice",
     "name": "Investitura del ghiaccio",
-    "description": "L'incantatore assume un'aura di ghiaccio: è immune al freddo, può muoversi su superfici ghiacciate senza penalità e può creare un cono di gelo che infligge 4d8 danni da freddo con un tiro salvezza su Costituzione.",
+    "description": "L'incantatore è immune al freddo, resistente al fuoco e ignora il terreno difficile dovuto a neve o ghiaccio. Il terreno entro 3 metri da lui è ghiacciato e difficile per le altre creature. Con un'azione crea un cono di 4,5 metri: tiro salvezza su Costituzione, 4d6 danni da freddo se fallito, metà se superato. Chi fallisce ha inoltre velocità dimezzata fino all'inizio del turno successivo dell'incantatore.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
@@ -7243,20 +7448,26 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
     "isHidden": true,
     "damage": {
-      "formula": "4d8",
-      "type": "freddo"
-    }
+      "formula": "4d6",
+      "type": "freddo",
+      "note": "Cono con TS su Costituzione per dimezzare."
+    },
+    "range": "Incantatore",
+    "components": "V, S",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "investiture-of-stone",
     "name": "Investitura della pietra",
-    "description": "L'incantatore assume una forma rocciosa, ottiene resistenza ai danni contundenti, perforanti e taglienti non magici e può attraversare terreno difficile senza penalità.",
+    "description": "L'incantatore resiste ai danni contundenti, perforanti e taglienti degli attacchi non magici e ignora il terreno difficile di terra o pietra. Con un'azione provoca un terremoto entro 4,5 metri: le altre creature a terra devono superare un tiro salvezza su Destrezza o cadere prone. Può attraversare terra e pietra solide, ma se vi termina il movimento viene espulso nello spazio libero più vicino, l'incantesimo termina ed è stordito fino alla fine del proprio turno successivo.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
@@ -7267,16 +7478,21 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "Incantatore",
+    "components": "V, S",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "investiture-of-wind",
     "name": "Investitura del vento",
-    "description": "L'incantatore assume una forma ventosa, ottiene velocità di volare e resistenza ai danni contundenti, perforanti e taglienti non magici. Può inoltre creare una linea di vento che infligge 2d10 danni contundenti e spinge le creature.",
+    "description": "Gli attacchi con armi a distanza contro l'incantatore hanno svantaggio e la sua velocità di volare diventa 18 metri. Con un'azione crea un cubo di vento di 4,5 metri centrato su un punto visibile entro 18 metri: tiro salvezza su Costituzione, 2d10 danni contundenti se fallito, metà se superato. Una creatura Grande o più piccola che fallisce è anche spinta fino a 3 metri dal centro. Se è ancora in volo quando l'effetto termina, l'incantatore cade salvo altri mezzi per evitarlo.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
@@ -7287,15 +7503,20 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
     "isHidden": true,
     "damage": {
       "formula": "2d10",
       "type": "contundenti"
-    }
+    },
+    "range": "Incantatore",
+    "components": "V, S",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "invisibility",
@@ -7323,7 +7544,7 @@
   {
     "id": "invulnerability",
     "name": "Invulnerabilità",
-    "description": "L'incantatore diventa immune a tutti i danni finché mantiene la concentrazione, salvo eccezioni previste dall'incantesimo.",
+    "description": "L'incantatore è immune a tutti i danni per la durata dell'incantesimo, finché mantiene la concentrazione.",
     "source": "XGE",
     "level": 9,
     "school": "Abiurazione",
@@ -7334,11 +7555,14 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "Incantatore",
+    "components": "V, S, M (un piccolo pezzo di adamantio del valore di almeno 500 mo, consumato dall'incantesimo)"
   },
   {
     "id": "irresistible-dance",
@@ -7508,7 +7732,7 @@
   {
     "id": "life-transference",
     "name": "Trasferimento vitale",
-    "description": "L'incantatore sacrifica parte dei propri punti ferita per curare un'altra creatura. Subisce 4d8 danni necrotici e il bersaglio recupera un numero di punti ferita pari al doppio dei danni subiti.",
+    "description": "L'incantatore sacrifica parte dei propri punti ferita per curare un'altra creatura. Subisce 4d8 danni necrotici e il bersaglio recupera un numero di punti ferita pari al doppio dei danni subiti. Con slot superiori al 3°, i danni subiti dall'incantatore aumentano di 1d8 per livello dello slot.",
     "source": "XGE",
     "level": 3,
     "school": "Necromanzia",
@@ -7526,8 +7750,11 @@
     "isHidden": true,
     "damage": {
       "formula": "4d8",
-      "type": "necrotici"
-    }
+      "type": "necrotici",
+      "scaling": "Con slot superiori al 3°, i danni subiti dall'incantatore aumentano di 1d8 per livello dello slot."
+    },
+    "range": "9 metri",
+    "components": "V, S"
   },
   {
     "id": "light",
@@ -7628,13 +7855,13 @@
     "level": 0,
     "school": "Invocazione",
     "classes": ["artificer", "sorcerer", "warlock", "wizard"],
-    "description": "Un fulmine attira una creatura entro 4,5 metri verso l'incantatore. Il bersaglio effettua un tiro salvezza su Forza e subisce 1d8 danni da fulmine se lo fallisce; se viene trascinato entro 1,5 metri, subisce il danno.",
+    "description": "Una creatura visibile entro 4,5 metri deve superare un tiro salvezza su Forza o essere trascinata fino a 3 metri in linea retta verso l'incantatore. Dopo il trascinamento, subisce 1d8 danni da fulmine soltanto se si trova entro 1,5 metri dall'incantatore. I danni aumentano con il livello del personaggio: 2d8 al 5°, 3d8 all’11° e 4d8 al 17°.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
-    "range": "Incantatore (4.5 m)",
+    "range": "Incantatore (raggio di 4,5 metri)",
     "components": "V",
     "duration": {
       "unit": "instantaneous",
@@ -7646,7 +7873,7 @@
     "damage": {
       "formula": "1d8",
       "type": "fulmine",
-      "scaling": "I danni aumentano ai livelli del personaggio 5, 11 e 17."
+      "scaling": "I danni aumentano con il livello del personaggio: 2d8 al 5°, 3d8 all’11° e 4d8 al 17°."
     },
     "isHidden": true
   },
@@ -7753,7 +7980,7 @@
   {
     "id": "maddening-darkness",
     "name": "Oscurità esasperante",
-    "description": "Una sfera di oscurità magica avvolge un'area. Le creature nell'oscurità subiscono 8d8 danni psichici se falliscono un tiro salvezza su Saggezza, o la metà con un successo, ogni volta che iniziano il turno nell'area.",
+    "description": "Una sfera di oscurità magica di raggio 18 metri si espande attorno agli angoli da un punto entro gittata. La scurovisione non permette di vedere al suo interno e né la luce non magica né quella di incantesimi di livello 8 o inferiore la illuminano. Chi vi inizia il proprio turno effettua un tiro salvezza su Saggezza: 8d8 danni psichici se fallito, metà se superato.",
     "source": "XGE",
     "level": 8,
     "school": "Invocazione",
@@ -7764,20 +7991,25 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
     "isHidden": true,
     "damage": {
       "formula": "8d8",
       "type": "psichici"
-    }
+    },
+    "range": "45 metri",
+    "components": "V, M (una goccia di pece mescolata a una goccia di mercurio)",
+    "savingThrow": "wis",
+    "savingThrows": ["wis"]
   },
   {
     "id": "maelstrom",
     "name": "Maelstrom",
-    "description": "Un vortice d'acqua del diametro di 9 metri si forma sul terreno o in acqua. Le creature nell'area devono superare un tiro salvezza su Forza o subire 6d6 danni contundenti e venire trascinate verso il centro.",
+    "description": "Una massa d'acqua profonda 1,5 metri e di raggio 9 metri vortica intorno a un punto visibile sul terreno o in acqua entro gittata. L'area è terreno difficile. Una creatura che vi inizia il proprio turno deve superare un tiro salvezza su Forza o subire 6d6 danni contundenti ed essere trascinata di 3 metri verso il centro.",
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
@@ -7788,15 +8020,20 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "6d6",
       "type": "contundenti"
-    }
+    },
+    "range": "36 metri",
+    "components": "V, S, M (un foglio di carta o una foglia a forma di imbuto)",
+    "savingThrow": "str",
+    "savingThrows": ["str"]
   },
   {
     "id": "mage-armor",
@@ -7976,26 +8213,31 @@
   {
     "id": "magic-stone",
     "name": "Pietra magica",
-    "description": "L'incantatore incanta fino a tre ciottoli, che diventano munizioni magiche. Una creatura può lanciarli effettuando un attacco a distanza con incantesimo; con un colpo infliggono 1d6 + il modificatore di caratteristica da incantatore danni contundenti.",
+    "description": "L'incantatore infonde magia in uno, due o tre ciottoli. Chiunque può usarne uno per un attacco a distanza con incantesimo lanciandolo (gittata 18 metri) o usando una fionda; usa il modificatore di caratteristica da incantatore del creatore per il tiro per colpire. Un colpo infligge 1d6 più quel modificatore danni contundenti. Dopo l'attacco la magia sul ciottolo termina anche se manca. Un nuovo lancio dell'incantesimo termina la magia sui precedenti ciottoli.",
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
     "classes": ["druid", "warlock", "artificer"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "bonus-action",
+      "text": "1 azione bonus"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "minute",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
-      "formula": "1d6",
-      "type": "contundenti"
-    }
+      "formula": "1d6 + modificatore di caratteristica da incantatore",
+      "type": "contundenti",
+      "note": "Si usa il modificatore di chi ha lanciato l'incantesimo."
+    },
+    "range": "Contatto",
+    "components": "V, S",
+    "attackRoll": "ranged"
   },
   {
     "id": "magic-weapon",
@@ -8189,7 +8431,7 @@
   {
     "id": "mass-polymorph",
     "name": "Metamorfosi di massa",
-    "description": "L'incantatore trasforma fino a dieci creature consenzienti o non consenzienti in nuove forme. Ogni bersaglio può diventare una bestia di grado di sfida 1 o inferiore e conserva i propri punti ferita; la trasformazione termina se il bersaglio scende a 0 punti ferita.",
+    "description": "Fino a dieci creature visibili entro gittata assumono forme di bestie viste dall'incantatore. I bersagli non consenzienti resistono con un tiro salvezza su Saggezza; i mutaforma non consenzienti lo superano automaticamente. Ogni forma ha GS non superiore al GS del bersaglio, o a metà del suo livello se non ha GS. Le statistiche sono sostituite, ma restano PF, allineamento e personalità; il bersaglio ottiene PF temporanei pari ai PF della bestia, non sostituibili da altre fonti. Torna normale quando li esaurisce, muore o l'incantesimo termina. Non può parlare, lanciare incantesimi o usare l'equipaggiamento assorbito nella forma.",
     "source": "XGE",
     "level": 9,
     "school": "Trasmutazione",
@@ -8200,11 +8442,16 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "hour",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "36 metri",
+    "components": "V, S, M (un bozzolo di bruco)",
+    "savingThrow": "wis",
+    "savingThrows": ["wis"]
   },
   {
     "id": "mass-suggestion",
@@ -8234,7 +8481,7 @@
   {
     "id": "maximilians-earthen-grasp",
     "name": "Presa terrigna di Maximilian",
-    "description": "Una mano di terra compatta emerge dal suolo e tenta di afferrare una creatura di taglia Media o inferiore. L'incantatore può usare un'azione per stritolarla, infliggendo 2d6 danni contundenti con un tiro salvezza su Forza.",
+    "description": "Una mano Media di terra emerge in uno spazio libero di 1,5 metri sul terreno, visibile entro gittata, e tenta di afferrare una creatura visibile entro 1,5 metri dalla mano, senza limite di taglia del bersaglio. Se il bersaglio fallisce un tiro salvezza su Forza, subisce 2d6 danni contundenti ed è trattenuto. Con un'azione l'incantatore può stritolarlo: un nuovo tiro salvezza su Forza determina 2d6 danni contundenti, dimezzati in caso di successo. Per liberarsi, il bersaglio deve usare un'azione e superare una prova di Forza contro la CD dell'incantesimo. Con un'azione l'incantatore può invece far afferrare un'altra creatura oppure spostare la mano in un altro spazio libero entro gittata; entrambe le opzioni liberano l'eventuale bersaglio trattenuto.",
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
@@ -8245,15 +8492,20 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "2d6",
       "type": "contundenti"
-    }
+    },
+    "range": "9 metri",
+    "components": "V, S, M (una mano in miniatura modellata nell'argilla)",
+    "savingThrow": "str",
+    "savingThrows": ["str"]
   },
   {
     "id": "maze",
@@ -8309,7 +8561,7 @@
   {
     "id": "melfs-minute-meteors",
     "name": "Meteore minute di Melf",
-    "description": "Sei piccole meteore orbitano attorno all'incantatore. Come azione può scagliarne fino a due contro punti entro gittata; ogni meteora esplode e infligge 2d6 danni da fuoco alle creature entro 1,5 metri che falliscono un tiro salvezza su Destrezza.",
+    "description": "Sei meteore orbitano attorno all'incantatore. Al lancio, e con un'azione bonus nei turni successivi, può consumarne una o due dirigendole verso punti entro 36 metri. Ogni meteora esplode alla destinazione o contro una superficie solida; le creature entro 1,5 metri dall'esplosione effettuano un tiro salvezza su Destrezza, subendo 2d6 danni da fuoco se falliscono, metà se lo superano. Con slot superiori al 3°, si creano due meteore aggiuntive per livello dello slot.",
     "source": "XGE",
     "level": 3,
     "school": "Invocazione",
@@ -8320,15 +8572,21 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
     "isHidden": true,
     "damage": {
       "formula": "2d6",
-      "type": "fuoco"
-    }
+      "type": "fuoco",
+      "scaling": "Con slot superiori al 3°, si creano due meteore aggiuntive per livello dello slot."
+    },
+    "range": "Incantatore",
+    "components": "V, S, M (salnitro, zolfo e catrame di pino modellati in una pallina)",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "mending",
@@ -8355,7 +8613,7 @@
   {
     "id": "mental-prison",
     "name": "Prigione mentale",
-    "description": "Una creatura entro gittata deve superare un tiro salvezza su Intelligenza o rimanere intrappolata in una gabbia psichica. Se la creatura si muove, tenta di uscire o un'altra creatura la raggiunge, l'illusione può infliggere 5d10 danni psichici.",
+    "description": "Una creatura visibile entro gittata effettua un tiro salvezza su Intelligenza, superandolo automaticamente se immune all'essere affascinata. Subisce 5d10 danni psichici in ogni caso; con un successo l'incantesimo termina. Se fallisce, è anche trattenuta da un'illusione che solo lei percepisce e non può vedere né sentire oltre di essa. Se viene spostata fuori dall'illusione, la attraversa con una parte del corpo o effettua un attacco in mischia attraverso di essa, subisce altri 10d10 danni psichici e l'incantesimo termina.",
     "source": "XGE",
     "level": 6,
     "school": "Illusione",
@@ -8366,15 +8624,21 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "5d10",
-      "type": "psichici"
-    }
+      "type": "psichici",
+      "note": "Danno iniziale anche con TS riuscito; ulteriori 10d10 se il bersaglio attraversa l'illusione come descritto."
+    },
+    "range": "18 metri",
+    "components": "S",
+    "savingThrow": "int",
+    "savingThrows": ["int"]
   },
   {
     "id": "message",
@@ -8428,22 +8692,24 @@
   {
     "id": "mighty-fortress",
     "name": "Fortezza possente",
-    "description": "L'incantatore crea una fortezza di pietra imponente con torri, mura, porte, stanze e arredi, che permane per 7 giorni o finché non viene dissolta.",
+    "description": "Una fortezza di pietra sorge su un'area quadrata visibile di 36 metri di lato, priva di edifici o strutture. Comprende quattro torri, mura, una rocca, arredi, cibo per un banchetto quotidiano per cento persone e cento servitori invisibili. Dopo 7 giorni, o quando l'incantesimo viene lanciato altrove, si sgretola e sprofonda senza ferire gli occupanti. Cibo, arredi e altri oggetti creati dall'incantesimo si riducono in polvere se rimossi. Lanciarlo nello stesso punto ogni 7 giorni per un anno rende la fortezza permanente.",
     "source": "XGE",
     "level": 8,
     "school": "Evocazione",
     "classes": ["wizard"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "minute",
+      "text": "1 minuto"
     },
     "duration": {
       "unit": "instantaneous",
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "1,5 chilometri",
+    "components": "V, S, M (un diamante del valore di almeno 500 mo, consumato dall'incantesimo)"
   },
   {
     "id": "mind-blank",
@@ -8475,7 +8741,7 @@
     "level": 0,
     "school": "Ammaliamento",
     "classes": ["sorcerer", "warlock", "wizard"],
-    "description": "L'incantatore colpisce la mente di una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Intelligenza e subisce 1d6 danni psichici se lo fallisce, oltre a subire 1d4 di penalità al prossimo tiro salvezza che effettua prima della fine del prossimo turno dell'incantatore.",
+    "description": "L'incantatore colpisce la mente di una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Intelligenza e subisce 1d6 danni psichici se lo fallisce, oltre a subire 1d4 di penalità al prossimo tiro salvezza che effettua prima della fine del prossimo turno dell'incantatore. I danni aumentano con il livello del personaggio: 2d6 al 5°, 3d6 all’11° e 4d6 al 17°.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -8484,16 +8750,18 @@
     "range": "18 metri",
     "components": "V",
     "duration": {
-      "unit": "instantaneous",
+      "unit": "round",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "1 round",
+      "amount": 1
     },
     "savingThrow": "int",
     "savingThrows": ["int"],
     "damage": {
       "formula": "1d6",
-      "type": "psichico",
-      "scaling": "Il danno aumenta ai livelli 5, 11 e 17."
+      "type": "psichici",
+      "note": "TS su Intelligenza per evitare danno e penalità.",
+      "scaling": "I danni aumentano con il livello del personaggio: 2d6 al 5°, 3d6 all’11° e 4d6 al 17°."
     },
     "isHidden": true,
     "subclassGrants": [
@@ -8508,7 +8776,7 @@
   {
     "id": "mind-spike",
     "name": "Aculeo mentale",
-    "description": "L'incantatore penetra la mente di una creatura entro gittata. Il bersaglio effettua un tiro salvezza su Saggezza e subisce 3d8 danni psichici se lo fallisce, oltre a permettere all'incantatore di sapere la sua posizione finché dura l'effetto.",
+    "description": "Una creatura visibile entro gittata effettua un tiro salvezza su Saggezza: subisce 3d8 danni psichici se fallisce, metà se lo supera. Se fallisce, l'incantatore ne conosce inoltre la posizione per la durata finché entrambi sono sullo stesso piano; il bersaglio non può nascondersi da lui né beneficiare dell'invisibilità nei suoi confronti. Con slot superiori al 2°, i danni aumentano di 1d6 per livello dello slot.",
     "source": "XGE",
     "level": 2,
     "school": "Divinazione",
@@ -8519,15 +8787,21 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "hour",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "3d8",
-      "type": "psichici"
-    }
+      "type": "psichici",
+      "scaling": "Con slot superiori al 2°, i danni aumentano di 1d6 per livello dello slot."
+    },
+    "range": "18 metri",
+    "components": "S",
+    "savingThrow": "wis",
+    "savingThrows": ["wis"]
   },
   {
     "id": "minor-illusion",
@@ -8731,7 +9005,7 @@
   {
     "id": "mold-earth",
     "name": "Modellare terra",
-    "description": "L'incantatore manipola un'area di terra o pietra non magica entro gittata, scavandola, spostandola, colorandola o creando semplici forme e segni.",
+    "description": "L'incantatore modifica terra o pietra visibile entro gittata in un cubo di 1,5 metri. Può scavare e spostare istantaneamente terra sciolta lungo il terreno fino a 1,5 metri senza infliggere danni; creare colori, forme o scritte per 1 ora; oppure rendere il terreno difficile o normale per 1 ora. Può mantenere al massimo due effetti non istantanei e terminarne uno con un'azione.",
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
@@ -8742,11 +9016,13 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "special",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "Istantanea o 1 ora (vedi descrizione)"
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "9 metri",
+    "components": "S"
   },
   {
     "id": "moonbeam",
@@ -8824,7 +9100,7 @@
   {
     "id": "negative-energy-flood",
     "name": "Flusso di energia negativa",
-    "description": "L'incantatore invia energia negativa in una creatura entro gittata. Un bersaglio vivente subisce 5d12 danni necrotici con un tiro salvezza su Costituzione fallito, o la metà con un successo; un bersaglio non morto può invece recuperare punti ferita.",
+    "description": "Una creatura visibile entro gittata, se non è un non morto, effettua un tiro salvezza su Costituzione: 5d12 danni necrotici se fallito, metà se superato. Se viene uccisa da questi danni, si rialza come zombi all'inizio del turno successivo dell'incantatore e insegue la creatura visibile più vicina. Un bersaglio non morto non effettua tiri salvezza: si tirano 5d12 e ottiene metà del totale come PF temporanei.",
     "source": "XGE",
     "level": 5,
     "school": "Necromanzia",
@@ -8843,7 +9119,11 @@
     "damage": {
       "formula": "5d12",
       "type": "necrotici"
-    }
+    },
+    "range": "18 metri",
+    "components": "V, M (un osso spezzato e un quadrato di seta nera)",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "nondetection",
@@ -9246,7 +9526,7 @@
   {
     "id": "power-word-pain",
     "name": "Parola del potere dolore",
-    "description": "Una creatura entro gittata con 100 punti ferita o meno subisce un dolore psichico intenso. Se fallisce un tiro salvezza su Costituzione, è incapacitata, ha velocità dimezzata e subisce 3d12 danni psichici all'inizio di ciascun turno.",
+    "description": "Una creatura visibile entro gittata con 100 PF o meno, non immune all'essere affascinata, viene colpita senza tiro salvezza iniziale. Le sue velocità non possono superare 3 metri e ha svantaggio ai tiri per colpire, alle prove di caratteristica e ai tiri salvezza diversi da Costituzione. Se tenta di lanciare un incantesimo, deve prima superare un tiro salvezza su Costituzione o il lancio fallisce e l'incantesimo è sprecato. Alla fine di ogni proprio turno può effettuare un tiro salvezza su Costituzione per terminare il dolore. Non infligge danni e non rende incapacitati.",
     "source": "XGE",
     "level": 7,
     "school": "Ammaliamento",
@@ -9262,10 +9542,10 @@
       "text": "Istantanea"
     },
     "isHidden": true,
-    "damage": {
-      "formula": "3d12",
-      "type": "psichici"
-    }
+    "range": "18 metri",
+    "components": "V",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "power-word-stun",
@@ -9335,7 +9615,7 @@
   {
     "id": "primal-savagery",
     "name": "Ferocia primordiale",
-    "description": "L'incantatore fa crescere artigli corrosivi sulle mani e può effettuare un attacco in mischia con incantesimo. Se colpisce, infligge 1d10 danni da acido.",
+    "description": "L'incantatore fa crescere artigli corrosivi sulle mani e può effettuare un attacco in mischia con incantesimo. Se colpisce, infligge 1d10 danni da acido. I danni aumentano con il livello del personaggio: 2d10 al 5°, 3d10 all’11° e 4d10 al 17°.",
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
@@ -9353,13 +9633,17 @@
     "isHidden": true,
     "damage": {
       "formula": "1d10",
-      "type": "acido"
-    }
+      "type": "acido",
+      "scaling": "I danni aumentano con il livello del personaggio: 2d10 al 5°, 3d10 all’11° e 4d10 al 17°."
+    },
+    "range": "Incantatore",
+    "components": "S",
+    "attackRoll": "melee"
   },
   {
     "id": "primordial-ward",
     "name": "Interdizione primordiale",
-    "description": "L'incantatore ottiene resistenza a un tipo di danno scelto tra acido, freddo, fuoco, fulmine e tuono. Può usare una reazione per assorbire energia quando subisce quel tipo di danno e recuperare parte dei punti ferita.",
+    "description": "L'incantatore ottiene resistenza ad acido, freddo, fuoco, fulmine e tuono. Quando subisce uno di questi danni, può usare la reazione per diventare immune a quel tipo, compreso il danno scatenante: in tal caso perde le resistenze e l'immunità dura fino alla fine del proprio turno successivo, quando l'incantesimo termina.",
     "source": "XGE",
     "level": 6,
     "school": "Abiurazione",
@@ -9370,11 +9654,14 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "Incantatore",
+    "components": "V, S"
   },
   {
     "id": "prismatic-spray",
@@ -9658,7 +9945,7 @@
   {
     "id": "psychic-scream",
     "name": "Urlo psichico",
-    "description": "L'incantatore scatena un urlo psichico che colpisce fino a dieci creature entro gittata. Ogni bersaglio effettua un tiro salvezza su Intelligenza e subisce 14d6 danni psichici se lo fallisce, o la metà con un successo; chi viene ridotto a 0 punti ferita muore.",
+    "description": "Fino a dieci creature scelte e visibili entro gittata, con Intelligenza superiore a 2, effettuano un tiro salvezza su Intelligenza. Se falliscono subiscono 14d6 danni psichici e sono stordite; se superano il tiro subiscono metà danni senza stordimento. Un bersaglio stordito ripete il tiro alla fine di ogni proprio turno per terminare lo stordimento. Se questi danni uccidono un bersaglio, la sua testa esplode, se ne possiede una.",
     "source": "XGE",
     "level": 9,
     "school": "Ammaliamento",
@@ -9677,7 +9964,11 @@
     "damage": {
       "formula": "14d6",
       "type": "psichici"
-    }
+    },
+    "range": "27 metri",
+    "components": "S",
+    "savingThrow": "int",
+    "savingThrows": ["int"]
   },
   {
     "id": "purify-food-and-drink",
@@ -9705,7 +9996,7 @@
   {
     "id": "pyrotechnics",
     "name": "Pirotecnica",
-    "description": "L'incantatore trasforma una fiamma non magica entro gittata in un'esplosione di fuochi d'artificio o in una nube di fumo, accecando o oscurando l'area a seconda dell'opzione scelta.",
+    "description": "L'incantatore sceglie una fiamma non magica visibile entro gittata, contenuta in un cubo di 1,5 metri, e può spegnerla producendo uno tra due effetti. Fuochi d'artificio: le creature entro 3 metri devono superare un tiro salvezza su Costituzione o essere accecate fino alla fine del turno successivo dell'incantatore. Fumo: una nube di raggio 6 metri si espande attorno agli angoli, oscura pesantemente l'area e dura 1 minuto o finché un vento forte non la disperde.",
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
@@ -9720,7 +10011,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "18 metri",
+    "components": "V, S",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "raise-dead",
@@ -10188,7 +10483,7 @@
   {
     "id": "scatter",
     "name": "Dispersione",
-    "description": "Fino a cinque creature consenzienti o oggetti non indossati vengono teletrasportati in spazi liberi visibili entro gittata. L'incantatore può anche tentare di teletrasportare creature non consenzienti con un tiro salvezza su Saggezza.",
+    "description": "Fino a cinque creature visibili entro 9 metri vengono teletrasportate in spazi liberi visibili entro 36 metri dall'incantatore, sul terreno o su un pavimento. Una creatura non consenziente può resistere superando un tiro salvezza su Saggezza.",
     "source": "XGE",
     "level": 6,
     "school": "Evocazione",
@@ -10203,7 +10498,11 @@
       "concentration": false,
       "text": "Istantanea"
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "9 metri",
+    "components": "V",
+    "savingThrow": "wis",
+    "savingThrows": ["wis"]
   },
   {
     "id": "scorching-ray",
@@ -10490,31 +10789,35 @@
   {
     "id": "shadow-blade",
     "name": "Lama d’ombra",
-    "description": "L'incantatore crea una spada di oscurità che infligge 2d8 danni psichici. L'arma ha proprietà finesse, leggera e lancio e diventa più potente se usata in condizioni di luce scarsa o oscurità.",
+    "description": "Una spada magica di oscurità appare nella mano dell'incantatore. È un'arma semplice da mischia con cui è competente, infligge 2d8 danni psichici e ha le proprietà accurata, leggera e da lancio (6/18 metri). Gli attacchi contro un bersaglio in luce fioca o oscurità hanno vantaggio. Se lasciata o lanciata, scompare a fine turno; finché dura l'incantesimo può essere ricreata con un'azione bonus. I danni diventano 3d8 con slot di 3° o 4° livello, 4d8 con slot di 5° o 6° e 5d8 con slot di almeno 7°.",
     "source": "XGE",
     "level": 2,
     "school": "Illusione",
     "classes": ["sorcerer", "warlock", "wizard"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "bonus-action",
+      "text": "1 azione bonus"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "2d8",
-      "type": "psichici"
-    }
+      "type": "psichici",
+      "scaling": "I danni diventano 3d8 con slot di 3° o 4° livello, 4d8 con slot di 5° o 6° e 5d8 con slot di almeno 7°."
+    },
+    "range": "Incantatore",
+    "components": "V, S"
   },
   {
     "id": "shadow-of-moil",
     "name": "Manto d’ombra",
-    "description": "Fiamme d'ombra avvolgono l'incantatore, oscurandolo alla vista. Una creatura che lo colpisce con un attacco entro 1,5 metri subisce 2d8 danni necrotici.",
+    "description": "Ombre avvolgono l'incantatore rendendolo pesantemente oscurato agli altri; entro 3 metri trasformano luce intensa in fioca e luce fioca in oscurità. L'incantatore ottiene resistenza ai danni radianti. Una creatura entro 3 metri che lo colpisce con un attacco subisce 2d8 danni necrotici.",
     "source": "XGE",
     "level": 4,
     "school": "Necromanzia",
@@ -10525,20 +10828,23 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "2d8",
       "type": "necrotici"
-    }
+    },
+    "range": "Incantatore",
+    "components": "V, S, M (un occhio di non morto racchiuso in una gemma del valore di almeno 150 mo)"
   },
   {
     "id": "shape-water",
     "name": "Plasmare acqua",
-    "description": "L'incantatore manipola un cubo d'acqua di 1,5 metri, congelandolo, animandolo, cambiandone il colore o spostandolo lentamente.",
+    "description": "L'incantatore modifica acqua visibile entro gittata in un cubo di 1,5 metri. Può spostarla o cambiarne istantaneamente il flusso fino a 1,5 metri senza danni; darle forme semplici animate per 1 ora; modificarne uniformemente colore o opacità per 1 ora; oppure congelarla per 1 ora se non contiene creature. Può mantenere al massimo due effetti non istantanei e terminarne uno con un'azione.",
     "source": "XGE",
     "level": 0,
     "school": "Trasmutazione",
@@ -10549,11 +10855,13 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "special",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "Istantanea o 1 ora (vedi descrizione)"
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "9 metri",
+    "components": "S"
   },
   {
     "id": "shapechange",
@@ -10748,7 +11056,7 @@
   {
     "id": "sickening-radiance",
     "name": "Luminescenza nauseante",
-    "description": "Una luce verdastra riempie una sfera di 9 metri. Una creatura che vi entra o vi inizia il turno deve superare un tiro salvezza su Costituzione o subire 4d10 danni radianti, un livello di indebolimento e irradiare luce fioca.",
+    "description": "Una luce fioca verdastra si diffonde attorno agli angoli in una sfera di raggio 9 metri entro gittata. Chi vi entra per la prima volta in un turno o vi inizia il proprio turno deve superare un tiro salvezza su Costituzione o subire 4d10 danni radianti, un livello di indebolimento ed emettere luce fioca entro 1,5 metri, senza poter beneficiare dell'invisibilità. La luce e i livelli di indebolimento causati da questo incantesimo svaniscono quando termina.",
     "source": "XGE",
     "level": 4,
     "school": "Invocazione",
@@ -10759,15 +11067,20 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
     "isHidden": true,
     "damage": {
       "formula": "4d10",
       "type": "radianti"
-    }
+    },
+    "range": "36 metri",
+    "components": "V, S",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "silence",
@@ -10841,7 +11154,7 @@
   {
     "id": "skill-empowerment",
     "name": "Potenziamento dell’abilità",
-    "description": "L'incantatore tocca una creatura e potenzia una delle sue competenze, permettendole di trattare un tiro del d20 inferiore a 9 come 10 per le prove di caratteristica che usano quella competenza.",
+    "description": "Una creatura consenziente toccata raddoppia il bonus di competenza nelle prove che usano un'abilità scelta. Deve essere già competente nell'abilità e non beneficiare già di Maestria o di un altro effetto che ne raddoppi il bonus di competenza.",
     "source": "XGE",
     "level": 5,
     "school": "Trasmutazione",
@@ -10852,16 +11165,19 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "hour",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "Contatto",
+    "components": "V, S"
   },
   {
     "id": "skywrite",
     "name": "Scritta celeste",
-    "description": "L'incantatore crea fino a dieci parole di scritta nel cielo, visibili a grande distanza. La scritta può essere cancellata o lasciata svanire alla fine della durata.",
+    "description": "Fino a dieci parole di nuvole compaiono in una porzione di cielo visibile e restano per la durata. Svaniscono al termine dell'incantesimo; un vento forte può disperderle anticipatamente.",
     "source": "XGE",
     "level": 2,
     "school": "Trasmutazione",
@@ -10872,12 +11188,15 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "hour",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "ritual": true,
-    "isHidden": true
+    "isHidden": true,
+    "range": "Vista",
+    "components": "V, S"
   },
   {
     "id": "sleep",
@@ -10985,27 +11304,32 @@
   {
     "id": "snare",
     "name": "Laccio",
-    "description": "L'incantatore prepara una trappola magica in uno spazio a terra. Una creatura che entra nell'area deve superare un tiro salvezza su Destrezza o essere sollevata, trattenuta e appesa a testa in giù.",
+    "description": "L'incantatore trasforma la corda componente in una trappola quasi invisibile di raggio 1,5 metri sul terreno o su un pavimento; per individuarla serve una prova di Intelligenza (Indagare) contro la CD dell'incantesimo. Una creatura Piccola, Media o Grande che vi entra deve superare un tiro salvezza su Destrezza o essere sollevata a testa in giù a 0,9 metri dal suolo e trattenuta. Può ripetere il tiro alla fine di ogni proprio turno; in alternativa, essa o qualcuno che la raggiunge può usare un'azione e una prova di Intelligenza (Arcano) contro la CD per liberarla. Dopo l'attivazione, l'incantesimo termina quando nessuna creatura è più trattenuta.",
     "source": "XGE",
     "level": 1,
     "school": "Abiurazione",
     "classes": ["druid", "ranger", "wizard", "artificer"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "minute",
+      "text": "1 minuto"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "hour",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "8 ore",
+      "amount": 8
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "Contatto",
+    "components": "S, M (7,5 metri di corda, consumata dall'incantesimo)",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "snillocs-snowball-swarm",
     "name": "Sciame di palle di neve di Snilloc",
-    "description": "Un turbine di palle di neve magiche esplode in un'area sferica. Le creature nell'area effettuano un tiro salvezza su Destrezza e subiscono 3d6 danni da freddo se lo falliscono, o la metà con un successo.",
+    "description": "Palle di neve magiche esplodono in una sfera di raggio 1,5 metri centrata su un punto entro gittata. Le creature nell'area effettuano un tiro salvezza su Destrezza: subiscono 3d6 danni da freddo se falliscono, metà se superano il tiro. Con slot superiori al 2°, i danni aumentano di 1d6 per livello dello slot.",
     "source": "XGE",
     "level": 2,
     "school": "Invocazione",
@@ -11023,28 +11347,36 @@
     "isHidden": true,
     "damage": {
       "formula": "3d6",
-      "type": "freddo"
-    }
+      "type": "freddo",
+      "scaling": "Con slot superiori al 2°, i danni aumentano di 1d6 per livello dello slot."
+    },
+    "range": "27 metri",
+    "components": "V, S, M (un pezzo di ghiaccio o una piccola scheggia di roccia bianca)",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "soul-cage",
     "name": "Gabbia dell’anima",
-    "description": "Quando un umanoide muore entro 18 metri dall'incantatore, la sua anima può essere intrappolata in una gabbia spettrale per 8 ore. L'incantatore può sfruttare l'anima per ottenere informazioni, recuperare punti ferita, teletrasportarsi o danneggiare un'altra creatura.",
+    "description": "L'incantatore intrappola nella gabbia componente l'anima di un umanoide appena morto che vede entro 18 metri. Può sfruttarla al massimo sei volte: con un'azione bonus recupera 2d8 PF oppure ottiene vantaggio al prossimo tiro per colpire, prova o tiro salvezza prima del proprio turno successivo; senza azione può porre una domanda e ricevere una breve risposta veritiera basata sui ricordi del morto; con un'azione può vedere e sentire tramite un sensore in un luogo visitato in vita dal morto sullo stesso piano, concentrandosi fino a 10 minuti. L'anima è liberata al sesto uso, alla distruzione della gabbia o al termine dell'incantesimo. Finché è intrappolata, l'umanoide non può essere riportato in vita.",
     "source": "XGE",
     "level": 6,
     "school": "Necromanzia",
     "classes": ["warlock", "wizard"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "reaction",
+      "text": "1 reazione, quando un umanoide che puoi vedere entro 18 metri da te muore"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "hour",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "8 ore",
+      "amount": 8
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "18 metri",
+    "components": "V, S, M (una minuscola gabbia d'argento del valore di 100 mo)"
   },
   {
     "id": "spare-the-dying",
@@ -11271,7 +11603,7 @@
     "level": 3,
     "school": "Necromanzia",
     "classes": ["cleric", "paladin", "warlock", "wizard"],
-    "description": "Spiriti dei morti fluttuano intorno all'incantatore. Gli attacchi contro creature entro 3 metri infliggono 1d8 danni extra del tipo necrotico, radianti o freddo scelto dall'incantatore; le creature colpite non possono recuperare punti ferita fino all'inizio del turno successivo dell'incantatore.",
+    "description": "Spiriti incorporei circondano l'incantatore. Ogni suo attacco che colpisce una creatura entro 3 metri infligge 1d8 danni extra, radianti, necrotici o da freddo, scelti al lancio; chi li subisce non può recuperare PF fino all'inizio del turno successivo dell'incantatore. Le creature a sua scelta che vede iniziare il proprio turno entro 3 metri hanno velocità ridotta di 3 metri fino all'inizio del turno successivo dell'incantatore. I danni extra aumentano di 1d8 ogni due livelli dello slot oltre il 3°: 2d8 al 5°, 3d8 al 7° e 4d8 al 9°.",
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
@@ -11281,14 +11613,15 @@
     "components": "V, S",
     "duration": {
       "unit": "minute",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 minuto"
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "damage": {
       "formula": "1d8",
       "type": "radiante, necrotico o freddo",
-      "note": "Danno aggiuntivo agli attacchi contro bersagli entro 3 metri."
+      "note": "Danno aggiuntivo agli attacchi contro bersagli entro 3 metri.",
+      "scaling": "I danni extra aumentano di 1d8 ogni due livelli dello slot oltre il 3°: 2d8 al 5°, 3d8 al 7° e 4d8 al 9°."
     },
     "isHidden": true
   },
@@ -11367,7 +11700,7 @@
   {
     "id": "steel-wind-strike",
     "name": "Colpo del vento d’acciaio",
-    "description": "L'incantatore effettua un attacco con incantesimo contro fino a cinque creature entro gittata. Ogni bersaglio colpito subisce 6d10 danni da forza, poi l'incantatore può teletrasportarsi vicino a uno dei bersagli.",
+    "description": "L'incantatore sceglie fino a cinque creature visibili entro gittata ed effettua un attacco in mischia con incantesimo contro ciascuna: ogni colpo infligge 6d10 danni da forza. Può poi teletrasportarsi in uno spazio libero visibile entro 1,5 metri da uno dei bersagli, anche se lo ha mancato.",
     "source": "XGE",
     "level": 5,
     "school": "Evocazione",
@@ -11386,7 +11719,10 @@
     "damage": {
       "formula": "6d10",
       "type": "forza"
-    }
+    },
+    "range": "9 metri",
+    "components": "S, M (un'arma da mischia del valore di almeno 1 ma)",
+    "attackRoll": "melee"
   },
   {
     "id": "stinking-cloud",
@@ -11514,7 +11850,7 @@
   {
     "id": "storm-sphere",
     "name": "Sfera tempestosa",
-    "description": "Una sfera di aria turbinante appare in un punto entro gittata. Le creature nell'area subiscono 2d6 danni da fulmine con un tiro salvezza su Destrezza fallito; l'incantatore può evocare fulmini che infliggono 4d6 danni da fulmine.",
+    "description": "Una sfera di raggio 6 metri crea terreno difficile entro gittata. Chi si trova al suo interno quando compare o vi termina il proprio turno deve superare un tiro salvezza su Forza o subire 2d6 danni contundenti. Con un'azione bonus l'incantatore può effettuare un attacco a distanza con incantesimo contro una creatura entro 18 metri dal centro, con vantaggio se è nella sfera: un colpo infligge 4d6 danni da fulmine. Le creature entro 9 metri dalla sfera hanno svantaggio alle prove di Saggezza (Percezione) basate sull'udito. Con slot superiori al 4°, i danni di ciascun effetto aumentano di 1d6 per livello dello slot.",
     "source": "XGE",
     "level": 4,
     "school": "Invocazione",
@@ -11525,15 +11861,23 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "2d6",
-      "type": "fulmine"
-    }
+      "type": "contundenti",
+      "note": "Sfera: TS su Forza per evitare; fulmine con azione bonus e attacco a distanza: 4d6 danni da fulmine.",
+      "scaling": "Con slot superiori al 4°, i danni di ciascun effetto aumentano di 1d6 per livello dello slot."
+    },
+    "range": "45 metri",
+    "components": "V, S",
+    "savingThrow": "str",
+    "savingThrows": ["str"],
+    "attackRoll": "ranged"
   },
   {
     "id": "suggestion",
@@ -11575,19 +11919,19 @@
     "level": 4,
     "school": "Evocazione",
     "classes": ["warlock", "wizard"],
-    "description": "L'incantatore evoca uno spirito aberrante che assume una forma scelta tra Beholderkin, Slaad o Star Spawn. La creatura combatte per l'incantatore e usa un attacco caratteristico della forma scelta.",
+    "description": "L'incantatore evoca uno spirito aberrante in uno spazio libero visibile entro gittata, scegliendo tra le forme Beholderkin, Slaad o Star Spawn. Usa il blocco statistiche Aberrant Spirit del manuale, con i tratti della forma scelta e i valori dipendenti dal livello dello slot. È alleato dell'incantatore e dei suoi compagni, condivide la sua iniziativa ma svolge il proprio turno subito dopo di lui. Obbedisce agli ordini verbali senza richiedere azioni; senza ordini usa Schivare e si muove per evitare pericoli. Scompare a 0 PF o al termine dell'incantesimo. Con slot superiori si usa il nuovo livello in tutte le voci del blocco che ne dipendono.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
     "range": "27 metri",
-    "components": "V, S, M",
+    "components": "V, S, M (un tentacolo conservato e un bulbo oculare in una fiala intarsiata di platino del valore di almeno 400 mo)",
     "duration": {
       "unit": "hour",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 ora"
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "isHidden": true,
     "subclassGrants": [
@@ -11606,19 +11950,19 @@
     "level": 2,
     "school": "Evocazione",
     "classes": ["druid", "ranger"],
-    "description": "L'incantatore evoca uno spirito bestiale che assume una forma terrestre, acquatica o aerea. La bestia obbedisce ai comandi dell'incantatore e agisce nel suo stesso turno.",
+    "description": "L'incantatore evoca uno spirito bestiale in uno spazio libero visibile entro gittata, scegliendo tra le forme aria, terra o acqua. Usa il blocco statistiche Bestial Spirit del manuale, con i tratti della forma scelta e i valori dipendenti dal livello dello slot. È alleato dell'incantatore e dei suoi compagni, condivide la sua iniziativa ma svolge il proprio turno subito dopo di lui. Obbedisce agli ordini verbali senza richiedere azioni; senza ordini usa Schivare e si muove per evitare pericoli. Scompare a 0 PF o al termine dell'incantesimo. Con slot superiori si usa il nuovo livello in tutte le voci del blocco che ne dipendono.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
     "range": "27 metri",
-    "components": "V, S, M",
+    "components": "V, S, M (una piuma, un ciuffo di pelo e una coda di pesce in una ghianda dorata del valore di almeno 200 mo)",
     "duration": {
       "unit": "hour",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 ora"
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "isHidden": true
   },
@@ -11629,19 +11973,19 @@
     "level": 5,
     "school": "Evocazione",
     "classes": ["cleric", "paladin"],
-    "description": "L'incantatore evoca uno spirito celestiale che assume una forma Avenger o Defender. La creatura è fedele, combatte per l'incantatore e possiede resistenze e attacchi radianti appropriati.",
+    "description": "L'incantatore evoca uno spirito celestiale in uno spazio libero visibile entro gittata, scegliendo tra le forme Avenger o Defender. Usa il blocco statistiche Celestial Spirit del manuale, con i tratti della forma scelta e i valori dipendenti dal livello dello slot. È alleato dell'incantatore e dei suoi compagni, condivide la sua iniziativa ma svolge il proprio turno subito dopo di lui. Obbedisce agli ordini verbali senza richiedere azioni; senza ordini usa Schivare e si muove per evitare pericoli. Scompare a 0 PF o al termine dell'incantesimo. Con slot superiori si usa il nuovo livello in tutte le voci del blocco che ne dipendono.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
     "range": "27 metri",
-    "components": "V, S, M",
+    "components": "V, S, M (un reliquiario d'oro del valore di almeno 500 mo)",
     "duration": {
       "unit": "hour",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 ora"
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "isHidden": true
   },
@@ -11652,19 +11996,19 @@
     "level": 4,
     "school": "Evocazione",
     "classes": ["artificer", "wizard"],
-    "description": "L'incantatore evoca uno spirito costrutto che assume una forma di Clay, Metal o Stone. La creatura obbedisce ai comandi dell'incantatore e possiede attacchi e difese determinate dalla forma.",
+    "description": "L'incantatore evoca uno spirito costrutto in uno spazio libero visibile entro gittata, scegliendo tra le forme argilla, metallo o pietra. Usa il blocco statistiche Construct Spirit del manuale, con i tratti della forma scelta e i valori dipendenti dal livello dello slot. È alleato dell'incantatore e dei suoi compagni, condivide la sua iniziativa ma svolge il proprio turno subito dopo di lui. Obbedisce agli ordini verbali senza richiedere azioni; senza ordini usa Schivare e si muove per evitare pericoli. Scompare a 0 PF o al termine dell'incantesimo. Con slot superiori si usa il nuovo livello in tutte le voci del blocco che ne dipendono.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
-    "range": "27 m",
-    "components": "V, S, M",
+    "range": "27 metri",
+    "components": "V, S, M (uno scrigno decorato di pietra e metallo del valore di almeno 400 mo)",
     "duration": {
       "unit": "hour",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 ora"
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "isHidden": true,
     "subclassGrants": [
@@ -11683,19 +12027,19 @@
     "level": 4,
     "school": "Evocazione",
     "classes": ["druid", "ranger", "wizard"],
-    "description": "L'incantatore evoca uno spirito elementale che assume una forma di aria, acqua, terra o fuoco. La creatura obbedisce ai comandi dell'incantatore e agisce nel suo turno.",
+    "description": "L'incantatore evoca uno spirito elementale in uno spazio libero visibile entro gittata, scegliendo tra le forme aria, terra, fuoco o acqua. Usa il blocco statistiche Elemental Spirit del manuale, con i tratti della forma scelta e i valori dipendenti dal livello dello slot. È alleato dell'incantatore e dei suoi compagni, condivide la sua iniziativa ma svolge il proprio turno subito dopo di lui. Obbedisce agli ordini verbali senza richiedere azioni; senza ordini usa Schivare e si muove per evitare pericoli. Scompare a 0 PF o al termine dell'incantesimo. Con slot superiori si usa il nuovo livello in tutte le voci del blocco che ne dipendono.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
     "range": "27 metri",
-    "components": "V, S, M",
+    "components": "V, S, M (aria, un sassolino, cenere e acqua in una fiala intarsiata d'oro del valore di almeno 400 mo)",
     "duration": {
       "unit": "hour",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 ora"
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "isHidden": true
   },
@@ -11706,19 +12050,19 @@
     "level": 3,
     "school": "Evocazione",
     "classes": ["druid", "ranger", "warlock", "wizard"],
-    "description": "L'incantatore evoca uno spirito fatato che assume una forma di Fuming, Tricksy o Mirthful. La creatura è fedele e dispone di capacità diverse in base alla forma.",
+    "description": "L'incantatore evoca uno spirito fatato in uno spazio libero visibile entro gittata, scegliendo tra le forme Fuming, Mirthful o Tricksy. Usa il blocco statistiche Fey Spirit del manuale, con i tratti della forma scelta e i valori dipendenti dal livello dello slot. È alleato dell'incantatore e dei suoi compagni, condivide la sua iniziativa ma svolge il proprio turno subito dopo di lui. Obbedisce agli ordini verbali senza richiedere azioni; senza ordini usa Schivare e si muove per evitare pericoli. Scompare a 0 PF o al termine dell'incantesimo. Con slot superiori si usa il nuovo livello in tutte le voci del blocco che ne dipendono.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
     "range": "27 metri",
-    "components": "V, S, M",
+    "components": "V, S, M (un fiore dorato del valore di almeno 300 mo)",
     "duration": {
       "unit": "hour",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 ora"
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "subclassGrants": [
       {
@@ -11737,26 +12081,26 @@
     "level": 6,
     "school": "Evocazione",
     "classes": ["warlock", "wizard"],
-    "description": "L'incantatore evoca uno spirito immondo che assume una forma di Demon, Devil o Yugoloth. La creatura obbedisce ai comandi dell'incantatore e combatte per lui.",
+    "description": "L'incantatore evoca uno spirito immondo in uno spazio libero visibile entro gittata, scegliendo tra le forme demone, diavolo o yugoloth. Usa il blocco statistiche Fiendish Spirit del manuale, con i tratti della forma scelta e i valori dipendenti dal livello dello slot. È alleato dell'incantatore e dei suoi compagni, condivide la sua iniziativa ma svolge il proprio turno subito dopo di lui. Obbedisce agli ordini verbali senza richiedere azioni; senza ordini usa Schivare e si muove per evitare pericoli. Scompare a 0 PF o al termine dell'incantesimo. Con slot superiori si usa il nuovo livello in tutte le voci del blocco che ne dipendono.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
     "range": "27 metri",
-    "components": "V, S, M",
+    "components": "V, S, M (sangue umanoide in una fiala di rubino del valore di almeno 600 mo)",
     "duration": {
       "unit": "hour",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 ora"
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "isHidden": true
   },
   {
     "id": "summon-greater-demon",
     "name": "Evoca demone maggiore",
-    "description": "L'incantatore evoca un potente demone da uno spazio libero entro gittata. Il demone è inizialmente ostile e l'incantatore deve impartirgli ordini; può effettuare un tiro salvezza su Carisma ogni turno per liberarsi dal controllo.",
+    "description": "L'incantatore evoca un demone di GS massimo 5 in uno spazio libero visibile entro gittata. Il demone agisce con iniziativa propria e obbedisce agli ordini verbali, che non richiedono azioni; senza ordini attacca chi è a portata e lo ha attaccato. Alla fine di ogni suo turno effettua un tiro salvezza su Carisma, con svantaggio se viene pronunciato il suo vero nome: con un successo sfugge al controllo e attacca i non demoni più vicini. Se la concentrazione termina prima, un demone fuori controllo rimane per 1d6 round. Un cerchio tracciato col sangue componente protegge chi vi è all'interno dal demone, ma consuma il sangue al termine dell'incantesimo. Con slot superiori al 4°, il GS massimo aumenta di 1 per livello dello slot.",
     "source": "XGE",
     "level": 4,
     "school": "Evocazione",
@@ -11767,16 +12111,21 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "hour",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "18 metri",
+    "components": "V, S, M (una fiala di sangue di un umanoide ucciso nelle ultime 24 ore; consumata se usata per tracciare il cerchio protettivo)",
+    "savingThrow": "cha",
+    "savingThrows": ["cha"]
   },
   {
     "id": "summon-lesser-demons",
     "name": "Evoca demoni minori",
-    "description": "L'incantatore evoca un gruppo di demoni minori che compaiono in spazi liberi entro gittata e attaccano le creature non protette dal marchio dell'incantatore.",
+    "description": "Si tira 1d6: con 1-2 compaiono due demoni di GS massimo 1, con 3-4 quattro di GS massimo 1/2, con 5-6 otto di GS massimo 1/4. Il DM sceglie i demoni e l'incantatore gli spazi liberi visibili entro gittata. Sono ostili a tutti, incluso l'incantatore, agiscono con iniziativa di gruppo e attaccano i non demoni più vicini. Scompaiono a 0 PF o al termine dell'incantesimo. Un cerchio tracciato col sangue componente impedisce loro di attraversarlo, danneggiarlo o bersagliare chi vi è all'interno; il sangue è consumato al termine. Con slot di 6° o 7° livello si evoca il doppio dei demoni; con slot di 8° o 9° il triplo.",
     "source": "XGE",
     "level": 3,
     "school": "Evocazione",
@@ -11787,11 +12136,14 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "hour",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "18 metri",
+    "components": "V, S, M (una fiala di sangue di un umanoide ucciso nelle ultime 24 ore; consumata se usata per tracciare il cerchio protettivo)"
   },
   {
     "id": "summon-shadowspawn",
@@ -11800,19 +12152,19 @@
     "level": 3,
     "school": "Evocazione",
     "classes": ["warlock", "wizard"],
-    "description": "L'incantatore evoca uno spirito d'ombra che assume una forma Fury, Despair o Fear. La forma scelta determina le capacità e gli effetti dell'attacco dello spirito.",
+    "description": "L'incantatore evoca uno spirito d'ombra in uno spazio libero visibile entro gittata, scegliendo tra le forme Fury, Despair o Fear. Usa il blocco statistiche Shadow Spirit del manuale, con i tratti della forma scelta e i valori dipendenti dal livello dello slot. È alleato dell'incantatore e dei suoi compagni, condivide la sua iniziativa ma svolge il proprio turno subito dopo di lui. Obbedisce agli ordini verbali senza richiedere azioni; senza ordini usa Schivare e si muove per evitare pericoli. Scompare a 0 PF o al termine dell'incantesimo. Con slot superiori si usa il nuovo livello in tutte le voci del blocco che ne dipendono.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
     "range": "27 metri",
-    "components": "V, S, M",
+    "components": "V, S, M (lacrime all'interno di una gemma del valore di almeno 300 mo)",
     "duration": {
       "unit": "hour",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 ora"
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "isHidden": true
   },
@@ -11823,19 +12175,19 @@
     "level": 3,
     "school": "Necromanzia",
     "classes": ["warlock", "wizard"],
-    "description": "L'incantatore evoca uno spirito non morto che assume una forma Ghostly, Putrid o Skeletal. La forma determina le capacità e gli attacchi della creatura.",
+    "description": "L'incantatore evoca uno spirito non morto in uno spazio libero visibile entro gittata, scegliendo tra le forme Ghostly, Putrid o Skeletal. Usa il blocco statistiche Undead Spirit del manuale, con i tratti della forma scelta e i valori dipendenti dal livello dello slot. È alleato dell'incantatore e dei suoi compagni, condivide la sua iniziativa ma svolge il proprio turno subito dopo di lui. Obbedisce agli ordini verbali senza richiedere azioni; senza ordini usa Schivare e si muove per evitare pericoli. Scompare a 0 PF o al termine dell'incantesimo. Con slot superiori si usa il nuovo livello in tutte le voci del blocco che ne dipendono.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
     "range": "27 metri",
-    "components": "V, S, M",
+    "components": "V, S, M (un teschio dorato del valore di almeno 300 mo)",
     "duration": {
       "unit": "hour",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 ora"
+      "text": "Concentrazione, fino a 1 ora",
+      "amount": 1
     },
     "isHidden": true
   },
@@ -11923,13 +12275,13 @@
     "level": 0,
     "school": "Evocazione",
     "classes": ["artificer", "sorcerer", "warlock", "wizard"],
-    "description": "Spade spettrali compaiono e colpiscono tutte le altre creature entro 1,5 metri dall'incantatore. Ogni bersaglio effettua un tiro salvezza su Destrezza e subisce 1d6 danni da forza se lo fallisce.",
+    "description": "Spade spettrali compaiono e colpiscono tutte le altre creature entro 1,5 metri dall'incantatore. Ogni bersaglio effettua un tiro salvezza su Destrezza e subisce 1d6 danni da forza se lo fallisce. I danni aumentano con il livello del personaggio: 2d6 al 5°, 3d6 all’11° e 4d6 al 17°.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
-    "range": "Incantatore (1.5 m raggio)",
+    "range": "Incantatore (raggio di 1,5 metri)",
     "components": "V",
     "duration": {
       "unit": "instantaneous",
@@ -11941,7 +12293,7 @@
     "damage": {
       "formula": "1d6",
       "type": "forza",
-      "scaling": "I danni aumentano ai livelli del personaggio 5, 11 e 17."
+      "scaling": "I danni aumentano con il livello del personaggio: 2d6 al 5°, 3d6 all’11° e 4d6 al 17°."
     },
     "isHidden": true
   },
@@ -11974,7 +12326,7 @@
   {
     "id": "synaptic-static",
     "name": "Scarica sinaptica",
-    "description": "L'incantatore scatena energia psichica in una sfera di 6 metri. Le creature nell'area effettuano un tiro salvezza su Intelligenza e subiscono 8d6 danni psichici se lo falliscono, o la metà con un successo; chi fallisce subisce anche una penalità ai tiri per colpire, alle prove e ai tiri salvezza di concentrazione.",
+    "description": "Una sfera di raggio 6 metri entro gittata investe le creature con Intelligenza superiore a 2. Un tiro salvezza su Intelligenza determina 8d6 danni psichici se fallito, metà se superato. Chi fallisce deve inoltre sottrarre 1d6 da ogni tiro per colpire, prova di caratteristica e tiro salvezza su Costituzione per mantenere la concentrazione per 1 minuto. Può ripetere il tiro salvezza su Intelligenza alla fine di ogni proprio turno per terminare questa penalità.",
     "source": "XGE",
     "level": 5,
     "school": "Ammaliamento",
@@ -11993,7 +12345,11 @@
     "damage": {
       "formula": "8d6",
       "type": "psichici"
-    }
+    },
+    "range": "36 metri",
+    "components": "V, S",
+    "savingThrow": "int",
+    "savingThrows": ["int"]
   },
   {
     "id": "tashas-caustic-brew",
@@ -12002,26 +12358,27 @@
     "level": 1,
     "school": "Invocazione",
     "classes": ["artificer", "sorcerer", "wizard"],
-    "description": "Una linea di acido di 9 metri ricopre le creature che falliscono un tiro salvezza su Destrezza. Una creatura coperta subisce 2d4 danni da acido all'inizio di ogni turno finché non usa un'azione per ripulirsi o l'acido viene lavato via.",
+    "description": "Una linea di acido lunga 9 metri e larga 1,5 metri parte dall'incantatore. Le creature nell'area che falliscono un tiro salvezza su Destrezza sono ricoperte di acido per la durata e subiscono 2d4 danni da acido all'inizio di ogni proprio turno. Una creatura può usare un'azione per rimuoverlo da sé o da un'altra creatura. Con slot superiori al 1°, i danni aumentano di 2d4 per livello dello slot.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
       "text": "1 azione"
     },
-    "range": "Incantatore (9 m lineaa)",
-    "components": "V, S, M",
+    "range": "Incantatore (linea di 9 metri)",
+    "components": "V, S, M (un po' di cibo marcio)",
     "duration": {
       "unit": "minute",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 minuto"
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "savingThrow": "dex",
     "savingThrows": ["dex"],
     "damage": {
       "formula": "2d4",
       "type": "acido",
-      "note": "I danni si ripetono all'inizio del turno di ogni creatura influenzata."
+      "note": "I danni si ripetono all'inizio del turno di ogni creatura influenzata.",
+      "scaling": "Con slot superiori al 1°, i danni aumentano di 2d4 per livello dello slot."
     },
     "isHidden": true
   },
@@ -12032,7 +12389,7 @@
     "level": 2,
     "school": "Ammaliamento",
     "classes": ["sorcerer", "wizard"],
-    "description": "Una creatura entro gittata deve superare un tiro salvezza su Intelligenza o subire 3d6 danni psichici. Se fallisce, può scegliere nel turno successivo solo una tra azione, azione bonus e movimento.",
+    "description": "Una creatura visibile entro gittata effettua un tiro salvezza su Intelligenza. Se fallisce subisce 3d6 danni psichici, non può usare reazioni fino alla fine del proprio turno successivo e, durante quel turno, può scegliere soltanto una tra movimento, azione e azione bonus. Se supera il tiro subisce metà danni e nessun altro effetto. Con slot superiori al 2°, si aggiunge un bersaglio per livello dello slot; al lancio i bersagli devono trovarsi entro 9 metri gli uni dagli altri.",
     "castingTime": {
       "amount": 1,
       "unit": "action",
@@ -12042,16 +12399,17 @@
     "components": "V",
     "duration": {
       "unit": "round",
-      "amount": 1,
       "concentration": false,
-      "text": "1 round"
+      "text": "1 round",
+      "amount": 1
     },
     "savingThrow": "int",
     "savingThrows": ["int"],
     "damage": {
       "formula": "3d6",
-      "type": "psichico",
-      "scaling": "Aggiunge un bersaglio per ogni livello dello slot superiore al 2°."
+      "type": "psichici",
+      "note": "TS su Intelligenza per dimezzare i danni ed evitare gli altri effetti.",
+      "scaling": "Con slot superiori al 2°, si aggiunge un bersaglio per livello dello slot; al lancio i bersagli devono trovarsi entro 9 metri gli uni dagli altri."
     },
     "isHidden": true
   },
@@ -12062,19 +12420,19 @@
     "level": 6,
     "school": "Trasmutazione",
     "classes": ["sorcerer", "warlock", "wizard"],
-    "description": "L'incantatore assume una forma ultraterrena scegliendo Celestiale o Immondo. Ottiene capacità di combattimento, velocità di volare, resistenze e un bonus ai tiri per colpire e ai danni con le armi.",
+    "description": "L'incantatore richiama i Piani Inferiori o Superiori. I primi conferiscono immunità a fuoco, veleno e condizione avvelenato; i secondi a danni radianti, necrotici e condizione affascinato. In entrambi i casi ottiene velocità di volare di 12 metri, +2 alla CA e attacchi con armi magici; può usare la propria caratteristica da incantatore al posto di Forza o Destrezza per colpire e infliggere danni con le armi. Con l'azione Attaccare può attaccare due volte, beneficio che non si somma ad Attacco Extra o capacità analoghe.",
     "castingTime": {
       "amount": 1,
       "unit": "bonus-action",
       "text": "1 azione bonus"
     },
     "range": "Incantatore",
-    "components": "V, S, M",
+    "components": "V, S, M (un oggetto inciso con un simbolo dei Piani Esterni del valore di almeno 500 mo)",
     "duration": {
       "unit": "minute",
-      "amount": 1,
       "concentration": true,
-      "text": "Concentrazione, fino a 1 minuto"
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true
   },
@@ -12227,27 +12585,32 @@
   {
     "id": "temple-of-the-gods",
     "name": "Tempio degli dei",
-    "description": "L'incantatore crea un tempio fortificato di pietra, con pareti e porte magiche. Il tempio protegge gli occupanti e può essere personalizzato con vari effetti religiosi.",
+    "description": "Un tempio di forza magica opaca occupa un cubo libero di lato massimo 36 metri su terreno visibile. Solo l'incantatore e le creature designate possono aprirne e chiuderne la porta. I tipi scelti tra celestiali, elementali, fatati, immondi e non morti devono superare un tiro salvezza su Carisma per entrare, altrimenti non possono farlo per 24 ore; al suo interno sottraggono 1d4 da attacchi, prove e tiri salvezza. Blocca i sensori di divinazione, il bersagliamento degli occupanti con divinazioni e l'ingresso etereo. Gli incantesimi di almeno 1° livello che curano al suo interno ripristinano PF aggiuntivi pari al modificatore di Saggezza dell'incantatore (minimo 1). Dissolvi magie e campo anti-magia non lo influenzano, disintegrazione lo distrugge. Lanciarlo ogni giorno nello stesso luogo per un anno lo rende permanente.",
     "source": "XGE",
     "level": 7,
     "school": "Evocazione",
     "classes": ["cleric"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "hour",
+      "text": "1 ora"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "hour",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "24 ore",
+      "amount": 24
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "36 metri",
+    "components": "V, S, M (un simbolo sacro del valore di almeno 5 mo)",
+    "savingThrow": "cha",
+    "savingThrows": ["cha"]
   },
   {
     "id": "tensers-transformation",
     "name": "Trasformazione di Tenser",
-    "description": "L'incantatore si trasforma in un guerriero sovrannaturale, ottenendo vantaggio agli attacchi con armi, competenza con armi e armature, punti ferita temporanei e danni extra con le armi.",
+    "description": "L'incantatore ottiene 50 PF temporanei, vantaggio agli attacchi con armi semplici e da guerra, 2d12 danni da forza extra per ogni attacco con arma che colpisce e competenza in tutte le armature, scudi, armi semplici e da guerra e tiri salvezza su Forza e Costituzione. Con l'azione Attaccare attacca due volte, senza sommare il beneficio ad Attacco Extra o capacità analoghe. Per la durata non può lanciare incantesimi. Al termine perde i PF temporanei residui e deve superare un tiro salvezza su Costituzione CD 15 o subire un livello di indebolimento.",
     "source": "XGE",
     "level": 6,
     "school": "Trasmutazione",
@@ -12258,16 +12621,21 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
     "isHidden": true,
     "damage": {
       "formula": "2d12",
       "type": "forza",
       "note": "Danni extra agli attacchi con armi effettuati durante la trasformazione."
-    }
+    },
+    "range": "Incantatore",
+    "components": "V, S, M (alcuni peli di toro)",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "thaumaturgy",
@@ -12323,7 +12691,7 @@
   {
     "id": "thunder-step",
     "name": "Passo tonante",
-    "description": "L'incantatore si teletrasporta in uno spazio libero entro 27 metri. Ogni creatura entro 3 metri dal punto di partenza deve superare un tiro salvezza su Costituzione o subire 3d10 danni da tuono.",
+    "description": "L'incantatore si teletrasporta in uno spazio libero visibile entro 27 metri. Dopo la sua scomparsa, chi si trova entro 3 metri dallo spazio lasciato effettua un tiro salvezza su Costituzione: subisce 3d10 danni da tuono se fallisce, metà se lo supera. Il boato è udibile entro 90 metri. Può portare gli oggetti entro la propria capacità di trasporto e una creatura consenziente della sua taglia o inferiore entro 1,5 metri, con equipaggiamento entro la capacità di trasporto di questa; serve uno spazio libero entro 1,5 metri dalla destinazione anche per lei. Con slot superiori al 3°, i danni aumentano di 1d10 per livello dello slot.",
     "source": "XGE",
     "level": 3,
     "school": "Evocazione",
@@ -12341,13 +12709,18 @@
     "isHidden": true,
     "damage": {
       "formula": "3d10",
-      "type": "tuono"
-    }
+      "type": "tuono",
+      "scaling": "Con slot superiori al 3°, i danni aumentano di 1d10 per livello dello slot."
+    },
+    "range": "27 metri",
+    "components": "V",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "thunderclap",
     "name": "Rombo di tuono",
-    "description": "Un'esplosione di tuono scoppia intorno all'incantatore. Le creature entro 1,5 metri devono superare un tiro salvezza su Costituzione o subire 1d6 danni da tuono; il suono è udibile fino a 30 metri.",
+    "description": "Un'esplosione di tuono scoppia intorno all'incantatore. Le creature entro 1,5 metri devono superare un tiro salvezza su Costituzione o subire 1d6 danni da tuono; il suono è udibile fino a 30 metri. I danni aumentano con il livello del personaggio: 2d6 al 5°, 3d6 all’11° e 4d6 al 17°.",
     "source": "XGE",
     "level": 0,
     "school": "Invocazione",
@@ -12365,8 +12738,13 @@
     "isHidden": true,
     "damage": {
       "formula": "1d6",
-      "type": "tuono"
-    }
+      "type": "tuono",
+      "scaling": "I danni aumentano con il livello del personaggio: 2d6 al 5°, 3d6 all’11° e 4d6 al 17°."
+    },
+    "range": "1,5 metri",
+    "components": "S",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "thunderous-smite",
@@ -12444,7 +12822,7 @@
   {
     "id": "tidal-wave",
     "name": "Onda di marea",
-    "description": "Un'onda d'acqua appare in un'area cubica di 9 metri. Le creature nell'area effettuano un tiro salvezza su Destrezza e subiscono 4d8 danni contundenti se lo falliscono, o la metà con un successo; il terreno diventa difficile.",
+    "description": "Un'onda occupa un'area entro gittata lunga fino a 9 metri, larga e alta fino a 3 metri. Le creature nell'area effettuano un tiro salvezza su Destrezza: con un fallimento subiscono 4d8 danni contundenti e cadono prone, con un successo metà danni e non cadono. L'acqua si espande poi sul terreno, spegne le fiamme non protette nell'area e fino a 9 metri da essa e scompare.",
     "source": "XGE",
     "level": 3,
     "school": "Evocazione",
@@ -12463,7 +12841,11 @@
     "damage": {
       "formula": "4d8",
       "type": "contundenti"
-    }
+    },
+    "range": "36 metri",
+    "components": "V, S, M (una goccia d'acqua)",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "time-stop",
@@ -12522,27 +12904,30 @@
   {
     "id": "tiny-servant",
     "name": "Servitore minuscolo",
-    "description": "L'incantatore anima un oggetto non magico di taglia Piccola o Minuscola, trasformandolo in un costrutto fedele che può eseguire semplici comandi.",
+    "description": "L'incantatore anima un oggetto non magico Minuscolo, non fissato ad altri oggetti o superfici e non trasportato da un'altra creatura. Diventa un servitore minuscolo con le statistiche indicate nel manuale. Con un'azione bonus può impartire ordini mentali ai propri servitori entro 36 metri; senza ordini si difendono soltanto. A 0 PF torna oggetto e il danno residuo si trasferisce alla forma originaria. Con slot superiori al 3°, si animano due oggetti aggiuntivi per livello dello slot.",
     "source": "XGE",
     "level": 3,
     "school": "Trasmutazione",
     "classes": ["wizard", "artificer"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "minute",
+      "text": "1 minuto"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "hour",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "8 ore",
+      "amount": 8
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "Contatto",
+    "components": "V, S"
   },
   {
     "id": "toll-the-dead",
     "name": "Rintocco dei morti",
-    "description": "L'incantatore indica una creatura entro gittata che può vedere. Il bersaglio effettua un tiro salvezza su Saggezza e subisce 1d8 danni necrotici se lo fallisce; se ha già perso punti ferita, il danno aumenta a 1d12.",
+    "description": "L'incantatore indica una creatura entro gittata che può vedere. Il bersaglio effettua un tiro salvezza su Saggezza e subisce 1d8 danni necrotici se lo fallisce; se ha già perso punti ferita, il danno aumenta a 1d12. I danni sono 1d8, oppure 1d12 se il bersaglio ha perso PF; aumentano a due dadi al 5° livello del personaggio, tre all’11° e quattro al 17°.",
     "source": "XGE",
     "level": 0,
     "school": "Necromanzia",
@@ -12560,8 +12945,11 @@
     "isHidden": true,
     "damage": {
       "formula": "1d8",
-      "type": "necrotici"
-    }
+      "type": "necrotici",
+      "scaling": "I danni sono 1d8, oppure 1d12 se il bersaglio ha perso PF; aumentano a due dadi al 5° livello del personaggio, tre all’11° e quattro al 17°."
+    },
+    "range": "18 metri",
+    "components": "V, S"
   },
   {
     "id": "tongues",
@@ -12589,7 +12977,7 @@
   {
     "id": "transmute-rock",
     "name": "Trasmutare roccia",
-    "description": "L'incantatore trasforma una massa di roccia non magica in fango o il fango in roccia. Il fango può intrappolare e rallentare le creature nell'area, mentre la roccia può creare una superficie solida.",
+    "description": "L'incantatore modifica roccia o fango visibili entro gittata in un cubo di 12 metri. Roccia non magica trasformata in fango quadruplica il costo del movimento: chi si trova a terra al lancio, entra per la prima volta in un turno o vi termina il turno deve superare un tiro salvezza su Forza o essere trattenuto, liberandosi con un'azione. Se il fango cade da un soffitto, chi è sotto effettua un tiro salvezza su Destrezza: 4d8 danni contundenti se fallito, metà se superato. In alternativa, fango o sabbie mobili non magici profondi al massimo 3 metri diventano pietra: chi vi si trova supera un tiro salvezza su Destrezza per essere espulso in sicurezza, altrimenti è trattenuto. Un'azione e una prova di Forza CD 20, oppure la distruzione della pietra (CA 15, 25 PF, immune a veleno e psichico), liberano la creatura.",
     "source": "XGE",
     "level": 5,
     "school": "Trasmutazione",
@@ -12600,11 +12988,20 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
+      "unit": "until-dispelled",
       "concentration": false,
-      "text": "Istantanea"
+      "text": "Finché non viene dissolto"
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "36 metri",
+    "components": "V, S, M (argilla e acqua)",
+    "savingThrow": "str",
+    "savingThrows": ["str", "dex"],
+    "damage": {
+      "formula": "4d8",
+      "type": "contundenti",
+      "note": "Solo quando il fango cade da un soffitto; TS su Destrezza per dimezzare."
+    }
   },
   {
     "id": "transport-via-plants",
@@ -12873,7 +13270,7 @@
   {
     "id": "vitriolic-sphere",
     "name": "Sfera vetriolica",
-    "description": "L'incantatore scaglia una sfera di acido contro un punto entro gittata. Le creature entro 6 metri effettuano un tiro salvezza su Destrezza e subiscono 10d4 danni da acido se lo falliscono, o la metà con un successo; chi fallisce subisce ulteriori 5d4 danni alla fine del turno successivo.",
+    "description": "Una sfera di acido esplode in un raggio di 6 metri intorno a un punto entro gittata. Le creature nell'area effettuano un tiro salvezza su Destrezza: con un fallimento subiscono 10d4 danni da acido e altri 5d4 alla fine del proprio turno successivo; con un successo subiscono metà dei danni iniziali e nessun danno successivo. Con slot superiori al 4°, solo i danni iniziali aumentano di 2d4 per livello dello slot.",
     "source": "XGE",
     "level": 4,
     "school": "Invocazione",
@@ -12890,9 +13287,15 @@
     },
     "isHidden": true,
     "damage": {
-      "formula": "10d4+5d4",
-      "type": "acido"
-    }
+      "formula": "10d4",
+      "type": "acido",
+      "note": "TS fallito: altri 5d4 alla fine del prossimo turno del bersaglio; TS riuscito: metà danni iniziali e nessun danno successivo.",
+      "scaling": "Con slot superiori al 4°, solo i danni iniziali aumentano di 2d4 per livello dello slot."
+    },
+    "range": "45 metri",
+    "components": "V, S, M (una goccia di bile di lumaca gigante)",
+    "savingThrow": "dex",
+    "savingThrows": ["dex"]
   },
   {
     "id": "wall-of-fire",
@@ -13026,7 +13429,7 @@
   {
     "id": "wall-of-light",
     "name": "Muro di luce",
-    "description": "Un muro luminoso appare in un punto entro gittata. Quando appare e quando una creatura termina il turno nel muro, può subire 4d8 danni radianti; l'incantatore può inoltre usare un'azione per scagliare una lama di luce che infligge 4d8 danni radianti.",
+    "description": "Un muro di luce lungo fino a 18 metri, alto 3 e spesso 1,5 blocca la vista ma non il passaggio. Quando appare, le creature nella sua area effettuano un tiro salvezza su Costituzione: 4d8 danni radianti e accecamento per 1 minuto se fallito, metà danni senza accecamento se superato. Il tiro si ripete a fine turno per terminare l'accecamento. Chi termina il proprio turno nel muro subisce 4d8 danni radianti senza tiro salvezza. Con un'azione l'incantatore effettua un attacco a distanza con incantesimo contro una creatura visibile entro 18 metri dal muro, infliggendo 4d8 danni radianti se colpisce; ogni attacco accorcia il muro di 3 metri anche se manca, fino a farlo svanire. Con slot superiori al 5°, i danni aumentano di 1d8 per livello dello slot.",
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
@@ -13037,20 +13440,27 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
     "isHidden": true,
     "damage": {
       "formula": "4d8",
-      "type": "radianti"
-    }
+      "type": "radianti",
+      "scaling": "Con slot superiori al 5°, i danni aumentano di 1d8 per livello dello slot."
+    },
+    "range": "36 metri",
+    "components": "V, S, M (uno specchietto)",
+    "savingThrow": "con",
+    "savingThrows": ["con"],
+    "attackRoll": "ranged"
   },
   {
     "id": "wall-of-sand",
     "name": "Muro di sabbia",
-    "description": "L'incantatore crea un muro di sabbia lungo fino a 45 metri e alto 3 metri. La parete è terreno difficile, oscura parzialmente la vista e può accecare temporaneamente chi la attraversa.",
+    "description": "Un muro di sabbia su terreno visibile entro gittata può essere lungo fino a 9 metri, alto 3 e spesso 3. Blocca la linea di vista, ma non il movimento. Una creatura è accecata mentre si trova nel muro e deve spendere 3 metri di movimento per ogni metro percorso al suo interno.",
     "source": "XGE",
     "level": 3,
     "school": "Invocazione",
@@ -13061,11 +13471,14 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "27 metri",
+    "components": "V, S, M (una manciata di sabbia)"
   },
   {
     "id": "wall-of-stone",
@@ -13125,7 +13538,7 @@
   {
     "id": "wall-of-water",
     "name": "Muro d’acqua",
-    "description": "L'incantatore crea un muro d'acqua lungo fino a 9 metri, alto 3 metri e spesso 30 cm. Il muro è terreno difficile, spegne fiamme e conferisce copertura contro attacchi a distanza.",
+    "description": "Un muro d'acqua su terreno entro gittata può essere lungo 9 metri, alto 3 e spesso 0,3, oppure un anello di diametro massimo 6 metri e altezza 6. È terreno difficile. Gli attacchi con armi a distanza che vi entrano hanno svantaggio; i danni da fuoco che lo attraversano sono dimezzati. Gli incantesimi che infliggono freddo congelano le porzioni attraversate, almeno un quadrato di 1,5 metri: ogni sezione ha CA 5 e 15 PF e, se distrutta, non si riforma.",
     "source": "XGE",
     "level": 3,
     "school": "Invocazione",
@@ -13136,11 +13549,14 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "18 metri",
+    "components": "V, S, M (una goccia d'acqua)"
   },
   {
     "id": "warding-bond",
@@ -13182,7 +13598,7 @@
   {
     "id": "warding-wind",
     "name": "Vento di interdizione",
-    "description": "Un forte vento circonda l'incantatore, che può essere udito entro 30 metri. Il vento spegne fiamme, disperde gas e rende difficili gli attacchi a distanza attraverso di esso.",
+    "description": "Un forte vento circonda l'incantatore in un raggio di 3 metri e si muove con lui. Assorda lui e le altre creature nell'area, spegne le fiamme non protette grandi al massimo quanto una torcia e tiene fuori vapori, gas e nebbie disperdibili dal vento forte. L'area è terreno difficile per le altre creature; gli attacchi con armi a distanza che entrano o escono dal vento hanno svantaggio.",
     "source": "XGE",
     "level": 2,
     "school": "Invocazione",
@@ -13193,11 +13609,14 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 10 minuti",
+      "amount": 10
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "Incantatore",
+    "components": "V"
   },
   {
     "id": "water-breathing",
@@ -13250,7 +13669,7 @@
   {
     "id": "watery-sphere",
     "name": "Sfera acquosa",
-    "description": "Una sfera d'acqua del diametro di 1,5 metri compare entro gittata. Le creature nell'area possono effettuare un tiro salvezza su Forza per evitarla; una creatura trattenuta dalla sfera può essere trasportata e trattenuta finché non riesce a liberarsi.",
+    "description": "Una sfera d'acqua di raggio 1,5 metri compare in un punto visibile entro gittata e può fluttuare fino a 3 metri dal terreno. Chi è nella sfera effettua un tiro salvezza su Forza: un successo lo espelle nello spazio libero più vicino a sua scelta, un fallimento lo trattiene immerso. Le creature Enormi o maggiori superano automaticamente il tiro; le altre possono fallirlo volontariamente. Contiene fino a quattro creature Medie o minori, oppure una Grande, espellendo casualmente una creatura già trattenuta se supera tale capacità. Con un'azione l'incantatore la muove in linea retta fino a 9 metri, trasportando i prigionieri e imponendo il tiro alle creature urtate. I prigionieri ripetono il tiro a fine turno. Al termine la sfera cade, lascia proni i prigionieri e spegne le fiamme normali entro 9 metri.",
     "source": "XGE",
     "level": 4,
     "school": "Evocazione",
@@ -13261,11 +13680,16 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
-    "isHidden": true
+    "isHidden": true,
+    "range": "27 metri",
+    "components": "V, S, M (una gocciolina d'acqua)",
+    "savingThrow": "str",
+    "savingThrows": ["str"]
   },
   {
     "id": "web",
@@ -13335,7 +13759,7 @@
   {
     "id": "whirlwind",
     "name": "Turbine",
-    "description": "Un turbine di vento compare in un punto entro gittata e può essere spostato dall'incantatore. Le creature nell'area effettuano un tiro salvezza su Forza e subiscono 10d6 danni contundenti se lo falliscono, oltre a poter essere sollevate e trasportate dal turbine.",
+    "description": "Un turbine cilindrico di raggio 3 metri e altezza 9 compare su terreno visibile entro gittata. Con un'azione l'incantatore lo sposta fino a 9 metri sul terreno. La prima volta in un turno che una creatura vi entra o viene raggiunta dal turbine, anche alla comparsa, effettua un tiro salvezza su Destrezza: 10d6 danni contundenti se fallito, metà se superato. Una creatura Grande o minore che fallisce deve inoltre superare un tiro salvezza su Forza o essere trattenuta e sollevata di 1,5 metri all'inizio di ogni proprio turno, fino alla cima. Può usare un'azione e una prova di Forza o Destrezza contro la CD per liberarsi, venendo scagliata di 3d6 × 3 metri in una direzione casuale.",
     "source": "XGE",
     "level": 7,
     "school": "Invocazione",
@@ -13346,15 +13770,20 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "10d6",
       "type": "contundenti"
-    }
+    },
+    "range": "90 metri",
+    "components": "V, M (un filo di paglia)",
+    "savingThrow": "dex",
+    "savingThrows": ["dex", "str"]
   },
   {
     "id": "wind-walk",
@@ -13475,7 +13904,7 @@
   {
     "id": "word-of-radiance",
     "name": "Parola di radiosità",
-    "description": "L'incantatore pronuncia una parola divina. Le creature a scelta dell'incantatore entro 1,5 metri effettuano un tiro salvezza su Costituzione e subiscono 1d6 danni radianti se lo falliscono.",
+    "description": "Le creature scelte dall'incantatore che egli può vedere entro 1,5 metri devono superare un tiro salvezza su Costituzione o subire 1d6 danni radianti. I danni aumentano con il livello del personaggio: 2d6 al 5°, 3d6 all’11° e 4d6 al 17°.",
     "source": "XGE",
     "level": 0,
     "school": "Invocazione",
@@ -13493,8 +13922,13 @@
     "isHidden": true,
     "damage": {
       "formula": "1d6",
-      "type": "radianti"
-    }
+      "type": "radianti",
+      "scaling": "I danni aumentano con il livello del personaggio: 2d6 al 5°, 3d6 all’11° e 4d6 al 17°."
+    },
+    "range": "1,5 metri",
+    "components": "V, M (un simbolo sacro)",
+    "savingThrow": "con",
+    "savingThrows": ["con"]
   },
   {
     "id": "word-of-recall",
@@ -13521,7 +13955,7 @@
   {
     "id": "wrath-of-nature",
     "name": "Ira della natura",
-    "description": "L'incantatore trasforma un'area naturale in un terreno ostile. Radici, rocce e alberi possono colpire le creature, rallentarle o immobilizzarle, mentre l'area diventa difficile da attraversare.",
+    "description": "In un cubo di 18 metri entro gittata, erba e sottobosco sono terreno difficile per i nemici. All'inizio di ogni turno dell'incantatore, i nemici entro 3 metri dagli alberi devono superare un tiro salvezza su Destrezza o subire 4d6 danni taglienti. Alla fine di ogni suo turno può far trattenere dalle radici una creatura a terra nel cubo che fallisca un tiro salvezza su Forza; essa può liberarsi con un'azione e una prova di Forza (Atletica) contro la CD. Con un'azione bonus può scagliare una roccia sciolta contro una creatura visibile nel cubo: attacco a distanza con incantesimo, 3d8 danni contundenti non magici e tiro salvezza su Forza per non cadere prona.",
     "source": "XGE",
     "level": 5,
     "school": "Invocazione",
@@ -13532,15 +13966,22 @@
       "text": "1 azione"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "4d6",
-      "type": "contundenti"
-    }
+      "type": "taglienti",
+      "note": "Rami: TS su Destrezza per evitare; roccia con attacco a distanza: 3d8 contundenti non magici."
+    },
+    "range": "36 metri",
+    "components": "V, S",
+    "savingThrow": "dex",
+    "savingThrows": ["dex", "str"],
+    "attackRoll": "ranged"
   },
   {
     "id": "wrathful-smite",
@@ -13569,26 +14010,30 @@
   {
     "id": "zephyr-strike",
     "name": "Colpo dello zefiro",
-    "description": "L'incantatore si muove senza provocare attacchi di opportunità. Ha vantaggio al prossimo tiro per colpire con un'arma e, se colpisce, infligge 1d8 danni extra e può aumentare la propria velocità.",
+    "description": "Per la durata, il movimento dell'incantatore non provoca attacchi di opportunità. Una volta prima del termine può scegliere di avere vantaggio a un tiro per colpire con un'arma durante il proprio turno; se colpisce, infligge 1d8 danni da forza extra. A prescindere dall'esito, la sua velocità di camminare aumenta di 9 metri fino alla fine di quel turno.",
     "source": "XGE",
     "level": 1,
     "school": "Trasmutazione",
     "classes": ["ranger"],
     "castingTime": {
       "amount": 1,
-      "unit": "action",
-      "text": "1 azione"
+      "unit": "bonus-action",
+      "text": "1 azione bonus"
     },
     "duration": {
-      "unit": "instantaneous",
-      "concentration": false,
-      "text": "Istantanea"
+      "unit": "minute",
+      "concentration": true,
+      "text": "Concentrazione, fino a 1 minuto",
+      "amount": 1
     },
     "isHidden": true,
     "damage": {
       "formula": "1d8",
-      "type": "variabile"
-    }
+      "type": "forza",
+      "note": "Danni extra di un singolo attacco con arma scelto prima del termine dell'incantesimo."
+    },
+    "range": "Incantatore",
+    "components": "V"
   },
   {
     "id": "zone-of-truth",

@@ -251,13 +251,16 @@ function drawCard(
       });
     lineY -= BODY_LEADING;
   }
-  page.drawText(`Forgia dell'Avventuriero - ${clean(card.spell.source)}`, {
-    x: x + CARD_PADDING,
-    y: y + 8,
-    size: 5.5,
-    font,
-    color: rgb(0.42, 0.39, 0.34),
-  });
+  page.drawText(
+    `Forgia dell'Avventuriero - ${card.spell.homebrew ? 'HOMEBREW' : clean(card.spell.source)}`,
+    {
+      x: x + CARD_PADDING,
+      y: y + 8,
+      size: 5.5,
+      font,
+      color: rgb(0.42, 0.39, 0.34),
+    },
+  );
 }
 
 export function orderedCharacterSpells(draft: CharacterDraft, catalog: CatalogData): Spell[] {

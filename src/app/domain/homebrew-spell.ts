@@ -6,6 +6,7 @@ export function asSpell(homebrew: HomebrewSpell): Spell {
     name: homebrew.name,
     description: homebrew.description,
     source: 'SRD',
+    homebrew: true,
     level: homebrew.level,
     school: homebrew.school,
     classes: [],
@@ -15,7 +16,13 @@ export function asSpell(homebrew: HomebrewSpell): Spell {
       concentration: homebrew.concentration,
       text: homebrew.duration,
     },
-    components: homebrew.components.join(', '),
+    components: homebrew.components
+      .map((component) =>
+        component === 'M' && homebrew.materials?.length
+          ? `M (${homebrew.materials.join(', ')})`
+          : component,
+      )
+      .join(', '),
     damage: homebrew.damage,
   };
 }

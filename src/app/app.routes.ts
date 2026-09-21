@@ -17,5 +17,6 @@ export const routes: Routes = [
       import('./features/spell-cards/spell-cards.component').then((m) => m.SpellCardsComponent),
     title: "Card incantesimo · Forgia dell'avventuriero",
   },
+  { path: 'cards', redirectTo: 'card-incantesimo', pathMatch: 'full' },
   { path: '**', redirectTo: '' },
 ];
